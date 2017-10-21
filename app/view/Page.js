@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
-import bind from '../utils/recallReact';
-import { currentPage } from '../state';
+import bind from 'utils/recallReact';
+import currentPage from 'state/page';
 import PageAlbums from './PageAlbums';
 
 const getPageViewByName = (name) => {
@@ -14,9 +13,7 @@ const Page = ({ page }) => {
   const { name, props } = page;
   const PageView = getPageViewByName(name);
   return (
-    <Container>
-      <PageView {...props} />;
-    </Container>
+    <PageView {...props} />
   );
 };
 

@@ -1,37 +1,39 @@
 import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
-import GetImage from '../Ipfs/GetImage';
+import GetImage from 'components/Ipfs/GetImage';
+import playerState from 'state/player';
+import addAlbumToPlaylist from 'scripts/addAlbumToPlaylist';
 
-const CardExampleCard = ({ title, artist, cover }) => (
-  <Card centered >
-    <GetImage
-      hash={cover[0].hash}
-      view={({ data }) => {
-        console.log(data);
-        const url = URL.createObjectURL(data);
-        return <Image src={url} />;
-      }}
-    />
-    <Card.Content>
-      <Card.Header>
-        {title}
-      </Card.Header>
-      <Card.Meta>
-        <span className="date">
-          Joined in 2015
-        </span>
-      </Card.Meta>
-      <Card.Description>
-        {artist}
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name="user" />
-        22 Friends
-      </a>
-    </Card.Content>
-  </Card>
-);
+const Album = (album) => {
+  const { title, artist, cover, tracks } = album.data;
+  return (
+    <Card centered >
+      <GetImage
+        hash={cover}
+        view={({ data }) => {
+          console.log(data);
+          const url = URL.createObjectURL(data);
+          return <Image src={url} />;
+        }}
+      />
+      <Card.Content>
+        <Card.Header>
+          {title}
+        </Card.Header>
+        <Card.Description>
+          {artist}
+        </Card.Description>
+      </Card.Content>
+      <Card.Content extra>
+        <a onClick={
+          () => {addAlbumToPlaylist(album)}
+        }>
+          <Icon name="play" />
+          {`${tracks.length} tracks`}
+        </a>
+      </Card.Content>
+    </Card>
+  );
+};
 
-export default CardExampleCard;
+export default Album;

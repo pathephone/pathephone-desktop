@@ -1,6 +1,6 @@
 import React from 'react';
+import { Dimmer, Loader } from 'semantic-ui-react';
 import { start } from '../scripts/initDb';
-import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react';
 
 class InitApp extends React.Component {
   state = {
@@ -21,7 +21,6 @@ class InitApp extends React.Component {
         </Dimmer>
       );
     }
-    console.log('ready');
     return this.props.children;
   }
 }

@@ -1,0 +1,11 @@
+.AlbumsList {
+  padding-top: 5em;
+  display: grid;
+  justify-content: center;
+  grid-gap: 1.5em;
+  grid-template-columns: auto;
+}
+
+.Album {
+  display: inline-block;
+}

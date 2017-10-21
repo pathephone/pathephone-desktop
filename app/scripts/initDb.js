@@ -1,4 +1,5 @@
-import schemas from '../schemas';
+import rxdbAlbumSchema from '../schemas/rxdb/album';
+import metabinAlbumSchema from '../schemas/metabin/album';
 import { getIpfs } from '../api/ipfs';
 import { getDb, createDb } from '../api/rxdb';
 import getCidString from '../utils/getCidString';
@@ -12,26 +13,26 @@ export const start = async () => {
     adapter: 'idb'
   });
   const db = getDb();
-  const promises = schemas.map(
-    async ({ collectionName, schemaObj, schemaCid }, index) => {
-      if (!schemaCid) {
-        const cidObj = await IPFSnode.dag.put(schemaObj, dagParams);
-        schemaCid = cidObj.toBaseEncodedString();
-        schemas[index].schemaCid = schemaCid;
-      }
+  const promises = [rxdbAlbumSchema].map(
+    async (schema) => {
+      const { collectionName, schemaObj } = schema;
       const collection = await db.collection({
         name: collectionName,
         schema: schemaObj
       });
+      if (!metabinAlbumSchema.schemaCid) {
+        const cidObj = await IPFSnode.dag.put(metabinAlbumSchema.schemaObj, dagParams);
+        metabinAlbumSchema.schemaCid = cidObj.toBaseEncodedString();
+      }
       await IPFSnode.pubsub.subscribe(
-        schemaCid,
+        metabinAlbumSchema.schemaCid,
         async (message) => {
           try {
             const { data } = message;
             const cidString = getCidString(data);
             console.log(`Album candidate received: ${cidString}`);
             const { value } = await IPFSnode.dag.get(cidString);
-            collection.insert(value);
+            collection.insert({ cid: cidString, data: value });
           } catch (e) {
             console.log(e);
           }

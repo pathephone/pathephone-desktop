@@ -13,7 +13,7 @@ const fileToBuffer = (file) => new Promise((resolve, reject) => {
 });
 
 const putFilesToIpfs = async (files) => {
-  const ipfs = getIpfs();
+  const ipfs = await getIpfs();
   const filesArray = Array.from(files);
   const arrayOfBuffers = await Promise.all(
     filesArray.map(fileToBuffer)

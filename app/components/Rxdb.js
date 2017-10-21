@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDb } from '../api/rxdb';
+import { getDb } from 'api/rxdb';
 
 export default class Find extends React.Component {
   state = {

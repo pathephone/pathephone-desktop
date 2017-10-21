@@ -19,7 +19,7 @@ class GetFile extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.hash !== nextProps.hash) {
-      this.updateBlob(nextProps.stream);
+      this.updateFiles(nextProps.hash);
     }
   }
   shouldComponentUpdate(nextProps, nextState) {

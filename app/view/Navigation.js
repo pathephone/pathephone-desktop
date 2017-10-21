@@ -1,17 +1,32 @@
-import React from 'react';
-import {
-  Menu,
-} from 'semantic-ui-react';
-import ModalAddAlbum from './ModalAddAlbum/index';
+import React, { Component } from 'react';
+import { Menu } from 'semantic-ui-react';
+import pageState from 'state/page';
+import bind from 'utils/recallReact';
+import pagesMap from './pagesMap';
+import ModalAddAlbum from './ModalAddAlbum';
 
-const FixedMenu = () => (
-  <Menu fixed="top" size="large">
-    <Menu.Menu position="right">
-      <Menu.Item className="item">
+class Navigation extends Component {
+  render() {
+    const { page } = this.props;
+    return (
+      <nav id='navigation' className='izi-ys'>
+        {
+          pagesMap.map(({ name, title }) => (
+            <a
+              key={name}
+              className={`izi-padding ${name === page.name ? 'active' : ''}`}
+              onClick={
+                () => pageState('CHANGE', name)
+              }
+            >
+              {title}
+            </a>
+          ))
+        }
         <ModalAddAlbum />
-      </Menu.Item>
-    </Menu.Menu>
-  </Menu>
-);
+      </nav>
+    );
+  }
+}
 
-export default FixedMenu;
+export default bind({ page: pageState }, Navigation);
