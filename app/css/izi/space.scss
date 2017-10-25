@@ -1,0 +1,79 @@
+.izi- {
+  // Margins
+  &fill {
+    width: 100%;
+    height: 100%;
+  }
+  &fill-width {
+    width: 100%;
+  }
+  &fill-height {
+    height: 100%;
+  }
+  &margin {
+    margin: 1em;
+    &-top {
+      margin-top: 1em;
+      &-auto {
+        margin-top: auto;
+      }
+    }
+    &-bottom {
+      margin-bottom: 1em;
+      &-auto {
+        margin-bottom: auto;
+      }
+    }
+    &-right {
+      margin-right: 1em;
+      &-auto {
+        margin-right: auto;
+      }
+    }
+    &-left {
+      margin-left: 1em;
+      &-auto {
+        margin-left: auto;
+      }
+    }
+    &-x {
+      margin: 0 1em;
+      &-auto {
+        margin: 0 auto;
+      }
+    }
+    &-y {
+      margin: 1em 0;
+      &-auto {
+        margin: auto 0;
+      }
+    }
+    &-auto {
+      margin: auto;
+    }
+
+  }
+
+  // Paddings
+  &padding {
+    padding: 1em;
+  }
+  &padding-top {
+    padding-top: 1em;
+  }
+  &padding-bottom {
+    padding-bottom: 1em;
+  }
+  &padding-right {
+    padding-right: 1em;
+  }
+  &padding-left {
+    padding-left: 1em;
+  }
+  &padding-x {
+    padding: 0 1em;
+  }
+  &padding-y {
+    padding: 1em 0;
+  }
+}

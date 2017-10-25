@@ -1,0 +1,34 @@
+.izi- {
+  &vw-scale-factor- {
+    &1 {
+      font-size: calc(1em + 1vw)
+    }
+    &2 {
+      font-size: calc(1em + (1vw / 2))
+    }
+    &3 {
+      font-size: calc(1em + (1vw / 3))
+    }
+    &4 {
+      font-size: calc(1em + (1vw / 4))
+    }
+    &5 {
+      font-size: calc(1em + (1vw / 5))
+    }
+  }
+  &root-size {
+    font-size: 1rem;
+  }
+  &small {
+    font-size: calc(1em - (1em / 3));
+  }
+  &smaller {
+    font-size: calc(1em - (1em / 6));
+  }
+  &big {
+    font-size: calc(1em + (1em / 3));
+  }
+  &bigger {
+    font-size: calc(1em + (1em / 6));
+  }
+}

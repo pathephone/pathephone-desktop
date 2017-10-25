@@ -1,0 +1,116 @@
+.izi--flex-div,
+.izi--flex-divs {
+  div {
+    @extend .izi-yl;
+  }
+}
+
+.izi-x, .izi-y {
+  align-items: center;
+}
+
+.izi-x {
+	display: flex;
+  &u, &-up {
+    @extend .izi-x;
+    align-items: flex-start;
+  }
+  &d, &-down {
+    @extend .izi-x;
+    align-items: flex-end;
+  }
+  &s, &-stretch {
+    @extend .izi-x;
+    align-items: stretch;
+  }
+}
+.izi-y {
+  display: flex;
+	flex-direction: column;
+  &l, &-left {
+    @extend .izi-y;
+    align-items: flex-start;
+  }
+  &r, &-right {
+    @extend .izi-y;
+    align-items: flex-end;
+  }
+  &s, &-stretch {
+    @extend .izi-y;
+    align-items: stretch;
+  }
+}
+
+.izi-y,
+.izi-yl,
+.izi-y-left,
+.izi-yr,
+.izi-y-right,
+.izi-ys,
+.izi-y-stretch {
+  & > * {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+}
+
+// MODIFICATIONS
+.izi-x,
+.izi-xu,
+.izi-xd,
+.izi-xs,
+.izi-y,
+.izi-yl,
+.izi-yr,
+.izi-ys {
+  &.-izi-center {
+    justify-content: center;
+  }
+  &.-izi-space-around {
+    justify-content: space-around;
+  }
+  &.-izi-space-between {
+    justify-content: space-between;
+  }
+  &.-izi-wrap {
+    flex-wrap: wrap;
+  }
+}
+
+.izi-center {
+  justify-content: center;
+}
+.izi-space-around {
+  justify-content: space-around;
+}
+.izi-space-between {
+  justify-content: space-between;
+}
+
+.izi-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.izi-wrap {
+  flex-wrap: wrap;
+}
+
+.izi-self {
+  &-start {
+    align-self: flex-start;
+  }
+  &-end {
+    align-self: flex-end;
+  }
+  &-center {
+    align-self: center;
+  }
+  &-baseline {
+    align-self: baseline;
+  }
+  &-stretch {
+    align-self: stretch;
+  }
+}

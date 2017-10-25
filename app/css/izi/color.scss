@@ -1,0 +1,148 @@
+// W3.CSS palette
+
+.izi- {
+  &red {
+    color: #f44336;
+    fill: #f44336;
+    &-bg {
+      background-color: #f44336;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &pink {
+    color: #e91e63;
+    fill: #e91e63;
+    &-bg {
+      background-color: #e91e63;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &orange {
+    color: #ff9800;
+    fill: #ff9800;
+    &-bg {
+      background-color: #ff9800;
+      color: #000;
+      fill: #000;
+    }
+  }
+  &yellow {
+    color: #ffeb3b;
+    fill: #ffeb3b;
+    &-bg {
+      background-color: #ffeb3b;
+      color: #000;
+      fill: #000;
+    }
+  }
+  &green {
+    color: #4CAF50;
+    fill: #4CAF50;
+    &-bg {
+      background-color: #4CAF50;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &teal {
+    color: #009688;
+    fill: #009688;
+    &-bg {
+      background-color: #009688;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &cyan {
+    color: #00bcd4;
+    fill: #00bcd4;
+    &-bg {
+      background-color: #00bcd4;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &lime {
+    color: #cddc39;
+    fill: #cddc39;
+    &-bg {
+      background-color: #cddc39;
+      color: #000;
+      fill: #000;
+    }
+  }
+  &blue {
+    color: #2196F3;
+    fill: #2196F3;
+    &-bg {
+      background-color: #2196F3;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &indigo {
+    color: #3f51b5;
+    fill: #3f51b5;
+    &-bg {
+      background-color: #3f51b5;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &purple {
+    color: #9c27b0;
+    fill: #9c27b0;
+    &-bg {
+      background-color: #9c27b0;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &khaki {
+    color: #f0e68c;
+    fill: #f0e68c;
+    &-bg {
+      background-color: #f0e68c;
+      color: #000;
+      fill: #000;
+    }
+  }
+  &black {
+    color: #000;
+    fill: #000;
+    &-bg {
+      background-color: #000;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &brown {
+    color: #795548;
+    fill: #795548;
+    &-bg {
+      background-color: #795548;
+      color: #fff;
+      fill: #fff;
+    }
+  }
+  &gray {
+    color: #bbb;
+    fill: #bbb;
+    &-bg {
+      background-color: #bbb;
+      color: #000;
+      fill: #000;
+    }
+  }
+  &lgray {
+    color: #f1f1f1;
+    fill: #f1f1f1;
+    &-bg {
+      background-color: #f1f1f1;
+      color: #000;
+      fill: #000;
+    }
+  }
+}

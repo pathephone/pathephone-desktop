@@ -1,0 +1,33 @@
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+#navigation {
+  background-color: #f1f1f1;
+
+  li a {
+    display: block;
+    padding: 1em;
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* Change the link color on hover */
+  li a:hover {
+    background-color: #555;
+    color: white;
+  }
+}
+
+#playlist {
+  background-color: #f1f1f1;
+  a.current {
+    border-left: 2px solid red;
+  }
+}

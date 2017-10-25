@@ -2,8 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './view/App';
-import './dist/izi/index.global.scss';
-import './dist/index.global.scss';
+import './css/izi/index.global.scss';
+import './css/index.global.scss';
 
 render(
   <AppContainer>

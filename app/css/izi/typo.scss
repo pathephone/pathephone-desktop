@@ -1,0 +1,83 @@
+.izi--text-presets {
+  p, li,
+  h1, h2, h3, h4, h5, h6 {
+    width: 30em;
+    &.-izi-center {
+      text-align: center;
+    }
+    &.-izi-right {
+      text-align: right;
+    }
+    &.-izi-right {
+      text-align: justify;
+    }
+  }
+}
+
+.izi-text {
+  width: 30em;
+  &-center {
+    @extend .izi-text;
+    text-align: center;
+  }
+  &-right {
+    @extend .izi-text;
+    text-align: right;
+  }
+  &-justify {
+    @extend .izi-text;
+    text-align: justify;
+  }
+  &.-izi-center {
+    text-align: center;
+  }
+  &.-izi-right {
+    text-align: right;
+  }
+  &.-izi-justify {
+    text-align: justify;
+  }
+}
+
+.izi-dots {
+  overflow: hidden;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+}
+
+.izi-uppercase {
+  text-transform: uppercase;
+}
+
+.izi-font- {
+  &bold {
+    font-weight: bold;
+  }
+  &bolder {
+    font-weight: bolder;
+  }
+  &normal {
+    font-weight: normal;
+  }
+  &lighter {
+    font-weight: lighter;
+  }
+  &100 {
+    font-weight: 100;
+  }
+  &200 {
+    font-weight: 200;
+  }
+  &300 {
+    font-weight: 300;
+  }
+  &400 {
+    font-weight: 400;
+  }
+  &500 {
+    font-weight: 500;
+  }
+  &600 {
+    font-weight: 600;
+  }
+}
