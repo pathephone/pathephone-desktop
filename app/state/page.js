@@ -11,12 +11,18 @@ const data : currentPage = {
   props: {}
 };
 
+const actions = {
+  CHANGE(...params) {
+    const [name, props] = params;
+    data.name = name;
+    data.props = props;
+  }
+};
+
 const point = createPoint(
   (ACTION, ...params) => {
-    if (ACTION === 'CHANGE') {
-      const [name, props] = params;
-      data.name = name;
-      data.props = props;
+    if (ACTION) {
+      actions[ACTION](...params);
     }
     return data;
   }
