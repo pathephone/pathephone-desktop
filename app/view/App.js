@@ -4,16 +4,15 @@ import InitApp from './InitApp';
 import Navigation from './Navigation';
 import Playlist from './Playlist';
 import Page from './Page';
-import { Grid } from 'semantic-ui-react';
+import Loader from './Loader';
 
 const App = () => (
-  <InitApp>
-    <div className='app izi-vw-scale-factor-5 izi--adaptive'>
-      <Navigation />
-      <Page />
-      <Playlist />
-    </div>
-  </InitApp>
+  <div className="app izi-vw-scale-factor-5 izi--adaptive">
+    <Navigation />
+    <Page />
+    <Playlist />
+    <Loader />
+  </div>
 );
 
 export default App;
