@@ -1,0 +1,6 @@
+.AlbumsFeed {
+  display: grid;
+  justify-content: center;
+  grid-gap: 1em;
+  grid-template-columns: 10em;
+}
