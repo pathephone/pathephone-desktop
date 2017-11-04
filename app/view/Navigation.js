@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
 import pageState from 'state/page';
 import bind from 'utils/recallReact';
 import pagesMap from './pagesMap';
@@ -12,7 +11,7 @@ class Navigation extends Component {
       <nav id='navigation' className='izi-ys'>
         {
           pagesMap.map(({ name, title }) => (
-            <a
+            <button
               key={name}
               className={`izi-padding ${name === page.name ? 'active' : ''}`}
               onClick={
@@ -20,7 +19,7 @@ class Navigation extends Component {
               }
             >
               {title}
-            </a>
+            </button>
           ))
         }
         <ModalAddAlbum />
