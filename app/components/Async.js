@@ -1,18 +1,29 @@
 import React from 'react';
 
 class Async extends React.Component {
-  state = { }
+  state = {
+    data: null,
+    error: null,
+    ready: false
+  }
   async componentWillMount() {
     const { call } = this.props;
     try {
-      const data = await Promise.all(call);
-      this.setState({ data, error: null });
+      const data = await call();
+      this.setState({ data, ready: true });
     } catch (error) {
-      this.setState({ error, data: null });
+      this.setState({ error, ready: true });
     }
   }
   render() {
-    return <this.props.view {...this.state} />;
+    const { ready, ...result } = this.state;
+    if (ready) {
+      return <this.props.onReady {...result} />;
+    }
+    if (this.props.onWait) {
+      return <this.props.onWait />;
+    }
+    return null;
   }
 }
 
