@@ -3,7 +3,6 @@
 const fetch = require('node-fetch');
 const IPFSapi = require('./src');
 
-const dagGetEndpoint = 'http://localhost:5001/api/v0/dag/get';
 let node;
 
 /*
@@ -20,10 +19,12 @@ export const getIpfs = () => {
 };
 */
 
-export const getIpfs = () => {
+export default (params) => {
   if (node) return node;
-
-  node = IPFSapi();
+  const { host, port } = params;
+  console.log('IPFS START');
+  const dagGetEndpoint = `http://${host}:${port}/api/v0/dag/get`;
+  node = IPFSapi(host, port);
 
   node.dag.get = async (cidString) => {
     if (typeof cidString !== 'string') {
