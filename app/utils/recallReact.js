@@ -1,25 +1,25 @@
-import React from 'react';
+import React from 'react'
 
 export default (points, View) => class extends React.Component {
   state = {}
   listeners = []
-  componentWillMount() {
+  componentWillMount () {
     Object.keys(points)
       .forEach((key) => {
         const listener = points[key]((value) => {
           this.setState({
             [key]: value
-          });
-        });
-        this.listeners.push(listener);
-      });
+          })
+        })
+        this.listeners.push(listener)
+      })
   }
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.listeners.forEach(({ done }) => {
-      done();
-    });
+      done()
+    })
   }
-  render() {
-    return <View {...this.props} {...this.state} />;
+  render () {
+    return <View {...this.props} {...this.state} />
   }
-};
+}

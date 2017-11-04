@@ -1,13 +1,13 @@
-import RxDB from 'rxdb';
-import IDBadapter from 'pouchdb-adapter-idb';
+import RxDB from 'rxdb'
+import IDBadapter from 'pouchdb-adapter-idb'
 
-RxDB.plugin(IDBadapter);
+RxDB.plugin(IDBadapter)
 
-let db;
+let db
 
 export const createDb = async (options) => {
-  db = await RxDB.create(options);
-  window.RxDb = db;
-};
+  db = await RxDB.create(options)
+  window.RxDb = db
+}
 
-export const getDb = () => db;
+export const getDb = () => db

@@ -1,6 +1,6 @@
-import React from 'react';
-import GetFile from './File';
-import StreamToBlob from './StreamToBlob';
+import React from 'react'
+import GetFile from './File'
+import StreamToBlob from './StreamToBlob'
 
 const GetImage = ({ hash, view }) => (
   <GetFile
@@ -9,6 +9,6 @@ const GetImage = ({ hash, view }) => (
       ({ data }) => <StreamToBlob stream={data} view={view} />
     }
   />
-);
+)
 
-export default GetImage;
+export default GetImage

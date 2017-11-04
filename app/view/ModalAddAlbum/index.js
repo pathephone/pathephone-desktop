@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, Modal } from 'semantic-ui-react';
-import FormAlbum from './FormAlbum';
+import React from 'react'
+import { Button, Modal } from 'semantic-ui-react'
+import FormAlbum from './FormAlbum'
 
 const ModalAddAlbum = () => (
   <Modal trigger={<Button>Share an album</Button>}>
@@ -9,6 +9,6 @@ const ModalAddAlbum = () => (
       <FormAlbum />
     </Modal.Content>
   </Modal>
-);
+)
 
-export default ModalAddAlbum;
+export default ModalAddAlbum

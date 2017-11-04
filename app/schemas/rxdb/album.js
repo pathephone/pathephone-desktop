@@ -35,15 +35,15 @@ const schemaObj = {
               hash: {
                 type: 'string',
                 minLength: 1
-              },
+              }
             }
           }
         }
       }
     }
   }
-};
+}
 
-const collectionName = 'albums';
+const collectionName = 'albums'
 
-export default { schemaObj, collectionName };
+export default { schemaObj, collectionName }

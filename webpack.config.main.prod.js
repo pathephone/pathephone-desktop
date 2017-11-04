@@ -2,14 +2,14 @@
  * Webpack config for production electron main process
  */
 
-import webpack from 'webpack';
-import merge from 'webpack-merge';
-import BabiliPlugin from 'babili-webpack-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import baseConfig from './webpack.config.base';
-import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import BabiliPlugin from 'babili-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import baseConfig from './webpack.config.base'
+import CheckNodeEnv from './internals/scripts/CheckNodeEnv'
 
-CheckNodeEnv('production');
+CheckNodeEnv('production')
 
 export default merge.smart(baseConfig, {
   devtool: 'source-map',
@@ -58,5 +58,5 @@ export default merge.smart(baseConfig, {
   node: {
     __dirname: false,
     __filename: false
-  },
-});
+  }
+})

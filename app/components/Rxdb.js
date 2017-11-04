@@ -1,38 +1,38 @@
-import React from 'react';
-import { getDb } from 'api/rxdb';
+import React from 'react'
+import { getDb } from 'api/rxdb'
 
 class Rxdb extends React.Component {
   state = {
     data: null,
     error: null
   }
-  async componentWillMount() {
+  async componentWillMount () {
     try {
-      const { collection, query, reactive } = this.props;
-      const db = getDb();
-      const queryObj = db[collection].find(query);
+      const { collection, query, reactive } = this.props
+      const db = getDb()
+      const queryObj = db[collection].find(query)
       if (reactive === true) {
         this.subscription = queryObj.$.subscribe(data => {
-          this.setState({ data });
-        });
+          this.setState({ data })
+        })
       } else {
-        const data = await queryObj.exec();
-        this.setState({ data });
+        const data = await queryObj.exec()
+        this.setState({ data })
       }
     } catch (error) {
-      this.setState({ error });
+      this.setState({ error })
     }
   }
-  componentWillUnmount() {
+  componentWillUnmount () {
     if (this.subscription) {
-      this.subscription.unsubscribe();
+      this.subscription.unsubscribe()
     }
   }
-  render() {
+  render () {
     return (
       <this.props.view {...this.state} />
-    );
+    )
   }
 }
 
-export default Rxdb;
+export default Rxdb

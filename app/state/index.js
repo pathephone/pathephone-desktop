@@ -1,3 +1,3 @@
-import currentPage from './currentPage';
+import currentPage from './currentPage'
 
-export default { currentPage };
+export default { currentPage }

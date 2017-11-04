@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import pageState from 'state/page';
-import bind from 'utils/recallReact';
-import pagesMap from './pagesMap';
-import ModalAddAlbum from './ModalAddAlbum';
+import React, { Component } from 'react'
+import pageState from 'state/page'
+import bind from 'utils/recallReact'
+import pagesMap from './pagesMap'
+import ModalAddAlbum from './ModalAddAlbum'
 
 class Navigation extends Component {
-  render() {
-    const { page } = this.props;
+  render () {
+    const { page } = this.props
     return (
       <nav id='navigation' className='izi-ys'>
         {
@@ -24,8 +24,8 @@ class Navigation extends Component {
         }
         <ModalAddAlbum />
       </nav>
-    );
+    )
   }
 }
 
-export default bind({ page: pageState }, Navigation);
+export default bind({ page: pageState }, Navigation)

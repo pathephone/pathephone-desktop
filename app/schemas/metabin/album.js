@@ -28,11 +28,11 @@ const schemaObj = {
           hash: {
             type: 'string',
             minLength: 1
-          },
+          }
         }
       }
     }
   }
-};
+}
 
-export default { schemaObj };
+export default { schemaObj }

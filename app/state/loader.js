@@ -1,5 +1,5 @@
 // @flow
-import createPoint from '../utils/recallPoint';
+import createPoint from '../utils/recallPoint'
 
 type loaderState = {
   on: boolean
@@ -7,21 +7,21 @@ type loaderState = {
 
 const state : loaderState = {
   on: false
-};
+}
 
 const actions = {
-  TOOGLE() {
-    state.on = !state.on;
+  TOOGLE () {
+    state.on = !state.on
   }
-};
+}
 
 const point = createPoint(
   (ACTION, ...params) => {
     if (ACTION) {
-      actions[ACTION](...params);
+      actions[ACTION](...params)
     }
-    return state;
+    return state
   }
-);
+)
 
-export default point;
+export default point

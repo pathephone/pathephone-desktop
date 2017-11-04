@@ -1,6 +1,5 @@
-import React from 'react';
-import blobStream from 'blob-stream';
-
+import React from 'react'
+import blobStream from 'blob-stream'
 
 const streamToBlob = (stream) => {
   const promises = stream.map(
@@ -9,50 +8,50 @@ const streamToBlob = (stream) => {
             .pipe(blobStream())
             .on('error', reject)
             .on('finish', function () {
-              const blob = this.toBlob();
-              resolve(blob);
-            });
+              const blob = this.toBlob()
+              resolve(blob)
+            })
         })
-      );
-  return Promise.all(promises);
-};
+      )
+  return Promise.all(promises)
+}
 
 class StreamToBlob extends React.Component {
   state = {}
-  componentWillMount() {
-    this.updateBlob(this.props.stream);
+  componentWillMount () {
+    this.updateBlob(this.props.stream)
   }
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (this.props.stream !== nextProps.stream) {
-      this.updateBlob(nextProps.stream);
+      this.updateBlob(nextProps.stream)
     }
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextState.data !== this.state.data;
+  shouldComponentUpdate (nextProps, nextState) {
+    return nextState.data !== this.state.data
   }
-  componentWillUnmount() {
+  componentWillUnmount () {
     // TODO blobs revoking
   }
-  async updateBlob(stream) {
+  async updateBlob (stream) {
     try {
       if (!Array.isArray(stream)) {
-        stream = [stream];
+        stream = [stream]
       }
-      const data = await streamToBlob(stream);
+      const data = await streamToBlob(stream)
       this.setState({
         data: stream.length === 1 ? data[0] : data
-      });
+      })
     } catch (error) {
-      this.setState({ error });
+      this.setState({ error })
     }
   }
-  render() {
-    const { data, error } = this.state;
+  render () {
+    const { data, error } = this.state
     if (data || error) {
-      return <this.props.view {...this.state} />;
+      return <this.props.view {...this.state} />
     }
-    return null;
+    return null
   }
 }
 
-export default StreamToBlob;
+export default StreamToBlob

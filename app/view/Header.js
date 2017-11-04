@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 // import ModalAddAlbum from './ModalAddAlbum/index';
 
 const Header = () => (
@@ -7,6 +7,6 @@ const Header = () => (
       add album
     </button>
   </header>
-);
+)
 
-export default Header;
+export default Header

@@ -1,4 +1,4 @@
-import AlbumsFound from './AlbumsFound';
+import AlbumsFound from './AlbumsFound'
 
 const pagesMap = [
   {
@@ -6,6 +6,6 @@ const pagesMap = [
     title: 'Найдено в сети',
     view: AlbumsFound
   }
-];
+]
 
-export default pagesMap;
+export default pagesMap

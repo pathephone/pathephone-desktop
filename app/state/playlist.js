@@ -1,15 +1,15 @@
 // @flow
-import createPoint from '../utils/recallPoint';
+import createPoint from '../utils/recallPoint'
 
-const state = [];
+const state = []
 
 const point = createPoint(
   (ACTION, ...params) => {
     if (ACTION === 'ADD_TRACKS') {
-      state.push(...params);
+      state.push(...params)
     }
-    return state;
+    return state
   }
-);
+)
 
-export default point;
+export default point

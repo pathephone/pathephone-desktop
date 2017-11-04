@@ -1,5 +1,5 @@
 // @flow
-import createPoint from '../utils/recallPoint';
+import createPoint from '../utils/recallPoint'
 
 type currentPage = {
   name: string,
@@ -9,23 +9,23 @@ type currentPage = {
 const data : currentPage = {
   name: 'albums',
   props: {}
-};
+}
 
 const actions = {
-  CHANGE(...params) {
-    const [name, props] = params;
-    data.name = name;
-    data.props = props;
+  CHANGE (...params) {
+    const [name, props] = params
+    data.name = name
+    data.props = props
   }
-};
+}
 
 const point = createPoint(
   (ACTION, ...params) => {
     if (ACTION) {
-      actions[ACTION](...params);
+      actions[ACTION](...params)
     }
-    return data;
+    return data
   }
-);
+)
 
-export default point;
+export default point

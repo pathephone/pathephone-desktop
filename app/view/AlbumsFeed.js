@@ -1,6 +1,6 @@
-import React from 'react';
-import Album from './AlbumsFeed/Album';
-import styles from './AlbumsFeed.css';
+import React from 'react'
+import Album from './AlbumsFeed/Album'
+import styles from './AlbumsFeed.css'
 
 const AlbumsFeed = ({ albums }) => {
   return (
@@ -9,7 +9,7 @@ const AlbumsFeed = ({ albums }) => {
         albums.map(Album)
       }
     </div>
-  );
-};
+  )
+}
 
-export default AlbumsFeed;
+export default AlbumsFeed

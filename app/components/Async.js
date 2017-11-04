@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 class Async extends React.Component {
   state = {
@@ -6,25 +6,25 @@ class Async extends React.Component {
     error: null,
     ready: false
   }
-  async componentWillMount() {
-    const { call } = this.props;
+  async componentWillMount () {
+    const { call } = this.props
     try {
-      const data = await call();
-      this.setState({ data, ready: true });
+      const data = await call()
+      this.setState({ data, ready: true })
     } catch (error) {
-      this.setState({ error, ready: true });
+      this.setState({ error, ready: true })
     }
   }
-  render() {
-    const { ready, ...result } = this.state;
+  render () {
+    const { ready, ...result } = this.state
     if (ready) {
-      return <this.props.onReady {...result} />;
+      return <this.props.onReady {...result} />
     }
     if (this.props.onWait) {
-      return <this.props.onWait />;
+      return <this.props.onWait />
     }
-    return null;
+    return null
   }
 }
 
-export default Async;
+export default Async

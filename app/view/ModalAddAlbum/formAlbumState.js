@@ -1,5 +1,5 @@
 // @flow
-import createPoint from 'utils/recallPoint';
+import createPoint from 'utils/recallPoint'
 
 type album = {
   title: string,
@@ -25,30 +25,30 @@ const getInitial = () => (
       }
     ]
   }: album
-);
+)
 
-let state = getInitial();
+let state = getInitial()
 
 const point = createPoint(
   (ACTION, ...params) => {
     if (ACTION === 'DROP') {
-      state = getInitial();
+      state = getInitial()
     }
     if (ACTION === 'SET_VALUE') {
-      const [name, value] = params;
-      state[name] = value;
+      const [name, value] = params
+      state[name] = value
     }
     if (ACTION === 'ADD_TRACK') {
       state.tracks.push({
         title: '', hash: ''
-      });
+      })
     }
     if (ACTION === 'EDIT_TRACK') {
-      const [index, value] = params;
-      state.tracks[index] = value;
+      const [index, value] = params
+      state.tracks[index] = value
     }
-    return state;
+    return state
   }
-);
+)
 
-export default point;
+export default point
