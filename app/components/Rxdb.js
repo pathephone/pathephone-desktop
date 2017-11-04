@@ -1,21 +1,26 @@
 import React from 'react';
 import { getDb } from 'api/rxdb';
 
-export default class Find extends React.Component {
+class Rxdb extends React.Component {
   state = {
-    data: null
+    data: null,
+    error: null
   }
   async componentWillMount() {
-    const { collection, query, reactive } = this.props;
-    const db = getDb();
-    const queryObj = db[collection].find(query);
-    if (reactive === true) {
-      this.subscription = queryObj.$.subscribe(data => {
+    try {
+      const { collection, query, reactive } = this.props;
+      const db = getDb();
+      const queryObj = db[collection].find(query);
+      if (reactive === true) {
+        this.subscription = queryObj.$.subscribe(data => {
+          this.setState({ data });
+        });
+      } else {
+        const data = await queryObj.exec();
         this.setState({ data });
-      });
-    } else {
-      const data = await queryObj.exec();
-      this.setState({ data });
+      }
+    } catch (error) {
+      this.setState({ error });
     }
   }
   componentWillUnmount() {
@@ -29,3 +34,5 @@ export default class Find extends React.Component {
     );
   }
 }
+
+export default Rxdb;
