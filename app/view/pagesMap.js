@@ -1,10 +1,10 @@
-import PageAlbums from './PageAlbums';
+import AlbumsFound from './AlbumsFound';
 
 const pagesMap = [
   {
-    name: 'albums',
-    title: 'All albums',
-    view: PageAlbums
+    name: 'albums-found',
+    title: 'Найдено в сети',
+    view: AlbumsFound
   }
 ];
 
