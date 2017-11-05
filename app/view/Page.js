@@ -5,14 +5,15 @@ import pagesMap from './pagesMap'
 
 const getPageViewByName = (name) => {
   const pageObj = pagesMap.find(singleObj => singleObj.name === name)
-  if (!pageObj) throw new Error('No page info found.')
+  if (!pageObj) {
+    console.error(new Error('No page info found.'))
+  }
   return pageObj.view
 }
 
 const Page = ({ page }) => {
   const { name, props } = page
   const PageView = getPageViewByName(name)
-  console.log(PageView)
   return (
     <PageView {...props} />
   )
