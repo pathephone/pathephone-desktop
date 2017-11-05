@@ -1,10 +1,9 @@
 import React from 'react'
 import Album from './AlbumsFeed/Album'
-import styles from './AlbumsFeed.css'
 
 const AlbumsFeed = ({ albums }) => {
   return (
-    <div className={styles.AlbumsFeed}>
+    <div className='albums-feed izi-xu izi-wrap izi-center'>
       {
         albums.map(Album)
       }
