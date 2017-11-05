@@ -8,12 +8,12 @@ class Navigation extends Component {
   render () {
     const { page } = this.props
     return (
-      <nav id='navigation' className='izi-ys'>
+      <nav className='navigation izi-ys'>
         {
           pagesMap.map(({ name, title }) => (
             <button
               key={name}
-              className={`izi-padding ${name === page.name ? 'active' : ''}`}
+              className={`navigation_item ${name === page.name ? 'active' : ''}`}
               onClick={
                 () => pageState('CHANGE', name)
               }
