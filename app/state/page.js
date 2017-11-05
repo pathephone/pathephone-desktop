@@ -1,13 +1,8 @@
 // @flow
-import createPoint from '../utils/recallPoint'
+import createPoint from 'recall-action'
 
-type currentPage = {
-  name: string,
-  props: {}
-};
-
-const data : currentPage = {
-  name: 'albums',
+const data = {
+  name: 'albums-found',
   props: {}
 }
 

@@ -1,5 +1,5 @@
 // @flow
-import createPoint from '../utils/recallPoint'
+import createPoint from 'recall-action'
 
 type screenState = {
   width: number,
