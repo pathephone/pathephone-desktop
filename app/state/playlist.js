@@ -1,15 +1,21 @@
 // @flow
 import createPoint from 'recall-action'
 
-const state = []
+export const state = []
+
+const actions = {
+  ADD_TRACKS (tracks) {
+    state.push(...tracks)
+  },
+  DROP () {
+    state.length = 0
+  }
+}
 
 const point = createPoint(
   (ACTION, ...params) => {
-    if (ACTION === 'ADD_TRACKS') {
-      params.forEach((track) => {
-        const _id = new Date().getTime()
-        state.push({ _id, ...track })
-      })
+    if (ACTION) {
+      actions[ACTION](...params)
     }
     return state
   }

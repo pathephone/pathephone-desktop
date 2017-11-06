@@ -1,23 +1,23 @@
 // @flow
-import createPoint from 'recall-action'
+import createAction from 'recall-action'
 
 const state = {
-  current: null,
-  play: false
+  status: 'STOPED'
 }
 
-const point = createPoint(
+const actions = {
+  PLAY () {
+    state.status = 'PLAYING'
+  },
+  STOP () {
+    state.status = 'STOPED'
+  }
+}
+
+const point = createAction(
   (ACTION, ...params) => {
-    if (ACTION === 'TOGGLE') {
-      state.play = !state.play
-    } else
-    if (ACTION === 'SET_CURRENT') {
-      const [current] = params
-      state.current = current
-    } else
-    if (ACTION === 'STOP') {
-      state.current = null
-      state.play = false
+    if (ACTION) {
+      actions[ACTION](...params)
     }
     return state
   }
