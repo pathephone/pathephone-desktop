@@ -5,7 +5,6 @@ import playerState from 'state/player'
 import currentTrackState from 'state/currentTrack'
 import IpfsGetFile from 'components/Ipfs/GetImage'
 import PlaylistView from './PlaylistView'
-import fakePlaylist from './fakePlaylist'
 
 /*
         <IpfsGetFile
