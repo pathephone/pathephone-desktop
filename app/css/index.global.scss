@@ -4,6 +4,7 @@
 
 .app {
   display: grid;
+  height: 90%;
   grid-template-columns: 20% 60% 20%;
 }
 
@@ -59,4 +60,8 @@
   text-align: center;
   margin: 0.5em 0;
   color: darkgray;
+}
+
+.player {
+  height: 10%;
 }
