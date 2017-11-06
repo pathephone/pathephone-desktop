@@ -1,24 +1,9 @@
 import React from 'react'
 
-const PlaylistTrack = ({ title, artist, current, _id }) => {
+const PlaylistTrack = ({ title, artist, isCurrent, id }) => {
   console.log(title)
   return (
-    <div className='playlist_track izi-x' key={_id}>
-      <button
-        onClick={() => {
-          if (current) {
-            player('PAUSE', _id)
-          } else {
-            player('PLAY', _id)
-          }
-        }}
-      >
-        {
-          current
-            ? '||'
-            : '>'
-        }
-      </button>
+    <div className='playlist_track izi-x'>
       <div className='izi-yl izi-margin-left'>
         <span className='track_title'>
           {title}

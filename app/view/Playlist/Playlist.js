@@ -2,6 +2,7 @@ import React from 'react'
 import bind from 'utils/recallReact'
 import playlistState from 'state/playlist'
 import playerState from 'state/player'
+import currentTrackState from 'state/currentTrack'
 import IpfsGetFile from 'components/Ipfs/GetImage'
 import PlaylistView from './PlaylistView'
 import fakePlaylist from './fakePlaylist'
@@ -16,6 +17,12 @@ import fakePlaylist from './fakePlaylist'
           }}
         />
         */
-playlistState('ADD_TRACKS', ...fakePlaylist)
 
-export default bind({ playlist: playlistState, player: playerState }, PlaylistView)
+export default bind(
+  {
+    playlist: playlistState,
+    player: playerState,
+    currentTrack: currentTrackState
+  },
+  PlaylistView
+)
