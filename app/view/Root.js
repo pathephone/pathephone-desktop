@@ -1,12 +1,12 @@
 // @flow
 import React from 'react'
-import App from './App'
+import InitApp from './InitApp'
 
-// import InitApp from './InitApp/index';
+// import InitInitApp from './InitInitApp/index';
 
 const Root = () => (
   <div className='izi-vw-scale-factor-5 izi--adaptive izi-fill'>
-    <App />
+    <InitApp />
   </div>
 )
 
