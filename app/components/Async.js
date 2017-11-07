@@ -10,18 +10,21 @@ class Async extends React.Component {
     const { call } = this.props
     try {
       const data = await call()
-      this.setState({ data, ready: true })
+      this.setState({ data, ready: true, error: null })
     } catch (error) {
-      this.setState({ error, ready: true })
+      this.setState({ error, ready: true, data: null })
     }
   }
   render () {
     const { ready, ...result } = this.state
     if (ready) {
-      return <this.props.onReady {...result} />
+      if (result.error && this.props.errorView) {
+        return <this.props.errorView {...result} />
+      }
+      return <this.props.readyView {...result} />
     }
-    if (this.props.onWait) {
-      return <this.props.onWait />
+    if (this.props.waitView) {
+      return <this.props.waitView />
     }
     return null
   }
