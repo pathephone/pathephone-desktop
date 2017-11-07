@@ -10,4 +10,6 @@ export const createDb = async (options) => {
   window.RxDb = db
 }
 
-export const getDb = () => db
+const getDb = () => db
+
+export default getDb
