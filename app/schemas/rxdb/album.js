@@ -1,4 +1,4 @@
-const schemaObj = {
+const schema = {
   title: 'album',
   version: 0, // <- incremental version-number
   type: 'object',
@@ -44,6 +44,6 @@ const schemaObj = {
   }
 }
 
-const collectionName = 'albums'
+const name = 'albums'
 
-export default { schemaObj, collectionName }
+export default { schema, name }
