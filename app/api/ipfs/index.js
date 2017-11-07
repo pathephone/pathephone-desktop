@@ -19,9 +19,9 @@ export const getIpfs = () => {
 };
 */
 
-export default (params) => {
+const getIpfsNode = (params = {}) => {
   if (node) return node
-  const { host, port } = params
+  const { host = 'localhost', port = '5001' } = params
   console.log('IPFS START')
   const dagGetEndpoint = `http://${host}:${port}/api/v0/dag/get`
   node = IPFSapi(host, port)
@@ -39,3 +39,5 @@ export default (params) => {
   }
   return node
 }
+
+export default getIpfsNode
