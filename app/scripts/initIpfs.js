@@ -12,7 +12,7 @@ const initIpfs = async () => {
   const cidObj = await IPFSnode.dag.put(schema, dagParams)
   const cidString = cidObj.toBaseEncodedString()
   console.log('INITIALISING LISTENERS')
-  await IPFSnode.pubsub.subscribe(
+  IPFSnode.pubsub.subscribe(
     cidString,
     async (message) => {
       try {
