@@ -1,5 +1,5 @@
 import { schemaCid } from '../schemas/metabin/album'
-import { getIpfs } from '../api/ipfs'
+import getIpfs from '../api/ipfs'
 
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
