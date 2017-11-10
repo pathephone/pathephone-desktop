@@ -1,5 +1,5 @@
 import React from 'react'
-import IpfsFileInput from 'components/Ipfs/FileInput'
+import IpfsFileInput from '../Ipfs/FileInput'
 import { Form } from 'semantic-ui-react'
 import albumFormState from './formAlbumState'
 

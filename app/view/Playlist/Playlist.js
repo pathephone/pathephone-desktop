@@ -3,7 +3,7 @@ import bind from 'utils/recallReact'
 import playlistState from 'state/playlist'
 import playerState from 'state/player'
 import currentTrackState from 'state/currentTrack'
-import IpfsGetFile from 'components/Ipfs/GetImage'
+import IpfsGetFile from '../Ipfs/GetImage'
 import PlaylistView from './PlaylistView'
 
 /*

@@ -1,5 +1,5 @@
 import React from 'react'
-import Async from 'components/Async.js'
+import Async from './_/Async.js'
 import initDb from 'scripts/initDb'
 import initIpfs from 'scripts/initIpfs'
 

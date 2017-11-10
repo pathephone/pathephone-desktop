@@ -11,6 +11,7 @@ const initIpfs = async () => {
   const { schema } = rxdbAlbumSchema
   const cidObj = await IPFSnode.dag.put(schema, dagParams)
   const cidString = cidObj.toBaseEncodedString()
+  rxdbAlbumSchema.cidString = cidString
   console.log('INITIALISING LISTENERS')
   IPFSnode.pubsub.subscribe(
     cidString,
