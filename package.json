@@ -227,6 +227,7 @@
     "qs": "^6.5.0",
     "react": "15.6.2",
     "react-addons-css-transition-group": "15.6.2",
+    "react-audio-player": "^0.6.2",
     "react-dom": "15.6.2",
     "react-hot-loader": "3.0.0-beta.6",
     "readable-stream": "2.3.3",

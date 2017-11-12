@@ -1,13 +1,13 @@
-import rxdbAlbumSchema from '../schemas/rxdb/album'
+import albums from '../data/albums'
 import getDb, { createDb } from '../api/rxdb'
 
-const initIpfs = async () => {
+const initDb = async () => {
   await createDb({
     name: 'pathephone',
     adapter: 'idb'
   })
   const db = getDb()
-  await db.collection(rxdbAlbumSchema)
+  albums.collection = await db.collection(albums.schema)
 }
 
-export default initIpfs
+export default initDb

@@ -44,6 +44,4 @@ const schema = {
   }
 }
 
-const name = 'albums'
-
-export default { schema, name }
+export default schema
