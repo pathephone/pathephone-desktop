@@ -1,58 +1,75 @@
 import albums from '../data/albums'
 import getIpfs from '../api/ipfs'
 import getCidString from '../utils/getCidString'
-import getMultihashBuffer from '../utils/getMultihashBuffer'
-const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
+// import getMultihashBuffer from '../utils/getMultihashBuffer'
 
+const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
+/*
 const publishAllAlbums = async () => {
   const IPFSnode = getIpfs()
   const { collection, schemaCid } = albums
   const documents = await collection.find().exec()
-  documents.forEach((document) => {
-    const { cid } = document
-    const multihash = getMultihashBuffer(cid)
-    IPFSnode.pubsub.publish(schemaCid, multihash)
-  })
+  return Promise.all(
+    documents.map(async (document) => {
+      const { cid } = document
+      const multihash = getMultihashBuffer(cid)
+      await IPFSnode.pubsub.publish(schemaCid, multihash)
+    })
+  )
 }
+*/
 
-const peerIsNotMe = (from) => {
+const messageIsNotFromMe = (from) => {
 // TODO: check somehow peer
+  return true
 }
 
-const initAlbumsListener = () => {
-  const IPFSnode = getIpfs()
-  const albumsListener = async (message) => {
-    try {
-      const { data, from } = message
-      if (peerIsNotMe(from)) {
-        const cidString = getCidString(data)
-        console.log(`Album candidate received: ${cidString}.`)
-        const existed = await albums.findOne({ cid: { $eq: cidString } }).exec()
-        if (!existed) {
-          const { value } = await IPFSnode.dag.get(cidString)
-          await albums.insert({ cid: cidString, data: value })
-          IPFSnode.pubsub.publish(cidString, data)
-        } else {
-          throw new Error(`Album ${cidString} already persisted in local db.`)
-        }
+const albumsListener = async (message) => {
+  console.log(message)
+  try {
+    const ipfsNode = getIpfs()
+    const { data, from } = message
+    if (messageIsNotFromMe(from)) {
+      const cidString = getCidString(data)
+      console.log(`Album candidate received: ${cidString}.`)
+      const existed = await albums.collection
+        .findOne({ cid: { $eq: cidString } })
+        .exec()
+      if (!existed) {
+        const { value } = await ipfsNode.dag.get(cidString)
+        await albums.collection.insert({ cid: cidString, data: value })
+        ipfsNode.pubsub.publish(cidString, data)
+      } else {
+        throw new Error(`Album ${cidString} already persisted in local db.`)
       }
-    } catch (e) {
-      console.log(e)
     }
+  } catch (e) {
+    console.log(e)
   }
+}
+
+const initAlbumsListener = async () => {
+  const ipfsNode = getIpfs()
   const { schemaCid } = albums
-  IPFSnode.pubsub.subscribe(
+  await ipfsNode.pubsub.subscribe(
     schemaCid, albumsListener
   )
 }
 
-const initIpfs = async () => {
-  const IPFSnode = getIpfs()
-  const cidObj = await IPFSnode.dag.put(albums.schema, dagParams)
+const publishAlbumSchema = async () => {
+  const ipfsNode = getIpfs()
+  const { schema } = albums
+  const cidObj = await ipfsNode.dag.put(schema, dagParams)
   const cidString = cidObj.toBaseEncodedString()
   albums.schemaCid = cidString
-  publishAllAlbums()
-  console.log('INITIALISING LISTENERS')
+}
+
+const initIpfs = async () => {
+  console.log('PUBLISHING ALBUM SCHEMA')
+  await publishAlbumSchema()
+  // console.log('PUBLISHING ALBUMS FROM DB')
+  // publishAllAlbums()
+  console.log('INITIALISING LISTENER')
   initAlbumsListener()
 }
 
