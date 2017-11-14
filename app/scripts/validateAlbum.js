@@ -1,6 +1,6 @@
 import Ajv from 'ajv'
 import isIpfs from 'is-ipfs'
-import { schemaObj } from '../schemas/metabin/album'
+import schemaObj from '../data/albums/schema'
 
 const validateAlbum = (albumCandidate) => {
   const validator = new Ajv({
