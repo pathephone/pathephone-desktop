@@ -7,7 +7,10 @@ const initDb = async () => {
     adapter: 'idb'
   })
   const db = getDb()
-  albums.collection = await db.collection(albums.schema)
+  albums.collection = await db.collection({
+    name: 'albums',
+    schema: albums.schema
+  })
 }
 
 export default initDb
