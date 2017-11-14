@@ -32,6 +32,10 @@ const schema = {
                 type: 'string',
                 minLength: 1
               },
+              artist: {
+                type: 'string',
+                minLength: 1
+              },
               hash: {
                 type: 'string',
                 minLength: 1
