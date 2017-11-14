@@ -1,41 +1,46 @@
 import React from 'react'
 import bind from 'utils/recallReact'
-import { state as playlistData } from 'state/playlist'
-import playerState from 'state/player'
+import playlistState from 'state/playlist'
 import currentTrackState from 'state/currentTrack'
-import IpfsGetFile from '../Ipfs/GetImage'
 import PlayerView from './PlayerView'
 import startPlaying from 'scripts/startPlaying'
 import stopPlaying from 'scripts/stopPlaying'
+import playNextTrack from 'scripts/playNextTrack'
+import playPrevTrack from 'scripts/playPrevTrack'
+import multihashToUrl from '../../scripts/multihashToUrl'
+import Async from '../_/Async'
 
 class Playlist extends React.Component {
   render () {
-    const { player, currentTrack } = this.props
-    const { status } = player
-    const currentTrackObj = playlistData.find(({ id }) => id === currentTrack.id)
-    const viewProps = {
-      playerStatus: status,
-      currentTrack: currentTrackObj
+    const { playlist } = this.props
+    const currentTrack = playlist.find(
+      ({ current }) => current
+    )
+    if (!currentTrack) {
+      return null
     }
-    if (status === 'PLAYING') {
-      viewProps.onPlayStop = stopPlaying
-    } else {
-      viewProps.onPlayStop = startPlaying
+    const { hash } = currentTrack
+    const ErrorView = ({ error }) => {
+      return <h1>{error.message}</h1>
+    }
+    const ReadyView = ({ data }) => {
+      return (
+        <PlayerView
+          {...currentTrack}
+          src={data}
+          onPlayNextTrack={playNextTrack}
+          onPlayPrevTrack={playPrevTrack}
+        />
+      )
     }
     return (
-      <PlayerView {...viewProps} />
+      <Async
+        call={() => multihashToUrl(hash)}
+        errorView={ErrorView}
+        readyView={ReadyView}
+      />
     )
   }
 }
-/*
-        <IpfsGetFile
-          hash={currentTrack}
-          view={({ data }) => {
-            const url = URL.createObjectURL(data);
-            console.log(url);
-            return <audio src={url} controls autoPlay />;
-          }}
-        />
-        */
 
-export default bind({ player: playerState, currentTrack: currentTrackState }, Playlist)
+export default bind({ playlist: playlistState, currentTrack: currentTrackState }, Playlist)
