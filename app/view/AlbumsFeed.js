@@ -3,7 +3,7 @@ import Album from './AlbumsFeed/Album'
 
 const AlbumsFeed = ({ albums }) => {
   return (
-    <div className='albums-feed izi-xu izi-wrap izi-center'>
+    <div className='albums-feed'>
       {
         albums.map(Album)
       }
