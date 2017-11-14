@@ -16,8 +16,8 @@ const AlbumsFound = ({ data, error }) => {
 }
 
 const Wrapper = (props) => {
-  return <AlbumsFound data={fakeAlbumsData} />
-  // return <Rxdb collection='albums' reactive view={AlbumsFound} />
+  // return <AlbumsFound data={fakeAlbumsData} />
+  return <Rxdb collection='albums' reactive view={AlbumsFound} />
 }
 
 export default Wrapper
