@@ -12,8 +12,10 @@
  */
 import { app, BrowserWindow } from 'electron'
 import MenuBuilder from './menu'
+const { spawn } = require('child_process');
 
 let mainWindow = null
+let ipfs = null
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support')
@@ -47,22 +49,45 @@ const installExtensions = async () => {
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
+  //if (process.platform !== 'darwin') {
+  //  app.quit()
+  //}
+  if(ipfs)
+  	ipfs.kill();
+})
+
+ipfs = spawn('ipfs', ['daemon', '--enable-pubsub-experiment']);
+let ipfsLoaded = false
+ipfs.stdout.on('data', (data) => {
+  console.log(`ipfs: ${data}`);
+  if(data.includes('Daemon is ready'))
+  {
+    console.log('catched ipfs start')
+    ipfsLoaded = true
+    loadMainWindow()
+  }
+});
+
+ipfs.on('close', (code) => {
+  console.log(`ipfs closed with code ${code}`);
   if (process.platform !== 'darwin') {
     app.quit()
   }
-})
+});
 
-app.on('ready', async () => {
-  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-    await installExtensions()
-  }
+let mainWindowLoaded = false
+const loadMainWindow = () => {
+  if(mainWindowLoaded)
+    return
 
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
-    height: 728
-  })
+  if(!ipfsLoaded)
+    return
 
+  if(!mainWindow)
+    return
+
+  console.log('loading main window')
+  mainWindowLoaded = true
   mainWindow.loadURL(`file://${__dirname}/app.html`)
 
   // @TODO: Use 'ready-to-show' event
@@ -81,4 +106,18 @@ app.on('ready', async () => {
 
   const menuBuilder = new MenuBuilder(mainWindow)
   menuBuilder.buildMenu()
+}
+
+app.on('ready', async () => {
+  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
+    await installExtensions()
+  }
+
+  mainWindow = new BrowserWindow({
+    show: false,
+    width: 1024,
+    height: 728
+  })
+
+  loadMainWindow()
 })
