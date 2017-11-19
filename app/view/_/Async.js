@@ -1,13 +1,25 @@
 import React from 'react'
 
+const getDefaultState = () => ({
+  data: null,
+  error: null,
+  ready: false
+})
+
 class Async extends React.Component {
-  state = {
-    data: null,
-    error: null,
-    ready: false
-  }
-  async componentWillMount () {
+  state = getDefaultState()
+  componentWillMount () {
     const { call } = this.props
+    this.performCall(call)
+  }
+  componentWillReceiveProps (nextProps) {
+    const { call } = nextProps
+    this.setState(getDefaultState)
+    if (call !== this.props.call) {
+      this.performCall(call)
+    }
+  }
+  performCall = async (call) => {
     try {
       const data = await call()
       this.setState({ data, ready: true, error: null })

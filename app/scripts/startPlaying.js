@@ -1,11 +1,8 @@
-import { state as playlistData } from 'state/playlist'
-import playerState from 'state/player'
-import currentTrackState from 'state/currentTrack'
+import playlistState, { state as playlistData } from 'state/playlist'
 
 const startPlaying = () => {
   const { id } = playlistData[0]
-  currentTrackState('SET', id)
-  playerState('PLAY')
+  playlistState('SET_CURRENT', id)
 }
 
 export default startPlaying

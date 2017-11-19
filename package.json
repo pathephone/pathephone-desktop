@@ -1,8 +1,8 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "ElectronReact",
-  "version": "0.12.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "name": "pathephone",
+  "productName": "Pathephone",
+  "version": "0.0.1",
+  "description": "Distributed audio player",
   "scripts": {
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
@@ -31,8 +31,8 @@
   },
   "browserslist": "electron 1.6",
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "productName": "Pathephone",
+    "appId": "org.develar.Pathephone",
     "files": [
       "dist/",
       "node_modules/",
@@ -63,6 +63,7 @@
     "linux": {
       "target": [
         "deb",
+        "rpm",
         "AppImage"
       ]
     },
@@ -73,29 +74,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chentsulin/electron-react-boilerplate.git"
+    "url": "git+https://github.com/pathephone/pathephone-desktop.git"
   },
   "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+    "name": "negamaxi",
+    "email": "negamaxi@gmail.com",
+    "url": "https://github.com/negamaxi"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chentsulin/electron-react-boilerplate/issues"
+    "url": "https://github.com/pathephone/pathephone-desktop/issues"
   },
   "keywords": [
-    "electron",
-    "boilerplate",
-    "react",
-    "redux",
-    "flow",
-    "sass",
-    "webpack",
-    "hot",
-    "reload"
+    "distributed",
+    "music",
+    "player"
   ],
-  "homepage": "https://github.com/chentsulin/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/pathephone/pathephone-desktop#readme",
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/fileMock.js",
@@ -159,7 +154,7 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-standard": "^3.0.1",
     "express": "^4.15.3",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "fbjs-scripts": "^0.8.0",
     "file-loader": "^0.11.1",
     "flow-bin": "^0.48.0",
@@ -227,8 +222,10 @@
     "qs": "^6.5.0",
     "react": "15.6.2",
     "react-addons-css-transition-group": "15.6.2",
+    "react-audio-player": "^0.6.2",
     "react-dom": "15.6.2",
     "react-hot-loader": "3.0.0-beta.6",
+    "react-icons": "^2.2.7",
     "readable-stream": "2.3.3",
     "recall-action": "0.0.1",
     "recall-bucket": "0.0.2",

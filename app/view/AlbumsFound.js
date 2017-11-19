@@ -1,6 +1,6 @@
 import React from 'react'
 import AlbumsFeed from './AlbumsFeed'
-import Rxdb from '../components/Rxdb'
+import Rxdb from './_/Rxdb'
 import fakeAlbumsData from './AlbumsFeed/fakeAlbumsData'
 
 const AlbumsFound = ({ data, error }) => {
@@ -16,8 +16,8 @@ const AlbumsFound = ({ data, error }) => {
 }
 
 const Wrapper = (props) => {
-  return <AlbumsFound data={fakeAlbumsData} />
-  // return <Rxdb collection='albums' reactive view={AlbumsFound} />
+  // return <AlbumsFound data={fakeAlbumsData} />
+  return <Rxdb collection='albums' reactive view={AlbumsFound} />
 }
 
 export default Wrapper

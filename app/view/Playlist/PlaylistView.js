@@ -1,14 +1,16 @@
 import React from 'react'
 import PlaylistTrack from './PlaylistTrack'
+import playlistState from 'state/playlist'
 
-const PlaylistView = ({ playlist, currentTrack }) => {
+const PlaylistView = ({ playlist }) => {
   return (
     <div className='playlist izi-ys' >
       {
         playlist.map((track) => {
-          console.log(track)
-          const isCurrent = currentTrack.id === track.id
-          return <PlaylistTrack {...track} isCurrent={isCurrent} key={track.id} />
+          const onPlay = () => {
+            playlistState('SET_CURRENT', track.id)
+          }
+          return <PlaylistTrack {...{ ...track, onPlay }} key={track.id} />
         })
       }
     </div>

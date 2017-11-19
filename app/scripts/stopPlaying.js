@@ -1,9 +1,7 @@
-import playerState from 'state/player'
-import currentTrackState from 'state/currentTrack'
+import playlistState from 'state/playlist'
 
 const stopPlaying = () => {
-  currentTrackState('NONE')
-  playerState('STOP')
+  playlistState('DROP_CURRENT')
 }
 
 export default stopPlaying

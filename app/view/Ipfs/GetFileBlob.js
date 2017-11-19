@@ -2,7 +2,7 @@ import React from 'react'
 import GetFile from './File'
 import StreamToBlob from './StreamToBlob'
 
-const GetImage = ({ hash, view }) => (
+const GetFileBlob = ({ hash, view }) => (
   <GetFile
     hash={hash}
     view={
@@ -11,4 +11,4 @@ const GetImage = ({ hash, view }) => (
   />
 )
 
-export default GetImage
+export default GetFileBlob

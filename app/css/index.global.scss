@@ -4,7 +4,8 @@
 
 .app {
   display: grid;
-  height: 90%;
+  flex-basis: 100%;
+  flex-shrink: 1;
   grid-template-columns: 20% 60% 20%;
 }
 
@@ -36,17 +37,22 @@
 }
 
 .albums-feed {
-  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 10em) ;
+  justify-content: space-around;
   align-content: flex-start;
+  grid-gap: 1em;
+  padding: 1em;
+  overflow-y: auto;
 }
 
 .album {
-  width: 10em;
-  margin: 1em;
+  width: 100%;
 }
 
 .album_cover-area {
   padding: 0.5em;
+  border: 1px solid #d3d3d3;
   height: 10em;
   background-repeat: no-repeat;
 }
@@ -63,5 +69,9 @@
 }
 
 .player {
-  height: 10%;
+  flex-shrink: 0;
+}
+
+.player__info {
+
 }

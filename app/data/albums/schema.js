@@ -32,6 +32,10 @@ const schema = {
                 type: 'string',
                 minLength: 1
               },
+              artist: {
+                type: 'string',
+                minLength: 1
+              },
               hash: {
                 type: 'string',
                 minLength: 1
@@ -44,6 +48,4 @@ const schema = {
   }
 }
 
-const name = 'albums'
-
-export default { schema, name }
+export default schema

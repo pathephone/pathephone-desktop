@@ -1,15 +1,15 @@
-import { schemaCid } from '../schemas/metabin/album'
-import { getIpfs } from '../api/ipfs'
+import getIpfs from '../api/ipfs'
+import albums from '../data/albums'
 
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
-const putAnAlbum = async (albumCandidate) => {
+const publishAlbum = async (albumObj) => {
   const ipfsApi = await getIpfs()
-  const cidObj = await ipfsApi.dag.put(albumCandidate, dagParams)
+  const cidObj = await ipfsApi.dag.put(albumObj, dagParams)
   const cidString = cidObj.toBaseEncodedString()
   console.log(`Returned cid: ${cidString}`)
-  await ipfsApi.pubsub.publish(schemaCid, cidObj.multihash)
+  await ipfsApi.pubsub.publish(albums.schemaCid, cidObj.multihash)
   return cidString
 }
 
-export default putAnAlbum
+export default publishAlbum
