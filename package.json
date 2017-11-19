@@ -58,7 +58,12 @@
     "win": {
       "target": [
         "nsis"
-      ]
+      ],
+      "extraFiles":  [
+      	{
+      		"from": "./imports/win/ipfs.exe",
+      		"to": "."
+      	}]
     },
     "linux": {
       "target": [
