@@ -5,9 +5,10 @@ describe("application launch", () => {
   beforeEach(testUtils.beforeEach);
   afterEach(testUtils.afterEach);
 
-  it("shows hello world text on screen after launch", function() {
-    return this.app.client.getText("#greet").then(text => {
-      expect(text).to.equal("Hello World!");
+  it("root component is mounted", function() {
+    return this.app.client.getText("#root").then(text => {
+      console.log(text)
+      expect(text).to.be.a("array");
     });
   });
 });
