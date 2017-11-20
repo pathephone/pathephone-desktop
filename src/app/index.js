@@ -5,8 +5,6 @@ import './css/izi/index.global.scss'
 import './css/index.global.scss'
 
 render(
-  <AppContainer>
-    <Root />
-  </AppContainer>,
+  <Root />,
   document.getElementById('root')
 )
