@@ -1,20 +1,3 @@
 {
-  "parser": "babel-eslint",
-  "parserOptions": {
-    "sourceType": "module",
-    "allowImportExportEverywhere": true
-  },
-  "extends": ["standard", "standard-react"],
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "plugins": [
-    "flowtype",
-    "flowtype-errors",
-    "import",
-    "promise",
-    "compat",
-    "react"
-  ]
+  "extends": ["standard", "standard-react"]
 }
