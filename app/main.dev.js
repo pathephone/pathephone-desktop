@@ -47,6 +47,13 @@ const installExtensions = async () => {
  * Add event listeners...
  */
 
+const onCloseApp = () => {
+  console.log('closing app')
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+}
+
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
@@ -54,7 +61,9 @@ app.on('window-all-closed', () => {
   //  app.quit()
   //}
   if(ipfs)
-  	ipfs.kill();
+  	ipfs.kill()
+  else
+    onCloseApp()
 })
 
 
@@ -94,9 +103,7 @@ const startIPFS = () => {
       }
 
       console.log(`ipfs closed with code ${code}`);
-      if (process.platform !== 'darwin') {
-        app.quit()
-      }
+      onCloseApp()
     });
   })
 }
