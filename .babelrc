@@ -9,7 +9,8 @@
         }
       }
     ],
-    "@babel/preset-react"
+    "@babel/preset-react",
+    "@babel/preset-stage-0"
   ],
   "plugins": [["transform-object-rest-spread", { "useBuiltIns": true }]]
 }
