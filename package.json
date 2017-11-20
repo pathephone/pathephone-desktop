@@ -59,11 +59,12 @@
       "target": [
         "nsis"
       ],
-      "extraFiles":  [
-      	{
-      		"from": "./imports/win/ipfs.exe",
-      		"to": "."
-      	}]
+      "extraFiles": [
+        {
+          "from": "./imports/win/ipfs.exe",
+          "to": "."
+        }
+      ]
     },
     "linux": {
       "target": [
@@ -223,6 +224,7 @@
     "peer-info": "~0.10.0",
     "pouchdb-adapter-idb": "6.3.4",
     "promisify-es6": "^1.0.3",
+    "ps-node": "^0.1.6",
     "pull-filereader": "1.0.1",
     "pump": "^1.0.2",
     "qs": "^6.5.0",

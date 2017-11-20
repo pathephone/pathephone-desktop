@@ -12,7 +12,8 @@
  */
 import { app, BrowserWindow } from 'electron'
 import MenuBuilder from './menu'
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
+const ps = require('ps-node');
 
 let mainWindow = null
 let ipfs = null
@@ -56,24 +57,49 @@ app.on('window-all-closed', () => {
   	ipfs.kill();
 })
 
-ipfs = spawn('ipfs', ['daemon', '--enable-pubsub-experiment']);
-let ipfsLoaded = false
-ipfs.stdout.on('data', (data) => {
-  console.log(`ipfs: ${data}`);
-  if(data.includes('Daemon is ready'))
-  {
-    console.log('catched ipfs start')
-    ipfsLoaded = true
-    loadMainWindow()
-  }
-});
 
-ipfs.on('close', (code) => {
-  console.log(`ipfs closed with code ${code}`);
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-});
+let ipfsLoaded = false
+const startIPFS = () => {
+  exec('ipfs repo fsck', (err) => {
+    if(err)
+      return;
+
+    let needIPFSInit = false
+    ipfs = spawn('ipfs', ['daemon', '--enable-pubsub-experiment']);
+
+    ipfs.stdout.on('data', (data) => {
+      console.log(`ipfs: ${data}`);
+      if(data.includes('Daemon is ready'))
+      {
+        console.log('catched ipfs start')
+        ipfsLoaded = true
+        loadMainWindow()
+      }
+    });
+
+    ipfs.stderr.on('data', (data) => {
+      if(data.includes('ipfs init'))
+      {
+        console.log('need ipfs initialization')
+        needIPFSInit = true
+      }
+    });
+
+    ipfs.on('close', (code) => {
+      if(needIPFSInit)
+      {
+        console.log('start ipfs init')
+        exec('ipfs init', startIPFS)
+        return
+      }
+
+      console.log(`ipfs closed with code ${code}`);
+      if (process.platform !== 'darwin') {
+        app.quit()
+      }
+    });
+  })
+}
 
 let mainWindowLoaded = false
 const loadMainWindow = () => {
@@ -107,6 +133,22 @@ const loadMainWindow = () => {
   const menuBuilder = new MenuBuilder(mainWindow)
   menuBuilder.buildMenu()
 }
+
+console.log('search ipfs process')
+ps.lookup({command: 'ipfs'}, function(err, resultList ) {
+    if (err) {
+        throw new Error( err );
+    }
+ 
+    if(resultList.length > 0) {
+      console.log('ipfs already started, simply load main window')
+      ipfsLoaded = true
+      loadMainWindow()
+    }
+    else {
+      startIPFS()
+    }
+});
 
 app.on('ready', async () => {
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
