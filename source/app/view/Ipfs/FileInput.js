@@ -1,6 +1,6 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
-import putFilesToIpfs from '~/scripts/putFilesToIpfs'
+import putFilesToIpfs from '../../scripts/putFilesToIpfs'
 
 class FileInput extends React.Component {
   state = {

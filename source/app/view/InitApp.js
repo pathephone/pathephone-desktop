@@ -1,7 +1,7 @@
 import React from 'react'
 import Async from './_/Async.js'
-import initDb from '~/scripts/initDb'
-import initIpfs from '~/scripts/initIpfs'
+import initDb from '../scripts/initDb'
+import initIpfs from '../scripts/initIpfs'
 
 import App from './App'
 

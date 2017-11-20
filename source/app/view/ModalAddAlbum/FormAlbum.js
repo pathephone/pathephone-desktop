@@ -1,9 +1,9 @@
 import React from 'react'
-import publishAlbum from '~/scripts/publishAlbum'
-import validateAlbum from '~/scripts/validateAlbum'
+import publishAlbum from '../../scripts/publishAlbum'
+import validateAlbum from '../../scripts/validateAlbum'
 import IpfsFileInput from '../Ipfs/FileInput'
 import { Message, Divider, Button, Form } from 'semantic-ui-react'
-import bind from 'utils/recallReact'
+import bind from '../../utils/recallReact'
 import albumFormState from './formAlbumState'
 import TrackInput from './TrackInput'
 

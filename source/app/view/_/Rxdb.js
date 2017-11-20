@@ -1,5 +1,5 @@
 import React from 'react'
-import getDb from 'api/rxdb'
+import getDb from '../../api/rxdb'
 
 class Rxdb extends React.Component {
   state = {

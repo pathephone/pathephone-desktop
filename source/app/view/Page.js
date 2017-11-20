@@ -1,6 +1,6 @@
 import React from 'react'
-import bind from 'utils/recallReact'
-import currentPage from '~/state/page'
+import bind from '../utils/recallReact'
+import currentPage from '../state/page'
 import pagesMap from './pagesMap'
 
 const getPageViewByName = (name) => {

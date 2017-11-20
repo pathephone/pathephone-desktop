@@ -1,4 +1,4 @@
-import playlistState, { state as playlistData } from '~/state/playlist'
+import playlistState, { state as playlistData } from '../state/playlist'
 
 const startPlaying = () => {
   const { id } = playlistData[0]

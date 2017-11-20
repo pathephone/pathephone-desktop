@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import pageState from '~/state/page'
-import bind from 'utils/recallReact'
+import pageState from '../state/page'
+import bind from '../utils/recallReact'
 import pagesMap from './pagesMap'
 import ModalAddAlbum from './ModalAddAlbum'
 
