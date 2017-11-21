@@ -5,11 +5,12 @@
   "version": "0.0.0",
   "private": true,
   "author": "Maxim Ilyin <negamaxi@gmail.com>",
+  "copyright": "Copyright © 2017 Maxim Ilyin",
   "license": "MIT",
   "homepage": "http://pathephone.metabin.space",
   "main": "app/background.js",
   "build": {
-    "appId": "com.electron.pathephone",
+    "appId": "space.metabin.pathephone",
     "files": [
       "app/**/*",
       "node_modules/**/*",
