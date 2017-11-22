@@ -23,7 +23,7 @@ before_script:
   - git lfs pull
 
 script:
-  - npm release
+  - npm run release
 
 branches:
   except:
