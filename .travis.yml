@@ -8,10 +8,6 @@ matrix:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - os: linux
-      services: docker
-      language: generic
-
 cache:
   directories:
   - node_modules
@@ -20,16 +16,14 @@ cache:
 
 before_install:
   - |
-    if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.3.1/git-lfs-darwin-amd64-2.3.1.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1
       export PATH="/tmp/git-lfs:$PATH"
-    fi
 
 before_script:
   - git lfs pull
 
 script:
-  - yarn release
+  - npm release
 
 branches:
   except:
