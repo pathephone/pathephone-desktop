@@ -126,3 +126,8 @@ app.on("window-all-closed", () => {
   else
     app.quit();
 });
+
+app.on('before-quit', () => {
+    if(ipfs)
+	ipfs.kill()
+})
