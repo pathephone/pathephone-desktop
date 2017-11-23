@@ -16,6 +16,7 @@ import env from "env";
 
 const { spawn, exec } = require('child_process');
 const ps = require('ps-node');
+const fs = require('fs');
 
 let mainWindow = null
 let ipfs = null
@@ -43,13 +44,41 @@ const loadedIPFS = () => {
     mainWindow.webContents.send('ipfs-ready' , true);
 }
 
+const getIPFSPath = () => {
+	if (fs.existsSync('./ipfs')) {
+    	return './ipfs'
+	}
+
+	if (/^win/.test(process.platform) && fs.existsSync('./ipfs.exe')) {
+    	return './ipfs.exe'
+	}
+
+	if (/^win/.test(process.platform) && fs.existsSync('imports/win/ipfs.exe')) {
+    	return 'imports/win/ipfs.exe'
+	}
+
+	if (process.platform == 'linux' && fs.existsSync('imports/linux/ipfs')) {
+    	return 'imports/linux/ipfs'
+	}
+
+	if (process.platform == 'darwin' && fs.existsSync('imports/darwin/ipfs')) {
+    	return 'imports/darwin/ipfs'
+	}
+
+	return 'ipfs'
+}
+
+const ipfsPath = path.resolve(getIPFSPath())
+console.log('IPFS Path:', ipfsPath)
 const startIPFS = () => {
-  exec('ipfs repo fsck', (err) => {
-    if(err)
+  exec(`${ipfsPath} repo fsck`, (err) => {
+    if(err) {
+      console.error(err)
       return;
+    }
 
     let needIPFSInit = false
-    ipfs = spawn('ipfs', ['daemon', '--enable-pubsub-experiment']);
+    ipfs = spawn(ipfsPath, ['daemon', '--enable-pubsub-experiment']);
 
     ipfs.stdout.on('data', (data) => {
       console.log(`ipfs: ${data}`);
@@ -72,7 +101,7 @@ const startIPFS = () => {
       if(needIPFSInit)
       {
         console.log('start ipfs init')
-        exec('ipfs init', startIPFS)
+        exec(`${ipfsPath} init`, startIPFS)
         return
       }
 

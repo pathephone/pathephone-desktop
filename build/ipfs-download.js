@@ -82,4 +82,8 @@ function untargz(file, path)
   await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_linux-amd64.tar.gz`, 'imports/linux/download.tar.gz')
   await untargz('imports/linux/download.tar.gz', 'imports/linux/download')
   await rename('imports/linux/download/go-ipfs/ipfs', 'imports/linux/ipfs')
+
+  await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_darwin-amd64.tar.gz`, 'imports/darwin/download.tar.gz')
+  await untargz('imports/darwin/download.tar.gz', 'imports/darwin/download')
+  await rename('imports/darwin/download/go-ipfs/ipfs', 'imports/darwin/ipfs')
 })()
