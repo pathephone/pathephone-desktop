@@ -43,6 +43,8 @@ script:
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 
+before_deploy: ls -la dist/
+
 deploy:
   provider: releases
   api_key: $GH_TOKEN
