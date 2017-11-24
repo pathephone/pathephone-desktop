@@ -6,19 +6,12 @@ platform:
 cache:
   - node_modules
   - '%USERPROFILE%\.electron'
-
-init:
-  - git config --global core.autocrlf input
+  - '%USERPROFILE%\.electron-builder'
 
 install:
   - ps: Install-Product node 8 x64
   - yarn
 
 build_script:
-  - yarn package
-
-test: off
-
-branches:
-  only:
-    - master
+  - yarn test
+  - IF "%APPVEYOR_REPO_BRANCH%" == "master" (yarn compile && yarn build)
