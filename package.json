@@ -35,6 +35,14 @@
         }
       ]
     },
+    "dmg": {
+      "extraFiles": [
+        {
+          "from": "./imports/darwin/ipfs",
+          "to": "."
+        }
+      ]
+    },
     "publish": null
   },
   "scripts": {
