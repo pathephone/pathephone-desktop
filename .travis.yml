@@ -16,4 +16,20 @@ cache:
 
 script:
   - npm run test && npm run lint
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run compile && npm run build; fi
+  - $TRAVIS_BRANCH == "master" && npm run compile && npm run build
+
+before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "Максим Ильин"
+  - git config --local user.email "negamaxi@gmail.com"
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file_glob: true # required to upload all files in a folder
+  file: dist/*
+  skip_cleanup: true
+  on:
+    branch: master
+    condition: $TRAVIS_PULL_REQUEST = "false"
