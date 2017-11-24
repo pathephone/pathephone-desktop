@@ -12,7 +12,7 @@ install:
   - yarn
 
 build_script:
-  - yarn test
+  - yarn download:ipfs && yarn test
   - IF "%APPVEYOR_REPO_BRANCH%" == "master" (yarn build)
 
 test: false
