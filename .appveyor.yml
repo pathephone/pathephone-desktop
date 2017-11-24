@@ -13,4 +13,6 @@ install:
 
 build_script:
   - yarn test
-  - IF "%APPVEYOR_REPO_BRANCH%" == "master" (yarn compile && yarn build)
+  - IF "%APPVEYOR_REPO_BRANCH%" == "master" (yarn build)
+
+test: false

@@ -30,8 +30,8 @@
     "test": "npm run test:unit && npm run test:e2e",
     "lint": "eslint --fix .",
     "start": "node build/start.js",
-    "compile": "webpack --config=build/webpack.app.config.js --env=production",
-    "build": "npm run compile && electron-builder"
+    "prebuild": "webpack --config=build/webpack.app.config.js --env=production",
+    "build": "electron-builder"
   },
   "dependencies": {
     "ajv": "^5.3.0",
