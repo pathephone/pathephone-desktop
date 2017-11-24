@@ -19,10 +19,35 @@
     "directories": {
       "buildResources": "resources"
     },
+    "win": {
+      "extraFiles": [
+        {
+          "from": "./imports/win/ipfs.exe",
+          "to": "."
+        }
+      ]
+    },
+    "linux": {
+      "extraFiles": [
+        {
+          "from": "./imports/linux/ipfs",
+          "to": "."
+        }
+      ]
+    },
+    "mac": {
+      "extraFiles": [
+        {
+          "from": "./imports/darwin/ipfs",
+          "to": "."
+        }
+      ]
+    },
     "publish": null
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
+    "download:ipfs": "node build/ipfs-download.js",
     "pretest:unit": "webpack --config=build/webpack.unit.config.js --env=test --display=none",
     "test:unit": "electron-mocha temp/specs.js --renderer --require source-map-support/register",
     "pretest:e2e": "webpack --config=build/webpack.app.config.js --env=test --display=none && webpack --config=build/webpack.e2e.config.js --env=test --display=none",
@@ -55,6 +80,7 @@
     "peer-info": "^0.11.1",
     "pouchdb-adapter-idb": "^6.3.4",
     "promisify-es6": "^1.0.3",
+    "ps-node": "^0.1.6",
     "pump": "^1.0.3",
     "qs": "^6.5.1",
     "react": "^16.1.1",
@@ -66,7 +92,9 @@
     "rxjs": "^5.5.2",
     "semantic-ui-react": "^0.76.0",
     "streamifier": "^0.1.1",
-    "tar-stream": "^1.5.5"
+    "tar-stream": "^1.5.5",
+    "targz": "^1.0.1",
+    "unzip": "^0.1.11"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.5",
