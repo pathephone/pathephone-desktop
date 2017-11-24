@@ -14,9 +14,21 @@ function download (url, dest) {
         reject(err)
         return
       }
-      const file = fs.createWriteStream(dest)
       console.log('downloading', url)
-      http.get(url, (response) => {
+      const request = http.get(url, (response) => {
+        const size = response.headers['content-length']
+        const stats = fs.existsSync(dest) && fs.statSync(dest)
+        if (stats) {
+          const fileSize = stats.size
+          if (size > 0 && fileSize === parseInt(size)) {
+            request.abort()
+            console.log(url, 'already downloaded')
+            resolve(true)
+            return
+          }
+        }
+
+        const file = fs.createWriteStream(dest)
         response.pipe(file)
         file.on('finish', () => {
           console.log('done!')
@@ -34,7 +46,7 @@ function unzip (file, path) {
   return new Promise((resolve, reject) => {
     console.log('unziping', file, 'to', path)
     fs.createReadStream(file).pipe(uz.Extract({ path })).on('close', () => {
-      console.log('unziped')
+      console.log('unziped!')
       resolve()
     })
   })
@@ -60,7 +72,7 @@ function untargz (file, path) {
       if (err) {
         reject(err)
       } else {
-        console.log('done')
+        console.log('done!')
         resolve()
       }
     })

@@ -15,5 +15,5 @@ cache:
   - $HOME/.cache/electron-builder
 
 script:
-  - npm run test && npm run lint
+  - npm run download:ipfs && npm run test && npm run lint
   - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run compile && npm run build; fi
