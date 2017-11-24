@@ -6,7 +6,6 @@ platform:
 cache:
   - node_modules
   - '%USERPROFILE%\.electron'
-  - '%USERPROFILE%\.electron-builder'
 
 install:
   - ps: Install-Product node 8 x64

@@ -16,4 +16,4 @@ cache:
 
 script:
   - npm run test && npm run lint
-  - $TRAVIS_BRANCH == "master" && npm run compile && npm run build
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run compile && npm run build; fi
