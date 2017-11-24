@@ -77,8 +77,7 @@ const startIPFS = () => {
       return
     }
 
-    if(needClosingIPFS)
-    	return
+    if (needClosingIPFS) { return }
 
     let needIPFSInit = false
     ipfs = spawn(ipfsPath, ['daemon', '--enable-pubsub-experiment'])
@@ -112,18 +111,21 @@ const startIPFS = () => {
 }
 
 console.log('search ipfs process')
-ps.lookup({command: 'ipfs'}, function (err, resultList) {
-  if (err) {
-    throw new Error(err)
-  }
+let promisePS = new Promise(() => {
+  ps.lookup({command: 'ipfs'}, function (err, resultList) {
+    if (err) {
+      throw new Error(err)
+    }
 
-  if (resultList.length > 0) {
-    console.log('ipfs already started, simply load main window')
-    loadedIPFS()
-  } else {
-    startIPFS()
-  }
+    if (resultList.length > 0) {
+      console.log('ipfs already started, simply load main window')
+      loadedIPFS()
+    } else {
+      startIPFS()
+    }
+  })
 })
+console.log(promisePS)
 
 app.on('ready', () => {
   setApplicationMenu()
