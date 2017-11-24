@@ -43,6 +43,16 @@ script:
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file_glob: true
+  file:
+    - dist/*.dmg
+    - dist/*.exe
+    - dist/*.AppImage
+  skip_cleanup: true
+
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
