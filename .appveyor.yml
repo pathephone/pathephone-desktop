@@ -18,3 +18,8 @@ build_script:
   - yarn release
 
 test: off
+
+branches:
+  only:
+    - master
+    - production
