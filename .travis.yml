@@ -1,12 +1,15 @@
+
 language: node_js
 node_js: "7"
 
-matrix:
-  include:
-    - os: osx
-      env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
+os:
+  - osx
+  - linux
 
 cache:
   directories:
@@ -16,7 +19,11 @@ cache:
 
 script:
   - npm run test && npm run lint
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run build; fi
+  - |
+    if [ "$TRAVIS_BRANCH" = "master" ]; then \
+      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run build; fi \
+      if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run build -- --mac --win; fi \
+    fi
 
 before_deploy:
   # Set up git user name and tag this commit
@@ -24,11 +31,13 @@ before_deploy:
   - git config --local user.email "negamaxi@gmail.com"
   - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
+before_deploy: ls -la dist/
+
 deploy:
   provider: releases
   api_key: $GH_TOKEN
-  file_glob: true # required to upload all files in a folder
-  file: dist/*
+  file_glob: true
+  file: dist/*.dmg
   skip_cleanup: true
   on:
     branch: master
