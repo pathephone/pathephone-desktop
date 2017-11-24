@@ -28,9 +28,7 @@ cache:
 
 script:
   - npm run test && npm run lint
-  - |
-    if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run build; fi \
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run build -- --mac --win; fi \
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then npm run build -- --linux --win; else npm run build; fi
 
 before_deploy:
   # Set up git user name and tag this commit
