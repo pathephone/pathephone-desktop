@@ -39,7 +39,7 @@
       "extraFiles": [
         {
           "from": "./imports/darwin/ipfs",
-          "to": "."
+          "to": "./MacOS"
         }
       ]
     },
