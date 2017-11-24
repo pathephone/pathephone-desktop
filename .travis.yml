@@ -1,9 +1,9 @@
+language: node_js
+node_js: "7"
+
 matrix:
   include:
     - os: osx
-      osx_image: xcode9.0
-      language: node_js
-      node_js: "8"
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -14,17 +14,6 @@ cache:
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
 
-before_install:
-  - |
-      mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.3.1/git-lfs-darwin-amd64-2.3.1.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1
-      export PATH="/tmp/git-lfs:$PATH"
-
-before_script:
-  - git lfs pull
-
 script:
-  - npm run release
-
-branches:
-  except:
-    - "/^v\\d+\\.\\d+\\.\\d+$/"
+  - npm run test && npm run lint
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run compile && npm run build; fi

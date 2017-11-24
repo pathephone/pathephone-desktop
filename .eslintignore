@@ -1,0 +1,7 @@
+.*
+node_modules
+dist
+resources
+temp
+app
+dll

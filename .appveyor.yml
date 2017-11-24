@@ -7,14 +7,10 @@ cache:
   - node_modules
   - '%USERPROFILE%\.electron'
 
-init:
-  - git config --global core.autocrlf input
-
 install:
   - ps: Install-Product node 8 x64
   - yarn
 
 build_script:
-  - yarn release
-
-test: off
+  - yarn test
+  - IF "%APPVEYOR_REPO_BRANCH%" == "master" (yarn compile && yarn build)

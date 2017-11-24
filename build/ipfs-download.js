@@ -1,73 +1,69 @@
-const http = require('https');
-const fs = require('fs');
-const mkdirp = require('mkdirp');
-const uz = require('unzip');
-const targz = require('targz');
+const http = require('https')
+const fs = require('fs')
+const mkdirp = require('mkdirp')
+const uz = require('unzip')
+const targz = require('targz')
 
-function download(url, dest) { 
+function download (url, dest) {
   return new Promise((resolve, reject) => {
-    let dir = dest.split('/');
+    let dir = dest.split('/')
     dir.pop()
-    dir = dir.join('/');
+    dir = dir.join('/')
     mkdirp(dir, (err) => {
-      if(err) {
+      if (err) {
         reject(err)
         return
       }
-      const file = fs.createWriteStream(dest);
+      const file = fs.createWriteStream(dest)
       console.log('downloading', url)
-      const request = http.get(url, (response) => {
-        response.pipe(file);
+      http.get(url, (response) => {
+        response.pipe(file)
         file.on('finish', () => {
           console.log('done!')
-          file.close(resolve);  // close() is async, call cb after close completes.
-        });
+          file.close(resolve) // close() is async, call cb after close completes.
+        })
       }).on('error', (err) => { // Handle errors
-        fs.unlink(dest); // Delete the file async. (But we don't check the result)
-        reject(err.message);
-      });
+        fs.unlink(dest) // Delete the file async. (But we don't check the result)
+        reject(err.message)
+      })
     })
   })
 }
 
-function unzip(file, path)
-{
+function unzip (file, path) {
   return new Promise((resolve, reject) => {
     console.log('unziping', file, 'to', path)
     fs.createReadStream(file).pipe(uz.Extract({ path })).on('close', () => {
       console.log('unziped')
       resolve()
-    });
+    })
   })
 }
 
-function rename(oldFile, newFile)
-{
+function rename (oldFile, newFile) {
   return new Promise((resolve) => {
     console.log('rename', oldFile, 'to', newFile)
     fs.rename(oldFile, newFile, (err) => {
-      if(err)
-        throw err
+      if (err) { throw err }
       resolve()
     })
   })
 }
 
-function untargz(file, path)
-{
+function untargz (file, path) {
   return new Promise((resolve, reject) => {
     console.log('extracting', file, 'to', path)
     targz.decompress({
-        src: file,
-        dest: path
-    }, function(err){
-        if(err) {
-           reject()
-        } else {
-            console.log('done')
-            resolve()
-        }
-    });
+      src: file,
+      dest: path
+    }, function (err) {
+      if (err) {
+        reject(err)
+      } else {
+        console.log('done')
+        resolve()
+      }
+    })
   })
 }
 
