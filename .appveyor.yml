@@ -15,11 +15,10 @@ install:
   - yarn
 
 build_script:
-  - yarn release
+  - yarn package
 
 test: off
 
 branches:
   only:
     - master
-    - production
