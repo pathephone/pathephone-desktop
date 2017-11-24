@@ -7,6 +7,7 @@ describe('application launch', () => {
   afterEach(testUtils.afterEach)
 
   it('root component is mounted', function () {
+    this.timeout(10000)
     return this.app.client.getText('#root').then(text => {
       console.log(text)
       expect(text).to.be.a('array')
