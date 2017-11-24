@@ -69,12 +69,16 @@ const getIPFSPath = () => {
 
 const ipfsPath = path.resolve(getIPFSPath())
 console.log('IPFS Path:', ipfsPath)
+let needClosingIPFS = false
 const startIPFS = () => {
   exec(`${ipfsPath} repo fsck`, (err) => {
     if (err) {
       console.error(err)
       return
     }
+
+    if(needClosingIPFS)
+    	return
 
     let needIPFSInit = false
     ipfs = spawn(ipfsPath, ['daemon', '--enable-pubsub-experiment'])
@@ -149,5 +153,6 @@ app.on('window-all-closed', () => {
 })
 
 app.on('before-quit', () => {
+  needClosingIPFS = true
   if (ipfs) { ipfs.kill() }
 })
