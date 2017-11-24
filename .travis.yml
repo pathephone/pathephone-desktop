@@ -24,11 +24,13 @@ before_deploy:
   - git config --local user.email "negamaxi@gmail.com"
   - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 
+before_deploy: ls -la dist/
+
 deploy:
   provider: releases
   api_key: $GH_TOKEN
   file_glob: true # required to upload all files in a folder
-  file: dist/*
+  file: dist/**/*
   skip_cleanup: true
   on:
     branch: master
