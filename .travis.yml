@@ -16,7 +16,7 @@ cache:
 
 script:
   - npm run test && npm run lint
-  - $TRAVIS_BRANCH == "master" && npm run compile && npm run build
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then npm run build; fi
 
 before_deploy:
   # Set up git user name and tag this commit
