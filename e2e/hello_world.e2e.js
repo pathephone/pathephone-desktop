@@ -15,7 +15,7 @@ describe('application launch', function () {
 
   it('ipfs is started', function (done) {
     const { app } = this
-    const { ipcRenderer, remote } = this.app.electron
+    const { ipcRenderer, remote } = app.electron
     app.client.waitUntilWindowLoaded()
       .then(() => {
         if (remote.getGlobal('ipfsLoaded')) {
@@ -28,10 +28,25 @@ describe('application launch', function () {
       })
   })
 
+  it('ipfs daemon is started', function (done) {
+    const { app } = this
+    app.client.waitUntilWindowLoaded()
+      .then(() => {
+        app
+          .electron
+          .remote
+          .getGlobal('ipfsDaemon')(({ ready }) => {
+            console.log(ready)
+            if (ready === null) return
+            if (ready) done()
+          })
+      })
+  })
+
   it('app component is mounted', async function () {
     const { app } = this
     await app.client.waitUntilWindowLoaded()
-    // TODO: await app.window.ipfsStarted()
+    await app.remote.getGlobal()
     await utils.asyncTimeout(20000)
     const exists = await app.client.isExisting('#app')
     expect(exists).to.be.true
