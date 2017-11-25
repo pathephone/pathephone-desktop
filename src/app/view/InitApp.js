@@ -14,22 +14,20 @@ const ErrorView = ({ error }) => {
 
 class InitIpfs extends Component
 {
-  constructor(props) {
-    super(props)
-    this.state = {
-      ipfsLoaded: remote.getGlobal('ipfsLoaded')
-    }
+  state = {
+    isLoaded: false
   }
   componentDidMount()
   {
-    ipcRenderer.on('ipfs-ready', (event, message) => {
-        this.setState({ipfsLoaded: message})
-    });
+    remote.getGlobal('ipfsDaemon')(({ ready }) => {
+      console.log(ready)
+      this.setState({ isLoaded: ready })
+    })
   }
   render()
   {
     return (
-      this.state.ipfsLoaded
+      this.state.isLoaded
       ?
       <Async
         call={initIpfs}
