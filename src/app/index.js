@@ -6,5 +6,5 @@ import './css/index.global.scss'
 
 render(
   <Root />,
-  document.getElementById('root')
+  document.getElementById('mount-point')
 )

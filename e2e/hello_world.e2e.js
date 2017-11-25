@@ -1,16 +1,39 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
-import testUtils from './utils'
+import utils from './utils'
 
-describe('application launch', () => {
-  beforeEach(testUtils.beforeEach)
-  afterEach(testUtils.afterEach)
+describe('application launch', function () {
+  this.timeout(30000)
+  beforeEach(utils.beforeEach)
+  afterEach(utils.afterEach)
+  it('root component is mounted', async function () {
+    const { app } = this
+    await app.client.waitUntilWindowLoaded()
+    const exists = await app.client.isExisting('#root')
+    expect(exists).to.be.true
+  })
 
-  it('root component is mounted', function () {
-    this.timeout(10000)
-    return this.app.client.getText('#root').then(text => {
-      console.log(text)
-      expect(text).to.be.a('array')
-    })
+  it('ipfs is started', function (done) {
+    const { app } = this
+    const { ipcRenderer, remote } = this.app.electron
+    app.client.waitUntilWindowLoaded()
+      .then(() => {
+        if (remote.getGlobal('ipfsLoaded')) {
+          done()
+        } else {
+          ipcRenderer.on('ipfs-ready', (event, message) => {
+            done()
+          })
+        }
+      })
+  })
+
+  it('app component is mounted', async function () {
+    const { app } = this
+    await app.client.waitUntilWindowLoaded()
+    // TODO: await app.window.ipfsStarted()
+    await utils.asyncTimeout(20000)
+    const exists = await app.client.isExisting('#app')
+    expect(exists).to.be.true
   })
 })
