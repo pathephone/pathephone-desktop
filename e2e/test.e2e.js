@@ -13,21 +13,6 @@ describe('application launch', function () {
     expect(exists).to.be.true
   })
 
-  it('ipfs is started', function (done) {
-    const { app } = this
-    const { ipcRenderer, remote } = app.electron
-    app.client.waitUntilWindowLoaded()
-      .then(() => {
-        if (remote.getGlobal('ipfsLoaded')) {
-          done()
-        } else {
-          ipcRenderer.on('ipfs-ready', (event, message) => {
-            done()
-          })
-        }
-      })
-  })
-
   it('app component is mounted', async function () {
     const { app } = this
     await app.client.waitUntilWindowLoaded()
