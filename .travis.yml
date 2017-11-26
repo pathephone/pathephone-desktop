@@ -44,17 +44,43 @@ script:
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 
-before_deploy: ls -la dist/
+before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "Максим Ильин"
+  - git config --local user.email "negamaxi@gmail.com"
+  - |
+    if [ "$TRAVIS_TAG" == "false"]; then
+      git tag "dev-$(git log --format=%h -1)-$(date +'%Y%m%d%H%M%S')"
+    fi
 
 deploy:
-  provider: releases
-  api_key: $GH_TOKEN
-  file_glob: true
-  file:
-    - dist/*.dmg
-    - dist/*.exe
-    - dist/*.AppImage
-  skip_cleanup: true
+  # dev builds
+  - provider: releases
+    api_key: $GH_TOKEN
+    prerelease: true
+    file_glob: true
+    file:
+      - dist/*.dmg
+      - dist/*.exe
+      - dist/*.AppImage
+    skip_cleanup: true
+    on:
+      tags: true
+      branch: master
+      condition: $TRAVIS_PULL_REQUEST == false && $TRAVIS_TAG == dev-*
+  # prod builds
+  - provider: releases
+    api_key: $GH_TOKEN
+    file_glob: true
+    file:
+      - dist/*.dmg
+      - dist/*.exe
+      - dist/*.AppImage
+    skip_cleanup: true
+    on:
+      tags: true
+      branch: master
+      condition: $TRAVIS_PULL_REQUEST == false && $TRAVIS_TAG == v*
 
 branches:
   except:
