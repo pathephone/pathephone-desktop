@@ -5,29 +5,17 @@
 
 import path from 'path'
 import url from 'url'
-import { app, Menu } from 'electron'
-import { devMenuTemplate } from './menu/dev_menu_template'
-import { editMenuTemplate } from './menu/edit_menu_template'
-import createWindow from './helpers/window'
+import { app } from 'electron'
+
+import setAppMenu from './methods/setAppMenu'
+import createWindow from './methods/createWindow'
+import initGlobalState from './methods/initGlobalState'
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
+
 import env from 'env'
-
-const { spawn, exec } = require('child_process')
-const ps = require('ps-node')
-const fs = require('fs')
-
-let mainWindow = null
-let ipfs = null
-
-const setApplicationMenu = () => {
-  const menus = [editMenuTemplate]
-  if (env.name !== 'production') {
-    menus.push(devMenuTemplate)
-  }
-  Menu.setApplicationMenu(Menu.buildFromTemplate(menus))
-}
+import startIpfs from './methods/startIpfs'
 
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
@@ -37,108 +25,17 @@ if (env.name !== 'production') {
   app.setPath('userData', `${userDataPath} (${env.name})`)
 }
 
-global.ipfsLoaded = false
-const loadedIPFS = () => {
-  global.ipfsLoaded = true
-  if (mainWindow) { mainWindow.webContents.send('ipfs-ready', true) }
-}
-
-const getIPFSPath = () => {
-  if (fs.existsSync('./ipfs')) {
-    return './ipfs'
+app.on('ready', async () => {
+  setAppMenu(env)
+  initGlobalState()
+  let ipfsDaemonApi
+  try {
+    ipfsDaemonApi = await startIpfs()
+  } catch (error) {
+    console.log(error)
   }
 
-  if (/^win/.test(process.platform) && fs.existsSync('./ipfs.exe')) {
-    return './ipfs.exe'
-  }
-
-  if (fs.existsSync(fs.realpathSync(__dirname) + '/ipfs')) {
-    return fs.realpathSync(__dirname) + '/ipfs'
-  }
-
-  if (fs.existsSync(fs.realpathSync(path.join(__dirname, '/../../..')) + '/ipfs')) {
-    return fs.realpathSync(path.join(__dirname, '/../../..')) + '/ipfs'
-  }
-
-  if (/^win/.test(process.platform) && fs.existsSync('imports/win/ipfs.exe')) {
-    return 'imports/win/ipfs.exe'
-  }
-
-  if (process.platform === 'linux' && fs.existsSync('imports/linux/ipfs')) {
-    return 'imports/linux/ipfs'
-  }
-
-  if (process.platform === 'darwin' && fs.existsSync('imports/darwin/ipfs')) {
-    return 'imports/darwin/ipfs'
-  }
-
-  return 'ipfs'
-}
-
-const ipfsPath = path.resolve(getIPFSPath())
-console.log('IPFS Path:', ipfsPath)
-let needClosingIPFS = false
-const startIPFS = () => {
-  exec(`${ipfsPath} repo fsck`, (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-
-    if (needClosingIPFS) { return }
-
-    let needIPFSInit = false
-    ipfs = spawn(ipfsPath, ['daemon', '--enable-pubsub-experiment'])
-
-    ipfs.stdout.on('data', (data) => {
-      console.log(`ipfs: ${data}`)
-      if (data.includes('Daemon is ready')) {
-        console.log('catched ipfs start')
-        loadedIPFS()
-      }
-    })
-
-    ipfs.stderr.on('data', (data) => {
-      if (data.includes('ipfs init')) {
-        console.log('need ipfs initialization')
-        needIPFSInit = true
-      }
-    })
-
-    ipfs.on('close', (code) => {
-      if (needIPFSInit) {
-        console.log('start ipfs init')
-        exec(`${ipfsPath} init`, startIPFS)
-        return
-      }
-
-      console.log(`ipfs closed with code ${code}`)
-      app.quit()
-    })
-  })
-}
-
-console.log('search ipfs process')
-let promisePS = new Promise(() => {
-  ps.lookup({command: 'ipfs'}, function (err, resultList) {
-    if (err) {
-      throw new Error(err)
-    }
-
-    if (resultList.length > 0) {
-      console.log('ipfs already started, simply load main window')
-      loadedIPFS()
-    } else {
-      startIPFS()
-    }
-  })
-})
-console.log(promisePS)
-
-app.on('ready', () => {
-  setApplicationMenu()
-
-  mainWindow = createWindow('main', {
+  let mainWindow = createWindow('main', {
     width: 1000,
     height: 600
   })
@@ -159,14 +56,13 @@ app.on('ready', () => {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-})
 
-app.on('window-all-closed', () => {
-  console.log('closing app')
-  if (ipfs) { ipfs.kill() } else { app.quit() }
-})
+  app.on('window-all-closed', async () => {
+    console.log('closing app')
+    app.quit()
+  })
 
-app.on('before-quit', () => {
-  needClosingIPFS = true
-  if (ipfs) { ipfs.kill() }
+  app.on('before-quit', async () => {
+    ipfsDaemonApi.stopIpfs()
+  })
 })
