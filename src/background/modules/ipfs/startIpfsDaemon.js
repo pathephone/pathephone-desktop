@@ -28,8 +28,6 @@ const startIpfsDaemon = ({ onReady, onError, onUnexpectedClose }) => {
       console.log('start ipfs init')
       initIpfs()
       startIpfsDaemon({ onError, onReady, onUnexpectedClose })
-        .then(onReady)
-        .catch(onError)
     } else {
       onUnexpectedClose()
       console.log(`ipfs closed with code ${code}`)

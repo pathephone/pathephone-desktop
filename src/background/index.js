@@ -5,24 +5,17 @@
 
 import path from 'path'
 import url from 'url'
-import { app, Menu } from 'electron'
-import { devMenuTemplate } from './menu/dev_menu_template'
-import { editMenuTemplate } from './menu/edit_menu_template'
-import createWindow from './helpers/window'
+import { app } from 'electron'
+
+import setAppMenu from './methods/setAppMenu'
+import createWindow from './methods/createWindow'
+import initGlobalState from './methods/initGlobalState'
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
 
 import env from 'env'
-const { startIpfs, stopIpfs } = require('./ipfs')
-
-const setApplicationMenu = () => {
-  const menus = [editMenuTemplate]
-  if (env.name !== 'production') {
-    menus.push(devMenuTemplate)
-  }
-  Menu.setApplicationMenu(Menu.buildFromTemplate(menus))
-}
+import startIpfs from './methods/startIpfs'
 
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
@@ -33,9 +26,14 @@ if (env.name !== 'production') {
 }
 
 app.on('ready', async () => {
-  startIpfs()
-    .catch(console.error)
-  setApplicationMenu()
+  setAppMenu(env)
+  initGlobalState()
+  let ipfsDaemonApi
+  try {
+    ipfsDaemonApi = await startIpfs()
+  } catch (error) {
+    console.log(error)
+  }
 
   let mainWindow = createWindow('main', {
     width: 1000,
@@ -58,13 +56,13 @@ app.on('ready', async () => {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-})
 
-app.on('window-all-closed', async () => {
-  console.log('closing app')
-  app.quit()
-})
+  app.on('window-all-closed', async () => {
+    console.log('closing app')
+    app.quit()
+  })
 
-app.on('before-quit', async () => {
-  await stopIpfs()
+  app.on('before-quit', async () => {
+    ipfsDaemonApi.stopIpfs()
+  })
 })
