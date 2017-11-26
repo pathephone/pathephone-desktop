@@ -7,13 +7,13 @@ const beforeEach = function (done) {
     args: ['.']
   })
   this.app.start()
-    then(done)
+    .then(done)
 }
 
 const afterEach = function (done) {
   if (this.app && this.app.isRunning()) {
     this.app.stop()
-      then(done)
+      .then(done)
   } else {
     done()
   }
