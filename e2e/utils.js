@@ -2,7 +2,6 @@ import electron from 'electron'
 import { Application } from 'spectron'
 
 const beforeEach = function () {
-  this.timeout(30000)
   this.app = new Application({
     path: electron,
     args: ['.']
