@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import utils from './utils'
 
 describe('application launch', function () {
-  this.timeout(30000)
+  this.timeout(60000)
   beforeEach(utils.beforeEach)
   afterEach(utils.afterEach)
   it('root component is mounted', async function () {
@@ -13,11 +13,18 @@ describe('application launch', function () {
     expect(exists).to.be.true
   })
 
-  it('app component is mounted', async function () {
+  it('app component is mounted', function (done) {
     const { app } = this
-    await app.client.waitUntilWindowLoaded()
-    await utils.asyncTimeout(20000)
-    const exists = await app.client.isExisting('#app')
-    expect(exists).to.be.true
+    const check = async () => {
+      const exists = await app.client.isExisting('#app')
+      if (exists) {
+        done()
+      } else {
+        await utils.asyncTimeout(1000)
+        check()
+      }
+    }
+    app.client.waitUntilWindowLoaded()
+      .then(check)
   })
 })
