@@ -17,9 +17,14 @@ const onUnexpectedClose = () => {
 const startIpfs = async () => {
   await beforeStartIpfs()
   const process = await startIpfsDaemon({ onReady, onError, onUnexpectedClose })
-  const stopIpfs = () => {
+  const stopIpfs = () => new Promise((resolve, reject) => {
+    ipfsDaemonState(({ started }) => {
+      if (started === false) {
+        resolve()
+      }
+    })
     process.kill()
-  }
+  })
   return { stopIpfs }
 }
 
