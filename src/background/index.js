@@ -57,13 +57,14 @@ app.on('ready', async () => {
     mainWindow = null
   })
 
-  app.on('window-all-closed', async () => {
+  app.on('window-all-closed', () => {
     console.log('closing app')
     app.quit()
   })
 
-  app.on('before-quit', async e => {
-    await ipfsDaemonApi.stopIpfs()
-    console.log('IPFS STOPED')
+  app.on('before-quit', () => {
+    ipfsDaemonApi.stopIpfs()
+      .then(console.log)
+      .cath(console.error)
   })
 })

@@ -68,8 +68,7 @@ deploy:
       - dist/*.AppImage
     skip_cleanup: true
     on:
-      tags: true
-      condition: $TRAVIS_PULL_REQUEST == false && $TRAVIS_TAG == dev-*
+      condition: $TRAVIS_PULL_REQUEST == false
   # prod builds
   - provider: releases
     api_key: $GH_TOKEN
