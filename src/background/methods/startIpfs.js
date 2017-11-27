@@ -25,7 +25,13 @@ const startIpfs = async () => {
     })
     process.kill()
   })
-  return { stopIpfs }
+  return new Promise((resolve, reject) => {
+    ipfsDaemonState(({ started }) => {
+      if (started) {
+        resolve({ stopIpfs })
+      }
+    })
+  })
 }
 
 module.exports = startIpfs
