@@ -13,9 +13,10 @@ const beforeEach = function () {
 
 const afterEach = async function () {
   if (this.app && this.app.isRunning()) {
+    console.log('APP IS RUNNING')
     await this.app.stop()
-    await asyncTimeout(10000)
   }
+  console.log('APP IS NOT RUNNING')
 }
 
 export default {
