@@ -51,10 +51,7 @@ before_deploy:
   # Set up git user name and tag this commit
   - git config --local user.name "Максим Ильин"
   - git config --local user.email "negamaxi@gmail.com"
-  - |
-    if [ "$TRAVIS_TAG" == "false"]; then
-      git tag "dev-$(git log --format=%h -1)-$(date +'%Y%m%d%H%M%S')"
-    fi
+  - if [ "$TRAVIS_TAG" == "false" ]; then git tag "dev-$(git log --format=%h -1)-$(date +'%Y%m%d%H%M%S')"; fi
 
 deploy:
   # dev builds
