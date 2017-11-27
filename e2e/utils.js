@@ -2,25 +2,23 @@ import electron from 'electron'
 import { Application } from 'spectron'
 
 const beforeEach = function () {
-  this.timeout(30000)
   this.app = new Application({
     path: electron,
-    args: ['.'],
-    startTimeout: 30000,
-    waitTimeout: 30000
+    args: ['.']
   })
   return this.app.start()
 }
 
 const afterEach = function () {
-  this.timeout(30000)
   if (this.app && this.app.isRunning()) {
     return this.app.stop()
   }
-  return undefined
 }
+
+const asyncTimeout = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 export default {
   beforeEach,
-  afterEach
+  afterEach,
+  asyncTimeout
 }

@@ -6,7 +6,7 @@ import Player from './Player/Player'
 import Page from './Page'
 
 const App = () => (
-  <div className='izi-fill izi-ys'>
+  <div id='app' className='izi-fill izi-ys'>
     <div className='app izi-xs'>
       <Navigation />
       <Page />
