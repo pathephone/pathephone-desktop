@@ -38,8 +38,9 @@ script:
         electronuserland/builder:wine \
         /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn download:ipfs && yarn test && yarn build --linux --win"
     else
-      npm run test
+      npm i
       npm run download:ipfs
+      npm run test
       npm run build
     fi
 before_cache:
