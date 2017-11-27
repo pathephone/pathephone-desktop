@@ -62,7 +62,8 @@ app.on('ready', async () => {
     app.quit()
   })
 
-  app.on('before-quit', async () => {
-    ipfsDaemonApi.stopIpfs()
+  app.on('before-quit', async e => {
+    await ipfsDaemonApi.stopIpfs()
+    console.log('IPFS STOPED')
   })
 })
