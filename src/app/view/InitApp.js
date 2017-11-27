@@ -20,8 +20,11 @@ class InitIpfs extends Component
   componentDidMount() {
     const globalState = remote.getGlobal('state')
     console.log(globalState)
-    globalState.ipfsDaemonState(({ started }) => {
+    this.listener = globalState.ipfsDaemonState(({ started }) => {
       this.setState({ isLoaded: started })
+      if (started) {
+        this.listener.done()
+      }
     })
   }
   render()
