@@ -1,21 +1,17 @@
 import electron from 'electron'
 import { Application } from 'spectron'
 
-const beforeEach = function (done) {
+const beforeEach = function () {
   this.app = new Application({
     path: electron,
     args: ['.']
   })
-  this.app.start()
-    .then(done)
+  return this.app.start()
 }
 
-const afterEach = function (done) {
+const afterEach = function () {
   if (this.app && this.app.isRunning()) {
-    this.app.stop()
-      .then(done)
-  } else {
-    done()
+    return this.app.stop()
   }
 }
 
