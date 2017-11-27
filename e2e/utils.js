@@ -11,12 +11,13 @@ const beforeEach = function () {
   return this.app.start()
 }
 
-const afterEach = async function () {
+const afterEach = function () {
   if (this.app && this.app.isRunning()) {
-    console.log('APP IS RUNNING')
-    await this.app.stop()
+    console.log('afterEach: STOPPING RUNNING APP')
+    return this.app.stop()
+  } else {
+    console.log('afterEach: APP ALREADY STOPED')
   }
-  console.log('APP IS NOT RUNNING')
 }
 
 export default {
