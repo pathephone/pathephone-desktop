@@ -40,8 +40,8 @@ script:
         /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn download:ipfs && yarn build --linux --win"
     else
       npm i
-      npm run test
       npm run download:ipfs
+      npm run test
       npm run build
     fi
 
