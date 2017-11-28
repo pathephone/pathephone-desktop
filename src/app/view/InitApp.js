@@ -18,6 +18,7 @@ class InitIpfs extends Component
     isLoaded: true
   }
   componentDidMount() {
+    // имеет смысл слушать только ошибки и закрытия ipfs (старт всегда)
     /*
     const globalState = remote.getGlobal('state')
     console.log(globalState)
