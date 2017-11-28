@@ -8,19 +8,11 @@ describe('application launch', function () {
   afterEach(utils.afterEach)
   it('root component is mounted', async function () {
     const { app } = this
-    await app.client.waitUntilWindowLoaded()
-    const exists = await app.client.isExisting('#root')
-    expect(exists).to.be.true
+    await app.client.waitForExist('#root')
   })
 
-  it('app component is mounted', function (done) {
+  it('app component is mounted', async function () {
     const { app } = this
-    const check = async () => {
-      await app.client.waitForExist('#app')
-      const exists = await app.client.isExisting('#app')
-      if (exists) { done() } else { throw new Error('Strange no such text :/') }
-    }
-    app.client.waitUntilWindowLoaded()
-      .then(check)
+    await app.client.waitForExist('#app')
   })
 })

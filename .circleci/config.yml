@@ -37,5 +37,9 @@ jobs:
       - run: yarn download:ipfs  
       # run tests!
       - run: yarn test
-
+      
+general:
+  branches:
+    only:
+     - master
 

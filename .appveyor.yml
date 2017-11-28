@@ -15,3 +15,7 @@ build_script:
   - yarn download:ipfs && yarn test
 
 test: false
+
+branches:
+  only:
+  - master
