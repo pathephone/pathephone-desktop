@@ -15,9 +15,11 @@ const ErrorView = ({ error }) => {
 class InitIpfs extends Component
 {
   state = {
-    isLoaded: false
+    isLoaded: true
   }
   componentDidMount() {
+    // имеет смысл слушать только ошибки и закрытия ipfs (старт всегда)
+    /*
     const globalState = remote.getGlobal('state')
     console.log(globalState)
     this.listener = globalState.ipfsDaemonState(({ started }) => {
@@ -26,6 +28,7 @@ class InitIpfs extends Component
         this.listener.done()
       }
     })
+    */
   }
   render()
   {

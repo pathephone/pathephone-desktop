@@ -14,18 +14,22 @@ const onUnexpectedClose = () => {
   ipfsDaemonState('CLOSED')
 }
 
-const startIpfs = async () => {
+const startIpfs = () => new Promise(async (resolve) => {
   await beforeStartIpfs()
-  const process = await startIpfsDaemon({ onReady, onError, onUnexpectedClose })
-  const stopIpfs = () => new Promise((resolve, reject) => {
-    ipfsDaemonState(({ started }) => {
-      if (started === false) {
-        resolve()
-      }
+  startIpfsDaemon({ onReady: (process) => {
+    onReady()
+    const stopIpfs = () => new Promise((resolve, reject) => {
+      ipfsDaemonState(({ started }) => {
+        if (started === false) {
+          resolve()
+        }
+      })
+      process.kill()
     })
-    process.kill()
-  })
-  return { stopIpfs }
-}
+    resolve({ stopIpfs })
+  },
+  onError,
+  onUnexpectedClose })
+})
 
 module.exports = startIpfs

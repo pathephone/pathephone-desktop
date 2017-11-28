@@ -10,7 +10,7 @@ const startIpfsDaemon = ({ onReady, onError, onUnexpectedClose }) => {
     console.log(`ipfs: ${data}`)
     if (data.includes('Daemon is ready')) {
       console.log('catched ipfs start')
-      onReady()
+      onReady(ipfs)
     }
   })
 
@@ -23,17 +23,16 @@ const startIpfsDaemon = ({ onReady, onError, onUnexpectedClose }) => {
     }
   })
 
-  ipfs.on('close', (code) => {
+  ipfs.on('close', async (code) => {
     if (needIPFSInit) {
       console.log('start ipfs init')
-      initIpfs()
+      await initIpfs()
       startIpfsDaemon({ onError, onReady, onUnexpectedClose })
     } else {
       onUnexpectedClose()
       console.log(`ipfs closed with code ${code}`)
     }
   })
-  return ipfs
 }
 
 module.exports = startIpfsDaemon
