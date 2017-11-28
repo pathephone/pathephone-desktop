@@ -65,6 +65,6 @@ app.on('ready', async () => {
   app.on('before-quit', () => {
     ipfsDaemonApi.stopIpfs()
       .then(console.log)
-      .cath(console.error)
+      .catch(console.error)
   })
 })
