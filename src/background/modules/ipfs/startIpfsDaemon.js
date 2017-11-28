@@ -23,10 +23,10 @@ const startIpfsDaemon = ({ onReady, onError, onUnexpectedClose }) => {
     }
   })
 
-  ipfs.on('close', (code) => {
+  ipfs.on('close', async (code) => {
     if (needIPFSInit) {
       console.log('start ipfs init')
-      initIpfs()
+      await initIpfs()
       startIpfsDaemon({ onError, onReady, onUnexpectedClose })
     } else {
       onUnexpectedClose()
