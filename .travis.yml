@@ -64,6 +64,8 @@ deploy:
       - dist/*.dmg
       - dist/*.exe
       - dist/*.AppImage
+      - dist/*.deb
+      - dist/*.rpm
     skip_cleanup: true
     on:
       condition: $TRAVIS_PULL_REQUEST == false
