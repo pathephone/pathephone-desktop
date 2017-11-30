@@ -1,4 +1,4 @@
-const getIpfs = require('../api/ipfs')
+import getIpfs from '../api/ipfs'
 
 const fileToBuffer = (file) => new Promise((resolve, reject) => {
   const reader = new window.FileReader()

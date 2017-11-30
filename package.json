@@ -28,6 +28,8 @@
       ]
     },
     "linux": {
+      "category": "Audio",
+      "target": [ "AppImage", "rpm", "deb" ],
       "extraFiles": [
         {
           "from": "./imports/linux/ipfs",
