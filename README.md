@@ -1,17 +1,6 @@
 # Pathephone
 
-Distributed music player.
-
-## Table of Contents
-
-- [Description](#description)
-- [Follow us](#follow-us)
-- [Donate](#donate)
-- [License](#license)
-
-## Description
-
-Serverless IPFS-based desktop music player that autodiscovers albums shared by others. No blockchain used, therefore starts in a moment ]=)
+Serverless desktop music player that autodiscovers albums shared by others. No blockchain used, therefore it's blazing fast!
 
 A [Metabin.Space](https://github.com/metabin) project.
 
