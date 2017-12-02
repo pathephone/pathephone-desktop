@@ -26,7 +26,7 @@ const messageIsNotFromMe = (from) => {
 const albumsListener = async (message) => {
   console.log(message)
   try {
-    const ipfsNode = getIpfs()
+    const ipfsNode = await getIpfs()
     const { data, from } = message
     if (messageIsNotFromMe(from)) {
       const cidString = getCidString(data)
@@ -48,7 +48,7 @@ const albumsListener = async (message) => {
 }
 
 const initAlbumsListener = async () => {
-  const ipfsNode = getIpfs()
+  const ipfsNode = await getIpfs()
   const { schemaCid } = albums
   await ipfsNode.pubsub.subscribe(
     schemaCid, albumsListener
@@ -56,7 +56,7 @@ const initAlbumsListener = async () => {
 }
 
 const publishAlbumSchema = async () => {
-  const ipfsNode = getIpfs()
+  const ipfsNode = await getIpfs()
   const { schema } = albums
   const cidObj = await ipfsNode.dag.put(schema, dagParams)
   const cidString = cidObj.toBaseEncodedString()

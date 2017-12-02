@@ -22,6 +22,7 @@ class FileInput extends React.Component {
       const value = ipfsHash[0].hash
       onChange(value)
     } catch (error) {
+      console.error(error)
       this.setState({ error: true })
     }
     this.toggleLoading()
