@@ -30,7 +30,7 @@ app.on('ready', async () => {
   initGlobalState()
   let ipfsDaemonApi
   try {
-    ipfsDaemonApi = await startIpfs()
+    ipfsDaemonApi = await startIpfs({dataDirectory: app.getPath('userData') + '/ipfs'})
   } catch (error) {
     console.log(error)
   }
