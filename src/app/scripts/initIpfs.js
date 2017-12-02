@@ -1,7 +1,7 @@
 import albums from '../data/albums'
 import getIpfs from '../api/ipfs'
 import getCidString from '../utils/getCidString'
-import cidToMultiHash from '../utils/cidToMultiHash'
+import autoPublish from './autoPublish'
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
 
@@ -12,8 +12,7 @@ const publishAllAlbums = async () => {
   return Promise.all(
     documents.map(async (document) => {
       const { cid } = document
-      const multihash = cidToMultiHash(cid)
-      return await ipfsNode.pubsub.publish(schemaCid, multihash)
+      return await autoPublish(schemaCid, cid)
     })
   )
 }
@@ -67,7 +66,7 @@ const initIpfs = async () => {
   console.log('PUBLISHING ALBUM SCHEMA')
   await publishAlbumSchema()
   console.log('PUBLISHING ALBUMS FROM DB')
-  await publishAllAlbums()
+  publishAllAlbums()
   console.log('INITIALISING LISTENER')
   initAlbumsListener()
 }

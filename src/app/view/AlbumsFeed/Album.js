@@ -6,6 +6,7 @@ import Async from '../_/Async'
 import multihashToUrl from '../../scripts/multihashToUrl'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdDelete from 'react-icons/lib/md/delete'
+import { stopAutoPublish } from '../../scripts/autoPublish'
 
 const Album = (album) => {
   const { cid, data } = album
@@ -15,6 +16,7 @@ const Album = (album) => {
   }
   const removeThisAlbum = () => {
     removeAlbumFromDb(cid)
+    stopAutoPublish(cid)
   }
   const ReadyView = ({ data }) => (
     <div className='album'>
