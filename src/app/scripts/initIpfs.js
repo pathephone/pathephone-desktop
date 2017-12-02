@@ -1,23 +1,22 @@
 import albums from '../data/albums'
 import getIpfs from '../api/ipfs'
 import getCidString from '../utils/getCidString'
-// import getMultihashBuffer from '../utils/getMultihashBuffer'
-
+import cidToMultiHash from '../utils/cidToMultiHash'
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
-/*
+
+
 const publishAllAlbums = async () => {
-  const IPFSnode = getIpfs()
+  const ipfsNode = getIpfs()
   const { collection, schemaCid } = albums
   const documents = await collection.find().exec()
   return Promise.all(
     documents.map(async (document) => {
       const { cid } = document
-      const multihash = getMultihashBuffer(cid)
-      await IPFSnode.pubsub.publish(schemaCid, multihash)
+      const multihash = cidToMultiHash(cid)
+      return await ipfsNode.pubsub.publish(schemaCid, multihash)
     })
   )
 }
-*/
 
 const messageIsNotFromMe = (from) => {
 // TODO: check somehow peer
@@ -67,8 +66,8 @@ const publishAlbumSchema = async () => {
 const initIpfs = async () => {
   console.log('PUBLISHING ALBUM SCHEMA')
   await publishAlbumSchema()
-  // console.log('PUBLISHING ALBUMS FROM DB')
-  // publishAllAlbums()
+  console.log('PUBLISHING ALBUMS FROM DB')
+  await publishAllAlbums()
   console.log('INITIALISING LISTENER')
   initAlbumsListener()
 }
