@@ -80,7 +80,7 @@ function untargz (file, path) {
 }
 
 (async () => {
-  const vers = '0.4.13'
+  const vers = '0.4.11'
 
   // win
   await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_windows-amd64.zip`, 'imports/win/download.zip')
