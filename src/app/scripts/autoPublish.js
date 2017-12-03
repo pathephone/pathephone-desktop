@@ -1,9 +1,13 @@
 import getIpfs from '../api/ipfs'
 import cidToMultiHash from '../utils/cidToMultiHash'
 
+export const defaultPublishInterval = 120 * 1000
+
 let albumsCidIntervals = {}
 
-export default async (schemaCid, cid, time = 90000) => {
+export default async (schemaCid, cid, time = defaultPublishInterval) => {
+	if(albumsCidIntervals[cid])
+		return;
 	const ipfsApi = await getIpfs()
 	const multihash = cidToMultiHash(cid)
 	let intervalId = setInterval(() => {
