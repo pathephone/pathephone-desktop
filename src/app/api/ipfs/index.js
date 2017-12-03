@@ -1,7 +1,8 @@
 // const IPFS = require('ipfs');
 // const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
-const fetch = require('node-fetch')
-const IPFSapi = require('./src')
+
+const IPFSapi = require('ipfs-api')
+import dag from './dag'
 
 let node
 
@@ -23,20 +24,9 @@ const getIpfsNode = (params = {}) => {
   if (node) return node
   const { host = 'localhost', port = '5001' } = params
   console.log('IPFS START')
-  const dagGetEndpoint = `http://${host}:${port}/api/v0/dag/get`
+  const endpoint = `http://${host}:${port}/api/v0`
   node = IPFSapi(host, port)
-
-  node.dag.get = async (cidString) => {
-    if (typeof cidString !== 'string') {
-      throw new Error('Custom dag.get recieves only string cids.')
-    }
-    const res = await fetch(`${dagGetEndpoint}?arg=${cidString}`)
-    if (res.status !== 200) {
-      throw new Error(res.statusText)
-    }
-    const value = await res.json()
-    return { value }
-  }
+  node = dag(node, endpoint)
   return node
 }
 
