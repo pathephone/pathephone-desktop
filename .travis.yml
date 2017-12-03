@@ -55,7 +55,6 @@ deploy:
   # prod builds
   - provider: releases
     api_key: $GH_TOKEN
-    prerelease: true
     body: $RELEASE_NOTES
     file_glob: true
     file:
@@ -72,3 +71,4 @@ deploy:
 branches:
   only:
     - master
+    - /^v\d+\.\d+\.\d+$/
