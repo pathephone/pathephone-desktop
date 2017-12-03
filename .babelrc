@@ -1,7 +1,7 @@
 {
   "presets": [
     [
-      "@babel/preset-env",
+      "env",
       {
         "targets": {
           "browsers": "last 2 Chrome versions",
@@ -9,8 +9,8 @@
         }
       }
     ],
-    "@babel/preset-react",
-    "@babel/preset-stage-0"
+    "react",
+    "stage-0"
   ],
   "plugins": [["transform-object-rest-spread", { "useBuiltIns": true }]]
 }
