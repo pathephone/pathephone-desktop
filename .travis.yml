@@ -52,7 +52,6 @@ deploy:
   # prod builds
   - provider: releases
     api_key: $GH_TOKEN
-    prerelease: true
     file_glob: true
     file:
       - dist/*.dmg
@@ -68,3 +67,4 @@ deploy:
 branches:
   only:
     - master
+    - /^\d+\.\d+\.\d+$/
