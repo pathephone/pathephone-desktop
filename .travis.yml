@@ -48,14 +48,10 @@ script:
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 
-before_deploy:
-  - RELEASE_NOTES=$(<CHANGELOG.md)
-
 deploy:
   # prod builds
   - provider: releases
     api_key: $GH_TOKEN
-    body: $RELEASE_NOTES
     file_glob: true
     file:
       - dist/*.dmg
