@@ -20,28 +20,30 @@ const messageIsNotFromMe = (from) => {
   return true
 }
 
-const albumsListener = async (message) => {
-  console.log(message)
-  try {
-    const ipfsNode = await getIpfs()
-    const { data, from } = message
-    if (messageIsNotFromMe(from)) {
-      const cidString = getCidString(data)
-      console.log(`Album candidate received: ${cidString}.`)
-      const existed = await albums.collection
-        .findOne({ cid: { $eq: cidString } })
-        .exec()
-      if (!existed) {
-        const { value } = await ipfsNode.dag.get(cidString)
-        await albums.collection.insert({ cid: cidString, data: value })
-        autoPublish(albums.schemaCid, cidString)
-      } else {
-        throw new Error(`Album ${cidString} already persisted in local db.`)
+const albumsListener = (message) => {
+  (async () => {
+    console.log(message)
+    try {
+      const ipfsNode = await getIpfs()
+      const { data, from } = message
+      if (messageIsNotFromMe(from)) {
+        const cidString = getCidString(data)
+        console.log(`Album candidate received: ${cidString}.`)
+        const existed = await albums.collection
+          .findOne({ cid: { $eq: cidString } })
+          .exec()
+        if (!existed) {
+          const { value } = await ipfsNode.dag.get(cidString)
+          await albums.collection.insert({ cid: cidString, data: value })
+          autoPublish(albums.schemaCid, cidString)
+        } else {
+          throw new Error(`Album ${cidString} already persisted in local db.`)
+        }
       }
+    } catch (e) {
+      console.log(e)
     }
-  } catch (e) {
-    console.log(e)
-  }
+  })()
 }
 
 const initAlbumsListener = async () => {

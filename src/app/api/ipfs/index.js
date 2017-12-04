@@ -2,9 +2,6 @@ const IPFS = require('ipfs');
 // const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 //const fetch = require('node-fetch')
 
-const IPFSapi = require('ipfs-api')
-import dag from './dag'
-
 let node
 
 const getIpfsNode = () => {
