@@ -1,6 +1,6 @@
+import ipfsDaemonState from '../state/ipfsDaemon'
 const startIpfsDaemon = require('../modules/ipfs/startIpfsDaemon')
 const beforeStartIpfs = require('../modules/ipfs/beforeStartIpfs')
-import ipfsDaemonState from '../state/ipfsDaemon'
 
 const onReady = () => {
   ipfsDaemonState('STARTED')
@@ -14,8 +14,13 @@ const onUnexpectedClose = () => {
   ipfsDaemonState('CLOSED')
 }
 
-const startIpfs = () => new Promise(async (resolve) => {
-  await beforeStartIpfs()
+const startIpfs = ({dataDirectory}) => new Promise(async (resolve) => {
+  let options = {}
+  if (dataDirectory) {
+    options.env = {}
+    options.env.IPFS_PATH = dataDirectory.replace(/\\/g, '/')
+  }
+  await beforeStartIpfs(options)
   startIpfsDaemon({ onReady: (process) => {
     onReady()
     const stopIpfs = () => new Promise((resolve, reject) => {
@@ -29,7 +34,9 @@ const startIpfs = () => new Promise(async (resolve) => {
     resolve({ stopIpfs })
   },
   onError,
-  onUnexpectedClose })
+  onUnexpectedClose,
+  options
+  })
 })
 
 module.exports = startIpfs

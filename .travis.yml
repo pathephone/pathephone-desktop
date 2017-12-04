@@ -37,10 +37,9 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
-        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn download:ipfs && yarn build --linux --win"
+        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win"
     else
       npm i
-      npm run download:ipfs
       npm run test
       npm run build
     fi
@@ -48,17 +47,10 @@ script:
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
 
-before_deploy:
-  # Set up git user name and tag this commit
-  - git config --local user.name "Максим Ильин"
-  - git config --local user.email "negamaxi@gmail.com"
-  - if [ -z ${TRAVIS_TAG} ]; then git tag "dev-$(git log --format=%h -1)-$(date +'%Y%m%d%H%M%S')"; fi
-
 deploy:
-  # dev builds
+  # prod builds
   - provider: releases
     api_key: $GH_TOKEN
-    prerelease: true
     file_glob: true
     file:
       - dist/*.dmg
@@ -68,20 +60,10 @@ deploy:
       - dist/*.rpm
     skip_cleanup: true
     on:
-      condition: $TRAVIS_PULL_REQUEST == false
-  # prod builds
-  - provider: releases
-    api_key: $GH_TOKEN
-    file_glob: true
-    file:
-      - dist/*.dmg
-      - dist/*.exe
-      - dist/*.AppImage
-    skip_cleanup: true
-    on:
       tags: true
       condition: $TRAVIS_PULL_REQUEST == false
 
 branches:
   only:
     - master
+    - /^v\d+\.\d+\.\d+$/

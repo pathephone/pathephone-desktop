@@ -33,8 +33,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       
-      # install ipfs before tests
-      - run: yarn download:ipfs  
       # run tests!
       - run: yarn test
 

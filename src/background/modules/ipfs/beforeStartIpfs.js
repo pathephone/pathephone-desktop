@@ -1,8 +1,8 @@
 const getIpfsPath = require('./getIpfsPath')
 const { exec } = require('child_process')
 
-const beforeStartIpfs = () => new Promise((resolve, reject) => {
-  exec(`${getIpfsPath()} repo fsck`, (err) => {
+const beforeStartIpfs = (options) => new Promise((resolve, reject) => {
+  exec(`${getIpfsPath()} repo fsck`, options, (err) => {
     if (err) {
       reject(err)
     }

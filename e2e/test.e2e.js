@@ -1,5 +1,4 @@
 /* eslint-env mocha */
-import { expect } from 'chai'
 import utils from './utils'
 
 describe('application launch', function () {

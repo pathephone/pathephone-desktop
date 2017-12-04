@@ -1,23 +1,19 @@
 import albums from '../data/albums'
 import getIpfs from '../api/ipfs'
 import getCidString from '../utils/getCidString'
-// import getMultihashBuffer from '../utils/getMultihashBuffer'
-
+import autoPublish, { defaultPublishInterval } from './autoPublish'
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
-/*
+
+
 const publishAllAlbums = async () => {
-  const IPFSnode = getIpfs()
+  const ipfsNode = getIpfs()
   const { collection, schemaCid } = albums
   const documents = await collection.find().exec()
-  return Promise.all(
-    documents.map(async (document) => {
-      const { cid } = document
-      const multihash = getMultihashBuffer(cid)
-      await IPFSnode.pubsub.publish(schemaCid, multihash)
-    })
-  )
+  documents.map((document, index) => {
+    const { cid } = document
+    setTimeout(() => autoPublish(schemaCid, cid), defaultPublishInterval * index/documents.length)
+  })
 }
-*/
 
 const messageIsNotFromMe = (from) => {
 // TODO: check somehow peer
@@ -38,7 +34,7 @@ const albumsListener = async (message) => {
       if (!existed) {
         const { value } = await ipfsNode.dag.get(cidString)
         await albums.collection.insert({ cid: cidString, data: value })
-        ipfsNode.pubsub.publish(cidString, data)
+        autoPublish(albums.schemaCid, cidString)
       } else {
         throw new Error(`Album ${cidString} already persisted in local db.`)
       }
@@ -67,8 +63,8 @@ const publishAlbumSchema = async () => {
 const initIpfs = async () => {
   console.log('PUBLISHING ALBUM SCHEMA')
   await publishAlbumSchema()
-  // console.log('PUBLISHING ALBUMS FROM DB')
-  // publishAllAlbums()
+  console.log('PUBLISHING ALBUMS FROM DB')
+  publishAllAlbums()
   console.log('INITIALISING LISTENER')
   initAlbumsListener()
 }
