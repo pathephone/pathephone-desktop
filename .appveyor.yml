@@ -12,7 +12,7 @@ install:
   - yarn
 
 build_script:
-  - yarn download:ipfs && yarn test
+  - yarn test
 
 test: false
 
