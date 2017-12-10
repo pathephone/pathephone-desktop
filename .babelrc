@@ -12,5 +12,8 @@
     "react",
     "stage-0"
   ],
-  "plugins": [["transform-object-rest-spread", { "useBuiltIns": true }]]
+  "plugins": [
+    "styled-jsx/babel",
+    ["transform-object-rest-spread", { "useBuiltIns": true }]
+  ]
 }
