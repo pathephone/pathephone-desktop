@@ -2,10 +2,10 @@ import React from 'react'
 import publishAlbum from '../../scripts/publishAlbum'
 import validateAlbum from '../../scripts/validateAlbum'
 import IpfsFileInput from '../Ipfs/FileInput'
-import { Message, Divider, Button, Form } from 'semantic-ui-react'
 import bind from '../../utils/recallReact'
 import albumFormState from './formAlbumState'
-import TrackInput from './TrackInput'
+import TracksInput from './TracksInput'
+import formDataToJSON from '../../utils/formDataToJSON'
 
 const changeHandler = (e) => {
   const { name, value } = e.currentTarget
@@ -21,82 +21,63 @@ class FormAlbum extends React.Component {
     loading: false,
     errors: false
   }
-  submitHandler = async (e) => {
+  handleFormSubmit = async (e) => {
     try {
-      e.preventDefault()
       this.setState({ loading: true })
-      const { formState } = this.props
-      const { valid, validatorErrors } = validateAlbum(formState)
+      e.preventDefault()
+      const formData = formDataToJSON(e.currentTarget)
+      const { valid, validatorErrors } = validateAlbum(formData)
       if (!valid) {
         this.setState({ validatorErrors, loading: false })
       } else {
-        await publishAlbum(formState)
+        await publishAlbum(formData)
         this.setState({ loading: false })
       }
     } catch (error) {
       console.log(error)
     }
   }
+  changeValue = (field, nexValue) => {
+    const { value, onChange } = this.props
+    value[field] = nexValue
+    onChange && onChange()
+  }
+  handleCoverChange = (value) => {
+    this.changeValue('cover', value)
+  }
+  handleTextInputChange = (e) => {
+    const { name, value } = e.currentTarget
+    this.changeValue(name, value)
+  }
   render () {
-    const { loading, validatorErrors } = this.state
-    const { formState } = this.props
-    console.log(formState)
-    const { title, artist, cover, tracks } = formState
+    const { value, onChange } = this.props
+    const { title, artist, cover, tracks } = value
     return (
-      <div className='izi-padding'>
-        <Form loading={loading} size='large' error={!!validatorErrors}>
-          <Form.Group widths='equal'>
-            <Form.Input
-              // error={validatorErrors.some(({ dataPath }) => dataPath === '.title')}
-              value={title}
-              name='title'
-              label='Album title'
-              placeholder='Album title'
-              type='text'
-              onChange={changeHandler}
-            />
-            <Form.Input
-              value={artist}
-              // error={validatorErrors.some(({ dataPath }) => dataPath === '.artist')}
-              name='artist'
-              label='Artist name'
-              placeholder='Album artist'
-              type='text'
-              onChange={changeHandler}
-            />
-            <IpfsFileInput
-              label='Album cover'
-              icon='image'
-              value={cover}
-              onChange={coverChangeHandler}
-            />
-          </Form.Group>
-          <Divider horizontal content='tracks' />
-          {
-            tracks.length > 0
-          ? tracks.map(
-              (track, index) => <TrackInput {...{ track, validatorErrors, index }} />
-            )
-          : null
-          }
-          <Button onClick={() => albumFormState('ADD_TRACK')}>
-            ADD TRACK
-          </Button>
-          <Button onClick={this.submitHandler}>
-            ADD ALBUM
-          </Button>
-          {
-            validatorErrors
-          ? <Message
-            error
-            header='Invalid fields'
-            list={
-                validatorErrors.map(({ message, dataPath }) => `[${dataPath}] ${message}`)
-              }
-            />
-          : null
-          }
-        </Form>
+      <div
+        className='izi-ys izi--gap izi-fill-width'
+      >
+        <input
+          defaultValue={title}
+          name='title'
+          placeholder='Album title'
+          type='text'
+          onChange={this.handleTextInput}
+        />
+        <input
+          defaultValue={artist}
+          name='artist'
+          placeholder='Album artist'
+          type='text'
+        />
+        <IpfsFileInput
+          placeholder="Album cover's CID"
+          value={cover}
+          onChange={this.handleCoverChange}
+        />
+        <TracksInput value={tracks} onChange={onChange}/>
+        <button type='submit' onClick={this.handleFormSubmit}>
+          done
+        </button>
       </div>
     )
   }

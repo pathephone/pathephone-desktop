@@ -1,6 +1,9 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
 import putFilesToIpfs from '../../scripts/putFilesToIpfs'
+
+const defaultContainerProps = {
+  className: 'izi-x'
+}
 
 class FileInput extends React.Component {
   state = {
@@ -12,55 +15,54 @@ class FileInput extends React.Component {
       loading: !this.state.loading
     })
   }
-  fileInputHandler = async (e) => {
-    const { onChange } = this.props
+  handleFileInputChange = e => {
+    const { value } = e.currentTarget
+    this.props.onChange(value)
+  }
+  handleFileInputChange = async (e) => {
     const { files } = e.currentTarget
     if (files.length === 0) return
     this.toggleLoading()
     try {
       const ipfsHash = await putFilesToIpfs(files)
       const value = ipfsHash[0].hash
-      onChange(value)
+      this.textInput.value = value
+      this.props.onChange(value)
     } catch (error) {
       this.setState({ error: true })
     }
     this.toggleLoading()
   }
+  handleAddFileClick = () => {
+    this.fileInput.click()
+  }
   render () {
-    const { label, icon, defaultValue, value, onChange } = this.props
+    const {
+      value,
+      name,
+      placeholder = "File's CID",
+      onChange,
+      containerProps = defaultContainerProps
+    } = this.props
     const { loading, error } = this.state
     return (
-      <div className='field'>
+      <div {...defaultContainerProps}>
+        <input
+          ref={(c) => { this.textInput = c }}
+          name={name}
+          type='text'
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
+        <button onClick={this.handleAddFileClick}>
+          add file
+        </button>
         <input
           style={{ display: 'none' }}
           ref={(c) => { this.fileInput = c }}
-          onChange={this.fileInputHandler}
+          onChange={this.handleFileInputChange}
           type='file'
-        />
-        <Form.Input
-          error={error}
-          label={label}
-          loading={loading}
-          disabled={loading}
-          value={value}
-          defaultValue={defaultValue}
-          icon={icon}
-          iconPosition='left'
-          placeholder='File hash'
-          onChange={
-            ({ currentTarget }) => {
-              onChange(currentTarget.value)
-            }
-          }
-          action={{
-            color: 'teal',
-            labelPosition: 'right',
-            icon: 'file',
-            content: 'Select',
-            onClick: () => {
-              this.fileInput.click()
-            }
-          }}
         />
       </div>
     )

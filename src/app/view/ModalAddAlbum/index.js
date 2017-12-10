@@ -1,14 +1,31 @@
 import React from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import ModalLayer from '../_/ModalLayer'
+import ModalWindow from '../_/ModalWindow'
 import FormAlbum from './FormAlbum'
-
-const ModalAddAlbum = () => (
-  <Modal trigger={<Button>Share an album</Button>}>
-    <Modal.Header>Share an album</Modal.Header>
-    <Modal.Content>
-      <FormAlbum />
-    </Modal.Content>
-  </Modal>
-)
-
+class ModalAddAlbum extends React.Component {
+  state = {
+    open: false
+  }
+  toggleModal = () => {
+    this.setState({ open: !this.state.open })
+  }
+  ToggleButton = () => (
+    <button onClick={this.toggleModal}>
+      share album
+    </button>
+  )
+  render() {
+    if (this.state.open) {
+      return [
+        <this.ToggleButton />,
+        <ModalLayer onMissClick={this.toggleModal}>
+          <ModalWindow>
+            <FormAlbum />
+          </ModalWindow>
+        </ModalLayer>
+      ]
+    }
+    return <this.ToggleButton />
+  }
+}
 export default ModalAddAlbum
