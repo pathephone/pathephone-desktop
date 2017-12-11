@@ -1,27 +1,25 @@
 import React from 'react'
 import IpfsFileInput from '../Ipfs/FileInput'
-import albumFormState from './formAlbumState'
+import Input from '../_/Input'
 
 class TrackInput extends React.Component {
-  render() {
-    const { data, onChange, containerProps = {} } = this.props
-    const handleInputChange = (e) => {
-      const { name, value } = e.currentTarget
-      data[name] = value
-      onChange && onChange(data)
+  render () {
+    const { value } = this.props
+    const handleInputChange = (v, n) => {
+      value[n] = v
     }
-    const { title, audio, artist } = data
+    const { title, hash, artist } = value
     return (
-      <div {...containerProps}>
-        <input
-          value={title}
+      <div className='izi-ys' style={{ flexBasis: '100%' }}>
+        <Input
+          defaultValue={title}
           name='title'
           placeholder='Track title'
           type='text'
           onChange={handleInputChange}
         />
-        <input
-          value={artist}
+        <Input
+          defaultValue={artist}
           name='artist'
           label='Artist'
           placeholder='Artist'
@@ -29,10 +27,10 @@ class TrackInput extends React.Component {
           onChange={handleInputChange}
         />
         <IpfsFileInput
-          name='audio'
-          value={hash}
+          name='hash'
+          defaultValue={hash}
           placeholder='Audio file CID'
-          onChange={onChange}
+          onChange={handleInputChange}
         />
       </div>
     )

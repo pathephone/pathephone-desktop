@@ -2,6 +2,7 @@ import React from 'react'
 import ModalLayer from '../_/ModalLayer'
 import ModalWindow from '../_/ModalWindow'
 import FormAlbum from './FormAlbum'
+
 class ModalAddAlbum extends React.Component {
   state = {
     open: false

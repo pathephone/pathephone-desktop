@@ -1,16 +1,15 @@
 // @flow
 import createPoint from 'recall-action'
 
-
 const getInitial = () => (
   {
     title: '',
-    artist: '',
     cover: '',
     tracks: [
       {
         title: '',
-        hash: ''
+        hash: '',
+        artist: ''
       }
     ]
   }
@@ -22,18 +21,13 @@ const actions = {
   DROP () {
     state = getInitial()
   },
-  SET_VALUE (...params) {
-    const [name, value] = params
-    state[name] = value
-  },
   ADD_TRACK (...params) {
     state.tracks.push({
-      title: '', hash: ''
+      title: '', hash: '', artist: ''
     })
   },
-  EDIT_TRACK (...params) {
-    const [index, value] = params
-    state.tracks[index] = value
+  DELETE_TRACK (index) {
+    state.tracks.splice(index, 1)
   }
 }
 

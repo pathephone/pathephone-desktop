@@ -2,23 +2,10 @@ import React from 'react'
 import TrackInput from './TrackInput'
 
 class TracksInput extends React.Component {
-  state = {
-    value: this.props.value
-  }
-  addTrack = () => {
-    const { value } = this.state
-    value.push
-  }
-  deleteTrack = (index) => {
-    const { onChange } = this.props
-    const { value } = this.state
-    value.splice(index, 1)
-    this.setState({ value })
-    onChange && onChange()
-  }
   TrackControls = ({ index }) => {
-    const onClick = () => { this.deleteTrack(index) }
-    return(
+    const { onDeleteTrack } = this.props
+    const onClick = () => { onDeleteTrack(index) }
+    return (
       <div className='izi-y'>
         <button onClick={onClick}>
           x
@@ -27,20 +14,21 @@ class TracksInput extends React.Component {
     )
   }
   TrackInputWrapper = (value, index) => {
-    const { onChange } = this.props
-    return(
-      <div className='izi-x'>
-        <TrackInput value={value} onChange={onChange} />
-        <TrackControls index={index} />
+    return (
+      <div className='izi-xu' key={JSON.stringify(value) + index}>
+        <TrackInput value={value} />
+        <this.TrackControls index={index} />
       </div>
     )
   }
-  render() {
-    const { value } = this.props
+  render () {
+    const { value, onAddTrack } = this.props
     return (
-      <div className='izi-y'>
-        {value.map(TrackInput)}
-        <button onClick={this.addTrack}>
+      <div className='izi-ys izi--gap'>
+        {
+          value.tracks.map(this.TrackInputWrapper)
+        }
+        <button onClick={onAddTrack}>
           add track
         </button>
       </div>

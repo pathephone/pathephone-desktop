@@ -6,14 +6,46 @@ import bind from '../../utils/recallReact'
 import albumFormState from './formAlbumState'
 import TracksInput from './TracksInput'
 import formDataToJSON from '../../utils/formDataToJSON'
+import Input from '../_/Input'
 
-const changeHandler = (e) => {
-  const { name, value } = e.currentTarget
-  albumFormState('SET_VALUE', name, value)
+const onAddTrack = () => {
+  albumFormState('ADD_TRACK')
 }
 
-const coverChangeHandler = (value) => {
-  albumFormState('SET_VALUE', 'cover', value)
+const onDeleteTrack = (index) => {
+  albumFormState('DELETE_TRACK', index)
+}
+
+const AboutForm = (props) => {
+  const { value } = props
+  const onChange = (v, n) => {
+    value[n] = v
+  }
+  const { artist, title, cover } = value
+  return (
+    <div className='izi-ys izi--gap'>
+      <Input
+        defaultValue={title}
+        name='title'
+        placeholder='Album title'
+        type='text'
+        onChange={onChange}
+      />
+      <Input
+        defaultValue={artist}
+        name='artist'
+        placeholder='Album artist'
+        type='text'
+        onChange={onChange}
+      />
+      <IpfsFileInput
+        placeholder="Album cover's CID"
+        name='cover'
+        defaultValue={cover}
+        onChange={onChange}
+      />
+    </div>
+  )
 }
 
 class FormAlbum extends React.Component {
@@ -23,58 +55,28 @@ class FormAlbum extends React.Component {
   }
   handleFormSubmit = async (e) => {
     try {
-      this.setState({ loading: true })
       e.preventDefault()
-      const formData = formDataToJSON(e.currentTarget)
-      const { valid, validatorErrors } = validateAlbum(formData)
+      this.setState({ loading: true })
+      const { formState } = this.props
+      const { valid, validatorErrors } = validateAlbum(formState)
       if (!valid) {
         this.setState({ validatorErrors, loading: false })
       } else {
-        await publishAlbum(formData)
+        await publishAlbum(formState)
         this.setState({ loading: false })
       }
     } catch (error) {
       console.log(error)
     }
   }
-  changeValue = (field, nexValue) => {
-    const { value, onChange } = this.props
-    value[field] = nexValue
-    onChange && onChange()
-  }
-  handleCoverChange = (value) => {
-    this.changeValue('cover', value)
-  }
-  handleTextInputChange = (e) => {
-    const { name, value } = e.currentTarget
-    this.changeValue(name, value)
-  }
   render () {
-    const { value, onChange } = this.props
-    const { title, artist, cover, tracks } = value
+    const { formState } = this.props
     return (
       <div
-        className='izi-ys izi--gap izi-fill-width'
+        className='izi-ys izi-fill-width'
       >
-        <input
-          defaultValue={title}
-          name='title'
-          placeholder='Album title'
-          type='text'
-          onChange={this.handleTextInput}
-        />
-        <input
-          defaultValue={artist}
-          name='artist'
-          placeholder='Album artist'
-          type='text'
-        />
-        <IpfsFileInput
-          placeholder="Album cover's CID"
-          value={cover}
-          onChange={this.handleCoverChange}
-        />
-        <TracksInput value={tracks} onChange={onChange}/>
+        <AboutForm value={formState} />
+        <TracksInput value={formState} onAddTrack={onAddTrack} onDeleteTrack={onDeleteTrack} />
         <button type='submit' onClick={this.handleFormSubmit}>
           done
         </button>
