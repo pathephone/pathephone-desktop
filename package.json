@@ -8,8 +8,13 @@
   "copyright": "Copyright © 2017 Maxim Ilyin",
   "license": "MIT",
   "homepage": "http://pathephone.metabin.space",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pathephone/pathephone-desktop.git"
+  },
   "main": "app/background.js",
   "release": {
+    "branch": "semantic-release",
     "publish": [
       "@semantic-release/npm",
       {
@@ -49,20 +54,10 @@
     "directories": {
       "buildResources": "resources"
     },
-    "win": {
-      "extraFiles": [
-        {
-          "from": "./imports/win/ipfs.exe",
-          "to": "."
-        }
-      ]
-    },
     "linux": {
       "category": "Audio",
       "target": [
-        "AppImage",
-        "rpm",
-        "deb"
+        "AppImage"
       ],
       "extraFiles": [
         {
