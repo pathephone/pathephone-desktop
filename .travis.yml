@@ -1,13 +1,5 @@
 matrix:
   include:
-    - os: osx
-      osx_image: xcode9.0
-      language: node_js
-      node_js: "8"
-      env:
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-
     - os: linux
       services: docker
       language: generic
@@ -37,33 +29,13 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
-        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win"
+        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win && npm run release"
     else
       npm i
       npm run test
       npm run build
+      npm run release
     fi
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
-
-deploy:
-  # prod builds
-  - provider: releases
-    api_key: $GH_TOKEN
-    file_glob: true
-    file:
-      - dist/*.dmg
-      - dist/*.exe
-      - dist/*.AppImage
-      - dist/*.deb
-      - dist/*.rpm
-    skip_cleanup: true
-    on:
-      tags: true
-      condition: $TRAVIS_PULL_REQUEST == false
-
-branches:
-  only:
-    - master
-    - /^v\d+\.\d+\.\d+$/
