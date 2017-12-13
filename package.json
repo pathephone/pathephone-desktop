@@ -20,24 +20,7 @@
         "path": "@semantic-release/github",
         "assets": [
           {
-            "path": "dist/*.dmg",
-            "label": "Mac"
-          },
-          {
-            "path": "dist/*.exe",
-            "label": "Windows"
-          },
-          {
             "path": "dist/*.AppImage",
-            "label": "Linux"
-          },
-          {
-            "path": "dist/*.deb",
-            "label": "Linux (Debian, Ubuntu...)"
-          },
-          {
-            "path": "dist/*.rpm",
-            "label": "Linux (RedHat, CentOS, Fedora...)"
           }
         ]
       }
