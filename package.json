@@ -16,7 +16,6 @@
   "release": {
     "branch": "semantic-release",
     "publish": [
-      "@semantic-release/npm",
       {
         "path": "@semantic-release/github",
         "assets": [
@@ -88,7 +87,7 @@
     "start": "node build/start.js",
     "prebuild": "webpack --config=build/webpack.app.config.js --env=production",
     "build": "electron-builder",
-    "release": "semantic-release pre && npm publish && semantic-release post"
+    "release": "semantic-release pre && semantic-release post"
   },
   "dependencies": {
     "ajv": "^5.3.0",

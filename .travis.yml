@@ -29,13 +29,15 @@ script:
         -v ~/.cache/electron:/root/.cache/electron \
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
-        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win && npm run release"
+        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win"
     else
       npm i
       npm run test
       npm run build
-      npm run release
     fi
+
+after_success:
+  - npm run semantic-release
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
