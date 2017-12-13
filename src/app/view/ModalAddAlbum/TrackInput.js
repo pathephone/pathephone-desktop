@@ -19,20 +19,27 @@ const TrackInput = ({ track, validatorErrors, index }) => {
     })
   }
   const trackFileChangeHandler = async ({hash, file}) => {
-    const {title, album, artist} = await readID3(file)
-    albumFormState('EDIT_TRACK', index, {
-      title, hash, artist
-    })
-    let formData = {}
-    albumFormState('GET', 'title', formData)
-    albumFormState('GET', 'artist', formData)
-    if(typeof formData.title !== 'undefined' && typeof formData.artist !== 'undefined')
+    try
     {
-      if(formData.title.length > 0 || formData.artist.length > 0)
-        return
+      const {title, album, artist} = await readID3(file)
+      albumFormState('EDIT_TRACK', index, {
+        title, hash, artist
+      })
+      let formData = {}
+      albumFormState('GET', 'title', formData)
+      albumFormState('GET', 'artist', formData)
+      if(typeof formData.title !== 'undefined' && typeof formData.artist !== 'undefined')
+      {
+        if(formData.title.length > 0 || formData.artist.length > 0)
+          return
 
-      albumFormState('SET_VALUE', 'artist', artist)
-      albumFormState('SET_VALUE', 'title', album)
+        albumFormState('SET_VALUE', 'artist', artist)
+        albumFormState('SET_VALUE', 'title', album)
+      }
+    } catch(e) {
+      albumFormState('EDIT_TRACK', index, {
+        title, hash, artist
+      })
     }
   }
   return (
