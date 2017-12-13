@@ -87,7 +87,7 @@
     "start": "node build/start.js",
     "prebuild": "webpack --config=build/webpack.app.config.js --env=production",
     "build": "electron-builder",
-    "release": "semantic-release pre && semantic-release post"
+    "semantic-release": "semantic-release pre && semantic-release post"
   },
   "dependencies": {
     "ajv": "^5.3.0",
