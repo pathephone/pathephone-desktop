@@ -1,3 +1,4 @@
+
 matrix:
   include:
     - os: osx
@@ -7,7 +8,6 @@ matrix:
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-
     - os: linux
       services: docker
       language: generic
@@ -28,42 +28,50 @@ before_install:
 before_script:
   - git lfs pull
 
-script:
-  - |
-    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      docker run --rm \
-        --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
-        -v ${PWD}:/project \
-        -v ~/.cache/electron:/root/.cache/electron \
-        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-        electronuserland/builder:wine \
-        /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win"
-    else
-      npm i
-      npm run test
-      npm run build
-    fi
+stages:
+  - test
+    if: branch = master AND type = pull_request
+  - build
+    if: branch = production AND type = pull_request
+  - release
+    if: tag IS present OR (branch = production AND type != pull_request)
+
+jobs:
+  include:
+    - stage: test
+      os: osx
+      script: npm i && npm run test
+    - stage: build
+      script:
+        - |
+        if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+          docker run --rm \
+            --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+            -v ${PWD}:/project \
+            -v ~/.cache/electron:/root/.cache/electron \
+            -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+            electronuserland/builder:wine \
+            /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win"
+        else
+          npm i
+          npm run test
+          npm run build
+        fi
+    - stage: deploy
+      script:
+        - |
+        if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+          docker run --rm \
+            --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+            -v ${PWD}:/project \
+            -v ~/.cache/electron:/root/.cache/electron \
+            -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+            electronuserland/builder:wine \
+            /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win --publish"
+        else
+          npm i
+          npm run build -- --publish
+        fi
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
-
-deploy:
-  # prod builds
-  - provider: releases
-    api_key: $GH_TOKEN
-    file_glob: true
-    file:
-      - dist/*.dmg
-      - dist/*.exe
-      - dist/*.AppImage
-      - dist/*.deb
-      - dist/*.rpm
-    skip_cleanup: true
-    on:
-      tags: true
-      condition: $TRAVIS_PULL_REQUEST == false
-
-branches:
-  only:
-    - master
-    - /^v\d+\.\d+\.\d+$/
