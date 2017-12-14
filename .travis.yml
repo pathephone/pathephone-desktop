@@ -57,7 +57,7 @@ jobs:
             npm run test
             npm run build
           fi
-    - stage: deploy
+    - stage: release
       script:
         - |
           if [ "$TRAVIS_OS_NAME" == "linux" ]; then
