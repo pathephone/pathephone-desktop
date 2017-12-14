@@ -30,7 +30,7 @@ before_script:
 
 stages:
   - name: test
-    if: branch = master AND type = pull_request
+    if: branch = new-workflow
   - name: build
     if: branch = production AND type = pull_request
   - name: release
@@ -75,3 +75,10 @@ jobs:
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
+
+branch:
+  only:
+    - master
+    - production
+    - new-workflow
+    - /^@/
