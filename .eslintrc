@@ -1,4 +1,11 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard", "standard-react"]
+  "extends": ["standard", "standard-react"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "react/prop-types": "off"
+  }
 }
