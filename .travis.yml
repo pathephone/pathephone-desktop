@@ -131,7 +131,7 @@ deploy:
   - provider: releases
     api_key: $GH_TOKEN
     file_glob: true
-    prerelease: $NEED_PRERELEASE
+    prerelease: true
     file:
       - dist/*.dmg
       - dist/*.exe
