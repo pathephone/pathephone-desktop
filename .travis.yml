@@ -14,6 +14,8 @@ jobs:
         - NEED_BUILD=true
         - NEED_RELEASE=true
         - EP_PRERELEASE=true
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     # TEST
 
@@ -24,6 +26,8 @@ jobs:
       node_js: "8"
       env:
         - NEED_TEST=true
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     # TEST + BUILD
 
@@ -35,6 +39,8 @@ jobs:
       env:
         - NEED_TEST=true
         - NEED_BUILD=true
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
     
     # BUILD + RELEASE
 
@@ -47,10 +53,10 @@ jobs:
         - NEED_TEST=false
         - NEED_BUILD=true
         - NEED_RELEASE=true
+        - ELECTRON_CACHE=$HOME/.cache/electron
+        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 env:
-  - ELECTRON_CACHE=$HOME/.cache/electron
-  - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 cache:
   directories:
