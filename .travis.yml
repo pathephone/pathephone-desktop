@@ -7,6 +7,8 @@ jobs:
     - if: tag IS presents # branch = production
       os: osx
       osx_image: xcode9.0
+      language: node_js
+      node_js: "8"
       env:
         - NEED_TEST=true
         - NEED_BUILD=true
@@ -18,6 +20,8 @@ jobs:
     - if: branch = master AND type = pull_request # branch = production
       os: osx
       osx_image: xcode9.0
+      language: node_js
+      node_js: "8"
       env:
         - NEED_TEST=true
 
@@ -26,6 +30,8 @@ jobs:
     - if: branch = production AND type = pull_request
       os: osx
       osx_image: xcode9.0
+      language: node_js
+      node_js: "8"
       env:
         - NEED_TEST=true
         - NEED_BUILD=true
@@ -35,13 +41,12 @@ jobs:
     - if: branch = production AND type != pull_requst
       os: osx
       osx_image: xcode9.0
+      language: node_js
+      node_js: "8"
       env:
         - NEED_TEST=false
         - NEED_BUILD=true
         - NEED_RELEASE=true
-
-language: node_js
-node_js: "8"
 
 env:
   - ELECTRON_CACHE=$HOME/.cache/electron
