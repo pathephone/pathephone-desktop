@@ -3,19 +3,16 @@ jobs:
 
     # TAG PRERELEASE
 
-    -  # OSX
+    -  # LINUX
       if: tag IS present
-      os: osx
-      osx_image: xcode9.0
-      language: node_js
-      node_js: "8"
+      os: linux
+      services: docker
+      language: generic
       env:
         - NEED_TEST=true
         - NEED_BUILD=true
         - NEED_RELEASE=true
         - NEED_PRERELEASE=true
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     # TEST-ONLY
 
@@ -103,14 +100,22 @@ before_script:
 
 script:
   - |
-    npm i
-    if [ "$NEED_TEST" = true ]; then npm run test; fi
-    if [ "$NEED_BUILD" = true ]; then npm run build; fi
-    if [ "$NEED_RELEASE" = true ]; then npm run build -- -p; fi
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      docker run --rm \
+        --env-file <(env | grep -iE 'DEBUG|NODE_|NEED_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+        -v ${PWD}:/project \
+        -v ~/.cache/electron:/root/.cache/electron \
+        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+        electronuserland/builder:wine \
+        /bin/bash -c "yarn --link-duplicates --pure-lockfile && if [[ $NEED_BUILD = true ]]; then yarn build --linux --win; fi"
+    else
+      npm i
+      if [ "$NEED_TEST" = true ]; then npm run test; fi
+      if [ "$NEED_BUILD" = true ]; then npm run build; fi
+    fi
 
 branch:
   only:
     - master
     - production
-    - /^v\d+\.\d+\.\d+$/
     - /^@/
