@@ -1,7 +1,6 @@
 import React from 'react'
 import AlbumsFeed from './AlbumsFeed'
 import Rxdb from './_/Rxdb'
-import fakeAlbumsData from './AlbumsFeed/fakeAlbumsData'
 
 const AlbumsFound = ({ data, error }) => {
   if (error) {
