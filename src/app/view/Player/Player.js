@@ -8,7 +8,7 @@ import stopPlaying from '../../scripts/stopPlaying'
 import playNextTrack from '../../scripts/playNextTrack'
 import playPrevTrack from '../../scripts/playPrevTrack'
 import multihashToUrl from '../../scripts/multihashToUrl'
-import downloadFullAlbum from '../../scripts/downloadFullAlbum'
+import downloadPlaylist from '../../scripts/downloadPlaylist'
 import Async from '../_/Async'
 
 class Playlist extends React.Component {
@@ -26,7 +26,7 @@ class Playlist extends React.Component {
     }
     const { hash } = currentTrack
     if(currentIndex > 0)
-      downloadFullAlbum(playlist, currentIndex)
+      downloadPlaylist(playlist, currentIndex)
 
     const ErrorView = ({ error }) => {
       return <h1>{error.message}</h1>
