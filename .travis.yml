@@ -4,7 +4,7 @@ jobs:
 
     # TAG PRERELEASE
 
-    - if: tag IS presents # branch = production
+    - if: tag IS present # branch = production
       os: osx
       osx_image: xcode9.0
       language: node_js
