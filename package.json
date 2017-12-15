@@ -48,13 +48,7 @@
           "to": "./MacOS"
         }
       ]
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "releaseType": "prerelease"
-      }
-    ]
+    }
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps && node build/ipfs-download.js",
