@@ -56,8 +56,6 @@ jobs:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-env:
-
 cache:
   directories:
   - node_modules
