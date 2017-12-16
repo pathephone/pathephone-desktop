@@ -4,7 +4,7 @@ jobs:
 
     # PRERELEASE
 
-    - if: tag =~ ^v\d+\.\d+\.\d+\-\d+$ # branch = production
+    - if: tag =~ ^v\d+\.\d+\.\d+\-dev.\d+$ # branch = production
       os: osx
       osx_image: xcode9.0
       language: node_js
