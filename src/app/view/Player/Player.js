@@ -12,19 +12,18 @@ import Async from '../_/Async'
 class Playlist extends React.Component {
   render () {
     const { playlist } = this.props
-    let currentIndex;
+    let currentIndex
     const currentTrack = playlist.find(
-      ({ current }, index) => { 
-        currentIndex = index;
-        return current 
+      ({ current }, index) => {
+        currentIndex = index
+        return current
       }
     )
     if (!currentTrack) {
       return null
     }
     const { hash } = currentTrack
-    if(currentIndex > 0)
-      downloadPlaylist(playlist, currentIndex)
+    if (currentIndex > 0) { downloadPlaylist(playlist, currentIndex) }
 
     const ErrorView = ({ error }) => {
       return <h1>{error.message}</h1>
