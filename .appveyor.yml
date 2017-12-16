@@ -26,7 +26,9 @@ for:
       - /^v\d+\.\d+\.\d+\-\d+$/
   environment:
     EP_PRERELEASE: true
-  test_script:
+    GH_TOKEN:
+      secure: RJGkIzFjUvpNi41A8N4FH8ABabQJDgcDkOxnGE53OzrXU3Uyb0adfq6LYm/Ll/a5
+  before_build:
     - yarn test
   build_script:
     - yarn build
@@ -47,9 +49,8 @@ for:
   environment:
     GH_TOKEN:
       secure: RJGkIzFjUvpNi41A8N4FH8ABabQJDgcDkOxnGE53OzrXU3Uyb0adfq6LYm/Ll/a5
-  test_script:
-    - yarn test
   before_build:
-    - if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { set "GH_TOKEN=" }
+    - yarn test
+    - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { set "GH_TOKEN=" }
   build_script:
     - yarn build
