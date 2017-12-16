@@ -6,6 +6,7 @@ platform:
 cache:
   - node_modules
   - '%USERPROFILE%\.electron'
+  - "%LOCALAPPDATA%\\Yarn"
 
 install:
   - ps: Install-Product node 8 x64
