@@ -44,7 +44,7 @@ jobs:
       - run: yarn
       - run: if [[ ! -z $CIRCLE_PULL_REQUEST ]]; then unset GH_TOKEN ; fi
       - run: if [[ ! -z $CIRCLE_TAG ]]; then export EP_PRELEASE=true ; fi
-      - run: yarn build --lin --win
+      - run: yarn build --linux --win
       - save_cache:
           paths:
             - node_modules
