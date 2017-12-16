@@ -1,7 +1,6 @@
 // @flow
 import createPoint from 'recall-action'
 
-
 const getInitial = () => (
   {
     title: '',

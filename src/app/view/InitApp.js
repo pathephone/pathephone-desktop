@@ -5,19 +5,18 @@ import initIpfs from '../scripts/initIpfs'
 
 import App from './App'
 
-const { ipcRenderer, remote } = require('electron');
+// const { ipcRenderer, remote } = require('electron')
 
 const ErrorView = ({ error }) => {
   console.error(error)
   return <h1>{error.message}</h1>
 }
 
-class InitIpfs extends Component
-{
+class InitIpfs extends Component {
   state = {
     isLoaded: true
   }
-  componentDidMount() {
+  componentDidMount () {
     // имеет смысл слушать только ошибки и закрытия ipfs (старт всегда)
     /*
     const globalState = remote.getGlobal('state')
@@ -30,19 +29,16 @@ class InitIpfs extends Component
     })
     */
   }
-  render()
-  {
+  render () {
     return (
       this.state.isLoaded
-      ?
-      <Async
-        call={initIpfs}
-        readyView={App}
-        errorView={ErrorView}
-        waitView={() => <h1>Initialising ipfs.</h1>}
-      />
-      :
-      <h1>Waiting for ipfs start</h1>
+        ? <Async
+          call={initIpfs}
+          readyView={App}
+          errorView={ErrorView}
+          waitView={() => <h1>Initialising ipfs.</h1>}
+        />
+        : <h1>Waiting for ipfs start</h1>
     )
   }
 }
