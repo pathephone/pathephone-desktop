@@ -62,7 +62,7 @@ workflows:
             tags:
               only: /^v\d+\.\d+\.\d+\-\d+$/
             branches:
-              ignore: /*/
+              only: /^v\d+\.\d+\.\d+\-\d+$/
       - build:
           requires:
             - test
@@ -70,7 +70,8 @@ workflows:
             tags:
               only: /^v\d+\.\d+\.\d+\-\d+$/
             branches:
-              ignore: /*/
+              only: /^v\d+\.\d+\.\d+\-\d+$/
+
 
   # DEVELOPMENT
 
