@@ -2,7 +2,7 @@
   "name": "pathephone-desktop",
   "productName": "Pathephone",
   "description": "Distributed audio player",
-  "version": "0.2.4-dev.0",
+  "version": "0.2.4-dev.1",
   "private": true,
   "author": "Maxim Ilyin <negamaxi@gmail.com>",
   "copyright": "Copyright © 2017 Maxim Ilyin",
