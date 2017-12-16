@@ -40,7 +40,7 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: apt-get install wine
+      - run: sudo apt-get install wine
       - run: yarn
       - run: if [[ ! -z $CIRCLE_PULL_REQUEST ]]; then unset GH_TOKEN ; fi
       - run: if [[ ! -z $CIRCLE_TAG ]]; then export EP_PRELEASE=true ; fi
@@ -61,12 +61,16 @@ workflows:
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+\-\d+$/
+            branches:
+              ignore: /*/
       - build:
           requires:
             - test
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+\-\d+$/
+            branches:
+              ignore: /*/
 
   # DEVELOPMENT
 
