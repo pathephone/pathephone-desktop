@@ -11,7 +11,16 @@ install:
   - ps: Install-Product node 8 x64
   - yarn
 
--  # TAG PRERELEASE
+branches:
+  only:
+  - master
+  - production
+  - /^v\d+\.\d+\.\d+\-\d+$/
+
+for:
+
+# TAG PRERELEASE
+-
   branches:
     only:
       - /^v\d+\.\d+\.\d+\-\d+$/
@@ -24,14 +33,16 @@ install:
   build_script:
     - yarn build
 
--  # TEST
+# TEST
+-
   branches:
     only:
       - master
   test_script:
     - yarn test
 
--  # TEST + BUILD +- RELEASE
+# TEST + BUILD +- RELEASE
+-
   branches:
     only:
       - production
@@ -44,9 +55,3 @@ install:
     - if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { set "GH_TOKEN=" }
   build_script:
     - yarn build
-
-branches:
-  only:
-  - master
-  - production
-  - /^v\d+\.\d+\.\d+\-\d+$/
