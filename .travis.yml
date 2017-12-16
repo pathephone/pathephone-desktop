@@ -57,6 +57,7 @@ jobs:
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
 cache:
+  yarn: true
   directories:
   - node_modules
   - $HOME/.cache/electron
@@ -67,11 +68,11 @@ before_install: git pull
 script:
   - |
     if [ "$NEED_TEST" = true ]; then
-      npm run test
+      yarn test
     fi 
     if [ "$NEED_RELEASE" != true ]; then
       unset GH_TOKEN
     fi 
     if [ "$NEED_BUILD" = true ]; then
-      npm run build
+      yarn build
     fi
