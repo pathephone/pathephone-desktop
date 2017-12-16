@@ -34,7 +34,7 @@ const actions = {
     const [index, value] = params
     state.tracks[index] = value
   },
-  GET(name, objectToReturn) {
+  GET (name, objectToReturn) {
     objectToReturn[name] = state[name]
   }
 }
