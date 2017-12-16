@@ -115,7 +115,7 @@
     "chai": "^4.1.0",
     "css-loader": "^0.28.7",
     "electron": "1.7.9",
-    "electron-builder": "^19.43.3",
+    "electron-builder": "^19.47.1",
     "electron-mocha": "^4.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-react": "^5.0.0",
