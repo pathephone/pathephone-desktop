@@ -2,9 +2,9 @@
 jobs:
   include:
 
-    # TAG PRERELEASE
+    # PRERELEASE
 
-    - if: tag IS present # branch = production
+    - if: tag =~ ^v\d+\.\d+\.\d+\-\d+$ # branch = production
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -62,24 +62,9 @@ cache:
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
 
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
-
-before_install:
-  - mkdir -p /tmp/git-lfs && curl -L https://github.com/github/git-lfs/releases/download/v2.3.1/git-lfs-$([ "$TRAVIS_OS_NAME" == "linux" ] && echo "linux" || echo "darwin")-amd64-2.3.1.tar.gz | tar -xz -C /tmp/git-lfs --strip-components 1
-    export PATH="/tmp/git-lfs:$PATH"
-
-install:
-  - git lfs pull
-    npm i
+install: git pull && npm i
 
 script:
   - if [ "$NEED_TEST" = true ]; then npm run test; fi
     if [ "$NEED_RELEASE" != true ]; then unset GH_TOKEN; fi
     if [ "$NEED_BUILD" = true ]; then npm run build; fi
-
-branch:
-  only:
-    - master
-    - production
-    - /^v\d+\.\d+\.\d+\-\d+$/
