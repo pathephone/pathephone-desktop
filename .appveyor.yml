@@ -26,8 +26,6 @@ for:
       - /^v\d+\.\d+\.\d+\-\d+$/
   environment:
     EP_PRERELEASE: true
-    GH_TOKEN:
-      secure: RJGkIzFjUvpNi41A8N4FH8ABabQJDgcDkOxnGE53OzrXU3Uyb0adfq6LYm/Ll/a5
   test_script:
     - yarn test
   build_script:
