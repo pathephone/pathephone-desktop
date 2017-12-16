@@ -33,7 +33,7 @@ jobs:
       - image: circleci/node:8-browsers
     working_directory: ~/repo
     steps:
-      - run: yarn build --win --lin
+      - run: yarn build
 
 workflows:
   version: 2
@@ -49,11 +49,19 @@ workflows:
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+\-\d+$/
-            branches:
-              only:
-                - master
-                - production
       - build:
+          requires:
+            - install
+          filters:
+            tags:
+              only: /^v\d+\.\d+\.\d+\-\d+$/
+
+  # TAG PRERELEASE
+
+  test-only:
+    jobs:
+      - install
+      - test:
           requires:
             - install
           filters:
