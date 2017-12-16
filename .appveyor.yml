@@ -11,11 +11,42 @@ install:
   - ps: Install-Product node 8 x64
   - yarn
 
-build_script:
-  - yarn test
+-  # TAG PRERELEASE
+  branches:
+    only:
+      - /^v\d+\.\d+\.\d+\-\d+$/
+  environment:
+    EP_PRERELEASE: true
+    GH_TOKEN:
+      secure: RJGkIzFjUvpNi41A8N4FH8ABabQJDgcDkOxnGE53OzrXU3Uyb0adfq6LYm/Ll/a5
+  test_script:
+    - yarn test
+  build_script:
+    - yarn build
 
-test: false
+-  # TEST
+  branches:
+    only:
+      - master
+  test_script:
+    - yarn test
+
+-  # TEST + BUILD +- RELEASE
+  branches:
+    only:
+      - production
+  environment:
+    GH_TOKEN:
+      secure: RJGkIzFjUvpNi41A8N4FH8ABabQJDgcDkOxnGE53OzrXU3Uyb0adfq6LYm/Ll/a5
+  test_script:
+    - yarn test
+  before_build:
+    - if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { set "GH_TOKEN=" }
+  build_script:
+    - yarn build
 
 branches:
   only:
   - master
+  - production
+  - /^v\d+\.\d+\.\d+\-\d+$/
