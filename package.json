@@ -2,7 +2,7 @@
   "name": "pathephone-desktop",
   "productName": "Pathephone",
   "description": "Distributed audio player",
-  "version": "0.2.4-24",
+  "version": "0.2.4-dev.0",
   "private": true,
   "author": "Maxim Ilyin <negamaxi@gmail.com>",
   "copyright": "Copyright © 2017 Maxim Ilyin",
@@ -63,7 +63,7 @@
     "prebuild": "webpack --config=build/webpack.app.config.js --env=production",
     "build": "electron-builder",
     "bump:release": "standard-version",
-    "bump:prerelease": "standard-version --prerelease"
+    "bump:prerelease": "standard-version --prerelease dev"
   },
   "dependencies": {
     "ajv": "^5.3.0",
