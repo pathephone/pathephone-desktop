@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.4-8"></a>
+## [0.2.4-8](https://github.com/pathephone/pathephone-desktop/compare/v0.2.4-7...v0.2.4-8) (2017-12-16)
+
+
+
 <a name="0.2.4-7"></a>
 ## [0.2.4-7](https://github.com/pathephone/pathephone-desktop/compare/v0.2.4-6...v0.2.4-7) (2017-12-16)
 
