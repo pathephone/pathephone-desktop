@@ -42,7 +42,10 @@ workflows:
 
   prerelease:
     jobs:
-      - install
+      - install:
+          filters:
+            tags:
+              only: /^v\d+\.\d+\.\d+\-\d+$/
       - test:
           requires:
             - install
@@ -56,14 +59,25 @@ workflows:
             tags:
               only: /^v\d+\.\d+\.\d+\-\d+$/
 
-  # TAG PRERELEASE
+  # TEST ONLY
 
   test-only:
     jobs:
-      - install
+      - install:
+          filters:
+            tags:
+              only: /^v\d+\.\d+\.\d+\-\d+$/
+            branches:
+              only:
+                - master
+                - production
       - test:
           requires:
             - install
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+\-\d+$/
+            branches:
+              only:
+                - master
+                - production
