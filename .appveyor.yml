@@ -27,7 +27,7 @@ for:
   environment:
     EP_PRERELEASE: true
     GH_TOKEN:
-      secure: RJGkIzFjUvpNi41A8N4FH8ABabQJDgcDkOxnGE53OzrXU3Uyb0adfq6LYm/Ll/a5
+      secure: w+NI1x8/ZKHkHuCYzVbIWVvPr9eyrdR+GhwvyWGC9H3iF1MxcckziHqjeAj6ATDU
   before_build:
     - yarn test
   build_script:
@@ -48,7 +48,7 @@ for:
       - production
   environment:
     GH_TOKEN:
-      secure: RJGkIzFjUvpNi41A8N4FH8ABabQJDgcDkOxnGE53OzrXU3Uyb0adfq6LYm/Ll/a5
+      secure: w+NI1x8/ZKHkHuCYzVbIWVvPr9eyrdR+GhwvyWGC9H3iF1MxcckziHqjeAj6ATDU
   before_build:
     - yarn test
     - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { set "GH_TOKEN=" }
