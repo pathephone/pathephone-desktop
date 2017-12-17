@@ -12,8 +12,8 @@ const changeHandler = (e) => {
   albumFormState('SET_VALUE', name, value)
 }
 
-const coverChangeHandler = (value) => {
-  albumFormState('SET_VALUE', 'cover', value)
+const coverChangeHandler = ({hash}) => {
+  albumFormState('SET_VALUE', 'cover', hash)
 }
 
 class FormAlbum extends React.Component {
