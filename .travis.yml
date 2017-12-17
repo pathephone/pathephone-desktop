@@ -2,9 +2,9 @@
 jobs:
   include:
 
-    # DEVELOPMENT RELEASE
+    # DEVELOPMENT RELEASE / TEST + BUILD
 
-    - if: tag =~ ^@dev-*
+    - if: tag =~ ^@dev-* OR (branch = production AND type = pull_request)
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -15,7 +15,7 @@ jobs:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - if: tag =~ ^@dev-*
+    - if: tag =~ ^@dev-* OR (branch = production AND type = pull_request)
       os: linux
       services: docker
       language: generic
@@ -34,27 +34,6 @@ jobs:
         - NEED_TEST=true
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-
-    # TEST + BUILD
-
-    - if: branch = production AND type = pull_request
-      os: osx
-      osx_image: xcode9.0
-      language: node_js
-      node_js: "8"
-      env:
-        - NEED_TEST=true
-        - NEED_BUILD=true
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-    
-    - if: branch = production AND type = pull_request
-      os: linux
-      services: docker
-      language: generic
-      env:
-        - NEED_TEST=true
-        - NEED_BUILD=true
 
     # RELEASE
 
@@ -86,9 +65,6 @@ before_install: git pull
 
 script:
   - |
-    if [ "$NEED_RELEASE" != true ]; then
-      unset GH_TOKEN
-    fi 
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
         --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
@@ -101,8 +77,11 @@ script:
       if [ "$NEED_TEST" = true ]; then
         yarn test
       fi 
-      if [ "$NEED_BUILD" = true || "$NEED_RELEASE" = true ]; then
-        yarn build
+      if [ "$NEED_BUILD" = true ]; then
+        yarn build -p never
+      fi
+      if [ "$NEED_RELEASE" = true ]; then
+        yarn build -p always
       fi
     fi
 
