@@ -4,7 +4,7 @@ jobs:
 
     # DEVELOPMENT RELEASE
 
-    - if: tag =~ ^@dev-$
+    - if: tag =~ ^@dev-*
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -16,7 +16,7 @@ jobs:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - if: tag =~ ^@dev-$
+    - if: tag =~ ^@dev-*
       os: linux
       services: docker
       language: generic
