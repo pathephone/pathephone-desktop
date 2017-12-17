@@ -6,23 +6,16 @@ platform:
 cache:
   - node_modules
   - '%USERPROFILE%\.electron'
-  - "%LOCALAPPDATA%\\Yarn"
 
 install:
   - ps: Install-Product node 8 x64
   - yarn
 
+build_script:
+  - yarn test
+
+test: false
+
 branches:
   only:
   - master
-
-for:
-
-# TEST
--
-  branches:
-    only:
-      - master
-      - production
-  test_script:
-    - yarn test
