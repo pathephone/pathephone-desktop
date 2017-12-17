@@ -1,5 +1,4 @@
 import React from 'react'
-import noCoverImg from './no-cover.png'
 import playTracks from '../../scripts/playTracks'
 import removeAlbumFromDb from '../../scripts/removeAlbumFromDb'
 import Async from '../_/Async'

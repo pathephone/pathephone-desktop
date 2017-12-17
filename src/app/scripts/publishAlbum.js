@@ -10,7 +10,7 @@ const publishAlbum = async (albumObj) => {
   const cidString = cidObj.toBaseEncodedString()
   console.log(`Returned cid: ${cidString}`)
   await ipfsApi.pubsub.publish(albums.schemaCid, cidObj.buffer)
-  autoPublish(albums.schemaCid, cidString);
+  autoPublish(albums.schemaCid, cidString)
   return cidString
 }
 
