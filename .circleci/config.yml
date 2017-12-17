@@ -42,9 +42,7 @@ jobs:
           - v1-dependencies-
       - run: sudo apt-get install software-properties-common apt-transport-https
       - run: sudo dpkg --add-architecture i386
-      - run: wget -nc https://dl.winehq.org/wine-builds/Release.key
-      - run: sudo apt-key add Release.key
-      - run: sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+      - run: sudo apt-add-repository ppa:wine/wine-builds
       - run: sudo apt-get update
       - run: sudo apt-get install --install-recommends winehq-stable
       - run: yarn
