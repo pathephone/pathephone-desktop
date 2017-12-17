@@ -2,7 +2,7 @@
   "name": "pathephone-desktop",
   "productName": "Pathephone",
   "description": "Distributed audio player",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "private": true,
   "author": "Maxim Ilyin <negamaxi@gmail.com>",
   "copyright": "Copyright © 2017 Maxim Ilyin",
@@ -48,8 +48,7 @@
           "to": "./MacOS"
         }
       ]
-    },
-    "publish": null
+    }
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps && node build/ipfs-download.js",
@@ -63,7 +62,8 @@
     "start": "node build/start.js",
     "prebuild": "webpack --config=build/webpack.app.config.js --env=production",
     "build": "electron-builder",
-    "release": "git checkout master && git pull && standard-version && git push --follow-tags"
+    "bump:release": "standard-version",
+    "bump:prerelease": "standard-version --prerelease"
   },
   "dependencies": {
     "ajv": "^5.3.0",
@@ -83,6 +83,7 @@
     "lru-cache": "^4.1.1",
     "multiaddr": "^3.0.1",
     "multipart-stream": "^2.0.1",
+    "musicmetadata": "^2.0.5",
     "ndjson": "^1.5.0",
     "peer-id": "^0.10.2",
     "peer-info": "^0.11.1",
@@ -107,6 +108,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -115,7 +117,7 @@
     "chai": "^4.1.0",
     "css-loader": "^0.28.7",
     "electron": "1.7.9",
-    "electron-builder": "^19.43.3",
+    "electron-builder": "^19.47.1",
     "electron-mocha": "^4.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-react": "^5.0.0",

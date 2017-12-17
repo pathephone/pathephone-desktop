@@ -12,8 +12,8 @@ const changeHandler = (e) => {
   albumFormState('SET_VALUE', name, value)
 }
 
-const coverChangeHandler = (value) => {
-  albumFormState('SET_VALUE', 'cover', value)
+const coverChangeHandler = ({hash}) => {
+  albumFormState('SET_VALUE', 'cover', hash)
 }
 
 class FormAlbum extends React.Component {
@@ -74,10 +74,10 @@ class FormAlbum extends React.Component {
           <Divider horizontal content='tracks' />
           {
             tracks.length > 0
-          ? tracks.map(
-              (track, index) => <TrackInput {...{ track, validatorErrors, index }} />
-            )
-          : null
+              ? tracks.map(
+                (track, index) => <TrackInput {...{ track, validatorErrors, index }} />
+              )
+              : null
           }
           <Button onClick={() => albumFormState('ADD_TRACK')}>
             ADD TRACK
@@ -87,14 +87,14 @@ class FormAlbum extends React.Component {
           </Button>
           {
             validatorErrors
-          ? <Message
-            error
-            header='Invalid fields'
-            list={
-                validatorErrors.map(({ message, dataPath }) => `[${dataPath}] ${message}`)
-              }
-            />
-          : null
+              ? <Message
+                error
+                header='Invalid fields'
+                list={
+                  validatorErrors.map(({ message, dataPath }) => `[${dataPath}] ${message}`)
+                }
+              />
+              : null
           }
         </Form>
       </div>

@@ -3,5 +3,5 @@ node_modules
 dist
 resources
 temp
-app
+/app
 dll

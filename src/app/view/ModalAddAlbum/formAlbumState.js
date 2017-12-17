@@ -1,7 +1,6 @@
 // @flow
 import createPoint from 'recall-action'
 
-
 const getInitial = () => (
   {
     title: '',
@@ -34,6 +33,9 @@ const actions = {
   EDIT_TRACK (...params) {
     const [index, value] = params
     state.tracks[index] = value
+  },
+  GET (name, objectToReturn) {
+    objectToReturn[name] = state[name]
   }
 }
 
