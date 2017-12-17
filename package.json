@@ -48,8 +48,7 @@
           "to": "./MacOS"
         }
       ]
-    },
-    "publish": null
+    }
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps && node build/ipfs-download.js",
@@ -63,7 +62,8 @@
     "start": "node build/start.js",
     "prebuild": "webpack --config=build/webpack.app.config.js --env=production",
     "build": "electron-builder",
-    "release": "git checkout master && git pull && standard-version && git push --follow-tags"
+    "bump:release": "standard-version",
+    "bump:prerelease": "standard-version --prerelease"
   },
   "dependencies": {
     "ajv": "^5.3.0",
@@ -116,7 +116,7 @@
     "chai": "^4.1.0",
     "css-loader": "^0.28.7",
     "electron": "1.7.9",
-    "electron-builder": "^19.43.3",
+    "electron-builder": "^19.47.1",
     "electron-mocha": "^4.0.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standard-react": "^5.0.0",
