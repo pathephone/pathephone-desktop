@@ -37,7 +37,7 @@ jobs:
 
     # RELEASE
 
-    - if: branch = production AND type != pull_requst
+    - if: branch = production AND type != pull_request
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -47,7 +47,7 @@ jobs:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - if: branch = production AND type != pull_requst
+    - if: branch = production AND type != pull_request
       os: linux
       services: docker
       language: generic
