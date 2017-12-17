@@ -4,91 +4,34 @@
 #
 version: 2
 jobs:
-
-  # ТЕСТЫ
-
-  test:
-    docker:
-      - image: circleci/node:8-browsers
-    working_directory: ~/repo
-    steps:
-      - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run: yarn
-      - run: yarn test
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-  # БИЛД +- РЕЛИЗ
-
   build:
     docker:
-      - image: circleci/node:8
+      # specify the version you desire here
+      - image: circleci/node:8-browsers
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
     working_directory: ~/repo
+
     steps:
       - checkout
+
       # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: sudo apt install rpm
-      - run: yarn
-      - run: if [[ ! -z $CIRCLE_PULL_REQUEST ]]; then unset GH_TOKEN ; fi
-      - run: if [[ ! -z $CIRCLE_TAG ]]; then export EP_PRELEASE=true ; fi
-      - run: yarn build
+
+      - run: yarn install
+
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-workflows:
-  version: 2
-
-  # PRERELEASE
-
-  prerelease:
-    jobs:
-      - test:
-          filters:
-            tags:
-              only: /^v\d+\.\d+\.\d+\-dev.\d+$/
-            branches:
-              only: /^v\d+\.\d+\.\d+\-dev.\d+$/
-      - build:
-          requires:
-            - test
-          filters:
-            tags:
-              only: /^v\d+\.\d+\.\d+\-dev.\d+$/
-            branches:
-              only: /^v\d+\.\d+\.\d+\-dev.\d+$/
-
-
-  # DEVELOPMENT
-
-  development:
-    jobs:
-      - test:
-          filters:
-            branches:
-              only:
-                - master
-
-  # PRODUCTION
-
-  production:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - production
+      
+      # run tests!
+      - run: yarn test

@@ -15,38 +15,14 @@ install:
 branches:
   only:
   - master
-  - production
-  - /^v\d+\.\d+\.\d+\-dev.\d+$/
 
 for:
-
-# TAG PRERELEASE
--
-  branches:
-    only:
-      - /^v\d+\.\d+\.\d+\-dev.\d+$/
-  environment:
-    EP_PRELEASE: true
-  before_build:
-    - yarn test
-  build_script:
-    - yarn build
 
 # TEST
 -
   branches:
     only:
       - master
+      - production
   test_script:
     - yarn test
-
-# TEST + BUILD +- RELEASE
--
-  branches:
-    only:
-      - production
-  before_build:
-    - yarn test
-    - ps: if ($env:APPVEYOR_PULL_REQUEST_NUMBER) { set "GH_TOKEN=" }
-  build_script:
-    - yarn build
