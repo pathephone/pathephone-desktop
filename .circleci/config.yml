@@ -40,7 +40,7 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: sudo apt install rpmbuild
+      - run: sudo apt install rpm
       - run: yarn
       - run: if [[ ! -z $CIRCLE_PULL_REQUEST ]]; then unset GH_TOKEN ; fi
       - run: if [[ ! -z $CIRCLE_TAG ]]; then export EP_PRELEASE=true ; fi
