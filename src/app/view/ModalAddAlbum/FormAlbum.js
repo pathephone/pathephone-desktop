@@ -44,7 +44,7 @@ class FormAlbum extends React.Component {
     const { title, artist, cover, tracks } = formState
     return (
       <div className='izi-padding'>
-        <Form loading={loading} size='large' error={!!validatorErrors}>
+        <Form id='add-album_form' loading={loading} size='large' error={!!validatorErrors}>
           <Form.Group widths='equal'>
             <Form.Input
               // error={validatorErrors.some(({ dataPath }) => dataPath === '.title')}

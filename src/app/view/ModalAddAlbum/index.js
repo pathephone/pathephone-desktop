@@ -3,7 +3,7 @@ import { Button, Modal } from 'semantic-ui-react'
 import FormAlbum from './FormAlbum'
 
 const ModalAddAlbum = () => (
-  <Modal trigger={<Button>Share an album</Button>}>
+  <Modal trigger={<Button id='add-album_button'>Share an album</Button>}>
     <Modal.Header>Share an album</Modal.Header>
     <Modal.Content>
       <FormAlbum />
