@@ -27,7 +27,6 @@ for:
       - /^v\d+\.\d+\.\d+\-dev.\d+$/
   environment:
     EP_PRELEASE: true
-    GH_TOKEN: 96767e384f6c14a2a70aada5fddab21a3d5e041b
   before_build:
     - yarn test
   build_script:
