@@ -16,7 +16,7 @@ branches:
   only:
   - master
   - production
-  - /^v\d+\.\d+\.\d+\-\d+$/
+  - /^v\d+\.\d+\.\d+\-dev.\d+$/
 
 for:
 
@@ -24,7 +24,7 @@ for:
 -
   branches:
     only:
-      - /^v\d+\.\d+\.\d+\-\d+$/
+      - /^v\d+\.\d+\.\d+\-dev.\d+$/
   environment:
     EP_PRELEASE: true
     GH_TOKEN: 432484dc8b08f9503755733f95a20a447414d7c8
