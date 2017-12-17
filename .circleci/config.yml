@@ -40,7 +40,7 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - run: sudo apt-get install software-properties-common
+      - run: sudo apt-get install software-properties-common apt-transport-https
       - run: sudo dpkg --add-architecture i386
       - run: wget -nc https://dl.winehq.org/wine-builds/Release.key
       - run: sudo apt-key add Release.key
