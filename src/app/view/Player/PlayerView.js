@@ -2,6 +2,8 @@ import React from 'react'
 import ReactPlayer from 'react-audio-player'
 import MdSkipNext from 'react-icons/lib/md/skip-next'
 import MdSkipPrev from 'react-icons/lib/md/skip-previous'
+import MdRepeat from 'react-icons/lib/md/repeat'
+import MdShuffle from 'react-icons/lib/md/shuffle'
 import playerState from '../../state/player'
 import bind from '../../utils/recallReact'
 
@@ -33,12 +35,12 @@ const PlayerView = (props) => {
         <button onClick={() => {
           playerState('SET_VALUE', 'shuffle', !shuffle)
         }}>
-          {shuffle ? '+' : '-'}S
+          <MdShuffle style={shuffle ? {fill: '#a6af3f'} : undefined} />
         </button>
         <button onClick={() => {
           playerState('SET_VALUE', 'repeat', !repeat)
         }}>
-          {repeat ? '+' : '-'}R
+          <MdRepeat style={repeat ? {fill: '#a6af3f'} : undefined} />
         </button>
       </div>
     </div>
