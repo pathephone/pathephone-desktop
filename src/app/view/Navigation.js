@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import pageState from '../state/page'
 import bind from '../utils/recallReact'
 import pagesMap from './pagesMap'
-import ModalAddAlbum from './ModalAddAlbum'
+import AddAlbum from './AddAlbum'
 
 class Navigation extends Component {
   render () {
@@ -22,7 +22,7 @@ class Navigation extends Component {
             </button>
           ))
         }
-        <ModalAddAlbum />
+        <AddAlbum />
       </nav>
     )
   }

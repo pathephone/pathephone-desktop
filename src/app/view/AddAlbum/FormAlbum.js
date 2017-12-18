@@ -4,9 +4,9 @@ import validateAlbum from '../../scripts/validateAlbum'
 import IpfsFileInput from '../Ipfs/FileInput'
 import bind from '../../utils/recallReact'
 import albumFormState from './formAlbumState'
-import TracksInput from './TracksInput'
+import AboutForm from './FormAlbum/AboutForm'
+import TracksInput from './FormAlbum/TracksInput'
 import formDataToJSON from '../../utils/formDataToJSON'
-import Input from '../_/Input'
 
 const onAddTrack = () => {
   albumFormState('ADD_TRACK')
@@ -14,38 +14,6 @@ const onAddTrack = () => {
 
 const onDeleteTrack = (index) => {
   albumFormState('DELETE_TRACK', index)
-}
-
-const AboutForm = (props) => {
-  const { value } = props
-  const onChange = (v, n) => {
-    value[n] = v
-  }
-  const { artist, title, cover } = value
-  return (
-    <div className='izi-ys izi--gap'>
-      <Input
-        defaultValue={title}
-        name='title'
-        placeholder='Album title'
-        type='text'
-        onChange={onChange}
-      />
-      <Input
-        defaultValue={artist}
-        name='artist'
-        placeholder='Album artist'
-        type='text'
-        onChange={onChange}
-      />
-      <IpfsFileInput
-        placeholder="Album cover's CID"
-        name='cover'
-        defaultValue={cover}
-        onChange={onChange}
-      />
-    </div>
-  )
 }
 
 class FormAlbum extends React.Component {
@@ -73,7 +41,7 @@ class FormAlbum extends React.Component {
     const { formState } = this.props
     return (
       <div
-        className='izi-ys izi-fill-width'
+        className='izi--gap izi-ys izi-fill-width'
       >
         <AboutForm value={formState} />
         <TracksInput value={formState} onAddTrack={onAddTrack} onDeleteTrack={onDeleteTrack} />

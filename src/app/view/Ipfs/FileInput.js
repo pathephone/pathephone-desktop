@@ -1,4 +1,60 @@
 import React from 'react'
+import AddFileToIpfsButton from './AddFilesToIpfsButton'
+
+class FileInput extends React.Component {
+  state = {
+    loading: false
+  }
+  setLoading = (value) => {
+    this.setState({
+      loading: value
+    })
+  }
+  onFileError = () => {
+    this.setLoading(false)
+  }
+  onFileLoading = () => {
+    this.setLoading(true)
+  }
+  onChange = e => {
+    const { name, value } = e.currentTarget
+    this.props.onChange(value, name)
+  }
+  onFileAdded = (value) => {
+    this.setLoading(false)
+    const event = new Event('change')
+    this.textInput.value = value[0].hash
+    this.textInput.dispatchEvent(event)
+  }
+  render () {
+    const { loading } = this.state
+    const { input, button } = this.props
+    return (
+      <div className='izi-xs'>
+        <input
+          {...input}
+          disabled={loading}
+          ref={c => { this.textInput = c }}
+          type='text'
+          onChange={this.onChange}
+        />
+        <AddFileToIpfsButton
+          disabled={loading}
+          onSuccess={this.onFileAdded}
+          onError={this.onFileError}
+          onLoading={this.onFileLoading}
+        >
+          chose file
+        </AddFileToIpfsButton>
+      </div>
+    )
+  }
+}
+
+export default FileInput
+
+/*
+import React from 'react'
 import putFilesToIpfs from '../../scripts/putFilesToIpfs'
 import Input from '../_/Input'
 
@@ -79,3 +135,4 @@ class FileInput extends React.Component {
 }
 
 export default FileInput
+*/
