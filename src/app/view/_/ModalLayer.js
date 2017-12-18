@@ -7,7 +7,7 @@ const ModalLayer = ({ children, onMissClick }) => {
       onMissClick()
     }
   }
-  return(
+  return (
     <div
       className='modal-layer izi-fixed izi-fill izi-top izi-left izi-y'
       onClick={onMissClick && onClick}

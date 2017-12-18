@@ -23,9 +23,9 @@ class AddAlbum extends React.Component {
   toggleModal = () => {
     this.setState({ open: !this.state.open })
   }
-  render() {
+  render () {
     const view = [
-      <OpenAddAlbumModal onClick={this.toggleModal} />,
+      <OpenAddAlbumModal onClick={this.toggleModal} />
     ]
     if (this.state.open) {
       view.push(

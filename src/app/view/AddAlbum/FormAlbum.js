@@ -1,7 +1,6 @@
 import React from 'react'
 import publishAlbum from '../../scripts/publishAlbum'
 import validateAlbum from '../../scripts/validateAlbum'
-import IpfsFileInput from '../Ipfs/FileInput'
 import bind from '../../utils/recallReact'
 import albumFormState from './formAlbumState'
 import AboutForm from './FormAlbum/AboutForm'
