@@ -28,7 +28,7 @@ class FileInput extends React.Component {
   }
   render () {
     const { loading } = this.state
-    const { input, button } = this.props
+    const { input } = this.props
     return (
       <div className='izi-xs'>
         <input

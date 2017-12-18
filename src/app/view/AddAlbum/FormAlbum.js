@@ -5,7 +5,6 @@ import bind from '../../utils/recallReact'
 import albumFormState from './formAlbumState'
 import AboutForm from './FormAlbum/AboutForm'
 import TracksInput from './FormAlbum/TracksInput'
-import formDataToJSON from '../../utils/formDataToJSON'
 
 const onAddTrack = () => {
   albumFormState('ADD_TRACK')

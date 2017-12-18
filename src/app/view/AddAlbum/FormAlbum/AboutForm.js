@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from '../../_/Input'
+import IpfsFileInput from '../../Ipfs/FileInput'
 
 const AboutForm = (props) => {
   const { value } = props
@@ -33,3 +34,5 @@ const AboutForm = (props) => {
     </fieldset>
   )
 }
+
+export default AboutForm

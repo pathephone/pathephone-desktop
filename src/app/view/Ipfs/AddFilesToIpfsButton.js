@@ -40,3 +40,5 @@ class AddFileToIpfsButton extends React.Component {
     ]
   }
 }
+
+export default AddFileToIpfsButton
