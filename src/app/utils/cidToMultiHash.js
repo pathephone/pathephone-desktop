@@ -1,5 +1,5 @@
-const multibase = require('multibase')
+import cidToBuffer from './cidToBuffer'
 
 export default (cid) => {
-  return multibase.decode(cid).slice(2);
+  return cidToBuffer(cid).slice(2)
 }

@@ -83,10 +83,8 @@ class FileInput extends React.Component {
     this.toggleLoading()
     try {
       const ipfsHash = await putFilesToIpfs(files)
-      this.fileForm.reset()
-      const value = ipfsHash[0].hash
-      this.textInput.value = value
-      onChange(value, name)
+      const hash = ipfsHash[0].hash
+      onChange({hash, file: files[0]})
     } catch (error) {
       this.setState({ error: true })
     }
