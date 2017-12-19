@@ -27,7 +27,7 @@ class TrackInput extends React.Component {
         />
         <br />
         <Input
-          value={artist}
+          value={hash}
           name='hash'
           label
           placeholder='Audio data CID'
