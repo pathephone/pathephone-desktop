@@ -4,7 +4,7 @@ jobs:
 
     # DEVELOPMENT RELEASE / TEST + BUILD
 
-    - if: tag =~ ^@dev-* OR (branch = production AND type = pull_request)
+    - if: tag =~ ^@dev-*
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -15,7 +15,7 @@ jobs:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - if: tag =~ ^@dev-* OR (branch = production AND type = pull_request)
+    - if: tag =~ ^@dev-*
       os: linux
       services: docker
       language: generic
@@ -37,7 +37,7 @@ jobs:
 
     # RELEASE
 
-    - if: branch = production AND type != pull_request
+    - if: tag =~ ^v\d+\.\d+\.\d+$
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -47,7 +47,7 @@ jobs:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - if: branch = production AND type != pull_request
+    - if: tag =~ ^v\d+\.\d+\.\d+$
       os: linux
       services: docker
       language: generic
@@ -68,7 +68,7 @@ script:
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       if [ "$NEED_BUILD" = true ]; then
         docker run --rm \
-          --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+          --env-file <(TMP_TCM=$TRAVIS_COMMIT_MESSAGE && unset TRAVIS_COMMIT_MESSAGE && env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_' && export TRAVIS_COMMIT_MESSAGE=$TMP_TCM) \
           -v ${PWD}:/project \
           -v ~/.cache/electron:/root/.cache/electron \
           -v ~/.cache/electron-builder:/root/.cache/electron-builder \
@@ -77,7 +77,7 @@ script:
       fi
       if [ "$NEED_RELEASE" = true ]; then
         docker run --rm \
-          --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') \
+          --env-file <(TMP_TCM=$TRAVIS_COMMIT_MESSAGE && unset TRAVIS_COMMIT_MESSAGE && env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_' && export TRAVIS_COMMIT_MESSAGE=$TMP_TCM) \
           -v ${PWD}:/project \
           -v ~/.cache/electron:/root/.cache/electron \
           -v ~/.cache/electron-builder:/root/.cache/electron-builder \
