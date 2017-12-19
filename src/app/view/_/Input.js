@@ -1,14 +1,16 @@
 import React from 'react'
 
-const Input = ({ onChange, ...rest }) => (
-  <input
-    {...rest}
-    onChange={e => {
-      const { name, value } = e.currentTarget
-      console.log(value)
-      onChange(value, name)
-    }}
-  />
-)
+const Input = ({ label, ...rest }) => {
+  const view = []
+  if (label) {
+    view.push(
+      <label key='label'>{rest.placeholder}</label>
+    )
+  }
+  view.push(
+    <input {...rest} key='input' />
+  )
+  return view
+}
 
 export default Input
