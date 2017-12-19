@@ -27,11 +27,13 @@ class AddFileToIpfsButton extends React.Component {
     return [
       <button
         {...buttonParams}
+        key='button'
         onClick={this.handleAddFileClick}
       >
         {children}
       </button>,
       <input
+        key='input'
         style={{ display: 'none' }}
         ref={c => { this.fileInput = c }}
         onChange={this.handleFileInputChange}
