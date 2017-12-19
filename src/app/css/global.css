@@ -1,3 +1,7 @@
+input {
+  padding: 0.25em;
+}
+
 #root {
   height: 100vh;
 }
@@ -7,16 +11,6 @@
   flex-basis: 100%;
   flex-shrink: 1;
   grid-template-columns: 20% 60% 20%;
-}
-
-.navigation {
-  padding: 0 0.5em;
-  background-color: darkslategrey;
-}
-
-.navigation_item {
-  margin: 0.5em 0;
-  padding: 0.5em;  
 }
 
 .playlist {
@@ -70,8 +64,4 @@
 
 .player {
   flex-shrink: 0;
-}
-
-.player__info {
-
 }
