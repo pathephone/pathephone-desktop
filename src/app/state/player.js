@@ -18,6 +18,12 @@ const actions = {
   SET_VALUE (...params) {
     const [name, value] = params
     state[name] = value
+  },
+  TOGGLE_SHUFFLE () {
+    state.shuffle = !state.shuffle
+  },
+  TOGGLE_REPEAT () {
+    state.repeat = !state.repeat
   }
 }
 

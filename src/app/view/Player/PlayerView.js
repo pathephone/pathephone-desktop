@@ -32,14 +32,10 @@ const PlayerView = (props) => {
           src={src}
           onEnded={onPlayNextTrack}
         />
-        <button onClick={() => {
-          playerState('SET_VALUE', 'shuffle', !shuffle)
-        }}>
+        <button onClick={() => playerState('TOGGLE_SHUFFLE')}>
           <MdShuffle style={shuffle ? {fill: '#a6af3f'} : undefined} />
         </button>
-        <button onClick={() => {
-          playerState('SET_VALUE', 'repeat', !repeat)
-        }}>
+        <button onClick={() => playerState('TOGGLE_REPEAT')}>
           <MdRepeat style={repeat ? {fill: '#a6af3f'} : undefined} />
         </button>
       </div>

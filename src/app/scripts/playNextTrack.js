@@ -1,19 +1,18 @@
 import playlistState, { state as playlistData } from '../state/playlist'
 import {state as playerData} from '../state/player'
 
-const playNextTrack = () => {
+const getNextTrack = () => {
   const {shuffle, repeat, shufflePath} = playerData
   const currentIndex = playlistData.findIndex(
     ({ current }) => current
   )
-  let nextCurrent = playlistData[currentIndex + 1]
+  const nextCurrent = playlistData[currentIndex + 1]
   if (shuffle) { // проигрывание переменашнной песни
     shufflePath.push(playlistData[currentIndex])
     let notPlayed = playlistData.filter(el => shufflePath.indexOf(el) === -1)
-    if (notPlayed.length === 0) {
+    if (notPlayed.length === 0) { // список воспроизведения закончился
       playerData.shufflePath = [] // сбрасываем список случайных при оставноке проигрывания
       if (!repeat) {
-        playlistState('DROP_CURRENT')
         return
       } else {
         shufflePath.push(playlistData[currentIndex])
@@ -22,16 +21,19 @@ const playNextTrack = () => {
       }
     }
     const randomSong = notPlayed[Math.floor(Math.random() * notPlayed.length)]
-    nextCurrent = randomSong
+    return randomSong
+  } else if (repeat && !nextCurrent && playlistData.length > 0) { // переход на 1 запись плейлиста если обычный повтор
+    return playlistData[0]
   }
-  if (nextCurrent) {
-    const { id } = nextCurrent
+  return nextCurrent
+}
+
+const playNextTrack = () => {
+  const nextTrack = getNextTrack()
+  if (nextTrack) {
+    const { id } = nextTrack
     playlistState('SET_CURRENT', id)
   } else {
-    if (repeat && playlistData.length > 0) { // переход на 1 запись плейлиста если повтор
-      playlistState('SET_CURRENT', playlistData[0].id)
-      return
-    }
     playlistState('DROP_CURRENT')
   }
 }
