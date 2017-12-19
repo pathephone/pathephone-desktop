@@ -1,15 +1,5 @@
 import React from 'react'
-import ModalLayer from './_/ModalLayer'
-import ModalWindow from './_/ModalWindow'
-import FormAlbum from './AddAlbum/FormAlbum'
-
-const AddAlbumModal = ({ onClose }) => (
-  <ModalLayer>
-    <ModalWindow onClose={onClose}>
-      <FormAlbum />
-    </ModalWindow>
-  </ModalLayer>
-)
+import AddAlbumModal from './AddAlbum/AddAlbumModal'
 
 const OpenAddAlbumModal = ({ onClick }) => (
   <button onClick={onClick}>
@@ -25,11 +15,11 @@ class AddAlbum extends React.Component {
   }
   render () {
     const view = [
-      <OpenAddAlbumModal onClick={this.toggleModal} />
+      <OpenAddAlbumModal onClick={this.toggleModal} key='button' />
     ]
     if (this.state.open) {
       view.push(
-        <AddAlbumModal onClose={this.toggleModal} />
+        <AddAlbumModal onClose={this.toggleModal} key='modal' />
       )
     }
     return view

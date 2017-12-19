@@ -3,11 +3,29 @@ import publishAlbum from '../../scripts/publishAlbum'
 import validateAlbum from '../../scripts/validateAlbum'
 import bind from '../../utils/recallReact'
 import albumFormState from './formAlbumState'
-import AboutForm from './FormAlbum/AboutForm'
-import TracksInput from './FormAlbum/TracksInput'
+import FormAbout from './FormAlbum/FormAbout'
+import FormTracks from './FormAlbum/FormTracks'
 
-const onAddTrack = () => {
-  albumFormState('ADD_TRACK')
+const onAboutChange = (field, value) => {
+  albumFormState('EDIT_ABOUT', field, value)
+}
+
+const onAddRawTrack = () => {
+  albumFormState('ADD_RAW_TRACK')
+}
+const onAddTracks = async (tracks) => {
+  albumFormState('ADD_TRACKS', ...tracks)
+}
+
+const onMoveTrackUp = (index) => {
+  albumFormState('MOVE_TRACK_UP', index)
+}
+const onMoveTrackDown = (index) => {
+  albumFormState('MOVE_TRACK_DOWN', index)
+}
+
+const onTrackChange = (index, field, value) => {
+  albumFormState('EDIT_TRACK', index, field, value)
 }
 
 const onDeleteTrack = (index) => {
@@ -41,8 +59,16 @@ class FormAlbum extends React.Component {
       <div
         className='izi--gap izi-ys izi-fill-width'
       >
-        <AboutForm value={formState} />
-        <TracksInput value={formState} onAddTrack={onAddTrack} onDeleteTrack={onDeleteTrack} />
+        <FormAbout value={formState} onChange={onAboutChange} />
+        <FormTracks
+          value={formState}
+          onTrackChange={onTrackChange}
+          onAddRawTrack={onAddRawTrack}
+          onAddTracks={onAddTracks}
+          onDeleteTrack={onDeleteTrack}
+          onMoveTrackUp={onMoveTrackUp}
+          onMoveTrackDown={onMoveTrackDown}
+        />
         <button type='submit' onClick={this.handleFormSubmit}>
           done
         </button>
