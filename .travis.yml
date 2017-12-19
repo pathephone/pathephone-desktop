@@ -4,7 +4,7 @@ jobs:
 
     # DEVELOPMENT RELEASE / TEST + BUILD
 
-    - if: tag =~ ^@dev-* OR (branch = production AND type = pull_request)
+    - if: tag =~ ^@dev-*
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -15,7 +15,7 @@ jobs:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - if: tag =~ ^@dev-* OR (branch = production AND type = pull_request)
+    - if: tag =~ ^@dev-*
       os: linux
       services: docker
       language: generic
@@ -37,7 +37,7 @@ jobs:
 
     # RELEASE
 
-    - if: branch = production AND type != pull_request
+    - if: tag =~ ^v\d+\.\d+\.\d+$
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -47,7 +47,7 @@ jobs:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - if: branch = production AND type != pull_request
+    - if: tag =~ ^v\d+\.\d+\.\d+$
       os: linux
       services: docker
       language: generic
