@@ -18,11 +18,11 @@ class TrackFileInput extends React.Component {
   }
   onChange = async (files) => {
     this.toggleProcessing()
-    const { onChange } = this.props
+    const { onNewTracks } = this.props
     const filesArray = Array.from(files)
     const tracks = await Promise.all(filesArray.map(getTrackFromFile))
     this.toggleProcessing()
-    onChange(tracks)
+    onNewTracks(tracks)
   }
   render () {
     return (
