@@ -10,43 +10,40 @@ class FileInput extends React.Component {
       loading: value
     })
   }
+
   onFileError = () => {
     this.setLoading(false)
   }
   onFileLoading = () => {
     this.setLoading(true)
   }
-  onChange = e => {
-    const { name, value } = e.currentTarget
-    this.props.onChange(value, name)
-  }
   onFileAdded = (value) => {
     this.setLoading(false)
-    const event = new Event('change')
     this.textInput.value = value[0].hash
+    const event = new Event('change')
     this.textInput.dispatchEvent(event)
   }
   render () {
     const { loading } = this.state
-    const { input } = this.props
     return (
-      <div className='izi-xs'>
+      <span className='izi-xs izi-fill-width'>
         <input
-          {...input}
+          {...this.props}
+          style={{ flexBasis: '100%' }}
           disabled={loading}
           ref={c => { this.textInput = c }}
           type='text'
-          onChange={this.onChange}
+          onChange={this.props.onChange}
         />
         <AddFileToIpfsButton
+          style={{ flexShrink: '0' }}
           disabled={loading}
           onSuccess={this.onFileAdded}
           onError={this.onFileError}
           onLoading={this.onFileLoading}
-        >
-          chose file
-        </AddFileToIpfsButton>
-      </div>
+          children='chose file'
+        />
+      </span>
     )
   }
 }
