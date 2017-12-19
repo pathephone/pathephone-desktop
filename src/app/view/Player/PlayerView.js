@@ -2,9 +2,14 @@ import React from 'react'
 import ReactPlayer from 'react-audio-player'
 import MdSkipNext from 'react-icons/lib/md/skip-next'
 import MdSkipPrev from 'react-icons/lib/md/skip-previous'
+import MdRepeat from 'react-icons/lib/md/repeat'
+import MdShuffle from 'react-icons/lib/md/shuffle'
+import playerState from '../../state/player'
+import bind from '../../utils/recallReact'
 
 const PlayerView = (props) => {
-  const { title, artist, src, onPlayNextTrack, onPlayPrevTrack } = props
+  const { title, artist, src, onPlayNextTrack, onPlayPrevTrack, playerStateForm } = props
+  const { shuffle, repeat } = playerStateForm
   return (
     <div className='player izi-fill-width izi-padding izi-y'>
       <div className='player__upper-block izi-x'>
@@ -19,15 +24,23 @@ const PlayerView = (props) => {
           <MdSkipNext />
         </button>
       </div>
-      <ReactPlayer
-        className='izi-fill-width'
-        controls
-        autoPlay
-        src={src}
-        onEnded={onPlayNextTrack}
-      />
+      <div className='izi-x izi-fill-width'>
+        <ReactPlayer
+          className='izi-fill-width'
+          controls
+          autoPlay
+          src={src}
+          onEnded={onPlayNextTrack}
+        />
+        <button onClick={() => playerState('TOGGLE_SHUFFLE')}>
+          <MdShuffle style={shuffle ? {fill: '#a6af3f'} : undefined} />
+        </button>
+        <button onClick={() => playerState('TOGGLE_REPEAT')}>
+          <MdRepeat style={repeat ? {fill: '#a6af3f'} : undefined} />
+        </button>
+      </div>
     </div>
   )
 }
 
-export default PlayerView
+export default bind({ playerStateForm: playerState }, PlayerView)
