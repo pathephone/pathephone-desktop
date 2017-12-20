@@ -8,10 +8,6 @@ const getInitial = () => ({
   tracks: []
 })
 
-const getRawTrack = () => ({
-  title: '', hash: '', artist: ''
-})
-
 export let state = getInitial()
 
 const actions = {
@@ -27,9 +23,6 @@ const actions = {
         title, hash, artist
       })
     })
-  },
-  ADD_RAW_TRACK () {
-    state.tracks.push(getRawTrack())
   },
   EDIT_TRACK (index, field, value) {
     const target = state.tracks[index]

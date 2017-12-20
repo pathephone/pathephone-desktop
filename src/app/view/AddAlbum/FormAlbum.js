@@ -10,9 +10,6 @@ const onAboutChange = (field, value) => {
   albumFormState('EDIT_ABOUT', field, value)
 }
 
-const onAddRawTrack = () => {
-  albumFormState('ADD_RAW_TRACK')
-}
 const onAddTracks = async (tracks) => {
   albumFormState('ADD_TRACKS', ...tracks)
   // код редактирования полей об альбоме, если он есть в метаданных
@@ -69,7 +66,6 @@ class FormAlbum extends React.Component {
         <FormTracks
           value={formState}
           onTrackChange={onTrackChange}
-          onAddRawTrack={onAddRawTrack}
           onAddTracks={onAddTracks}
           onDeleteTrack={onDeleteTrack}
           onMoveTrackUp={onMoveTrackUp}
