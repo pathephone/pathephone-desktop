@@ -6,26 +6,32 @@ import MdDown from 'react-icons/lib/md/keyboard-arrow-down'
 import MdUp from 'react-icons/lib/md/keyboard-arrow-up'
 
 class TracksInput extends React.Component {
-  TrackControls = ({ index }) => {
+  TrackControls = ({ index, first, last }) => {
     const { onDeleteTrack, onMoveTrackUp, onMoveTrackDown } = this.props
     const onDelete = () => { onDeleteTrack(index) }
     const onUp = () => { onMoveTrackUp(index) }
     const onDown = () => { onMoveTrackDown(index) }
     return (
       <div className='izi-y izi-center izi-margin-left'>
-        <button onClick={onUp}>
+        <button
+          disabled={first}
+          onClick={onUp}
+        >
           <MdUp />
         </button>
         <button onClick={onDelete}>
           <MdClear />
         </button>
-        <button onClick={onDown}>
+        <button
+          disabled={last}
+          onClick={onDown}
+        >
           <MdDown />
         </button>
       </div>
     )
   }
-  TrackInputWrapper = (track, index) => {
+  TrackInputWrapper = (track, index, tracks) => {
     const { onTrackChange } = this.props
     const onChange = (e) => {
       const { name, value } = e.currentTarget
@@ -34,24 +40,25 @@ class TracksInput extends React.Component {
     return [
       <div className='izi-xs' key='container'>
         <TrackInput value={track} onChange={onChange} />
-        <this.TrackControls index={index} />
+        <this.TrackControls
+          index={index}
+          first={index === 0}
+          last={index === tracks.length - 1}
+        />
       </div>,
       <hr key='separator' />
     ]
   }
   render () {
-    const { value, onAddRawTrack, onAddTracks } = this.props
+    const { value, onAddTracks } = this.props
     return (
       <fieldset className='izi-ys'>
-        <legend>Tracklist</legend>
+        <legend>{`Tracklist (${value.tracks.length} tracks)`}</legend>
         {
           value.tracks.map(this.TrackInputWrapper)
         }
         <span>
           <TrackFileInput onNewTracks={onAddTracks} />
-          <button onClick={onAddRawTrack}>
-          add raw track
-          </button>
         </span>
       </fieldset>
     )
