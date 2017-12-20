@@ -36,6 +36,7 @@ const AboutForm = (props) => {
           placeholder='Album cover CID'
           name='cover'
           defaultValue={cover}
+          fileFilter={(file) => file.type.includes('image')} // только картинки
           onChange={handleChange}
         />
       </p>
