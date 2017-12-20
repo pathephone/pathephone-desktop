@@ -12,7 +12,7 @@ const getRawTrack = () => ({
   title: '', hash: '', artist: ''
 })
 
-let state = getInitial()
+export let state = getInitial()
 
 const actions = {
   DROP () {

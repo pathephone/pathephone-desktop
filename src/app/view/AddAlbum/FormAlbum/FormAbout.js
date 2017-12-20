@@ -14,7 +14,7 @@ const AboutForm = (props) => {
       <legend>About album</legend>
       <p className='izi-ys'>
         <Input
-          defaultValue={title}
+          value={title}
           name='title'
           placeholder='Album title'
           label
@@ -23,7 +23,7 @@ const AboutForm = (props) => {
         />
         <br />
         <Input
-          defaultValue={artist}
+          value={artist}
           name='artist'
           label
           placeholder='Album artist'

@@ -2,7 +2,7 @@ import React from 'react'
 import publishAlbum from '../../scripts/publishAlbum'
 import validateAlbum from '../../scripts/validateAlbum'
 import bind from '../../utils/recallReact'
-import albumFormState from './formAlbumState'
+import albumFormState, {state as albumFormData} from './formAlbumState'
 import FormAbout from './FormAlbum/FormAbout'
 import FormTracks from './FormAlbum/FormTracks'
 
@@ -15,6 +15,14 @@ const onAddRawTrack = () => {
 }
 const onAddTracks = async (tracks) => {
   albumFormState('ADD_TRACKS', ...tracks)
+  // код редактирования полей об альбоме, если он есть в метаданных
+  if (tracks && tracks.length > 0) {
+    const {artist, album} = tracks[0]
+    if (albumFormData.artist.length === 0 && artist)
+      albumFormState('EDIT_ABOUT', 'artist', artist)
+    if (albumFormData.title.length === 0 && album)
+      albumFormState('EDIT_ABOUT', 'title', album)
+  }
 }
 
 const onMoveTrackUp = (index) => {
