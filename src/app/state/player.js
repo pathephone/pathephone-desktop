@@ -5,7 +5,8 @@ export const state = {
   status: 'STOPED',
   shuffle: false,
   repeat: false,
-  shufflePath: []
+  shufflePath: [],
+  volume: 0.8
 }
 
 const actions = {
@@ -24,6 +25,9 @@ const actions = {
   },
   TOGGLE_REPEAT () {
     state.repeat = !state.repeat
+  },
+  SET_VOLUME (volume = 0.8) {
+    state['volume'] = volume
   }
 }
 
