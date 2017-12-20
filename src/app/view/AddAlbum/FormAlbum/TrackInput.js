@@ -1,5 +1,4 @@
 import React from 'react'
-import IpfsFileInput from '../../Ipfs/FileInput'
 import Input from '../../_/Input'
 
 class TrackInput extends React.Component {

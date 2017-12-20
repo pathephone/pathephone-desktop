@@ -18,10 +18,8 @@ const onAddTracks = async (tracks) => {
   // код редактирования полей об альбоме, если он есть в метаданных
   if (tracks && tracks.length > 0) {
     const {artist, album} = tracks[0]
-    if (albumFormData.artist.length === 0 && artist)
-      albumFormState('EDIT_ABOUT', 'artist', artist)
-    if (albumFormData.title.length === 0 && album)
-      albumFormState('EDIT_ABOUT', 'title', album)
+    if (albumFormData.artist.length === 0 && artist) { albumFormState('EDIT_ABOUT', 'artist', artist) }
+    if (albumFormData.title.length === 0 && album) { albumFormState('EDIT_ABOUT', 'title', album) }
   }
 }
 
