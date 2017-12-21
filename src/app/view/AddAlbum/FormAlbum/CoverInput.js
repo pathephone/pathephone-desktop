@@ -51,7 +51,7 @@ class CoverInput extends React.Component {
     const { onChange } = this.props
     try {
       const imageHash = await getImageFromFiles(Array.from(files))
-      onChange(imageHash)
+      setTimeout(() => onChange(imageHash), 0)
     } catch (error) {
       console.error(error)
     }
