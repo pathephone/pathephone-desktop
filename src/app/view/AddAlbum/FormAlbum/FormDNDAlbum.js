@@ -1,13 +1,24 @@
 import React from 'react'
 import MdDrop from 'react-icons/lib/md/arrow-downward'
 import DNDarea from '@/DNDarea'
+import { getAudioTracksFromFiles } from './TrackFileInput'
+import { getImageFromFiles } from './CoverInput'
+
 const getAlbumObjectFromFiles = async (files) => {
-  // TODO: оработать files и получить максимально-заполненный объект альбома с картинкой, треками и прочим
+  files = Array.from(files)
+  const cover = await getImageFromFiles(files)
+  const tracks = await getAudioTracksFromFiles(files)
+  let artist = ''
+  let title = ''
+  if (tracks.length > 0) {
+    artist = tracks[0].artist
+    title = tracks[0].album
+  }
   return {
-    title: 'test',
-    artist: '',
-    cover: '',
-    tracks: []
+    title,
+    artist,
+    cover,
+    tracks
   }
 }
 

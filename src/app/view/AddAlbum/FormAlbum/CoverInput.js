@@ -7,9 +7,15 @@ import DNDarea from '@/DNDarea'
 import putFilesToIpfs from '~/scripts/putFilesToIpfs'
 import multihashToUrl from '~/scripts/multihashToUrl'
 
-const checkForImage = (file) => {
-  // проверка на изображение
-  return true
+const checkIsImage = (file) => {
+  return file.type.includes('image')
+}
+
+export const getImageFromFiles = async (files) => {
+  files = files.filter(checkIsImage) // only images
+  if (files.length > 0) {
+    return (await putFilesToIpfs(files))[0].hash
+  }
 }
 
 const CoverPreview = ({ data }) => (
@@ -44,12 +50,8 @@ class CoverInput extends React.Component {
   handleFiles = async (files) => {
     const { onChange } = this.props
     try {
-      if (checkForImage(files[0])) {
-        const objects = await putFilesToIpfs(files)
-        onChange(objects[0].hash)
-      } else {
-        throw new Error('File should be an image.')
-      }
+      const imageHash = await getImageFromFiles(Array.from(files))
+      onChange(imageHash)
     } catch (error) {
       console.error(error)
     }

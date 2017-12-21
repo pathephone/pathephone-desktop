@@ -7,7 +7,7 @@ const checkIsAudio = (file) => {
   return file.type.includes('audio')
 }
 
-const getTracksFromFiles = async (files) => {
+export const getAudioTracksFromFiles = async (files) => {
   files = files.filter(checkIsAudio) // use only audio files
 
   const hashes = await putFilesToIpfs(files)
@@ -34,7 +34,7 @@ class TrackFileInput extends React.Component {
   onChange = async (files) => {
     this.toggleProcessing()
     const { onNewTracks } = this.props
-    const tracks = await getTracksFromFiles(Array.from(files))
+    const tracks = await getAudioTracksFromFiles(Array.from(files))
     this.toggleProcessing()
     onNewTracks(tracks)
   }
