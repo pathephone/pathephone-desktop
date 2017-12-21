@@ -1,18 +1,22 @@
 // @flow
 import createPoint from 'recall-action'
 
-const getInitial = () => ({
+const getRaw = () => ({
   title: '',
   artist: '',
   cover: '',
   tracks: []
 })
 
-export let state = getInitial()
+export let state = getRaw()
 
 const actions = {
-  DROP () {
-    state = getInitial()
+  RESET () {
+    state = getRaw()
+  },
+  REPLACE_DATA (albumData) {
+    const { title, artist, cover, tracks } = albumData
+    state = { title, artist, cover, tracks }
   },
   EDIT_ABOUT (field, value) {
     state[field] = value

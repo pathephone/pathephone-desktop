@@ -1,14 +1,23 @@
 import React from 'react'
-
-const ModalWindow = ({ onClose, children }) => {
+import MdClose from 'react-icons/lib/md/close'
+const ModalWindow = ({ onClose, title, children }) => {
   return (
     <div className='modal-window'>
       {
-        onClose && (
-          <div className='izi-padding'>
-            <button onClick={onClose}>
-              x
-            </button>
+        (onClose || title) && (
+          <div className='izi-orange-bg izi-padding izi-fill-width izi-x'>
+            {
+              title && (
+                <h1>{title}</h1>
+              )
+            }
+            {
+              onClose && (
+                <button className='izi-margin-left-auto' onClick={onClose}>
+                  <MdClose />
+                </button>
+              )
+            }
           </div>
         )
       }

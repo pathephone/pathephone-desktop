@@ -1,6 +1,6 @@
 import React from 'react'
 import Input from '../../_/Input'
-import IpfsFileInput from '../../Ipfs/FileInput'
+import CoverInput from './CoverInput'
 
 const AboutForm = (props) => {
   const { value, onChange } = props
@@ -8,37 +8,38 @@ const AboutForm = (props) => {
     const { name, value } = e.currentTarget
     onChange(name, value)
   }
+  const handleCoverChange = (value) => {
+    onChange('cover', value)
+  }
   const { artist, title, cover } = value
   return (
     <fieldset>
       <legend>About album</legend>
-      <p className='izi-ys'>
-        <Input
-          value={title}
-          name='title'
-          placeholder='Album title'
-          label
-          type='text'
-          onChange={handleChange}
+      <div className='izi-xu'>
+        <div className='izi-ys izi-fill-width izi-margin-top'>
+          <Input
+            value={title}
+            name='title'
+            placeholder='Album title'
+            label
+            type='text'
+            onChange={handleChange}
+          />
+          <br />
+          <Input
+            value={artist}
+            name='artist'
+            label
+            placeholder='Album artist'
+            type='text'
+            onChange={handleChange}
+          />
+        </div>
+        <CoverInput
+          value={cover}
+          onChange={handleCoverChange}
         />
-        <br />
-        <Input
-          value={artist}
-          name='artist'
-          label
-          placeholder='Album artist'
-          type='text'
-          onChange={handleChange}
-        />
-        <br />
-        <label>Album cover CID</label>
-        <IpfsFileInput
-          placeholder='Album cover CID'
-          name='cover'
-          defaultValue={cover}
-          onChange={handleChange}
-        />
-      </p>
+      </div>
     </fieldset>
   )
 }

@@ -37,7 +37,7 @@ class TrackFileInput extends React.Component {
       <FileInput
         disabled={this.state.processing}
         onChange={this.onChange}
-        children='add track files'
+        children='add tracks'
       />
     )
   }
