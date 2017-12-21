@@ -5,6 +5,20 @@ import FormTracks from './FormTracks'
 import publishAlbum from '../../../scripts/publishAlbum'
 import validateAlbum from '../../../scripts/validateAlbum'
 
+const Tips = () => (
+  <fieldset>
+    <legend>Tips</legend>
+    <ul>
+      <li>You can just <b>drag and drop</b> album files here. All fields will be filled automatically if possible.</li>
+    </ul>
+    <style jsx>{`
+fieldset {
+  color: green;
+}
+    `}</style>
+  </fieldset>
+)
+
 class FormEditAlbum extends React.Component {
   state = {
     loading: false,
@@ -34,6 +48,7 @@ class FormEditAlbum extends React.Component {
       <div
         className='izi--gap izi-ys izi-fill-width'
       >
+        <Tips />
         <FormAbout
           value={formState}
           onChange={this.props.onAboutChange}
