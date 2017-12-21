@@ -8,7 +8,8 @@ class AddFileToIpfsButton extends React.Component {
   }
   handleFileInputChange = async (e) => {
     const { onError, onSuccess, onLoading } = this.props
-    const { files } = e.currentTarget
+    let { files } = e.currentTarget
+    if (this.props.fileFilter) { files = Array.from(files).filter(this.props.fileFilter) }
     if (files.length === 0) return
     onLoading()
     try {

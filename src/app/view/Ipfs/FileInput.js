@@ -41,6 +41,7 @@ class FileInput extends React.Component {
           onSuccess={this.onFileAdded}
           onError={this.onFileError}
           onLoading={this.onFileLoading}
+          fileFilter={this.props.fileFilter}
           children='chose file'
         />
       </span>
