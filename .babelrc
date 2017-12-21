@@ -14,6 +14,19 @@
   ],
   "plugins": [
     "styled-jsx/babel",
-    ["transform-object-rest-spread", { "useBuiltIns": true }]
+    ["transform-object-rest-spread", { "useBuiltIns": true }],
+    [
+      "babel-plugin-root-import", 
+      [
+        {
+          "rootPathPrefix": "@",
+          "rootPathSuffix": "src/app/view/_"
+        },
+        {
+          "rootPathPrefix": "~",
+          "rootPathSuffix": "src/app"
+        }
+      ]
+    ]
   ]
 }
