@@ -5,10 +5,10 @@ const ModalWindow = ({ onClose, title, children }) => {
     <div className='modal-window'>
       {
         (onClose || title) && (
-          <div className='izi-orange-bg izi-padding izi-fill-width izi-x'>
+          <div className='modal-window__header izi-padding izi-fill-width izi-x'>
             {
               title && (
-                <h1>{title}</h1>
+                <label>{title}</label>
               )
             }
             {
@@ -31,6 +31,9 @@ const ModalWindow = ({ onClose, title, children }) => {
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 1em;
+}
+.modal-window__header {
+  border-bottom: 1px solid #dedede;
 }
       `}</style>
     </div>
