@@ -18,16 +18,19 @@ class FileInput extends React.Component {
     if (files.length === 0) return
     this.toggleLoading()
     try {
-      const ipfsHash = await putFilesToIpfs(files)
-      const hash = ipfsHash[0].hash
-      onChange({hash, file: files[0]})
+      let ipfsHashes = await putFilesToIpfs(files)
+      ipfsHashes = ipfsHashes.map(({hash}, index) => ({
+        hash,
+        file: files[index]
+      }))
+      onChange(ipfsHashes)
     } catch (error) {
       this.setState({ error: true })
     }
     this.toggleLoading()
   }
   render () {
-    const { label, icon, defaultValue, value, onChange } = this.props
+    const { label, icon, defaultValue, value, multiple, onChange } = this.props
     const { loading, error } = this.state
     return (
       <div className='field'>
@@ -35,6 +38,7 @@ class FileInput extends React.Component {
           style={{ display: 'none' }}
           ref={(c) => { this.fileInput = c }}
           onChange={this.fileInputHandler}
+          multiple={multiple}
           type='file'
         />
         <Form.Input

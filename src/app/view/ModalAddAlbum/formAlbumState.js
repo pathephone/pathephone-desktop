@@ -15,7 +15,7 @@ const getInitial = () => (
   }
 )
 
-let state = getInitial()
+export let state = getInitial()
 
 const actions = {
   DROP () {
@@ -33,9 +33,6 @@ const actions = {
   EDIT_TRACK (...params) {
     const [index, value] = params
     state.tracks[index] = value
-  },
-  GET (name, objectToReturn) {
-    objectToReturn[name] = state[name]
   }
 }
 
