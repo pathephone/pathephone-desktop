@@ -1,16 +1,16 @@
 import React from 'react'
 
-const ModalLayer = ({ children, onMissClick }) => {
-  const onClick = e => {
+const ModalLayer = ({ children, onClick, ...rest }) => {
+  const onMissClick = e => {
     if (e.target === e.currentTarget) {
-      console.log('HUTAY')
-      onMissClick()
+      onClick()
     }
   }
   return (
     <div
+      {...rest}
       className='modal-layer izi-fixed izi-fill izi-top izi-left izi-y'
-      onClick={onMissClick && onClick}
+      onClick={onClick && onMissClick}
     >
       {children}
       <style jsx>{`

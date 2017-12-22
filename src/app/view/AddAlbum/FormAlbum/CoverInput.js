@@ -61,7 +61,6 @@ class CoverInput extends React.Component {
   }
   render () {
     const { value } = this.props
-    console.log(value)
     return (
       <div className='cover-upload izi-margin-left izi-relative '>
         <DNDarea

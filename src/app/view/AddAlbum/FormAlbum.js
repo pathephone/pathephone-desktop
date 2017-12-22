@@ -8,7 +8,7 @@ const stateMethods = {
   onAboutChange (field, value) {
     albumFormState('EDIT_ABOUT', field, value)
   },
-  dropAlbum () {
+  setRawAlbum () {
     albumFormState('DROP')
   },
   onReplaceAlbum (albumData) {
@@ -40,59 +40,29 @@ const stateMethods = {
 const FormEditAlbumConnected = bind({ formState: albumFormState }, FormEditAlbum)
 
 class FormAlbum extends React.Component {
-  state = {
-    dnd: true
-  }
-  switchToDND = () => {
-    this.setState({
-      dnd: true
-    })
-  }
-  switchToManual = () => {
-    this.setState({
-      dnd: false
-    })
-  }
-  onUserDrags = () => {
-    // TODO: типо когда пользователь начал что-то тащить окно переключается в днд
-    this.switchToDND()
-  }
   handleDNDChange = (albumData) => {
     stateMethods.onReplaceAlbum(albumData)
-    this.switchToManual()
+    this.props.onFilesProcessed()
   }
   handleSuccess = () => {
-    const { onSuccess } = this.props
-    onSuccess()
-    stateMethods.dropAlbum()
+    this.props.onSuccess()
+    stateMethods.setRawAlbum()
   }
   render () {
-    const { dnd } = this.state
-    const view = [
-      <div className='izi-x izi--gap izi-center' key='controls'>
-        <button onClick={this.switchToDND}>
-          dnd way
-        </button>
-        <button onClick={this.switchToManual}>
-          manual way
-        </button>
-      </div>
-    ]
-    // TODO: убрать кнопки, когда dnd заработает
-    if (!dnd) {
-      view.push(
+    const { dnd } = this.props
+    if (dnd) {
+      return (
+        <FormDNDAlbum onChange={this.handleDNDChange} key='form-fill' />
+      )
+    } else {
+      return (
         <FormEditAlbumConnected
           {...stateMethods}
           onSuccess={this.handleSuccess}
           key='form-edit'
         />
       )
-    } else {
-      view.push(
-        <FormDNDAlbum onChange={this.handleDNDChange} key='form-fill' />
-      )
     }
-    return view
   }
 }
 
