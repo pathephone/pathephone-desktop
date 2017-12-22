@@ -52,8 +52,7 @@ const initAlbumsListener = async () => {
 
 const publishAlbumSchema = async () => {
   const ipfsNode = getIpfs()
-  const { schema } = albums
-  const cidObj = await ipfsNode.dag.put(schema, dagParams)
+  const cidObj = await ipfsNode.dag.put(albums.instanceSchema, dagParams)
   const cidString = cidObj.toBaseEncodedString()
   albums.schemaCid = cidString
 }
