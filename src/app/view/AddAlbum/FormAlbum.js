@@ -8,6 +8,9 @@ const stateMethods = {
   onAboutChange (field, value) {
     albumFormState('EDIT_ABOUT', field, value)
   },
+  dropAlbum () {
+    albumFormState('DROP')
+  },
   onReplaceAlbum (albumData) {
     albumFormState('REPLACE_DATA', albumData)
   },
@@ -58,7 +61,12 @@ class FormAlbum extends React.Component {
     stateMethods.onReplaceAlbum(albumData)
     this.switchToManual()
   }
-  render (props) {
+  handleSuccess = () => {
+    const { onSuccess } = this.props
+    onSuccess()
+    stateMethods.dropAlbum()
+  }
+  render () {
     const { dnd } = this.state
     const view = [
       <div className='izi-x izi--gap izi-center' key='controls'>
@@ -73,7 +81,11 @@ class FormAlbum extends React.Component {
     // TODO: убрать кнопки, когда dnd заработает
     if (!dnd) {
       view.push(
-        <FormEditAlbumConnected {...stateMethods} key='form-edit' />
+        <FormEditAlbumConnected
+          {...stateMethods}
+          onSuccess={this.handleSuccess}
+          key='form-edit'
+        />
       )
     } else {
       view.push(

@@ -11,7 +11,7 @@ const getRaw = () => ({
 export let state = getRaw()
 
 const actions = {
-  RESET () {
+  DROP () {
     state = getRaw()
   },
   REPLACE_DATA (albumData) {

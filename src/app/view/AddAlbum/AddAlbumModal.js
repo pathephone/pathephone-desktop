@@ -6,7 +6,7 @@ import FormAlbum from './FormAlbum'
 const AddAlbumModal = ({ onClose }) => (
   <ModalLayer onMissClick={onClose}>
     <ModalWindow onClose={onClose} title='Add Album'>
-      <FormAlbum />
+      <FormAlbum onSuccess={onClose} />
     </ModalWindow>
   </ModalLayer>
 )

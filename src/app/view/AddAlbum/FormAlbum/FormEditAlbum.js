@@ -34,7 +34,7 @@ class FormEditAlbum extends React.Component {
         this.setState({ validatorErrors, loading: false })
       } else {
         await publishAlbum(formState)
-        this.setState({ loading: false })
+        this.props.onSuccess()
       }
     } catch (error) {
       console.log(error)
