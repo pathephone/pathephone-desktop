@@ -13,8 +13,7 @@ const getDirectoriesContentsRecursive = (files) => {
   const directories = files.filter(file => file.type === '')
   let directoriesFiles = []
   for (const directory of directories) {
-    if (fs.statSync(directory.path).isDirectory())
-      directoriesFiles = directoriesFiles.concat(directoryFilesRecursive(directory.path)) // добавляем все файлы из всех директорий что перетащили
+    if (fs.statSync(directory.path).isDirectory()) { directoriesFiles = directoriesFiles.concat(directoryFilesRecursive(directory.path)) } // добавляем все файлы из всех директорий что перетащили
   }
   directoriesFiles = directoriesFiles.map(file => { // преобразуем пути файлов в объекты File
     const buffer = fs.readFileSync(file)
@@ -32,7 +31,6 @@ const getDirectoriesContentsRecursive = (files) => {
 const getAlbumObjectFromFiles = async (files) => {
   files = Array.from(files)
   files = getDirectoriesContentsRecursive(files)
-  //console.log(files)
   const cover = await getImageFromFiles(files)
   const tracks = await getAudioTracksFromFiles(files)
   let artist = ''
