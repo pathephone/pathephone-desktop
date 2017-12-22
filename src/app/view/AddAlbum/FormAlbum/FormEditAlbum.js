@@ -19,6 +19,26 @@ fieldset {
   </fieldset>
 )
 
+const Error = ({ dataPath, message }, index) => {
+  return <li key={dataPath}><b>{dataPath}</b> {message}</li>
+}
+
+const Errors = ({ data }) => (
+  <fieldset>
+    <legend>Some errors occured</legend>
+    <ul>
+      {
+        data.map(Error)
+      }
+    </ul>
+    <style jsx>{`
+fieldset {
+  color: red;
+}
+    `}</style>
+  </fieldset>
+)
+
 class FormEditAlbum extends React.Component {
   state = {
     loading: false,
@@ -29,9 +49,9 @@ class FormEditAlbum extends React.Component {
       e.preventDefault()
       this.setState({ loading: true })
       const { formState } = this.props
-      const { valid, validatorErrors } = validateAlbum(formState)
+      const { valid, errors } = validateAlbum(formState)
       if (!valid) {
-        this.setState({ validatorErrors, loading: false })
+        this.setState({ errors, loading: false })
       } else {
         await publishAlbum(formState)
         this.props.onSuccess()
@@ -44,6 +64,7 @@ class FormEditAlbum extends React.Component {
     const {
       formState
     } = this.props
+    const { errors } = this.state
     return (
       <div
         className='izi--gap izi-ys izi-fill-width'
@@ -61,6 +82,11 @@ class FormEditAlbum extends React.Component {
           onMoveTrackUp={this.props.onMoveTrackUp}
           onMoveTrackDown={this.props.onMoveTrackDown}
         />
+        {
+          errors && (
+            <Errors data={errors} />
+          )
+        }
         <button type='submit' onClick={this.handleFormSubmit}>
           done
         </button>
