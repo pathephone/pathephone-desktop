@@ -1,5 +1,5 @@
-import electron from 'electron'
-import { Application } from 'spectron'
+const electron = require('electron')
+const { Application } = require('spectron')
 
 const beforeEach = function () {
   this.app = new Application({
@@ -15,7 +15,7 @@ const afterEach = function () {
   }
 }
 
-export default {
+module.exports = {
   beforeEach,
   afterEach
 }

@@ -1,2 +1,2 @@
-import './tests/launch'
-import './tests/add-album'
+require('./tests/launch')
+require('./tests/add-album')

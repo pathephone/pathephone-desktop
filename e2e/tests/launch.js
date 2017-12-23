@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import utils from '../utils'
+const utils = require('../utils')
 
 describe('application launch', function () {
   this.timeout(30000)
