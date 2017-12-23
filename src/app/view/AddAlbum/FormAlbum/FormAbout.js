@@ -20,6 +20,7 @@ const AboutForm = (props) => {
           <Input
             value={title}
             placeholder='Album title'
+            name='album.title'
             label
             type='text'
             onChange={handleChange}

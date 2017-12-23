@@ -28,23 +28,33 @@ describe('add album process', function () {
       return app.client.waitForExist('#add-album_errors')
     })
   })
-  describe('add tracks manually', () => {
-    it('should throw no errors', async function () {
+  describe('add track manually', () => {
+    it('should throw no errors', function () {
       const { app } = this
       const testFilePath = path.join(__dirname, 'add-album/test-track.mp3')
-      return app.client.chooseFile('#add-album_add-tracks', testFilePath)
+      return app.client.chooseFile('#input_add-tracks', testFilePath)
     })
     it('should fill album.title data', async function () {
+      const selector = 'input[name="album.title"]'
       const { app } = this
-      const value = await app.client.getValue('#input_album-title]')
-      console.log(value)
+      await app.client.waitForValue(selector)
+      const value = await app.client
+        .$(selector)
+        .getValue()
       if (value !== 'Red Flower') {
         throw new Error('Value does not match.')
       }
     })
-    it('fieldset should appear', function () {
-      // const { app } = this
-      // return app.client.waitForExist('#add-album_errors')
+    it('should fill album.title data', async function () {
+      const selector = 'input[name="album.artist"]'
+      const { app } = this
+      await app.client.waitForValue(selector)
+      const value = await app.client
+        .$(selector)
+        .getValue()
+      if (value !== 'DEgITx') {
+        throw new Error('Value does not match.')
+      }
     })
   })
 })

@@ -15,7 +15,10 @@ const afterEach = function () {
   }
 }
 
+const asyncTimeout = delay => new Promise(resolve => setTimeout(resolve, delay))
+
 module.exports = {
   beforeEach,
-  afterEach
+  afterEach,
+  asyncTimeout
 }
