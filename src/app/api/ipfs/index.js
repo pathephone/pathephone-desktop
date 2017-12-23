@@ -1,8 +1,9 @@
 // const IPFS = require('ipfs');
 // const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
-const IPFSapi = require('ipfs-api')
 import dag from './dag'
+import IPFSapi from 'ipfs-api'
+import exists from './exists'
 
 let node
 
@@ -27,6 +28,7 @@ const getIpfsNode = (params = {}) => {
   const endpoint = `http://${host}:${port}/api/v0`
   node = IPFSapi(host, port)
   node = dag(node, endpoint)
+  node = exists(node)
   return node
 }
 

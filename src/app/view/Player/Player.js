@@ -3,23 +3,28 @@ import bind from '../../utils/recallReact'
 import playlistState from '../../state/playlist'
 import currentTrackState from '../../state/currentTrack'
 import PlayerView from './PlayerView'
-import startPlaying from '../../scripts/startPlaying'
-import stopPlaying from '../../scripts/stopPlaying'
 import playNextTrack from '../../scripts/playNextTrack'
 import playPrevTrack from '../../scripts/playPrevTrack'
 import multihashToUrl from '../../scripts/multihashToUrl'
+import downloadPlaylist from '../../scripts/downloadPlaylist'
 import Async from '../_/Async'
 
 class Playlist extends React.Component {
   render () {
     const { playlist } = this.props
+    let currentIndex
     const currentTrack = playlist.find(
-      ({ current }) => current
+      ({ current }, index) => {
+        currentIndex = index
+        return current
+      }
     )
     if (!currentTrack) {
       return null
     }
     const { hash } = currentTrack
+    if (currentIndex > 0) { downloadPlaylist(playlist, currentIndex) }
+
     const ErrorView = ({ error }) => {
       return <h1>{error.message}</h1>
     }

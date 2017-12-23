@@ -3,16 +3,16 @@ import blobStream from 'blob-stream'
 
 const streamToBlob = (stream) => {
   const promises = stream.map(
-        str => new Promise((resolve, reject) => {
-          str
-            .pipe(blobStream())
-            .on('error', reject)
-            .on('finish', function () {
-              const blob = this.toBlob()
-              resolve(blob)
-            })
+    str => new Promise((resolve, reject) => {
+      str
+        .pipe(blobStream())
+        .on('error', reject)
+        .on('finish', function () {
+          const blob = this.toBlob()
+          resolve(blob)
         })
-      )
+    })
+  )
   return Promise.all(promises)
 }
 

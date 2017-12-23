@@ -1,3 +1,33 @@
+input {
+  padding: 0.25em;
+}
+
+.sync-icon,
+.dnd-icon {
+  font-size: 2.5em;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  animation: rotating 2s linear infinite;
+}
+
+.broken-image-icon {
+  font-size: 2.5em;
+}
+
+.no-cover-icon {
+  font-size: 5em;
+}
+
 #root {
   height: 100vh;
 }
@@ -7,16 +37,6 @@
   flex-basis: 100%;
   flex-shrink: 1;
   grid-template-columns: 20% 60% 20%;
-}
-
-.navigation {
-  padding: 0 0.5em;
-  background-color: darkslategrey;
-}
-
-.navigation_item {
-  margin: 0.5em 0;
-  padding: 0.5em;  
 }
 
 .playlist {
@@ -70,8 +90,4 @@
 
 .player {
   flex-shrink: 0;
-}
-
-.player__info {
-
 }

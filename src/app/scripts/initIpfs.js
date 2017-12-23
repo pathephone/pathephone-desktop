@@ -4,14 +4,12 @@ import getCidString from '../utils/getCidString'
 import autoPublish, { defaultPublishInterval } from './autoPublish'
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
-
 const publishAllAlbums = async () => {
-  const ipfsNode = getIpfs()
   const { collection, schemaCid } = albums
   const documents = await collection.find().exec()
   documents.map((document, index) => {
     const { cid } = document
-    setTimeout(() => autoPublish(schemaCid, cid), defaultPublishInterval * index/documents.length)
+    setTimeout(() => autoPublish(schemaCid, cid), defaultPublishInterval * index / documents.length)
   })
 }
 
@@ -54,8 +52,7 @@ const initAlbumsListener = async () => {
 
 const publishAlbumSchema = async () => {
   const ipfsNode = getIpfs()
-  const { schema } = albums
-  const cidObj = await ipfsNode.dag.put(schema, dagParams)
+  const cidObj = await ipfsNode.dag.put(albums.instanceSchema, dagParams)
   const cidString = cidObj.toBaseEncodedString()
   albums.schemaCid = cidString
 }

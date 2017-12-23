@@ -18,6 +18,12 @@ const getRelativeIpfsPath = () => {
     return fs.realpathSync(path.join(__dirname, '/../../..')) + '/ipfs'
   }
 
+  try {
+    if (process.platform === 'darwin' && fs.existsSync(fs.realpathSync(path.join(__dirname, '/../../../MacOS')) + '/ipfs')) {
+      return fs.realpathSync(path.join(__dirname, '/../../../MacOS')) + '/ipfs'
+    }
+  } catch (e) {}
+
   if (/^win/.test(process.platform) && fs.existsSync('imports/win/ipfs.exe')) {
     return 'imports/win/ipfs.exe'
   }
