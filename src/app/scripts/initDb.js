@@ -9,7 +9,7 @@ const initDb = async () => {
   const db = getDb()
   albums.collection = await db.collection({
     name: 'albums',
-    schema: albums.schema
+    schema: albums.rxdbSchema
   })
 }
 

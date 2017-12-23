@@ -12,5 +12,21 @@
     "react",
     "stage-0"
   ],
-  "plugins": [["transform-object-rest-spread", { "useBuiltIns": true }]]
+  "plugins": [
+    "styled-jsx/babel",
+    ["transform-object-rest-spread", { "useBuiltIns": true }],
+    [
+      "babel-plugin-root-import", 
+      [
+        {
+          "rootPathPrefix": "@",
+          "rootPathSuffix": "src/app/view/_"
+        },
+        {
+          "rootPathPrefix": "~",
+          "rootPathSuffix": "src/app"
+        }
+      ]
+    ]
+  ]
 }

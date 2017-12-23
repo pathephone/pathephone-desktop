@@ -1,3 +1,4 @@
-import schema from './schema'
+import instanceSchema from './instanceSchema'
+import rxdbSchema from './rxdbSchema'
 
-export default { schema }
+export default { instanceSchema, rxdbSchema }
