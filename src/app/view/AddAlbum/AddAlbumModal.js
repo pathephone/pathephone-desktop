@@ -8,14 +8,13 @@ class AddAlbumModal extends React.Component {
   }
   handleDragEnter = (e) => {
     this.ignoreDNDLeave = true // handleDragEnter срабатывает всегда перед handleDragLeave и только в случае если это какие действия внутри окна, это переменная и будет отвечать за то чтобы отделить эти 2 случая
-    if (this.state.dnd) 
-      setTimeout(() => {this.ignoreDNDLeave = false}, 0) // handleDragLeave срабатывает РАНЬШЕ чем таймер, поэтому ignoreDNDLeave может не быть только в случае выхода курсора за приложение, а при наведении на разные элементы он будет всегда установлен
+    if (this.state.dnd) { setTimeout(() => { this.ignoreDNDLeave = false }, 0) } // handleDragLeave срабатывает РАНЬШЕ чем таймер, поэтому ignoreDNDLeave может не быть только в случае выхода курсора за приложение, а при наведении на разные элементы он будет всегда установлен
     if (!this.state.dnd) {
       this.setState({ dnd: true })
     }
   }
   handleDragLeave = (e) => {
-    if (this.state.dnd && this.dropZone == e.target && !this.ignoreDNDLeave) {
+    if (this.state.dnd && this.dropZone === e.target && !this.ignoreDNDLeave) {
       this.setState({ dnd: false })
       delete this.ignoreDNDLeave
     }
