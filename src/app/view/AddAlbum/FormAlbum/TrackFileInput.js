@@ -41,6 +41,7 @@ class TrackFileInput extends React.Component {
   render () {
     return (
       <FileInput
+        id='add-album_add-tracks'
         disabled={this.state.processing}
         onChange={this.onChange}
         children='add tracks'

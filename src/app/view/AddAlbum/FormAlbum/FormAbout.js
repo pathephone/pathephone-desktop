@@ -19,7 +19,6 @@ const AboutForm = (props) => {
         <div className='izi-ys izi-fill-width izi-margin-top'>
           <Input
             value={title}
-            name='title'
             placeholder='Album title'
             label
             type='text'
@@ -28,7 +27,7 @@ const AboutForm = (props) => {
           <br />
           <Input
             value={artist}
-            name='artist'
+            name='album.artist'
             label
             placeholder='Album artist'
             type='text'
