@@ -37,6 +37,7 @@ const AboutForm = (props) => {
         </div>
         <CoverInput
           value={cover}
+          name='album.cover'
           onChange={handleCoverChange}
         />
       </div>

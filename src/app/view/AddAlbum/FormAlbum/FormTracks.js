@@ -39,7 +39,11 @@ class TracksInput extends React.Component {
     }
     return [
       <div className='izi-xs' key='container'>
-        <TrackInput value={track} onChange={onChange} />
+        <TrackInput
+          index={index}
+          value={track}
+          onChange={onChange}
+        />
         <this.TrackControls
           index={index}
           first={index === 0}
