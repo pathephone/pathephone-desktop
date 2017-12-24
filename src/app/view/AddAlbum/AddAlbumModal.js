@@ -1,6 +1,7 @@
 import React from 'react'
 import ModalWindow from '@/ModalWindow'
 import FormAlbum from './FormAlbum'
+import MdClose from 'react-icons/lib/md/close'
 
 class AddAlbumModal extends React.Component {
   state = {
@@ -32,6 +33,12 @@ class AddAlbumModal extends React.Component {
         onDragLeave={this.handleDragLeave}
       >
         <ModalWindow onClose={onClose} title='Add Album'>
+          <div className='izi-padding izi-fill-width izi-x'>
+            <label>Add album</label>
+            <button id='add-album_close' className='izi-margin-left-auto' onClick={onClose}>
+              <MdClose />
+            </button>
+          </div>
           <FormAlbum
             onSuccess={onClose}
             onFilesProcessed={this.handleFilesProcessed}
