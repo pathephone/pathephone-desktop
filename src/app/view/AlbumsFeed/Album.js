@@ -23,11 +23,12 @@ const Album = (album) => {
         className='album_cover-area izi-yr'
         style={{
           background: `url(${data})`,
-          backgroundSize: 'cover'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
       >
         <button
-          className='album_play-button izi-margin-top-auto'
+          className='album_delete-button izi-margin-top-auto'
           onClick={removeThisAlbum}
         >
           <MdDelete />

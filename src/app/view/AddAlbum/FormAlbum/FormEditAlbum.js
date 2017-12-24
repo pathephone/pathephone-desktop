@@ -24,7 +24,7 @@ const Error = ({ dataPath, message }, index) => {
 }
 
 const Errors = ({ data }) => (
-  <fieldset>
+  <fieldset id='add-album_errors'>
     <legend>Some errors occured</legend>
     <ul>
       {
@@ -68,6 +68,7 @@ class FormEditAlbum extends React.Component {
     return (
       <div
         className='izi--gap izi-ys izi-fill-width'
+        id='add-album_form'
       >
         <Tips />
         <FormAbout
@@ -87,7 +88,7 @@ class FormEditAlbum extends React.Component {
             <Errors data={errors} />
           )
         }
-        <button type='submit' onClick={this.handleFormSubmit}>
+        <button id='add-album_submit' onClick={this.handleFormSubmit}>
           done
         </button>
       </div>

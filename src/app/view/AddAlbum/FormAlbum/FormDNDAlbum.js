@@ -66,7 +66,7 @@ class FormDNDAlbum extends React.Component {
     const { processing } = this.state
     return (
       <div
-        className='izi--gap izi-ys izi-fill-width'
+        className='izi-padding izi-ys izi-fill-width'
       >
         <fieldset>
           <DNDarea
@@ -79,7 +79,7 @@ class FormDNDAlbum extends React.Component {
                   <MdDrop className='sync-icon rotating' key='icon' />,
                   <label className='izi-uppercase' key='label'>processing...</label>
                 ] : [
-                  <MdDrop className='dnd-icon animated infinite bounce' />,
+                  <MdDrop className='dnd-icon animated infinite bounce' key='icon' />,
                   <label className='izi-uppercase' key='label'>drop here</label>
                 ]
               }

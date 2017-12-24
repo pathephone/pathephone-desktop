@@ -1,8 +1,8 @@
 import React from 'react'
 import AddAlbumModal from './AddAlbum/AddAlbumModal'
 
-const OpenAddAlbumModal = ({ onClick }) => (
-  <button onClick={onClick}>
+const AddAlbumButton = ({ onClick }) => (
+  <button onClick={onClick} id='add-album_open'>
     add album
   </button>
 )
@@ -15,7 +15,7 @@ class AddAlbum extends React.Component {
   }
   render () {
     const view = [
-      <OpenAddAlbumModal onClick={this.toggleModal} key='button' />
+      <AddAlbumButton onClick={this.toggleModal} key='button' />
     ]
     if (this.state.open) {
       view.push(

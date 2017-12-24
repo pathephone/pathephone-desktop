@@ -13,6 +13,8 @@ class FileInput extends React.Component {
   render () {
     const {
       children,
+      id,
+      name,
       ...buttonParams
     } = this.props
     return [
@@ -26,6 +28,8 @@ class FileInput extends React.Component {
       <input
         multiple
         key='input'
+        id={id}
+        name={name}
         style={{ display: 'none' }}
         ref={c => { this.fileInput = c }}
         onChange={this.handleFileInputChange}

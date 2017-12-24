@@ -19,8 +19,8 @@ const AboutForm = (props) => {
         <div className='izi-ys izi-fill-width izi-margin-top'>
           <Input
             value={title}
-            name='title'
             placeholder='Album title'
+            name='album.title'
             label
             type='text'
             onChange={handleChange}
@@ -28,7 +28,7 @@ const AboutForm = (props) => {
           <br />
           <Input
             value={artist}
-            name='artist'
+            name='album.artist'
             label
             placeholder='Album artist'
             type='text'
@@ -37,6 +37,7 @@ const AboutForm = (props) => {
         </div>
         <CoverInput
           value={cover}
+          name='album.cover'
           onChange={handleCoverChange}
         />
       </div>

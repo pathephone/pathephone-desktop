@@ -1,10 +1,10 @@
 /* eslint-env mocha */
-import utils from './utils'
+const utils = require('../utils')
 
 describe('application launch', function () {
   this.timeout(30000)
-  beforeEach(utils.beforeEach)
-  afterEach(utils.afterEach)
+  before(utils.beforeEach)
+  after(utils.afterEach)
   it('root component is mounted', async function () {
     const { app } = this
     await app.client.waitForExist('#root')
