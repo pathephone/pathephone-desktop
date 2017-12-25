@@ -49,6 +49,7 @@ class AddAlbumModal extends React.Component {
 .modal-layer {
   background-color: rgba(10,10,10,0.5);
   overflow-y: auto;
+  z-index: 1;
 }
         `}</style>
       </div>
