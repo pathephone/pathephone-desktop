@@ -1,27 +1,43 @@
 import React from 'react'
-import MdPlayArrow from 'react-icons/lib/md/play-arrow'
-const PlaylistTrack = ({ title, artist, current, id, onPlay }) => {
-  console.log(title)
+
+const PlaylistTrack = ({ title, artist, current, id, onPlay, onPause }) => {
+  const handleClick = () => {
+    if (!current) {
+      onPlay(id)
+    } else {
+      onPause()
+    }
+  }
   return (
-    <div className='playlist_track izi-x'>
-      {
-        !current
-          ? <button
-            onClick={onPlay}
-          >
-            <MdPlayArrow />
-          </button>
-          : null
-      }
-      <div className='izi-yl izi-margin-left'>
-        <span className='track_title'>
+    <button
+      className={`playlist_track ${current ? 'current' : ''} izi-padding izi-x`}
+      onClick={handleClick}
+    >
+      <div className='izi-yl'>
+        <label className='track_title'>
           {title}
-        </span>
-        <span className='track_artist'>
+        </label>
+        <small className='track_artist'>
           {artist}
-        </span>
+        </small>
       </div>
-    </div>
+      <style jsx>{`
+.playlist_track {
+  background: none;
+  outline: none;
+  border: none;
+  text-align: left;
+}
+.playlist_track.current {
+  border-left: 2px solid orange;
+  background: rgb(220,220,220);
+}
+.track_artist {
+  color: darkgray;
+  margin-top: 0.5em;
+}
+      `}</style>
+    </button>
   )
 }
 
