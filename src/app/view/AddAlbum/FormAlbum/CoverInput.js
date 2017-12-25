@@ -1,11 +1,10 @@
 import React from 'react'
-import MdCover from 'react-icons/lib/md/album'
-import MdBroken from 'react-icons/lib/md/broken-image'
-import MdSync from 'react-icons/lib/md/sync'
-import Async from '@/Async'
+import SyncIcon from '@/SyncIcon'
+import DiskIcon from '@/DiskIcon'
+import ImageContainer from '@/ImageContainer'
+import BrokenImageIcon from '@/BrokenImageIcon'
+import GetIpfsImage from '@/GetIpfsImage'
 import putFilesToIpfs from '~/scripts/putFilesToIpfs'
-import multihashToUrl from '~/scripts/multihashToUrl'
-import asyncTimeout from '~/utils/asyncTimeout'
 
 const checkIsImage = (file) => {
   return file.type.includes('image')
@@ -18,34 +17,17 @@ export const getImageFromFiles = async (files) => {
   }
 }
 
-const CoverPreview = ({ data }) => (
-  <div
-    className='izi-y izi-center izi-fill'
-    style={{
-      backgroundImage: `url(${data})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    }}
-  />
-)
-
-const SyncCover = () => (
-  <MdSync
-    className='sync-icon izi-gray rotating'
-  />
-)
-
-const BrokenCover = () => (
-  <MdBroken
-    className='broken-image-icon izi-gray'
-  />
-)
-
-const NoCover = () => (
-  <MdCover
-    className='no-cover-icon izi-gray'
-  />
-)
+const ImageResolver = ({ data, error, ready }) => {
+  if (!ready) {
+    return <SyncIcon />
+  }
+  if (data) {
+    return <ImageContainer className='izi-fill' image={data} />
+  }
+  if (error) {
+    return <BrokenImageIcon />
+  }
+}
 
 class CoverInput extends React.Component {
   handleFileInputChange = e => {
@@ -68,18 +50,8 @@ class CoverInput extends React.Component {
     }
   }
   handleClick = () => { this.fileInput.click() }
-  shouldComponentUpdate (nextProps) {
-    return nextProps.value !== this.props.value
-  }
-  getImageUrl = async () => {
-    await asyncTimeout(1000)
-    const { value } = this.props
-    return multihashToUrl(value)
-  }
   render () {
     const { value, name } = this.props
-    console.log(name)
-    console.log(value)
     return (
       <button
         onClick={this.handleClick}
@@ -95,14 +67,12 @@ class CoverInput extends React.Component {
           <input type='hidden' name={name} value={value} disabled />
           {
             value ? (
-              <Async
-                call={this.getImageUrl}
-                readyView={CoverPreview}
-                errorView={BrokenCover}
-                waitView={SyncCover}
+              <GetIpfsImage
+                hash={value}
+                view={ImageResolver}
               />
             ) : (
-              <NoCover />
+              <DiskIcon />
             )
           }
         </div>
