@@ -1,56 +1,93 @@
 import React from 'react'
-import playTracks from '../../scripts/playTracks'
-import removeAlbumFromDb from '../../scripts/removeAlbumFromDb'
-import Async from '../_/Async'
-import multihashToUrl from '../../scripts/multihashToUrl'
 import MdPlay from 'react-icons/lib/md/play-arrow'
-import MdDelete from 'react-icons/lib/md/delete'
-import { stopAutoPublish } from '../../scripts/autoPublish'
+import SyncIcon from '@/SyncIcon'
+import DiskIcon from '@/DiskIcon'
+import ImageContainer from '@/ImageContainer'
+import GetIpfsImage from '@/GetIpfsImage'
 
-const Album = (album) => {
-  const { cid, data } = album
-  const { title, artist, cover, tracks } = data
-  const playThisAlbum = () => {
-    playTracks(tracks)
+const CoverView = ({ data, error }) => {
+  if (data) {
+    return <ImageContainer className='izi-fill' image={data} />
   }
-  const removeThisAlbum = () => {
-    removeAlbumFromDb(cid)
-    stopAutoPublish(cid)
+  if (error) {
+    return <DiskIcon />
   }
-  const ReadyView = ({ data }) => (
-    <div className='album'>
-      <div
-        className='album_cover-area izi-yr'
-        style={{
-          background: `url(${data})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
+  return <SyncIcon />
+}
+
+class Album extends React.Component {
+  handleSelectClick = e => {
+    if (!this.playButton.contains(e.target)) {
+      this.props.onSelect()
+    }
+  }
+  render () {
+    const { data, onPlay, isSelected } = this.props
+    const { title, artist, cover } = data
+    return (
+      <div className={`album ${isSelected ? 'selected' : ''}`}>
         <button
-          className='album_delete-button izi-margin-top-auto'
-          onClick={removeThisAlbum}
+          onClick={this.handleSelectClick}
+          className='album_cover izi-relative'
         >
-          <MdDelete />
+          <GetIpfsImage
+            hash={cover}
+            view={CoverView}
+          />
+          <button
+            ref={c => { this.playButton = c }}
+            className='album_play-button izi-absolute'
+            onClick={onPlay}
+          >
+            <MdPlay />
+          </button>
         </button>
-        <button
-          className='album_play-button izi-margin-top-auto'
-          onClick={playThisAlbum}
-        >
-          <MdPlay />
-        </button>
+        <h4 className='album_title'>{title}</h4>
+        <h5 className='album_artist'>{artist}</h5>
+        <style jsx>{`
+.album {
+  width: 15em;
+}
+.album_cover {
+  height: 10em;
+  width: 10em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  font-size: 1em;
+  padding: 0.25em;
+  background: none;
+  border: 1px solid #d3d3d3;
+  border-readius: 2px;
+  outline: none;
+}
+.album_cover:focus {
+  outline: orange;
+}
+.album.selected .album_cover {
+  border-color: blue;
+}
+.album_title {
+  text-align: center;
+  margin: 1em 0 0 0;
+}
+.album_artist {
+  text-align: center;
+  margin: 0.5em 0;
+  color: darkgray;
+}
+
+.album_play-button {
+  bottom: 1em;
+  right: 1em;
+}
+.album:not(:hover) .album_play-button {
+  display: none;
+}
+
+      `}</style>
       </div>
-      <h4 className='album_title'>{title}</h4>
-      <h5 className='album_artist'>{artist}</h5>
-    </div>
-  )
-  return (
-    <Async
-      key={cid}
-      call={() => multihashToUrl(cover)}
-      readyView={ReadyView}
-    />
-  )
+    )
+  }
 }
 
 export default Album
