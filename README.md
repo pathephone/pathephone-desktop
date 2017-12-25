@@ -1,6 +1,5 @@
 ![](/banner.png)
 
-
 # Pathephone
 
 Serverless desktop music player that autodiscovers albums shared by others. No blockchain used, therefore it's blazing fast!
