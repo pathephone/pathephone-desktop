@@ -28,6 +28,9 @@ class Async extends React.Component {
     }
   }
   render () {
+    if (this.props.view) {
+      return <this.props.view {...this.state} />
+    }
     const { ready, ...result } = this.state
     if (ready) {
       if (result.error && this.props.errorView) {
