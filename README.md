@@ -1,4 +1,4 @@
-![](/banner.png)
+![](/_banner.png)
 
 # Pathephone
 
