@@ -11,12 +11,25 @@ const onPause = () => {
   playerState('PAUSE')
 }
 
-const PlaylistView = ({ playlist }) => {
+const onRemove = (id) => {
+  playlistState('REMOVE_TRACKS', id)
+}
+
+const PlaylistView = ({ playlist, onClearPlaylist }) => {
   return (
     <div className='playlist izi-ys' >
       {
+        playlist.length > 0 ? (
+          <button onClick={onClearPlaylist}>
+            clear
+          </button>
+        ) : (
+          <label className='izi-padding izi-text-center izi-uppercase'>playlist is empty</label>
+        )
+      }
+      {
         playlist.map((track) => {
-          return <PlaylistTrack {...{ ...track, onPlay, onPause }} key={track.id} />
+          return <PlaylistTrack {...{ ...track, onPlay, onPause, onRemove }} key={track.id} />
         })
       }
       <style jsx>{`

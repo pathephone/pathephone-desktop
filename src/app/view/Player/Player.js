@@ -1,7 +1,6 @@
 import React from 'react'
 import bind from '../../utils/recallReact'
 import playlistState from '../../state/playlist'
-import currentTrackState from '../../state/currentTrack'
 import PlayerView from './PlayerView'
 import playNextTrack from '../../scripts/playNextTrack'
 import playPrevTrack from '../../scripts/playPrevTrack'
@@ -48,4 +47,4 @@ class Playlist extends React.Component {
   }
 }
 
-export default bind({ playlist: playlistState, currentTrack: currentTrackState }, Playlist)
+export default bind({ playlist: playlistState }, Playlist)

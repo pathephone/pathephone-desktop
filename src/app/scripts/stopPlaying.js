@@ -1,7 +1,7 @@
 import playlistState from '../state/playlist'
 
 const stopPlaying = () => {
-  playlistState('DROP_CURRENT')
+  playlistState('UNSET_CURRENT')
 }
 
 export default stopPlaying
