@@ -2,23 +2,17 @@
 import createAction from 'recall-action'
 
 export const state = {
-  status: 'STOPED',
+  pause: false,
   shuffle: false,
   repeat: false,
   shufflePath: [],
-  volume: 0.8
+  volume: 80,
+  timeline: 0
 }
 
 const actions = {
-  PLAY () {
-    state.status = 'PLAYING'
-  },
-  STOP () {
-    state.status = 'STOPED'
-  },
-  SET_VALUE (...params) {
-    const [name, value] = params
-    state[name] = value
+  TOGGLE_PAUSE () {
+    state.pause = !state.pause
   },
   TOGGLE_SHUFFLE () {
     state.shuffle = !state.shuffle
@@ -26,8 +20,11 @@ const actions = {
   TOGGLE_REPEAT () {
     state.repeat = !state.repeat
   },
-  SET_VOLUME (volume = 0.8) {
-    state['volume'] = volume
+  SET_VOLUME (value) {
+    state['volume'] = value
+  },
+  SET_TIMELINE (value) {
+    state['timeline'] = value
   }
 }
 

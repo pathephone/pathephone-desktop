@@ -1,8 +1,10 @@
 import React from 'react'
 import PlaylistTrack from './PlaylistTrack'
 import playlistState from '../../state/playlist'
+import downloadPlaylist from '~/scripts/downloadPlaylist'
 
 const PlaylistView = ({ playlist }) => {
+  downloadPlaylist(playlist)
   return (
     <div className='playlist izi-ys' >
       {

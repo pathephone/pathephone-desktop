@@ -2,6 +2,10 @@ input {
   padding: 0.25em;
 }
 
+svg {
+  flex-shrink: 0;
+}
+
 .sync-icon,
 .dnd-icon {
   font-size: 2.5em;
