@@ -17,7 +17,7 @@ import onChangeTimeline from '~/scripts/changeTimeline'
 import TrackTimeline from './ActivePlayer/TrackTimeline'
 import VolumeInput from './ActivePlayer/VolumeInput'
 
-class ActivePlayer extendsReact.Component {
+class ActivePlayer extends React.Component {
   audio = new Audio()
   updateAudioSource = (hash) => {
     this.audio.src = `http://localhost:5001/api/v0/get?arg=${hash}`
