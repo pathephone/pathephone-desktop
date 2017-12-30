@@ -18,7 +18,25 @@ const actions = {
     )
     state.push(..._tracks)
   },
-  DROP () {
+  REMOVE_TRACKS (...ids) {
+    ids.forEach(id => {
+      const index = state.findIndex(
+        (obj, index) => {
+          if (obj.id === id) {
+            if (obj.current) {
+              const nextCurrent = state[index + 1]
+              if (nextCurrent) {
+                nextCurrent.current = true
+              }
+            }
+            return true
+          }
+        }
+      )
+      state.splice(index, 1)
+    })
+  },
+  CLEAR () {
     state.length = 0
   },
   SET_CURRENT (nextCurrentId) {
@@ -33,7 +51,7 @@ const actions = {
     )
     target.current = true
   },
-  DROP_CURRENT () {
+  UNSET_CURRENT () {
     const current = state.find(
       ({ current }) => current
     )
