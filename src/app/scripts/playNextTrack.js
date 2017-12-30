@@ -34,7 +34,7 @@ const playNextTrack = () => {
     const { id } = nextTrack
     playlistState('SET_CURRENT', id)
   } else {
-    playlistState('DROP_CURRENT')
+    playlistState('UNSET_CURRENT')
   }
 }
 
