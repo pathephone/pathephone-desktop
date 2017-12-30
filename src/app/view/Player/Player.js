@@ -1,50 +1,52 @@
 import React from 'react'
-import bind from '../../utils/recallReact'
-import playlistState from '../../state/playlist'
-import PlayerView from './PlayerView'
-import playNextTrack from '../../scripts/playNextTrack'
-import playPrevTrack from '../../scripts/playPrevTrack'
+import bind from '~/utils/recallReact'
+import playlistState from '~/state/playlist'
+import playerState from '~/state/player'
+import ActivePlayer from './ActivePlayer'
 import multihashToUrl from '../../scripts/multihashToUrl'
-import downloadPlaylist from '../../scripts/downloadPlaylist'
-import Async from '../_/Async'
 
-class Playlist extends React.Component {
-  render () {
-    const { playlist } = this.props
-    let currentIndex
-    const currentTrack = playlist.find(
-      ({ current }, index) => {
-        currentIndex = index
-        return current
-      }
-    )
-    if (!currentTrack) {
+// import PendingPlayer from './PendingPlayer'
+
+const ActivePlayerConnected = bind({ playerStateValue: playerState }, ActivePlayer)
+
+class Player extends React.Component {
+  state = {
+    state: null
+  }
+  handleProps = async (props) => {
+    const { playlistStateValue } = this.props
+    if (playlistStateValue.length === 0) {
       return null
     }
-    const { hash } = currentTrack
-    if (currentIndex > 0) { downloadPlaylist(playlist, currentIndex) }
-
-    const ErrorView = ({ error }) => {
-      return <h1>{error.message}</h1>
+    const { hash, title, artist } = playlistStateValue.find(
+      ({ current }) => current === true
+    )
+    const source = await multihashToUrl(hash)
+    const track = {
+      title, artist, source
     }
-    const ReadyView = ({ data }) => {
-      return (
-        <PlayerView
-          {...currentTrack}
-          src={data}
-          onPlayNextTrack={playNextTrack}
-          onPlayPrevTrack={playPrevTrack}
-        />
-      )
-    }
+    this.setState({ track })
+  }
+  componentWillMount () {
+    this.handleProps(this.props)
+  }
+  componentWillReceiveProps (next) {
+    this.handleProps()
+  }
+  render () {
+    const { track } = this.state
+    if (!track) return null
     return (
-      <Async
-        call={() => multihashToUrl(hash)}
-        errorView={ErrorView}
-        readyView={ReadyView}
+      <ActivePlayerConnected
+        track={track}
       />
     )
   }
 }
 
-export default bind({ playlist: playlistState }, Playlist)
+export default bind(
+  {
+    playlistStateValue: playlistState
+  },
+  Player
+)

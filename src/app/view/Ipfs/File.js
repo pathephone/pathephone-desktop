@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { getIpfs } from 'api/ipfs'
+import { getIpfs } from '~/api/ipfs'
 
 const getFile = async (hashes) => {
   if (!Array.isArray(hashes)) {
