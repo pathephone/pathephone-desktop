@@ -7,16 +7,17 @@ import MdVolumeOff from 'react-icons/lib/md/volume-off'
 const VolumeInput = ({ value, onChange }) => {
   const handleChange = e => {
     const { value } = e.currentTarget
-    onChange(parseInt(value))
+    onChange(value / 100)
   }
+  const inputValue = value * 100
   return (
     <div className='izi-x'>
       {
-        value === 0 ? (
+        inputValue === 0 ? (
           <MdVolumeOff />
-        ) : value < 33 ? (
+        ) : inputValue < 33 ? (
           <MdVolumeMute />
-        ) : value < 66 ? (
+        ) : inputValue < 66 ? (
           <MdVolumeDown />
         ) : (
           <MdVolumeUp />
@@ -26,7 +27,7 @@ const VolumeInput = ({ value, onChange }) => {
         type='range'
         min='0'
         max='100'
-        value={value}
+        value={inputValue}
         onChange={handleChange}
       />
     </div>

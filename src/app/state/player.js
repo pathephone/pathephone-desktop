@@ -6,8 +6,8 @@ export const state = {
   shuffle: false,
   repeat: false,
   shufflePath: [],
-  volume: 80,
-  timeline: 0
+  volume: 0.7,
+  currentTime: 0
 }
 
 const actions = {
@@ -21,10 +21,10 @@ const actions = {
     state.repeat = !state.repeat
   },
   SET_VOLUME (value) {
-    state['volume'] = value
+    state.volume = value
   },
-  SET_TIMELINE (value) {
-    state['timeline'] = value
+  SET_CURRENT_TIME (value) {
+    state.currentTime = value
   }
 }
 

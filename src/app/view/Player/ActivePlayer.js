@@ -12,38 +12,69 @@ import onTogglePause from '~/scripts/togglePause'
 import onToggleShuffle from '~/scripts/toggleShuffle'
 import onToggleRepeat from '~/scripts/toggleRepeat'
 import onChangeVolume from '~/scripts/changeVolume'
-import onChangeTimeline from '~/scripts/changeTimeline'
+import onChangeCurrentTime from '~/scripts/changeCurrentTime'
+import multihashToUrl from '~/scripts/multihashToUrl'
 
 import TrackTimeline from './ActivePlayer/TrackTimeline'
 import VolumeInput from './ActivePlayer/VolumeInput'
 
 class ActivePlayer extends React.Component {
+  state = {
+    readyToPlay: false
+  }
   audio = new Audio()
-  updateAudioSource = (hash) => {
-    this.audio.src = `http://localhost:5001/api/v0/get?arg=${hash}`
+  // CUSTOM
+  setReadyToPlay = (value) => {
+    this.setState({
+      readyToPlay: value
+    })
   }
-  componentWillMount () {
-    const { hash, pause } = this.props
-    this.updateAudioSource(hash)
-    if (!pause) {
-      this.audio.play()
+  onSetCurrentTime = (value) => {
+    this.audio.currentTime = value
+  }
+  attachListeners = () => {
+    this.audio.onloadstart = () => {
+      this.setReadyToPlay(false)
+    }
+    this.audio.oncanplaythrough = () => {
+      this.setReadyToPlay(true)
+    }
+    this.audio.onended = onPlayNextTrack
+    this.audio.ontimeupdate = () => {
+      const { currentTime } = this.audio
+      onChangeCurrentTime(currentTime)
     }
   }
-  componentWillReceiveProps (next) {
-    if (next.hash !== this.props.hash) {
-      this.updateAudioSource(next.hash)
+  handleProps = async ({ track, playerStateValue }) => {
+    const { pause, volume } = playerStateValue
+    const { source } = track
+    if (source !== this.audio.src) {
+      this.audio.src = source
     }
-    if (next.pause) {
+    if (pause) {
       this.audio.pause()
     } else {
       this.audio.play()
     }
+    this.audio.volume = volume
+  }
+  // LIFECYCLE
+  componentWillMount () {
+    this.attachListeners()
+    this.handleProps(this.props, true)
+  }
+  componentWillReceiveProps (next) {
+    this.handleProps(next)
   }
   render () {
     const {
-      title, artist,
-      pause, shuffle, repeat, volume
+      track, playerStateValue
     } = this.props
+    const { title, artist } = track
+    const {
+      pause, shuffle, repeat, volume, currentTime
+    } = playerStateValue
+    const { readyToPlay } = this.state
     return (
       <div className='player izi-fill-width izi-padding izi-y'>
         <div className='player__upper-block izi-x'>
@@ -68,11 +99,15 @@ class ActivePlayer extends React.Component {
               <MdSkipNext />
             </button>
           </div>
-          <TrackTimeline
-            position={60}
-            length={120}
-            onChange={onChangeTimeline}
-          />
+          {
+            readyToPlay && (
+              <TrackTimeline
+                position={currentTime}
+                length={this.audio.duration}
+                onChange={this.onSetCurrentTime}
+              />
+            )
+          }
           <VolumeInput value={volume} onChange={onChangeVolume} />
           <div className='izi-x izi-no-shrink'>
             <button onClick={onToggleShuffle}>

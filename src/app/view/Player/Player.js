@@ -3,21 +3,42 @@ import bind from '~/utils/recallReact'
 import playlistState from '~/state/playlist'
 import playerState from '~/state/player'
 import ActivePlayer from './ActivePlayer'
+import multihashToUrl from '../../scripts/multihashToUrl'
+
 // import PendingPlayer from './PendingPlayer'
 
+const ActivePlayerConnected = bind({ playerStateValue: playerState }, ActivePlayer)
+
 class Player extends React.Component {
-  render () {
-    const { playlistStateValue, playerStateValue } = this.props
+  state = {
+    state: null
+  }
+  handleProps = async (props) => {
+    const { playlistStateValue } = this.props
     if (playlistStateValue.length === 0) {
       return null
     }
-    const currentTrack = playlistStateValue.find(
+    const { hash, title, artist } = playlistStateValue.find(
       ({ current }) => current === true
     )
+    const source = await multihashToUrl(hash)
+    const track = {
+      title, artist, source
+    }
+    this.setState({ track })
+  }
+  componentWillMount () {
+    this.handleProps(this.props)
+  }
+  componentWillReceiveProps (next) {
+    this.handleProps()
+  }
+  render () {
+    const { track } = this.state
+    if (!track) return null
     return (
-      <ActivePlayer
-        {...currentTrack}
-        {...playerStateValue}
+      <ActivePlayerConnected
+        track={track}
       />
     )
   }
@@ -25,8 +46,7 @@ class Player extends React.Component {
 
 export default bind(
   {
-    playlistStateValue: playlistState,
-    playerStateValue: playerState
+    playlistStateValue: playlistState
   },
   Player
 )
