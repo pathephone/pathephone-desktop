@@ -13,7 +13,6 @@ import onToggleShuffle from '~/scripts/toggleShuffle'
 import onToggleRepeat from '~/scripts/toggleRepeat'
 import onChangeVolume from '~/scripts/changeVolume'
 import onChangeCurrentTime from '~/scripts/changeCurrentTime'
-import multihashToUrl from '~/scripts/multihashToUrl'
 
 import TrackTimeline from './ActivePlayer/TrackTimeline'
 import VolumeInput from './ActivePlayer/VolumeInput'
