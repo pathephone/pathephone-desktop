@@ -1,5 +1,14 @@
-input {
+body {
+  font-size: 0.75em;
+}
+
+input, button {
+  font-size: 1em;
   padding: 0.25em;
+}
+
+svg {
+  flex-shrink: 0;
 }
 
 .sync-icon,
@@ -37,23 +46,6 @@ input {
   flex-basis: 100%;
   flex-shrink: 1;
   grid-template-columns: 20% 60% 20%;
-}
-
-.playlist {
-  background-color: #f1f1f1;
-}
-
-.playlist_track {
-  padding: 0.5em;
-}
-
-.track_title {
-  font-size: 0.75em;
-}
-
-.track_artist {
-  font-size: 0.5em;
-  color: darkgray;
 }
 
 .albums-feed {

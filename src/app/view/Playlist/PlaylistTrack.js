@@ -1,26 +1,64 @@
 import React from 'react'
-import MdPlayArrow from 'react-icons/lib/md/play-arrow'
-const PlaylistTrack = ({ title, artist, current, id, onPlay }) => {
-  console.log(title)
+import MdClose from 'react-icons/lib/md/close'
+
+const PlaylistTrack = ({ title, artist, current, id, onPlay, onPause, onRemove }) => {
+  const handleClick = () => {
+    if (!current) {
+      onPlay(id)
+    } else {
+      onPause()
+    }
+  }
+  const handleRemove = () => {
+    onRemove(id, current)
+  }
   return (
-    <div className='playlist_track izi-x'>
-      {
-        !current
-          ? <button
-            onClick={onPlay}
-          >
-            <MdPlayArrow />
-          </button>
-          : null
-      }
-      <div className='izi-yl izi-margin-left'>
-        <span className='track_title'>
+    <div
+      className={`playlist-track ${current ? 'current' : ''} izi-xs`}
+    >
+      <button
+        className='track-info izi-yl izi-fill-width izi-padding'
+        onClick={handleClick}
+      >
+        <label className='title'>
           {title}
-        </span>
-        <span className='track_artist'>
+        </label>
+        <small className='artist'>
           {artist}
-        </span>
-      </div>
+        </small>
+      </button>
+      <button
+        className='remove-button'
+        onClick={handleRemove}
+      >
+        <MdClose />
+      </button>
+      <style jsx>{`
+.track-info, .remove-button {
+  background: none;
+  border: none;
+  text-align: left;
+}
+.playlist-track.current {
+  border-left: 2px solid orange;
+  background: rgb(220,220,220);
+}
+.artist {
+  color: darkgray;
+  margin-top: 0.5em;
+}
+.playlist-track:not(:hover) .remove-button {
+  visibility: hidden;
+}
+
+.remove-button {
+  flex-shrink: 0;
+}
+.remove-button:hover {
+  flex-shrink: 0;
+  background: rgb(190,190,190);
+}
+      `}</style>
     </div>
   )
 }
