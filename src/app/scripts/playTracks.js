@@ -3,7 +3,7 @@ import playlistState from '../state/playlist'
 
 const playTracks = (tracks) => {
   playlistState('CLEAR')
-  playlistState('ADD_TRACKS', tracks)
+  playlistState('ADD_TRACKS', ...tracks)
   startPlaying()
 }
 
