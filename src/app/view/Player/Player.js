@@ -11,12 +11,15 @@ const ActivePlayerConnected = bind({ playerStateValue: playerState }, ActivePlay
 
 class Player extends React.Component {
   state = {
-    state: null
+    track: null
   }
   handleProps = async (props) => {
-    const { playlistStateValue } = this.props
+    const { playlistStateValue } = props
     if (playlistStateValue.length === 0) {
-      return null
+      this.setState({
+        track: null
+      })
+      return
     }
     const { hash, title, artist } = playlistStateValue.find(
       ({ current }) => current === true
@@ -31,7 +34,7 @@ class Player extends React.Component {
     this.handleProps(this.props)
   }
   componentWillReceiveProps (next) {
-    this.handleProps()
+    this.handleProps(next)
   }
   render () {
     const { track } = this.state

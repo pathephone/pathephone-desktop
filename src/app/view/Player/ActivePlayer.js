@@ -65,6 +65,9 @@ class ActivePlayer extends React.Component {
   componentWillReceiveProps (next) {
     this.handleProps(next)
   }
+  componentWillUnmount () {
+    this.audio.src = ''
+  }
   render () {
     const {
       track, playerStateValue

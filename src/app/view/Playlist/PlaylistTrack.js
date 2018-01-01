@@ -10,7 +10,7 @@ const PlaylistTrack = ({ title, artist, current, id, onPlay, onPause, onRemove }
     }
   }
   const handleRemove = () => {
-    onRemove(id)
+    onRemove(id, current)
   }
   return (
     <div

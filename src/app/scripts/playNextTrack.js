@@ -1,8 +1,9 @@
-import playlistState, { state as playlistData } from '../state/playlist'
-import {state as playerData} from '../state/player'
+import playlistState from '../state/playlist'
+import playerState from '../state/player'
 
 const getNextTrack = () => {
-  const {shuffle, repeat, shufflePath} = playerData
+  const {shuffle, repeat, shufflePath} = playerState()
+  const playlistData = playlistState()
   const currentIndex = playlistData.findIndex(
     ({ current }) => current
   )
@@ -11,7 +12,7 @@ const getNextTrack = () => {
     shufflePath.push(playlistData[currentIndex])
     let notPlayed = playlistData.filter(el => shufflePath.indexOf(el) === -1)
     if (notPlayed.length === 0) { // список воспроизведения закончился
-      playerData.shufflePath = [] // сбрасываем список случайных при оставноке проигрывания
+      playerState().shufflePath = [] // сбрасываем список случайных при оставноке проигрывания
       if (!repeat) {
         return
       } else {
@@ -29,13 +30,15 @@ const getNextTrack = () => {
 }
 
 const playNextTrack = () => {
+  let nextId
   const nextTrack = getNextTrack()
   if (nextTrack) {
-    const { id } = nextTrack
-    playlistState('SET_CURRENT', id)
+    nextId = nextTrack.id
   } else {
-    playlistState('UNSET_CURRENT')
+    nextId = playlistState()[0].id
+    playerState('TOGGLE_PAUSE')
   }
+  playlistState('SET_CURRENT', nextId)
 }
 
 export default playNextTrack

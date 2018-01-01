@@ -2,16 +2,20 @@ import React from 'react'
 import PlaylistTrack from './PlaylistTrack'
 import playlistState from '~/state/playlist'
 import playerState from '~/state/player'
+import playNextTrack from '~/scripts/playNextTrack'
 
 const onPlay = (id) => {
   playlistState('SET_CURRENT', id)
 }
 
 const onPause = () => {
-  playerState('PAUSE')
+  playerState('TOGGLE_PAUSE')
 }
 
-const onRemove = (id) => {
+const onRemove = (id, current) => {
+  if (current) {
+    playNextTrack()
+  }
   playlistState('REMOVE_TRACKS', id)
 }
 
