@@ -3,7 +3,6 @@ import bind from '~/utils/recallReact'
 import playlistState from '~/state/playlist'
 import playerState from '~/state/player'
 import ActivePlayer from './ActivePlayer'
-import multihashToUrl from '../../scripts/multihashToUrl'
 
 // import PendingPlayer from './PendingPlayer'
 
@@ -18,13 +17,9 @@ class Player extends React.Component {
     if (playlistStateValue.length === 0) {
       return null
     }
-    const { hash, title, artist } = playlistStateValue.find(
+    const track = playlistStateValue.find(
       ({ current }) => current === true
     )
-    const source = await multihashToUrl(hash)
-    const track = {
-      title, artist, source
-    }
     this.setState({ track })
   }
   componentWillMount () {
