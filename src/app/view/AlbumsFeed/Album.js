@@ -1,5 +1,6 @@
 import React from 'react'
 import MdPlay from 'react-icons/lib/md/play-arrow'
+import MdAdd from 'react-icons/lib/md/add'
 import SyncIcon from '@/SyncIcon'
 import DiskIcon from '@/DiskIcon'
 import ImageContainer from '@/ImageContainer'
@@ -16,41 +17,42 @@ const CoverView = ({ data, error }) => {
 }
 
 class Album extends React.Component {
-  handleSelectClick = e => {
-    if (!this.playButton.contains(e.target)) {
-      this.props.onSelect()
-    }
-  }
   render () {
-    const { data, onPlay, isSelected } = this.props
+    const { data, onPlay, onSelect, onAdd, isSelected } = this.props
     const { title, artist, cover } = data
     return (
       <div className={`album ${isSelected ? 'selected' : ''}`}>
-        <button
-          onClick={this.handleSelectClick}
-          className='album_cover izi-relative'
-        >
-          <GetIpfsImage
-            hash={cover}
-            view={CoverView}
-          />
+        <div className='izi-relative'>
           <button
-            ref={c => { this.playButton = c }}
-            className='album_play-button izi-absolute'
-            onClick={onPlay}
+            onClick={onSelect}
+            className='album_cover'
           >
-            <MdPlay />
+            <GetIpfsImage
+              hash={cover}
+              view={CoverView}
+            />
           </button>
-        </button>
+          <div className='album__controls izi-x izi-absolute'>
+            <button
+              className='album__controls-button'
+              onClick={onAdd}
+            >
+              <MdAdd />
+            </button>
+            <button
+              className='album__controls-button'
+              onClick={onPlay}
+            >
+              <MdPlay />
+            </button>
+          </div>
+        </div>
         <h4 className='album_title'>{title}</h4>
         <h5 className='album_artist'>{artist}</h5>
         <style jsx>{`
-.album {
-  width: 15em;
-}
 .album_cover {
-  height: 10em;
-  width: 10em;
+  height: 12.5em;
+  width: 12.5em;
   flex-shrink: 0;
   flex-grow: 0;
   font-size: 1em;
@@ -58,13 +60,12 @@ class Album extends React.Component {
   background: none;
   border: 1px solid #d3d3d3;
   border-readius: 2px;
-  outline: none;
 }
 .album_cover:focus {
   outline: orange;
 }
 .album.selected .album_cover {
-  border-color: blue;
+  border: 2px solid blue;
 }
 .album_title {
   text-align: center;
@@ -75,12 +76,14 @@ class Album extends React.Component {
   margin: 0.5em 0;
   color: darkgray;
 }
-
-.album_play-button {
-  bottom: 1em;
-  right: 1em;
+.album__controls {
+  bottom: 0.5em;
+  right: 0.5em;
 }
-.album:not(:hover) .album_play-button {
+.album__controls-button {
+  margin: 0.25em;
+}
+.album:not(:hover) .album__controls-button {
   display: none;
 }
 

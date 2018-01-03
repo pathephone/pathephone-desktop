@@ -1,7 +1,9 @@
 import React from 'react'
 import Album from './AlbumsFeed/Album'
-import playAlbums from '~/scripts/playAlbums'
-import deleteAlbums from '~/scripts/deleteAlbums'
+
+import addAlbums from './AlbumsFeed/addAlbums'
+import playAlbums from './AlbumsFeed/playAlbums'
+import deleteAlbums from './AlbumsFeed/deleteAlbums'
 
 class AlbumsFeed extends React.Component {
   state = {
@@ -19,9 +21,22 @@ class AlbumsFeed extends React.Component {
     }
     this.setState({ selected })
   }
+  clearSelected = () => {
+    this.setState({
+      selected: []
+    })
+  }
   AlbumWrapper = (data) => {
+    const { selected } = this.state
     const { cid } = data
-    const isSelected = this.state.selected.includes(cid)
+    const isSelected = selected.includes(cid)
+    const onAdd = () => {
+      if (!isSelected) {
+        addAlbums([cid])
+      } else {
+        addAlbums(this.state.selected)
+      }
+    }
     const onPlay = () => {
       if (!isSelected) {
         playAlbums([cid])
@@ -29,8 +44,12 @@ class AlbumsFeed extends React.Component {
         playAlbums(this.state.selected)
       }
     }
-    const onRemove = () => {
-      deleteAlbums(cid)
+    const onDelete = () => {
+      if (!isSelected) {
+        deleteAlbums([cid])
+      } else {
+        deleteAlbums(this.state.selected)
+      }
     }
     const onSelect = () => {
       this.selectAlbum(cid)
@@ -38,9 +57,10 @@ class AlbumsFeed extends React.Component {
     const props = {
       ...data,
       isSelected,
+      onAdd,
       onPlay,
       onSelect,
-      onRemove
+      onDelete
     }
     return (
       <Album {...props} key={cid} />
@@ -56,7 +76,7 @@ class AlbumsFeed extends React.Component {
         <style jsx>{`
 .albums-feed {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 10em) ;
+  grid-template-columns: repeat(auto-fill, 12.5em) ;
   justify-content: space-around;
   align-content: flex-start;
   grid-gap: 1em;

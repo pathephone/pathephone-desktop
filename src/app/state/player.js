@@ -2,7 +2,7 @@
 import createAction from 'recall-action'
 
 export const state = {
-  pause: false,
+  pause: true,
   shuffle: false,
   repeat: false,
   shufflePath: [],
@@ -11,8 +11,11 @@ export const state = {
 }
 
 const actions = {
-  TOGGLE_PAUSE () {
-    state.pause = !state.pause
+  PAUSE () {
+    state.pause = true
+  },
+  PLAY () {
+    state.pause = false
   },
   TOGGLE_SHUFFLE () {
     state.shuffle = !state.shuffle

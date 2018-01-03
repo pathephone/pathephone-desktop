@@ -1,7 +1,6 @@
-import playTracks from './playTracks'
-import albums from '../data/albums'
+import albums from '~/data/albums'
 
-const playAlbums = async (cids) => {
+const getAlbumsTracks = async (cids) => {
   const tracks = []
   const docs = await albums
     .collection
@@ -10,8 +9,7 @@ const playAlbums = async (cids) => {
   docs.forEach(
     doc => { tracks.push(...doc.data.tracks) }
   )
-  console.log(tracks)
-  playTracks(tracks)
+  return tracks
 }
 
-export default playAlbums
+export default getAlbumsTracks
