@@ -1,60 +1,69 @@
 import React from 'react'
 import MdClose from 'react-icons/lib/md/close'
+import setCurrentTrack from './setCurrentTrack'
+import removeTrack from './removeTrack'
 
-const PlaylistTrack = ({ title, artist, current, id, onPlay, onPause, onRemove }) => {
-  const handleClick = () => {
+const PlaylistTrack = ({ title, artist, current, id }) => {
+  const handleSetCurrent = () => {
     if (!current) {
-      onPlay(id)
-    } else {
-      onPause()
+      setCurrentTrack(id)
     }
   }
   const handleRemove = () => {
-    onRemove(id)
+    removeTrack(id, current)
   }
   return (
     <div
-      className={`playlist-track ${current ? 'current' : ''} izi-xs`}
+      className={`playlist-track${current ? '--current' : ''} izi-xs`}
     >
       <button
-        className='track-info izi-yl izi-fill-width izi-padding'
-        onClick={handleClick}
+        className='playlist-track__button izi-yl izi-fill-width izi-padding'
+        onClick={handleSetCurrent}
       >
-        <label className='title'>
+        <label className='playlist-track__title'>
           {title}
         </label>
-        <small className='artist'>
+        <small className='playlist-track__artist-name'>
           {artist}
         </small>
       </button>
-      <button
-        className='remove-button'
+      <div
+        className='playlist-track__remove izi-middle'
         onClick={handleRemove}
       >
         <MdClose />
-      </button>
+      </div>
       <style jsx>{`
-.track-info, .remove-button {
+.playlist-track {
+  border-left: 2px solid #f2f2f2;
+}
+.playlist-track--current {
+  border-left: 2px solid green;
+}
+.playlist-track__button {
   background: none;
   border: none;
+  outline: none;
   text-align: left;
 }
-.playlist-track.current {
-  border-left: 2px solid orange;
-  background: rgb(220,220,220);
+.playlist-track__button:focus {
+  color: orange;
 }
-.artist {
+.playlist-track__artist-name {
   color: darkgray;
   margin-top: 0.5em;
 }
-.playlist-track:not(:hover) .remove-button {
+.playlist-track:not(:hover) .playlist-track__remove,
+.playlist-track--current:not(:hover) .playlist-track__remove {
   visibility: hidden;
 }
 
-.remove-button {
+.playlist-track__remove {
   flex-shrink: 0;
+  padding: 0.5em;
+  cursor: pointer;
 }
-.remove-button:hover {
+.playlist-track__remove:hover {
   flex-shrink: 0;
   background: rgb(190,190,190);
 }

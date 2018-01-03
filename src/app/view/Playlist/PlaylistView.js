@@ -1,26 +1,16 @@
 import React from 'react'
 import PlaylistTrack from './PlaylistTrack'
-import playlistState from '~/state/playlist'
-import playerState from '~/state/player'
+import clearPlaylist from './clearPlaylist'
 
-const onPlay = (id) => {
-  playlistState('SET_CURRENT', id)
-}
-
-const onPause = () => {
-  playerState('PAUSE')
-}
-
-const onRemove = (id) => {
-  playlistState('REMOVE_TRACKS', id)
-}
-
-const PlaylistView = ({ playlist, onClearPlaylist }) => {
+const PlaylistView = ({ playlist }) => {
+  const SingleTrackWrapper = track => {
+    return <PlaylistTrack {...track} key={track.id} />
+  }
   return (
     <div className='playlist izi-ys' >
       {
         playlist.length > 0 ? (
-          <button onClick={onClearPlaylist}>
+          <button onClick={clearPlaylist}>
             clear
           </button>
         ) : (
@@ -28,9 +18,7 @@ const PlaylistView = ({ playlist, onClearPlaylist }) => {
         )
       }
       {
-        playlist.map((track) => {
-          return <PlaylistTrack {...{ ...track, onPlay, onPause, onRemove }} key={track.id} />
-        })
+        playlist.map(SingleTrackWrapper)
       }
       <style jsx>{`
 .playlist {
