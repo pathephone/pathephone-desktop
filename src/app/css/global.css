@@ -48,38 +48,6 @@ svg {
   grid-template-columns: 20% 60% 20%;
 }
 
-.albums-feed {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 10em) ;
-  justify-content: space-around;
-  align-content: flex-start;
-  grid-gap: 1em;
-  padding: 1em;
-  overflow-y: auto;
-}
-
-.album {
-  width: 100%;
-}
-
-.album_cover-area {
-  padding: 0.5em;
-  border: 1px solid #d3d3d3;
-  height: 10em;
-  background-repeat: no-repeat;
-}
-
-.album_title {
-  text-align: center;
-  margin: 1em 0 0 0;
-}
-
-.album_artist {
-  text-align: center;
-  margin: 0.5em 0;
-  color: darkgray;
-}
-
-.player {
-  flex-shrink: 0;
+.izi-rounded {
+  border-radius: 0.15em;
 }

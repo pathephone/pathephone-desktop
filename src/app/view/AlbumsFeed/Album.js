@@ -8,7 +8,7 @@ import GetIpfsImage from '@/GetIpfsImage'
 
 const CoverView = ({ data, error }) => {
   if (data) {
-    return <ImageContainer className='izi-fill' image={data} />
+    return <ImageContainer className='izi-fill izi-rounded' image={data} />
   }
   if (error) {
     return <DiskIcon />
@@ -21,11 +21,11 @@ class Album extends React.Component {
     const { data, onPlay, onSelect, onAdd, isSelected } = this.props
     const { title, artist, cover } = data
     return (
-      <div className={`album ${isSelected ? 'selected' : ''}`}>
+      <div className={`album${isSelected ? '--selected' : ''}`}>
         <div className='izi-relative'>
           <button
             onClick={onSelect}
-            className='album_cover'
+            className='album__cover izi-rounded'
           >
             <GetIpfsImage
               hash={cover}
@@ -47,10 +47,10 @@ class Album extends React.Component {
             </button>
           </div>
         </div>
-        <h4 className='album_title'>{title}</h4>
-        <h5 className='album_artist'>{artist}</h5>
+        <h4 className='album__title'>{title}</h4>
+        <h5 className='album__artist'>{artist}</h5>
         <style jsx>{`
-.album_cover {
+.album__cover {
   height: 12.5em;
   width: 12.5em;
   flex-shrink: 0;
@@ -59,19 +59,19 @@ class Album extends React.Component {
   padding: 0.25em;
   background: none;
   border: 1px solid #d3d3d3;
-  border-readius: 2px;
+  outline: none;
 }
-.album_cover:focus {
-  outline: orange;
+.album__cover:focus {
+  border: 1.5px solid dodgerblue;
 }
-.album.selected .album_cover {
-  border: 2px solid blue;
+.album--selected .album__cover {
+  background-color: orange;
 }
-.album_title {
+.album__title {
   text-align: center;
   margin: 1em 0 0 0;
 }
-.album_artist {
+.album__artist {
   text-align: center;
   margin: 0.5em 0;
   color: darkgray;
@@ -80,13 +80,13 @@ class Album extends React.Component {
   bottom: 0.5em;
   right: 0.5em;
 }
+.album:not(:hover) .album__controls,
+.album--selected:not(:hover) .album__controls {
+  display: none;
+}
 .album__controls-button {
   margin: 0.25em;
 }
-.album:not(:hover) .album__controls-button {
-  display: none;
-}
-
       `}</style>
       </div>
     )
