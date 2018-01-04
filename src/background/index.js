@@ -60,6 +60,7 @@ app.on('ready', async () => {
       slashes: true
     })
   )
+  mainWindow.webContents.on('will-navigate', e => { e.preventDefault() })
 
   mainWindow.on('closed', () => {
     mainWindow = null
