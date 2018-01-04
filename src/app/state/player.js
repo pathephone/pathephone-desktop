@@ -11,6 +11,9 @@ export const state = {
 }
 
 const actions = {
+  PAUSE () {
+    state.pause = true
+  },
   TOGGLE_PAUSE () {
     state.pause = !state.pause
   },
