@@ -23,14 +23,22 @@ class ActivePlayer extends React.Component {
     readyToPlay: false
   }
   audio = new Audio()
+  prepareTime = undefined // мнимое время, когда перематываем
   // CUSTOM
   setReadyToPlay = (value) => {
     this.setState({
       readyToPlay: value
     })
   }
-  onSetCurrentTime = (value) => {
-    this.audio.currentTime = value
+  onSetCurrentTime = ({time, prepare}) => {
+    if (!prepare) {
+      delete this.prepareTime
+      this.audio.currentTime = time
+    } else {
+      // время во время перемотки
+      this.prepareTime = time || 1 // 1 - исправляет случай если пользователь ставит курсор вначале плейлиста и неверно используется время
+      onChangeCurrentTime(time)
+    }
   }
   attachListeners = () => {
     this.audio.onloadstart = () => {
@@ -70,6 +78,9 @@ class ActivePlayer extends React.Component {
   componentWillReceiveProps (next) {
     this.handleProps(next)
   }
+  componentWillUnmount () {
+    this.audio.src = ''
+  }
   render () {
     const {
       track, playerStateValue
@@ -106,7 +117,7 @@ class ActivePlayer extends React.Component {
           {
             readyToPlay && (
               <TrackTimeline
-                position={currentTime}
+                position={this.prepareTime || currentTime}
                 length={this.audio.duration}
                 onChange={this.onSetCurrentTime}
               />

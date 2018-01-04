@@ -5,33 +5,20 @@ import getRandomString from '../utils/getRandomString'
 export const state = []
 
 const actions = {
-  ADD_TRACKS (tracks) {
-    const _tracks = tracks.map(
+  ADD_TRACKS (...tracks) {
+    tracks.forEach(
       (trackObj) => {
         const id = getRandomString()
-        return {
-          ...trackObj,
-          id,
-          current: false
-        }
+        const current = state.length === 0
+        const track = { ...trackObj, id, current }
+        state.push(track)
       }
     )
-    state.push(..._tracks)
   },
   REMOVE_TRACKS (...ids) {
     ids.forEach(id => {
       const index = state.findIndex(
-        (obj, index) => {
-          if (obj.id === id) {
-            if (obj.current) {
-              const nextCurrent = state[index + 1]
-              if (nextCurrent) {
-                nextCurrent.current = true
-              }
-            }
-            return true
-          }
-        }
+        (obj, index) => obj.id === id
       )
       state.splice(index, 1)
     })
@@ -43,21 +30,11 @@ const actions = {
     const current = state.find(
       ({ current }) => current
     )
-    if (current) {
-      current.current = false
-    }
+    current.current = false
     const target = state.find(
       ({ id }) => nextCurrentId === id
     )
     target.current = true
-  },
-  UNSET_CURRENT () {
-    const current = state.find(
-      ({ current }) => current
-    )
-    if (current) {
-      current.current = false
-    }
   }
 }
 
