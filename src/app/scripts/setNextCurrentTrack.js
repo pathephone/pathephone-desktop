@@ -36,7 +36,7 @@ const playNextTrack = () => {
     nextId = nextTrack.id
   } else {
     nextId = playlistState()[0].id
-    playerState('TOGGLE_PAUSE')
+    playerState('PAUSE')
   }
   playlistState('SET_CURRENT', nextId)
 }
