@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import Navigation from './Navigation'
-import Playlist from './Playlist/Playlist'
+import Playlist from './Playlist'
 import Player from './Player/Player'
 import Page from './Page'
 

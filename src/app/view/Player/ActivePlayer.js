@@ -6,13 +6,14 @@ import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdRepeat from 'react-icons/lib/md/repeat'
 import MdShuffle from 'react-icons/lib/md/shuffle'
 
-import onPlayNextTrack from '~/scripts/playNextTrack'
-import onPlayPrevTrack from '~/scripts/playPrevTrack'
+import onNextTrack from '~/scripts/setNextCurrentTrack'
+import onPrevTrack from '~/scripts/setPrevCurrentTrack'
 import onTogglePause from '~/scripts/togglePause'
 import onToggleShuffle from '~/scripts/toggleShuffle'
 import onToggleRepeat from '~/scripts/toggleRepeat'
 import onChangeVolume from '~/scripts/changeVolume'
 import onChangeCurrentTime from '~/scripts/changeCurrentTime'
+import multihashToUrl from '~/scripts/multihashToUrl'
 
 import TrackTimeline from './ActivePlayer/TrackTimeline'
 import VolumeInput from './ActivePlayer/VolumeInput'
@@ -46,17 +47,21 @@ class ActivePlayer extends React.Component {
     this.audio.oncanplaythrough = () => {
       this.setReadyToPlay(true)
     }
-    this.audio.onended = onPlayNextTrack
+    this.audio.onended = onNextTrack
     this.audio.ontimeupdate = () => {
       const { currentTime } = this.audio
       onChangeCurrentTime(currentTime)
     }
   }
-  handleProps = async ({ track, playerStateValue }) => {
+  updateSource = (source) => {
+    this.audio.src = source
+  }
+  handleProps = ({ track, playerStateValue }, initial) => {
     const { pause, volume } = playerStateValue
-    const { source } = track
-    if (source !== this.audio.src) {
-      this.audio.src = source
+    const { hash } = track
+    if (initial || hash !== this.props.track.hash) {
+      multihashToUrl(hash)
+        .then(this.updateSource)
     }
     if (pause) {
       this.audio.pause()
@@ -95,7 +100,7 @@ class ActivePlayer extends React.Component {
         </div>
         <div className='player__lower-block izi-x izi--gap izi-fill-width'>
           <div className='izi-x izi-no-shrink'>
-            <button onClick={onPlayPrevTrack}>
+            <button onClick={onPrevTrack}>
               <MdSkipPrev />
             </button>
             <button onClick={onTogglePause}>
@@ -105,7 +110,7 @@ class ActivePlayer extends React.Component {
                   : <MdPause />
               }
             </button>
-            <button onClick={onPlayNextTrack}>
+            <button onClick={onNextTrack}>
               <MdSkipNext />
             </button>
           </div>
@@ -139,12 +144,3 @@ button {
 }
 
 export default ActivePlayer
-/*
-          <CustomAudio
-            className='izi-fill-width'
-            controls
-            autoPlay
-            src={`http://localhost:5001/api/v0/cat?arg=${hash}`}
-            onEnded={onPlayNextTrack}
-          />
-*/
