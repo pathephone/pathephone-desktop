@@ -14,29 +14,42 @@ var secondsTohhmmss = function (totalSeconds) {
   return result
 }
 
-const TrackTimeline = ({ position, length, onChange, className }) => {
-  const handleChange = e => {
-    const { value } = e.currentTarget
-    onChange(parseInt(value))
+class TrackTimeline extends React.Component {
+  prepareTime = false
+  render () {
+    const { position, length, onChange } = this.props
+    const handleChange = e => {
+      const { value } = e.currentTarget
+      onChange({
+        time: parseInt(value),
+        prepare: this.prepareTime
+      })
+    }
+    return (
+      <div className='izi-x izi-fill-width'>
+        <input
+          type='range'
+          min='0'
+          max={length}
+          value={position}
+          onChange={handleChange}
+          className='izi-fill-width'
+          ref={(node) => { this.rangePicker = node }}
+          onMouseDown={() => { this.prepareTime = true }}
+          onMouseUp={() => {
+            this.prepareTime = false
+            handleChange({currentTarget: this.rangePicker})
+          }}
+        />
+        <small className='duration izi-margin-left'>{secondsTohhmmss(length)}</small>
+        <style jsx>{`
+  .duration {
+    flex-shrink: 0;
   }
-  return (
-    <div className='izi-x izi-fill-width'>
-      <input
-        type='range'
-        min='0'
-        max={length}
-        value={position}
-        onChange={handleChange}
-        className='izi-fill-width'
-      />
-      <small className='duration izi-margin-left'>{secondsTohhmmss(length)}</small>
-      <style jsx>{`
-.duration {
-  flex-shrink: 0;
-}
-      `}</style>
-    </div>
-  )
+        `}</style>
+      </div>
+    )
+  }
 }
 
 export default TrackTimeline
