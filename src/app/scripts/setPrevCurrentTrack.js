@@ -13,7 +13,7 @@ const getPrevTrack = () => {
       if (shufflePath.length === 0) {
         return playlistData[0] // короче списко прослушанных закочился, просто возращаем на 1 трек
       }
-      
+
       shuffleTrack = shufflePath.pop()
     }
     return shuffleTrack // достаем предыдущую песню из запомненного пути следования по трекам (если такой есть)
