@@ -60,12 +60,14 @@ class Album extends React.Component {
   background: none;
   border: 1px solid #d3d3d3;
   outline: none;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .album__cover:focus {
-  border: 1.5px solid dodgerblue;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .album--selected .album__cover {
-  background-color: orange;
+  background-color: dodgerblue;
+  border-color: dodgerblue;
 }
 .album__title {
   text-align: center;
