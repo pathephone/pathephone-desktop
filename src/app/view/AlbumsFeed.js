@@ -1,5 +1,6 @@
 import React from 'react'
 import Album from './AlbumsFeed/Album'
+import SelectedActions from './AlbumsFeed/SelectedActions'
 
 import addAlbums from './AlbumsFeed/addAlbums'
 import playAlbums from './AlbumsFeed/playAlbums'
@@ -9,16 +10,19 @@ class AlbumsFeed extends React.Component {
   state = {
     selected: []
   }
-  selectAlbum = (cid) => {
+  selectAlbums = (cids) => {
     const { selected } = this.state
-    const index = selected.findIndex(
-      scid => scid === cid
-    )
-    if (index > -1) {
-      selected.splice(index, 1)
-    } else {
-      selected.push(cid)
+    const eachHandler = (cid) => {
+      const index = selected.findIndex(
+        scid => scid === cid
+      )
+      if (index > -1) {
+        selected.splice(index, 1)
+      } else {
+        selected.push(cid)
+      }
     }
+    cids.forEach(eachHandler)
     this.setState({ selected })
   }
   clearSelected = () => {
@@ -26,41 +30,45 @@ class AlbumsFeed extends React.Component {
       selected: []
     })
   }
+  getSelectedActionsProps = () => {
+    const { selected } = this.state
+    return {
+      onAdd: () => {
+        addAlbums(selected)
+        this.clearSelected()
+      },
+      onPlay: () => {
+        playAlbums(selected)
+        this.clearSelected()
+      },
+      onDelete: () => {
+        deleteAlbums(selected)
+        this.clearSelected()
+      },
+      onClear: () => {
+        this.clearSelected()
+      },
+      selectedNum: selected.length
+    }
+  }
   AlbumWrapper = (data) => {
     const { selected } = this.state
     const { cid } = data
-    const isSelected = selected.includes(cid)
     const onAdd = () => {
-      if (!isSelected) {
-        addAlbums([cid])
-      } else {
-        addAlbums(this.state.selected)
-      }
+      addAlbums([cid])
     }
     const onPlay = () => {
-      if (!isSelected) {
-        playAlbums([cid])
-      } else {
-        playAlbums(this.state.selected)
-      }
-    }
-    const onDelete = () => {
-      if (!isSelected) {
-        deleteAlbums([cid])
-      } else {
-        deleteAlbums(this.state.selected)
-      }
+      playAlbums([cid])
     }
     const onSelect = () => {
-      this.selectAlbum(cid)
+      this.selectAlbums([cid])
     }
     const props = {
       ...data,
-      isSelected,
+      selected,
       onAdd,
       onPlay,
-      onSelect,
-      onDelete
+      onSelect
     }
     return (
       <Album {...props} key={cid} />
@@ -68,10 +76,19 @@ class AlbumsFeed extends React.Component {
   }
   render () {
     const { albums } = this.props
+    const { selected } = this.state
     return (
-      <div className='albums-feed'>
+      <div className='albums-feed__wrapper izi-ys'>
+        <div className='albums-feed izi-fill'>
+          {
+            albums.map(this.AlbumWrapper)
+          }
+        </div>
         {
-          albums.map(this.AlbumWrapper)
+          selected.length > 0 && [
+            <hr key='divider' />,
+            <SelectedActions {...this.getSelectedActionsProps()} key='actions' />
+          ]
         }
         <style jsx>{`
 .albums-feed {
@@ -82,6 +99,10 @@ class AlbumsFeed extends React.Component {
   grid-gap: 1em;
   padding: 1em;
   overflow-y: auto;
+  flex-shrink: 1;
+}
+hr {
+  width: 100%;
 }
       `}</style>
       </div>

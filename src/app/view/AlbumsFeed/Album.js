@@ -18,8 +18,9 @@ const CoverView = ({ data, error }) => {
 
 class Album extends React.Component {
   render () {
-    const { data, onPlay, onSelect, onAdd, isSelected } = this.props
+    const { data, onSelect, onAdd, onPlay, selected, cid } = this.props
     const { title, artist, cover } = data
+    const isSelected = selected.includes(cid)
     return (
       <div className={`album${isSelected ? '--selected' : ''}`}>
         <div className='izi-relative'>
@@ -32,20 +33,24 @@ class Album extends React.Component {
               view={CoverView}
             />
           </button>
-          <div className='album__controls izi-x izi-absolute'>
-            <button
-              className='album__controls-button'
-              onClick={onAdd}
-            >
-              <MdAdd />
-            </button>
-            <button
-              className='album__controls-button'
-              onClick={onPlay}
-            >
-              <MdPlay />
-            </button>
-          </div>
+          {
+            selected.length === 0 && (
+              <div className='album__actions izi-x izi-absolute'>
+                <button
+                  className='album__actions-button'
+                  onClick={onAdd}
+                >
+                  <MdAdd />
+                </button>
+                <button
+                  className='album__actions-button'
+                  onClick={onPlay}
+                >
+                  <MdPlay />
+                </button>
+              </div>
+            )
+          }
         </div>
         <h4 className='album__title'>{title}</h4>
         <h5 className='album__artist'>{artist}</h5>
@@ -78,15 +83,15 @@ class Album extends React.Component {
   margin: 0.5em 0;
   color: darkgray;
 }
-.album__controls {
+.album__actions {
   bottom: 0.5em;
   right: 0.5em;
 }
-.album:not(:hover) .album__controls,
-.album--selected:not(:hover) .album__controls {
+.album:not(:hover) .album__actions,
+.album--selected:not(:hover) .album__actions {
   display: none;
 }
-.album__controls-button {
+.album__actions-button {
   margin: 0.25em;
 }
       `}</style>
