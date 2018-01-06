@@ -94,8 +94,8 @@ class ActivePlayer extends React.Component {
       <div className='player izi-fill-width izi-padding izi-y'>
         <div className='player__upper-block izi-x'>
           <div className='player__info izi-y izi-padding-x'>
-            <h4 className='album_title'>{title}</h4>
-            <h5 className='album_artist'>{artist}</h5>
+            <h4 className='player__track-title'>{title}</h4>
+            <h5 className='player__track-artist'>{artist}</h5>
           </div>
         </div>
         <div className='player__lower-block izi-x izi--gap izi-fill-width'>
@@ -136,6 +136,15 @@ class ActivePlayer extends React.Component {
         <style jsx>{`
 button {
   flex-shrink: 0;
+}
+.player__track-title {
+    text-align: center;
+    margin: 1em 0 0 0;
+}
+.player__track-artist {
+    text-align: center;
+    margin: 0.5em 0;
+    color: darkgray;
 }
         `}</style>
       </div>
