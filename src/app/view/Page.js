@@ -20,6 +20,7 @@ const Page = ({ page }) => {
       <style jsx>{`
 main {
   flex-shrink: 1;
+  min-width: 15em;
   overflow-y: auto;
 }
       `}</style>
