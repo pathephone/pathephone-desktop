@@ -15,7 +15,15 @@ const Page = ({ page }) => {
   const { name, props } = page
   const PageView = getPageViewByName(name)
   return (
-    <PageView {...props} />
+    <main className='izi-fill'>
+      <PageView {...props} />
+      <style jsx>{`
+main {
+  flex-shrink: 1;
+  overflow-y: auto;
+}
+      `}</style>
+    </main>
   )
 }
 

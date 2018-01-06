@@ -41,13 +41,6 @@ svg {
   height: 100vh;
 }
 
-.app {
-  display: grid;
-  flex-basis: 100%;
-  flex-shrink: 1;
-  grid-template-columns: 20% 60% 20%;
-}
-
 .izi-rounded {
   border-radius: 0.15em;
 }

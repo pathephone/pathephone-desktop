@@ -78,8 +78,8 @@ class AlbumsFeed extends React.Component {
     const { albums } = this.props
     const { selected } = this.state
     return (
-      <div className='albums-feed__wrapper izi-ys'>
-        <div className='albums-feed izi-fill'>
+      <div className='albums-feed__wrapper izi-fill izi-ys'>
+        <div className='albums-feed'>
           {
             albums.map(this.AlbumWrapper)
           }
@@ -99,6 +99,7 @@ class AlbumsFeed extends React.Component {
   grid-gap: 1em;
   padding: 1em;
   overflow-y: auto;
+  flex-basis: 100%;
   flex-shrink: 1;
 }
 hr {

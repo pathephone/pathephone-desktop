@@ -22,6 +22,8 @@ const PlaylistView = ({ playlist }) => {
       }
       <style jsx>{`
 .playlist {
+  width: 15em;
+  flex-shrink: 0;
   background-color: #f1f1f1;
   overflow-y: auto;
 }
