@@ -1,28 +1,45 @@
 import React from 'react'
+import MdPlay from 'react-icons/lib/md/play-arrow'
+import MdAdd from 'react-icons/lib/md/playlist-add'
+import MdDelete from 'react-icons/lib/md/delete'
+import MdClear from 'react-icons/lib/md/clear'
 
 const SelectedActions = ({ selectedNum, onPlay, onAdd, onDelete, onClear }) => {
   return (
     <div className='izi-fill-width izi--gap izi-x'>
       <label>
         {
-          `${selectedNum} selected`
+          `${selectedNum} album${selectedNum > 1 ? 's' : ''} selected`
         }
       </label>
       <button onClick={onPlay}>
-        play
+        <MdPlay />
+        <small>play</small>
       </button>
       <button onClick={onAdd}>
-        add
-      </button>
-      <button onClick={onDelete}>
-        delete
+        <MdAdd />
+        <small>add</small>
       </button>
       <button
-        className='izi-margin-left-auto'
+        onClick={onDelete}
+      >
+        <MdDelete />
+        <small>delete</small>
+      </button>
+      <button
+        className='cancel-button'
         onClick={onClear}
       >
-        cancel
+        <MdClear />
       </button>
+      <style jsx>{`
+.cancel-button {
+  margin-left: auto;
+}
+button > *:not(:first-child) {
+  margin-left: 0.25em;
+}
+      `}</style>
     </div>
   )
 }
