@@ -143,8 +143,10 @@ describe('add album process', function () {
     it('form disappears', async function () {
       const { app } = this
       await app.client.click('#add-album_submit')
-      const exists = await app.client.isExisting('#add-album_form')
-      return !exists
+      return app.client.waitUntil(async () => {
+        const exists = await app.client.isExisting('#add-album_form')
+        return !exists
+      })
     })
     it('album appears in albums feed', async function () {
       const selectors = ['.album__title', '.album__artist']
