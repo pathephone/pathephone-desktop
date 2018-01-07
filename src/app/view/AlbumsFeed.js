@@ -79,7 +79,7 @@ class AlbumsFeed extends React.Component {
     const { selected } = this.state
     return (
       <div className='albums-feed__wrapper izi-fill izi-ys'>
-        <div className='albums-feed'>
+        <div id='albums-feed' className='albums-feed'>
           {
             albums.map(this.AlbumWrapper)
           }

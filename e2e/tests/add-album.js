@@ -147,7 +147,7 @@ describe('add album process', function () {
       return !exists
     })
     it('album appears in albums feed', async function () {
-      const selectors = ['.album_title', '.album_artist']
+      const selectors = ['.album__title', '.album__artist']
       const { app } = this
       await app.client.waitForExist(selectors[0])
       const [ title, artist ] = await Promise.all(
@@ -156,17 +156,6 @@ describe('add album process', function () {
       if (title !== 'Red Flower' || artist !== 'DEgITx') {
         throw new Error('Published album does not appear.')
       }
-    })
-  })
-  describe('delete album', () => {
-    it('album appears in albums feed', async function () {
-      const selector = '.album_delete-button'
-      const { app } = this
-      await app.client.waitUntil(async () => {
-        const exists = await app.client.isExisting('#add-album_form')
-        return !exists
-      })
-      return app.client.$(selector).click()
     })
   })
 })

@@ -6,21 +6,30 @@ import MdClear from 'react-icons/lib/md/clear'
 
 const SelectedActions = ({ selectedNum, onPlay, onAdd, onDelete, onClear }) => {
   return (
-    <div className='izi-fill-width izi--gap izi-x'>
-      <label>
+    <div className='selected-actions__bar izi-fill-width izi--gap izi-x'>
+      <label
+        className='selected-actions__count'
+      >
         {
           `${selectedNum} album${selectedNum > 1 ? 's' : ''} selected`
         }
       </label>
-      <button onClick={onPlay}>
+      <button
+        className='selected-actions__play'
+        onClick={onPlay}
+      >
         <MdPlay />
         <small>play</small>
       </button>
-      <button onClick={onAdd}>
+      <button
+        className='selected-actions__add'
+        onClick={onAdd}
+      >
         <MdAdd />
-        <small>add</small>
+        <small>add to playlist</small>
       </button>
       <button
+        className='selected-actions__delete'
         onClick={onDelete}
       >
         <MdDelete />
