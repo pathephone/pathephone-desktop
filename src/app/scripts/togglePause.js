@@ -1,7 +1,12 @@
 import playerState from '../state/player'
 
 const playPause = (tracks) => {
-  playerState('TOGGLE_PAUSE')
+  const { pause } = playerState()
+  if (pause) {
+    playerState('PLAY')
+  } else {
+    playerState('PAUSE')
+  }
 }
 
 export default playPause

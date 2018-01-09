@@ -9,9 +9,12 @@ class Navigation extends Component {
       <nav className='navigation izi-ys izi-padding'>
         <AddAlbum />
         <style jsx>{`
-
 .navigation {
+  width: 15em;
+  flex-shrink: 0;
   background-color: darkslategrey;
+  height: 100%;
+  overflow-y: auto;
 }
         `}</style>
       </nav>

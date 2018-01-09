@@ -17,6 +17,7 @@ const ModalLayer = ({ children, onClick, ...rest }) => {
 .modal-layer {
   background-color: rgba(10,10,10,0.5);
   overflow-y: auto;
+  z-index: 1;
 }
       `}</style>
     </div>

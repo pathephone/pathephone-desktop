@@ -28,13 +28,7 @@ if (env.name !== 'production') {
 
 if (env.name === 'development') {
   require('electron-debug')({showDevTools: true})
-  require('electron-context-menu')({
-    prepend: (params, browserWindow) => [{
-      label: 'Rainbow',
-      // Only show it when right-clicking images
-      visible: params.mediaType === 'image'
-    }]
-  })
+  require('electron-context-menu')({})
 }
 
 app.on('ready', async () => {
