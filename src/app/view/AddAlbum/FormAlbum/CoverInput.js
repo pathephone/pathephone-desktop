@@ -1,9 +1,9 @@
 import React from 'react'
-import SyncIcon from '@/SyncIcon'
-import DiskIcon from '@/DiskIcon'
-import ImageContainer from '@/ImageContainer'
-import BrokenImageIcon from '@/BrokenImageIcon'
-import GetIpfsImage from '@/GetIpfsImage'
+import SyncIcon from '#/SyncIcon'
+import DiskIcon from '#/DiskIcon'
+import ImageContainer from '#/ImageContainer'
+import BrokenImageIcon from '#/BrokenImageIcon'
+import GetIpfsImage from '#/GetIpfsImage'
 import putFilesToIpfs from '~/scripts/putFilesToIpfs'
 
 const checkIsImage = (file) => {
