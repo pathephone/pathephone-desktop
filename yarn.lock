@@ -3768,9 +3768,9 @@ ip@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
 
-ipfs-api@^17.2.0:
-  version "17.2.4"
-  resolved "https://registry.yarnpkg.com/ipfs-api/-/ipfs-api-17.2.4.tgz#8130a5fa98e15b2af8f6a27b71442cebafc89b24"
+ipfs-api@17.3.0:
+  version "17.3.0"
+  resolved "https://registry.yarnpkg.com/ipfs-api/-/ipfs-api-17.3.0.tgz#8c30b9cd5f136938c428fcce73750cabc6fb325a"
   dependencies:
     async "^2.6.0"
     bs58 "^4.0.1"
@@ -3779,22 +3779,21 @@ ipfs-api@^17.2.0:
     detect-node "^2.0.3"
     flatmap "0.0.3"
     glob "^7.1.2"
-    glob-escape "0.0.2"
     ipfs-block "~0.6.1"
     ipfs-unixfs "~0.1.14"
-    ipld-dag-pb "~0.11.3"
+    ipld-dag-pb "~0.11.4"
     is-ipfs "^0.3.2"
     is-stream "^1.1.0"
     lru-cache "^4.1.1"
-    multiaddr "^3.0.1"
-    multihashes "~0.4.12"
+    multiaddr "^3.0.2"
+    multihashes "~0.4.13"
     ndjson "^1.5.0"
     once "^1.4.0"
-    peer-id "~0.10.3"
-    peer-info "~0.11.3"
+    peer-id "~0.10.4"
+    peer-info "~0.11.4"
     promisify-es6 "^1.0.3"
     pull-defer "^0.2.2"
-    pull-pushable "^2.1.1"
+    pull-pushable "^2.1.2"
     pump "^1.0.3"
     qs "^6.5.1"
     readable-stream "^2.3.3"
@@ -3828,7 +3827,7 @@ ipld-dag-cbor@^0.11.2:
     multihashing-async "~0.4.7"
     traverse "^0.6.6"
 
-ipld-dag-pb@^0.11.3, ipld-dag-pb@~0.11.3:
+ipld-dag-pb@^0.11.3, ipld-dag-pb@~0.11.4:
   version "0.11.4"
   resolved "https://registry.yarnpkg.com/ipld-dag-pb/-/ipld-dag-pb-0.11.4.tgz#b0fae5681fad5697132e325d6c2ff17b5f0cb6a8"
   dependencies:
@@ -4287,6 +4286,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+jsrsasign@^8.0.4:
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/jsrsasign/-/jsrsasign-8.0.4.tgz#3f7b8238844f126b496a7556ec9f4b511f95f861"
+
 jsx-ast-utils@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-2.0.1.tgz#e801b1b39985e20fffc87b40e3748080e2dcac7f"
@@ -4388,6 +4391,24 @@ libp2p-crypto@~0.10.4:
     multihashing-async "~0.4.7"
     pem-jwk "^1.5.1"
     protons "^1.0.0"
+    rsa-pem-to-jwk "^1.1.3"
+    tweetnacl "^1.0.0"
+    webcrypto-shim "github:dignifiedquire/webcrypto-shim#master"
+
+libp2p-crypto@~0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/libp2p-crypto/-/libp2p-crypto-0.11.0.tgz#e87141c1d5ee5054065496093512de31418d1bc6"
+  dependencies:
+    asn1.js "^5.0.0"
+    async "^2.6.0"
+    browserify-aes "^1.1.1"
+    bs58 "^4.0.1"
+    jsrsasign "^8.0.4"
+    keypair "^1.0.1"
+    libp2p-crypto-secp256k1 "~0.2.2"
+    multihashing-async "~0.4.7"
+    pem-jwk "^1.5.1"
+    protons "^1.0.1"
     rsa-pem-to-jwk "^1.1.3"
     tweetnacl "^1.0.0"
     webcrypto-shim "github:dignifiedquire/webcrypto-shim#master"
@@ -4831,6 +4852,17 @@ multiaddr@^3.0.1:
     varint "^5.0.0"
     xtend "^4.0.1"
 
+multiaddr@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/multiaddr/-/multiaddr-3.0.2.tgz#699e18662cca7d7879ceed667859098f5af57dc8"
+  dependencies:
+    bs58 "^4.0.1"
+    ip "^1.1.5"
+    lodash.filter "^4.6.0"
+    lodash.map "^4.6.0"
+    varint "^5.0.0"
+    xtend "^4.0.1"
+
 multibase@~0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/multibase/-/multibase-0.3.4.tgz#fba8b0aac9724f62e24782557e2a062e30d3ae7f"
@@ -4846,6 +4878,13 @@ multicodec@~0.2.3:
 multihashes@~0.4.12, multihashes@~0.4.9:
   version "0.4.12"
   resolved "https://registry.yarnpkg.com/multihashes/-/multihashes-0.4.12.tgz#0d31b18c92baeb50ecd040bbdc4a564d2e52aeb1"
+  dependencies:
+    bs58 "^4.0.1"
+    varint "^5.0.0"
+
+multihashes@~0.4.13:
+  version "0.4.13"
+  resolved "https://registry.yarnpkg.com/multihashes/-/multihashes-0.4.13.tgz#d10bd71bd51d24aa894e2a6f1457146bb7bac125"
   dependencies:
     bs58 "^4.0.1"
     varint "^5.0.0"
@@ -5377,7 +5416,16 @@ peer-id@^0.10.2, peer-id@~0.10.3:
     lodash "^4.17.4"
     multihashes "~0.4.12"
 
-peer-info@^0.11.1, peer-info@~0.11.3:
+peer-id@~0.10.4:
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/peer-id/-/peer-id-0.10.4.tgz#183ed43ac1bcd66f8db89b4ef98c5d2e5ed07886"
+  dependencies:
+    async "^2.6.0"
+    libp2p-crypto "~0.11.0"
+    lodash "^4.17.4"
+    multihashes "~0.4.12"
+
+peer-info@^0.11.1, peer-info@~0.11.4:
   version "0.11.4"
   resolved "https://registry.yarnpkg.com/peer-info/-/peer-info-0.11.4.tgz#205baad4dc90575ac51cbe3445859aaa805c629e"
   dependencies:
@@ -5961,7 +6009,7 @@ protocol-buffers-schema@^3.3.1:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/protocol-buffers-schema/-/protocol-buffers-schema-3.3.2.tgz#00434f608b4e8df54c59e070efeefc37fb4bb859"
 
-protons@^1.0.0:
+protons@^1.0.0, protons@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/protons/-/protons-1.0.1.tgz#1c107144c07fc2d1cb8b6cb76451e6a938237676"
   dependencies:
@@ -5998,9 +6046,9 @@ pull-defer@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/pull-defer/-/pull-defer-0.2.2.tgz#0887b0ffb30af32a56dbecfa72c1672271f07b13"
 
-pull-pushable@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/pull-pushable/-/pull-pushable-2.1.1.tgz#86666abbe3f5402f1f7ead03eefd69b785eca5b8"
+pull-pushable@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/pull-pushable/-/pull-pushable-2.1.2.tgz#3fe15b8f7eec89f3972d238bc04890c9405a6dbb"
 
 pull-stream@^3.2.3, pull-stream@^3.6.1:
   version "3.6.1"
