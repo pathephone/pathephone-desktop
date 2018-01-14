@@ -36,10 +36,10 @@ const albumsListener = async (message) => {
       } else {
         throw new Error(`Album ${cidString} already persisted in local db.`)
       }
+    } catch (e) {
+      console.log(e)
     }
-  } catch (e) {
-    console.log(e)
-  }
+  })()
 }
 
 const initAlbumsListener = async () => {

@@ -87,6 +87,7 @@ class FileInput extends React.Component {
       }))
       onChange(ipfsHashes)
     } catch (error) {
+      console.error(error)
       this.setState({ error: true })
     }
     this.toggleLoading()
