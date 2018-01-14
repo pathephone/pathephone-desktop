@@ -1,7 +1,7 @@
 import getIpfsNode from '../api/ipfs'
 
-const multihashToStream = (multihash) => {
-  const ipfsNode = getIpfsNode()
+const multihashToStream = async (multihash) => {
+  const ipfsNode = await getIpfsNode()
   return ipfsNode.files.cat(multihash)
 }
 
