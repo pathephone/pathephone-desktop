@@ -1,5 +1,5 @@
 import albums from '../data/albums'
-import getIpfs from '../api/ipfs'
+import getIpfs, { startIpfsApi } from '../api/ipfs'
 import getCidString from '../utils/getCidString'
 import autoPublish, { defaultPublishInterval } from './autoPublish'
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
@@ -58,6 +58,7 @@ const publishAlbumSchema = async () => {
 }
 
 const initIpfs = async () => {
+  startIpfsApi()
   console.log('PUBLISHING ALBUM SCHEMA')
   await publishAlbumSchema()
   console.log('PUBLISHING ALBUMS FROM DB')
