@@ -1,5 +1,5 @@
 import React from 'react'
-import ModalWindow from '@/ModalWindow'
+import ModalWindow from '#/ModalWindow'
 import FormAlbum from './FormAlbum'
 import MdClose from 'react-icons/lib/md/close'
 
