@@ -76,7 +76,7 @@
     "flatmap": "0.0.3",
     "fs-jetpack": "^1.0.0",
     "glob-escape": "0.0.2",
-    "ipfs-api": "^17.2.0",
+    "ipfs-api": "17.3.0",
     "ipfs-block": "^0.6.1",
     "ipfs-unixfs": "^0.1.14",
     "ipld-dag-cbor": "^0.11.2",
