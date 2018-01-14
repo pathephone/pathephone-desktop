@@ -1,10 +1,10 @@
 import React from 'react'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdAdd from 'react-icons/lib/md/playlist-add'
-import SyncIcon from '@/SyncIcon'
-import DiskIcon from '@/DiskIcon'
-import ImageContainer from '@/ImageContainer'
-import GetIpfsImage from '@/GetIpfsImage'
+import SyncIcon from '#/SyncIcon'
+import DiskIcon from '#/DiskIcon'
+import ImageContainer from '#/ImageContainer'
+import GetIpfsImage from '#/GetIpfsImage'
 
 const CoverView = ({ data, error }) => {
   if (data) {
