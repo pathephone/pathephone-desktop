@@ -19,7 +19,7 @@ const putFilesToIpfs = async (files) => {
     filesArray.map(fileToBuffer)
   )
   const dataReturned = await Promise.all(
-    arrayOfBuffers.map(buffer => ipfs.add(buffer))
+    arrayOfBuffers.map(buffer => ipfs.files.add(buffer))
   )
   const ipfsHashes = dataReturned.map((arr) => arr[0])
   return ipfsHashes

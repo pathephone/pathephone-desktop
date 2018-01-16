@@ -1,7 +1,7 @@
 import getIpfsNode from '../api/ipfs'
 
 export default async (playlist) => {
-  const ipfsNode = getIpfsNode()
+  const ipfsNode = await getIpfsNode()
   const pendingTracks = playlist
     .filter(({ current }) => !current)
     .map(song => song.hash)
