@@ -50,4 +50,15 @@ describe('IPFS', function () {
       assert.equal(obj.test, 23)
     })
   })
+
+  describe('pubsub', () => {
+    it('publish/subscribe', () => new Promise(async (resolve) => {
+      await ipfs.pubsub.subscribe(
+        'XXXyyyyXXXzzfql93333', ({data}) => {
+          if (data.equals(bufferString)) { resolve() }
+        }
+      )
+      ipfs.pubsub.publish('XXXyyyyXXXzzfql93333', bufferString)
+    }))
+  })
 })
