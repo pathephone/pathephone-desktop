@@ -21,17 +21,15 @@ export const getIpfs = () => {
 };
 */
 
-export const startIpfsApi = (host = 'localhost', port = '5001') => {
+const getIpfsNode = (params = {}) => {
+  if (node) return node
+  const { host = 'localhost', port = '5001' } = params
   console.log('IPFS START')
   const endpoint = `http://${host}:${port}/api/v0`
   node = IPFSapi(host, port)
   node = dag(node, endpoint)
   node = exists(node)
+  return node
 }
 
-const getIpfs = (params = {}) => {
-  if (node) return node
-  throw new Error('IPFS API has not been started.')
-}
-
-export default getIpfs
+export default getIpfsNode
