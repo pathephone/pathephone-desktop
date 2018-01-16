@@ -29,6 +29,19 @@ const getIpfsNode = (params = {}) => {
   node = IPFSapi(host, port)
   node = dag(node, endpoint)
   node = exists(node)
+
+  // исправляем баг с загрузкой
+  const add = node.add
+  node.add = (data) => new Promise((resolve) => {
+    const r = add(data)
+    setTimeout(() => resolve(r), 10)
+  })
+  const put = node.dag.put
+  node.dag.put = (a, b) => new Promise((resolve) => {
+    const r = put(a, b)
+    setTimeout(() => resolve(r), 10)
+  })
+
   return node
 }
 
