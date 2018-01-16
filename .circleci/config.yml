@@ -26,11 +26,6 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      # Install display server dependencies
-      - run: sudo apt install xvfb libxtst6 libxss1 libgtk2.0-0 -y
-      # Install core libraries for chromium driver
-      - run: sudo apt install libnss3 libasound2 libgconf-2-4 -y
-
       - run: yarn install
 
       - save_cache:
