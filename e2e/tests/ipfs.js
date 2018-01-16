@@ -18,7 +18,7 @@ describe('IPFS', function () {
   const ipfs = getIpfsNode()
   const bufferString = Buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]) // QmTRSxHhL8Uaz1YXfWLkydRQ7nPSHXaNFsYaHjqjCpU8W7
 
-  describe('files', () => {
+  describe('files', function () {
     it('adding', async () => {
       const hash = (await ipfs.add(bufferString))[0].hash
       assert.equal(hash, 'QmTRSxHhL8Uaz1YXfWLkydRQ7nPSHXaNFsYaHjqjCpU8W7')
@@ -34,6 +34,17 @@ describe('IPFS', function () {
       assert.ok(exists)
       const notExists = (await ipfs.files.exists('QmTRSxHhL8Uaz1YXfWLkydRQ7nPSHXaNFsYaHjqjCpU8W6'))[0] // 6 на конце
       assert.ok(!notExists)
+    })
+
+    it('add big file', async () => {
+      const hash = (await ipfs.add(Buffer.alloc(1024 * 1024 * 50, 'a')))[0].hash
+      assert.equal(hash, 'QmYJHdtwgSWVkCJuLQmE3RqhJST1aWj5WHJxcNFtqut1UF')
+    })
+
+    it('read big file', async function () {
+      this.timeout(10000)
+      const file = await ipfs.files.cat('QmYJHdtwgSWVkCJuLQmE3RqhJST1aWj5WHJxcNFtqut1UF')
+      assert.equal(file.length, 1024 * 1024 * 50)
     })
   })
 
