@@ -34,12 +34,12 @@ const getIpfsNode = (params = {}) => {
   const add = node.add
   node.add = (data) => new Promise((resolve) => {
     const r = add(data)
-    setTimeout(() => resolve(r), 20)
+    setTimeout(() => resolve(r), 30)
   })
   const put = node.dag.put
   node.dag.put = (a, b) => new Promise((resolve) => {
     const r = put(a, b)
-    setTimeout(() => resolve(r), 20)
+    setTimeout(() => resolve(r), 30)
   })
 
   return node
