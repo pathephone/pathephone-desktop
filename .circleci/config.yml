@@ -27,9 +27,9 @@ jobs:
           - v1-dependencies-
 
       # Install display server dependencies
-      - "apt install xvfb libxtst6 libxss1 libgtk2.0-0 -y"
+      - run: apt install xvfb libxtst6 libxss1 libgtk2.0-0 -y
       # Install core libraries for chromium driver
-      - "apt install libnss3 libasound2 libgconf-2-4 -y"
+      - run: apt install libnss3 libasound2 libgconf-2-4 -y
 
       - run: yarn install
 
