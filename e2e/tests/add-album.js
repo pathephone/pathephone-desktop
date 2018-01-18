@@ -135,6 +135,11 @@ describe('add album process', function () {
         throw new Error('Received value is not an IPFS CID value.')
       }
     })
+    it('image apears in form', async function () {
+      const selector = '.ipfs-image-container'
+      const { app } = this
+      await app.client.waitForValue(selector)
+    })
   })
 
   // SUBMIT VALID

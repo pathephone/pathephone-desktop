@@ -22,7 +22,7 @@ const ImageResolver = ({ data, error, ready }) => {
     return <SyncIcon />
   }
   if (data) {
-    return <ImageContainer className='izi-fill' image={data} />
+    return <ImageContainer className='izi-fill ipfs-image-container' image={data} />
   }
   if (error) {
     return <BrokenImageIcon />
