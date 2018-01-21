@@ -32,14 +32,14 @@ const getIpfsNode = (params = {}) => {
 
   // исправляем баг с загрузкой
   const add = node.add
-  node.add = (data) => new Promise((resolve) => {
-    const r = add(data)
-    setTimeout(() => resolve(r), 60)
+  node.add = (data) => new Promise(async (resolve) => {
+    const r = await add(data)
+    setTimeout(() => resolve(r), 1)
   })
   const put = node.dag.put
-  node.dag.put = (a, b) => new Promise((resolve) => {
-    const r = put(a, b)
-    setTimeout(() => resolve(r), 50)
+  node.dag.put = (a, b) => new Promise(async (resolve) => {
+    const r = await put(a, b)
+    setTimeout(() => resolve(r), 1)
   })
 
   return node
