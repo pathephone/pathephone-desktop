@@ -99,6 +99,7 @@
     "react-audio-player": "^0.6.2",
     "react-dom": "^16.1.1",
     "react-icons": "^2.2.7",
+    "react-toggle-view": "^1.0.0",
     "recall-action": "^1.0.0",
     "rxdb": "^7.0.1",
     "rxjs": "^5.5.2",

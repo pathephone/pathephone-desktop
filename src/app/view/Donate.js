@@ -1,15 +1,15 @@
 import React from 'react'
 import ReactToggleView from 'react-toggle-view'
-import AddAlbumModal from './AddAlbum/AddAlbumModal'
+import DonateModal from './Donate/DonateModal'
 
 const Trigger = ({ showView }) => (
   <button onClick={showView} id='add-album_open'>
-    add album
+    donate
   </button>
 )
 
 const View = ({ hideView }) => (
-  <AddAlbumModal onClose={hideView} />
+  <DonateModal onClose={hideView} />
 )
 
 const AddAlbum = () => (
