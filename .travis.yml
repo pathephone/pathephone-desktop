@@ -29,6 +29,7 @@ jobs:
 
     - if: branch = semantic-release AND type != pull_request
       os: linux
+      dist: precise
       services: docker
       language: node_js
       node_js: "8"
