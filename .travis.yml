@@ -11,12 +11,10 @@ jobs:
       node_js: "8"
       env:
         - NEED_TEST=true
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     # RELEASE
 
-    - if: branch = semantic-release AND type != pull_request
+    - if: branch = master AND type != pull_request
       os: osx
       osx_image: xcode9.0
       language: node_js
@@ -24,10 +22,8 @@ jobs:
       env:
         - NEED_TEST=true
         - NEED_BUILD=true
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
-    - if: branch = semantic-release AND type != pull_request
+    - if: branch = master AND type != pull_request
       os: linux
       dist: trusty
       sudo: required
@@ -37,6 +33,11 @@ jobs:
       env:
         - NEED_TEST=true
         - NEED_BUILD=true
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 before_install: git pull
 
@@ -62,4 +63,8 @@ script:
       fi
     fi
 
-after_success: npx travis-deploy-once "npx semantic-release"
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - npx travis-deploy-once "npx semantic-release"
