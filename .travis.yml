@@ -30,7 +30,7 @@ jobs:
     - if: branch = semantic-release AND type != pull_request
       os: linux
       services: docker
-      language: generic
+      language: node_js
       env:
         - NEED_TEST=true
         - NEED_BUILD=true
