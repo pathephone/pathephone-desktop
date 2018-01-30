@@ -1,0 +1,10 @@
+{
+  "branch": "semantic-release",
+  "verifyConditions": "@semantic-release/github",
+  "publish": [
+    {
+      "path": "@semantic-release/github",
+      "assets": "dist/*"
+    }
+  ]
+}
