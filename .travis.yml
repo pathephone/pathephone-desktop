@@ -62,12 +62,4 @@ script:
       fi
     fi
 
-deploy:
-  provider: script
-  skip_cleanup: true
-  script:
-    - npx travis-deploy-once "npx semantic-release"
-  on:
-    branches:    # ← new!
-      only:      # ← new!
-        - semantic-release # ← new!
+after_success: npx travis-deploy-once "npx semantic-release"
