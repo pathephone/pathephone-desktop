@@ -29,7 +29,8 @@ jobs:
 
     - if: branch = semantic-release AND type != pull_request
       os: linux
-      dist: precise
+      dist: trusty
+      sudo: required
       services: docker
       language: node_js
       node_js: "8"
@@ -38,12 +39,11 @@ jobs:
         - NEED_BUILD=true
 
 cache:
+  yarn: true
   directories:
   - node_modules
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
-
-install: npm install
 
 before_install: git pull
 
@@ -53,7 +53,7 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi 
 
 script:
-  - if [ "$NEED_TEST" = true ]; then npm run test; fi
+  - if [ "$NEED_TEST" = true ]; then yarn test; fi
   - |
     if [ "$NEED_BUILD" = true ]; then
       if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -65,7 +65,7 @@ script:
           electronuserland/builder:wine \
           /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win -p never"
       else
-          npm run build -p never
+          yarn build -p never
       fi
     fi
 
