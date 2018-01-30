@@ -1,5 +1,5 @@
-import electron from 'electron'
-import { Application } from 'spectron'
+const electron = require('electron')
+const { Application } = require('spectron')
 
 const beforeEach = function () {
   this.app = new Application({
@@ -11,14 +11,14 @@ const beforeEach = function () {
 
 const afterEach = function () {
   if (this.app && this.app.isRunning()) {
-    console.log('afterEach: STOPPING RUNNING APP')
     return this.app.stop()
-  } else {
-    console.log('afterEach: APP ALREADY STOPED')
   }
 }
 
-export default {
+const asyncTimeout = delay => new Promise(resolve => setTimeout(resolve, delay))
+
+module.exports = {
   beforeEach,
-  afterEach
+  afterEach,
+  asyncTimeout
 }

@@ -4,7 +4,7 @@ platform:
   - x64
 
 cache:
-  - node_modules
+  - node_modules -> package.json
   - '%USERPROFILE%\.electron'
 
 install:

@@ -1,0 +1,46 @@
+body {
+  font-size: 0.75em;
+}
+
+input, button {
+  font-size: 1em;
+  padding: 0.25em;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+.sync-icon,
+.dnd-icon {
+  font-size: 2.5em;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  animation: rotating 2s linear infinite;
+}
+
+.broken-image-icon {
+  font-size: 2.5em;
+}
+
+.no-cover-icon {
+  font-size: 5em;
+}
+
+#root {
+  height: 100vh;
+}
+
+.izi-rounded {
+  border-radius: 0.15em;
+}

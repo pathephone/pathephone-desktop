@@ -1,46 +1,50 @@
 import React from 'react'
-import bind from '../../utils/recallReact'
-import playlistState from '../../state/playlist'
-import currentTrackState from '../../state/currentTrack'
-import PlayerView from './PlayerView'
-import startPlaying from '../../scripts/startPlaying'
-import stopPlaying from '../../scripts/stopPlaying'
-import playNextTrack from '../../scripts/playNextTrack'
-import playPrevTrack from '../../scripts/playPrevTrack'
-import multihashToUrl from '../../scripts/multihashToUrl'
-import Async from '../_/Async'
+import bind from '~/utils/recallReact'
+import playlistState from '~/state/playlist'
+import playerState from '~/state/player'
+import ActivePlayer from './ActivePlayer'
 
-class Playlist extends React.Component {
-  render () {
-    const { playlist } = this.props
-    const currentTrack = playlist.find(
-      ({ current }) => current
+// import PendingPlayer from './PendingPlayer'
+
+const ActivePlayerConnected = bind({ playerStateValue: playerState }, ActivePlayer)
+
+class Player extends React.Component {
+  state = {
+    track: null
+  }
+  handleProps = async (props) => {
+    const { playlistStateValue } = props
+    if (playlistStateValue.length === 0) {
+      this.setState({
+        track: null
+      })
+      return
+    }
+    const track = playlistStateValue.find(
+      ({ current }) => current === true
     )
-    if (!currentTrack) {
-      return null
-    }
-    const { hash } = currentTrack
-    const ErrorView = ({ error }) => {
-      return <h1>{error.message}</h1>
-    }
-    const ReadyView = ({ data }) => {
-      return (
-        <PlayerView
-          {...currentTrack}
-          src={data}
-          onPlayNextTrack={playNextTrack}
-          onPlayPrevTrack={playPrevTrack}
-        />
-      )
-    }
+    this.setState({ track })
+  }
+  componentWillMount () {
+    this.handleProps(this.props)
+  }
+  componentWillReceiveProps (next) {
+    this.handleProps(next)
+  }
+  render () {
+    const { track } = this.state
+    if (!track) return null
     return (
-      <Async
-        call={() => multihashToUrl(hash)}
-        errorView={ErrorView}
-        readyView={ReadyView}
+      <ActivePlayerConnected
+        track={track}
       />
     )
   }
 }
 
-export default bind({ playlist: playlistState, currentTrack: currentTrackState }, Playlist)
+export default bind(
+  {
+    playlistStateValue: playlistState
+  },
+  Player
+)

@@ -1,16 +1,33 @@
 // @flow
 import createAction from 'recall-action'
 
-const state = {
-  status: 'STOPED'
+export const state = {
+  pause: true,
+  shuffle: false,
+  repeat: false,
+  shufflePath: [],
+  volume: 0.7,
+  currentTime: 0
 }
 
 const actions = {
-  PLAY () {
-    state.status = 'PLAYING'
+  PAUSE () {
+    state.pause = true
   },
-  STOP () {
-    state.status = 'STOPED'
+  PLAY () {
+    state.pause = false
+  },
+  TOGGLE_SHUFFLE () {
+    state.shuffle = !state.shuffle
+  },
+  TOGGLE_REPEAT () {
+    state.repeat = !state.repeat
+  },
+  SET_VOLUME (value) {
+    state.volume = value
+  },
+  SET_CURRENT_TIME (value) {
+    state.currentTime = value
   }
 }
 

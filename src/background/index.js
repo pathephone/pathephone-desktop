@@ -20,9 +20,15 @@ import startIpfs from './methods/startIpfs'
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
 // on same machine like those are two separate apps.
+console.log(env.name)
 if (env.name !== 'production') {
   const userDataPath = app.getPath('userData')
   app.setPath('userData', `${userDataPath} (${env.name})`)
+}
+
+if (env.name === 'development') {
+  require('electron-debug')({showDevTools: true})
+  require('electron-context-menu')({})
 }
 
 app.on('ready', async () => {
@@ -48,10 +54,7 @@ app.on('ready', async () => {
       slashes: true
     })
   )
-
-  if (env.name === 'development') {
-    mainWindow.openDevTools()
-  }
+  mainWindow.webContents.on('will-navigate', e => { e.preventDefault() })
 
   mainWindow.on('closed', () => {
     mainWindow = null

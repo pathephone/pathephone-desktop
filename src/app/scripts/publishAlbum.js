@@ -9,8 +9,8 @@ const publishAlbum = async (albumObj) => {
   const cidObj = await ipfsApi.dag.put(albumObj, dagParams)
   const cidString = cidObj.toBaseEncodedString()
   console.log(`Returned cid: ${cidString}`)
-  await ipfsApi.pubsub.publish(albums.schemaCid, cidObj.buffer)
-  autoPublish(albums.schemaCid, cidString);
+  ipfsApi.pubsub.publish(albums.schemaCid, cidObj.buffer)
+  autoPublish(albums.schemaCid, cidString)
   return cidString
 }
 
