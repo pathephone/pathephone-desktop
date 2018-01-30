@@ -37,11 +37,12 @@ jobs:
         - NEED_BUILD=true
 
 cache:
-  yarn: true
   directories:
   - node_modules
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
+
+install: npm install
 
 before_install: git pull
 
