@@ -23,6 +23,14 @@
     "directories": {
       "buildResources": "resources"
     },
+    "win": {
+      "extraFiles": [
+        {
+          "from": "./imports/win/ipfs.exe",
+          "to": "."
+        }
+      ]
+    },
     "linux": {
       "category": "Audio",
       "target": [
