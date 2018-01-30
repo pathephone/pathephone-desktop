@@ -51,7 +51,7 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi 
 
 script:
-  - if [ "$NEED_TEST" = true ]; then yarn test; fi
+  - if [ "$NEED_TEST" = true ]; then npm run test; fi
   - |
     if [ "$NEED_BUILD" = true ]; then
       if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -63,7 +63,7 @@ script:
           electronuserland/builder:wine \
           /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win -p never"
       else
-          yarn build -p never
+          npm run build -p never
       fi
     fi
 
