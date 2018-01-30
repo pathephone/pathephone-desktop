@@ -38,13 +38,6 @@ jobs:
         - NEED_TEST=true
         - NEED_BUILD=true
 
-cache:
-  yarn: true
-  directories:
-  - node_modules
-  - $HOME/.cache/electron
-  - $HOME/.cache/electron-builder
-
 before_install: git pull
 
 before_script:
