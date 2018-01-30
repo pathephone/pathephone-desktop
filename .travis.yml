@@ -31,6 +31,7 @@ jobs:
       os: linux
       services: docker
       language: node_js
+      node_js: "8"
       env:
         - NEED_TEST=true
         - NEED_BUILD=true
