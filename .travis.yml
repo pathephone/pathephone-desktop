@@ -29,6 +29,10 @@ cache:
 
 before_install: git pull
 
+before_install: 
+  - brew install rpm
+  - brew install dpkg
+
 script:
   - if [ "$NEED_TEST" = true ]; then yarn test; fi
   - if [ "$NEED_BUILD" = true ]; then yarn build --linux --win --mac -p never; fi
