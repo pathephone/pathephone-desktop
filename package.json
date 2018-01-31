@@ -2,12 +2,16 @@
   "name": "pathephone-desktop",
   "productName": "Pathephone",
   "description": "Distributed audio player",
-  "version": "0.4.0",
+  "version": "0.0.0-development",
   "private": true,
   "author": "Maxim Ilyin <negamaxi@gmail.com>",
   "copyright": "Copyright © 2018 Maxim Ilyin",
   "license": "MIT",
   "homepage": "http://pathephone.metabin.space",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pathephone/pathephone-desktop.git"
+  },
   "main": "app/background.js",
   "build": {
     "appId": "space.metabin.pathephone",
@@ -61,9 +65,7 @@
     "lint": "eslint --fix .",
     "start": "node build/start.js",
     "prebuild": "webpack --config=build/webpack.app.config.js --env=production",
-    "build": "electron-builder",
-    "bump:release": "standard-version",
-    "bump:prerelease": "standard-version --prerelease"
+    "build": "electron-builder"
   },
   "dependencies": {
     "ajv": "^5.3.0",
@@ -140,7 +142,6 @@
     "sass-loader": "^6.0.6",
     "source-map-support": "^0.5.0",
     "spectron": "^3.7.2",
-    "standard-version": "^4.2.0",
     "style-loader": "^0.19.0",
     "styled-jsx": "^2.2.1",
     "url-loader": "^0.6.2",

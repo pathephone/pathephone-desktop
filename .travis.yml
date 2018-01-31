@@ -2,27 +2,6 @@
 jobs:
   include:
 
-    # DEVELOPMENT RELEASE / TEST + BUILD
-
-    - if: tag =~ ^@dev-*
-      os: osx
-      osx_image: xcode9.0
-      language: node_js
-      node_js: "8"
-      env:
-        - NEED_TEST=true
-        - NEED_BUILD=true
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
-
-    - if: tag =~ ^@dev-*
-      os: linux
-      services: docker
-      language: generic
-      env:
-        - NEED_TEST=true
-        - NEED_BUILD=true
-
     # TEST
 
     - if: branch = master AND type = pull_request
@@ -32,41 +11,46 @@ jobs:
       node_js: "8"
       env:
         - NEED_TEST=true
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
 
     # RELEASE
 
-    - if: tag =~ ^v\d+\.\d+\.\d+$
+    - if: branch = master AND type != pull_request
       os: osx
       osx_image: xcode9.0
       language: node_js
       node_js: "8"
       env:
-        - NEED_RELEASE=true
-        - ELECTRON_CACHE=$HOME/.cache/electron
-        - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+        - NEED_TEST=true
+        - NEED_BUILD=true
 
-    - if: tag =~ ^v\d+\.\d+\.\d+$
+    - if: branch = master AND type != pull_request
       os: linux
+      dist: trusty
+      sudo: required
       services: docker
-      language: generic
+      language: node_js
+      node_js: "8"
       env:
-        - NEED_RELEASE=true
+        - NEED_TEST=true
+        - NEED_BUILD=true
 
 cache:
   yarn: true
   directories:
-  - node_modules
-  - $HOME/.cache/electron
-  - $HOME/.cache/electron-builder
+    - node_modules
 
 before_install: git pull
 
+before_script:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3; fi 
+
 script:
+  - if [ "$NEED_TEST" = true ]; then yarn test; fi
   - |
-    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      if [ "$NEED_BUILD" = true ]; then
+    if [ "$NEED_BUILD" = true ]; then
+      if [ "$TRAVIS_OS_NAME" == "linux" ]; then
         docker run --rm \
           --env-file <(TMP_TCM=$TRAVIS_COMMIT_MESSAGE && unset TRAVIS_COMMIT_MESSAGE && env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_' && export TRAVIS_COMMIT_MESSAGE=$TMP_TCM) \
           -v ${PWD}:/project \
@@ -74,41 +58,13 @@ script:
           -v ~/.cache/electron-builder:/root/.cache/electron-builder \
           electronuserland/builder:wine \
           /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win -p never"
-      fi
-      if [ "$NEED_RELEASE" = true ]; then
-        docker run --rm \
-          --env-file <(TMP_TCM=$TRAVIS_COMMIT_MESSAGE && unset TRAVIS_COMMIT_MESSAGE && env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_' && export TRAVIS_COMMIT_MESSAGE=$TMP_TCM) \
-          -v ${PWD}:/project \
-          -v ~/.cache/electron:/root/.cache/electron \
-          -v ~/.cache/electron-builder:/root/.cache/electron-builder \
-          electronuserland/builder:wine \
-          /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn build --linux --win -p always"
-      fi
-    else
-      if [ "$NEED_TEST" = true ]; then
-        yarn test
-      fi 
-      if [ "$NEED_BUILD" = true ]; then
-        yarn build -p never
-      fi
-      if [ "$NEED_RELEASE" = true ]; then
-        yarn build -p always
+      else
+          yarn build -p never
       fi
     fi
 
 deploy:
-  # prod builds
-  - provider: releases
-    api_key: $GH_TOKEN
-    prerelease: true
-    file_glob: true
-    file:
-      - dist/*.dmg
-      - dist/*.exe
-      - dist/*.AppImage
-      - dist/*.deb
-      - dist/*.rpm
-    skip_cleanup: true
-    on:
-      tags: true
-      condition: $TRAVIS_TAG =~ ^@dev-*
+  provider: script
+  skip_cleanup: true
+  script:
+    - npx travis-deploy-once "npx semantic-release"
