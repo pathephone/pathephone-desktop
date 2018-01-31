@@ -1,4 +1,5 @@
 {
+  "branch": "semantic-release",
   "verifyConditions": "@semantic-release/github",
   "publish": [
     {
