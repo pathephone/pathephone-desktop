@@ -37,6 +37,7 @@ app.on('ready', async () => {
   let ipfsDaemonApi
   try {
     ipfsDaemonApi = await startIpfs({dataDirectory: app.getPath('userData') + '/ipfs'})
+    global.portApi = ipfsDaemonApi.options.portApi
   } catch (error) {
     console.log(error)
   }

@@ -110,7 +110,8 @@
     "tar-stream": "^1.5.5",
     "targz": "^1.0.1",
     "through2": "^2.0.3",
-    "unzip": "^0.1.11"
+    "unzip": "^0.1.11",
+    "util.promisify": "^1.0.0"
   },
   "devDependencies": {
     "@semantic-release/exec": "^2.0.0",
