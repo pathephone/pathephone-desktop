@@ -1,11 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
-import RootConnected from './view/Root'
+import Root from './view/Root'
 import './css/izi.css'
 import './css/global.css'
 import './css/animate.css'
 
 render(
-  <RootConnected />,
+  <Root />,
   document.getElementById('mount-point')
 )
