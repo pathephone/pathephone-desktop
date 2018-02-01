@@ -1,26 +1,11 @@
 
 jobs:
   include:
-
-    # TEST
-
-    - if: branch = master AND type = pull_request
+    - if: branch = master
       os: osx
       osx_image: xcode9.0
       language: node_js
       node_js: "8"
-      env:
-        - NEED_TEST=true
-
-    # RELEASE
-
-    - if: branch = semantic-release AND type != pull_request
-      os: osx
-      osx_image: xcode9.0
-      language: node_js
-      node_js: "8"
-      env:
-        - NEED_BUILD=true
 
 cache:
   yarn: true
@@ -35,6 +20,10 @@ before_install:
   - brew install jq
 
 script:
-  - if [ "$NEED_TEST" = true ]; then yarn test; fi
+  - yarn test
 
-after_success: if [ "$NEED_BUILD" = true ]; then npx travis-deploy-once "npx semantic-release"; fi
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - npx travis-deploy-once "npx semantic-release"
