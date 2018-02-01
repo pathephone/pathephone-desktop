@@ -15,7 +15,7 @@ describe('IPFS', function () {
     const { app } = this
     await app.client.waitForExist('#app')
   })
-  
+
   const bufferString = Buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]) // QmTRSxHhL8Uaz1YXfWLkydRQ7nPSHXaNFsYaHjqjCpU8W7
 
   describe('files', function () {
