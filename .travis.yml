@@ -32,9 +32,9 @@ before_install: git pull
 before_install: 
   - brew install rpm
   - brew install dpkg
+  - brew install jq
 
 script:
   - if [ "$NEED_TEST" = true ]; then yarn test; fi
-  - if [ "$NEED_BUILD" = true ]; then yarn build --linux --win --mac -p never; fi
 
-after_success: npx travis-deploy-once "npx semantic-release"
+after_success: if [ "$NEED_BUILD" = true ]; then npx travis-deploy-once "npx semantic-release"; fi
