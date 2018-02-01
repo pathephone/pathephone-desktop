@@ -4,7 +4,7 @@
   "publish": [
     {
       "path": "@semantic-release/exec",
-      "cmd": "sh pre-build.sh ${nextRelease.version} && yarn build --linux --win --mac -p never && sh post-build"
+      "cmd": "sh pre-build.sh ${nextRelease.version} && yarn build --linux --win --mac -p never && sh post-build.sh"
     },
     {
       "path": "@semantic-release/github",
