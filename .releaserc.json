@@ -1,6 +1,11 @@
 {
+  "branch": "semantic-release",
   "verifyConditions": "@semantic-release/github",
   "publish": [
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "sh pre-build.sh ${nextRelease.version} && yarn build --linux --win --mac -p never && sh post-build.sh"
+    },
     {
       "path": "@semantic-release/github",
       "assets": "dist/*"

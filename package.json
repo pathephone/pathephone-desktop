@@ -34,7 +34,9 @@
     "linux": {
       "category": "Audio",
       "target": [
-        "AppImage"
+        "AppImage",
+        "rpm",
+        "deb"
       ],
       "extraFiles": [
         {
@@ -111,6 +113,7 @@
     "unzip": "^0.1.11"
   },
   "devDependencies": {
+    "@semantic-release/exec": "^2.0.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-loader": "^7.1.2",
