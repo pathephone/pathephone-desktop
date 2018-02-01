@@ -9,16 +9,24 @@ describe('IPFS', function () {
   before(utils.beforeEach)
   after(utils.afterEach)
 
+  let ipfs
   // запускаем ipfs с приложением, простой путь
   it('app is runned', async function () {
     const { app } = this
     await app.client.waitForExist('#app')
   })
-
-  const ipfs = getIpfsNode()
+  
   const bufferString = Buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]) // QmTRSxHhL8Uaz1YXfWLkydRQ7nPSHXaNFsYaHjqjCpU8W7
 
   describe('files', function () {
+    it('init with port', async function () {
+      const { app } = this
+      const port = await app.electron.remote.getGlobal('portApi')
+      assert(port >= 5001)
+      // we also need to wait create of ipfs
+      ipfs = getIpfsNode({port})
+    })
+
     it('adding', async () => {
       const hash = (await ipfs.add(bufferString))[0].hash
       assert.equal(hash, 'QmTRSxHhL8Uaz1YXfWLkydRQ7nPSHXaNFsYaHjqjCpU8W7')
