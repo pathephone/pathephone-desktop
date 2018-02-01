@@ -1,9 +1,8 @@
-const electron = require('electron')
 const { Application } = require('spectron')
 
 const beforeEach = function () {
   this.app = new Application({
-    path: electron,
+    path: 'dist/unpacked/pathephone-desktop',
     args: ['.']
   })
   return this.app.start()
