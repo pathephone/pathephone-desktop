@@ -114,6 +114,22 @@ describe('add album process', function () {
         throw new Error('Received value is not an IPFS CID value.')
       }
     })
+    it('can edit song title after add', async function () {
+      const selector = 'input[name="album.tracks[0].title"]'
+      const { app } = this
+      await app.client.$(selector).setValue('DEgITx Awesome song')
+      if (await app.client.$(selector).getValue() !== 'DEgITx Awesome song') {
+        throw new Error('Cant edit track title')
+      }
+    })
+    it('can edit album title', async function () {
+      const selector = 'input[name="album.title"]'
+      const { app } = this
+      await app.client.$(selector).setValue('DEgITx album')
+      if (await app.client.$(selector).getValue() !== 'DEgITx album') {
+        throw new Error('Cant edit album title')
+      }
+    })
   })
 
   // ADD COVER
@@ -160,7 +176,7 @@ describe('add album process', function () {
       const [ title, artist ] = await Promise.all(
         selectors.map(selector => app.client.$(selector).getText())
       )
-      if (title !== 'Red Flower' || artist !== 'DEgITx') {
+      if (title !== 'DEgITx album' || artist !== 'DEgITx') {
         throw new Error('Published album does not appear.')
       }
     })
