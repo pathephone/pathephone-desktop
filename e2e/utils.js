@@ -6,17 +6,17 @@ let pathToBin
 
 if (platform === 'darwin') {
   pathToBin = 'dist/mac/pathephone-desktop'
-} else {
+} else
 if (platform === 'linux') {
   pathToBin = 'dist/linux-unpacked/pathephone-desktop'
-} else {
+} else
 if (platform === 'win32') {
   pathToBin = 'dist/win-unpacked/pathephone-desktop'
 }
 
 const beforeEach = function () {
   this.app = new Application({
-    path: 'dist/unpacked/pathephone-desktop',
+    path: pathToBin,
     args: ['.']
   })
   return this.app.start()
