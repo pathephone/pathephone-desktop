@@ -6,7 +6,7 @@ import FormEditAlbum from './FormAlbum/FormEditAlbum'
 
 const stateMethods = {
   onAboutChange (field, value) {
-    albumFormState('EDIT_ABOUT', field, value)
+    albumFormState('EDIT_ABOUT', field.substring(field.lastIndexOf('.') + 1), value) // исправляет именование field с точками для теста
   },
   setRawAlbum () {
     albumFormState('DROP')
@@ -30,7 +30,7 @@ const stateMethods = {
     albumFormState('MOVE_TRACK_DOWN', index)
   },
   onTrackChange (index, field, value) {
-    albumFormState('EDIT_TRACK', index, field, value)
+    albumFormState('EDIT_TRACK', index, field.substring(field.lastIndexOf('.') + 1), value) // исправляет именование field с точками для теста
   },
   onDeleteTrack (index) {
     albumFormState('DELETE_TRACK', index)
