@@ -5,7 +5,7 @@ const { platform } = process
 let pathToBin
 
 if (platform === 'darwin') {
-  pathToBin = 'dist/mac/Pathephone.app/Contents/Pathephone'
+  pathToBin = 'dist/mac/Pathephone.app/Contents/MacOS/Pathephone'
 } else
 if (platform === 'linux') {
   pathToBin = 'dist/linux-unpacked/pathephone-desktop'
