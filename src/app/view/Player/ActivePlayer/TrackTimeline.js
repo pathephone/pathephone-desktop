@@ -26,7 +26,7 @@ class TrackTimeline extends React.Component {
       })
     }
     return (
-      <div className='izi-x izi-fill-width'>
+      <div className='player__trackline'>
         <input
           type='range'
           min='0'
@@ -41,12 +41,7 @@ class TrackTimeline extends React.Component {
             handleChange({currentTarget: this.rangePicker})
           }}
         />
-        <small className='duration izi-margin-left'>{secondsTohhmmss(length)}</small>
-        <style jsx>{`
-  .duration {
-    flex-shrink: 0;
-  }
-        `}</style>
+        <small className='timeline__duration izi-izi-margin-left'>{secondsTohhmmss(length)}</small>
       </div>
     )
   }

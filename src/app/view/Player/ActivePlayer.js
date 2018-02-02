@@ -83,70 +83,47 @@ class ActivePlayer extends React.Component {
   }
   render () {
     const {
-      track, playerStateValue
+      playerStateValue
     } = this.props
-    const { title, artist } = track
     const {
       pause, shuffle, repeat, volume, currentTime
     } = playerStateValue
     const { readyToPlay } = this.state
     return (
-      <div className='player izi-fill-width izi-padding izi-y'>
-        <div className='player__upper-block izi-x'>
-          <div className='player__info izi-y izi-padding-x'>
-            <h4 className='player__track-title'>{title}</h4>
-            <h5 className='player__track-artist'>{artist}</h5>
-          </div>
+      <div className='player'>
+        <div className='player__playback-controls'>
+          <button onClick={onPrevTrack}>
+            <MdSkipPrev />
+          </button>
+          <button onClick={onTogglePause}>
+            {
+              pause
+                ? <MdPlay />
+                : <MdPause />
+            }
+          </button>
+          <button onClick={onNextTrack}>
+            <MdSkipNext />
+          </button>
         </div>
-        <div className='player__lower-block izi-x izi--gap izi-fill-width'>
-          <div className='izi-x izi-no-shrink'>
-            <button onClick={onPrevTrack}>
-              <MdSkipPrev />
-            </button>
-            <button onClick={onTogglePause}>
-              {
-                pause
-                  ? <MdPlay />
-                  : <MdPause />
-              }
-            </button>
-            <button onClick={onNextTrack}>
-              <MdSkipNext />
-            </button>
-          </div>
-          {
-            readyToPlay && (
-              <TrackTimeline
-                position={this.prepareTime || currentTime}
-                length={this.audio.duration}
-                onChange={this.onSetCurrentTime}
-              />
-            )
-          }
-          <VolumeInput value={volume} onChange={onChangeVolume} />
-          <div className='izi-x izi-no-shrink'>
-            <button onClick={onToggleShuffle}>
-              <MdShuffle style={shuffle ? {fill: 'chocolate'} : undefined} />
-            </button>
-            <button onClick={onToggleRepeat}>
-              <MdRepeat style={repeat ? {fill: 'chocolate'} : undefined} />
-            </button>
-          </div>
+        {
+          readyToPlay && (
+            <TrackTimeline
+              position={this.prepareTime || currentTime}
+              length={this.audio.duration}
+              onChange={this.onSetCurrentTime}
+            />
+          )
+        }
+        <VolumeInput value={volume} onChange={onChangeVolume} />
+        <div className='player__rest-controls'>
+          <button onClick={onToggleShuffle}>
+            <MdShuffle style={shuffle ? {fill: 'chocolate'} : undefined} />
+          </button>
+          <button onClick={onToggleRepeat}>
+            <MdRepeat style={repeat ? {fill: 'chocolate'} : undefined} />
+          </button>
         </div>
-        <style jsx>{`
-button {
-  flex-shrink: 0;
-}
-.player__track-title {
-    text-align: center;
-    margin: 1em 0 0 0;
-}
-.player__track-artist {
-    text-align: center;
-    margin: 0.5em 0;
-    color: darkgray;
-}
-        `}</style>
       </div>
     )
   }

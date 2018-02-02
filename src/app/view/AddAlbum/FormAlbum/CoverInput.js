@@ -6,6 +6,8 @@ import BrokenImageIcon from '#/BrokenImageIcon'
 import GetIpfsImage from '#/GetIpfsImage'
 import putFilesToIpfs from '~/scripts/putFilesToIpfs'
 
+import './CoverInput.css'
+
 const checkIsImage = (file) => {
   return file.type.includes('image')
 }
@@ -55,10 +57,11 @@ class CoverInput extends React.Component {
     return (
       <button
         onClick={this.handleClick}
-        className='cover-upload izi-margin-left'
+        className='cover-input__container izi-margin-left'
       >
-        <div className='cover-upload__inner izi-relative izi-y izi-center'>
+        <div className='cover-input__inner izi-relative izi-y izi-center'>
           <input
+            className='cover-input__input'
             ref={c => { this.fileInput = c }}
             id='input_add-cover'
             type='file'
@@ -76,23 +79,6 @@ class CoverInput extends React.Component {
             )
           }
         </div>
-        <style jsx>{`
-input[type='file'] {
-  display: none;
-}
-.cover-upload {
-  background: none;
-  flex-shrink: 0;
-  padding: 0;
-  border: none;
-}
-.cover-upload__inner {
-  height: 12.5em;
-  width: 12.5em;
-  border: 1px solid #d3d3d3;
-  padding: 0.25em;
-}
-        `}</style>
       </button>
     )
   }
