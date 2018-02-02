@@ -6,6 +6,8 @@ import addAlbums from './AlbumsFeed/addAlbums'
 import playAlbums from './AlbumsFeed/playAlbums'
 import deleteAlbums from './AlbumsFeed/deleteAlbums'
 
+import './AlbumsFeed/AlbumsFeed.css'
+
 class AlbumsFeed extends React.Component {
   state = {
     selected: []
@@ -85,27 +87,10 @@ class AlbumsFeed extends React.Component {
           }
         </div>
         {
-          selected.length > 0 && [
-            <hr key='divider' />,
+          selected.length > 0 && (
             <SelectedActions {...this.getSelectedActionsProps()} key='actions' />
-          ]
+          )
         }
-        <style jsx>{`
-.albums-feed {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 12.5em) ;
-  justify-content: space-around;
-  align-content: flex-start;
-  grid-gap: 1em;
-  padding: 1em;
-  overflow-y: auto;
-  flex-basis: 100%;
-  flex-shrink: 1;
-}
-hr {
-  width: 100%;
-}
-      `}</style>
       </div>
     )
   }

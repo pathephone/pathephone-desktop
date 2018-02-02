@@ -1,4 +1,5 @@
 import React from 'react'
+import './ModalLayer.css'
 
 const ModalLayer = ({ children, onClick, ...rest }) => {
   const onMissClick = e => {
@@ -9,17 +10,10 @@ const ModalLayer = ({ children, onClick, ...rest }) => {
   return (
     <div
       {...rest}
-      className='modal-layer izi-fixed izi-fill izi-top izi-left izi-y'
+      className='modal-layer'
       onClick={onClick && onMissClick}
     >
       {children}
-      <style jsx>{`
-.modal-layer {
-  background-color: rgba(10,10,10,0.5);
-  overflow-y: auto;
-  z-index: 1;
-}
-      `}</style>
     </div>
   )
 }

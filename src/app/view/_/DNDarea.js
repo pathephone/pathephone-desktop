@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './DNDarea.css'
+
 class DNDarea extends React.Component {
   handleChange = (e) => {
     const { files } = e.currentTarget
@@ -9,7 +11,7 @@ class DNDarea extends React.Component {
   render () {
     const { children, className, style, ...input } = this.props
     return (
-      <div className={className} style={style}>
+      <div className='izi-relative izi-fill' style={style}>
         {
           children
         }
@@ -18,17 +20,8 @@ class DNDarea extends React.Component {
           ref={c => { this.input = c }}
           onChange={this.handleChange}
           type='file'
-          className='cover-upload-input izi-fill izi-absolute izi-top izi-left'
+          className='dnd__input izi-fill izi-absolute izi-top izi-left'
         />
-        <style jsx>{`
-div {
-  position: relative;
-}
-.cover-upload-input {
-  opacity: 0;
-  cursor: pointer;
-}
-        `}</style>
       </div>
     )
   }

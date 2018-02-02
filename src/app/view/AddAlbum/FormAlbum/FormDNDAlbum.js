@@ -9,6 +9,8 @@ import path from 'path'
 import directoryFilesRecursive from '~/utils/directoryFilesRecursive'
 import fileType from 'file-type'
 
+import './FormDNDAlbum.css'
+
 const getDirectoriesContentsRecursive = (files) => {
   const directories = files.filter(file => file.type === '')
   let directoriesFiles = []
@@ -73,7 +75,7 @@ class FormDNDAlbum extends React.Component {
             multiple
             onChange={this.handleIncomingFiles}
           >
-            <div className='dnd-area izi-padding izi-y izi-center izi-gray'>
+            <div className='dnd-album izi-padding izi-y izi-center izi-gray'>
               {
                 processing ? [
                   <MdDrop className='sync-icon rotating' key='icon' />,
@@ -86,11 +88,6 @@ class FormDNDAlbum extends React.Component {
             </div>
           </DNDarea>
         </fieldset>
-        <style jsx>{`
-.dnd-area {
-  height: 20em;
-}
-        `}</style>
       </div>
     )
   }
