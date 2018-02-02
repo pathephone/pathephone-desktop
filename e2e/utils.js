@@ -5,13 +5,13 @@ const { platform } = process
 let pathToBin
 
 if (platform === 'darwin') {
-  pathToBin = 'dist/mac/pathephone-desktop'
+  pathToBin = 'dist/mac/Pathephone.app'
 } else
 if (platform === 'linux') {
   pathToBin = 'dist/linux-unpacked/pathephone-desktop'
 } else
 if (platform === 'win32') {
-  pathToBin = 'dist/win-unpacked/pathephone-desktop'
+  pathToBin = 'dist/win-unpacked/Pathephone.exe'
 }
 
 const beforeEach = function () {
