@@ -23,7 +23,7 @@ describe('albums feed', function () {
     })
     it('selected actions bar appears', function () {
       const { app } = this
-      return app.client.waitForExist('.selected-actions__bar')
+      return app.client.waitForExist('.selected-actions')
     })
   })
   describe('selected actions bar', function () {

@@ -28,7 +28,7 @@ class AddAlbumModal extends React.Component {
     return (
       <div
         ref={c => { this.dropZone = c }}
-        className='modal-layer izi-fixed izi-fill izi-top izi-left izi-y'
+        className='modal-layer'
         onDragEnter={this.handleDragEnter}
         onDragLeave={this.handleDragLeave}
       >
@@ -40,13 +40,6 @@ class AddAlbumModal extends React.Component {
             {...this.state}
           />
         </ModalWindow>
-        <style jsx>{`
-.modal-layer {
-  background-color: rgba(10,10,10,0.5);
-  overflow-y: auto;
-  z-index: 1;
-}
-        `}</style>
       </div>
     )
   }

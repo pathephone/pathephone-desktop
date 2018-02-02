@@ -1,0 +1,12 @@
+
+.selected-actions {
+  border-top: 1px solid gray;
+}
+
+.selected-actions small:not(:first-child) {
+  margin-left: 0.25em;
+}
+
+.selected-actions__cancel {
+  margin-left: auto;
+}

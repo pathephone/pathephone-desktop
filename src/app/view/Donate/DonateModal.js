@@ -4,20 +4,12 @@ import ModalWindow from '#/ModalWindow'
 import ModalWindowHeader from '#/ModalWindowHeader'
 import suatmm from '~/css/suatmm.gif'
 
+import './DonateModal.css'
+
 const DonatePill = ({ coin, address }) => (
   <div className='donate-pill izi-xs'>
     <div className='donate-pill__coin'><b>{coin}</b></div>
     <div className='donate-pill__address'>{address}</div>
-    <style jsx>{`
-.donate-pill {
-  border: 1px solid #f2f2f2;
-}
-.donate-pill > * {
-  padding: 0.5em;
-}
-.donate-pill__address {
-}
-    `}</style>
   </div>
 )
 const DonateBody = () => (

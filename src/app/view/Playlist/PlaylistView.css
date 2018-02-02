@@ -1,0 +1,12 @@
+
+.playlist {
+  grid-area: playlist;
+  background-color: #f1f1f1;
+  overflow-y: auto;
+}
+
+.playlist__empty-message {
+  padding: 1em;
+  text-align: center;
+  text-transform: uppercase;
+}

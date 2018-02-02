@@ -1,0 +1,15 @@
+.cover-input__container {
+  background: none;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+}
+.cover-input__inner {
+  height: 12.5em;
+  width: 12.5em;
+  border: 1px solid #d3d3d3;
+  padding: 0.25em;
+}
+.cover-input__input {
+  display: none;
+}

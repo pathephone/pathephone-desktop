@@ -2,9 +2,10 @@ import React from 'react'
 import bind from '~/utils/recallReact'
 import playlistState from '~/state/playlist'
 import playerState from '~/state/player'
-import ActivePlayer from './ActivePlayer'
+import ActivePlayer from './Player/ActivePlayer'
+import PendingPlayer from './Player/PendingPlayer'
 
-// import PendingPlayer from './PendingPlayer'
+import './Player/Player.css'
 
 const ActivePlayerConnected = bind({ playerStateValue: playerState }, ActivePlayer)
 
@@ -33,7 +34,9 @@ class Player extends React.Component {
   }
   render () {
     const { track } = this.state
-    if (!track) return null
+    if (!track) {
+      return <PendingPlayer />
+    }
     return (
       <ActivePlayerConnected
         track={track}

@@ -2,23 +2,17 @@
 import React from 'react'
 import Navigation from './Navigation'
 import Playlist from './Playlist'
-import Player from './Player/Player'
+import Player from './Player'
 import Page from './Page'
+
+import './App.css'
 
 const App = () => (
   <div id='app' className='izi-fill izi-ys'>
-    <div className='browser izi-xs izi-fill'>
-      <Navigation />
-      <Page />
-      <Playlist />
-    </div>
+    <Navigation />
+    <Page />
+    <Playlist />
     <Player />
-    <style jsx>{`
-.browser {
-  max-height: 100%;
-  flex-shrink: 1;
-}
-    `}</style>
   </div>
 )
 
