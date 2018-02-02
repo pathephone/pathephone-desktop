@@ -1,24 +1,6 @@
 import React from 'react'
-import Input from '../../_/Input'
-import MdAudio from 'react-icons/lib/md/audiotrack'
-
-const AudioElement = ({ hash, name }) => (
-  <div className='izi-x'>
-    <MdAudio className='icon' />
-    <input value={hash} name={name} disabled className='hash izi-dots izi-fill-width izi-margin-left' />
-    <style jsx>{`
-.icon {
-  flex-shrink: 0
-}
-.hash {
-  border: none;
-  background: none;
-  font-size: 0.75em;
-  color: #434343;
-}
-    `}</style>
-  </div>
-)
+import Input from '#/Input'
+import AudioElement from './TrackInput/AudioElement'
 
 class TrackInput extends React.Component {
   render () {

@@ -11,7 +11,7 @@ const VolumeInput = ({ value, onChange }) => {
   }
   const inputValue = value * 100
   return (
-    <div className='izi-x'>
+    <div className='player__volume-control'>
       {
         inputValue === 0 ? (
           <MdVolumeOff />

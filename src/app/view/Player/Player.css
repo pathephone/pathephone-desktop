@@ -1,0 +1,28 @@
+.player {
+    padding: 1em;
+    grid-area: player;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 1px solid gray;
+}
+
+.player__playback-controls {
+    flex-shrink: 0;
+}
+
+.player__trackline {
+    display: flex;
+    align-items: center;
+    flex-basis: 70%;
+}
+
+.player__volume-control {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.player__rest-controls {
+    flex-shrink: 0;
+}

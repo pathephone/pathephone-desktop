@@ -1,0 +1,6 @@
+
+.navigation {
+  grid-area: navigation;
+  background-color: darkslategrey;
+  overflow-y: auto;
+}
