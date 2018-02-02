@@ -13,7 +13,6 @@
     "stage-0"
   ],
   "plugins": [
-    "styled-jsx/babel",
     ["transform-object-rest-spread", { "useBuiltIns": true }],
     [
       "babel-plugin-root-import", 

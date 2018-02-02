@@ -1,13 +1,12 @@
 {
-  "verifyConditions": "@semantic-release/github",
   "publish": [
+    "@semantic-release/npm",
     {
       "path": "@semantic-release/exec",
-      "cmd": "sh pre-build.sh ${nextRelease.version} && yarn build --linux --win --mac -p never && sh post-build.sh"
+      "cmd": "yarn build --linux --win --mac"
     },
-    {
-      "path": "@semantic-release/github",
-      "assets": "dist/*"
-    }
-  ]
+    "@semantic-release/github"
+  ],
+  "assets": "dist/*",
+  "npmPublish": false
 }

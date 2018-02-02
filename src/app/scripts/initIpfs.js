@@ -1,3 +1,4 @@
+import { remote } from 'electron'
 import albums from '../data/albums'
 import getIpfs from '../api/ipfs'
 import getCidString from '../utils/getCidString'
@@ -58,6 +59,9 @@ const publishAlbumSchema = async () => {
 }
 
 const initIpfs = async () => {
+  // first init
+  console.log('FIRST INIT IPFS WITH PORT')
+  getIpfs({port: remote.getGlobal('portApi')})
   console.log('PUBLISHING ALBUM SCHEMA')
   await publishAlbumSchema()
   console.log('PUBLISHING ALBUMS FROM DB')

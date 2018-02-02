@@ -52,13 +52,14 @@
           "to": "./MacOS"
         }
       ]
-    }
+    },
+    "publish": null
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps && node build/ipfs-download.js",
     "pretest:unit": "webpack --config=build/webpack.unit.config.js --env=test --display=none",
     "test:unit": "electron-mocha temp/specs.js --renderer --require source-map-support/register",
-    "pretest:e2e": "webpack --config=build/webpack.app.config.js --env=test --display=none",
+    "pretest:e2e": "npm run build -- --dir && webpack --config=build/webpack.app.config.js --env=test --display=none",
     "test:e2e": "mocha e2e/tests.e2e.js --require babel-core/register --require source-map-support/register",
     "test:lint": "eslint .",
     "test": "npm run test:lint && npm run test:unit && npm run test:e2e",
@@ -108,7 +109,8 @@
     "tar-stream": "^1.5.5",
     "targz": "^1.0.1",
     "through2": "^2.0.3",
-    "unzip": "^0.1.11"
+    "unzip": "^0.1.11",
+    "util.promisify": "^1.0.0"
   },
   "devDependencies": {
     "@semantic-release/exec": "^2.0.0",
@@ -142,7 +144,6 @@
     "source-map-support": "^0.5.0",
     "spectron": "^3.7.2",
     "style-loader": "^0.19.0",
-    "styled-jsx": "^2.2.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-merge": "^4.1.0",
