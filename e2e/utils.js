@@ -1,5 +1,19 @@
 const { Application } = require('spectron')
 
+const { platform } = process
+
+let pathToBin
+
+if (platform === 'darwin') {
+  pathToBin = 'dist/mac/pathephone-desktop'
+} else {
+if (platform === 'linux') {
+  pathToBin = 'dist/linux-unpacked/pathephone-desktop'
+} else {
+if (platform === 'win32') {
+  pathToBin = 'dist/win-unpacked/pathephone-desktop'
+}
+
 const beforeEach = function () {
   this.app = new Application({
     path: 'dist/unpacked/pathephone-desktop',
