@@ -2,6 +2,8 @@ import React from 'react'
 import PlaylistTrack from './PlaylistTrack'
 import clearPlaylist from './clearPlaylist'
 
+import './PlaylistView.css'
+
 const PlaylistView = ({ playlist }) => {
   const SingleTrackWrapper = track => {
     return <PlaylistTrack {...track} key={track.id} />
@@ -14,20 +16,12 @@ const PlaylistView = ({ playlist }) => {
             clear
           </button>
         ) : (
-          <label className='izi-padding izi-text-center izi-uppercase'>playlist is empty</label>
+          <label className='playlist__empty-message'>playlist is empty</label>
         )
       }
       {
         playlist.map(SingleTrackWrapper)
       }
-      <style jsx>{`
-.playlist {
-  width: 15em;
-  flex-shrink: 0;
-  background-color: #f1f1f1;
-  overflow-y: auto;
-}
-      `}</style>
     </div>
   )
 }

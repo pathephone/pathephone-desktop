@@ -3,6 +3,7 @@ import pageState from '../state/page'
 import bind from '../utils/recallReact'
 import AddAlbum from './AddAlbum'
 import Donate from './Donate'
+import './Navigation.css'
 
 class Navigation extends Component {
   render () {
@@ -10,15 +11,6 @@ class Navigation extends Component {
       <nav className='navigation izi-ys izi-padding'>
         <AddAlbum />
         <Donate />
-        <style jsx>{`
-.navigation {
-  width: 15em;
-  flex-shrink: 0;
-  background-color: darkslategrey;
-  height: 100%;
-  overflow-y: auto;
-}
-        `}</style>
       </nav>
     )
   }

@@ -44,3 +44,9 @@ svg {
 .izi-rounded {
   border-radius: 0.15em;
 }
+
+main {
+  flex-shrink: 1;
+  min-width: 15em;
+  overflow-y: auto;
+}
