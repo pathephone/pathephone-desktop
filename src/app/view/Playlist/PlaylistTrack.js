@@ -3,6 +3,8 @@ import MdClose from 'react-icons/lib/md/close'
 import setCurrentTrack from './setCurrentTrack'
 import removeTrack from './removeTrack'
 
+import './PlaylistTrack.css'
+
 const PlaylistTrack = ({ title, artist, current, id }) => {
   const handleSetCurrent = () => {
     if (!current) {
@@ -33,41 +35,6 @@ const PlaylistTrack = ({ title, artist, current, id }) => {
       >
         <MdClose />
       </div>
-      <style jsx>{`
-.playlist-track {
-  border-left: 2px solid #f2f2f2;
-}
-.playlist-track--current {
-  border-left: 2px solid green;
-}
-.playlist-track__button {
-  background: none;
-  border: none;
-  outline: none;
-  text-align: left;
-}
-.playlist-track__button:focus {
-  color: orange;
-}
-.playlist-track__artist-name {
-  color: darkgray;
-  margin-top: 0.5em;
-}
-.playlist-track:not(:hover) .playlist-track__remove,
-.playlist-track--current:not(:hover) .playlist-track__remove {
-  visibility: hidden;
-}
-
-.playlist-track__remove {
-  flex-shrink: 0;
-  padding: 0.5em;
-  cursor: pointer;
-}
-.playlist-track__remove:hover {
-  flex-shrink: 0;
-  background: rgb(190,190,190);
-}
-      `}</style>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import ReactToggleView from 'react-toggle-view'
 import DonateModal from './Donate/DonateModal'
 
 const Trigger = ({ showView }) => (
-  <button onClick={showView} id='add-album_open'>
+  <button onClick={showView} id='donate__modal-trigger'>
     donate
   </button>
 )

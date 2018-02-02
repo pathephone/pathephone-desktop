@@ -6,16 +6,11 @@ import publishAlbum from '../../../scripts/publishAlbum'
 import validateAlbum from '../../../scripts/validateAlbum'
 
 const Tips = () => (
-  <fieldset>
+  <fieldset className='izi-green'>
     <legend>Tips</legend>
     <ul>
       <li>You can just <b>drag and drop</b> album files here. All fields will be filled automatically if possible.</li>
     </ul>
-    <style jsx>{`
-fieldset {
-  color: green;
-}
-    `}</style>
   </fieldset>
 )
 
@@ -24,18 +19,13 @@ const Error = ({ dataPath, message }, index) => {
 }
 
 const Errors = ({ data }) => (
-  <fieldset id='add-album_errors'>
+  <fieldset id='add-album_errors' className='izi-red'>
     <legend>Some errors occured</legend>
     <ul>
       {
         data.map(Error)
       }
     </ul>
-    <style jsx>{`
-fieldset {
-  color: red;
-}
-    `}</style>
   </fieldset>
 )
 
