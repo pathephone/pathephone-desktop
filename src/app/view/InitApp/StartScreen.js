@@ -3,6 +3,8 @@ import React from 'react'
 import ProgressBar from './StartScreen/ProgressBar'
 import ErrorView from './StartScreen/ErrorView'
 
+import './StartScreen/StartScreen.css'
+
 const StartScreen = ({ stage, payload }) => {
   const finalStage = 2
   const progress = stage / finalStage * 100
@@ -14,11 +16,6 @@ const StartScreen = ({ stage, payload }) => {
           <ErrorView error={payload.error} />
         )
       }
-      <style jsx>{`
-.start-screen {
-  background-color: white;
-}
-      `}</style>
     </div>
   )
 }

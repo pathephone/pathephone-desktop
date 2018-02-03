@@ -1,8 +1,7 @@
 import React from 'react'
 
 const ErrorView = ({ error }) => {
-  console.error(error)
-  return <h1>{error.message}</h1>
+  return <h4 className='izi-red izi-uppercase'>{error.message}</h4>
 }
 
 export default ErrorView
