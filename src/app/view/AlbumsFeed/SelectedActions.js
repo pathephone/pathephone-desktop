@@ -4,7 +4,7 @@ import MdAdd from 'react-icons/lib/md/playlist-add'
 import MdDelete from 'react-icons/lib/md/delete'
 import MdClear from 'react-icons/lib/md/clear'
 
-import './SelectedActions'
+import './SelectedActions.css'
 
 const SelectedActions = ({ selectedNum, onPlay, onAdd, onDelete, onClear }) => {
   return (
