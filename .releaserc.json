@@ -1,5 +1,7 @@
 {
+  "verifyConditions": ["@semantic-release/changelog", "@semantic-release/git"],
   "publish": [
+    "@semantic-release/changelog",
     "@semantic-release/npm",
     {
       "path": "@semantic-release/exec",
