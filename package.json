@@ -113,7 +113,9 @@
     "util.promisify": "^1.0.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^1.0.0",
     "@semantic-release/exec": "^2.0.0",
+    "@semantic-release/git": "^3.0.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-loader": "^7.1.2",
