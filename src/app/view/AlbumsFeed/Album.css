@@ -14,8 +14,8 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .album--selected .album__cover {
-  background-color: dodgerblue;
-  border-color: dodgerblue;
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 .album__title {
   text-align: center;
@@ -34,6 +34,22 @@
 .album--selected:not(:hover) .album__actions {
   display: none;
 }
+
 .album__actions-button {
+  background-color: rgba(255,255,255,0.6);
+  color: black;
   margin: 0.25em;
+  padding: 0.5em;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: 0.2s;
+}
+.album__actions-button:hover {
+  color: var(--accent-color);
+  background-color: white;
+}
+.album__actions-button:active {
+  background-color: var(--accent-color);
+  color: white;
 }

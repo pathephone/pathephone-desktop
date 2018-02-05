@@ -3,7 +3,7 @@ import ReactToggleView from 'react-toggle-view'
 import DonateModal from './Donate/DonateModal'
 
 const Trigger = ({ showView }) => (
-  <button onClick={showView} id='donate__modal-trigger'>
+  <button onClick={showView} className='navigation__button' id='donate__modal-trigger'>
     donate
   </button>
 )

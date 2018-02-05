@@ -1,10 +1,10 @@
 .player {
     padding: 1em;
-    grid-area: player;
+  grid-area: player;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border-top: 1px solid gray;
+  border-top: 1px solid #d3d3d3;
 }
 
 .player__playback-controls {
@@ -25,4 +25,9 @@
 
 .player__rest-controls {
     flex-shrink: 0;
+}
+
+.timeline__duration {
+    flex-shrink: 0;
+    margin-left: 1em;
 }

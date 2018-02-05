@@ -1,9 +1,7 @@
-.playlist-track {
-  border-left: 2px solid #f2f2f2;
+.playlist-track__contrast {
+  background-color: rgba(20, 20, 20, 0.025); 
 }
-.playlist-track--current {
-  border-left: 2px solid green;
-}
+
 .playlist-track__button {
   background: none;
   border: none;
@@ -11,15 +9,26 @@
   text-align: left;
 }
 .playlist-track__button:focus {
-  color: orange;
+  color: var(--accent-color);
 }
 .playlist-track__artist-name {
   color: darkgray;
   margin-top: 0.5em;
 }
-.playlist-track:not(:hover) .playlist-track__remove,
-.playlist-track--current:not(:hover) .playlist-track__remove {
+
+.playlist-track__info:not(:first-child) {
+  margin-left: 1em;
+}
+
+.playlist-track:not(:hover) .playlist-track__remove {
   visibility: hidden;
+}
+
+.playlist-track__artist-name,
+.playlist-track__title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .playlist-track__remove {

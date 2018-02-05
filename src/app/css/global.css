@@ -1,14 +1,35 @@
 body {
   font-size: 0.75em;
+  font-family:
+  -apple-system,
+  BlinkMacSystemFont,
+  Segoe UI, Roboto,
+  Oxygen, Ubuntu,
+  Cantarell, Fira
+  Sans, Droid Sans,
+  Helvetica Neue,
+  sans-serif;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
 input, button {
   font-size: 1em;
-  padding: 0.25em;
 }
 
 svg {
   flex-shrink: 0;
+}
+
+.round-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sync-icon,
