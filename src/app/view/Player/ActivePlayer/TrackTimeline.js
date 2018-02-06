@@ -1,4 +1,5 @@
 import React from 'react'
+import './TrackTimeline.css'
 
 var secondsTohhmmss = function (totalSeconds) {
   var hours = Math.floor(totalSeconds / 3600)
@@ -26,14 +27,14 @@ class TrackTimeline extends React.Component {
       })
     }
     return (
-      <div className='player__trackline'>
+      <div className='timeline'>
         <input
+          className='timeline__input'
           type='range'
           min='0'
           max={length}
           value={position}
           onChange={handleChange}
-          className='izi-fill-width'
           ref={(node) => { this.rangePicker = node }}
           onMouseDown={() => { this.prepareTime = true }}
           onMouseUp={() => {
@@ -41,7 +42,7 @@ class TrackTimeline extends React.Component {
             handleChange({currentTarget: this.rangePicker})
           }}
         />
-        <small className='timeline__duration izi-izi-margin-left'>{secondsTohhmmss(length)}</small>
+        <small className='timeline__duration'>{secondsTohhmmss(length)}</small>
       </div>
     )
   }

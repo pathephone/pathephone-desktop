@@ -19,9 +19,9 @@ $color5: rgba(166, 51, 162, 1);
 */
 
 :root {
-  --accent-color: #ef2d56;
-  --primary-color: #28303f;
-  --secondary-color: #1380f0;
+  --accent-color: rgb(239,45,86);
+  --primary-color: rgb(40,48,63);
+  --secondary-color: rgb(19,128,240);
   --white-shade-1: rgba(255,255,255, 0.1);
   --white-shade-2: rgba(255,255,255, 0.2);
 }

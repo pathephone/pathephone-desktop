@@ -1,4 +1,6 @@
 body {
+  color: var(--primary-color);
+  fill: var(--primary-color);
   font-size: 0.75em;
   font-family:
   -apple-system,
@@ -25,11 +27,22 @@ svg {
   flex-shrink: 0;
 }
 
+
+.button {
+  border-radius: 2px;
+  border: 1px solid gray;
+}
+
+.button:focus {
+
+}
+
 .round-button {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
 }
 
 .sync-icon,

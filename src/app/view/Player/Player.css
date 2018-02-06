@@ -11,15 +11,18 @@
     flex-shrink: 0;
 }
 
-.player__trackline {
-    display: flex;
-    align-items: center;
-    flex-basis: 70%;
+.player__playback-controls button {
+    font-size: 1.25em;
+    background: none;
 }
 
-.player__volume-control {
-    display: flex;
-    align-items: center;
+.player__playback-controls button:hover,
+.player__playback-controls button:focus {
+    color: var(--accent-color);
+}
+
+
+.player__rest-controls {
     flex-shrink: 0;
 }
 
@@ -27,7 +30,16 @@
     flex-shrink: 0;
 }
 
-.timeline__duration {
-    flex-shrink: 0;
-    margin-left: 1em;
+.player__rest-controls .player__toggle {
+    background: none;
+}
+
+.player__rest-controls button:not(:first-child) {
+    margin-left: 0.5em;
+}
+
+.player__toggle--active {
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 2px;
 }
