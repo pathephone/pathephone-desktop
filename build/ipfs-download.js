@@ -3,6 +3,8 @@ const fs = require('fs')
 const mkdirp = require('mkdirp')
 const uz = require('unzip')
 const targz = require('targz')
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 const mkdir = (url) => new Promise((resolve, reject) => {
 	mkdirp(url, (err) => {
@@ -96,6 +98,7 @@ function untargz (file, path) {
   await mkdir('imports/linux')
   await mkdir('imports/darwin')
 
+  console.log('donwload ipfs', vers)
   // win
   await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_windows-amd64.zip`, 'imports/download_win.zip')
   await unzip('imports/download_win.zip', 'imports/download_win')
@@ -108,4 +111,13 @@ function untargz (file, path) {
   await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_darwin-amd64.tar.gz`, 'imports/download_darwin.tar.gz')
   await untargz('imports/download_darwin.tar.gz', 'imports/download_darwin')
   await rename('imports/download_darwin/go-ipfs/ipfs', 'imports/darwin/ipfs')
+
+  // ffmpeg
+  if(/^win/.test(process.platform))
+  	await download(`https://eternallybored.org/misc/wget/1.19.4/64/wget.exe`, 'wget.exe')
+  else if(process.platform === 'darwin')
+  	console.log(await exec('brew install wget'))
+
+  console.log(await exec('wget https://dl.dropbox.com/s/9i6t2q3jxf8ddr8/ffmpeg.zip'))
+  await unzip('ffmpeg.zip', './')
 })()
