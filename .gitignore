@@ -11,3 +11,4 @@ Thumbs.db
 /app/background.js
 /app/**/*.map
 /imports/
+wget.exe

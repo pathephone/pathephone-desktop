@@ -3,17 +3,17 @@ const fs = require('fs')
 const mkdirp = require('mkdirp')
 const uz = require('unzip')
 const targz = require('targz')
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const util = require('util')
+const exec = util.promisify(require('child_process').exec)
 
 const mkdir = (url) => new Promise((resolve, reject) => {
-	mkdirp(url, (err) => {
-      if (err) {
-        reject(err)
-        return
-      }
-      resolve()
-  	})
+  mkdirp(url, (err) => {
+    if (err) {
+      reject(err)
+      return
+    }
+    resolve()
+  })
 })
 
 function download (url, dest) {
@@ -113,10 +113,7 @@ function untargz (file, path) {
   await rename('imports/download_darwin/go-ipfs/ipfs', 'imports/darwin/ipfs')
 
   // ffmpeg
-  if(/^win/.test(process.platform))
-  	await download(`https://eternallybored.org/misc/wget/1.19.4/64/wget.exe`, 'wget.exe')
-  else if(process.platform === 'darwin')
-  	console.log(await exec('brew install wget'))
+  if (/^win/.test(process.platform)) { await download(`https://eternallybored.org/misc/wget/1.19.4/64/wget.exe`, 'wget.exe') } else if (process.platform === 'darwin') { console.log(await exec('brew install wget')) }
 
   console.log(await exec('wget https://dl.dropbox.com/s/9i6t2q3jxf8ddr8/ffmpeg.zip'))
   await unzip('ffmpeg.zip', './')
