@@ -117,4 +117,5 @@ function untargz (file, path) {
 
   console.log(await exec('wget https://dl.dropbox.com/s/9i6t2q3jxf8ddr8/ffmpeg.zip'))
   await unzip('ffmpeg.zip', './')
+  if (!(/^win/.test(process.platform))) { await exec('chmod -R +x imports/') }
 })()
