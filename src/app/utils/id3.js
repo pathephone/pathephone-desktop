@@ -12,13 +12,16 @@ export default (file) => new Promise((resolve, reject) => {
       return
     }
 
+    const { format } = metadata
+    const { tags } = format
+
     resolve({
-      artist: metadata.format.tags.artist,
-      title: metadata.format.tags.title,
-      album: metadata.format.tags.album,
-      bitrate: metadata.format.bit_rate / 1000,
-      duration: metadata.format.duration,
-      format: metadata.format.format_name
+      artist: tags.artist || tags.ARTIST,
+      title: tags.title || tags.TITLE,
+      album: tags.album || tags.ALBUM,
+      bitrate: format.bit_rate / 1000,
+      duration: format.duration,
+      format: format.format_name
     })
   })
 })
