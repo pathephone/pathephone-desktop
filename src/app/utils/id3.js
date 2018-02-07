@@ -1,4 +1,8 @@
+import appPath from '~/utils/electronAppPath'
 const ffmpeg = require('fluent-ffmpeg')
+
+ffmpeg.setFfmpegPath(appPath('ffmpeg'))
+ffmpeg.setFfprobePath(appPath('ffprobe'))
 
 export default (file) => new Promise((resolve, reject) => {
   const {path} = file
