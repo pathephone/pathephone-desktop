@@ -1,5 +1,4 @@
 const ffmpeg = require('fluent-ffmpeg')
-const fs = require('fs')
 
 export default (file) => new Promise((resolve, reject) => {
   const {path} = file
