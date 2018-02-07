@@ -1,14 +1,21 @@
-const musicmetadata = require('musicmetadata')
+const ffmpeg = require('fluent-ffmpeg')
 const fs = require('fs')
 
 export default (file) => new Promise((resolve, reject) => {
   const {path} = file
-  musicmetadata(fs.createReadStream(path), (err, metadata) => {
+  ffmpeg.ffprobe(path, (err, metadata) => {
     if (err) {
       reject(err)
       return
     }
-    if (Array.isArray(metadata.artist)) { metadata.artist = metadata.artist[0] }
-    resolve(metadata)
+
+    resolve({
+      artist: metadata.format.tags.artist,
+      title: metadata.format.tags.title,
+      album: metadata.format.tags.album,
+      bitrate: metadata.format.bit_rate / 1000,
+      duration: metadata.format.duration,
+      format: metadata.format.format_name
+    })
   })
 })
