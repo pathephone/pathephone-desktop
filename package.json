@@ -26,7 +26,7 @@
     "win": {
       "extraFiles": [
         {
-          "from": "./imports/win/ipfs.exe",
+          "from": "./imports/win",
           "to": "."
         }
       ]
@@ -40,7 +40,7 @@
       ],
       "extraFiles": [
         {
-          "from": "./imports/linux/ipfs",
+          "from": "./imports/linux",
           "to": "."
         }
       ]
@@ -48,7 +48,7 @@
     "mac": {
       "extraFiles": [
         {
-          "from": "./imports/darwin/ipfs",
+          "from": "./imports/darwin",
           "to": "./MacOS"
         }
       ]
