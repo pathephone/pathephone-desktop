@@ -32,7 +32,7 @@ input, button {
   font-size: 1em;
 }
 
-input {
+input[type='text'] {
   padding: 0.5em 0.75em;
   outline: none;
   border: 1px solid var(--secondary-color);
