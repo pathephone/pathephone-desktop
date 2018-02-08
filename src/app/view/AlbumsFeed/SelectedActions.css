@@ -1,6 +1,6 @@
 
 .selected-actions {
-  border-top: 1px solid gray;
+  border-top: 1px solid #ededed;
 }
 
 .selected-actions button:focus {

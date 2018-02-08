@@ -107,10 +107,12 @@ input:focus {
 }
 
 .square-button {
+  text-transform: uppercase;
   padding: 0.5em 0.75em;
   border-radius: 2px;
   background: none;
   border: 1px solid var(--accent-color-light);
+  color: var(--accent-color-light);
   transition: 0.2s;
 }
 
