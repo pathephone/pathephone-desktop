@@ -12,7 +12,8 @@
   border-left: 2px solid var(--secondary-color);
 }
 
-.playlist-track__button:focus {
+.playlist-track__button:focus, 
+.playlist-track__button:hover {
   color: var(--accent-color);
 }
 .playlist-track__artist-name {
@@ -39,8 +40,9 @@
   flex-shrink: 0;
   padding: 0.5em;
   cursor: pointer;
+  color: rgba(10,10,10,0.5);
 }
 .playlist-track__remove:hover {
-  flex-shrink: 0;
-  background: rgb(190,190,190);
+  background: var(--accent-color);
+  color: white;
 }

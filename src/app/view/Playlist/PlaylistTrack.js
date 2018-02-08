@@ -17,7 +17,7 @@ const PlaylistTrack = ({ title, artist, current, id, contrast }) => {
   return (
     <div
       className={
-        `playlist-track ${contrast ? 'playlist-track__contrast' : ''} izi-xs`
+        `playlist-track ${contrast ? 'playlist-track__contrast' : ''} izi-x`
       }
     >
       <button
@@ -25,16 +25,16 @@ const PlaylistTrack = ({ title, artist, current, id, contrast }) => {
         onClick={handleSetCurrent}
       >
         <div className='playlist-track__info izi-yl'>
-          <label className='playlist-track__title'>
+          <span className='playlist-track__title'>
             {title}
-          </label>
+          </span>
           <small className='playlist-track__artist-name'>
             {artist}
           </small>
         </div>
       </button>
       <div
-        className='playlist-track__remove izi-middle'
+        className='playlist-track__remove round-button'
         onClick={handleRemove}
       >
         <MdClose />

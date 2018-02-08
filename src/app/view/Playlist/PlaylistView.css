@@ -15,11 +15,10 @@
 .playlist__clear-button {
   padding: 0.75em 1em;
   text-transform: uppercase;
+  font-weight: bold;
 }
 
-.playlist__clear-button:hover {
-  background-color: #d3d3d3;
-}
+.playlist__clear-button:hover,
 .playlist__clear-button:focus {
   background-color: var(--accent-color);
   color: white;
