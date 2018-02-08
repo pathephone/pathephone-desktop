@@ -78,7 +78,7 @@ class FormEditAlbum extends React.Component {
             <Errors data={errors} />
           )
         }
-        <button id='add-album_submit' onClick={this.handleFormSubmit}>
+        <button className='square-button' id='add-album_submit' onClick={this.handleFormSubmit}>
           done
         </button>
       </div>

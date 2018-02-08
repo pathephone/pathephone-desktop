@@ -17,7 +17,12 @@ const startIpfsDaemon = async ({ options, onReady, onError, onUnexpectedClose })
 
   }
 
-  const ipfs = spawn(ipfsPath, ['daemon', '--enable-pubsub-experiment'], options)
+  const args = ['daemon', '--enable-pubsub-experiment']
+  if (process.env.IPFS_OFFLINE === 'true') {
+    console.log('-- OFFLINE')
+    args.push('--offline')
+  }
+  const ipfs = spawn(ipfsPath, args, options)
 
   ipfs.stdout.on('data', (data) => {
     console.log(`ipfs: ${data}`)

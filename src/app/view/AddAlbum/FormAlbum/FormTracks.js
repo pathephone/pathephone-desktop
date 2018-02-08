@@ -5,6 +5,8 @@ import MdClear from 'react-icons/lib/md/clear'
 import MdDown from 'react-icons/lib/md/keyboard-arrow-down'
 import MdUp from 'react-icons/lib/md/keyboard-arrow-up'
 
+import './FormTracks.css'
+
 class TracksInput extends React.Component {
   TrackControls = ({ index, first, last }) => {
     const { onDeleteTrack, onMoveTrackUp, onMoveTrackDown } = this.props
@@ -14,15 +16,20 @@ class TracksInput extends React.Component {
     return (
       <div className='izi-y izi-center izi-margin-left'>
         <button
+          className='track-form__control-button'
           disabled={first}
           onClick={onUp}
         >
           <MdUp />
         </button>
-        <button onClick={onDelete}>
+        <button
+          onClick={onDelete}
+          className='track-form__control-button'
+        >
           <MdClear />
         </button>
         <button
+          className='track-form__control-button'
           disabled={last}
           onClick={onDown}
         >

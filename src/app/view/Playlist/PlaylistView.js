@@ -5,14 +5,15 @@ import clearPlaylist from './clearPlaylist'
 import './PlaylistView.css'
 
 const PlaylistView = ({ playlist }) => {
-  const SingleTrackWrapper = track => {
-    return <PlaylistTrack {...track} key={track.id} />
+  const SingleTrackWrapper = (track, index) => {
+    const contrast = index % 2
+    return <PlaylistTrack {...track} contrast={contrast} key={track.id} />
   }
   return (
     <div className='playlist izi-ys' >
       {
         playlist.length > 0 ? (
-          <button onClick={clearPlaylist}>
+          <button className='playlist__clear-button' onClick={clearPlaylist}>
             clear
           </button>
         ) : (

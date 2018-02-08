@@ -92,17 +92,17 @@ class ActivePlayer extends React.Component {
     return (
       <div className='player'>
         <div className='player__playback-controls'>
-          <button onClick={onPrevTrack}>
+          <button className='round-button' onClick={onPrevTrack}>
             <MdSkipPrev />
           </button>
-          <button onClick={onTogglePause}>
+          <button className='round-button' onClick={onTogglePause}>
             {
               pause
                 ? <MdPlay />
                 : <MdPause />
             }
           </button>
-          <button onClick={onNextTrack}>
+          <button className='round-button' onClick={onNextTrack}>
             <MdSkipNext />
           </button>
         </div>
@@ -117,11 +117,17 @@ class ActivePlayer extends React.Component {
         }
         <VolumeInput value={volume} onChange={onChangeVolume} />
         <div className='player__rest-controls'>
-          <button onClick={onToggleShuffle}>
-            <MdShuffle style={shuffle ? {fill: 'chocolate'} : undefined} />
+          <button
+            className={shuffle ? 'player__toggle--active' : 'player__toggle'}
+            onClick={onToggleShuffle}
+          >
+            <MdShuffle />
           </button>
-          <button onClick={onToggleRepeat}>
-            <MdRepeat style={repeat ? {fill: 'chocolate'} : undefined} />
+          <button
+            className={repeat ? 'player__toggle--active' : 'player__toggle'}
+            onClick={onToggleRepeat}
+          >
+            <MdRepeat />
           </button>
         </div>
       </div>

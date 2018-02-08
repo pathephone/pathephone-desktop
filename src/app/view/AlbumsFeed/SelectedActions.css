@@ -1,6 +1,10 @@
 
 .selected-actions {
-  border-top: 1px solid gray;
+  border-top: 1px solid #ededed;
+}
+
+.selected-actions button:focus {
+  color: white;
 }
 
 .selected-actions small:not(:first-child) {
@@ -8,5 +12,5 @@
 }
 
 .selected-actions__cancel {
-  margin-left: auto;
+  margin-left: auto !important;
 }

@@ -1,0 +1,4 @@
+
+.track-form__control-button:not([disabled]):hover {
+  color: var(--accent-color)
+}
