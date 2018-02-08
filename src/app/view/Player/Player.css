@@ -8,6 +8,7 @@
 }
 
 .player__playback-controls {
+    display: flex;
     flex-shrink: 0;
 }
 
@@ -16,8 +17,13 @@
     background: none;
 }
 
-.player__playback-controls button:hover,
+.player__playback-controls button:hover {
+    color: var(--accent-color-light);
+}
 .player__playback-controls button:focus {
+    background: var(--black-shade-1);
+}
+.player__playback-controls button:active {
     color: var(--accent-color);
 }
 
@@ -32,6 +38,11 @@
 
 .player__rest-controls .player__toggle {
     background: none;
+    border-radius: 2px;
+}
+
+.player__rest-controls .player__toggle:hover {
+    color: var(--secondary-color-light);
 }
 
 .player__rest-controls button:not(:first-child) {

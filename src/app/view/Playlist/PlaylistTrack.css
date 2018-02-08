@@ -8,6 +8,10 @@
   outline: none;
   text-align: left;
 }
+.playlist-track__current {
+  border-left: 2px solid var(--secondary-color);
+}
+
 .playlist-track__button:focus {
   color: var(--accent-color);
 }

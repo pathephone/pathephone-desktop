@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    padding: 0 1em;
 }
 
 .volume-control__input {

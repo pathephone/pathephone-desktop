@@ -92,17 +92,17 @@ class ActivePlayer extends React.Component {
     return (
       <div className='player'>
         <div className='player__playback-controls'>
-          <button onClick={onPrevTrack}>
+          <button className='round-button' onClick={onPrevTrack}>
             <MdSkipPrev />
           </button>
-          <button onClick={onTogglePause}>
+          <button className='round-button' onClick={onTogglePause}>
             {
               pause
                 ? <MdPlay />
                 : <MdPause />
             }
           </button>
-          <button onClick={onNextTrack}>
+          <button className='round-button' onClick={onNextTrack}>
             <MdSkipNext />
           </button>
         </div>

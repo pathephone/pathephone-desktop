@@ -4,7 +4,6 @@ import setCurrentTrack from './setCurrentTrack'
 import removeTrack from './removeTrack'
 
 import './PlaylistTrack.css'
-import EqualizerIcon from './EqualizerIcon'
 
 const PlaylistTrack = ({ title, artist, current, id, contrast }) => {
   const handleSetCurrent = () => {
@@ -22,14 +21,9 @@ const PlaylistTrack = ({ title, artist, current, id, contrast }) => {
       }
     >
       <button
-        className='playlist-track__button izi-x izi-fill-width izi-padding'
+        className={`playlist-track__button ${current ? 'playlist-track__current' : ''} izi-x izi-fill-width izi-padding`}
         onClick={handleSetCurrent}
       >
-        {
-          current && (
-            <EqualizerIcon />
-          )
-        }
         <div className='playlist-track__info izi-yl'>
           <label className='playlist-track__title'>
             {title}

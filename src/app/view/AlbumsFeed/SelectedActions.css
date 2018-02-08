@@ -3,13 +3,7 @@
   border-top: 1px solid gray;
 }
 
-.selected-actions button {
-  padding: 0.5em 0.75em;
-  border-radius: 2px;
-}
-
 .selected-actions button:focus {
-  background-color: var(--accent-color);
   color: white;
 }
 
