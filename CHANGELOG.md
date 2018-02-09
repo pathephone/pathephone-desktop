@@ -1,3 +1,21 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/pathephone/pathephone-desktop/compare/v0.5.1...v1.0.0) (2018-02-09)
+
+
+### Bug Fixes
+
+* **UI:** informative empty feed message ([#138](https://github.com/pathephone/pathephone-desktop/issues/138)) ([f5eaf36](https://github.com/pathephone/pathephone-desktop/commit/f5eaf36))
+
+
+### Features
+
+* **UI:** album quality label ([293c5d6](https://github.com/pathephone/pathephone-desktop/commit/293c5d6))
+
+
+### BREAKING CHANGES
+
+* **UI:** album schema updated with tracks[].bitrate field
+
 # Change Log
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
