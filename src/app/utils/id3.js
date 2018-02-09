@@ -11,9 +11,7 @@ export default (file) => new Promise((resolve, reject) => {
       return
     }
     if (Array.isArray(metadata.artist)) { metadata.artist = metadata.artist[0] }
-    console.log(fileSize, metadata.duration)
     metadata.bitrate = fileSize * 8 / (metadata.duration * 1000)
-    console.log(metadata.bitrate)
     resolve(metadata)
   })
 })
