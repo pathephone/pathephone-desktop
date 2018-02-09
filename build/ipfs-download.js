@@ -3,6 +3,18 @@ const fs = require('fs')
 const mkdirp = require('mkdirp')
 const uz = require('unzip')
 const targz = require('targz')
+const util = require('util')
+const exec = util.promisify(require('child_process').exec)
+
+const mkdir = (url) => new Promise((resolve, reject) => {
+  mkdirp(url, (err) => {
+    if (err) {
+      reject(err)
+      return
+    }
+    resolve()
+  })
+})
 
 function download (url, dest) {
   return new Promise((resolve, reject) => {
@@ -82,16 +94,28 @@ function untargz (file, path) {
 (async () => {
   const vers = '0.4.13'
 
-  // win
-  await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_windows-amd64.zip`, 'imports/win/download.zip')
-  await unzip('imports/win/download.zip', 'imports/win/download')
-  await rename('imports/win/download/go-ipfs/ipfs.exe', 'imports/win/ipfs.exe')
-  // linux
-  await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_linux-amd64.tar.gz`, 'imports/linux/download.tar.gz')
-  await untargz('imports/linux/download.tar.gz', 'imports/linux/download')
-  await rename('imports/linux/download/go-ipfs/ipfs', 'imports/linux/ipfs')
+  await mkdir('imports/win')
+  await mkdir('imports/linux')
+  await mkdir('imports/darwin')
 
-  await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_darwin-amd64.tar.gz`, 'imports/darwin/download.tar.gz')
-  await untargz('imports/darwin/download.tar.gz', 'imports/darwin/download')
-  await rename('imports/darwin/download/go-ipfs/ipfs', 'imports/darwin/ipfs')
+  console.log('donwload ipfs', vers)
+  // win
+  await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_windows-amd64.zip`, 'imports/download_win.zip')
+  await unzip('imports/download_win.zip', 'imports/download_win')
+  await rename('imports/download_win/go-ipfs/ipfs.exe', 'imports/win/ipfs.exe')
+  // linux
+  await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_linux-amd64.tar.gz`, 'imports/download_linux.tar.gz')
+  await untargz('imports/download_linux.tar.gz', 'imports/download_linux')
+  await rename('imports/download_linux/go-ipfs/ipfs', 'imports/linux/ipfs')
+
+  await download(`https://dist.ipfs.io/go-ipfs/v${vers}/go-ipfs_v${vers}_darwin-amd64.tar.gz`, 'imports/download_darwin.tar.gz')
+  await untargz('imports/download_darwin.tar.gz', 'imports/download_darwin')
+  await rename('imports/download_darwin/go-ipfs/ipfs', 'imports/darwin/ipfs')
+
+  // ffmpeg
+  if (/^win/.test(process.platform)) { await download(`https://eternallybored.org/misc/wget/1.19.4/64/wget.exe`, 'wget.exe') }
+
+  console.log(await exec('wget https://dl.dropbox.com/s/9i6t2q3jxf8ddr8/ffmpeg.zip'))
+  await unzip('ffmpeg.zip', './')
+  if (!(/^win/.test(process.platform))) { await exec('chmod -R +x imports/') }
 })()

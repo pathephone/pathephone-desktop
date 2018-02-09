@@ -1,14 +1,27 @@
-const musicmetadata = require('musicmetadata')
-const fs = require('fs')
+import appPath from '~/utils/electronAppPath'
+const ffmpeg = require('fluent-ffmpeg')
+
+ffmpeg.setFfmpegPath(appPath('ffmpeg'))
+ffmpeg.setFfprobePath(appPath('ffprobe'))
 
 export default (file) => new Promise((resolve, reject) => {
   const {path} = file
-  musicmetadata(fs.createReadStream(path), (err, metadata) => {
+  ffmpeg.ffprobe(path, (err, metadata) => {
     if (err) {
       reject(err)
       return
     }
-    if (Array.isArray(metadata.artist)) { metadata.artist = metadata.artist[0] }
-    resolve(metadata)
+
+    const { format } = metadata
+    const { tags } = format
+
+    resolve({
+      artist: tags.artist || tags.ARTIST,
+      title: tags.title || tags.TITLE,
+      album: tags.album || tags.ALBUM,
+      bitrate: format.bit_rate / 1000,
+      duration: format.duration,
+      format: format.format_name
+    })
   })
 })
