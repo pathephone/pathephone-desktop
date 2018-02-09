@@ -22,9 +22,9 @@ const actions = {
     state[field] = value
   },
   ADD_TRACKS (...params) {
-    params.forEach(({ title, hash, artist }) => {
+    params.forEach(({ title, hash, artist, bitrate }) => {
       state.tracks.push({
-        title, hash, artist
+        title, hash, artist, bitrate
       })
     })
   },

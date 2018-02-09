@@ -5,6 +5,7 @@ import SyncIcon from '#/SyncIcon'
 import DiskIcon from '#/DiskIcon'
 import ImageContainer from '#/ImageContainer'
 import GetIpfsImage from '#/GetIpfsImage'
+import getQualityLabel from '~/utils/getQualityLabel'
 
 import './Album.css'
 
@@ -18,10 +19,19 @@ const CoverView = ({ data, error }) => {
   return <SyncIcon />
 }
 
+const getLowestQuality = tracks => {
+  const bitrates = tracks.map(({bitrate}) => bitrate)
+  const handleSort = (a, b) => a > b
+  const [ lowest ] = bitrates.sort(handleSort)
+  return lowest
+}
+
 class Album extends React.Component {
   render () {
     const { data, onSelect, onAdd, onPlay, selected, cid } = this.props
-    const { title, artist, cover } = data
+    const { title, artist, cover, tracks } = data
+    const lowestQuality = getLowestQuality(tracks)
+    const qualityLabel = getQualityLabel(lowestQuality)
     const isSelected = selected.includes(cid)
     return (
       <div className={`album${isSelected ? '--selected' : ''}`}>
@@ -35,6 +45,29 @@ class Album extends React.Component {
               view={CoverView}
             />
           </button>
+          <div className='album__quality'>
+            <div
+              className={
+                `album__quality-label${
+                  qualityLabel === 'LQ'
+                    ? '--low'
+                    : qualityLabel === 'HQ'
+                      ? '--high'
+                      : '--lossless'
+                }`
+              }
+              title={
+                (qualityLabel === 'LQ'
+                  ? 'Low quality'
+                  : qualityLabel === 'HQ'
+                    ? 'High quality'
+                    : 'Lossless') +
+                  ` (~${parseInt(lowestQuality)}kbps)`
+              }
+            >
+              {qualityLabel}
+            </div>
+          </div>
           {
             selected.length === 0 && (
               <div className='album__actions izi-x izi-absolute'>
