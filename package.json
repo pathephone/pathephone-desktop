@@ -26,7 +26,7 @@
     "win": {
       "extraFiles": [
         {
-          "from": "./imports/win",
+          "from": "./imports/win/ipfs.exe",
           "to": "."
         }
       ]
@@ -40,7 +40,7 @@
       ],
       "extraFiles": [
         {
-          "from": "./imports/linux",
+          "from": "./imports/linux/ipfs",
           "to": "."
         }
       ]
@@ -48,7 +48,7 @@
     "mac": {
       "extraFiles": [
         {
-          "from": "./imports/darwin",
+          "from": "./imports/darwin/ipfs",
           "to": "./MacOS"
         }
       ]
@@ -77,7 +77,6 @@
     "eslint": "^4.11.0",
     "file-type": "^7.4.0",
     "flatmap": "0.0.3",
-    "fluent-ffmpeg": "^2.1.2",
     "fs-jetpack": "^1.0.0",
     "glob-escape": "0.0.2",
     "ipfs-api": "17.3.0",
@@ -90,6 +89,7 @@
     "lru-cache": "^4.1.1",
     "multiaddr": "^3.0.1",
     "multipart-stream": "^2.0.1",
+    "musicmetadata": "^2.0.5",
     "ndjson": "^1.5.0",
     "peer-id": "^0.10.2",
     "peer-info": "^0.11.1",

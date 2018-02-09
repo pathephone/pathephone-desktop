@@ -1,27 +1,19 @@
-import appPath from '~/utils/electronAppPath'
-const ffmpeg = require('fluent-ffmpeg')
-
-ffmpeg.setFfmpegPath(appPath('ffmpeg'))
-ffmpeg.setFfprobePath(appPath('ffprobe'))
+const musicmetadata = require('musicmetadata')
+const fs = require('fs')
 
 export default (file) => new Promise((resolve, reject) => {
   const {path} = file
-  ffmpeg.ffprobe(path, (err, metadata) => {
+  const fileStats = fs.statSync(path)
+  const fileSize = fileStats.size
+  musicmetadata(fs.createReadStream(path), { duration: true }, (err, metadata) => {
     if (err) {
       reject(err)
       return
     }
-
-    const { format } = metadata
-    const { tags } = format
-
-    resolve({
-      artist: tags.artist || tags.ARTIST,
-      title: tags.title || tags.TITLE,
-      album: tags.album || tags.ALBUM,
-      bitrate: format.bit_rate / 1000,
-      duration: format.duration,
-      format: format.format_name
-    })
+    if (Array.isArray(metadata.artist)) { metadata.artist = metadata.artist[0] }
+    console.log(fileSize, metadata.duration)
+    metadata.bitrate = fileSize * 8 / (metadata.duration * 1000)
+    console.log(metadata.bitrate)
+    resolve(metadata)
   })
 })
