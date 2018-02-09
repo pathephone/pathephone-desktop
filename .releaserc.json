@@ -1,5 +1,8 @@
 {
-  "verifyConditions": ["@semantic-release/changelog", "@semantic-release/git"],
+  "verifyConditions": [
+    "@semantic-release/changelog",
+    "@semantic-release/git"
+  ],
   "publish": [
     "@semantic-release/changelog",
     "@semantic-release/npm",
@@ -8,7 +11,10 @@
       "cmd": "yarn build --linux --win --mac"
     },
     "@semantic-release/github",
-    "@semantic-release/git"
+    {
+      "path": "@semantic-release/git",
+      "assets": ["CHANGELOG.md"]
+    }
   ],
   "assets": "dist/*",
   "npmPublish": false

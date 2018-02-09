@@ -39,13 +39,13 @@ class Album extends React.Component {
             selected.length === 0 && (
               <div className='album__actions izi-x izi-absolute'>
                 <button
-                  className='album__actions-button'
+                  className='album__actions-button round-button'
                   onClick={onAdd}
                 >
                   <MdAdd />
                 </button>
                 <button
-                  className='album__actions-button'
+                  className='album__actions-button round-button'
                   onClick={onPlay}
                 >
                   <MdPlay />

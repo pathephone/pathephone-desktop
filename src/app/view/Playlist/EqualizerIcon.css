@@ -1,0 +1,39 @@
+@keyframes eq-uppydowny {
+  0% {
+    //height: 20px;
+    transform: scaleY(1);
+  }
+  50% {
+    //height: 3px;
+    transform: scaleY(.5);
+  }
+  100% {
+    //height: 20px;
+    transform: scaleY(1);
+  }
+}
+
+.eq__bar {
+  position: absolute;
+  bottom: 0px;
+  fill: #434343;
+  animation-name: eq-uppydowny;
+  animation-fill: forwards;
+  animation-iteration-count: infinite;
+  transform-origin: 8px 16px;
+  -webkit-transform-origin: 8px 16px;
+  rx:3;
+  ry:3;
+}
+
+#eq1 {
+  animation-duration: 0.5s;
+}
+
+#eq2 {
+  animation-duration: 1.3s;
+}
+
+#eq3 {
+  animation-duration: 0.7s;
+}

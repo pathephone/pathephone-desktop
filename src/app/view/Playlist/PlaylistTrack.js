@@ -5,7 +5,7 @@ import removeTrack from './removeTrack'
 
 import './PlaylistTrack.css'
 
-const PlaylistTrack = ({ title, artist, current, id }) => {
+const PlaylistTrack = ({ title, artist, current, id, contrast }) => {
   const handleSetCurrent = () => {
     if (!current) {
       setCurrentTrack(id)
@@ -16,21 +16,25 @@ const PlaylistTrack = ({ title, artist, current, id }) => {
   }
   return (
     <div
-      className={`playlist-track${current ? '--current' : ''} izi-xs`}
+      className={
+        `playlist-track ${contrast ? 'playlist-track__contrast' : ''} izi-x`
+      }
     >
       <button
-        className='playlist-track__button izi-yl izi-fill-width izi-padding'
+        className={`playlist-track__button ${current ? 'playlist-track__current' : ''} izi-x izi-fill-width izi-padding`}
         onClick={handleSetCurrent}
       >
-        <label className='playlist-track__title'>
-          {title}
-        </label>
-        <small className='playlist-track__artist-name'>
-          {artist}
-        </small>
+        <div className='playlist-track__info izi-yl'>
+          <span className='playlist-track__title'>
+            {title}
+          </span>
+          <small className='playlist-track__artist-name'>
+            {artist}
+          </small>
+        </div>
       </button>
       <div
-        className='playlist-track__remove izi-middle'
+        className='playlist-track__remove round-button'
         onClick={handleRemove}
       >
         <MdClose />

@@ -45,6 +45,7 @@ class TrackFileInput extends React.Component {
         disabled={this.state.processing}
         onChange={this.onChange}
         children='add tracks'
+        className='square-button'
       />
     )
   }

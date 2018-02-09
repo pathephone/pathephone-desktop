@@ -17,28 +17,28 @@ const SelectedActions = ({ selectedNum, onPlay, onAdd, onDelete, onClear }) => {
         }
       </label>
       <button
-        className='selected-actions__play'
+        className='selected-actions__play square-button'
         onClick={onPlay}
       >
         <MdPlay />
         <small>play</small>
       </button>
       <button
-        className='selected-actions__add'
+        className='selected-actions__add square-button'
         onClick={onAdd}
       >
         <MdAdd />
         <small>add to playlist</small>
       </button>
       <button
-        className='selected-actions__delete'
+        className='selected-actions__delete square-button'
         onClick={onDelete}
       >
         <MdDelete />
         <small>delete</small>
       </button>
       <button
-        className='selected-actions__cancel'
+        className='selected-actions__cancel square-button'
         onClick={onClear}
       >
         <MdClear />

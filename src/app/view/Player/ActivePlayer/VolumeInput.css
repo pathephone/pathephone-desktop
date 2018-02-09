@@ -1,0 +1,54 @@
+.volume-control {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 1em;
+}
+
+.volume-control__input {
+  margin-left: 0.5em;
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+.volume-control__input:focus {
+  outline: none;
+}
+
+.volume-control__input:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 8px rgba(239,45,86,0.8);
+}
+
+.volume-control__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 12.5px;
+  width: 12.5px;
+  border-radius: 50%;
+  margin-top: -3.5px;
+  background: var(--accent-color);
+  cursor: pointer;
+}
+
+.volume-control__input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: rgba(120,120,120,0.2);
+  border-radius: 2px;
+}
+
+.volume-control__input:active::-webkit-slider-runnable-track {
+  background: rgba(120,120,120,0.3);
+  outline: none;
+  border: none;
+}
+
+.volume-control__input {
+  width: 100%;
+}
+
+
+.timeline__duration {
+  flex-shrink: 0;
+  margin-left: 1em;
+}
