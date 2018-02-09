@@ -50,3 +50,33 @@
   background-color: var(--accent-color);
   color: white;
 }
+
+.album__quality {
+  position: absolute;
+  top: 0.75em;
+  right: 0.75em;
+}
+
+.album__quality-label--low,
+.album__quality-label--high,
+.album__quality-label--lossless {
+  font-size: 0.6em;
+  padding: 0.25em 0.5em;
+  font-weight: bold;
+  cursor: default;
+}
+
+.album__quality-label--low {
+  background: orange;
+  color: black;
+}
+
+.album__quality-label--high {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.album__quality-label--lossless {
+  background: lightseagreen;
+  color: white;
+}
