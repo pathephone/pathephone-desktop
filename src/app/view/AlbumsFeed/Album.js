@@ -1,7 +1,6 @@
 import React from 'react'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdAdd from 'react-icons/lib/md/playlist-add'
-import MdQuality from 'react-icons/lib/md/high-quality'
 import SyncIcon from '#/SyncIcon'
 import DiskIcon from '#/DiskIcon'
 import ImageContainer from '#/ImageContainer'
