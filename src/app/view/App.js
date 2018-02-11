@@ -7,9 +7,9 @@ import Page from './Page'
 
 import './App.css'
 
-import { remote } from 'electron'
+import { ipcRenderer, remote } from 'electron'
 
-import beforeUnload from '~/scripts/beforeUnload'
+import beforeClose from '~/scripts/beforeClose'
 
 class BeforeUnloadContainer extends React.Component {
   state = {
@@ -18,15 +18,14 @@ class BeforeUnloadContainer extends React.Component {
   destroyWindow () {
     remote.getCurrentWindow().destroy() // 'remote' being electron.remote here
   }
-  handleBeforeUnload = (e) => {
+  handleCustomClosing = () => {
     this.setState({ closing: true })
-    beforeUnload()
+    beforeClose()
       .then(this.destroyWindow)
     // prevent the window from closing immediately
-    e.returnValue = true
   }
   componentWillMount () {
-    window.addEventListener('beforeunload', this.handleBeforeUnload)
+    ipcRenderer.on('prepare-for-close', this.handleCustomClosing)
   }
   render () {
     const { closing } = this.state

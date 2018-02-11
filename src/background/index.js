@@ -14,7 +14,7 @@ import createWindow from './methods/createWindow'
 // in config/env_xxx.json file.
 
 import env from 'env'
-import './methods/startIpfs'
+import './methods/initGlobals'
 
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
@@ -47,6 +47,11 @@ app.on('ready', async () => {
   )
 
   mainWindow.webContents.on('will-navigate', e => { e.preventDefault() })
+
+  mainWindow.on('close', e => {
+    e.preventDefault()
+    mainWindow.webContents.send('prepare-for-close')
+  })
 
   mainWindow.on('closed', () => {
     mainWindow = null
