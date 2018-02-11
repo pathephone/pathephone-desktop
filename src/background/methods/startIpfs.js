@@ -27,3 +27,4 @@ const startIpfs = async ({dataDirectory}) => {
 }
 
 global.startIpfsDaemon = () => startIpfs({ dataDirectory: app.getPath('userData') + '/ipfs' })
+export default async (dataDirectory) => startIpfs({dataDirectory})
