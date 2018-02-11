@@ -5,8 +5,9 @@ const util = require('util')
 require('util.promisify').shim()
 const exec = util.promisify(require('child_process').exec)
 
-const startIpfsDaemon = async ({ options, onReady, onError, onUnexpectedClose }) => {
+const startIpfsDaemon = (options) => new Promise(async (resolve, reject) => {
   let needIPFSInit = false
+  let needIPFSClose = false
   const ipfsPath = getIpfsPath()
 
   try {
@@ -22,35 +23,52 @@ const startIpfsDaemon = async ({ options, onReady, onError, onUnexpectedClose })
     console.log('-- OFFLINE')
     args.push('--offline')
   }
+
   const ipfs = spawn(ipfsPath, args, options)
 
   ipfs.stdout.on('data', (data) => {
     console.log(`ipfs: ${data}`)
     if (data.includes('Daemon is ready')) {
-      console.log('catched ipfs start')
-      onReady(ipfs)
+      const killIpfsDaemon = () => new Promise((resolve, reject) => {
+        needIPFSClose = resolve
+        try {
+          ipfs.kill()
+        } catch (e) {
+          reject(e)
+        }
+      })
+      console.log('-- ipfs daemon is ready')
+      resolve(killIpfsDaemon)
     }
   })
 
   ipfs.stderr.on('data', (data) => {
     if (data.includes('ipfs init')) {
-      console.log('need ipfs initialization')
       needIPFSInit = true
     } else {
-      onError(new Error('Unexpected error on IPFS start.'))
+      reject(new Error('Unexpected error on IPFS start.'))
     }
   })
 
   ipfs.on('close', async (code) => {
     if (needIPFSInit) {
-      console.log('start ipfs init')
+      console.log('initializing ipfs')
       await initIpfs(options)
-      startIpfsDaemon({options, onError, onReady, onUnexpectedClose})
+      try {
+        const resolved = await startIpfsDaemon(options)
+        resolve(resolved)
+      } catch (error) {
+        reject(error)
+      }
+    } else
+    if (needIPFSClose) {
+      needIPFSClose()
+      console.log('-- ipfs daemon closed by user')
     } else {
-      onUnexpectedClose()
-      console.log(`ipfs closed with code ${code}`)
+      console.error(`Unexpected ipfs daemon stop with code ${code}`)
+      reject(new Error('Unexpexted ipfs daemon stop.'))
     }
   })
-}
+})
 
 module.exports = startIpfsDaemon

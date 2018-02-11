@@ -21,6 +21,7 @@ export default (name, options) => {
     try {
       restoredState = userDataDir.read(stateStoreFile, 'json')
     } catch (err) {
+      console.error(err)
       // For some reason json can't be read (might be corrupted).
       // No worries, we have defaults.
     }

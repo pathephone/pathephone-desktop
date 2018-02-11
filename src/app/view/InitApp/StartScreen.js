@@ -5,12 +5,10 @@ import ErrorView from './StartScreen/ErrorView'
 
 import './StartScreen/StartScreen.css'
 
-const StartScreen = ({ stage, message, error }) => {
-  const finalStage = 2
-  const progress = stage / finalStage * 100
+const StartScreen = ({ ready, message, error }) => {
   return (
     <div className='start-screen izi-fill izi-middle izi-y'>
-      <ProgressBar progress={progress} message={message} />
+      <ProgressBar progress={ready} message={message} />
       {
         error && (
           <ErrorView error={error} />
