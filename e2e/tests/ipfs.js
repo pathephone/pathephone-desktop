@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import getIpfsNode from '../../src/app/api/ipfs'
-import startIpfs from '../../src/background/methods/startIpfs'
+import startIpfs from '../../src/background/modules/ipfsDaemon/startIpfs'
 const assert = require('assert')
 
 describe('IPFS', function () {
