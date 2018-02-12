@@ -1,3 +1,11 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/pathephone/pathephone-desktop/compare/v1.0.2...v1.0.3) (2018-02-12)
+
+
+### Bug Fixes
+
+* **database:** fixed rxdb error on startup ([9738a6a](https://github.com/pathephone/pathephone-desktop/commit/9738a6a))
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/pathephone/pathephone-desktop/compare/v1.0.1...v1.0.2) (2018-02-12)
 
