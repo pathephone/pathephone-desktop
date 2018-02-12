@@ -10,9 +10,11 @@ const findGoodPort = async (port, host) => {
 
 const getIpfsOptions = async () => {
   const options = {}
-  const dataDirectory = app.getPath('userData') + '/ipfs'
-  options.env = {}
-  options.env.IPFS_PATH = dataDirectory.replace(/\\/g, '/')
+  const dataDirectory = (app && app.getPath) ? app.getPath('userData') + '/ipfs' : false
+  if (dataDirectory) {
+    options.env = {}
+    options.env.IPFS_PATH = dataDirectory.replace(/\\/g, '/')
+  }
   // port check
   options.port = await findGoodPort(4001, '0.0.0.0')
   options.portApi = await findGoodPort(5001)

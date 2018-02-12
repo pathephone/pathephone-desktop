@@ -15,9 +15,12 @@ if (platform === 'win32') {
 }
 
 const beforeEach = function () {
+  this.timeout(10000)
   this.app = new Application({
     path: pathToBin,
-    args: ['.']
+    args: ['.'],
+    startTimeout: 10000,
+    waitTimeout: 10000
   })
   return this.app.start()
 }
