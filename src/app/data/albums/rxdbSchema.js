@@ -2,7 +2,7 @@ import instanceSchema from './instanceSchema'
 
 const rxdbSchema = {
   title: 'album',
-  version: 0, // <- incremental version-number
+  version: 1, // <- incremental version-number
   type: 'object',
   properties: {
     cid: {

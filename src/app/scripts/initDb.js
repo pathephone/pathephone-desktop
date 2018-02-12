@@ -9,7 +9,12 @@ const initDb = async () => {
   const db = getDb()
   albums.collection = await db.collection({
     name: 'albums',
-    schema: albums.rxdbSchema
+    schema: albums.rxdbSchema,
+    migrationStrategies: {
+      1: function (oldDoc) {
+        return null
+      }
+    }
   })
 }
 
