@@ -50,7 +50,7 @@ app.on('ready', async () => {
 
   mainWindow.on('close', e => {
     e.preventDefault()
-    mainWindow.webContents.send('prepare-for-close')
+    mainWindow.webContents.send('handle-custom-close')
   })
 
   mainWindow.on('closed', () => {
