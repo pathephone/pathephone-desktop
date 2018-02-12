@@ -9,13 +9,12 @@ import { app } from 'electron'
 
 import setAppMenu from './methods/setAppMenu'
 import createWindow from './methods/createWindow'
-import initGlobalState from './methods/initGlobalState'
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
 
 import env from 'env'
-import startIpfs from './methods/startIpfs'
+import './methods/initGlobals'
 
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
@@ -33,21 +32,12 @@ if (env.name === 'development') {
 
 app.on('ready', async () => {
   setAppMenu(env)
-  initGlobalState()
-  let ipfsDaemonApi
-  try {
-    ipfsDaemonApi = await startIpfs({dataDirectory: app.getPath('userData') + '/ipfs'})
-    global.portApi = ipfsDaemonApi.options.portApi
-  } catch (error) {
-    console.log(error)
-  }
-
   let mainWindow = createWindow('main', {
     width: 1000,
     height: 600
   })
 
-  console.log('loading main window')
+  console.log('-- loading main window')
   mainWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, 'app.html'),
@@ -55,7 +45,13 @@ app.on('ready', async () => {
       slashes: true
     })
   )
+
   mainWindow.webContents.on('will-navigate', e => { e.preventDefault() })
+
+  mainWindow.on('close', e => {
+    e.preventDefault()
+    mainWindow.webContents.send('prepare-for-close')
+  })
 
   mainWindow.on('closed', () => {
     mainWindow = null
@@ -64,11 +60,5 @@ app.on('ready', async () => {
   app.on('window-all-closed', () => {
     console.log('closing app')
     app.quit()
-  })
-
-  app.on('before-quit', () => {
-    ipfsDaemonApi.stopIpfs()
-      .then(console.log)
-      .catch(console.error)
   })
 })

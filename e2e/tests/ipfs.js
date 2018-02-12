@@ -1,30 +1,21 @@
 /* eslint-env mocha */
 import getIpfsNode from '../../src/app/api/ipfs'
+import startIpfs from '../../src/background/modules/ipfsDaemon/startIpfs'
 const assert = require('assert')
-const utils = require('../utils')
 
 describe('IPFS', function () {
   this.timeout(30000)
 
-  before(utils.beforeEach)
-  after(utils.afterEach)
-
   let ipfs
-  // запускаем ipfs с приложением, простой путь
-  it('app is runned', async function () {
-    const { app } = this
-    await app.client.waitForExist('#app')
-  })
+  let ipfsKill = null
 
   const bufferString = Buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]) // QmTRSxHhL8Uaz1YXfWLkydRQ7nPSHXaNFsYaHjqjCpU8W7
 
   describe('files', function () {
-    it('init with port', async function () {
-      const { app } = this
-      const port = await app.electron.remote.getGlobal('portApi')
-      assert(port >= 5001)
-      // we also need to wait create of ipfs
-      ipfs = getIpfsNode({port})
+    it('init', async function () {
+      this.timeout(20000)
+      ipfsKill = await startIpfs()
+      ipfs = getIpfsNode({port: 5001})
     })
 
     it('adding', async () => {
@@ -79,5 +70,11 @@ describe('IPFS', function () {
       )
       ipfs.pubsub.publish('XXXyyyyXXXzzfql93333', bufferString)
     }))
+  })
+
+  describe('close', () => {
+    it('closing', () => {
+      ipfsKill()
+    })
   })
 })

@@ -10,7 +10,7 @@ import App from './App'
 // const { ipcRenderer, remote } = require('electron')
 
 const StepperView = ({ step }) => {
-  if (step.stage > 3) {
+  if (step.ready === true) {
     return <App />
   }
   return <StartScreen {...step} />
