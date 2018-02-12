@@ -7,6 +7,4 @@ api.start = async () => {
   api.stop = await startIpfsDaemon()
 }
 
-api.stop = () => {}
-
 export default api
