@@ -14,15 +14,15 @@ if (platform === 'win32') {
   pathToBin = 'dist/win-unpacked/Pathephone.exe'
 }
 
-const beforeEach = function () {
-  this.timeout(10000)
+const beforeEach = async function () {
+  this.timeout(30000)
   this.app = new Application({
     path: pathToBin,
     args: ['.'],
-    startTimeout: 10000,
-    waitTimeout: 10000
+    waitTimeout: 30000
   })
-  return this.app.start()
+  await this.app.start()
+  return this.app.client.waitForExist('#app')
 }
 
 const afterEach = function () {
