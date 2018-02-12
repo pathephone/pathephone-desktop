@@ -1,3 +1,11 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/pathephone/pathephone-desktop/compare/v1.0.0...v1.0.1) (2018-02-12)
+
+
+### Bug Fixes
+
+* **ipfs:** ipfs daemon start moved to renderer ([#139](https://github.com/pathephone/pathephone-desktop/issues/139)) ([4896a20](https://github.com/pathephone/pathephone-desktop/commit/4896a20))
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/pathephone/pathephone-desktop/compare/v0.5.1...v1.0.0) (2018-02-09)
 
