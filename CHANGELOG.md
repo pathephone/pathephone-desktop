@@ -1,3 +1,11 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/pathephone/pathephone-desktop/compare/v1.0.3...v1.0.4) (2018-02-13)
+
+
+### Bug Fixes
+
+* **macOS:** unable to resolve path with spaces ([#144](https://github.com/pathephone/pathephone-desktop/issues/144)) ([91c3a43](https://github.com/pathephone/pathephone-desktop/commit/91c3a43)), closes [#143](https://github.com/pathephone/pathephone-desktop/issues/143)
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/pathephone/pathephone-desktop/compare/v1.0.2...v1.0.3) (2018-02-12)
 
