@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import getIpfsNode from '../../src/app/api/ipfs'
+import getIpfsApi, { startIpfsApi } from '../../src/app/api/ipfsApi'
 import startIpfs from '../../src/background/modules/ipfsDaemon/startIpfs'
 const assert = require('assert')
 
@@ -15,7 +15,8 @@ describe('IPFS', function () {
     it('init', async function () {
       this.timeout(20000)
       ipfsKill = await startIpfs()
-      ipfs = getIpfsNode({port: 5001})
+      await startIpfsApi({port: 5001})
+      ipfs = getIpfsApi()
     })
 
     it('adding', async () => {

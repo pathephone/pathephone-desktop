@@ -1,4 +1,4 @@
-import getIpfsNode from '../api/ipfs'
+import getIpfsNode from '../api/ipfsApi'
 
 export default async (playlist) => {
   const ipfsNode = getIpfsNode()

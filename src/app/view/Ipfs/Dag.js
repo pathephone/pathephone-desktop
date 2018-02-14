@@ -1,5 +1,5 @@
 import React from 'react'
-import { getIpfs } from 'api/ipfs'
+import getIpfs from 'api/ipfsApi'
 
 class IpfsGet extends React.Component {
   state = {}
