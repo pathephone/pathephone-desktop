@@ -6,8 +6,6 @@ const validateAlbum = (albumCandidate) => {
     allErrors: true
   })
   const valid = validator.validate(albums.instanceSchema, albumCandidate)
-  console.log(valid)
-  console.log(validator.errors)
   return {
     valid, errors: validator.errors
   }

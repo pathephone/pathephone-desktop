@@ -1,4 +1,10 @@
 import instanceSchema from './instanceSchema'
 import rxdbSchema from './rxdbSchema'
 
-export default { instanceSchema, rxdbSchema }
+const apearenceInterval = 60000 * 10
+
+const publishInterval = 60000 * 5
+
+const data = null
+
+export default { instanceSchema, rxdbSchema, apearenceInterval, publishInterval, data }

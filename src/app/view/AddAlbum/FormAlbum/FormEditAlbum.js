@@ -2,8 +2,8 @@ import React from 'react'
 import FormAbout from './FormAbout'
 import FormTracks from './FormTracks'
 
-import publishAlbum from '../../../scripts/publishAlbum'
-import validateAlbum from '../../../scripts/validateAlbum'
+import validateAlbum from '~/scripts/validateAlbum'
+import albums from '~/data/albums'
 
 const Tips = () => (
   <fieldset className='izi-green'>
@@ -43,7 +43,7 @@ class FormEditAlbum extends React.Component {
       if (!valid) {
         this.setState({ errors, loading: false })
       } else {
-        await publishAlbum(formState)
+        await albums.gate.send(formState)
         this.props.onSuccess()
       }
     } catch (error) {

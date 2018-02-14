@@ -1,7 +1,7 @@
 import albums from '../data/albums'
 
-const saveAlbumToDb = async (albumObj) => {
-  albums.collection.insert(albumObj)
+const saveAlbumToDb = (albumObj) => {
+  return albums.collection.insert(albumObj)
 }
 
 export default saveAlbumToDb
