@@ -21,7 +21,7 @@ export const getIpfs = () => {
 };
 */
 
-const getIpfsNode = (params = {}) => {
+export const startIpfsApi = (params = {}) => {
   if (node) return node
   const { host = 'localhost', port = params.port || '5001' } = params
   console.log('IPFS START')
@@ -41,8 +41,21 @@ const getIpfsNode = (params = {}) => {
     const r = await put(a, b)
     setTimeout(() => resolve(r), 1)
   })
-
-  return node
+  const pub = node.pubsub.publish
+  node.pubsub.publish = (...params) => new Promise(async (resolve) => {
+    const r = await pub(...params)
+    setTimeout(() => resolve(r), 1)
+  })
+  const sub = node.pubsub.subscribe
+  node.pubsub.subscribe = (...params) => new Promise(async (resolve) => {
+    const r = await sub(...params)
+    setTimeout(() => resolve(r), 1)
+  })
 }
 
-export default getIpfsNode
+export default () => {
+  if (!node) {
+    throw new Error('You need to start IPFS api first.')
+  }
+  return node
+}
