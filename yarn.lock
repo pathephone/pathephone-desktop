@@ -79,6 +79,13 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@metabin/gate@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@metabin/gate/-/gate-2.1.0.tgz#b19f65340d786ae0404cd3610746e14e6f57d182"
+  dependencies:
+    cids "^0.5.2"
+    multibase "^0.4.0"
+
 "@semantic-release/changelog@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-1.0.0.tgz#df918410ec04c72fed8328b8f583f4a2667b7584"
@@ -1177,6 +1184,12 @@ balanced-match@^1.0.0:
 base-x@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/base-x/-/base-x-3.0.0.tgz#77b56f0311070b780b3c8a5f534beac47e506702"
+
+base-x@3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/base-x/-/base-x-3.0.4.tgz#94c1788736da065edb1d68808869e357c977fa77"
+  dependencies:
+    safe-buffer "^5.0.1"
 
 base-x@^3.0.2:
   version "3.0.3"
@@ -4954,6 +4967,12 @@ multiaddr@^3.0.2:
     lodash.map "^4.6.0"
     varint "^5.0.0"
     xtend "^4.0.1"
+
+multibase@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/multibase/-/multibase-0.4.0.tgz#1bdb62c82de0114f822a1d8751bcbee91cd2efba"
+  dependencies:
+    base-x "3.0.4"
 
 multibase@~0.3.4:
   version "0.3.4"
