@@ -2,7 +2,7 @@
 import createPoint from 'recall-action'
 
 const data = {
-  name: 'albums-found',
+  name: 'albums-page',
   props: {}
 }
 

@@ -32,10 +32,14 @@ input, button {
   font-size: 1em;
 }
 
-input[type='text'] {
+.input[type='text'] {
   padding: 0.5em 0.75em;
   outline: none;
   border: 1px solid var(--secondary-color);
+}
+
+.input:focus {
+  border-color: var(--accent-color);
 }
 
 button {
@@ -100,10 +104,6 @@ main {
   flex-shrink: 1;
   min-width: 15em;
   overflow-y: auto;
-}
-
-input:focus {
-  border-color: var(--accent-color);
 }
 
 .square-button {
