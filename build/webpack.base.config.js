@@ -1,6 +1,7 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = env => {
   return {
@@ -34,12 +35,18 @@ module.exports = env => {
           ]
         },
         {
-          test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
-          use: 'url-loader'
+          test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac)$/,
+          use: 'file-loader'
         }
       ]
     },
     plugins: [
+      new HtmlWebpackPlugin({
+        hash: true,
+        filename: './index.html',
+        template: 'src/app/index.html',
+        chunks: ['app'] // relative to root of the application
+      }),
       new FriendlyErrorsWebpackPlugin({ clearConsole: env === 'development' })
     ]
   }
