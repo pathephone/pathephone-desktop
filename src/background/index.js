@@ -68,4 +68,8 @@ app.on('ready', async () => {
     console.log('closing app')
     app.quit()
   })
+
+  app.on('before-quit', () => {
+    app.isQuiting = true
+  })
 })
