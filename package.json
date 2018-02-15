@@ -20,6 +20,12 @@
       "node_modules/**/*",
       "package.json"
     ],
+    "extraResources": [
+      {
+        "from": "resources/icons/64x64.png",
+        "to": "icons/64x64.png"
+      }
+    ],
     "directories": {
       "buildResources": "resources"
     },
