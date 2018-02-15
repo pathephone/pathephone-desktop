@@ -7,7 +7,7 @@ const { spawn } = require('child_process')
 
 let killIpfsDaemon
 
-const startIpfsDaemon = ({ silent }) => new Promise(async (resolve, reject) => {
+const startIpfsDaemon = ({ silent } = {}) => new Promise(async (resolve, reject) => {
   try {
     if (killIpfsDaemon) {
       resolve(killIpfsDaemon)
