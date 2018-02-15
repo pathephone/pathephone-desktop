@@ -1,4 +1,6 @@
 /* eslint-env mocha */
+import track1 from '$/resources/music/track1.flac'
+import cover1 from '$/resources/music/cover1.jpg'
 const utils = require('../utils')
 const path = require('path')
 const isIpfs = require('is-ipfs')
@@ -57,7 +59,7 @@ describe('add album process', function () {
   describe('add track manually', () => {
     it('throws no errors', function () {
       const { app } = this
-      const testFilePath = path.join(__dirname, '../../resources/music/track1.flac')
+      const testFilePath = path.join(__dirname, track1)
       return app.client.chooseFile('#input_add-tracks', testFilePath)
     })
     it('autofills album.title data', async function () {
@@ -137,7 +139,7 @@ describe('add album process', function () {
   describe('add cover manually', () => {
     it('throws no errors', function () {
       const { app } = this
-      const testFilePath = path.join(__dirname, '../../resources/music/cover.jpg')
+      const testFilePath = path.join(__dirname, cover1)
       return app.client.chooseFile('#input_add-cover', testFilePath)
     })
     it('fills album.cover data', async function () {

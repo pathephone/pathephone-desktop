@@ -8,7 +8,7 @@ const findGoodPort = async (port, host) => {
   return port
 }
 
-const getIpfsOptions = async () => {
+const getIpfsOptions = async ({ silent }) => {
   const options = {}
   const dataDirectory = (app && app.getPath) ? app.getPath('userData') + '/ipfs' : false
   if (dataDirectory) {
@@ -19,7 +19,7 @@ const getIpfsOptions = async () => {
   options.port = await findGoodPort(4001, '0.0.0.0')
   options.portApi = await findGoodPort(5001)
   options.portGateway = await findGoodPort(8080)
-  console.log(options.port, options.portApi, options.portGateway)
+  silent || console.log(options.port, options.portApi, options.portGateway)
   return options
 }
 
