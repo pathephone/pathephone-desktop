@@ -1,5 +1,6 @@
-import getIpfs from '../api/ipfsApi'
+import getIpfs from '~/api/ipfsApi'
 import saveAlbumToDb from './saveAlbumToDb'
+import albums from '~/data/albums'
 
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
@@ -9,6 +10,7 @@ const publishAlbum = async (albumObj) => {
   const cidString = cidObj.toBaseEncodedString()
   console.log(`Shared album cid: ${cidString}`)
   await saveAlbumToDb({ cid: cidString, data: albumObj, lastSeen: 0 })
+  albums.gate.send(cidString)
 }
 
 export default publishAlbum
