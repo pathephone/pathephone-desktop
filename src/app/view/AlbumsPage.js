@@ -58,6 +58,9 @@ class Wrapper extends React.Component {
   handleSearch = (searchText) => {
     this.setState({ searchText })
   }
+  handleCancelSearch = () => {
+    this.setState({ searchText: '' })
+  }
   ResolveAlbums = ({ data, error }) => {
     if (error) {
       return <h1>{error.message}</h1>
@@ -72,7 +75,11 @@ class Wrapper extends React.Component {
     const query = createAlbumsQuery(searchText)
     return (
       <div className='albums-page'>
-        <SearchBar onChange={this.handleSearch} />
+        <SearchBar
+          value={this.state.searchText}
+          onCancel={this.handleCancelSearch}
+          onChange={this.handleSearch}
+        />
         <Rxdb collection='albums' query={query} reactive view={this.ResolveAlbums} />
       </div>
     )

@@ -1,16 +1,11 @@
 /* eslint-env mocha */
-import track1 from '$/resources/music/track1.flac'
-import cover1 from '$/resources/music/cover1.jpg'
-const utils = require('../utils')
-const path = require('path')
-const isIpfs = require('is-ipfs')
+import { expect } from 'chai'
+import path from 'path'
+import isIpfs from 'is-ipfs'
+import flac from '$/resources/music/track.flac'
+import cover from '$/resources/music/cover.jpg'
 
 describe('add album process', function () {
-  this.timeout(30000)
-
-  before(utils.beforeEach)
-  after(utils.afterEach)
-
   // OPEN AND CLOSE ADD ALBUM MODAL
 
   describe('click open add album button', () => {
@@ -55,11 +50,10 @@ describe('add album process', function () {
   })
 
   // ADD TRACK
-
   describe('add track manually', () => {
     it('throws no errors', function () {
       const { app } = this
-      const testFilePath = path.join(__dirname, track1)
+      const testFilePath = path.join(__dirname, flac)
       return app.client.chooseFile('#input_add-tracks', testFilePath)
     })
     it('autofills album.title data', async function () {
@@ -117,20 +111,20 @@ describe('add album process', function () {
       }
     })
     it('can edit song title after add', async function () {
+      const nextValue = 'Awesome song'
       const selector = 'input[name="album.tracks[0].title"]'
       const { app } = this
-      await app.client.$(selector).setValue('DEgITx Awesome song')
-      if (await app.client.$(selector).getValue() !== 'DEgITx Awesome song') {
-        throw new Error('Cant edit track title')
-      }
+      await app.client.$(selector).setValue(nextValue)
+      const value = await app.client.$(selector).getValue()
+      expect(value).to.be.equal(nextValue)
     })
     it('can edit album title', async function () {
+      const nextValue = 'Awesome album'
       const selector = 'input[name="album.title"]'
       const { app } = this
-      await app.client.$(selector).setValue('DEgITx album')
-      if (await app.client.$(selector).getValue() !== 'DEgITx album') {
-        throw new Error('Cant edit album title')
-      }
+      await app.client.$(selector).setValue(nextValue)
+      const value = await app.client.$(selector).getValue()
+      expect(value).to.be.equal(nextValue)
     })
   })
 
@@ -139,7 +133,7 @@ describe('add album process', function () {
   describe('add cover manually', () => {
     it('throws no errors', function () {
       const { app } = this
-      const testFilePath = path.join(__dirname, cover1)
+      const testFilePath = path.join(__dirname, cover)
       return app.client.chooseFile('#input_add-cover', testFilePath)
     })
     it('fills album.cover data', async function () {
@@ -160,7 +154,7 @@ describe('add album process', function () {
     })
   })
 
-  // SUBMIT VALID
+  // SUBMIT VALID DATA
 
   describe('submit valid form data', () => {
     it('form disappears', async function () {
@@ -171,16 +165,19 @@ describe('add album process', function () {
         return !exists
       })
     })
-    it('album appears in albums feed', async function () {
-      const selectors = ['.album__title', '.album__artist']
-      const { app } = this
-      await app.client.waitForExist(selectors[0])
-      const [ title, artist ] = await Promise.all(
-        selectors.map(selector => app.client.$(selector).getText())
-      )
-      if (title !== 'DEgITx album' || artist !== 'DEgITx') {
-        throw new Error('Published album does not appear.')
-      }
+    describe('album appears in albums feed', function () {
+      it('title match', async function () {
+        const { app } = this
+        await app.client.waitForExist('#albums-feed .album')
+        const title = await app.client.$('.album__title').getText()
+        expect(title).to.be.equal('Awesome album')
+      })
+      it('artist match', async function () {
+        const { app } = this
+        await app.client.waitForExist('#albums-feed .album')
+        const artist = await app.client.$('.album__artist').getText()
+        expect(artist).to.be.equal('DEgITx')
+      })
     })
   })
 })

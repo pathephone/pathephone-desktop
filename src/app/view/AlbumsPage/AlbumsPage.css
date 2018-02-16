@@ -13,17 +13,37 @@
   align-items: center;
 }
 
-.albums-page__search-input {
-  padding: 1em 1.25em;
+.albums-page__search-bar {
+  padding: 0.5em 1em;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
-  border: none;
   border-bottom: 1px solid #dedede;
 }
 
-.albums-page__search-input:focus {
+.albums-page__search-input {
+  height: 2em;
+  flex-basis: 100%;
+  border: none;
   outline: none;
-  border-bottom: 1px solid var(--accent-color);
 }
+
+.albums-page__cancel-search {
+  color: var(--accent-color);
+  background: none;
+  border: 1px solid white;
+  transition: 0.2s;
+}
+
+.albums-page__cancel-search:focus {
+  border: 1px solid var(--accent-color);
+}
+
+.albums-page__cancel-search:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
 
 .albums-page__feed {
   display: grid;
