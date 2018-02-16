@@ -1,12 +1,6 @@
 /* eslint-env mocha */
-const utils = require('../utils')
 
 describe('albums feed', function () {
-  this.timeout(30000)
-
-  before(utils.beforeEach)
-  after(utils.afterEach)
-
   // ALBUM SELECTION
 
   describe('click album', () => {

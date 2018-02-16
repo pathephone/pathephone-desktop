@@ -14,7 +14,7 @@ if (platform === 'win32') {
   pathToBin = 'dist/win-unpacked/Pathephone.exe'
 }
 
-const beforeEach = async function () {
+const startApp = async function () {
   this.timeout(30000)
   this.app = new Application({
     path: pathToBin,
@@ -25,7 +25,7 @@ const beforeEach = async function () {
   return this.app.client.waitForExist('#app')
 }
 
-const afterEach = function () {
+const closeApp = function () {
   if (this.app && this.app.isRunning()) {
     return this.app.stop()
   }
@@ -34,7 +34,7 @@ const afterEach = function () {
 const asyncTimeout = delay => new Promise(resolve => setTimeout(resolve, delay))
 
 module.exports = {
-  beforeEach,
-  afterEach,
+  startApp,
+  closeApp,
   asyncTimeout
 }

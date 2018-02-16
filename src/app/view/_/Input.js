@@ -8,7 +8,7 @@ const Input = ({ label, ...rest }) => {
     )
   }
   view.push(
-    <input {...rest} key='input' />
+    <input className='input' {...rest} key='input' />
   )
   return view
 }

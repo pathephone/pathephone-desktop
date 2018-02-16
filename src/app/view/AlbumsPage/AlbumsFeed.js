@@ -6,8 +6,6 @@ import addAlbums from './AlbumsFeed/addAlbums'
 import playAlbums from './AlbumsFeed/playAlbums'
 import deleteAlbums from './AlbumsFeed/deleteAlbums'
 
-import './AlbumsFeed/AlbumsFeed.css'
-
 class AlbumsFeed extends React.Component {
   state = {
     selected: []
@@ -79,20 +77,20 @@ class AlbumsFeed extends React.Component {
   render () {
     const { albums } = this.props
     const { selected } = this.state
-    return (
-      <div className='albums-feed__wrapper izi-fill izi-ys'>
-        <div id='albums-feed' className='albums-feed'>
-          {
-            albums.map(this.AlbumWrapper)
-          }
-        </div>
+    const view = []
+    view.push(
+      <div id='albums-feed' key='feed' className='albums-page__feed'>
         {
-          selected.length > 0 && (
-            <SelectedActions {...this.getSelectedActionsProps()} key='actions' />
-          )
+          albums.map(this.AlbumWrapper)
         }
       </div>
     )
+    if (selected.length > 0) {
+      view.push(
+        <SelectedActions {...this.getSelectedActionsProps()} key='actions' />
+      )
+    }
+    return view
   }
 }
 

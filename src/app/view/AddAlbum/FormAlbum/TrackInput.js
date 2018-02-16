@@ -11,7 +11,7 @@ class TrackInput extends React.Component {
         <div className='izi-x'>
           <div className='izi-yl izi-fill-width'>
             <Input
-              className='izi-fill-width'
+              className='input izi-fill-width'
               value={title}
               name={`album.tracks[${index}].title`}
               placeholder='Track title'
@@ -23,7 +23,7 @@ class TrackInput extends React.Component {
           <br />
           <div className='izi-yl izi-fill-width izi-margin-left'>
             <Input
-              className='izi-fill-width'
+              className='input izi-fill-width'
               value={artist}
               name={`album.tracks[${index}].artist`}
               label
