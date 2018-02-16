@@ -53,7 +53,7 @@ app.on('ready', async () => {
 
   mainWindow.on('close', e => {
     e.preventDefault()
-    if (!app.isQuiting) {
+    if (!app.isQuiting && process.platform !== 'linux') {
       mainWindow.hide()
       return
     }
