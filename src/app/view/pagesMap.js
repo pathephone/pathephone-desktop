@@ -1,10 +1,10 @@
-import AlbumsFound from './AlbumsFound'
+import AlbumsPage from './AlbumsPage'
 
 const pagesMap = [
   {
-    name: 'albums-found',
+    name: 'albums-page',
     title: 'Найдено в сети',
-    view: AlbumsFound
+    view: AlbumsPage
   }
 ]
 

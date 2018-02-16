@@ -6,7 +6,7 @@ const base = require('./webpack.base.config')
 // for them and generating entry file for webpack.
 
 const srcDir = jetpack.cwd('src')
-const tempDir = jetpack.cwd('temp')
+const tempDir = jetpack.cwd('.temp')
 const entryFilePath = tempDir.path('specs_entry.js')
 
 const entryFileContent = srcDir

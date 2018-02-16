@@ -24,6 +24,10 @@
         {
           "rootPathPrefix": "~",
           "rootPathSuffix": "src/app"
+        },
+        {
+          "rootPathPrefix": "$",
+          "rootPathSuffix": ""
         }
       ]
     ]
