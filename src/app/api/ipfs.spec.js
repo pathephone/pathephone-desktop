@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import getIpfsApi, { startIpfsApi } from './ipfs'
+import getIpfsApi, { startIpfsApi } from './ipfsApi'
 import startIpfsDaemon from '$/src/background/modules/ipfsDaemon/startIpfs'
 import assert from 'assert'
 
