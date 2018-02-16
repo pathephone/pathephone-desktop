@@ -1,3 +1,11 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/pathephone/pathephone-desktop/compare/v1.0.4...v1.1.0) (2018-02-16)
+
+
+### Features
+
+* search bar ([#146](https://github.com/pathephone/pathephone-desktop/issues/146)) ([df2375f](https://github.com/pathephone/pathephone-desktop/commit/df2375f))
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/pathephone/pathephone-desktop/compare/v1.0.3...v1.0.4) (2018-02-13)
 
