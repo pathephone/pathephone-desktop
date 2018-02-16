@@ -39,16 +39,6 @@ export const startIpfsApi = (params = {}) => {
     const r = await put(a, b)
     setTimeout(() => resolve(r), 1)
   })
-  const pub = node.pubsub.publish
-  node.pubsub.publish = (...params) => new Promise(async (resolve) => {
-    const r = await pub(...params)
-    setTimeout(() => resolve(r), 1)
-  })
-  const sub = node.pubsub.subscribe
-  node.pubsub.subscribe = (...params) => new Promise(async (resolve) => {
-    const r = await sub(...params)
-    setTimeout(() => resolve(r), 1)
-  })
 }
 
 export default () => {
