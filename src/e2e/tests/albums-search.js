@@ -24,7 +24,10 @@ describe('albums search', function () {
   describe('click cancel search button', function () {
     it('throws no errors', async function () {
       const { app } = this
-      await app.client.waitForExist(buttonSelector)
+      await app.client.waitUntil(async () => {
+        const button = await app.client.$(buttonSelector)
+        return !!button
+      })
       await app.client.$(buttonSelector).click()
     })
     it('input is empty', async function () {

@@ -170,7 +170,7 @@ describe('add album process', function () {
         const { app } = this
         await app.client.waitForExist('#albums-feed .album')
         const title = await app.client.$('.album__title').getText()
-        expect(title).to.be.equal('Awesome album')
+        expect(title).to.be.equal('Forest Spirits')
       })
       it('artist match', async function () {
         const { app } = this
