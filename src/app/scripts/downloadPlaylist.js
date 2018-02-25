@@ -11,15 +11,19 @@ const downloadPlaylist = async (playlist) => {
   const pendingTracks = tracksToDownload
     .map(song => song.hash)
   const localTracks = await ipfsNode.files.exists(pendingTracks)
-  localTracks.forEach(markAsDownloaded)
-  const tracksToGet = pendingTracks.filter(
-    hash => !localTracks.includes(hash)
-  )
+  let tracksToGet = pendingTracks
+  if (localTracks) {
+    localTracks.forEach(markAsDownloaded)
+    tracksToGet = pendingTracks.filter(
+      hash => !localTracks.includes(hash)
+    )
+  }
   tracksToGet.forEach(async (hash, i) => {
-    ipfsNode.files.get(hash, (err) => {
+    ipfsNode.files.get(hash, (err, data) => {
       if (err) {
         console.error(err)
       } else {
+        console.log(data)
         markAsDownloaded(hash)
       }
     })
