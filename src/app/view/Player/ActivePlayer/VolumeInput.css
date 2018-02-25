@@ -31,7 +31,7 @@
 
 .volume-control__input::-webkit-slider-runnable-track {
   width: 100%;
-  height: 6px;
+  height: 4px;
   cursor: pointer;
   background: rgba(120,120,120,0.2);
   border-radius: 2px;

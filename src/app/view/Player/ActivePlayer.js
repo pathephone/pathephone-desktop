@@ -17,6 +17,8 @@ import multihashToUrl from '~/scripts/multihashToUrl'
 
 import TrackTimeline from './ActivePlayer/TrackTimeline'
 import VolumeInput from './ActivePlayer/VolumeInput'
+import ProgressBar from './ActivePlayer/ProgressBar'
+import getRandomString from '../../utils/getRandomString'
 
 class ActivePlayer extends React.Component {
   state = {
@@ -53,15 +55,21 @@ class ActivePlayer extends React.Component {
       onChangeCurrentTime(currentTime)
     }
   }
-  updateSource = (source) => {
-    this.audio.src = source
+  updateSource = (source, updateToken) => {
+    if (this.updateToken === updateToken) {
+      this.audio.src = source
+    }
   }
   handleProps = ({ track, playerStateValue }, initial) => {
     const { pause, volume } = playerStateValue
     const { hash } = track
     if (initial || hash !== this.props.track.hash) {
+      // this.updateSource(`http://localhost:5001/api/v0/cat?arg=${hash}`)
+      this.updateToken = getRandomString()
+      const updateToken = this.updateToken
+      this.updateSource('', updateToken)
       multihashToUrl(hash)
-        .then(this.updateSource)
+        .then((url) => { this.updateSource(url, updateToken) })
     }
     if (pause) {
       this.audio.pause()
@@ -107,12 +115,14 @@ class ActivePlayer extends React.Component {
           </button>
         </div>
         {
-          readyToPlay && (
+          readyToPlay ? (
             <TrackTimeline
               position={this.prepareTime || currentTime}
               length={this.audio.duration}
               onChange={this.onSetCurrentTime}
             />
+          ) : (
+            <ProgressBar />
           )
         }
         <VolumeInput value={volume} onChange={onChangeVolume} />
