@@ -18,7 +18,6 @@ import multihashToUrl from '~/scripts/multihashToUrl'
 import TrackTimeline from './ActivePlayer/TrackTimeline'
 import VolumeInput from './ActivePlayer/VolumeInput'
 import ProgressBar from './ActivePlayer/ProgressBar'
-import getRandomString from '../../utils/getRandomString'
 
 class ActivePlayer extends React.Component {
   state = {
@@ -56,20 +55,23 @@ class ActivePlayer extends React.Component {
     }
   }
   updateSource = (source, updateToken) => {
-    if (this.updateToken === updateToken) {
-      this.audio.src = source
-    }
+    // if (this.updateToken === updateToken) {
+    this.audio.src = source
+    // }
   }
   handleProps = ({ track, playerStateValue }, initial) => {
     const { pause, volume } = playerStateValue
     const { hash } = track
     if (initial || hash !== this.props.track.hash) {
-      // this.updateSource(`http://localhost:5001/api/v0/cat?arg=${hash}`)
+      this.updateSource(`http://localhost:8080/ipfs/${hash}`)
+      /*
+      multihashToUrl(hash)
       this.updateToken = getRandomString()
       const updateToken = this.updateToken
       this.updateSource('', updateToken)
       multihashToUrl(hash)
         .then((url) => { this.updateSource(url, updateToken) })
+      */
     }
     if (pause) {
       this.audio.pause()
