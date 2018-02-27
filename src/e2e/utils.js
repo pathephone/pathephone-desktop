@@ -4,14 +4,18 @@ const { platform } = process
 
 let pathToBin
 
-if (platform === 'darwin') {
-  pathToBin = 'dist/mac/Pathephone.app/Contents/MacOS/Pathephone'
-} else
-if (platform === 'linux') {
-  pathToBin = 'dist/linux-unpacked/pathephone-desktop'
-} else
-if (platform === 'win32') {
-  pathToBin = 'dist/win-unpacked/Pathephone.exe'
+if (process.env.E2E_TYPE === 'dev') {
+  pathToBin = require('electron')
+} else {
+  if (platform === 'darwin') {
+    pathToBin = 'dist/mac/Pathephone.app/Contents/MacOS/Pathephone'
+  } else
+  if (platform === 'linux') {
+    pathToBin = 'dist/linux-unpacked/pathephone-desktop'
+  } else
+  if (platform === 'win32') {
+    pathToBin = 'dist/win-unpacked/Pathephone.exe'
+  }
 }
 
 const startApp = async function () {
