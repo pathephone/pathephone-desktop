@@ -6,7 +6,6 @@ describe('testing app', function () {
 
   before(utils.startApp)
 
-
   require('./tests/add-album')
   require('./tests/albums-search')
   require('./tests/albums-feed')
