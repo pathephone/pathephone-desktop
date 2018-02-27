@@ -1,11 +1,23 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard", "standard-react"],
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
   "env": {
     "browser": true,
     "node": true
   },
   "rules": {
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "src/e2e/**/*.js",
+          "src/**/*.spec.js"
+        ]
+      }
+    ]
   }
 }
