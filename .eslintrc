@@ -9,15 +9,6 @@
     "node": true
   },
   "rules": {
-    "react/prop-types": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "src/e2e/**/*.js",
-          "src/**/*.spec.js"
-        ]
-      }
-    ]
+    "react/prop-types": "off"
   }
 }
