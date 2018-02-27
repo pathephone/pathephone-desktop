@@ -4,16 +4,13 @@
       "env",
       {
         "targets": {
-          "browsers": "last 2 Chrome versions",
-          "node": "current"
+          "electron": "1.7.12"
         }
       }
     ],
-    "react",
-    "stage-0"
+    "react"
   ],
   "plugins": [
-    ["transform-object-rest-spread", { "useBuiltIns": true }],
     [
       "babel-plugin-root-import", 
       [
