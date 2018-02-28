@@ -33,7 +33,7 @@ const getDirectoriesContentsRecursive = (files) => {
 const getAlbumObjectFromFiles = async (files) => {
   files = Array.from(files)
   files = getDirectoriesContentsRecursive(files)
-  const cover = await getImageFromFiles(files)
+  const cover = await getImageFromFiles(files) || ''
   const tracks = await getAudioTracksFromFiles(files)
   let artist = ''
   let title = ''
