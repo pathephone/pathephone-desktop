@@ -5,10 +5,11 @@ import isIpfs from 'is-ipfs'
 import flac from '$/resources/music/track.flac'
 import cover from '$/resources/music/cover.jpg'
 
+let feedLength
+
 describe('add album process', function () {
   // OPEN AND CLOSE ADD ALBUM MODAL
-
-  describe('click open add album button', () => {
+  describe('click openadd album button', () => {
     it('throws no errors', async function () {
       const { app } = this
       await app.client.waitForExist('#add-album_open')
@@ -157,6 +158,11 @@ describe('add album process', function () {
   // SUBMIT VALID DATA
 
   describe('submit valid form data', () => {
+    it('save number of albums on the feed', async function () {
+      const { app } = this
+      const albums = await app.client.$$('#albums-feed .album__title')
+      feedLength = albums.length
+    })
     it('form disappears', async function () {
       const { app } = this
       await app.client.click('#add-album_submit')
@@ -165,12 +171,24 @@ describe('add album process', function () {
         return !exists
       })
     })
+    it('new number of albums on the feed should be greater than previous', async function () {
+      const { app } = this
+      await app.client.waitUntil(async () => {
+        const albums = await app.client.$$('#albums-feed .album__title')
+        return feedLength < albums.length
+      })
+    })
+    /* TODO: refactor when https://github.com/electron/spectron/issues/271 will be resolved
     describe('album appears in albums feed', function () {
       it('title match', async function () {
         const { app } = this
-        await app.client.waitForExist('#albums-feed .album')
-        const title = await app.client.$('.album__title').getText()
-        expect(title).to.be.equal('Forest Spirits')
+        await app.client.waitForExist('#albums-feed .album__title')
+        const title = await app.client.$$('.album__title')
+        const titles = title.map((el) => {
+          console.log(el)
+        })
+        console.log(titles)
+        expect(title).to.be.equal('Awesome album')
       })
       it('artist match', async function () {
         const { app } = this
@@ -179,5 +197,6 @@ describe('add album process', function () {
         expect(artist).to.be.equal('DEgITx')
       })
     })
+    */
   })
 })

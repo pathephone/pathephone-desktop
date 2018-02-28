@@ -19,15 +19,15 @@ $color5: rgba(166, 51, 162, 1);
 */
 
 :root {
-  --accent-color-dark: #c42547;
+  --accent-color-dark: #b32241;
   --accent-color: rgb(239,45,86);
-  --accent-color-light: #f15374;
-  --primary-color-dark: #212834;
+  --accent-color-light: #f26280;
+  --primary-color-dark: #1e2530;
   --primary-color: rgb(40,48,63);
   --primary-color-light: #4f5561;
-  --secondary-color-dark: #1069c5;
+  --secondary-color-dark: #0f60b4;
   --secondary-color: rgb(19,128,240);
-  --secondary-color-light: #3d97f2;
+  --secondary-color-light: #4ea0f3;
   --white-shade-1: rgba(255,255,255, 0.1);
   --white-shade-2: rgba(255,255,255, 0.2);
   --white-shade-5: rgba(255,255,255, 0.5);

@@ -10,7 +10,8 @@ const actions = {
       (trackObj) => {
         const id = getRandomString()
         const current = state.length === 0
-        const track = { ...trackObj, id, current }
+        const downloaded = false
+        const track = { ...trackObj, id, current, downloaded }
         state.push(track)
       }
     )
@@ -35,6 +36,12 @@ const actions = {
       ({ id }) => nextCurrentId === id
     )
     target.current = true
+  },
+  SET_DOWNLOADED (hash) {
+    const handleFilter = t => t.hash === hash
+    const targets = state.filter(handleFilter)
+    const handleEach = t => { t.downloaded = true }
+    targets.forEach(handleEach)
   }
 }
 

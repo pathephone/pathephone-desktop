@@ -22,7 +22,7 @@ export const getIpfs = () => {
 */
 
 export const startIpfsApi = (params = {}) => {
-  const { host = 'localhost', port = params.port || '5001' } = params
+  const { host = 'localhost', port = '5001' } = params
   const endpoint = `http://${host}:${port}/api/v0`
   node = IPFSapi(host, port)
   node = dag(node, endpoint)
