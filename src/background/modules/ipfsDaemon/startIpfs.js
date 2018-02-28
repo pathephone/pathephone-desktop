@@ -7,14 +7,14 @@ const { spawn } = require('child_process')
 
 let killIpfsDaemon
 
-const startIpfsDaemon = () => new Promise(async (resolve, reject) => {
+const startIpfsDaemon = ({ silent } = {}) => new Promise(async (resolve, reject) => {
   try {
     if (killIpfsDaemon) {
       resolve(killIpfsDaemon)
       return
     }
 
-    const options = getIpfsOptions()
+    const options = getIpfsOptions({ silent })
 
     let needIPFSInit = false
     let needIPFSClose = false
@@ -29,14 +29,14 @@ const startIpfsDaemon = () => new Promise(async (resolve, reject) => {
 
     const args = ['daemon', '--enable-pubsub-experiment']
     if (process.env.IPFS_OFFLINE === 'true') {
-      console.log('-- OFFLINE')
+      silent || console.log('-- OFFLINE')
       args.push('--offline')
     }
 
     const ipfs = spawn(ipfsPath, args, options)
 
     ipfs.stdout.on('data', (data) => {
-      console.log(`ipfs: ${data}`)
+      silent || console.log(`ipfs: ${data}`)
       if (data.includes('Daemon is ready')) {
         killIpfsDaemon = () => new Promise((resolve, reject) => {
           needIPFSClose = resolve
@@ -46,7 +46,7 @@ const startIpfsDaemon = () => new Promise(async (resolve, reject) => {
             reject(e)
           }
         })
-        console.log('-- ipfs daemon is ready')
+        silent || console.log('-- ipfs daemon is ready')
         resolve(killIpfsDaemon)
       }
     })
@@ -61,7 +61,7 @@ const startIpfsDaemon = () => new Promise(async (resolve, reject) => {
 
     ipfs.on('close', async (code) => {
       if (needIPFSInit) {
-        console.log('initializing ipfs')
+        silent || console.log('initializing ipfs')
         await initIpfs(options)
         try {
           const resolved = await startIpfsDaemon(options)
@@ -72,9 +72,9 @@ const startIpfsDaemon = () => new Promise(async (resolve, reject) => {
       } else
       if (needIPFSClose) {
         needIPFSClose()
-        console.log('-- ipfs daemon closed by user')
+        silent || console.log('-- ipfs daemon closed by user')
       } else {
-        console.error(`Unexpected ipfs daemon stop with code ${code}`)
+        silent || console.error(`Unexpected ipfs daemon stop with code ${code}`)
         reject(new Error('Unexpexted ipfs daemon stop.'))
       }
     })

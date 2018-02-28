@@ -1,4 +1,4 @@
-.playlist-track__contrast {
+.playlist-track:nth-child(even) {
   background-color: rgba(20, 20, 20, 0.025); 
 }
 
@@ -12,8 +12,8 @@
   border-left: 2px solid var(--secondary-color);
 }
 
-.playlist-track__button:focus, 
-.playlist-track__button:hover {
+.playlist-track__button:focus .playlist-track__title, 
+.playlist-track__button:hover .playlist-track__title {
   color: var(--accent-color);
 }
 .playlist-track__artist-name {
@@ -36,6 +36,10 @@
   text-overflow: ellipsis;
 }
 
+.playlist-track--downloading .playlist-track__title {
+  color: darkgray;
+}
+
 .playlist-track__remove {
   flex-shrink: 0;
   padding: 0.5em;
@@ -45,4 +49,10 @@
 .playlist-track__remove:hover {
   background: var(--accent-color);
   color: white;
+}
+
+
+.playlist-track__download-icon {
+  margin-right: 1em;
+  animation-duration: 3s;
 }

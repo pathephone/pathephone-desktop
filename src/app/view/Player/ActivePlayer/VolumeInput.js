@@ -26,7 +26,7 @@ const VolumeInput = ({ value, onChange }) => {
         )
       }
       <input
-        className='volume-control__input'
+        className='custom-range-input volume-control__input'
         type='range'
         min='0'
         max='100'
