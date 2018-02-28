@@ -1,9 +1,10 @@
 import React from 'react'
-import TrackInput from './TrackInput'
-import TrackFileInput from './TrackFileInput'
 import MdClear from 'react-icons/lib/md/clear'
 import MdDown from 'react-icons/lib/md/keyboard-arrow-down'
 import MdUp from 'react-icons/lib/md/keyboard-arrow-up'
+
+import TrackInput from './FormTracks/TrackInput'
+import TrackFileInput from './FormTracks/TrackFileInput'
 
 import './FormTracks.css'
 
@@ -61,9 +62,9 @@ class TracksInput extends React.Component {
     ]
   }
   render () {
-    const { value, onAddTracks } = this.props
+    const { value, onAddTracks, disabled } = this.props
     return (
-      <fieldset className='izi-ys'>
+      <fieldset disabled={disabled} className='izi-ys'>
         <legend>{`Tracklist (${value.tracks.length} tracks)`}</legend>
         {
           value.tracks.map(this.TrackInputWrapper)

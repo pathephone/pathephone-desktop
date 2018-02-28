@@ -4,20 +4,11 @@ import DiskIcon from '#/DiskIcon'
 import ImageContainer from '#/ImageContainer'
 import BrokenImageIcon from '#/BrokenImageIcon'
 import GetIpfsImage from '#/GetIpfsImage'
-import putFilesToIpfs from '~/scripts/putFilesToIpfs'
+
+import getCoverFromFiles from '~/utils/getCoverFromFiles'
+import checkIsImage from '~/utils/checkIsImage'
 
 import './CoverInput.css'
-
-const checkIsImage = (file) => {
-  return file.type.includes('image')
-}
-
-export const getImageFromFiles = async (files) => {
-  files = files.filter(checkIsImage) // only images
-  if (files.length > 0) {
-    return (await putFilesToIpfs(files))[0].hash
-  }
-}
 
 const ImageResolver = ({ data, error, ready }) => {
   if (!ready) {
@@ -36,16 +27,13 @@ class CoverInput extends React.Component {
     const files = Array.from(e.currentTarget.files)
     const hasImage = files.some(checkIsImage)
     if (hasImage) {
-      console.log('HAS IMAGE')
       this.handleFiles(files)
-    } else {
-      console.log('HAS IMAGE')
     }
   }
   handleFiles = async (files) => {
     const { onChange } = this.props
     try {
-      const imageHash = await getImageFromFiles(Array.from(files))
+      const imageHash = await getCoverFromFiles(Array.from(files))
       onChange(imageHash)
     } catch (error) {
       console.error(error)
