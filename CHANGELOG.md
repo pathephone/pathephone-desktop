@@ -1,3 +1,11 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/pathephone/pathephone-desktop/compare/v1.1.0...v1.2.0) (2018-02-28)
+
+
+### Features
+
+* **UI:** download status ([b4c11bd](https://github.com/pathephone/pathephone-desktop/commit/b4c11bd))
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/pathephone/pathephone-desktop/compare/v1.0.4...v1.1.0) (2018-02-16)
 
