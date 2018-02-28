@@ -1,4 +1,5 @@
 import React from 'react'
+import MdSync from 'react-icons/lib/md/sync'
 import FileInput from '../../_/FileInput'
 import readID3 from '../../../utils/id3'
 import putFilesToIpfs from '../../../scripts/putFilesToIpfs'
@@ -39,14 +40,19 @@ class TrackFileInput extends React.Component {
     onNewTracks(tracks)
   }
   render () {
+    const { processing } = this.state
     return (
-      <FileInput
-        id='input_add-tracks'
-        disabled={this.state.processing}
-        onChange={this.onChange}
-        children='add tracks'
-        className='square-button'
-      />
+      <div>
+        <FileInput
+          id='input_add-tracks'
+          disabled={processing}
+          onChange={this.onChange}
+          children={
+            !processing ? 'add tracks' : <span>processing <MdSync className='rotating' /></span>
+          }
+          className='square-button'
+        />
+      </div>
     )
   }
 }
