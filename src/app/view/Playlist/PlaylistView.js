@@ -1,13 +1,13 @@
 import React from 'react'
 import PlaylistTrack from './PlaylistTrack'
+
 import clearPlaylist from './clearPlaylist'
 
 import './PlaylistView.css'
 
 const PlaylistView = ({ playlist }) => {
-  const SingleTrackWrapper = (track, index) => {
-    const contrast = index % 2
-    return <PlaylistTrack {...track} contrast={contrast} key={track.id} />
+  const handlePlaylistMap = (track, index) => {
+    return <PlaylistTrack {...track} key={track.id} />
   }
   return (
     <div className='playlist izi-ys' >
@@ -21,7 +21,7 @@ const PlaylistView = ({ playlist }) => {
         )
       }
       {
-        playlist.map(SingleTrackWrapper)
+        playlist.map(handlePlaylistMap)
       }
     </div>
   )
