@@ -1,9 +1,9 @@
 import React from 'react'
-import Input from '../../_/Input'
-import CoverInput from './CoverInput'
+import Input from '#/Input'
+import CoverInput from './FormAbout/CoverInput'
 
 const AboutForm = (props) => {
-  const { value, onChange } = props
+  const { value, onChange, disabled } = props
   const handleChange = (e) => {
     const { name, value } = e.currentTarget
     onChange(name, value)
@@ -13,7 +13,7 @@ const AboutForm = (props) => {
   }
   const { artist, title, cover } = value
   return (
-    <fieldset>
+    <fieldset disabled={disabled}>
       <legend>About album</legend>
       <div className='izi-xu'>
         <div className='izi-ys izi-fill-width izi-margin-top'>
