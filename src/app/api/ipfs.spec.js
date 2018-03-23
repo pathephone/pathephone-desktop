@@ -1,6 +1,6 @@
 /* eslint-env mocha */
-import getIpfsNode from './ipfs'
-import startIpfs from '$/src/background/modules/ipfsDaemon/startIpfs'
+import getIpfsApi, { startIpfsApi } from './ipfsApi'
+import startIpfsDaemon from '$/src/background/modules/ipfsDaemon/startIpfs'
 import assert from 'assert'
 
 describe('IPFS', function () {
@@ -13,9 +13,9 @@ describe('IPFS', function () {
 
   describe('files', function () {
     it('init', async function () {
-      this.timeout(20000)
-      ipfsKill = await startIpfs({ silent: true })
-      ipfs = getIpfsNode({port: 5001})
+      ipfsKill = await startIpfsDaemon({ silent: true })
+      await startIpfsApi({port: 5001})
+      ipfs = getIpfsApi()
     })
 
     it('adding', async () => {
@@ -41,7 +41,6 @@ describe('IPFS', function () {
     })
 
     it('read big file', async function () {
-      this.timeout(10000)
       const file = await ipfs.files.cat('QmYJHdtwgSWVkCJuLQmE3RqhJST1aWj5WHJxcNFtqut1UF')
       assert.equal(file.length, 1024 * 1024 * 50)
     })
