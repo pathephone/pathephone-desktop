@@ -1,4 +1,4 @@
-import getIpfsNode from '../api/ipfs'
+import getIpfsNode from '../api/ipfsApi'
 
 const multihashToStream = (multihash) => {
   const ipfsNode = getIpfsNode()

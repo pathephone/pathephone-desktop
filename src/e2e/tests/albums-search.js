@@ -15,24 +15,27 @@ describe('albums search', function () {
     })
     it('no albums on the feed', async function () {
       const { app } = this
-      await app.client.waitForExist('#albums-feed')
-      const albums = await app.client.$$('#albums-feed .album')
-      expect(albums.length).to.be.equal(0)
+      await app.client.waitUntil(async () => {
+        const albums = await app.client.$$('#albums-feed .album')
+        return albums.length === 0
+      })
     })
   })
   describe('click cancel search button', function () {
     it('throws no errors', async function () {
       const { app } = this
-      await app.client.waitForExist(buttonSelector)
+      await app.client.waitUntil(async () => {
+        const button = await app.client.$(buttonSelector)
+        return !!button
+      })
       await app.client.$(buttonSelector).click()
     })
     it('input is empty', async function () {
       const { app } = this
-      await app.client.waitForExist(inputSelector)
       const value = await app.client.$(inputSelector).getValue()
       expect(value).to.equal('')
     })
-    it('albums appears on the feed', async function () {
+    it('albums appear on the feed', async function () {
       const { app } = this
       await app.client.waitForExist('#albums-feed .album')
       const albums = await app.client.$$('#albums-feed .album')

@@ -3,7 +3,7 @@ import React from 'react'
 import Stepper from '#/Stepper'
 
 import StartScreen from './InitApp/StartScreen'
-import initApp from './InitApp/initApp'
+import initApp from '~/scripts/initApp'
 
 import App from './App'
 

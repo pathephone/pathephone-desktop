@@ -13,6 +13,14 @@ const initDb = async () => {
     migrationStrategies: {
       1: function (oldDoc) {
         return null
+      },
+      2: function (oldDoc) {
+        oldDoc.lastSeen = new Date().getTime()
+        return oldDoc
+      },
+      3: function (oldDoc) {
+        delete oldDoc._id
+        return oldDoc
       }
     }
   })

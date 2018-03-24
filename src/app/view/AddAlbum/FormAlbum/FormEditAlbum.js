@@ -1,9 +1,10 @@
 import React from 'react'
-import FormAbout from './FormAbout'
-import FormTracks from './FormTracks'
+import FormAbout from './FormEditAlbum/FormAbout'
+import FormTracks from './FormEditAlbum/FormTracks'
+import MdSync from 'react-icons/lib/md/sync'
 
-import publishAlbum from '../../../scripts/publishAlbum'
-import validateAlbum from '../../../scripts/validateAlbum'
+import validateAlbum from '~/scripts/validateAlbum'
+import publishAlbum from '~/scripts/publishAlbum'
 
 const Tips = () => (
   <fieldset className='izi-green'>
@@ -47,14 +48,14 @@ class FormEditAlbum extends React.Component {
         this.props.onSuccess()
       }
     } catch (error) {
-      console.log(error)
+      this.setState({ loading: false })
     }
   }
   render () {
     const {
       formState
     } = this.props
-    const { errors } = this.state
+    const { errors, loading } = this.state
     return (
       <div
         className='izi--gap izi-ys izi-fill-width'
@@ -62,11 +63,13 @@ class FormEditAlbum extends React.Component {
       >
         <Tips />
         <FormAbout
+          disabled={loading}
           value={formState}
           onChange={this.props.onAboutChange}
         />
         <FormTracks
           value={formState}
+          disabled={loading}
           onTrackChange={this.props.onTrackChange}
           onAddTracks={this.props.onAddTracks}
           onDeleteTrack={this.props.onDeleteTrack}
@@ -78,8 +81,17 @@ class FormEditAlbum extends React.Component {
             <Errors data={errors} />
           )
         }
-        <button className='square-button' id='add-album_submit' onClick={this.handleFormSubmit}>
-          done
+        <button
+          disabled={loading}
+          className='square-button'
+          id='add-album_submit'
+          onClick={this.handleFormSubmit}
+        >
+          {
+            loading ? (
+              <span>processing <MdSync className='rotating' /></span>
+            ) : 'done'
+          }
         </button>
       </div>
     )
