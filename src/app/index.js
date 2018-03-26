@@ -8,13 +8,13 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import rootReducer from './reducers'
-import Root from './view/Root'
+import View from './View'
 
 const store = createStore(rootReducer)
 
 render(
   <Provider store={store}>
-    <Root />
+    <View />
   </Provider>,
   document.getElementById('mount-point')
 )

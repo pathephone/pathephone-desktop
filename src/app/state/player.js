@@ -1,43 +1,38 @@
-// @flow
-import createAction from 'recall-action'
+import {
+  PLAY,
+  PAUSE,
+  TOGGLE_REPEAT,
+  TOGGLE_SHUFFLE,
+  SET_VOLUME,
+  SET_CURRENT_TIME
+} from '../actionTypes'
 
-export const state = {
+const getInitialState = () => ({
   pause: true,
   shuffle: false,
   repeat: false,
   shufflePath: [],
   volume: 0.7,
   currentTime: 0
-}
+})
 
-const actions = {
-  PAUSE () {
-    state.pause = true
-  },
-  PLAY () {
-    state.pause = false
-  },
-  TOGGLE_SHUFFLE () {
-    state.shuffle = !state.shuffle
-  },
-  TOGGLE_REPEAT () {
-    state.repeat = !state.repeat
-  },
-  SET_VOLUME (value) {
-    state.volume = value
-  },
-  SET_CURRENT_TIME (value) {
-    state.currentTime = value
+const reducer = (state = getInitialState(), action) => {
+  switch (action.type) {
+    case PLAY:
+      return { ...state, pause: false }
+    case PAUSE:
+      return { ...state, pause: true }
+    case TOGGLE_SHUFFLE:
+      return { ...state, shuffle: !state.shuffle }
+    case TOGGLE_REPEAT:
+      return { ...state, repeat: !state.repeat }
+    case SET_VOLUME:
+      return { ...state, volume: action.payload }
+    case SET_CURRENT_TIME:
+      return { ...state, currentTime: action.payload }
+    default:
+      return state
   }
 }
 
-const point = createAction(
-  (ACTION, ...params) => {
-    if (ACTION) {
-      actions[ACTION](...params)
-    }
-    return state
-  }
-)
-
-export default point
+export default reducer

@@ -1,34 +1,29 @@
-// @flow
-import createPoint from 'recall-action'
 import getRandomString from '../utils/getRandomString'
+import { start } from 'repl'
 
-export const state = []
-
-const actions = {
-  ADD_TRACKS (...tracks) {
-    tracks.forEach(
-      (trackObj) => {
-        const id = getRandomString()
-        const current = state.length === 0
-        const downloaded = false
-        const track = { ...trackObj, id, current, downloaded }
-        state.push(track)
-      }
+const actionHandlers = {
+  ADD_TRACKS_TO_PLAYLIST (state, newTracks) {
+    const nextState = [...state]
+    const newTracksTransformed = newTracks.map(
+      track => ({
+        ...track,
+        id: getRandomString(),
+        current: nextState.length === 0,
+        downloaded: false
+      })
     )
+    return [ ...state, ...newTracksTransformed ]
   },
-  REMOVE_TRACKS (...ids) {
-    ids.forEach(id => {
-      const index = state.findIndex(
-        (obj, index) => obj.id === id
-      )
-      state.splice(index, 1)
-    })
+  REMOVE_TRACKS_FROM_PLAYLIST (state, ids) {
+    const handleFilter = ({ id }) => !ids.includes(id)
+    return state.filter(handleFilter)
   },
-  CLEAR () {
-    state.length = 0
+  CLEAR_PLAYLIST () {
+    return []
   },
-  SET_CURRENT (nextCurrentId) {
-    const current = state.find(
+  SET_CURRENT (state, nextCurrentId) {
+    const nextState = [...state]
+    const current = nextState.find(
       ({ current }) => current
     )
     current.current = false
@@ -36,22 +31,24 @@ const actions = {
       ({ id }) => nextCurrentId === id
     )
     target.current = true
+    return nextState
   },
-  SET_DOWNLOADED (hash) {
+  SET_DOWNLOADED (state, hash) {
+    const nextState = [...state]
     const handleFilter = t => t.hash === hash
-    const targets = state.filter(handleFilter)
+    const targets = nextState.filter(handleFilter)
     const handleEach = t => { t.downloaded = true }
     targets.forEach(handleEach)
+    return nextState
   }
 }
 
-const point = createPoint(
-  (ACTION, ...params) => {
-    if (ACTION) {
-      actions[ACTION](...params)
-    }
-    return state
+const reducer = (state = [], action) => {
+  const actionHandler = actionHandlers[action.type]
+  if (actionHandler) {
+    return actionHandler(state, action.payload)
   }
-)
+  return state
+}
 
-export default point
+export default reducer
