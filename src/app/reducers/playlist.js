@@ -1,8 +1,18 @@
+import reducerFactory from '../utils/reducerFactory'
 import getRandomString from '../utils/getRandomString'
-import { start } from 'repl'
+
+import {
+  ADD_TRACKS_TO_PLAYLIST,
+  REMOVE_TRACK_FROM_PLAYLIST,
+  CLEAR_PLAYLIST,
+  PLAY_PLAYLIST_TRACK,
+  TRACK_IS_DOWNLOADED
+} from '../actionTypes'
+
+const initialState = []
 
 const actionHandlers = {
-  ADD_TRACKS_TO_PLAYLIST (state, newTracks) {
+  [ADD_TRACKS_TO_PLAYLIST] (state, newTracks) {
     const nextState = [...state]
     const newTracksTransformed = newTracks.map(
       track => ({
@@ -14,14 +24,14 @@ const actionHandlers = {
     )
     return [ ...state, ...newTracksTransformed ]
   },
-  REMOVE_TRACKS_FROM_PLAYLIST (state, ids) {
-    const handleFilter = ({ id }) => !ids.includes(id)
+  [REMOVE_TRACK_FROM_PLAYLIST] (state, removeId) {
+    const handleFilter = ({ id }) => id !== removeId
     return state.filter(handleFilter)
   },
-  CLEAR_PLAYLIST () {
+  [CLEAR_PLAYLIST] () {
     return []
   },
-  SET_CURRENT (state, nextCurrentId) {
+  [PLAY_PLAYLIST_TRACK] (state, nextCurrentId) {
     const nextState = [...state]
     const current = nextState.find(
       ({ current }) => current
@@ -33,7 +43,7 @@ const actionHandlers = {
     target.current = true
     return nextState
   },
-  SET_DOWNLOADED (state, hash) {
+  [TRACK_IS_DOWNLOADED] (state, hash) {
     const nextState = [...state]
     const handleFilter = t => t.hash === hash
     const targets = nextState.filter(handleFilter)
@@ -43,12 +53,6 @@ const actionHandlers = {
   }
 }
 
-const reducer = (state = [], action) => {
-  const actionHandler = actionHandlers[action.type]
-  if (actionHandler) {
-    return actionHandler(state, action.payload)
-  }
-  return state
-}
+const reducer = reducerFactory({ initialState, actionHandlers })
 
 export default reducer

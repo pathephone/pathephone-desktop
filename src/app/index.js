@@ -5,12 +5,22 @@ import './css/animate.css'
 
 import React from 'react'
 import { render } from 'react-dom'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+
 import rootReducer from './reducers'
+import rootSaga from './sagas'
 import View from './View'
 
-const store = createStore(rootReducer)
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(sagaMiddleware)
+)
+
+sagaMiddleware.run(rootSaga)
 
 render(
   <Provider store={store}>
