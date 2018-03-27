@@ -1,5 +1,5 @@
+import getIpfsNode from '../api/ipfsApi'
 import playlistState from '~/state/playlist'
-import getIpfsNode from '~/api/ipfs'
 
 const markAsDownloaded = hash => {
   playlistState('SET_DOWNLOADED', hash)

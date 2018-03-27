@@ -1,3 +1,11 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/pathephone/pathephone-desktop/compare/v1.2.1...v1.3.0) (2018-03-24)
+
+
+### Features
+
+* **tray:** tray support for mac and win ([94f706c](https://github.com/pathephone/pathephone-desktop/commit/94f706c))
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/pathephone/pathephone-desktop/compare/v1.2.0...v1.2.1) (2018-03-01)
 

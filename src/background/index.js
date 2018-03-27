@@ -9,6 +9,7 @@ import { app } from 'electron'
 
 import setAppMenu from './methods/setAppMenu'
 import createWindow from './methods/createWindow'
+import tray from './methods/tray'
 
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
@@ -37,6 +38,8 @@ app.on('ready', async () => {
     height: 600
   })
 
+  tray(mainWindow)
+
   console.log('-- loading main window')
   mainWindow.loadURL(
     url.format({
@@ -50,6 +53,10 @@ app.on('ready', async () => {
 
   mainWindow.on('close', e => {
     e.preventDefault()
+    if (!app.isQuiting && process.platform !== 'linux') {
+      mainWindow.hide()
+      return
+    }
     mainWindow.webContents.send('handle-custom-close')
   })
 
@@ -60,5 +67,9 @@ app.on('ready', async () => {
   app.on('window-all-closed', () => {
     console.log('closing app')
     app.quit()
+  })
+
+  app.on('before-quit', () => {
+    app.isQuiting = true
   })
 })
