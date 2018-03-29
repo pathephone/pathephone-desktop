@@ -1,6 +1,6 @@
 import React from 'react'
 import Async from './Async'
-import multihashToUrl from '~/scripts/multihashToUrl'
+import multihashToUrl from '~app/scripts/multihashToUrl'
 
 class GetIpfsImage extends React.Component {
   shouldComponentUpdate (nextProps) {

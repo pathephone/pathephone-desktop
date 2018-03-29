@@ -1,7 +1,7 @@
 import React from 'react'
-import bind from '~/utils/recallReact'
-import playlistState from '~/state/playlist'
-import playerState from '~/state/player'
+import bind from '~app/utils/recallReact'
+import playlistState from '~app/state/playlist'
+import playerState from '~app/state/player'
 import ActivePlayer from './Player/ActivePlayer'
 import PendingPlayer from './Player/PendingPlayer'
 

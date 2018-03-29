@@ -2,8 +2,8 @@
 import { expect } from 'chai'
 import path from 'path'
 import isIpfs from 'is-ipfs'
-import flac from '$/resources/music/track.flac'
-import cover from '$/resources/music/cover.jpg'
+import flac from '~root/resources/music/track.flac'
+import cover from '~root/resources/music/cover.jpg'
 
 let feedLength
 

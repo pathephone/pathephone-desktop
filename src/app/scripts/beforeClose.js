@@ -1,4 +1,4 @@
-import ipfsDaemon from '~/api/ipfsDaemon'
+import ipfsDaemon from '~app/api/ipfsDaemon'
 
 const beforeUnload = async () => {
   await ipfsDaemon.stop()

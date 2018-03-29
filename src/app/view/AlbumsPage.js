@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchBar from './AlbumsPage/SearchBar'
 import AlbumsFeed from './AlbumsPage/AlbumsFeed'
-import Rxdb from '#/Rxdb'
+import Rxdb from '~components/Rxdb'
 
 import './AlbumsPage/AlbumsPage.css'
 

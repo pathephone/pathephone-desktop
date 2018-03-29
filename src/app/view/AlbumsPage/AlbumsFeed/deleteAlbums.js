@@ -1,4 +1,4 @@
-import deleteAlbumsFromDb from '~/scripts/deleteAlbumsFromDb'
+import deleteAlbumsFromDb from '~app/scripts/deleteAlbumsFromDb'
 
 const deleteAlbums = (albums) => {
   return deleteAlbumsFromDb(albums)

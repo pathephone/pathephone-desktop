@@ -2,8 +2,8 @@
 import path from 'path'
 import id3 from './id3'
 import assert from 'assert'
-import flac from '$/resources/music/track.flac'
-import mp3 from '$/resources/music/track.mp3'
+import flac from '~root/resources/music/track.flac'
+import mp3 from '~root/resources/music/track.mp3'
 
 const flacpath = path.resolve(__dirname, flac)
 const mp3path = path.resolve(__dirname, mp3)

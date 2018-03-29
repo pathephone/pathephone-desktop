@@ -1,8 +1,8 @@
 import React from 'react'
-import ModalLayer from '#/ModalLayer'
-import ModalWindow from '#/ModalWindow'
-import ModalWindowHeader from '#/ModalWindowHeader'
-import suatmm from '~/css/suatmm.gif'
+import ModalLayer from '~components/ModalLayer'
+import ModalWindow from '~components/ModalWindow'
+import ModalWindowHeader from '~components/ModalWindowHeader'
+import suatmm from '~app/css/suatmm.gif'
 
 import './DonateModal.css'
 

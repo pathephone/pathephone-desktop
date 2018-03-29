@@ -1,4 +1,4 @@
-import albums from '~/data/albums'
+import albums from '~app/data/albums'
 
 const getAlbumsTracks = async (cids) => {
   const tracks = []

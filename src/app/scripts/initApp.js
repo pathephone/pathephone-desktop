@@ -1,7 +1,7 @@
-import initDb from '~/scripts/initDb'
-import openGates from '~/scripts/openGates'
-import { startIpfsApi } from '~/api/ipfsApi'
-import ipfsDaemon from '~/api/ipfsDaemon'
+import initDb from '~app/scripts/initDb'
+import openGates from '~app/scripts/openGates'
+import { startIpfsApi } from '~app/api/ipfsApi'
+import ipfsDaemon from '~app/api/ipfsDaemon'
 
 import { ipcRenderer, remote } from 'electron'
 

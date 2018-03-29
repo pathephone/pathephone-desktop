@@ -1,5 +1,5 @@
-import playlistState from '~/state/playlist'
-import setNextCurrentTrack from '~/scripts/setNextCurrentTrack'
+import playlistState from '~app/state/playlist'
+import setNextCurrentTrack from '~app/scripts/setNextCurrentTrack'
 
 const removeTrack = (id, current) => {
   if (current) {
