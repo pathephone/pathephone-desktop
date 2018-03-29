@@ -1,6 +1,6 @@
 import React from 'react'
-import ModalWindow from '#/ModalWindow'
-import ModalWindowHeader from '#/ModalWindowHeader'
+import ModalWindow from '~components/ModalWindow'
+import ModalWindowHeader from '~components/ModalWindowHeader'
 import FormAlbum from './FormAlbum'
 
 class AddAlbumModal extends React.Component {

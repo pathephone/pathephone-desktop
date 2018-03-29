@@ -1,11 +1,11 @@
 import React from 'react'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdAdd from 'react-icons/lib/md/playlist-add'
-import SyncIcon from '#/SyncIcon'
-import DiskIcon from '#/DiskIcon'
-import ImageContainer from '#/ImageContainer'
-import GetIpfsImage from '#/GetIpfsImage'
-import getQualityLabel from '~/utils/getQualityLabel'
+import SyncIcon from '~components/SyncIcon'
+import DiskIcon from '~components/DiskIcon'
+import ImageContainer from '~components/ImageContainer'
+import GetIpfsImage from '~components/GetIpfsImage'
+import getQualityLabel from '~app/utils/getQualityLabel'
 
 import './Album.css'
 

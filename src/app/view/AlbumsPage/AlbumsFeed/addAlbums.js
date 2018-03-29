@@ -1,6 +1,6 @@
-import playlistState from '~/state/playlist'
+import playlistState from '~app/state/playlist'
 import getAlbumsTracks from './getAlbumsTracks'
-import downloadPlaylist from '~/scripts/downloadPlaylist'
+import downloadPlaylist from '~app/scripts/downloadPlaylist'
 
 const addAlbums = async (cids) => {
   const tracks = await getAlbumsTracks(cids)

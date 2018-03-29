@@ -1,5 +1,5 @@
 import path from 'path'
-import appPath from '~/utils/electronAppPath'
+import appPath from '~app/utils/electronAppPath'
 
 const getAbsoluteIpfsPath = () => path.resolve(appPath('ipfs'))
 

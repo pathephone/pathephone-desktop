@@ -1,6 +1,6 @@
 import { openGate } from '@metabin/gate'
-import getIpfsApi from '~/api/ipfsApi'
-import albums from '~/data/albums'
+import getIpfsApi from '~app/api/ipfsApi'
+import albums from '~app/data/albums'
 
 const albumsListener = async (data, cid) => {
   const lastSeen = new Date().getTime()

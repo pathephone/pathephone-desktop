@@ -1,5 +1,5 @@
 import readID3 from './id3'
-import putFilesToIpfs from '~/scripts/putFilesToIpfs'
+import putFilesToIpfs from '~app/scripts/putFilesToIpfs'
 
 const checkIsAudio = (file) => {
   return file.type.includes('audio')

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Stepper from '#/Stepper'
+import Stepper from '~components/Stepper'
 
 import StartScreen from './InitApp/StartScreen'
-import initApp from '~/scripts/initApp'
+import initApp from '~app/scripts/initApp'
 
 import App from './App'
 

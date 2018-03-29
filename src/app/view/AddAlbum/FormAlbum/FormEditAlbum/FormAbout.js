@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from '#/Input'
+import Input from '~components/Input'
 import CoverInput from './FormAbout/CoverInput'
 
 const AboutForm = (props) => {

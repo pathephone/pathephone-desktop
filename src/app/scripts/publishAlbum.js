@@ -1,6 +1,6 @@
-import getIpfs from '~/api/ipfsApi'
+import getIpfs from '~app/api/ipfsApi'
 import saveAlbumToDb from './saveAlbumToDb'
-import albums from '~/data/albums'
+import albums from '~app/data/albums'
 
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 

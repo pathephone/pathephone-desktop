@@ -3,8 +3,8 @@ import FormAbout from './FormEditAlbum/FormAbout'
 import FormTracks from './FormEditAlbum/FormTracks'
 import MdSync from 'react-icons/lib/md/sync'
 
-import validateAlbum from '~/scripts/validateAlbum'
-import publishAlbum from '~/scripts/publishAlbum'
+import validateAlbum from '~app/scripts/validateAlbum'
+import publishAlbum from '~app/scripts/publishAlbum'
 
 const Tips = () => (
   <fieldset className='izi-green'>

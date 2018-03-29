@@ -1,7 +1,7 @@
 import React from 'react'
 import MdSync from 'react-icons/lib/md/sync'
-import FileInput from '#/FileInput'
-import getTracksFromFiles from '~/utils/getTracksFromFiles'
+import FileInput from '~components/FileInput'
+import getTracksFromFiles from '~app/utils/getTracksFromFiles'
 
 class TrackFileInput extends React.Component {
   state = {
