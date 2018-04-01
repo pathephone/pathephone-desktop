@@ -8,9 +8,11 @@ import './Navigation.css'
 class Navigation extends Component {
   render () {
     return (
-      <nav className='navigation izi-ys izi-padding'>
-        <AddAlbum />
-        <Donate />
+      <nav className='navigation izi-ys'>
+        <div className='navigation__buttons izi-ys'>
+          <AddAlbum />
+          <Donate />
+        </div>
       </nav>
     )
   }

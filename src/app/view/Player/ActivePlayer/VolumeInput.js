@@ -4,6 +4,8 @@ import MdVolumeDown from 'react-icons/lib/md/volume-down'
 import MdVolumeMute from 'react-icons/lib/md/volume-mute'
 import MdVolumeOff from 'react-icons/lib/md/volume-off'
 
+import './VolumeInput.css'
+
 const VolumeInput = ({ value, onChange }) => {
   const handleChange = e => {
     const { value } = e.currentTarget
@@ -11,7 +13,7 @@ const VolumeInput = ({ value, onChange }) => {
   }
   const inputValue = value * 100
   return (
-    <div className='player__volume-control'>
+    <div className='volume-control'>
       {
         inputValue === 0 ? (
           <MdVolumeOff />
@@ -24,6 +26,7 @@ const VolumeInput = ({ value, onChange }) => {
         )
       }
       <input
+        className='custom-range-input volume-control__input'
         type='range'
         min='0'
         max='100'

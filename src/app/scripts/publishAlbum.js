@@ -1,17 +1,16 @@
-import getIpfs from '../api/ipfs'
-import albums from '../data/albums'
-import autoPublish from './autoPublish'
+import getIpfs from '~app/api/ipfsApi'
+import saveAlbumToDb from './saveAlbumToDb'
+import albums from '~app/data/albums'
 
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
 const publishAlbum = async (albumObj) => {
-  const ipfsApi = await getIpfs()
+  const ipfsApi = getIpfs()
   const cidObj = await ipfsApi.dag.put(albumObj, dagParams)
   const cidString = cidObj.toBaseEncodedString()
-  console.log(`Returned cid: ${cidString}`)
-  ipfsApi.pubsub.publish(albums.schemaCid, cidObj.buffer)
-  autoPublish(albums.schemaCid, cidString)
-  return cidString
+  console.log(`Shared album cid: ${cidString}`)
+  await saveAlbumToDb({ cid: cidString, data: albumObj, lastSeen: 0 })
+  albums.gate.send(cidString)
 }
 
 export default publishAlbum

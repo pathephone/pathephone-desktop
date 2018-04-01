@@ -1,26 +1,33 @@
 import React from 'react'
 
-import Stager from '#/Stager'
+import Stepper from '~components/Stepper'
 
 import StartScreen from './InitApp/StartScreen'
-import initApp from './InitApp/initApp'
+import initApp from '~app/scripts/initApp'
 
 import App from './App'
 
 // const { ipcRenderer, remote } = require('electron')
 
-const StagerView = (props) => {
-  if (props.stage > 3) {
+const StepperView = ({ step }) => {
+  if (step.closing) {
+    return (
+      <div className='izi-fill izi-middle'>
+        <h4 className='izi-gray izi-uppercase'>closing app</h4>
+      </div>
+    )
+  }
+  if (step.ready === true) {
     return <App />
   }
-  return <StartScreen {...props} />
+  return <StartScreen {...step} />
 }
 
 const InitApp = () => {
   return (
-    <Stager
+    <Stepper
       generator={initApp}
-      view={StagerView}
+      View={StepperView}
     />
   )
 }

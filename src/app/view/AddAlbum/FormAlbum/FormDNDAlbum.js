@@ -1,53 +1,10 @@
 import React from 'react'
 import MdDrop from 'react-icons/lib/md/arrow-downward'
-import DNDarea from '#/DNDarea'
-import { getAudioTracksFromFiles } from './TrackFileInput'
-import { getImageFromFiles } from './CoverInput'
+import DNDarea from '~components/DNDarea'
 
-import fs from 'fs'
-import path from 'path'
-import directoryFilesRecursive from '~/utils/directoryFilesRecursive'
-import fileType from 'file-type'
+import getAlbumObjectFromFiles from '~app/utils/getAlbumObjectFromFiles'
 
 import './FormDNDAlbum.css'
-
-const getDirectoriesContentsRecursive = (files) => {
-  const directories = files.filter(file => file.type === '')
-  let directoriesFiles = []
-  for (const directory of directories) {
-    if (fs.statSync(directory.path).isDirectory()) { directoriesFiles = directoriesFiles.concat(directoryFilesRecursive(directory.path)) } // добавляем все файлы из всех директорий что перетащили
-  }
-  directoriesFiles = directoriesFiles.map(file => { // преобразуем пути файлов в объекты File
-    const buffer = fs.readFileSync(file)
-    let options
-    try {
-      options = {type: fileType(buffer).mime}
-    } catch (e) {}
-    const fileObject = new File([buffer], path.basename(file), options)
-    Object.defineProperties(fileObject, {path: {value: file, writable: false}})
-    return fileObject
-  })
-  return files.filter(file => file.type !== '').concat(directoriesFiles) // удаляем вначале все папки по которым прошлись, добавляем затем наши файлы
-}
-
-const getAlbumObjectFromFiles = async (files) => {
-  files = Array.from(files)
-  files = getDirectoriesContentsRecursive(files)
-  const cover = await getImageFromFiles(files)
-  const tracks = await getAudioTracksFromFiles(files)
-  let artist = ''
-  let title = ''
-  if (tracks.length > 0) {
-    artist = tracks[0].artist
-    title = tracks[0].album
-  }
-  return {
-    title,
-    artist,
-    cover,
-    tracks
-  }
-}
 
 class FormDNDAlbum extends React.Component {
   state = {

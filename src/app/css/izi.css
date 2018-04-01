@@ -264,10 +264,6 @@ svg {
   justify-content: center;
   align-items: center; }
 
-.izi-no-shrink {
-  flex-shrink: 0;
-}
-
 .izi-wrap {
   flex-wrap: wrap; }
 

@@ -2,14 +2,18 @@ import instanceSchema from './instanceSchema'
 
 const rxdbSchema = {
   title: 'album',
-  version: 0, // <- incremental version-number
+  version: 3, // <- incremental version-number
   type: 'object',
   properties: {
     cid: {
       type: 'string',
-      minLength: 1
+      minLength: 1,
+      primary: true
     },
-    data: instanceSchema
+    data: instanceSchema,
+    lastSeen: {
+      type: 'number'
+    }
   }
 }
 

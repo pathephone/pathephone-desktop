@@ -6,9 +6,17 @@ class Rxdb extends React.Component {
     data: null,
     error: null
   }
-  async componentWillMount () {
+  componentWillMount () {
+    this.handleProps(this.props)
+  }
+  componentWillReceiveProps (props) {
+    this.handleProps(props)
+  }
+  handleProps = async ({ collection, query, reactive }) => {
     try {
-      const { collection, query, reactive } = this.props
+      if (this.subscription) {
+        await this.subscription.unsubscribe()
+      }
       const db = getDb()
       const queryObj = db[collection].find(query)
       if (reactive === true) {

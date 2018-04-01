@@ -4,28 +4,11 @@
       "env",
       {
         "targets": {
-          "browsers": "last 2 Chrome versions",
-          "node": "current"
+          "electron": "1.7.12"
         }
       }
     ],
     "react",
     "stage-0"
-  ],
-  "plugins": [
-    ["transform-object-rest-spread", { "useBuiltIns": true }],
-    [
-      "babel-plugin-root-import", 
-      [
-        {
-          "rootPathPrefix": "#",
-          "rootPathSuffix": "src/app/view/_"
-        },
-        {
-          "rootPathPrefix": "~",
-          "rootPathSuffix": "src/app"
-        }
-      ]
-    ]
   ]
 }

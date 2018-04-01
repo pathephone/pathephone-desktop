@@ -1,5 +1,5 @@
 import React from 'react'
-import bind from '~/utils/recallReact'
+import bind from '~app/utils/recallReact'
 import albumFormState, {state as albumFormData} from './formAlbumState'
 import FormDNDAlbum from './FormAlbum/FormDNDAlbum'
 import FormEditAlbum from './FormAlbum/FormEditAlbum'

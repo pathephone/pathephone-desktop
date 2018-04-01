@@ -6,7 +6,7 @@ const recallStateFactory = (getStateData, proxyMethods) => {
   const getStateDataWrapper = () => {
     const stateData = getStateData()
     if (!stateData || stateData.constructor !== objectConstructor) {
-      throw new Error('~/state data must be an object.')
+      throw new Error('~app/state data must be an object.')
     }
     return stateData
   }
