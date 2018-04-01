@@ -43,7 +43,7 @@ module.exports = env => ({
     new HtmlWebpackPlugin({
       hash: true,
       filename: './index.html',
-      template: 'src/app/index.html',
+      template: 'src/renderer/index.html',
       chunks: ['app'] // relative to root of the application
     }),
     new FriendlyErrorsWebpackPlugin({ clearConsole: env === 'development' })

@@ -17,11 +17,11 @@
       [
         {
           "rootPathPrefix": "#",
-          "rootPathSuffix": "src/app/view/_"
+          "rootPathSuffix": "src/renderer/view/_"
         },
         {
           "rootPathPrefix": "~",
-          "rootPathSuffix": "src/app"
+          "rootPathSuffix": "src/renderer"
         },
         {
           "rootPathPrefix": "$",
