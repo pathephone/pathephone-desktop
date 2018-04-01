@@ -1,0 +1,56 @@
+.player {
+    padding: 1em;
+  grid-area: player;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  border-top: 1px solid #d3d3d3;
+}
+
+.player__playback-controls {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.player__playback-controls button {
+    font-size: 1.25em;
+    background: none;
+}
+
+.player__playback-controls button:hover {
+    color: var(--accent-color-light);
+}
+.player__playback-controls button:focus {
+    background: var(--black-shade-1);
+}
+.player__playback-controls button:active {
+    color: var(--accent-color);
+}
+
+
+.player__rest-controls {
+    flex-shrink: 0;
+}
+
+.player__rest-controls {
+    flex-shrink: 0;
+}
+
+.player__rest-controls .player__toggle {
+    background: none;
+    border-radius: 2px;
+}
+
+.player__rest-controls .player__toggle:hover {
+    color: var(--secondary-color-light);
+}
+
+.player__rest-controls button:not(:first-child) {
+    margin-left: 0.5em;
+}
+
+.player__toggle--active {
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 2px;
+}

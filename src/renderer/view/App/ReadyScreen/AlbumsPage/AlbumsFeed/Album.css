@@ -1,0 +1,82 @@
+.album__cover {
+  height: 12.5em;
+  width: 12.5em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  font-size: 1em;
+  padding: 0.25em;
+  background: none;
+  border: 1px solid #d3d3d3;
+  outline: none;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.album__cover:focus {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.album--selected .album__cover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+.album__title {
+  text-align: center;
+  margin: 1em 0 0 0;
+}
+.album__artist {
+  text-align: center;
+  margin: 0.5em 0;
+  color: darkgray;
+}
+.album__actions {
+  bottom: 0.5em;
+  right: 0.5em;
+}
+.album:not(:hover) .album__actions,
+.album--selected:not(:hover) .album__actions {
+  display: none;
+}
+
+.album__actions-button {
+  background-color: rgba(255,255,255,0.6);
+  color: black;
+  margin: 0.25em;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: 0.2s;
+}
+.album__actions-button:hover {
+  color: var(--accent-color);
+  background-color: white;
+}
+.album__actions-button:active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.album__quality {
+  position: absolute;
+  top: 0.75em;
+  right: 0.75em;
+}
+
+.album__quality-label--low,
+.album__quality-label--high,
+.album__quality-label--lossless {
+  font-size: 0.6em;
+  padding: 0.25em 0.5em;
+  font-weight: bold;
+  cursor: default;
+}
+
+.album__quality-label--low {
+  background: orange;
+  color: black;
+}
+
+.album__quality-label--high {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.album__quality-label--lossless {
+  background: lightseagreen;
+  color: white;
+}

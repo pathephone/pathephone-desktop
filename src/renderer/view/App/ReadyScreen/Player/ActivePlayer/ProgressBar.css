@@ -1,0 +1,82 @@
+/* Progress Bar */
+.player-progress__container {
+  display: flex;
+  align-items: center;
+  flex-basis: 70%;
+  padding: 0 1em;
+}
+.player-progress__outer {
+    position: relative;
+    height: 4px;
+    display: block;
+    background-color: var(--black-shade-2);
+    width: 100%;
+    border-radius: 2px;
+    background-clip: padding-box;
+    overflow: hidden; 
+}
+.player-progress__inner {
+    background-color: var(--secondary-color-light);
+}
+.player-progress__inner:before {
+    content: '';
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    will-change: left, right;
+    animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite; 
+}
+.player-progress__inner:after {
+    content: '';
+    position: absolute;
+    background-color: inherit;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    will-change: left, right;
+    animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+    animation-delay: 1.15s;
+}
+
+@-webkit-keyframes indeterminate {
+0% {
+    left: -35%;
+    right: 100%; }
+60% {
+    left: 100%;
+    right: -90%; }
+100% {
+    left: 100%;
+    right: -90%; } }
+@keyframes indeterminate {
+0% {
+    left: -35%;
+    right: 100%; }
+60% {
+    left: 100%;
+    right: -90%; }
+100% {
+    left: 100%;
+    right: -90%; } }
+@-webkit-keyframes indeterminate-short {
+0% {
+    left: -200%;
+    right: 100%; }
+60% {
+    left: 107%;
+    right: -8%; }
+100% {
+    left: 107%;
+    right: -8%; } }
+@keyframes indeterminate-short {
+0% {
+    left: -200%;
+    right: 100%; }
+60% {
+    left: 107%;
+    right: -8%; }
+100% {
+    left: 107%;
+    right: -8%; } }

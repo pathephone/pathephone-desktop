@@ -1,5 +1,5 @@
-import playlistState from '../state/playlist'
-import playerState from '../state/player'
+import playlistState from '~/state/playlist'
+import playerState from '~/state/player'
 
 const getNextTrack = () => {
   const {shuffle, repeat, shufflePath} = playerState()
