@@ -2,11 +2,13 @@ import { connect } from 'react-redux'
 
 import startApp from '~/actions/startApp'
 
+import { getAppStatus } from '~/selectors'
+
 import App from './App'
 
 const mapStateToProps = state => {
   return {
-    ...state.appStatus
+    ...getAppStatus(state)
   }
 }
 

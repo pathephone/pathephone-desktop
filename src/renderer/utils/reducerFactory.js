@@ -1,9 +1,10 @@
 
 const reducerFactory = ({ initialState, actionHandlers }) =>
   (state = initialState, action) => {
-    const actionHandler = actionHandlers[action.type]
+    const { type, ...payload } = action
+    const actionHandler = actionHandlers[type]
     if (actionHandler) {
-      return actionHandler(state, action.payload)
+      return actionHandler(state, payload)
     }
     return state
   }
