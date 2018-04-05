@@ -1,7 +1,6 @@
 // const IPFS = require('ipfs');
 // const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
-import dag from './dag'
 import IPFSapi from 'ipfs-api'
 import exists from './exists'
 
@@ -23,9 +22,7 @@ export const getIpfs = () => {
 
 export const startIpfsApi = (params = {}) => {
   const { host = 'localhost', port = '5001' } = params
-  const endpoint = `http://${host}:${port}/api/v0`
   node = IPFSapi(host, port)
-  node = dag(node, endpoint)
   node = exists(node)
 
   // исправляем баг с загрузкой
