@@ -11,7 +11,7 @@ import createSagaMiddleware from 'redux-saga'
 
 import rootReducer from './reducers'
 import rootSaga from './sagas'
-import AppContainer from './view/AppContainer'
+import AppConnected from './view/AppConnected'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -24,7 +24,7 @@ sagaMiddleware.run(rootSaga)
 
 render(
   <Provider store={store}>
-    <AppContainer />
+    <AppConnected />
   </Provider>,
   document.getElementById('mount-point')
 )

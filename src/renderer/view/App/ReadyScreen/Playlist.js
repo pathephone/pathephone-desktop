@@ -1,12 +1,44 @@
-import bind from '~/utils/recallReact'
-import playlistState from '~/state/playlist'
-import playerState from '~/state/player'
-import PlaylistView from './Playlist/PlaylistView'
+import React from 'react'
+import propTypes from 'prop-types'
 
-export default bind(
-  {
-    playlist: playlistState,
-    player: playerState
-  },
-  PlaylistView
-)
+import PlaylistTrack from './Playlist/PlaylistTrack'
+
+import './Playlist/Playlist.css'
+
+const Playlist = ({ tracks, clearPlaylist, removeTrack, playTrack }) => {
+  const handleTracksMap = (track, index) => {
+    return (
+      <PlaylistTrack
+        {...track}
+        onRemove={removeTrack}
+        onPlay={playTrack}
+        key={track.id}
+      />
+    )
+  }
+  return (
+    <div className='playlist izi-ys' >
+      {
+        tracks.length > 0 ? (
+          <button className='playlist__clear-button' onClick={clearPlaylist}>
+            clear
+          </button>
+        ) : (
+          <label className='playlist__empty-message'>playlist is empty</label>
+        )
+      }
+      {
+        tracks.map(handleTracksMap)
+      }
+    </div>
+  )
+}
+
+Playlist.propTypes = {
+  tracks: propTypes.array.isRequired,
+  clearPlaylist: propTypes.func.isRequired,
+  removeTrack: propTypes.func.isRequired,
+  playTrack: propTypes.func.isRequired
+}
+
+export default Playlist

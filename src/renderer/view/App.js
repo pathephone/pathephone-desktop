@@ -1,28 +1,36 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 import StartScreen from './App/StartScreen'
 import CloseScreen from './App/CloseScreen'
 import ReadyScreen from './App/ReadyScreen'
 import Root from './App/Root'
 
-class View extends React.Component {
+import {
+  APP_STATUS_CLOSE,
+  APP_STATUS_ERROR,
+  APP_STATUS_READY,
+  APP_STATUS_START
+} from '~constants/appStatus'
+
+class App extends React.Component {
   componentDidMount () {
     const { startApp } = this.props
     startApp()
   }
   render () {
-    const { stage, error } = this.props
+    const { appStatus, ...restProps } = this.props
     return (
       <Root>
         {
-          stage === 0 ? (
-            <StartScreen />
-          ) : stage === 1 ? (
+          appStatus === APP_STATUS_START ? (
+            <StartScreen {...restProps} />
+          ) : appStatus === APP_STATUS_READY ? (
             <ReadyScreen />
-          ) : stage === 2 ? (
-            <StartScreen message={error} />
-          ) : stage === 3 && (
-            <CloseScreen />
+          ) : appStatus === APP_STATUS_ERROR ? (
+            <StartScreen {...restProps} />
+          ) : appStatus === APP_STATUS_CLOSE && (
+            <CloseScreen {...restProps} />
           )
         }
       </Root>
@@ -30,4 +38,9 @@ class View extends React.Component {
   }
 }
 
-export default View
+App.propTypes = {
+  appStatus: propTypes.number.isRequired,
+  startApp: propTypes.func.isRequired
+}
+
+export default App

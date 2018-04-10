@@ -1,34 +1,31 @@
 import React from 'react'
+import propTypes from 'prop-types'
+
 import MdClose from 'react-icons/lib/md/close'
 import MdGet from 'react-icons/lib/md/file-download'
-import setCurrentTrack from './setCurrentTrack'
-import removeTrack from './removeTrack'
 
 import './PlaylistTrack.css'
 
-const PlaylistTrack = ({ title, artist, current, id, contrast, downloaded }) => {
-  const handleSetCurrent = () => {
-    if (!current) {
-      setCurrentTrack(id)
-    }
-  }
-  const handleRemove = () => {
-    removeTrack(id, current)
-  }
+const PlaylistTrack = ({
+  id, title, artist, isCurrent, isDownloaded, onRemove, onPlay
+}) => {
+  const handlePlayClick = () => { onPlay(id) }
+  const handleRemoveClick = () => { onRemove(id) }
   return (
     <div
       className={
-        `playlist-track ${downloaded ? '' : 'playlist-track--downloading'} izi-x`
+        `playlist-track ${isDownloaded ? '' : 'playlist-track--downloading'} izi-x`
       }
     >
       <button
-        className={`playlist-track__button ${current ? 'playlist-track__current' : ''} izi-x izi-fill-width izi-padding`}
-        onClick={handleSetCurrent}
+        className={`playlist-track__button ${isCurrent ? 'playlist-track__current' : ''} izi-x izi-fill-width izi-padding`}
+        disabled={isCurrent}
+        onClick={handlePlayClick}
       >
         <div className='playlist-track__info izi-yl'>
           <span className='playlist-track__title'>
             {
-              !downloaded && (
+              !isDownloaded && (
                 <MdGet className='playlist-track__download-icon animated flash infinite' />
               )
             }
@@ -41,12 +38,22 @@ const PlaylistTrack = ({ title, artist, current, id, contrast, downloaded }) => 
       </button>
       <div
         className='playlist-track__remove round-button'
-        onClick={handleRemove}
+        onClick={handleRemoveClick}
       >
         <MdClose />
       </div>
     </div>
   )
+}
+
+PlaylistTrack.propTypes = {
+  id: propTypes.string.isRequired,
+  title: propTypes.string.isRequired,
+  artist: propTypes.string.isRequired,
+  onRemove: propTypes.func.isRequired,
+  onPlay: propTypes.func.isRequired,
+  isCurrent: propTypes.bool.isRequired,
+  isDownloaded: propTypes.bool.isRequired
 }
 
 export default PlaylistTrack
