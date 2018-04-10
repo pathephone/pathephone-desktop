@@ -1,24 +1,25 @@
 import React from 'react'
-import bind from '~/utils/recallReact'
-import currentPage from '~/state/page'
+import { connect } from 'react-redux'
+
 import pagesMap from './Page/pagesMap'
 
-const getPageViewByName = (name) => {
-  const pageObj = pagesMap.find(singleObj => singleObj.name === name)
-  if (!pageObj) {
-    console.error(new Error('No page info found.'))
+const Page = ({ pageName }) => {
+  const PageView = pagesMap[pageName]
+  if (PageView) {
+    return (
+      <main className='page izi-fill'>
+        <PageView />
+      </main>
+    )
+  } else {
+    return (
+      <h1>Page not found</h1>
+    )
   }
-  return pageObj.view
 }
 
-const Page = ({ page }) => {
-  const { name, props } = page
-  const PageView = getPageViewByName(name)
-  return (
-    <main className='page izi-fill'>
-      <PageView {...props} />
-    </main>
-  )
-}
+const mapStateToProps = (state) => ({
+  pageName: state.currentPageName
+})
 
-export default bind({ page: currentPage }, Page)
+export default connect(mapStateToProps)(Page)
