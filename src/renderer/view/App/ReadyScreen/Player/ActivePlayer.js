@@ -1,4 +1,6 @@
 import React from 'react'
+import propTypes from 'prop-types'
+
 import MdSkipNext from 'react-icons/lib/md/skip-next'
 import MdSkipPrev from 'react-icons/lib/md/skip-previous'
 import MdPause from 'react-icons/lib/md/pause'
@@ -8,142 +10,55 @@ import MdShuffle from 'react-icons/lib/md/shuffle'
 
 import './ActivePlayer/CustomRangeInput.css'
 
-import onNextTrack from '~/scripts/setNextCurrentTrack'
-import onPrevTrack from '~/scripts/setPrevCurrentTrack'
-import onTogglePause from '~/scripts/togglePause'
-import onToggleShuffle from '~/scripts/toggleShuffle'
-import onToggleRepeat from '~/scripts/toggleRepeat'
-import onChangeVolume from '~/scripts/changeVolume'
-import onChangeCurrentTime from '~/scripts/changeCurrentTime'
-
 import TrackTimeline from './ActivePlayer/TrackTimeline'
 import VolumeInput from './ActivePlayer/VolumeInput'
 import ProgressBar from './ActivePlayer/ProgressBar'
 
 class ActivePlayer extends React.Component {
-  state = {
-    readyToPlay: false,
-    buffered: []
-  }
-  audio = new Audio()
-  prepareTime = undefined // мнимое время, когда перематываем
-  // CUSTOM
-  setReadyToPlay = (value) => {
-    this.setState({
-      readyToPlay: value
-    })
-  }
-  onSetCurrentTime = ({time, prepare}) => {
-    if (!prepare) {
-      delete this.prepareTime
-      this.audio.currentTime = time
-    } else {
-      // время во время перемотки
-      this.prepareTime = time || 1 // 1 - исправляет случай если пользователь ставит курсор вначале плейлиста и неверно используется время
-      onChangeCurrentTime(time)
-    }
-  }
-  updateBuffered = () => {
-    const bufferedMap = []
-    const { buffered, duration } = this.audio
-    if (!duration) return
-    const percent = this.audio.duration / 100
-    if (buffered.length > 0) {
-      for (let i = 0; i < buffered.length; i++) {
-        const start = buffered.start(i) / percent
-        const end = buffered.end(i) / percent
-        bufferedMap.push([start, end])
-      }
-    } else {
-      const start = buffered.start(0) / percent
-      const end = buffered.end(0) / percent
-      bufferedMap.push([start, end])
-    }
-    this.setState({ buffered: bufferedMap })
-  }
-  attachListeners = () => {
-    this.audio.onloadstart = () => {
-      this.setReadyToPlay(false)
-    }
-    this.audio.oncanplaythrough = () => {
-      this.setReadyToPlay(true)
-    }
-    this.audio.onprogress = this.updateBuffered
-    this.audio.onended = onNextTrack
-    this.audio.ontimeupdate = () => {
-      const { currentTime } = this.audio
-      onChangeCurrentTime(currentTime)
-    }
-  }
-  updateSource = (source, updateToken) => {
-    // if (this.updateToken === updateToken) {
-    this.audio.src = source
-    // }
-  }
-  handleProps = ({ track, playerStateValue }, initial) => {
-    const { pause, volume } = playerStateValue
-    const { hash } = track
-    if (initial || hash !== this.props.track.hash) {
-      this.updateSource(`http://localhost:8080/ipfs/${hash}`)
-      /*
-      multihashToUrl(hash)
-      this.updateToken = getRandomString()
-      const updateToken = this.updateToken
-      this.updateSource('', updateToken)
-      multihashToUrl(hash)
-        .then((url) => { this.updateSource(url, updateToken) })
-      */
-    }
-    if (pause) {
-      this.audio.pause()
-    } else {
-      this.audio.play()
-    }
-    this.audio.volume = volume
-  }
-  // LIFECYCLE
-  componentWillMount () {
-    this.attachListeners()
-    this.handleProps(this.props, true)
-  }
-  componentWillReceiveProps (next) {
-    this.handleProps(next)
-  }
-  componentWillUnmount () {
-    this.audio.src = ''
-  }
   render () {
     const {
-      playerStateValue
+      onPlayPreviousTrack,
+      onPlayNextTrack,
+      onTogglePause,
+      onToggleRepeat,
+      onToggleShuffle,
+      onChangeVolume,
+      onSeek,
+
+      buffered,
+      duration,
+      currentTiming,
+      volume,
+
+      isReadyToPlay,
+      isPaused,
+      isShuffleTurnedOn,
+      isRepeatTurnedOn
     } = this.props
-    const {
-      pause, shuffle, repeat, volume, currentTime
-    } = playerStateValue
-    const { readyToPlay, buffered } = this.state
     return (
       <div className='player'>
         <div className='player__playback-controls'>
-          <button className='round-button' onClick={onPrevTrack}>
+          <button className='round-button' onClick={onPlayPreviousTrack}>
             <MdSkipPrev />
           </button>
           <button className='round-button' onClick={onTogglePause}>
             {
-              pause
+              isPaused
                 ? <MdPlay />
                 : <MdPause />
             }
           </button>
-          <button className='round-button' onClick={onNextTrack}>
+          <button className='round-button' onClick={onPlayNextTrack}>
             <MdSkipNext />
           </button>
         </div>
         {
-          readyToPlay ? (
+          isReadyToPlay ? (
             <TrackTimeline
               buffered={buffered}
-              position={this.prepareTime || currentTime}
-              length={this.audio.duration}
-              onChange={this.onSetCurrentTime}
+              position={currentTiming}
+              length={duration}
+              onChange={onSeek}
             />
           ) : (
             <ProgressBar />
@@ -152,13 +67,13 @@ class ActivePlayer extends React.Component {
         <VolumeInput value={volume} onChange={onChangeVolume} />
         <div className='player__rest-controls'>
           <button
-            className={shuffle ? 'player__toggle--active' : 'player__toggle'}
+            className={isShuffleTurnedOn ? 'player__toggle--active' : 'player__toggle'}
             onClick={onToggleShuffle}
           >
             <MdShuffle />
           </button>
           <button
-            className={repeat ? 'player__toggle--active' : 'player__toggle'}
+            className={isRepeatTurnedOn ? 'player__toggle--active' : 'player__toggle'}
             onClick={onToggleRepeat}
           >
             <MdRepeat />
@@ -167,6 +82,26 @@ class ActivePlayer extends React.Component {
       </div>
     )
   }
+}
+
+ActivePlayer.propTypes = {
+  buffered: propTypes.array,
+  currentTiming: propTypes.number,
+  duration: propTypes.number,
+  volume: propTypes.number.isRequired,
+
+  isPaused: propTypes.bool.isRequired,
+  isRepeatTurnedOn: propTypes.bool.isRequired,
+  isShuffleTurnedOn: propTypes.bool.isRequired,
+  isReadyToPlay: propTypes.bool.isRequired,
+
+  onPlayNextTrack: propTypes.func.isRequired,
+  onPlayPreviousTrack: propTypes.func.isRequired,
+  onSeek: propTypes.func.isRequired,
+  onChangeVolume: propTypes.func.isRequired,
+  onTogglePause: propTypes.func.isRequired,
+  onToggleRepeat: propTypes.func.isRequired,
+  onToggleShuffle: propTypes.func.isRequired
 }
 
 export default ActivePlayer
