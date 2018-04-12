@@ -10,7 +10,6 @@ import {
 } from '../actionTypes'
 
 const initialState = {
-  pause: true,
   shuffle: false,
   repeat: false,
   shufflePath: [],

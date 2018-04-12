@@ -5,26 +5,19 @@ import './css/animate.css'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import createSagaMiddleware from 'redux-saga'
 
-import rootReducer from './reducers'
-import rootSaga from './sagas'
+import store from './store'
+import history from './history'
+
 import AppConnected from './view/AppConnected'
-
-const sagaMiddleware = createSagaMiddleware()
-
-const store = createStore(
-  rootReducer,
-  applyMiddleware(sagaMiddleware)
-)
-
-sagaMiddleware.run(rootSaga)
 
 render(
   <Provider store={store}>
-    <AppConnected />
+    <Router history={history}>
+      <AppConnected />
+    </Router>
   </Provider>,
   document.getElementById('mount-point')
 )

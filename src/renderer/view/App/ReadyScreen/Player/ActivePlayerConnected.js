@@ -23,7 +23,7 @@ import {
   toggleShuffle,
   changeVolume,
   seek
-} from '~/actions/player'
+} from '~/actions'
 
 const mapStateToProps = (...args) => ({
   volume: getVolume(...args),

@@ -10,7 +10,7 @@ import {
   playTrackFromPlaylist,
   removeTrackFromPlaylist,
   clearPlaylist
-} from '~/actions/playlist'
+} from '~/actions'
 
 const mapStateToProps = (...args) => {
   return {

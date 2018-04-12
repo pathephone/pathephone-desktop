@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import startApp from '~/actions/startApp'
+import { startApp } from '~/actions'
 
 import {
   getAppStatusCode,

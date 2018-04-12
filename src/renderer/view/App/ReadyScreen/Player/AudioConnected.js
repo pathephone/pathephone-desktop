@@ -12,7 +12,7 @@ import {
   setNotReadyToPlay,
   updateBuffered,
   updateTiming
-} from '~/actions/player'
+} from '~/actions'
 
 const mapStateToProps = (...args) => {
   return {

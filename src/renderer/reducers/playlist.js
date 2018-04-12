@@ -1,20 +1,13 @@
 import reducerFactory from '../utils/reducerFactory'
-import getRandomString from '../utils/getRandomString'
 
-import {
-  ADD_TRACKS_TO_PLAYLIST,
-  REMOVE_TRACK_FROM_PLAYLIST,
-  CLEAR_PLAYLIST,
-  PLAY_PLAYLIST_TRACK,
-  TRACK_IS_DOWNLOADED
-} from '../actionTypes'
+import * as actionTypes from '../constants/actionTypes'
 
 const initialState = []
 
 const actionHandlers = {
-  [ADD_TRACKS_TO_PLAYLIST] (state, newTracks) {
-    const nextState = [...state]
-    const newTracksTransformed = newTracks.map(
+  [actionTypes.USER_CLICKED_ADD_ALBUM] (state, albumTracks) {
+    /*
+    const newTracksTransformed = albumTracks.map(
       track => ({
         ...track,
         id: getRandomString(),
@@ -22,34 +15,15 @@ const actionHandlers = {
         downloaded: false
       })
     )
-    return [ ...state, ...newTracksTransformed ]
+    */
+    return [ ...state, ...albumTracks ]
   },
-  [REMOVE_TRACK_FROM_PLAYLIST] (state, removeId) {
+  [actionTypes.USER_CLICKED_REMOVE_TRACK_FROM_PLAYLIST] (state, removeId) {
     const handleFilter = ({ id }) => id !== removeId
     return state.filter(handleFilter)
   },
-  [CLEAR_PLAYLIST] () {
+  [actionTypes.USER_CLICKED_CLEAR_PLAYLIST] () {
     return []
-  },
-  [PLAY_PLAYLIST_TRACK] (state, nextCurrentId) {
-    const nextState = [...state]
-    const current = nextState.find(
-      ({ current }) => current
-    )
-    current.current = false
-    const target = state.find(
-      ({ id }) => nextCurrentId === id
-    )
-    target.current = true
-    return nextState
-  },
-  [TRACK_IS_DOWNLOADED] (state, hash) {
-    const nextState = [...state]
-    const handleFilter = t => t.hash === hash
-    const targets = nextState.filter(handleFilter)
-    const handleEach = t => { t.downloaded = true }
-    targets.forEach(handleEach)
-    return nextState
   }
 }
 
