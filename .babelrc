@@ -10,24 +10,5 @@
     ],
     "react",
     "stage-0"
-  ],
-  "plugins": [
-    [
-      "babel-plugin-root-import", 
-      [
-        {
-          "rootPathPrefix": "#",
-          "rootPathSuffix": "src/renderer/view/_"
-        },
-        {
-          "rootPathPrefix": "~",
-          "rootPathSuffix": "src/renderer"
-        },
-        {
-          "rootPathPrefix": "$",
-          "rootPathSuffix": ""
-        }
-      ]
-    ]
   ]
 }

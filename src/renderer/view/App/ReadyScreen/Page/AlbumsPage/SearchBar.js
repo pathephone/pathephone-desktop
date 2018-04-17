@@ -1,4 +1,6 @@
 import React from 'react'
+import propTypes from 'prop-types'
+
 import MdClose from 'react-icons/lib/md/close'
 
 const SearchBar = ({ value, onChange, onCancel }) => {
@@ -32,6 +34,12 @@ const SearchBar = ({ value, onChange, onCancel }) => {
       }
     </div>
   )
+}
+
+SearchBar.propTypes = {
+  value: propTypes.string.isRequired,
+  onChange: propTypes.func.isRequired,
+  onCancel: propTypes.func.isRequired
 }
 
 export default SearchBar

@@ -1,58 +1,10 @@
 import React from 'react'
-import Album from './AlbumsFeed/Album'
-import SelectedActions from './AlbumsFeed/SelectedActions'
+import propTypes from 'prop-types'
 
-import addAlbums from './AlbumsFeed/addAlbums'
-import playAlbums from './AlbumsFeed/playAlbums'
-import deleteAlbums from './AlbumsFeed/deleteAlbums'
+import Album from './AlbumsFeed/Album'
 
 class AlbumsFeed extends React.Component {
-  state = {
-    selected: []
-  }
-  selectAlbums = (cids) => {
-    const { selected } = this.state
-    const eachHandler = (cid) => {
-      const index = selected.findIndex(
-        scid => scid === cid
-      )
-      if (index > -1) {
-        selected.splice(index, 1)
-      } else {
-        selected.push(cid)
-      }
-    }
-    cids.forEach(eachHandler)
-    this.setState({ selected })
-  }
-  clearSelected = () => {
-    this.setState({
-      selected: []
-    })
-  }
-  getSelectedActionsProps = () => {
-    const { selected } = this.state
-    return {
-      onAdd: () => {
-        addAlbums(selected)
-        this.clearSelected()
-      },
-      onPlay: () => {
-        playAlbums(selected)
-        this.clearSelected()
-      },
-      onDelete: () => {
-        deleteAlbums(selected)
-        this.clearSelected()
-      },
-      onClear: () => {
-        this.clearSelected()
-      },
-      selectedNum: selected.length
-    }
-  }
   AlbumWrapper = (data) => {
-    const { selected } = this.state
     const { cid } = data
     const onAdd = () => {
       addAlbums([cid])
@@ -76,22 +28,18 @@ class AlbumsFeed extends React.Component {
   }
   render () {
     const { albums } = this.props
-    const { selected } = this.state
-    const view = []
-    view.push(
+    return (
       <div id='albums-feed' key='feed' className='albums-page__feed'>
         {
           albums.map(this.AlbumWrapper)
         }
       </div>
     )
-    if (selected.length > 0) {
-      view.push(
-        <SelectedActions {...this.getSelectedActionsProps()} key='actions' />
-      )
-    }
-    return view
   }
+}
+
+AlbumsFeed.propTypes = {
+  albums: propTypes.array.isRequired
 }
 
 export default AlbumsFeed

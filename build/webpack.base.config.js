@@ -12,7 +12,9 @@ module.exports = env => ({
   externals: [nodeExternals()],
   resolve: {
     alias: {
-      env: path.resolve(__dirname, `../config/env_${env}.json`)
+      env: path.resolve(__dirname, `../config/env_${env}.json`),
+      '~actions': path.resolve(__dirname, '../src/renderer/data/store/actions.js'),
+      '~selectors': path.resolve(__dirname, '...src/renderer/data/store/selectors.js')
     }
   },
   devtool: 'source-map',

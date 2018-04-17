@@ -5,16 +5,11 @@
   overflow-y: auto;
 }
 
-.navigation__buttons {
-  padding: 1em;
-  /* border-top: 2px solid var(--white-shade-1); */
-}
-
-.navigation__button:not(:first-child) {
+.navigation__item:not(:first-child) {
   margin-top: 0.5em;
 }
 
-.navigation__button {
+.navigation__item {
   background-color: var(--white-shade-1);
   text-transform: uppercase;
   border: none;
@@ -24,10 +19,10 @@
   cursor: pointer;
 }
 
-.navigation__button:hover {
+.navigation__item:hover {
   background-color: var(--white-shade-2);
 }
-.navigation__button:focus {
+.navigation__item:focus {
   background-color: var(--accent-color);
   outline: none;
 }

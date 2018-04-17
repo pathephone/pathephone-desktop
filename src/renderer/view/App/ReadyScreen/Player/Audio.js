@@ -1,6 +1,5 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import { buffer } from 'rxjs/operator/buffer'
 
 const getBufferedAudioMap = ({ buffered, duration }) => {
   if (!duration) return

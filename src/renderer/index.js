@@ -8,8 +8,8 @@ import { render } from 'react-dom'
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import store from './store'
-import history from './history'
+import store from './data/store'
+import history from './data/history'
 
 import AppConnected from './view/AppConnected'
 

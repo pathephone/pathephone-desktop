@@ -7,20 +7,14 @@ import {
 } from '~/selectors'
 
 import {
-  playTrackFromPlaylist,
-  removeTrackFromPlaylist,
   clearPlaylist
 } from '~/actions'
 
-const mapStateToProps = (...args) => {
-  return {
-    tracks: getPlaylistTracks(...args)
-  }
-}
+const mapStateToProps = (state) => ({
+  tracks: getPlaylistTracks(state)
+})
 
 const mapDispatchToProps = {
-  playTrackFromPlaylist,
-  removeTrackFromPlaylist,
   clearPlaylist
 }
 
