@@ -1,4 +1,4 @@
-import { creatorFactory as cf } from '../utils/reduxTools'
+import { creatorFactory as cf } from '~utilsreduxTools'
 
 // APP LIFECYCLE
 

@@ -13,8 +13,10 @@ module.exports = env => ({
   resolve: {
     alias: {
       env: path.resolve(__dirname, `../config/env_${env}.json`),
-      '~actions': path.resolve(__dirname, '../src/renderer/data/store/actions.js'),
-      '~selectors': path.resolve(__dirname, '...src/renderer/data/store/selectors.js')
+      '~utils': path.resolve(__dirname, '../src/renderer/utils'),
+      '#actions': path.resolve(__dirname, '../src/renderer/methods/actions.js'),
+      '#selectors': path.resolve(__dirname, '../src/renderer/methods/selectors.js'),
+      '#constants': path.resolve(__dirname, '../src/renderer/data/constants.js')
     }
   },
   devtool: 'source-map',

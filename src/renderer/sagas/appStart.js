@@ -1,8 +1,8 @@
 import { call, put, take } from 'redux-saga/effects'
 
-import startApp from '~/utils/startApp'
+import startApp from '~utils/startApp'
 
-import { initApp, reportInitAppSuccess, reportInitAppError } from '../actions'
+import { initApp, reportInitAppSuccess, reportInitAppError } from '#actions'
 
 function * appStart () {
   yield take(initApp)

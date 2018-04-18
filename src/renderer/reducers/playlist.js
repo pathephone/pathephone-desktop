@@ -1,5 +1,5 @@
-import { reducerFactory } from '../utils/reduxTools'
-import { addTracksToPlaylist, removeTrackFromPlaylist, clearPlaylist } from '../actions'
+import { reducerFactory } from '~utils/reduxTools'
+import { addTracksToPlaylist, removeTrackFromPlaylist, clearPlaylist } from '#actions'
 
 const DOMAIN = 'playlist'
 

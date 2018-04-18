@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~utils/*": ["./utils/*"],
+      "#actions": ["./methods/actions.js"],
+      "#selectors": ["./methods/selectors.js"],
+      "#constants": ["./data/constants.js"]
+    }
+  }
+}

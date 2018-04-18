@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import playback from './reducers/playback'
-import playlist from './reducers/playlist'
-import app from './reducers/app'
-import volume from './reducers/volume'
+import playback from './playback'
+import playlist from './playlist'
+import app from './app'
+import volume from './volume'
 
 const rootReducer = combineReducers(
   Object.assign({}, playback, playlist, app, volume)

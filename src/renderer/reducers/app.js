@@ -1,9 +1,9 @@
 
-import { reducerFactory } from '../utils/reduxTools'
+import { reducerFactory } from '~utils/reduxTools'
 
-import { APP_STATUS_READY, APP_STATUS_START, APP_STATUS_ERROR, APP_STATUS_CLOSE } from '../constants/appStatuses'
+import { APP_STATUS_READY, APP_STATUS_START, APP_STATUS_ERROR, APP_STATUS_CLOSE } from '#constants'
 
-import { reportInitAppSuccess, reportInitAppError, closeApp } from '../actions'
+import { reportInitAppSuccess, reportInitAppError, closeApp } from '#actions'
 
 // DOMAIN
 

@@ -1,5 +1,5 @@
-import { reducerFactory, newDomainSelectorFactory } from '../utils/reduxTools'
-import { pause, resume, playPlaylistTrack, updateBufferedMap } from '../actions'
+import { reducerFactory, newDomainSelectorFactory } from '~utils/reduxTools'
+import { pause, resume, playPlaylistTrack, updateBufferedMap } from '#actions'
 
 const DOMAIN = 'playback'
 

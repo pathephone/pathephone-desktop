@@ -1,6 +1,6 @@
 
-import { reducerFactory } from '../utils/reduxTools'
-import { changeVolume } from '../actions'
+import { reducerFactory } from '~utils/reduxTools'
+import { changeVolume } from '../methods/actions'
 
 const DOMAIN = 'volume'
 

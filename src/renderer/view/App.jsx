@@ -1,10 +1,10 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import StartScreen from './App/StartScreen'
-import CloseScreen from './App/CloseScreen'
-import ReadyScreen from './App/ReadyScreen'
-import Root from './App/Root'
+import StartScreen from './App/StartScreen.jsx'
+import CloseScreen from './App/CloseScreen.jsx'
+import ReadyScreen from './App/ReadyScreen.jsx'
+import Root from './App/Root.jsx'
 
 class App extends React.Component {
   componentDidMount = this.props.onAppMounted

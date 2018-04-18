@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import { ALBUMS_PAGE_ROUTE, ADD_ALBUM_PAGE_ROUTE, DONATE_PAGE_ROUTE } from '~/constants/routes'
+import { ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE } from '#constants'
 
 import AlbumsPage from './Page/AlbumsPage'
 import AddAlbumPage from './Page/AddAlbumPage'
@@ -11,15 +11,15 @@ const Page = () => (
   <div id='page-container'>
     <Switch>
       <Route
-        path={ALBUMS_PAGE_ROUTE}
+        path={ROUTE_ALBUMS}
         component={AlbumsPage}
       />
       <Route
-        path={ADD_ALBUM_PAGE_ROUTE}
+        path={ROUTE_ADD_ALBUM}
         component={AddAlbumPage}
       />
       <Route
-        path={DONATE_PAGE_ROUTE}
+        path={ROUTE_DONATE}
         component={AddAlbumPage}
       />
     </Switch>
