@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "~utils/*": ["./utils/*"],
+      "~components/*": ["./view/components/*"],
       "#actions": ["./methods/actions.js"],
       "#selectors": ["./methods/selectors.js"],
       "#constants": ["./data/constants.js"]
