@@ -11,7 +11,7 @@ import {
   resumePlayback
 } from '~/actions'
 
-import PlaybackControls from './PlaybackControlsLeft/PlaybackControlsLeft'
+import ControlsLeft from './ControlsLeft.jsx'
 
 const mapStateToProps = (state) => ({
   isPaused: isPlaybackPaused(state)
@@ -33,4 +33,4 @@ const mergeProps = (stateProps, dispatchProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(PlaybackControls)
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ControlsLeft)

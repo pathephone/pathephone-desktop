@@ -5,7 +5,7 @@ import AudioConnected from './Player/AudioConnected'
 import ActivePlayerConnected from './Player/ActivePlayerConnected'
 import PendingPlayer from './Player/PendingPlayer'
 
-import './Player/Player.css'
+import './Player.css'
 
 const Player = ({ isActive }) => {
   if (isActive) {

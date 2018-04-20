@@ -10,7 +10,7 @@ import {
   toggleShuffle
 } from '~/actions'
 
-import PlaybackControls from './PlaybackControlsLeft/PlaybackControlsLeft'
+import ControlsRight from './ControlsRight.jsx'
 
 const mapStateToProps = (state) => ({
   isShuffleTurnedOn: isShuffleTurnedOn(state),
@@ -22,4 +22,4 @@ const mapDispatchToProps = {
   onToggleRepeat: toggleRepeat
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlaybackControls)
+export default connect(mapStateToProps, mapDispatchToProps)(ControlsRight)

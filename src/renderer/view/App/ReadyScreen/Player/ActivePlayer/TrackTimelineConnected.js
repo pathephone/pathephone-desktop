@@ -10,7 +10,7 @@ import {
   stopSeeking
 } from '~/actions'
 
-import TrackTimeline from './TrackTimeline/TrackTimeline'
+import TrackTimeline from './TrackTimeline.jsx'
 
 const mapStateToProps = (state) => ({
   currentPosition: getTimelineCurrentPostion(state),

@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 import MdRepeat from 'react-icons/lib/md/repeat'
 import MdShuffle from 'react-icons/lib/md/shuffle'
 
-const PlaybackControlsRight = ({
+const ControlsRight = ({
   isRepeatTurnedOn,
   onToggleRepeat,
   isShuffleTurnedOn,
@@ -26,11 +26,11 @@ const PlaybackControlsRight = ({
   </div>
 )
 
-PlaybackControlsRight.propTypes = {
+ControlsRight.propTypes = {
   isShuffleTurnedOn: propTypes.bool.isRequired,
   isRepeatTurnedOn: propTypes.bool.isRequired,
   onToggleRepeat: propTypes.func.isRequired,
   onToggleShuffle: propTypes.func.isRequired
 }
 
-export default PlaybackControlsRight
+export default ControlsRight

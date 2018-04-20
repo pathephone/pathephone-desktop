@@ -11,7 +11,7 @@ import {
   getAppStatusProgress
 } from '~/selectors'
 
-import App from './App.jsx'
+import App from './App/App.jsx'
 
 const mapStateToProps = (...args) => ({
   isStartScreen: isAppInitializing(...args),

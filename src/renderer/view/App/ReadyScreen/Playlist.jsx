@@ -3,7 +3,7 @@ import propTypes from 'prop-types'
 
 import PlaylistTrackConnected from './Playlist/PlaylistTrackConnected'
 
-import './Playlist/Playlist.css'
+import './Playlist.css'
 
 const Playlist = ({ tracks, onClearPlaylist }) => {
   return (

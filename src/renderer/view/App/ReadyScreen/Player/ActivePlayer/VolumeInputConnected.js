@@ -8,7 +8,7 @@ import {
   changeVolume
 } from '~/actions'
 
-import VolumeInput from './VolumeInput/VolumeInput'
+import VolumeInput from './VolumeInput.jsx'
 
 const mapStateToProps = (state) => ({
   value: getVolume(state)

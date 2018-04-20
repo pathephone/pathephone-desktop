@@ -2,7 +2,8 @@ import React from 'react'
 import suatmm from '~/css/suatmm.gif'
 
 import DonatePill from './DonatePage/DonatePill'
-import './DonateModal.css'
+
+import './DonatePage.css'
 
 const DonatePage = () => (
   <div className='izi-ys'>

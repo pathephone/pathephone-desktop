@@ -6,7 +6,7 @@ import AlbumsFeed from './AlbumsPage/AlbumsFeed'
 import NoAlbumsFound from './AlbumsPage/NoAlbumsFound'
 import SelectedActions from './AlbumsPage/SelectedActions'
 
-import './AlbumsPage/AlbumsPage.css'
+import './AlbumsPage.css'
 
 class AlbumsPage extends React.Component {
   onPlaySelectedAlbums () {

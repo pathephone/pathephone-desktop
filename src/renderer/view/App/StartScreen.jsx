@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 import ProgressBar from './StartScreen/ProgressBar'
 import ErrorView from './StartScreen/ErrorView'
 
-import './StartScreen/StartScreen.css'
+import './StartScreen.css'
 
 const StartScreen = ({ errorMessage, infoMessage, progress }) => (
   <div className='start-screen izi-fill izi-middle izi-y'>
