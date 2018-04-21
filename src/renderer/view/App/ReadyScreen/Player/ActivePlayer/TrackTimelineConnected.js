@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import {
   getTimelineCurrentPostion,
   getBufferedMap
-} from '~/selectors'
+} from '#selectors'
 
 import {
   startSeeking,
   stopSeeking
-} from '~/actions'
+} from '#actions'
 
 import TrackTimeline from './TrackTimeline.jsx'
 

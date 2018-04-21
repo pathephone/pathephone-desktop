@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import {
   getCurrentTrackId,
   getDownloadedTracks
-} from '~/selectors'
+} from '#selectors'
 
 import {
   playPlaylistTrack,
   removeTrackFromPlaylist
-} from '~/actions'
+} from '#actions'
 
-import PlaylistTrack from './PlaylistTrack'
+import PlaylistTrack from './PlaylistTrack.jsx'
 
 const mapStateToProps = (state) => ({
   currentTrackId: getCurrentTrackId(state),

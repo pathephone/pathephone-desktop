@@ -1,7 +1,5 @@
 import { connect } from 'react-redux'
 
-import ActivePlayer from './ActivePlayer'
-
 import {
   isPaused,
   isReadyToPlayAudio,
@@ -13,7 +11,7 @@ import {
   getCurrentTiming,
   getCurrentTrackBufferedMap,
   getCurrentTrackDuration
-} from '~/selectors'
+} from '#selectors'
 
 import {
   playPreviousTrack,
@@ -23,7 +21,9 @@ import {
   toggleShuffle,
   changeVolume,
   seek
-} from '~/actions'
+} from '#actions'
+
+import ActivePlayer from './ActivePlayer.jsx'
 
 const mapStateToProps = (...args) => ({
   volume: getVolume(...args),

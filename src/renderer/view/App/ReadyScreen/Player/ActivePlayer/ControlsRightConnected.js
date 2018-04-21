@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import {
   isRepeatTurnedOn,
   isShuffleTurnedOn
-} from '~/selectors'
+} from '#selectors'
 
 import {
   toggleRepeat,
   toggleShuffle
-} from '~/actions'
+} from '#actions'
 
 import ControlsRight from './ControlsRight.jsx'
 

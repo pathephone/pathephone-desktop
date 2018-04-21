@@ -1,8 +1,9 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import ProgressBar from './StartScreen/ProgressBar'
-import ErrorView from './StartScreen/ErrorView'
+import ErrorMessage from '~components/ErrorMessage.jsx'
+
+import ProgressBar from './StartScreen/ProgressBar.jsx'
 
 import './StartScreen.css'
 
@@ -11,7 +12,7 @@ const StartScreen = ({ errorMessage, infoMessage, progress }) => (
     <ProgressBar message={infoMessage} percent={progress} />
     {
       errorMessage && (
-        <ErrorView message={errorMessage} />
+        <ErrorMessage message={errorMessage} />
       )
     }
   </div>

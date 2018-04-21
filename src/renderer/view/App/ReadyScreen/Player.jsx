@@ -3,7 +3,7 @@ import propTypes from 'prop-types'
 
 import AudioConnected from './Player/AudioConnected'
 import ActivePlayerConnected from './Player/ActivePlayerConnected'
-import PendingPlayer from './Player/PendingPlayer'
+import PendingPlayer from './Player/PendingPlayer.jsx'
 
 import './Player.css'
 

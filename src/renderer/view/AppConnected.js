@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { initApp } from '~/actions'
+import { initApp } from '#actions'
 
 import {
   isAppInitializing,
@@ -9,9 +9,9 @@ import {
   getAppStatusErrorMessage,
   getAppStatusInfoMessage,
   getAppStatusProgress
-} from '~/selectors'
+} from '#selectors'
 
-import App from './App/App.jsx'
+import App from './App.jsx'
 
 const mapStateToProps = (...args) => ({
   isStartScreen: isAppInitializing(...args),

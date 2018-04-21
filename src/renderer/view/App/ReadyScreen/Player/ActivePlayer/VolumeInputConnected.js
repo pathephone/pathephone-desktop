@@ -2,11 +2,11 @@ import { connect } from 'react-redux'
 
 import {
   getVolume
-} from '~/selectors'
+} from '#selectors'
 
 import {
   changeVolume
-} from '~/actions'
+} from '#actions'
 
 import VolumeInput from './VolumeInput.jsx'
 

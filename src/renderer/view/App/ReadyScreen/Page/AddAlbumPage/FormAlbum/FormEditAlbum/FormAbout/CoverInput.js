@@ -1,12 +1,12 @@
 import React from 'react'
-import SyncIcon from '#/SyncIcon'
-import DiskIcon from '#/DiskIcon'
-import ImageContainer from '#/ImageContainer'
-import BrokenImageIcon from '#/BrokenImageIcon'
-import GetIpfsImage from '#/GetIpfsImage'
+import SyncIcon from '~components/SyncIcon'
+import DiskIcon from '~components/DiskIcon'
+import ImageContainer from '~components/ImageContainer'
+import BrokenImageIcon from '~components/BrokenImageIcon'
+import GetIpfsImage from '~components/GetIpfsImage'
 
-import getCoverFromFiles from '~/utils/getCoverFromFiles'
-import checkIsImage from '~/utils/checkIsImage'
+import getCoverFromFiles from '~utils/getCoverFromFiles'
+import checkIsImage from '~utils/checkIsImage'
 
 import './CoverInput.css'
 

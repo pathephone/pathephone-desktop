@@ -4,11 +4,11 @@ import Playlist from './Playlist'
 
 import {
   getPlaylistTracks
-} from '~/selectors'
+} from '#selectors'
 
 import {
   clearPlaylist
-} from '~/actions'
+} from '#actions'
 
 const mapStateToProps = (state) => ({
   tracks: getPlaylistTracks(state)

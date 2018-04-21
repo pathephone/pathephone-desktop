@@ -3,10 +3,11 @@ import propTypes from 'prop-types'
 
 import './ActivePlayer/CustomRangeInput.css'
 
-import PlaybackControls from './ActivePlayer/PlaybackControls'
-import TrackTimeline from './ActivePlayer/TrackTimeline'
-import VolumeInput from './ActivePlayer/VolumeInput'
-import ProgressBar from './ActivePlayer/ProgressBar'
+import ControlsLeft from './ActivePlayer/ControlsLeft.jsx'
+import ControlsRight from './ActivePlayer/ControlsRight.jsx'
+import TrackTimeline from './ActivePlayer/TrackTimeline.jsx'
+import VolumeInput from './ActivePlayer/VolumeInput.jsx'
+import ProgressBar from './ActivePlayer/ProgressBar.jsx'
 
 class ActivePlayer extends React.Component {
   render () {
@@ -15,7 +16,7 @@ class ActivePlayer extends React.Component {
     } = this.props
     return (
       <div className='player'>
-        <PlaybackControls />
+        <ControlsLeft />
         {
           isReadyToPlay ? (
             <TrackTimeline />
@@ -24,6 +25,7 @@ class ActivePlayer extends React.Component {
           )
         }
         <VolumeInput />
+        <ControlsRight />
       </div>
     )
   }

@@ -1,18 +1,18 @@
 import { connect } from 'react-redux'
 
-import Audio from './Audio'
-
 import {
   isPause,
   getPlayedAudioSource
-} from '~/selectors'
+} from '#selectors'
 
 import {
   setReadyToPlay,
   setNotReadyToPlay,
   updateBuffered,
   updateTiming
-} from '~/actions'
+} from '#actions'
+
+import Audio from './Audio.jsx'
 
 const mapStateToProps = (...args) => {
   return {

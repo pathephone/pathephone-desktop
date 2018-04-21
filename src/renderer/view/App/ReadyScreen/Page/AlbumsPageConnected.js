@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   getAlbumsPageAlbums,
   getAlbumsPageSearchValue
-} from '~/selectors'
+} from '#selectors'
 
 import {
   changeAlbumsPageSearchValue,
@@ -11,7 +11,7 @@ import {
   addAlbumToPlaylist,
   playAlbum,
   selectAlbumsPageAlbum
-} from '~/actions'
+} from '#actions'
 
 import AlbumsPage from './AlbumsPage'
 

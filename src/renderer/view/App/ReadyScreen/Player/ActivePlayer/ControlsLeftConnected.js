@@ -2,14 +2,14 @@ import { connect } from 'react-redux'
 
 import {
   isPlaybackPaused
-} from '~/selectors'
+} from '#selectors'
 
 import {
   playNextPlaylistTrack,
   playPreviousPlaylistTrack,
   pausePlayback,
   resumePlayback
-} from '~/actions'
+} from '#actions'
 
 import ControlsLeft from './ControlsLeft.jsx'
 

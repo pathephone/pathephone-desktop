@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import { ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE } from '#constants'
 
-import AlbumsPage from './Page/AlbumsPage'
-import AddAlbumPage from './Page/AddAlbumPage'
+import AlbumsPage from './Page/AlbumsPage.jsx'
+import AddAlbumPage from './Page/AddAlbumPage.jsx'
 
 import './Page.css'
 
