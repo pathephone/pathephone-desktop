@@ -26,6 +26,10 @@ const startApp = async function () {
     waitTimeout: 30000
   })
   await this.app.start()
+  const waitForExist = this.app.client.waitForExist
+  this.app.client.waitForExist = (selector) => {
+    return waitForExist.call(this.app.client, selector, 30000)
+  }
   return this.app.client.waitForExist('#app')
 }
 

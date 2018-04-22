@@ -8,6 +8,11 @@ describe('albums search', function () {
   // ALBUM SELECTION
 
   describe('type some text', function () {
+    it('check some album already on feed', async function () {
+      const { app } = this
+      const albums = await app.client.$$('#albums-feed .album')
+      expect(albums.length).to.be.above(0)
+    })
     it('throws no errors', async function () {
       const { app } = this
       await app.client.waitForExist(inputSelector)
