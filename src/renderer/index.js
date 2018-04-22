@@ -1,15 +1,15 @@
-import './css/izi.css'
-import './css/global.css'
-import './css/palette.css'
-import './css/animate.css'
+import './view/css/izi.css'
+import './view/css/global.css'
+import './view/css/palette.css'
+import './view/css/animate.css'
 
 import React from 'react'
 import { render } from 'react-dom'
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import store from './data/store'
-import history from './data/history'
+import store from './utils/store'
+import history from './utils/history'
 
 import AppConnected from './view/AppConnected'
 

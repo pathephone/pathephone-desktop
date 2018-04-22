@@ -1,8 +1,14 @@
 import { call, put, take } from 'redux-saga/effects'
 
-import startApp from '~utils/startApp'
+import startApp from '/appLifecycle/startApp'
 
-import { initApp, reportInitAppSuccess, reportInitAppError } from '#actions'
+import {
+  initApp,
+  reportInitAppSuccess,
+  reportInitAppError,
+  closeApp,
+  reportCloseAppSuccess
+} from '#actions'
 
 function * appStart () {
   yield take(initApp)
@@ -12,6 +18,8 @@ function * appStart () {
   } catch ({ message }) {
     yield put(reportInitAppError(message))
   }
+  yield take(closeApp)
+  yield put(reportCloseAppSuccess())
 }
 
 export default appStart
