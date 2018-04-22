@@ -1,6 +1,6 @@
 import React from 'react'
 import MdDrop from 'react-icons/lib/md/arrow-downward'
-import DNDarea from '~components/DNDarea'
+import DNDarea from '~components/DNDarea.jsx'
 
 import getAlbumObjectFromFiles from '~utils/getAlbumObjectFromFiles'
 

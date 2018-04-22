@@ -14,9 +14,9 @@ import {
 import App from './App.jsx'
 
 const mapStateToProps = (...args) => ({
-  isStartScreen: isAppInitializing(...args),
-  isReadyScreen: isAppReady(...args),
-  isCloseScreen: isAppClosing(...args),
+  showsStartScreen: isAppInitializing(...args),
+  showsReadyScreen: isAppReady(...args),
+  showsCloseScreen: isAppClosing(...args),
   errorMessage: getAppStatusErrorMessage(...args),
   infoMessage: getAppStatusInfoMessage(...args),
   progress: getAppStatusProgress(...args)

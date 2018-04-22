@@ -9,15 +9,15 @@ import Root from './App/Root.jsx'
 class App extends React.Component {
   componentDidMount = this.props.onAppMounted
   render () {
-    const { isStartScreen, isReadyScreen, isCloseScreen, ...restProps } = this.props
+    const { showsStartScreen, showsReadyScreen, showsCloseScreen, ...restProps } = this.props
     return (
       <Root>
         {
-          isStartScreen ? (
+          showsStartScreen ? (
             <StartScreen {...restProps} />
-          ) : isReadyScreen ? (
+          ) : showsReadyScreen ? (
             <ReadyScreen />
-          ) : isCloseScreen && (
+          ) : showsCloseScreen && (
             <CloseScreen {...restProps} />
           )
         }
@@ -27,9 +27,9 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  isStartScreen: propTypes.number.isRequired,
-  isReadyScreen: propTypes.number.isRequired,
-  isCloseScreen: propTypes.number.isRequired,
+  showsStartScreen: propTypes.number.isRequired,
+  showsReadyScreen: propTypes.number.isRequired,
+  showsCloseScreen: propTypes.number.isRequired,
   onAppMounted: propTypes.func.isRequired
 }
 
