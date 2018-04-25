@@ -1,25 +1,25 @@
-import { call, put, take } from 'redux-saga/effects'
+import { fork, put, take } from 'redux-saga/effects'
 
 import startApp from '/appLifecycle/startApp'
 
 import {
-  initApp,
-  reportInitAppSuccess,
-  reportInitAppError,
-  closeApp,
-  reportCloseAppSuccess
+  initAppStart,
+  reportAppStartSuccess,
+  reportAppStartError,
+  initAppClose,
+  reportAppCloseSuccess
 } from '#actions'
 
 function * appStart () {
-  yield take(initApp)
+  yield take(initAppStart)
   try {
-    yield call(startApp)
-    yield put(reportInitAppSuccess())
+    yield fork(startApp)
+    yield put(reportAppStartSuccess)
   } catch ({ message }) {
-    yield put(reportInitAppError(message))
+    yield put(reportAppStartError(message))
   }
-  yield take(closeApp)
-  yield put(reportCloseAppSuccess())
+  yield take(initAppClose)
+  yield put(reportAppCloseSuccess())
 }
 
 export default appStart
