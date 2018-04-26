@@ -21,7 +21,7 @@ function * startApp () {
   ]
   yield put(reportAppStartProgress, 66)
   yield fork(
-    startAlbumsProcess, albumsGate, albumsCollection
+    startAlbumsProcess, { albumsGate, albumsCollection }
   )
 }
 

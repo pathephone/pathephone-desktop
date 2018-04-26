@@ -1,6 +1,6 @@
 import { fork, put, take } from 'redux-saga/effects'
 
-import startApp from '/appLifecycle/startApp'
+import startApp from './appProcess/startApp'
 
 import {
   initAppStart,
