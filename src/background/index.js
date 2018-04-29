@@ -14,7 +14,7 @@ import tray from './methods/tray'
 // Special module holding environment variables which you declared
 // in config/env_xxx.json file.
 
-import env from '#config'
+import env from '#environment'
 import './methods/initGlobals'
 
 // Save userData in separate folders for each environment.

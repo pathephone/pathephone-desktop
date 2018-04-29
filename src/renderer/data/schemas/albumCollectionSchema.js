@@ -1,4 +1,4 @@
-import instanceSchema from './instanceSchema'
+import instanceSchema from './albumInstanceSchema'
 
 const rxdbSchema = {
   title: 'album',

@@ -1,5 +1,5 @@
 import { app, Tray, Menu } from 'electron'
-import env from '#config'
+import env from '#environment'
 
 const resourcesPath = env.name === 'production' ? process.resourcesPath : 'resources'
 

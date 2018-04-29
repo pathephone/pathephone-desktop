@@ -1,12 +1,10 @@
 import { creatorFactory as cf } from '~utils/reduxTools'
 
-// APP LIFECYCLE
+// APP PROCESS
 
-export const initAppStart = cf('INIT_APP_START')
+export const reportAppError = cf('REPORT_APP_ERROR')
 
-export const reportAppStartError = cf('REPORT_APP_START_ERROR')
-
-export const reportAppStartSuccess = cf('REPORT_APP_START_SUCCESS')
+export const reportAppReady = cf('REPORT_APP_READY')
 
 export const initAppClose = cf('INIT_APP_CLOSE')
 

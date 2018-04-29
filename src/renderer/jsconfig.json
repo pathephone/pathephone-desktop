@@ -2,11 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "~data/*": ["./data/*"],
       "~utils/*": ["./utils/*"],
       "~components/*": ["./components/*"],
       "#actions": ["./methods/actions.js"],
-      "#selectors": ["./methods/selectors.js"],
-      "#constants": ["./data/constants.js"]
+      "#selectors": ["./methods/selectors.js"]
     }
   }
 }

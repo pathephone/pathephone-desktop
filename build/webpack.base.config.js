@@ -12,12 +12,12 @@ module.exports = env => ({
   externals: [nodeExternals()],
   resolve: {
     alias: {
-      '#config': path.resolve(__dirname, `../config/env_${env}.json`),
-      '#actions': path.resolve(__dirname, '../src/renderer/methods/actions.js'),
-      '#selectors': path.resolve(__dirname, '../src/renderer/methods/selectors.js'),
-      '#constants': path.resolve(__dirname, '../src/renderer/data/constants.js'),
+      '~data': path.resolve(__dirname, '../src/renderer/data'),
       '~utils': path.resolve(__dirname, '../src/renderer/utils'),
-      '~components': path.resolve(__dirname, '../src/renderer/components')
+      '~components': path.resolve(__dirname, '../src/renderer/components'),
+      '#environment': path.resolve(__dirname, `../config/env_${env}.json`),
+      '#actions': path.resolve(__dirname, '../src/renderer/methods/actions.js'),
+      '#selectors': path.resolve(__dirname, '../src/renderer/methods/selectors.js')
     }
   },
   devtool: 'source-map',

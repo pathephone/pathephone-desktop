@@ -1,9 +1,8 @@
 
 import { reducerFactory } from '~utils/reduxTools'
 
-import { APP_STATUS_READY, APP_STATUS_START, APP_STATUS_ERROR, APP_STATUS_CLOSE } from '#constants'
-
-import { reportInitAppSuccess, reportInitAppError, closeApp } from '#actions'
+import { APP_STATUS_READY, APP_STATUS_START, APP_STATUS_CLOSE } from '~data/constants'
+import { reportAppReady, reportAppError, initAppClose } from '#actions'
 
 // DOMAIN
 
@@ -17,15 +16,18 @@ const initialState = { statusCode: APP_STATUS_START, errorMessage: null }
 
 export const getAppStatusCode = state => state[DOMAIN].statusCode
 export const getAppErrorMessage = state => state[DOMAIN].errorMessage
+export const isAppStarting = state => getAppStatusCode(state) === APP_STATUS_START
+export const isAppReady = state => getAppStatusCode(state) === APP_STATUS_READY
+export const isAppClosing = state => getAppStatusCode(state) === APP_STATUS_CLOSE
 
 const actionHandlers = {
-  [reportInitAppSuccess] () {
+  [reportAppReady] () {
     return { statusCode: APP_STATUS_READY, errorMessage: null }
   },
-  [reportInitAppError] ({ state, payload }) {
-    return { statusCode: APP_STATUS_ERROR, errorMessage: payload }
+  [reportAppError] ({ state, payload }) {
+    return { ...state, errorMessage: payload }
   },
-  [closeApp] () {
+  [initAppClose] () {
     return { statusCode: APP_STATUS_CLOSE, errorMessage: null }
   }
 }

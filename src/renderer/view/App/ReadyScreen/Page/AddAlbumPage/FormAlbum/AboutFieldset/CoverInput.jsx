@@ -2,8 +2,9 @@ import React from 'react'
 import propTypes from 'prop-types'
 
 import DiskIcon from '~components/DiskIcon.jsx'
-import IPFSFileInput from '~components/IPFSFileInput.jsx'
-import withIPFSGatewayURL from '~components/withIPFSGatewayURL'
+import IPFSFileInput from '~components/Ipfs/FileInput.jsx'
+
+import getIpfsImageUrl from '~utils/getIpfsImageUrl'
 
 import './CoverInput.css'
 
@@ -29,7 +30,7 @@ class CoverInput extends React.Component {
           />
           {
             value ? (
-              <img className='izi-fill ipfs-image-container' src={withIPFSGatewayURL(value)} />
+              <img className='izi-fill ipfs-image-container' src={getIpfsImageUrl(value)} />
             ) : (
               <DiskIcon />
             )

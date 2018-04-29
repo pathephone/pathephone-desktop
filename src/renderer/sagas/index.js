@@ -1,10 +1,10 @@
 import { all, fork } from 'redux-saga/effects'
 
-import appStatus from './appStatus'
+import startApp from './startApp'
 
 function * rootSaga () {
   yield all([
-    fork(appStatus)
+    fork(startApp)
   ])
 }
 

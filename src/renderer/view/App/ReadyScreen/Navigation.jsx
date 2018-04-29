@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ALBUMS_PAGE_ROUTE, ADD_ALBUM_PAGE_ROUTE } from '#constants'
+import { ALBUMS_PAGE_ROUTE, ADD_ALBUM_PAGE_ROUTE } from '~data/constants'
 
 import NavigationItem from './Navigation/NavigationItem.jsx'
 import './Navigation.css'

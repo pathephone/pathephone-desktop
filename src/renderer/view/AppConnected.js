@@ -1,29 +1,19 @@
 import { connect } from 'react-redux'
 
-import { initApp } from '#actions'
-
 import {
-  isAppInitializing,
   isAppReady,
   isAppClosing,
-  getAppStatusErrorMessage,
-  getAppStatusInfoMessage,
-  getAppStatusProgress
+  getAppErrorMessage,
+  isAppStarting
 } from '#selectors'
 
 import App from './App.jsx'
 
 const mapStateToProps = (...args) => ({
-  showsStartScreen: isAppInitializing(...args),
-  showsReadyScreen: isAppReady(...args),
-  showsCloseScreen: isAppClosing(...args),
-  errorMessage: getAppStatusErrorMessage(...args),
-  infoMessage: getAppStatusInfoMessage(...args),
-  progress: getAppStatusProgress(...args)
+  hasStartScreen: isAppStarting(...args),
+  hasReadyScreen: isAppReady(...args),
+  hasCloseScreen: isAppClosing(...args),
+  errorMessage: getAppErrorMessage(...args)
 })
 
-const mapDispatchToProps = {
-  onAppMounted: initApp
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)

@@ -2,24 +2,12 @@ import React from 'react'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdAdd from 'react-icons/lib/md/playlist-add'
 
-import SyncIcon from '~components/SyncIcon.jsx'
-import DiskIcon from '~components/DiskIcon.jsx'
 import ImageContainer from '~components/ImageContainer.jsx'
-import GetIpfsImage from '~components/GetIpfsImage.jsx'
 
 import getQualityLabel from '~utils/getQualityLabel'
+import getIpfsImageUrl from '~utils/getIpfsImageUrl'
 
 import './Album.css'
-
-const CoverView = ({ data, error }) => {
-  if (data) {
-    return <ImageContainer className='izi-fill izi-rounded' image={data} />
-  }
-  if (error) {
-    return <DiskIcon />
-  }
-  return <SyncIcon />
-}
 
 const getLowestQuality = tracks => {
   const bitrates = tracks.map(({bitrate}) => bitrate)
@@ -35,6 +23,7 @@ class Album extends React.Component {
     const lowestQuality = getLowestQuality(tracks)
     const qualityLabel = getQualityLabel(lowestQuality)
     const isSelected = selected.includes(cid)
+    const coverURL = getIpfsImageUrl(cover)
     return (
       <div className={`album${isSelected ? '--selected' : ''}`}>
         <div className='izi-relative'>
@@ -42,10 +31,7 @@ class Album extends React.Component {
             onClick={onSelect}
             className='album__cover izi-rounded'
           >
-            <GetIpfsImage
-              hash={cover}
-              view={CoverView}
-            />
+            <ImageContainer className='izi-fill izi-rounded' image={coverURL} />
           </button>
           <div className='album__quality'>
             <div
