@@ -3,13 +3,11 @@ import { connect } from 'react-redux'
 import Player from './Player.jsx'
 
 import {
-  isTracklistEmpty
+  isPlayerActive
 } from '#selectors'
 
-const mapStateToProps = (...args) => {
-  return {
-    isActive: isTracklistEmpty(...args)
-  }
-}
+const mapStateToProps = (...args) => ({
+  isActive: isPlayerActive(...args)
+})
 
 export default connect(mapStateToProps)(Player)

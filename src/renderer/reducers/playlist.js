@@ -7,7 +7,8 @@ const initialState = []
 
 // SELECTORS
 
-export const getPlaylistTracks = (state) => state[DOMAIN]
+export const getPlaylistTracks = state => state[DOMAIN]
+export const isPlaylistEmpty = state => state[DOMAIN].length === 0
 
 const actionHandlers = {
   [addTracksToPlaylist] (state, newTracks) {

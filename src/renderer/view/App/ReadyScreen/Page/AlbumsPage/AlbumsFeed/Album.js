@@ -5,7 +5,7 @@ import MdAdd from 'react-icons/lib/md/playlist-add'
 import ImageContainer from '~components/ImageContainer.jsx'
 
 import getQualityLabel from '~utils/getQualityLabel'
-import getIpfsImageUrl from '~utils/getIpfsImageUrl'
+import withIpfsGateway from '~utils/withIpfsGateway'
 
 import './Album.css'
 
@@ -23,7 +23,7 @@ class Album extends React.Component {
     const lowestQuality = getLowestQuality(tracks)
     const qualityLabel = getQualityLabel(lowestQuality)
     const isSelected = selected.includes(cid)
-    const coverURL = getIpfsImageUrl(cover)
+    const coverURL = withIpfsGateway(cover)
     return (
       <div className={`album${isSelected ? '--selected' : ''}`}>
         <div className='izi-relative'>

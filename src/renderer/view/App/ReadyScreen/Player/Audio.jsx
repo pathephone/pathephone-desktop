@@ -1,24 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-const getBufferedAudioMap = ({ buffered, duration }) => {
-  if (!duration) return
-  const bufferedMap = []
-  const percent = duration / 100
-  if (buffered.length > 0) {
-    for (let i = 0; i < buffered.length; i++) {
-      const start = buffered.start(i) / percent
-      const end = buffered.end(i) / percent
-      bufferedMap.push([start, end])
-    }
-  } else {
-    const start = buffered.start(0) / percent
-    const end = buffered.end(0) / percent
-    bufferedMap.push([start, end])
-  }
-  return bufferedMap
-}
-
 class Audio extends React.Component {
   audio = new Audio()
 

@@ -1,16 +1,27 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-import playback from './playback'
-import playlist from './playlist'
-import app from './app'
-import volume from './volume'
+import audio from './audio'
+export * from './audio'
+
+import playlist from './playlist' // eslint-disable-line
+export * from './playlist'
+
+import app from './app' // eslint-disable-line
+export * from './app'
+
+import volume from './volume' // eslint-disable-line
+export * from './volume'
+
+import playback from './playback' // eslint-disable-line
+export * from './playback'
 
 const rootReducer = combineReducers({
-  ...playback,
+  ...audio,
   ...playlist,
   ...app,
   ...volume,
+  ...playback,
   form: formReducer
 })
 

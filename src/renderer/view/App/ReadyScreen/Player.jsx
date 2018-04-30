@@ -1,7 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import AudioConnected from './Player/AudioConnected'
 import ActivePlayerConnected from './Player/ActivePlayerConnected'
 import PendingPlayer from './Player/PendingPlayer.jsx'
 
@@ -10,9 +9,7 @@ import './Player.css'
 const Player = ({ isActive }) => {
   if (isActive) {
     return (
-      <AudioConnected>
-        <ActivePlayerConnected />
-      </AudioConnected>
+      <ActivePlayerConnected />
     )
   }
   return <PendingPlayer />

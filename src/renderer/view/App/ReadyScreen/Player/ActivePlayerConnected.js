@@ -2,15 +2,15 @@ import { connect } from 'react-redux'
 
 import {
   isPaused,
-  isReadyToPlayAudio,
-  isShuffleTournedOn,
+  isReadyToPlay,
   isRepeatTurnedOn,
+  isShuffleTurnedOn,
 
-  getPlayedAudioSource,
   getVolume,
-  getCurrentTiming,
-  getCurrentTrackBufferedMap,
-  getCurrentTrackDuration
+  getPlayedTrackSource,
+  getPlayedTrackTiming,
+  getPlayedTrackBufferedMap,
+  getPlayedTrackDuration
 } from '#selectors'
 
 import {
@@ -27,16 +27,15 @@ import ActivePlayer from './ActivePlayer.jsx'
 
 const mapStateToProps = (...args) => ({
   volume: getVolume(...args),
-  currentTiming: getCurrentTiming(...args),
-  buffered: getCurrentTrackBufferedMap(...args),
-  duration: getCurrentTrackDuration(...args),
+  currentTiming: getPlayedTrackTiming(...args),
+  buffered: getPlayedTrackBufferedMap(...args),
+  duration: getPlayedTrackDuration(...args),
+  audioSource: getPlayedTrackSource(...args),
 
   isPaused: isPaused(...args),
-  isReadyToPlay: isReadyToPlayAudio(...args),
-
-  isShuffleTurnedOn: isShuffleTournedOn(...args),
-  isRepeatTurnedOn: isRepeatTurnedOn(...args),
-  audioSource: getPlayedAudioSource(...args)
+  isReadyToPlay: isReadyToPlay(...args),
+  isShuffleTurnedOn: isShuffleTurnedOn(...args),
+  isRepeatTurnedOn: isRepeatTurnedOn(...args)
 })
 
 const mapDispatchToProps = {

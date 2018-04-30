@@ -1,8 +1,14 @@
 import { eventChannel } from 'redux-saga'
 
-function gateToSagaChannel (gate) {
+async function gateToSagaChannel (gate) {
+  let handler
+  const listener = (...args) => {
+    if (handler) handler(...args)
+  }
+  const stopListener = await gate.listen(listener)
   return eventChannel(emitter => {
-    return gate.listen(emitter)
+    handler = emitter
+    return stopListener
   })
 }
 

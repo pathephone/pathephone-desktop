@@ -5,19 +5,18 @@ import './view/css/animate.css'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { Router } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import store from './utils/store'
-import history from './utils/history'
 
 import AppConnected from './view/AppConnected'
 
 render(
   <Provider store={store}>
-    <Router history={history}>
+    <HashRouter>
       <AppConnected />
-    </Router>
+    </HashRouter>
   </Provider>,
   document.getElementById('mount-point')
 )

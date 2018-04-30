@@ -1,40 +1,22 @@
-import { reducerFactory, newDomainSelectorFactory } from '~utils/reduxTools'
-import { pause, resume, playPlaylistTrack, updateBufferedMap } from '#actions'
+import { reducerFactory } from '~utils/reduxTools'
+import { toggleRepeat, toggleShuffle } from '#actions'
 
 const DOMAIN = 'playback'
 
-// INITIAL STATE
-
 const initialState = {
-  isPaused: true,
-  timing: 0,
-  currentTrackId: null,
-  bufferedMap: []
+  shuffle: false,
+  repeat: false
 }
 
-// SELECTORS
-
-const sf = newDomainSelectorFactory(DOMAIN)
-
-export const isPaused = sf('isPaused')
-export const getTiming = sf('timing')
-export const getCurrentTrackId = sf('currentTrackId')
-export const getBufferedMap = sf('bufferedMap')
-
-// REDUCER
+export const isShuffleTurnedOn = state => state[DOMAIN].shuffle
+export const isRepeatTurnedOn = state => state[DOMAIN].repeat
 
 const actionHandlers = {
-  [pause] ({ state }) {
-    return { ...state, isPaused: true }
+  [toggleRepeat] ({ state }) {
+    return { ...state, shuffle: !state.shuffle }
   },
-  [resume] ({ state }) {
-    return { ...state, isPaused: false }
-  },
-  [playPlaylistTrack] ({ state, payload }) {
-    return { ...state, currentTrackId: payload }
-  },
-  [updateBufferedMap] ({ state, payload }) {
-    return { ...state, bufferedMap: payload }
+  [toggleShuffle] ({ state }) {
+    return { ...state, repeat: !state.repeat }
   }
 }
 

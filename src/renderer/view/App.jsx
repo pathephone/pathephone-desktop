@@ -21,10 +21,9 @@ const App = ({ hasStartScreen, hasReadyScreen, hasCloseScreen, ...restProps }) =
 )
 
 App.propTypes = {
-  hasStartScreen: propTypes.number.isRequired,
-  hasReadyScreen: propTypes.number.isRequired,
-  hasCloseScreen: propTypes.number.isRequired,
-  onAppMounted: propTypes.func.isRequired
+  hasStartScreen: propTypes.bool.isRequired,
+  hasReadyScreen: propTypes.bool.isRequired,
+  hasCloseScreen: propTypes.bool.isRequired
 }
 
 export default App

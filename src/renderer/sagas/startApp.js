@@ -14,8 +14,9 @@ function * startApp () {
     yield put(reportAppReady())
     yield take(initAppClose)
     // yield call (closeApp)
-  } catch ({ message }) {
-    yield put(reportAppError(message))
+  } catch (e) {
+    console.error(e)
+    yield put(reportAppError(e.message))
   }
 }
 

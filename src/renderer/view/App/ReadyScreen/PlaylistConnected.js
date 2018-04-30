@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import Playlist from './Playlist'
+import Playlist from './Playlist.jsx'
 
 import {
   getPlaylistTracks
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  clearPlaylist
+  onClearPlaylist: clearPlaylist
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)

@@ -3,7 +3,7 @@ import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 const NavigationItem = ({ path, title }) => (
-  <Link to={path} id='add-album_open' className='navigation__item'>
+  <Link to={path} className='navigation__item'>
     {title}
   </Link>
 )

@@ -10,6 +10,7 @@
 }
 
 .navigation__item {
+  display: block;
   background-color: var(--white-shade-1);
   text-transform: uppercase;
   border: none;

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import {
-  getCurrentTrackId,
+  getPlayedTrackId,
   getDownloadedTracks
 } from '#selectors'
 
@@ -13,7 +13,7 @@ import {
 import PlaylistTrack from './PlaylistTrack.jsx'
 
 const mapStateToProps = (state) => ({
-  currentTrackId: getCurrentTrackId(state),
+  currentTrackId: getPlayedTrackId(state),
   downloadedTracks: getDownloadedTracks(state)
 })
 
