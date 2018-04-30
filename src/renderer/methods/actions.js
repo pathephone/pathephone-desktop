@@ -46,6 +46,10 @@ export const markTrackAsDownloaded = cf('MARK_TRACK_AS_DOWNLOADED')
 
 // ALBUMS
 
+export const prependAlbumsToBrowse = cf('PREPEND_ALBUMS_TO_BROWSE')
+
+export const appendAlbumsToBrowse = cf('PUSH_ALBUMS_TO_BROWSE')
+
 export const playAlbum = cf('PLAY_ALBUM')
 
 export const addAlbumToPlaylist = cf('ADD_ALBUM_TO_PLAYLIST')
@@ -57,6 +61,8 @@ export const changeAlbumsPageSearchValue = cf('CHANGE_ALBUMS_PAGE_SEARCH_VALUE')
 export const clearAlbumsPageSearchValue = cf('CLEAR_ALBUMS_PAGE_SEARCH_VALUE')
 
 export const selectAlbumsPageAlbum = cf('SELECT_ALBUMS_PAGE_ALBUM')
+
+export const deselectAlbumsPageAlbum = cf('DESELECT_ALBUMS_PAGE_ALBUM')
 
 // AUDIO
 

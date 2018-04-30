@@ -16,12 +16,16 @@ export * from './volume'
 import playback from './playback' // eslint-disable-line
 export * from './playback'
 
+import albums from './albums' // eslint-disable-line
+export * from './albums'
+
 const rootReducer = combineReducers({
   ...audio,
   ...playlist,
   ...app,
   ...volume,
   ...playback,
+  ...albums,
   form: formReducer
 })
 

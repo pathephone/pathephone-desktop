@@ -3,13 +3,13 @@ import propTypes from 'prop-types'
 
 import MdClose from 'react-icons/lib/md/close'
 
-const SearchBar = ({ value, onChange, onCancel }) => {
+const SearchBar = ({ searchValue, onSearchValueChange, onCancelSearch }) => {
   const handleChange = e => {
     const { value } = e.currentTarget
-    onChange(value)
+    onSearchValueChange(value)
   }
   const handleCancelSearch = () => {
-    onCancel()
+    onCancelSearch()
   }
   return (
     <div className='albums-page__search-bar'>
@@ -18,11 +18,11 @@ const SearchBar = ({ value, onChange, onCancel }) => {
         placeholder='search albums'
         className='albums-page__search-input'
         type='text'
-        value={value}
+        value={searchValue}
         onChange={handleChange}
       />
       {
-        value && (
+        searchValue && (
           <button
             id='cancel-search'
             className='albums-page__cancel-search round-button'
@@ -37,9 +37,9 @@ const SearchBar = ({ value, onChange, onCancel }) => {
 }
 
 SearchBar.propTypes = {
-  value: propTypes.string.isRequired,
-  onChange: propTypes.func.isRequired,
-  onCancel: propTypes.func.isRequired
+  searchValue: propTypes.string.isRequired,
+  onSearchValueChange: propTypes.func.isRequired,
+  onCancelSearch: propTypes.func.isRequired
 }
 
 export default SearchBar

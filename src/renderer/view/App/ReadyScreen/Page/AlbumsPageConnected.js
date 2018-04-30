@@ -1,8 +1,10 @@
 import { connect } from 'react-redux'
 
 import {
-  getAlbumsPageAlbums,
-  getAlbumsPageSearchValue
+  getAlbumsSearchValue,
+  getAlbumsFound,
+  isAlbumsFound,
+  isAlbumsSelected
 } from '#selectors'
 
 import {
@@ -13,11 +15,14 @@ import {
   selectAlbumsPageAlbum
 } from '#actions'
 
-import AlbumsPage from './AlbumsPage'
+import AlbumsPage from './AlbumsPage.jsx'
 
 const mapStateToProps = (...args) => ({
-  albums: getAlbumsPageAlbums(...args),
-  searchValue: getAlbumsPageSearchValue(...args)
+  albums: getAlbumsFound(...args),
+  hasAlbumsFeed: isAlbumsFound(...args),
+  hasSelectedBar: isAlbumsSelected(...args),
+  hasNoSearchResultsMessage: !!getAlbumsSearchValue(...args) && !isAlbumsFound(...args),
+  searchValue: getAlbumsSearchValue(...args)
 })
 
 const mapDispatchToProps = {
