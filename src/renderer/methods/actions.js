@@ -85,3 +85,15 @@ export const reportAudioPlaybackEnd = cf('AUDIO_PLAYBACK_END')
 export const reportAudioPlaybackTimeUpdate = cf('AUDIO_PLAYBACK_TIME_UPDATE')
 
 export const reportAudioDurationUpdate = cf('AUDIO_DURATION_UPDATE')
+
+// ADD ALBUM
+
+export const reportAlbumFormData = cf('ALBUM_FORM_DATA')
+
+export const initAlbumPublication = cf('ALBUM_PUBLICATION')
+
+export const reportAlbumCandidate = cf('ALBUM_CANDIDATE')
+
+export const reportAlbumDublicate = cf('ALBUM_DUBLICATE')
+
+export const reportAlbumNew = cf('ALBUM_NEW')

@@ -1,16 +1,16 @@
-import { take, fork } from 'redux-saga/effects'
+import { take, call } from 'redux-saga/effects'
 
-import publishAlbums from './startAlbumsPublisher/publishAlbums'
+import { initAlbumPublication } from '#actions'
 
-function * startAlbumsReceiver ({ outcomingAlbumsChannel, albumsGate }) {
+function * startAlbumsPublisher ({ albumsGate }) {
   try {
     while (true) {
-      const albums = yield take(outcomingAlbumsChannel)
-      yield fork(publishAlbums, { albums, albumsGate })
+      const album = yield take(initAlbumPublication)
+      yield call(albumsGate.publish, album.cid)
     }
   } catch (error) {
     console.error(error)
   }
 }
 
-export default startAlbumsReceiver
+export default startAlbumsPublisher
