@@ -24,3 +24,19 @@ export const newDomainSelectorFactory =
     const path = pathString.split('.').filter(key => !!key)
     return (state) => path.reduce(handleReduce, state[domain])
   }
+
+// function capitalizeFirstLetter(string) {
+//   return string.charAt(0).toUpperCase() + string.slice(1);
+// }
+
+// export const getBasicSelectors = (domain) => (shape) => {
+//   const selectors = {}
+//   const handleEach = (fieldName) => {
+//     const fieldNameCap = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+//     const selectorName = `get${}`
+//     selectors[selectorName] = (state) => state[domain][fieldName]
+//   }
+//   Object
+//     .keys(shape)
+//     .forEach(handleEach)
+// }

@@ -1,12 +1,14 @@
 
-import { reducerFactory } from '~utils/reduxTools'
+import { reducerFactory, getBasicSelectors } from '~utils/reduxTools'
 import { changeVolume } from '../methods/actions'
 
 const DOMAIN = 'volume'
 
 const initialState = 0.7
 
-export const getVolume = (state) => state[DOMAIN]
+export const {
+  getVolume
+} = getBasicSelectors(DOMAIN)(initialState)
 
 const actionHandlers = {
   [changeVolume] ({ nextValue }) {

@@ -8,9 +8,9 @@ import { render } from 'react-dom'
 import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import store from './utils/store'
-
 import AppConnected from './view/AppConnected'
+
+import store from './store'
 
 render(
   <Provider store={store}>

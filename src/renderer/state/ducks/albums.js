@@ -12,11 +12,11 @@ const initialState = {
 // SELECTORS
 
 export const getAlbumsFound = state => state[DOMAIN].found
-export const isAlbumsFound = state => state[DOMAIN].found.length !== 0
 export const getAlbumsSelected = state => state[DOMAIN].selected
-export const isAlbumsSelected = state => state[DOMAIN].selected.length !== 0
 export const getAlbumsSearchValue = state => state[DOMAIN].searchValue
-export const isAlbumsSearchPerformed = state => !!state[DOMAIN].searchValue
+export const isAlbumsFound = state => getAlbumsFound(state).length !== 0
+export const isAlbumsSelected = state => getAlbumsSelected(state).length !== 0
+export const isAlbumsSearchPerformed = state => getAlbumsSearchValue(state).searchValue
 
 const actionHandlers = {
   [appendAlbumsToBrowse] ({ state, payload }) {
