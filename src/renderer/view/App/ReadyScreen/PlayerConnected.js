@@ -6,8 +6,8 @@ import {
   isPlayerActive
 } from '#selectors'
 
-const mapStateToProps = (...args) => ({
-  isActive: isPlayerActive(...args)
+const mapStateToProps = state => ({
+  isActive: isPlayerActive(state)
 })
 
 export default connect(mapStateToProps)(Player)

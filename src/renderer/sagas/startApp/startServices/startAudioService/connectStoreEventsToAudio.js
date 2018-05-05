@@ -1,22 +1,22 @@
 import { take } from 'redux-saga/effects'
 import {
-  initAudioSourceChange,
-  initAudioVolumeChange,
-  initAudioPause,
-  initAudioResume
+  audioSourceChange,
+  audioVolumeChange,
+  audioPause,
+  audioResume
 } from '#actions'
 
 const handlers = {
-  [initAudioPause] ({ audio }) {
+  [audioPause] ({ audio }) {
     audio.pause()
   },
-  [initAudioResume] ({ audio }) {
+  [audioResume] ({ audio }) {
     audio.play()
   },
-  [initAudioVolumeChange] ({ audio, payload }) {
+  [audioVolumeChange] ({ audio, payload }) {
     audio.volume = payload
   },
-  [initAudioSourceChange] ({ audio, payload }) {
+  [audioSourceChange] ({ audio, payload }) {
     audio.src = payload
   }
 }
@@ -24,7 +24,7 @@ const handlers = {
 function * connectStoreEventsToAudio (audio) {
   while (true) {
     const { type, payload } = yield take(
-      [initAudioPause, initAudioResume, initAudioSourceChange, initAudioVolumeChange]
+      [audioPause, audioResume, audioSourceChange, audioVolumeChange]
     )
     handlers[type]({ audio, payload })
   }

@@ -3,20 +3,20 @@ import { withRouter } from 'react-router-dom'
 
 import {
   isAppReady,
-  isAppClosing,
-  getAppErrorMessage,
-  isAppStarting,
-  getAppProgress
+  isAppCloses,
+  isAppStarts,
+  getAppStartErrorMessage,
+  getAppStartProgress
 } from '#selectors'
 
 import App from './App.jsx'
 
-const mapStateToProps = (...args) => ({
-  hasStartScreen: isAppStarting(...args),
-  hasReadyScreen: isAppReady(...args),
-  hasCloseScreen: isAppClosing(...args),
-  errorMessage: getAppErrorMessage(...args),
-  progress: getAppProgress(...args)
+const mapStateToProps = state => ({
+  hasStartScreen: isAppStarts(state),
+  hasReadyScreen: isAppReady(state),
+  hasCloseScreen: isAppCloses(state),
+  errorMessage: getAppStartErrorMessage(state),
+  progress: getAppStartProgress(state)
 })
 
 export default withRouter(connect(mapStateToProps)(App))

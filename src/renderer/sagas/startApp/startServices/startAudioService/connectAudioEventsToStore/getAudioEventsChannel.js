@@ -1,11 +1,11 @@
 import { eventChannel, END } from 'redux-saga'
 
 import {
-  reportAudioLoadStart,
-  reportAudioReadyToPlay,
-  reportAudioLoadProgress,
-  reportAudioPlaybackEnd,
-  reportAudioPlaybackTimeUpdate
+  audioLoadStart,
+  audioReadyToPlay,
+  audioLoadProgress,
+  audioEnd,
+  audioTimingChange
 } from '#actions'
 
 import getBufferedAudioMap from '~utils/getBufferedAudioMap'
@@ -13,21 +13,21 @@ import getBufferedAudioMap from '~utils/getBufferedAudioMap'
 function getAudioEventsChannel (audio) {
   return eventChannel(emit => {
     const handleLoadStart = () => {
-      emit(reportAudioLoadStart())
+      emit(audioLoadStart())
     }
     const handleProgress = () => {
       const bufferedMap = getBufferedAudioMap(audio)
-      emit(reportAudioLoadProgress(bufferedMap))
+      emit(audioLoadProgress(bufferedMap))
     }
     const handleCanPlayThrough = () => {
-      emit(reportAudioReadyToPlay())
+      emit(audioReadyToPlay())
     }
     const handleTimeUpdate = () => {
       const { currentTime } = audio
-      emit(reportAudioPlaybackTimeUpdate(currentTime))
+      emit(audioTimingChange(currentTime))
     }
     const handleEnded = () => {
-      emit(reportAudioPlaybackEnd())
+      emit(audioEnd())
     }
 
     audio.onloadstart = handleLoadStart
