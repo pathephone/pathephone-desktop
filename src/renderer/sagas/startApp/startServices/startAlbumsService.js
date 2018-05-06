@@ -1,24 +1,21 @@
-import { spawn, all } from 'redux-saga/effects'
+import { channel } from 'redux-saga'
+import { spawn, all, call } from 'redux-saga/effects'
 
-import gateToSagaChannel from '~utils/gateToSagaChannel'
+import startAlbumsGateService from './startAlbumsService/startAlbumsGateService'
+import startAlbumsCollectionService from './startAlbumsService/startAlbumsCollectionService'
+import startAlbumFormService from './startAlbumsService/startAlbumFormService'
 
-import startAlbumsPublisher from './startAlbumsService/startAlbumsPublisher'
-import startAlbumsStorage from './startAlbumsService/startAlbumsStorage'
-import startIncomingAlbumsHandler from './startAlbumsService/startIncomingAlbumsHandler'
-import startOutcomingAlbumsHandler from './startAlbumsService/startOutcomingAlbumsHandler'
-
-import getOutcomingAlbumsChannel from './startAlbumsService/getOutcomingAlbumsChannel'
-
-function * startAlbumsService ({ albumsGate, albumsCollection }) {
-  yield all([
-    spawn(startAlbumsPublisher, { albumsGate }),
-    spawn(startAlbumsStorage, { albumsCollection })
+function * startAlbumsService (args) {
+  const [ outcomingAlbumsChannel, incomingAlbumsChannel ] = yield all([
+    call(channel), call(channel)
   ])
-  const incomingAlbumsChannel = yield gateToSagaChannel(albumsGate)
-  const outcomingAlbumsChannel = yield getOutcomingAlbumsChannel(albumsCollection)
+  const nextArgs = { ...args, outcomingAlbumsChannel, incomingAlbumsChannel }
   yield all([
-    spawn(startIncomingAlbumsHandler, { incomingAlbumsChannel }),
-    spawn(startOutcomingAlbumsHandler, { outcomingAlbumsChannel })
+
+    spawn(startAlbumsGateService, nextArgs),
+    spawn(startAlbumsCollectionService, nextArgs),
+    spawn(startAlbumFormService, nextArgs)
+
   ])
 }
 

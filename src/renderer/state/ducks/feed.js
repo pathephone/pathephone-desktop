@@ -1,7 +1,5 @@
-import { reducerFactory } from '~utils/reduxTools'
-import { appendAlbumsToBrowse, prependAlbumsToBrowse, changeAlbumsPageSearchValue, clearAlbumsPageSearchValue, selectAlbumsPageAlbum, deselectAlbumsPageAlbum } from '#actions'
 
-const DOMAIN = 'albums'
+const DOMAIN = 'feed'
 
 const initialState = {
   found: [],
@@ -48,6 +46,4 @@ const actionHandlers = {
   }
 }
 
-const reducer = reducerFactory({ initialState, actionHandlers })
-
-export default { [DOMAIN]: reducer }
+export default { initialState, actionHandlers, DOMAIN }

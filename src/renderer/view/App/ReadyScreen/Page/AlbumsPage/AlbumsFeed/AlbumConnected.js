@@ -4,22 +4,17 @@ import {
   getAlbumsSelected
 } from '#selectors'
 
-import {
-  addAlbumToPlaylist,
-  playAlbum,
-  selectAlbumsPageAlbum
-} from '#actions'
-
 import Album from './Album.jsx'
+import { uiAlbumSelected, uiAlbumAddedToPlaylist, uiAlbumPlayed } from '#actions-ui'
 
 const mapStateToProps = (...args) => ({
   selectedAlbums: getAlbumsSelected(...args)
 })
 
 const mapDispatchToProps = {
-  onSelectAlbum: selectAlbumsPageAlbum,
-  onAddAlbumToPlaylist: addAlbumToPlaylist,
-  onPlayAlbum: playAlbum
+  onSelectAlbum: uiAlbumSelected,
+  onAddAlbumToPlaylist: uiAlbumAddedToPlaylist,
+  onPlayAlbum: uiAlbumPlayed
 }
 
 const mergeProps = ({ selectedAlbums }, dispatchProps, ownProps) => {

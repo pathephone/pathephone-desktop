@@ -7,15 +7,8 @@ import {
   isAlbumsSelected
 } from '#selectors'
 
-import {
-  changeAlbumsPageSearchValue,
-  clearAlbumsPageSearchValue,
-  addAlbumToPlaylist,
-  playAlbum,
-  selectAlbumsPageAlbum
-} from '#actions'
-
 import AlbumsPage from './AlbumsPage.jsx'
+import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared } from '#actions-ui'
 
 const mapStateToProps = (...args) => ({
   albums: getAlbumsFound(...args),
@@ -26,11 +19,8 @@ const mapStateToProps = (...args) => ({
 })
 
 const mapDispatchToProps = {
-  onSearchValueChange: changeAlbumsPageSearchValue,
-  onCancelSearch: clearAlbumsPageSearchValue,
-  onSelectAlbum: selectAlbumsPageAlbum,
-  onAddAlbumToPlaylist: addAlbumToPlaylist,
-  onPlayAlbum: playAlbum
+  onSearchValueChange: uiAlbumsSearchPerformed,
+  onCancelSearch: uiAlbumsSearchCleared
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlbumsPage)

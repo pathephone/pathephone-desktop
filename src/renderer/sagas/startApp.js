@@ -2,21 +2,18 @@ import { call, put, take } from 'redux-saga/effects'
 
 import startServices from './startApp/startServices'
 
-import {
-  appStartSucceed,
-  appStartFailed,
-  appCloseInited
-} from '#actions'
+import { systemAppStartSucceed, systemAppStartFailed } from '#actions-system'
+import { uiAppClosed } from '#actions-ui'
 
 function * startApp () {
   try {
     yield call(startServices)
-    yield put(appStartSucceed())
-    yield take(appCloseInited)
+    yield put(systemAppStartSucceed())
+    yield take(uiAppClosed)
     // yield call (closeApp)
   } catch (e) {
     console.error(e)
-    yield put(appStartFailed(e.message))
+    yield put(systemAppStartFailed(e.message))
   }
 }
 

@@ -13,17 +13,8 @@ import {
   getPlayedTrackDuration
 } from '#selectors'
 
-import {
-  playPreviousTrack,
-  playNextTrack,
-  togglePause,
-  toggleRepeat,
-  toggleShuffle,
-  changeVolume,
-  seek
-} from '#actions'
-
 import ActivePlayer from './ActivePlayer.jsx'
+import { uiPauseToggled, uiRepeatToggled, uiShuffleToggled, uiVolumeChanged, uiSeekStarted } from '#actions-ui'
 
 const mapStateToProps = (...args) => ({
   volume: getVolume(...args),
@@ -39,13 +30,11 @@ const mapStateToProps = (...args) => ({
 })
 
 const mapDispatchToProps = {
-  onPlayPreviousTrack: playPreviousTrack,
-  onPlayNextTrack: playNextTrack,
-  onTogglePause: togglePause,
-  onToggleRepeat: toggleRepeat,
-  onToggleShuffle: toggleShuffle,
-  onChangeVolume: changeVolume,
-  onSeek: seek
+  onTogglePause: uiPauseToggled,
+  onToggleRepeat: uiRepeatToggled,
+  onToggleShuffle: uiShuffleToggled,
+  onChangeVolume: uiVolumeChanged,
+  onSeekStart: uiSeekStarted
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivePlayer)

@@ -5,8 +5,9 @@
       "~data/*": ["./data/*"],
       "~utils/*": ["./utils/*"],
       "~components/*": ["./components/*"],
-      "#actions": ["./methods/actions.js"],
-      "#selectors": ["./methods/selectors.js"]
+      "#actions-ui": ["./state/actions/ui.js"],
+      "#actions-system": ["./state/actions/system.js"],
+      "#selectors": ["./state/selectors.js"]
     }
   }
 }

@@ -16,8 +16,9 @@ module.exports = env => ({
       '~utils': path.resolve(__dirname, '../src/renderer/utils'),
       '~components': path.resolve(__dirname, '../src/renderer/components'),
       '#environment': path.resolve(__dirname, `../config/env_${env}.json`),
-      '#actions': path.resolve(__dirname, '../src/renderer/methods/actions.js'),
-      '#selectors': path.resolve(__dirname, '../src/renderer/methods/selectors.js')
+      '#actions-ui': path.resolve(__dirname, '../src/renderer/state/actions/ui.js'),
+      '#actions-system': path.resolve(__dirname, '../src/renderer/state/actions/system.js'),
+      '#selectors': path.resolve(__dirname, '../src/renderer/state/selectors.js')
     }
   },
   devtool: 'source-map',

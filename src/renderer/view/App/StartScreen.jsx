@@ -20,7 +20,7 @@ const StartScreen = ({ errorMessage, infoMessage, progress }) => (
 
 StartScreen.propTypes = {
   errorMessage: propTypes.string,
-  progress: propTypes.number,
+  progress: propTypes.number.isRequired,
   infoMessage: propTypes.string
 }
 

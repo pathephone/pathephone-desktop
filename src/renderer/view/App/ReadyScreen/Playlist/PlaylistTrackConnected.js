@@ -5,10 +5,7 @@ import {
   getDownloadedTracks
 } from '#selectors'
 
-import {
-  playPlaylistTrack,
-  removeTrackFromPlaylist
-} from '#actions'
+import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '#actions-ui'
 
 import PlaylistTrack from './PlaylistTrack.jsx'
 
@@ -18,8 +15,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  onPlay: playPlaylistTrack,
-  onRemove: removeTrackFromPlaylist
+  onPlay: uiPlaylistTrackPlayed,
+  onRemove: uiPlaylistTrackRemoved
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {

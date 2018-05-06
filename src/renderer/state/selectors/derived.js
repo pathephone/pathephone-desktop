@@ -1,6 +1,8 @@
-import { getPlayedTrackId, getPlaylistTracks } from '#selectors'
+import { getPlayedTrackId, getPlaylistTracks, getAppStartProgress } from '#selectors'
 
 import withIpfsGateway from '~utils/withIpfsGateway'
+
+export const isAppReady = state => getAppStartProgress(state) === 100
 
 export const getPlayedTrack = state => {
   const currentTrackId = getPlayedTrackId(state)

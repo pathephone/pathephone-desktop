@@ -1,32 +1,29 @@
-import { take } from 'redux-saga/effects'
-import {
-  audioSourceChange,
-  audioVolumeChange,
-  audioPause,
-  audioResume
-} from '#actions'
+import { take, call, select } from 'redux-saga/effects'
+import { uiPlayerPaused, uiPlayerResumed, uiVolumeChanged, uiPlaylistTrackPlayed } from '#actions-ui'
+import { getPlayedTrackSource } from '#selectors'
 
 const handlers = {
-  [audioPause] ({ audio }) {
+  [uiPlayerPaused] ({ audio }) {
     audio.pause()
   },
-  [audioResume] ({ audio }) {
+  [uiPlayerResumed] ({ audio }) {
     audio.play()
   },
-  [audioVolumeChange] ({ audio, payload }) {
+  [uiVolumeChanged] ({ audio, payload }) {
     audio.volume = payload
   },
-  [audioSourceChange] ({ audio, payload }) {
-    audio.src = payload
+  * [uiPlaylistTrackPlayed] ({ audio }) {
+    const src = yield select(getPlayedTrackSource)
+    audio.src = src
   }
 }
 
 function * connectStoreEventsToAudio (audio) {
   while (true) {
     const { type, payload } = yield take(
-      [audioPause, audioResume, audioSourceChange, audioVolumeChange]
+      [uiPlayerPaused, uiPlayerResumed, uiPlaylistTrackPlayed, uiVolumeChanged]
     )
-    handlers[type]({ audio, payload })
+    yield call(handlers[type]({ audio, payload }))
   }
 }
 

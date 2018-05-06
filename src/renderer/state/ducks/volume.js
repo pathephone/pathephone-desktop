@@ -1,21 +1,15 @@
-
-import { reducerFactory, getBasicSelectors } from '~utils/reduxTools'
-import { changeVolume } from '../methods/actions'
+import { uiVolumeChanged } from '#actions-ui'
 
 const DOMAIN = 'volume'
 
 const initialState = 0.7
 
-export const {
-  getVolume
-} = getBasicSelectors(DOMAIN)(initialState)
+export const getVolume = state => state[DOMAIN]
 
 const actionHandlers = {
-  [changeVolume] ({ nextValue }) {
+  [uiVolumeChanged] ({ nextValue }) {
     return nextValue
   }
 }
 
-const reducer = reducerFactory({ initialState, actionHandlers })
-
-export default { [DOMAIN]: reducer }
+export default { initialState, actionHandlers, DOMAIN }

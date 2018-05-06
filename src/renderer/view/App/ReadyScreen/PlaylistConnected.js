@@ -6,16 +6,14 @@ import {
   getPlaylistTracks
 } from '#selectors'
 
-import {
-  clearPlaylist
-} from '#actions'
+import { uiPlaylistCleared } from '#actions-ui'
 
 const mapStateToProps = (state) => ({
   tracks: getPlaylistTracks(state)
 })
 
 const mapDispatchToProps = {
-  onClearPlaylist: clearPlaylist
+  onClearPlaylist: uiPlaylistCleared
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)

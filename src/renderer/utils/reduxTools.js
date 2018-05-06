@@ -25,6 +25,10 @@ export const newDomainSelectorFactory =
     return (state) => path.reduce(handleReduce, state[domain])
   }
 
+export const newCreatorFactory = (domainTypeFactory) => {
+  return actionType => creatorFactory(domainTypeFactory(actionType))
+}
+
 // function capitalizeFirstLetter(string) {
 //   return string.charAt(0).toUpperCase() + string.slice(1);
 // }

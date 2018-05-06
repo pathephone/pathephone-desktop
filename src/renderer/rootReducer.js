@@ -1,31 +1,20 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-import audio from './audio'
-export * from './audio'
+import { reducerFactory } from '~utils/reduxTools'
 
-import playlist from './playlist' // eslint-disable-line
-export * from './playlist'
+import ducks from './state/ducks'
 
-import app from './app' // eslint-disable-line
-export * from './app'
+const handleReduce = (acc, duck) => {
+  const { DOMAIN, ...rest } = duck
+  acc[DOMAIN] = reducerFactory(rest)
+  return acc
+}
 
-import volume from './volume' // eslint-disable-line
-export * from './volume'
-
-import playback from './playback' // eslint-disable-line
-export * from './playback'
-
-import albums from './albums' // eslint-disable-line
-export * from './albums'
+const reducersMap = ducks.reduce(handleReduce, {})
 
 const rootReducer = combineReducers({
-  ...audio,
-  ...playlist,
-  ...app,
-  ...volume,
-  ...playback,
-  ...albums,
+  ...reducersMap,
   form: formReducer
 })
 

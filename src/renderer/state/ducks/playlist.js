@@ -1,28 +1,24 @@
-import { reducerFactory } from '~utils/reduxTools'
-import { addTracksToPlaylist, removeTrackFromPlaylist, clearPlaylist } from '#actions'
+import { systemPlaylistAlbumTracksRecieved } from '#actions-system'
+import { uiPlaylistTrackRemoved, uiPlaylistCleared } from '#actions-ui'
 
 const DOMAIN = 'playlist'
 
 const initialState = []
 
-// SELECTORS
-
 export const getPlaylistTracks = state => state[DOMAIN]
 export const isPlaylistEmpty = state => state[DOMAIN].length === 0
 
 const actionHandlers = {
-  [addTracksToPlaylist] (state, newTracks) {
+  [systemPlaylistAlbumTracksRecieved] (state, newTracks) {
     return [ ...state, ...newTracks ]
   },
-  [removeTrackFromPlaylist] (state, removeId) {
+  [uiPlaylistTrackRemoved] (state, removeId) {
     const handleFilter = ({ id }) => id !== removeId
     return state.filter(handleFilter)
   },
-  [clearPlaylist] () {
+  [uiPlaylistCleared] () {
     return []
   }
 }
 
-const reducer = reducerFactory({ initialState, actionHandlers })
-
-export default { [DOMAIN]: reducer }
+export default { initialState, actionHandlers, DOMAIN }
