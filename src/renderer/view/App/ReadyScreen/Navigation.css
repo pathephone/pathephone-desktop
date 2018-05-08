@@ -20,6 +20,10 @@
   cursor: pointer;
 }
 
+.navigation__item > *:first-child {
+  margin: 0 1.5em 0 1em;
+}
+
 .navigation__item--active {
   border-left-color: var(--accent-color);
 }
