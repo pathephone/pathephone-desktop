@@ -1,7 +1,7 @@
 import React from 'react'
 
 import UploadIcon from 'react-icons/lib/md/cloud-upload'
-import LibraryIcon from 'react-icons/lib/md/library-music'
+import DiscoverIcon from 'react-icons/lib/fa/globe'
 
 import { ROUTE_ADD_ALBUM, ROUTE_ALBUMS } from '~data/constants'
 
@@ -13,8 +13,8 @@ const Navigation = () => (
   <nav className='navigation'>
     <NavigationItem
       path={ROUTE_ALBUMS}
-      title='Albums found'
-      icon={<LibraryIcon />}
+      title='Discover albums'
+      icon={<DiscoverIcon />}
     />
     <NavigationItem
       path={ROUTE_ADD_ALBUM}
