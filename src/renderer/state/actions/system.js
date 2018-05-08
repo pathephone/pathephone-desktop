@@ -18,11 +18,10 @@ export const systemAudioPlaybackEnded = c('AUDIO_PLAYBACK_ENDED')
 export const systemPlaylistAlbumTracksRecieved = c('PLAYLIST_ALBUM_TRACKS_RECIEVED')
 
 export const systemAlbumPublished = c('ALBUM_PUBLISHED')
-
 export const systemAlbumCandidateRecieved = c('ALBUM_CANDIDATE_RECIEVED')
-
 export const systemAlbumUpdated = c('ALBUM_UPDATED')
-
 export const systemAlbumSaved = c('ALBUM_SAVED')
 
 export const systemAlbumFormDataNormalized = c('ALBUM_FORM_DATA_NORMALIZED')
+
+export const systemFeedAlbumsRecieved = c('FEED_ALBUMS_RECIEVED')

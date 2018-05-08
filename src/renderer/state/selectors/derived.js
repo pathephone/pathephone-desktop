@@ -1,6 +1,9 @@
-import { getPlayedTrackId, getPlaylistTracks, getAppStartProgress } from '#selectors'
-
 import withIpfsGateway from '~utils/withIpfsGateway'
+
+import {
+  getPlayedTrackId, getPlaylistTracks, getAppStartProgress,
+  getFeedAlbums, getFeedSelectedAlbums, getFeedSearchValue
+} from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
 
@@ -24,3 +27,7 @@ export const getPlayedTrackSource = state => {
 export const isPlayerActive = state => {
   return !!getPlayedTrackId(state)
 }
+
+export const isFeedHasAlbums = state => getFeedAlbums(state).length !== 0
+export const isFeedAlbumsSelected = state => getFeedSelectedAlbums(state).length !== 0
+export const isFeedSearchPerformed = state => !!getFeedSearchValue(state).searchValue

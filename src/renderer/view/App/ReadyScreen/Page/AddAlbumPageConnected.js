@@ -2,10 +2,10 @@ import { connect } from 'react-redux'
 
 import AddAlbumPage from './AddAlbumPage.jsx'
 
-import { reportAlbumFormSubmit } from '#actions'
+import { uiAlbumFormSubmited } from '#actions-ui'
 
 const mapDispatchToProps = {
-  onFormSubmit: reportAlbumFormSubmit
+  onFormSubmit: uiAlbumFormSubmited
 }
 
 export default connect(null, mapDispatchToProps)(AddAlbumPage)

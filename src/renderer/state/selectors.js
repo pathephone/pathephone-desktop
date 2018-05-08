@@ -3,7 +3,6 @@ export * from './ducks/audio'
 export * from './ducks/playlist'
 export * from './ducks/playback'
 export * from './ducks/volume'
-// export * from './ducks/feed'
-export * from './ducks/feedSearch'
+export * from './ducks/feed'
 
 export * from './selectors/derived'

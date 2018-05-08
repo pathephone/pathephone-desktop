@@ -17,14 +17,14 @@ TracklistRenderer.propTypes = {
   fields: propTypes.array.isRequired
 }
 
-const TracklistFieldset = ({ disabled }) => (
-  <fieldset disabled={disabled} className='izi-ys'>
+const TracklistFieldset = ({ isDisabled }) => (
+  <fieldset disabled={isDisabled} className='izi-ys'>
     <FieldArray name='tracklist' component={TracklistRenderer} />
   </fieldset>
 )
 
 TracklistFieldset.propTypes = {
-  disabled: propTypes.bool.isRequired
+  isDisabled: propTypes.bool.isRequired
 }
 
 export default TracklistFieldset

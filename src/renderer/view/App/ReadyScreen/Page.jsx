@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE, ROUTE_HOME } from '~data/constants'
 
 import AlbumsPageConnected from './Page/AlbumsPageConnected'
-import AddAlbumPage from './Page/AddAlbumPage.jsx'
+import AddAlbumPage from './Page/AddAlbumPageConnected'
 
 import './Page.css'
 

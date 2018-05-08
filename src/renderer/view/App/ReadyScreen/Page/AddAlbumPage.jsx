@@ -1,7 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import FormAlbum from './AddAlbumPage/FormAlbum.jsx'
+import FormAlbumConnected from './AddAlbumPage/FormAlbumConnected'
 import Tips from './AddAlbumPage/Tips.jsx'
 
 const AddAlbumPage = (props) => {
@@ -9,7 +9,7 @@ const AddAlbumPage = (props) => {
   return (
     <React.Fragment>
       <Tips />
-      <FormAlbum
+      <FormAlbumConnected
         onSubmit={onFormSubmit}
       />
     </React.Fragment>
