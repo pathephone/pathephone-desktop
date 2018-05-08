@@ -11,19 +11,22 @@
 
 .navigation__item {
   display: block;
-  background-color: var(--white-shade-1);
   text-transform: uppercase;
-  border: none;
+  text-decoration: none;
   color: white;
-  padding: 0.75em 1em;
+  padding: 1em;
   transition: 0.2s;
+  border-left: 2px solid rgba(0,0,0,0);
   cursor: pointer;
 }
 
+.navigation__item--active {
+  border-left-color: var(--accent-color);
+}
 .navigation__item:hover {
-  background-color: var(--white-shade-2);
+  background-color: var(--white-shade-1);
 }
 .navigation__item:focus {
-  background-color: var(--accent-color);
+  color: var(--accent-color);
   outline: none;
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const NavigationItem = ({ path, title }) => (
-  <Link to={path} className='navigation__item'>
+  <NavLink to={path} className='navigation__item' activeClassName='navigation__item--active'>
     {title}
-  </Link>
+  </NavLink>
 )
 
 NavigationItem.propTypes = {
