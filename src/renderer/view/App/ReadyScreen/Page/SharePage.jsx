@@ -1,10 +1,10 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import FormAlbumConnected from './AddAlbumPage/FormAlbumConnected'
-import Tips from './AddAlbumPage/Tips.jsx'
+import FormAlbumConnected from './SharePage/FormAlbumConnected'
+import Tips from './SharePage/Tips.jsx'
 
-const AddAlbumPage = (props) => {
+const SharePage = (props) => {
   const { onFormSubmit } = props
   return (
     <React.Fragment>
@@ -16,8 +16,8 @@ const AddAlbumPage = (props) => {
   )
 }
 
-AddAlbumPage.propTypes = {
+SharePage.propTypes = {
   onFormSubmit: propTypes.func.isRequired
 }
 
-export default AddAlbumPage
+export default SharePage

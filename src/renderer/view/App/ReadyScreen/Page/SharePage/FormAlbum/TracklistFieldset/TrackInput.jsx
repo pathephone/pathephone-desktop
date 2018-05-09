@@ -1,44 +1,34 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { Field } from 'redux-form'
 
 import TrackControls from './TrackControls.jsx'
 
-const TrackInput = (track, index, tracks) => {
-  const controlsProps = {
-    onDeleteTrack: () => {
-      tracks.remove(index)
-    }
-  }
-  if (index !== tracks.length - 1) {
-    controlsProps.onMovetrackDown = () => {
-      tracks.move(index, index + 1)
-    }
-  }
-  if (!index !== 0) {
-    controlsProps.onMovetrackUp = () => {
-      tracks.move(index, index - 1)
-    }
-  }
+const TrackInput = ({ track, ...restProps }) => {
   return (
     <React.Fragment>
       <div className='izi-xs' key='container'>
         <Field
-          name='artist'
+          name={`${track}.artist`}
           component='input'
           label='Artist'
         />
         <Field
-          name='title'
+          name={`${track}.title`}
           component='input'
           label='Title'
         />
         <TrackControls
-          {...controlsProps}
+          {...restProps}
         />
       </div>
       <hr key='separator' />
     </React.Fragment>
   )
+}
+
+TrackInput.propTypes = {
+  track: propTypes.string.isRequired
 }
 
 export default TrackInput

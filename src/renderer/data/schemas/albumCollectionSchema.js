@@ -1,6 +1,6 @@
 import instanceSchema from './albumInstanceSchema'
 
-const rxdbSchema = {
+const albumCollectionSchema = {
   title: 'album',
   version: 3, // <- incremental version-number
   type: 'object',
@@ -17,4 +17,4 @@ const rxdbSchema = {
   }
 }
 
-export default rxdbSchema
+export default albumCollectionSchema

@@ -1,15 +1,15 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import SearchBar from './AlbumsPage/SearchBar.jsx'
-import AlbumsFeed from './AlbumsPage/AlbumsFeed.jsx'
-import NoAlbumsFound from './AlbumsPage/NoAlbumsFound.jsx'
-import NoSearchResults from './AlbumsPage/NoSearchResults.jsx'
-import SelectedActions from './AlbumsPage/SelectedActions.jsx'
+import SearchBar from './DiscoverPage/SearchBar.jsx'
+import AlbumsFeed from './DiscoverPage/AlbumsFeed.jsx'
+import NoAlbumsFound from './DiscoverPage/NoAlbumsFound.jsx'
+import NoSearchResults from './DiscoverPage/NoSearchResults.jsx'
+import SelectedActions from './DiscoverPage/SelectedActions.jsx'
 
-import './AlbumsPage.css'
+import './DiscoverPage.css'
 
-const AlbumsPage = ({
+const DiscoverPage = ({
   hasAlbumsFeed,
   hasSelectedBar,
   hasNoSearchResultsMessage,
@@ -38,10 +38,10 @@ const AlbumsPage = ({
   </div>
 )
 
-AlbumsPage.propTypes = {
+DiscoverPage.propTypes = {
   hasAlbumsFeed: propTypes.bool.isRequired,
   hasSelectedBar: propTypes.bool.isRequired,
   hasNoSearchResultsMessage: propTypes.bool.isRequired
 }
 
-export default AlbumsPage
+export default DiscoverPage

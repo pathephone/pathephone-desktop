@@ -1,4 +1,4 @@
-const instanceSchema = {
+const albumInstanceSchema = {
   type: 'object',
   properties: {
     title: {
@@ -41,4 +41,4 @@ const instanceSchema = {
   }
 }
 
-export default instanceSchema
+export default albumInstanceSchema

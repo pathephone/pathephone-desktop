@@ -7,7 +7,7 @@ import {
   isFeedAlbumsSelected
 } from '#selectors'
 
-import AlbumsPage from './AlbumsPage.jsx'
+import DiscoverPage from './DiscoverPage.jsx'
 import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared } from '#actions-ui'
 
 const mapStateToProps = (...args) => ({
@@ -23,4 +23,4 @@ const mapDispatchToProps = {
   onCancelSearch: uiAlbumsSearchCleared
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AlbumsPage)
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPage)

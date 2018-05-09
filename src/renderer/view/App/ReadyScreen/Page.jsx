@@ -3,8 +3,8 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import { ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE, ROUTE_HOME } from '~data/constants'
 
-import AlbumsPageConnected from './Page/AlbumsPageConnected'
-import AddAlbumPage from './Page/AddAlbumPageConnected'
+import DiscoverPageConnected from './Page/DiscoverPageConnected'
+import SharePage from './Page/SharePageConnected'
 
 import './Page.css'
 
@@ -18,15 +18,15 @@ const Page = () => (
       />
       <Route
         path={ROUTE_ALBUMS}
-        component={AlbumsPageConnected}
+        component={DiscoverPageConnected}
       />
       <Route
         path={ROUTE_ADD_ALBUM}
-        component={AddAlbumPage}
+        component={SharePage}
       />
       <Route
         path={ROUTE_DONATE}
-        component={AddAlbumPage}
+        component={SharePage}
       />
     </Switch>
   </div>
