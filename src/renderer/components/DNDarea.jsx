@@ -5,7 +5,6 @@ import './DNDarea.css'
 class DNDarea extends React.Component {
   handleChange = (e) => {
     const { files } = e.currentTarget
-    if (files.length === 0) return
     this.props.onChange(files)
   }
   render () {

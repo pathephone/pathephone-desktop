@@ -1,10 +1,10 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import AboutFieldset from './FormAlbum/AboutFieldset.jsx'
-import TracklistFieldset from './FormAlbum/TracklistFieldset.jsx'
+import AboutFieldset from './ShareForm/AboutFieldset.jsx'
+import TracklistFieldset from './ShareForm/TracklistFieldset.jsx'
 
-const FormAlbum = ({ handleSubmit, submitting }) => {
+const ShareForm = ({ handleSubmit, submitting }) => {
   return (
     <form onSubmit={handleSubmit}>
       <AboutFieldset isDisabled={submitting} />
@@ -18,9 +18,9 @@ const FormAlbum = ({ handleSubmit, submitting }) => {
   )
 }
 
-FormAlbum.propTypes = {
+ShareForm.propTypes = {
   handleSubmit: propTypes.func.isRequired,
   submitting: propTypes.bool.isRequired
 }
 
-export default FormAlbum
+export default ShareForm

@@ -16,3 +16,12 @@ export const ALBUMS_PUBLISH_INTERVAL = 60000 * 1
 export const QUALITY_LABEL_LOW = 'low'
 export const QUALITY_LABEL_HIGH = 'high'
 export const QUALITY_LABEL_LOSSLESS = 'lossless'
+
+export const DND_STATUS_PENDING = 0
+export const DND_STATUS_ACTIVE = 1
+export const DND_STATUS_PROCESSING = 2
+
+export const DND_EVENT_TYPE_OVER = 0
+export const DND_EVENT_TYPE_LEAVE = 1
+export const DND_EVENT_TYPE_ENTER = 2
+export const DND_EVENT_TYPE_DROP = 3

@@ -17,7 +17,7 @@ class TracklistRenderer extends React.Component {
         tracks.move(index, index + 1)
       }
     }
-    if (!index !== 0) {
+    if (index !== 0) {
       props.onMoveTrackUp = () => {
         tracks.move(index, index - 1)
       }

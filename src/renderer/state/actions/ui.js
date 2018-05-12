@@ -27,3 +27,7 @@ export const uiAlbumFormSubmited = c('ALBUM_FORM_SUBMITED')
 export const uiVolumeChanged = c('VOLUME_CHANGED')
 
 export const uiAppClosed = c('APP_CLOSED')
+
+export const uiDndActivated = c('DND_ACTIVATED')
+export const uiDndDeactivated = c('DND_DEACTIVATED')
+export const uiDndDataRecieved = c('DND_DATA_RECIEVED')

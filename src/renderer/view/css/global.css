@@ -13,7 +13,7 @@ body {
   sans-serif;
 }
 
-button {
+.button {
   cursor: pointer;
   border: none;
   outline: none;
@@ -28,7 +28,7 @@ button {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-input, button {
+.input, .button {
   font-size: 1em;
 }
 
@@ -42,7 +42,7 @@ input, button {
   border-color: var(--accent-color);
 }
 
-button {
+.button {
   background: none;
 }
 

@@ -15,7 +15,6 @@ function * startAlbumsService (args) {
     spawn(startAlbumsGateService, nextArgs),
     spawn(startAlbumsCollectionService, nextArgs),
     spawn(startAlbumFormService, nextArgs)
-
   ])
 }
 

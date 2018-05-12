@@ -1,6 +1,6 @@
 import { reduxForm } from 'redux-form'
 
-import FormAlbum from './FormAlbum.jsx'
+import ShareForm from './ShareForm.jsx'
 
 export default reduxForm({
   form: 'album',
@@ -10,4 +10,4 @@ export default reduxForm({
       }
     ]
   }
-})(FormAlbum)
+})(ShareForm)

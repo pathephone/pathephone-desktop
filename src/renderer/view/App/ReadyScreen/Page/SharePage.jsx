@@ -1,23 +1,23 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import FormAlbumConnected from './SharePage/FormAlbumConnected'
-import Tips from './SharePage/Tips.jsx'
+// import ShareFormConnected from './SharePage/ShareFormConnected'
+import ShareDNDConnected from './SharePage/ShareDNDConnected'
+// import Tips from './SharePage/Tips.jsx'
 
 const SharePage = (props) => {
-  const { onFormSubmit } = props
+  const { onDNDRecieve } = props
   return (
     <React.Fragment>
-      <Tips />
-      <FormAlbumConnected
-        onSubmit={onFormSubmit}
+      <ShareDNDConnected
+        onRecieve={onDNDRecieve}
       />
     </React.Fragment>
   )
 }
 
 SharePage.propTypes = {
-  onFormSubmit: propTypes.func.isRequired
+  onDNDRecieve: propTypes.func.isRequired
 }
 
 export default SharePage
