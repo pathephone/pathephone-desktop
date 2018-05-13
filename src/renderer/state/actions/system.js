@@ -22,10 +22,4 @@ export const systemAlbumCandidateRecieved = c('ALBUM_CANDIDATE_RECIEVED')
 export const systemAlbumUpdated = c('ALBUM_UPDATED')
 export const systemAlbumSaved = c('ALBUM_SAVED')
 
-export const systemAlbumFormDataNormalized = c('ALBUM_FORM_DATA_NORMALIZED')
-
-export const systemFeedAlbumsRecieved = c('FEED_ALBUMS_RECIEVED')
-
-export const systemDndStartDetected = c('DND_START_DETECTED')
-export const systemDndEndDetected = c('DND_END_DETECTED')
-export const systemDndDropDetected = c('DND_DROP_DETECTED')
+export const systemShareFilesProcessed = c('ALBUM_FILES_NORMALIZED')

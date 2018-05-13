@@ -1,23 +1,26 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-// import ShareFormConnected from './SharePage/ShareFormConnected'
-import ShareDNDConnected from './SharePage/ShareDNDConnected'
-// import Tips from './SharePage/Tips.jsx'
+import ShareProcessingScreen from './SharePage/ShareProcessingScreen.jsx'
+import ShareDropZone from './SharePage/ShareDropZone.jsx'
 
 const SharePage = (props) => {
-  const { onDNDRecieve } = props
+  const { hasProcessingScreen, ...restProps } = props
   return (
     <React.Fragment>
-      <ShareDNDConnected
-        onRecieve={onDNDRecieve}
-      />
+      {
+        hasProcessingScreen ? (
+          <ShareProcessingScreen />
+        ) : (
+          <ShareDropZone {...restProps} />
+        )
+      }
     </React.Fragment>
   )
 }
 
 SharePage.propTypes = {
-  onDNDRecieve: propTypes.func.isRequired
+  hasProcessingScreen: propTypes.bool.isRequired
 }
 
 export default SharePage

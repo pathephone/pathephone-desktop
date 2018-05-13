@@ -39,6 +39,23 @@ export const startIpfsApi = (params = {}) => {
     const r = await put(a, b)
     setTimeout(() => resolve(r), 1)
   })
+  // const addFromFs = node.util.addFromFs
+  // node.util.addFromFs = (...args) => {
+  //   if (args[2]) {
+  //     return addFromFs(...args)
+  //   }
+  //   return new Promise((resolve, reject) => {
+  //     addFromFs(...args, (err, data) => {
+  //       console.log(err)
+  //       console.log(data)
+  //       if (err) {
+  //         reject(err)
+  //       } else {
+  //         resolve(data)
+  //       }
+  //     })
+  //   })
+  // }
 }
 
 export default () => {

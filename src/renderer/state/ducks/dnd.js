@@ -1,25 +1,23 @@
-import { DND_STATUS_PENDING, DND_STATUS_ACTIVE, DND_STATUS_PROCESSING } from '~data/constants'
-import { uiDndActivated, uiDndDataRecieved } from '#actions-ui'
-import { systemDndDataHandled } from '#actions-system'
+import { DND_STATUS_PENDING, DND_STATUS_FILES } from '~data/constants'
+import { uiFilesDragStarted, uiFilesDragEnded } from '#actions-ui'
 
 const DOMAIN = 'dnd'
 
 const initialState = {
-  status: DND_STATUS_PENDING
+  status: DND_STATUS_PENDING,
+  files: null
 }
 
-export const isDndPending = state => state[DOMAIN].status === DND_STATUS_PENDING
-export const isDndActive = state => state[DOMAIN].status === DND_STATUS_ACTIVE
-export const isDndProcessing = state => state[DOMAIN].status === DND_STATUS_PROCESSING
+export const isNothingDragged = state => state[DOMAIN].status === DND_STATUS_PENDING
+export const isFilesDragged = state => state[DOMAIN].status === DND_STATUS_FILES
+export const getDropedFiles = state => state[DOMAIN].files
+export const isDropedFilesProcessed = state => !!getDropedFiles(state)
 
 const actionHandlers = {
-  [uiDndActivated] () {
-    return { status: DND_STATUS_ACTIVE }
+  [uiFilesDragStarted] () {
+    return { status: DND_STATUS_FILES }
   },
-  [uiDndDataRecieved] () {
-    return { status: DND_STATUS_PROCESSING }
-  },
-  [systemDndDataHandled] () {
+  [uiFilesDragEnded] () {
     return { state: DND_STATUS_PENDING }
   }
 }

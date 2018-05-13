@@ -18,10 +18,12 @@ export const QUALITY_LABEL_HIGH = 'high'
 export const QUALITY_LABEL_LOSSLESS = 'lossless'
 
 export const DND_STATUS_PENDING = 0
-export const DND_STATUS_ACTIVE = 1
-export const DND_STATUS_PROCESSING = 2
+export const DND_STATUS_FILES = 1
 
-export const DND_EVENT_TYPE_OVER = 0
-export const DND_EVENT_TYPE_LEAVE = 1
-export const DND_EVENT_TYPE_ENTER = 2
-export const DND_EVENT_TYPE_DROP = 3
+export const DND_EVENT_TYPE_DRAG = 0
+export const DND_EVENT_TYPE_DRAG_START = 1
+export const DND_EVENT_TYPE_DRAG_OVER = 2
+export const DND_EVENT_TYPE_DRAG_LEAVE = 3
+export const DND_EVENT_TYPE_DRAG_ENTER = 4
+export const DND_EVENT_TYPE_DRAG_END = 5
+export const DND_EVENT_TYPE_DROP = 6

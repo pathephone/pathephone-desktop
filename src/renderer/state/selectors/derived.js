@@ -2,7 +2,7 @@ import withIpfsGateway from '~utils/withIpfsGateway'
 
 import {
   getPlayedTrackId, getPlaylistTracks, getAppStartProgress,
-  getFeedAlbums, getFeedSelectedAlbums, getFeedSearchValue
+  getFeedAlbums, getFeedSelectedAlbums, getFeedSearchValue, getSharedFiles
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
@@ -31,3 +31,5 @@ export const isPlayerActive = state => {
 export const isFeedHasAlbums = state => getFeedAlbums(state).length !== 0
 export const isFeedAlbumsSelected = state => getFeedSelectedAlbums(state).length !== 0
 export const isFeedSearchPerformed = state => !!getFeedSearchValue(state).searchValue
+
+export const isSharingInProcess = state => !!getSharedFiles(state)

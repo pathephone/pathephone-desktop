@@ -2,10 +2,15 @@ import { connect } from 'react-redux'
 
 import SharePage from './SharePage.jsx'
 
-import { uiAlbumFormSubmited } from '#actions-ui'
+import { isSharingInProcess } from '#selectors'
+import { uiShareFilesSelected } from '#actions-ui'
+
+const mapStateToProps = state => ({
+  hasProcessingScreen: isSharingInProcess(state)
+})
 
 const mapDispatchToProps = {
-  onFormSubmit: uiAlbumFormSubmited
+  onFilesSelect: uiShareFilesSelected
 }
 
-export default connect(null, mapDispatchToProps)(SharePage)
+export default connect(mapStateToProps, mapDispatchToProps)(SharePage)

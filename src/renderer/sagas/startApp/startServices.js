@@ -10,7 +10,6 @@ import { systemAppStartProceed } from '#actions-system'
 
 import startAlbumsService from './startServices/startAlbumsService'
 import startAudioService from './startServices/startAudioService'
-import startDndService from './startServices/startDndService'
 
 function * startServices () {
   const [ dbApi, ipfsApi ] = yield [
@@ -26,8 +25,7 @@ function * startServices () {
     fork(
       startAlbumsService, { albumsGate, albumsCollection, ipfsApi }
     ),
-    spawn(startAudioService),
-    spawn(startDndService)
+    spawn(startAudioService)
   ]
   yield put(systemAppStartProceed(100))
   yield call(asyncTimeout, 100)
