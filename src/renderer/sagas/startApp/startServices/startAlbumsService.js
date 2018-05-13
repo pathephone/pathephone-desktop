@@ -3,8 +3,9 @@ import { spawn, all, call } from 'redux-saga/effects'
 
 import startAlbumsGateService from './startAlbumsService/startAlbumsGateService'
 import startAlbumsCollectionService from './startAlbumsService/startAlbumsCollectionService'
-import startAlbumFormService from './startAlbumsService/startAlbumFormService'
+// import startAlbumFormService from './startAlbumsService/startAlbumFormService'
 import startAlbumsSharingService from './startAlbumsService/startAlbumsSharingService'
+import startAlbumsFeedService from './startAlbumsService/startAlbumsFeedService'
 
 function * startAlbumsService (args) {
   const [ outcomingAlbumsChannel, incomingAlbumsChannel ] = yield all([
@@ -14,8 +15,9 @@ function * startAlbumsService (args) {
   yield all([
     spawn(startAlbumsGateService, nextArgs),
     spawn(startAlbumsCollectionService, nextArgs),
-    spawn(startAlbumFormService, nextArgs),
-    spawn(startAlbumsSharingService, nextArgs)
+    // spawn(startAlbumFormService, nextArgs),
+    spawn(startAlbumsSharingService, nextArgs),
+    spawn(startAlbumsFeedService, nextArgs)
   ])
 }
 
