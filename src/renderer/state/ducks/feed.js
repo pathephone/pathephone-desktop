@@ -1,9 +1,11 @@
-import { systemFeedAlbumsRecieved } from '#actions-system'
-import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared, uiAlbumSelected, uiAlbumDeselected } from '#actions-ui'
+import { systemFeedAlbumsRecieved, systemDiscoverAlbumsFetchSucceed } from '#actions-system'
+import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared, uiAlbumSelected, uiAlbumDeselected, uiMoreDiscoverAlbumsRequested } from '#actions-ui'
+import { DISCOVER_FEED_LIMIT_STEP } from '~data/constants'
 
 const DOMAIN = 'feed'
 
 const initialState = {
+  albumsLimit: DISCOVER_FEED_LIMIT_STEP,
   albums: [],
   selected: [],
   searchValue: ''
@@ -11,12 +13,16 @@ const initialState = {
 
 // SELECTORS
 
+export const getFeedAlbumsLimit = state => state[DOMAIN].albumsLimit
 export const getFeedAlbums = state => state[DOMAIN].albums
 export const getFeedSearchValue = state => state[DOMAIN].searchValue
 export const getFeedSelectedAlbums = state => state[DOMAIN].selected
 
 const actionHandlers = {
-  [systemFeedAlbumsRecieved] ({ state, payload }) {
+  [uiMoreDiscoverAlbumsRequested] ({ state }) {
+    return { ...state, albumsLimit: state.albumsLimit + DISCOVER_FEED_LIMIT_STEP }
+  },
+  [systemDiscoverAlbumsFetchSucceed] ({ state, payload }) {
     return { ...state, albums: payload }
   },
   [uiAlbumsSearchPerformed] ({ state, payload }) {

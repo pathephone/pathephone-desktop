@@ -27,3 +27,5 @@ export const DND_EVENT_TYPE_DRAG_LEAVE = 3
 export const DND_EVENT_TYPE_DRAG_ENTER = 4
 export const DND_EVENT_TYPE_DRAG_END = 5
 export const DND_EVENT_TYPE_DROP = 6
+
+export const DISCOVER_FEED_LIMIT_STEP = 10

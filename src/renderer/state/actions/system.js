@@ -23,3 +23,5 @@ export const systemAlbumUpdated = c('ALBUM_UPDATED')
 export const systemAlbumSaved = c('ALBUM_SAVED')
 
 export const systemShareFilesProcessed = c('ALBUM_FILES_NORMALIZED')
+
+export const systemDiscoverAlbumsFetchSucceed = c('DISCOVER_ALBUMS_FETCH_SUCCEED')

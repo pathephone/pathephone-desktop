@@ -29,3 +29,5 @@ export const uiVolumeChanged = c('VOLUME_CHANGED')
 export const uiAppClosed = c('APP_CLOSED')
 
 export const uiShareFilesSelected = c('ALBUM_FILES_SELECTED')
+
+export const uiMoreDiscoverAlbumsRequested = c('MORE_DISCOVER_ALBUMS_REQUESTED')

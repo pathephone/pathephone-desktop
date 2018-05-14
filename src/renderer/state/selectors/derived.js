@@ -29,6 +29,7 @@ export const isPlayerActive = state => {
 }
 
 export const isFeedHasAlbums = state => getFeedAlbums(state).length !== 0
+export const getFeedSelectedCount = state => getFeedSelectedAlbums(state).length
 export const isFeedAlbumsSelected = state => getFeedSelectedAlbums(state).length !== 0
 export const isFeedSearchPerformed = state => !!getFeedSearchValue(state).searchValue
 

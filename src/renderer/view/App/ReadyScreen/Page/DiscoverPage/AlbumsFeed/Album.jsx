@@ -35,10 +35,10 @@ const getQualityTitleShort = (code) => {
 }
 
 const Album = ({
-  onSelectAlbum,
+  onToggleSelect,
   onAddAlbumToPlaylist,
   onPlayAlbum,
-  isSelected,
+  hasSelectedView,
   albumCid,
   albumTitle,
   albumArtist,
@@ -46,7 +46,7 @@ const Album = ({
   lowestQuality
 }) => {
   const handleSelectAlbum = () => {
-    onSelectAlbum(albumCid)
+    onToggleSelect(albumCid)
   }
   const handleAddAlbum = () => {
     onAddAlbumToPlaylist(albumCid)
@@ -60,7 +60,7 @@ const Album = ({
   const qualityLabelShort = getQualityTitleShort(qualityCode)
   const coverURL = withIpfsGateway(albumCoverCid)
   return (
-    <div className={`album${isSelected ? '--selected' : ''}`}>
+    <div className={`album${hasSelectedView ? '--selected' : ''}`}>
       <div className='izi-relative'>
         <button
           onClick={handleSelectAlbum}
@@ -85,7 +85,7 @@ const Album = ({
           </div>
         </div>
         {
-          !isSelected && (
+          !hasSelectedView && (
             <div className='album__actions izi-x izi-absolute'>
               <button
                 className='album__actions-button round-button'
@@ -110,10 +110,10 @@ const Album = ({
 }
 
 Album.propTypes = {
-  onSelectAlbum: propTypes.func.isRequired,
+  onToggleSelect: propTypes.func.isRequired,
   onAddAlbumToPlaylist: propTypes.func.isRequired,
   onPlayAlbum: propTypes.func.isRequired,
-  isSelected: propTypes.bool.isRequired,
+  hasSelectedView: propTypes.bool.isRequired,
   albumCid: propTypes.string.isRequired,
   albumArtist: propTypes.string.isRequired,
   albumTitle: propTypes.string.isRequired,
