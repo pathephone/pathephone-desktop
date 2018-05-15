@@ -3,7 +3,10 @@ import { newCreatorFactory, newDomainTypeFactory } from '~utils/reduxTools'
 const c = newCreatorFactory(newDomainTypeFactory('ui'))
 
 export const uiAlbumPlayed = c('ALBUM_PLAYED')
+export const uiAlbumsPlayed = c('ALBUMS_PLAYED')
 export const uiAlbumAddedToPlaylist = c('ALBUM_ADDED_TO_PLAYLIST')
+export const uiAlbumsAddedToPlaylist = c('ALBUMS_ADDED_TO_PLAYLIST')
+export const uiAlbumsDeleted = c('ALBUMS_DELETED')
 
 export const uiPlaylistTrackPlayed = c('PLAYLIST_TRACK_PLAYED')
 export const uiPlaylistTrackRemoved = c('PLAYLIST_TRACK_REMOVED')
@@ -31,3 +34,4 @@ export const uiAppClosed = c('APP_CLOSED')
 export const uiShareFilesSelected = c('ALBUM_FILES_SELECTED')
 
 export const uiMoreDiscoverAlbumsRequested = c('MORE_DISCOVER_ALBUMS_REQUESTED')
+export const uiFeedSelectionCanceled = c('FEED_SELECTION_CANCELED')

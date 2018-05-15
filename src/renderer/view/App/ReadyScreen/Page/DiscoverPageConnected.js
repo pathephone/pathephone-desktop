@@ -2,31 +2,63 @@ import { connect } from 'react-redux'
 
 import {
   getFeedSearchValue,
-  getFeedAlbums,
+  getSelectedFeedAlbumsCount,
   isFeedHasAlbums,
   isFeedAlbumsSelected,
-  getFeedSelectedCount
+  getFeedSelectedAlbums
 } from '#selectors'
 
 import DiscoverPage from './DiscoverPage.jsx'
-import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared } from '#actions-ui'
+import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared, uiAlbumsPlayed, uiAlbumsAddedToPlaylist, uiFeedSelectionCanceled, uiAlbumsDeleted } from '#actions-ui'
 
-const mapStateToProps = (...args) => {
-  const selectedAlbumsCount = getFeedSelectedCount(...args)
+const mapStateToProps = state => {
+  const searchValue = getFeedSearchValue(state)
+  const hasAlbumsFeed = isFeedHasAlbums(state)
   return {
-    albums: getFeedAlbums(...args),
-    hasAlbumsFeed: isFeedHasAlbums(...args),
-    hasSelectedBar: selectedAlbumsCount > 0,
-    hasNoSearchResultsMessage: !!getFeedSearchValue(...args) && !isFeedHasAlbums(...args),
-    searchValue: getFeedSearchValue(...args),
-    selectedAlbumsCount,
+    searchValue,
+    selectedAlbumsCount: getSelectedFeedAlbumsCount(state),
+    selectedAlbumsIds: getFeedSelectedAlbums(state),
+
+    hasAlbumsFeed,
+    hasSelectedBar: isFeedAlbumsSelected(state),
+    hasNoSearchResultsMessage: !!searchValue && !hasAlbumsFeed
   }
 }
 
 const mapDispatchToProps = {
   onSearchValueChange: uiAlbumsSearchPerformed,
-  onCancelSearch: uiAlbumsSearchCleared
-  onPlaySelected: 
+  onCancelSearch: uiAlbumsSearchCleared,
+  onCancelSelection: uiFeedSelectionCanceled,
+  onAlbumsPlayed: uiAlbumsPlayed,
+  onAlbumsAddedToPlaylist: uiAlbumsAddedToPlaylist,
+  onAlbumsDeleted: uiAlbumsDeleted
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPage)
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  const {
+    selectedAlbumsIds,
+    ...restStateProps
+  } = stateProps
+  const {
+    onAlbumsPlayed,
+    onAlbumsAddedToPlaylist,
+    onAlbumsDeleted,
+    ...restDispatchProps
+  } = dispatchProps
+  return {
+    onPlaySelected () {
+      onAlbumsPlayed(selectedAlbumsIds)
+    },
+    onDeleteSelected () {
+      onAlbumsDeleted(selectedAlbumsIds)
+    },
+    onAddSelected () {
+      onAlbumsAddedToPlaylist(selectedAlbumsIds)
+    },
+    ...restStateProps,
+    ...restDispatchProps,
+    ...ownProps
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(DiscoverPage)

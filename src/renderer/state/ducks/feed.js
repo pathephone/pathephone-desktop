@@ -1,5 +1,5 @@
-import { systemFeedAlbumsRecieved, systemDiscoverAlbumsFetchSucceed } from '#actions-system'
-import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared, uiAlbumSelected, uiAlbumDeselected, uiMoreDiscoverAlbumsRequested } from '#actions-ui'
+import { systemDiscoverAlbumsFetchSucceed } from '#actions-system'
+import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared, uiAlbumSelected, uiAlbumDeselected, uiMoreDiscoverAlbumsRequested, uiFeedSelectionCanceled } from '#actions-ui'
 import { DISCOVER_FEED_LIMIT_STEP } from '~data/constants'
 
 const DOMAIN = 'feed'
@@ -38,6 +38,9 @@ const actionHandlers = {
   [uiAlbumDeselected] ({ state, payload }) {
     const selected = state.selected.filter(cid => cid !== payload)
     return { ...state, selected }
+  },
+  [uiFeedSelectionCanceled] ({ state }) {
+    return { ...state, selected: [] }
   }
 }
 
