@@ -15,13 +15,24 @@ export const systemAudioBufferingProceed = c('AUDIO_BUFFERING_PROCEED')
 export const systemAudioDurationRecieved = c('AUDIO_DURATION_RECIEVED')
 export const systemAudioPlaybackEnded = c('AUDIO_PLAYBACK_ENDED')
 
-export const systemPlaylistAlbumTracksRecieved = c('PLAYLIST_ALBUM_TRACKS_RECIEVED')
-
 export const systemAlbumPublished = c('ALBUM_PUBLISHED')
 export const systemAlbumCandidateRecieved = c('ALBUM_CANDIDATE_RECIEVED')
 export const systemAlbumUpdated = c('ALBUM_UPDATED')
 export const systemAlbumSaved = c('ALBUM_SAVED')
 
-export const systemShareFilesProcessed = c('ALBUM_FILES_NORMALIZED')
+export const systemShareFilesProcessed = c('SHARE_FILES_PROCESSED')
 
 export const systemDiscoverAlbumsFetchSucceed = c('DISCOVER_ALBUMS_FETCH_SUCCEED')
+export const systemDiscoverSelectedActionSucceed = c('DISCOVER_SELECTED_ACTION_SUCCEED')
+export const systemDiscoverSelectedActionFailed = c('DISCOVER_SELECTED_ACTION_FAILED')
+
+export const systemAlbumDeleteSucceed = c('ALBUMS_DELETE_SUCCEED')
+export const systemAlbumDeleteFailed = c('ALBUMS_DELETE_FAILED')
+
+export const systemUiLocked = c('UI_LOCKED')
+export const systemUiUnlocked = c('UI_UNLOCKED')
+
+export const systemPlaylistCleared = c('PLAYLIST_CLEARED')
+
+export const systemPlayedTracksRecieved = c('PLAYED_TRACKS_RECIEVED')
+export const systemQueuedTracksRecieved = c('QUEUED_TRACKS_RECIEVED')

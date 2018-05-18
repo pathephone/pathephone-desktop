@@ -8,7 +8,7 @@ const Root = ({ children }) => (
 )
 
 Root.propTypes = {
-  children: propTypes.object.isRequired
+  children: propTypes.array.isRequired
 }
 
 export default Root

@@ -1,6 +1,6 @@
 import { openGate as openMetabinGate } from '@metabin/gate'
 import { remote } from 'electron'
-import getIpfsApiNode, { startIpfsApi } from '~utils/ipfs/ipfsApi/index'
+import getIpfsApiNode, { startIpfsApi } from './ipfs/ipfsApi'
 
 const startIpfsDaemon = remote.getGlobal('startIpfsDaemon')
 

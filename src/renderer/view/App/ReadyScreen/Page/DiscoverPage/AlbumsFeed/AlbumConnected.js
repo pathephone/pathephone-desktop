@@ -1,27 +1,27 @@
 import { connect } from 'react-redux'
 
 import {
-  getFeedSelectedAlbums
+  getDiscoverSelectedAlbums
 } from '#selectors'
 
 import Album from './Album.jsx'
-import { uiAlbumSelected, uiAlbumDeselected, uiAlbumAddedToPlaylist, uiAlbumPlayed } from '#actions-ui'
+import { uiDiscoverAlbumSelected, uiDiscoverAlbumDeselected, uiAlbumQueued, uiAlbumPlayed } from '#actions-ui'
 
 const mapStateToProps = (...args) => ({
-  selectedAlbums: getFeedSelectedAlbums(...args)
+  selectedAlbums: getDiscoverSelectedAlbums(...args)
 })
 
 const mapDispatchToProps = {
-  uiAlbumSelected,
-  uiAlbumDeselected,
-  onAddAlbumToPlaylist: uiAlbumAddedToPlaylist,
+  uiDiscoverAlbumSelected,
+  uiDiscoverAlbumDeselected,
+  onAddAlbumToPlaylist: uiAlbumQueued,
   onPlayAlbum: uiAlbumPlayed
 }
 
-const mergeProps = ({ selectedAlbums }, { uiAlbumSelected, uiAlbumDeselected, ...restDispatch }, ownProps) => {
+const mergeProps = ({ selectedAlbums }, { uiDiscoverAlbumSelected, uiDiscoverAlbumDeselected, ...restDispatch }, ownProps) => {
   const handleFind = cid => cid === ownProps.albumCid
   const hasSelectedView = selectedAlbums.some(handleFind)
-  const onToggleSelect = hasSelectedView ? uiAlbumDeselected : uiAlbumSelected
+  const onToggleSelect = hasSelectedView ? uiDiscoverAlbumDeselected : uiDiscoverAlbumSelected
   return ({
     ...ownProps,
     ...restDispatch,

@@ -1,7 +1,5 @@
 import { call, take, put, all } from 'redux-saga/effects'
 
-import { dagParams } from '~data/config'
-
 import { systemShareFilesProcessed } from '#actions-system'
 import { uiShareFilesSelected } from '#actions-ui'
 
@@ -9,7 +7,7 @@ import getTracksFromFiles from './startAlbumsSharingService/getTracksFromFiles'
 import getCoverFromFiles from './startAlbumsSharingService/getCoverFromFiles'
 
 function * startAlbumsSharingService (args) {
-  const { incomingAlbumsChannel, ipfsApi } = args
+  const { shareObjectToIpfs, saveAlbumToCollection } = args
   try {
     while (true) {
       const { payload } = yield take(uiShareFilesSelected)
@@ -19,10 +17,10 @@ function * startAlbumsSharingService (args) {
         call(getTracksFromFiles, nextArgs),
         call(getCoverFromFiles, nextArgs)
       ])
-      const album = { tracks, cover, title: tracks[0].album }
-      const cidObj = yield call(ipfsApi.dag.put, album, dagParams)
+      const albumData = { tracks, cover, title: tracks[0].album }
+      const albumCid = yield call(shareObjectToIpfs, albumData)
+      yield call(saveAlbumToCollection, { data: albumData, cid: albumCid })
       yield put(systemShareFilesProcessed())
-      yield put(incomingAlbumsChannel, { data: album, cid: cidObj.toBaseEncodedString() })
     }
   } catch (e) {
     console.error(e)

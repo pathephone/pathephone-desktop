@@ -1,5 +1,5 @@
 import { systemDiscoverAlbumsFetchSucceed } from '#actions-system'
-import { uiAlbumsSearchPerformed, uiAlbumsSearchCleared, uiAlbumSelected, uiAlbumDeselected, uiMoreDiscoverAlbumsRequested, uiFeedSelectionCanceled } from '#actions-ui'
+import { uiDiscoverSearchPerformed, uiDiscoverSearchCleared, uiDiscoverAlbumSelected, uiDiscoverAlbumDeselected, uiDiscoverAlbumsRequested, uiDiscoverSelectedCanceled } from '#actions-ui'
 import { DISCOVER_FEED_LIMIT_STEP } from '~data/constants'
 
 const DOMAIN = 'feed'
@@ -7,7 +7,6 @@ const DOMAIN = 'feed'
 const initialState = {
   albumsLimit: DISCOVER_FEED_LIMIT_STEP,
   albums: [],
-  selected: [],
   searchValue: ''
 }
 
@@ -15,32 +14,20 @@ const initialState = {
 
 export const getFeedAlbumsLimit = state => state[DOMAIN].albumsLimit
 export const getFeedAlbums = state => state[DOMAIN].albums
-export const getFeedSearchValue = state => state[DOMAIN].searchValue
-export const getFeedSelectedAlbums = state => state[DOMAIN].selected
+export const getDiscoverSearchValue = state => state[DOMAIN].searchValue
 
 const actionHandlers = {
-  [uiMoreDiscoverAlbumsRequested] ({ state }) {
+  [uiDiscoverAlbumsRequested] ({ state }) {
     return { ...state, albumsLimit: state.albumsLimit + DISCOVER_FEED_LIMIT_STEP }
   },
   [systemDiscoverAlbumsFetchSucceed] ({ state, payload }) {
     return { ...state, albums: payload }
   },
-  [uiAlbumsSearchPerformed] ({ state, payload }) {
+  [uiDiscoverSearchPerformed] ({ state, payload }) {
     return { ...state, searchValue: payload }
   },
-  [uiAlbumsSearchCleared] ({ state }) {
+  [uiDiscoverSearchCleared] ({ state }) {
     return { ...state, searchValue: '' }
-  },
-  [uiAlbumSelected] ({ state, payload }) {
-    const selected = [ ...state.selected, payload ]
-    return { ...state, selected }
-  },
-  [uiAlbumDeselected] ({ state, payload }) {
-    const selected = state.selected.filter(cid => cid !== payload)
-    return { ...state, selected }
-  },
-  [uiFeedSelectionCanceled] ({ state }) {
-    return { ...state, selected: [] }
   }
 }
 

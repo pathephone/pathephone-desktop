@@ -1,32 +1,26 @@
-import { call, fork, spawn, put } from 'redux-saga/effects'
+import { call, all, spawn, put } from 'redux-saga/effects'
 
-import { getDbApi, createDbCollection } from '~utils/rxdb'
-import { getIpfsApi, openGate } from '~utils/ipfs'
 import asyncTimeout from '~utils/asyncTimeout'
-
-import { albumInstanceSchema, albumCollectionSchema } from '~data/schemas'
 
 import { systemAppStartProceed } from '#actions-system'
 
-import startAlbumsService from './startServices/startAlbumsService'
+import startAlbumsReciever from './startServices/startAblumsReciever'
+import startAlbumsPublisher from './startServices/startAlbumsPublisher'
+import startAlbumsSharingService from './startServices/startAlbumsSharingService'
+import startAlbumsDeletingService from './startServices/startAlbumsDeletingService'
 import startAudioService from './startServices/startAudioService'
+import startDiscoverFeedService from './startServices/startDiscoverFeedService'
 
-function * startServices () {
-  const [ dbApi, ipfsApi ] = yield [
-    call(getDbApi), call(getIpfsApi)
-  ]
-  yield put(systemAppStartProceed(33))
-  const [ albumsCollection, albumsGate ] = yield [
-    call(createDbCollection, { dbApi, schema: albumCollectionSchema, name: 'albums' }),
-    call(openGate, { ipfsApi, schema: albumInstanceSchema })
-  ]
+function * startServices (args) {
   yield put(systemAppStartProceed(66))
-  yield [
-    fork(
-      startAlbumsService, { albumsGate, albumsCollection, ipfsApi }
-    ),
-    spawn(startAudioService)
-  ]
+  yield all([
+    spawn(startAlbumsReciever, args),
+    spawn(startAlbumsPublisher, args),
+    spawn(startAlbumsSharingService, args),
+    spawn(startAlbumsDeletingService, args),
+    spawn(startAudioService, args),
+    spawn(startDiscoverFeedService, args)
+  ])
   yield put(systemAppStartProceed(100))
   yield call(asyncTimeout, 100)
 }

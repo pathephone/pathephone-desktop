@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom'
 import {
   getAppStartErrorMessage,
   getAppStartProgress,
-  isAppReady
+  isAppReady,
+  isAppLocked
 } from '#selectors'
 
 import App from './App.jsx'
@@ -15,6 +16,7 @@ const mapStateToProps = state => {
     hasStartScreen: !appIsReady,
     hasReadyScreen: appIsReady,
     hasCloseScreen: false,
+    hasLockScreen: isAppLocked(state),
     errorMessage: getAppStartErrorMessage(state),
     progress: getAppStartProgress(state)
   }
