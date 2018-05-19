@@ -3,50 +3,63 @@ import propTypes from 'prop-types'
 
 import secondsTohhmmss from '~utils//secondsTohhmmss'
 
+import BufferedBarConnected from './TrackTimiline/BufferedBarConnected'
+
 import './TrackTimeline.css'
 
-const handleMapBuffer = ([ start, end ]) => {
-  const style = {
-    width: end - start + '%',
-    left: start + '%'
+class TrackTimeline extends React.Component {
+  constructor (props) {
+    super(props)
+    this.handleRangeChange = this.handleRangeChange.bind(this)
+    this.handleRangeMouseUp = this.handleRangeMouseUp.bind(this)
+    this.state = {
+      seekValue: null
+    }
   }
-  return <div className='timeline__buffered-piece' style={style} key={start + '-' + end} />
-}
-
-const TrackTimeline = (props) => {
-  const { currentPosition, length, onStartSeeking, onStopSeeking, bufferedMap } = props
-  const handleMouseUp = e => {
+  handleRangeChange (e) {
     const { value } = e.currentTarget
-    onStopSeeking(value)
+    this.setState({
+      seekValue: value
+    })
   }
-  const handleMouseDown = onStartSeeking
-  return (
-    <div className='timeline izi-relative'>
-      <div className='timeline__input-container'>
-        <input
-          className='custom-range-input timeline__input'
-          type='range'
-          min='0'
-          max={length}
-          value={currentPosition}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-        />
-        <div className='timeline__buffered-container'>
+  handleRangeMouseUp () {
+    const { onStopSeeking } = this.props
+    onStopSeeking(Number(this.state.seekValue))
+    this.setState({
+      seekValue: null
+    })
+  }
+  render () {
+    const { timing, duration, hasBufferedBar } = this.props
+    const { seekValue } = this.state
+    return (
+      <div className='timeline izi-relative'>
+        <div className='timeline__input-container'>
+          <input
+            className='custom-range-input timeline__input'
+            type='range'
+            min='0'
+            max={duration}
+            value={seekValue || timing}
+            onChange={this.handleRangeChange}
+            onMouseUp={this.handleRangeMouseUp}
+          />
           {
-            bufferedMap.length > 0 && bufferedMap.map(handleMapBuffer)
+            hasBufferedBar && (
+              <BufferedBarConnected />
+            )
           }
         </div>
+        <small className='timeline__duration'>{secondsTohhmmss(duration)}</small>
       </div>
-      <small className='timeline__duration'>{secondsTohhmmss(length)}</small>
-    </div>
-  )
+    )
+  }
 }
 
 TrackTimeline.propTypes = {
-  bufferedMap: propTypes.array.isRequired,
-  currentPosition: propTypes.number.isRequired,
-  length: propTypes.number.isRequired,
+  hasBufferedBar: propTypes.bool.isRequired,
+  timing: propTypes.number.isRequired,
+  duration: propTypes.number.isRequired,
   onStartSeeking: propTypes.func.isRequired,
   onStopSeeking: propTypes.func.isRequired
 }

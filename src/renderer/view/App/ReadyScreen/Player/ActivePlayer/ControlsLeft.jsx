@@ -6,12 +6,12 @@ import MdSkipPrev from 'react-icons/lib/md/skip-previous'
 import MdPause from 'react-icons/lib/md/pause'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 
-const ControlsLeft = ({ isPaused, onPlayPreviousClick, onPlayNextClick, onPauseResumeClick }) => (
+const ControlsLeft = ({ isPaused, onPlayPreviousClick, onPlayNextClick, onPlaybackToggle }) => (
   <div className='player__playback-controls'>
     <button className='round-button' onClick={onPlayPreviousClick}>
       <MdSkipPrev />
     </button>
-    <button className='round-button' onClick={onPauseResumeClick}>
+    <button className='round-button' onClick={onPlaybackToggle}>
       {
         isPaused
           ? <MdPlay />
@@ -28,7 +28,7 @@ ControlsLeft.propTypes = {
   isPaused: propTypes.bool.isRequired,
   onPlayNextClick: propTypes.func.isRequired,
   onPlayPreviousClick: propTypes.func.isRequired,
-  onPauseResumeClick: propTypes.func.isRequired
+  onPlaybackToggle: propTypes.func.isRequired
 }
 
 export default ControlsLeft

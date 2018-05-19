@@ -1,21 +1,23 @@
 import {
-  systemAudioTimingUpdated,
   systemAudioPlaybackEnded,
   systemAudioBufferingProceed,
-  systemAudioDurationRecieved
+  systemAudioDurationRecieved,
+  systemAudioReadyToPlay,
+  systemAudioTimingChanged
 } from '#actions-system'
 
 const DOMAIN = 'audio'
 
-export const getPlayedTrackTiming = state => state[DOMAIN].timing
-export const getPlayedTrackBufferedMap = state => state[DOMAIN].bufferedMap
-export const getPlayedTrackDuration = state => state[DOMAIN].duration
+export const getAudioTiming = state => state[DOMAIN].timing
+export const getAudioDuration = state => state[DOMAIN].duration
+export const getAudioBufferedMap = state => state[DOMAIN].bufferedMap
+export const isAudioReadyToPlay = state => state[DOMAIN].isAudioReadyToPlay
 
 const initialState = {
-  duration: 0,
+  duration: null,
+  timing: 0,
   bufferedMap: [],
-  isReadyToPlay: false,
-  timing: 0
+  isAudioReadyToPlay: false
 }
 
 const actionHandlers = {
@@ -23,10 +25,12 @@ const actionHandlers = {
     return { ...state, duration: payload }
   },
   [systemAudioBufferingProceed] ({ state, payload }) {
-    const { bufferedMap, isReadyToPlay } = payload
-    return { ...state, bufferedMap, isReadyToPlay }
+    return { ...state, bufferedMap: payload }
   },
-  [systemAudioTimingUpdated] ({ state, payload }) {
+  [systemAudioReadyToPlay] ({ state }) {
+    return { ...state, isAudioReadyToPlay: true }
+  },
+  [systemAudioTimingChanged] ({ state, payload }) {
     return { ...state, timing: payload }
   },
   [systemAudioPlaybackEnded] ({ state }) {

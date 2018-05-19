@@ -7,8 +7,8 @@ const initialState = 0.7
 export const getVolume = state => state[DOMAIN]
 
 const actionHandlers = {
-  [uiVolumeChanged] ({ nextValue }) {
-    return nextValue
+  [uiVolumeChanged] ({ payload }) {
+    return payload
   }
 }
 

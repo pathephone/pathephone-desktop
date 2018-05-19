@@ -6,9 +6,9 @@ import {
 } from '#selectors'
 
 import {
-  toggleRepeat,
-  toggleShuffle
-} from '#actions'
+  uiShuffleToggled,
+  uiRepeatToggled
+} from '#actions-ui'
 
 import ControlsRight from './ControlsRight.jsx'
 
@@ -18,8 +18,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  onToggleShuffle: toggleShuffle,
-  onToggleRepeat: toggleRepeat
+  onToggleShuffle: uiShuffleToggled,
+  onToggleRepeat: uiRepeatToggled
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ControlsRight)

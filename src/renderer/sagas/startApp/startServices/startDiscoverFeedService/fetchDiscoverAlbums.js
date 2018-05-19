@@ -2,7 +2,7 @@ import { eventChannel } from 'redux-saga'
 import { select, put, call, take } from 'redux-saga/effects'
 
 import createAlbumsQuery from '~utils/createAlbumsQuery'
-import normalizeCollectionAlbum from '~utils/normalizeCollectionDb'
+import normalizeCollectionAlbum from '~utils/normalizeCollectionAlbum'
 
 import { getFeedAlbumsLimit, getDiscoverSearchValue } from '#selectors'
 import { systemDiscoverAlbumsFetchSucceed } from '#actions-system'

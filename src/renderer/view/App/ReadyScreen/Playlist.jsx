@@ -1,15 +1,15 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import PlaylistTrackConnected from './Playlist/PlaylistTrackConnected'
+import TracklistConnected from './Playlist/TracklistConnected'
 
 import './Playlist.css'
 
-const Playlist = ({ tracks, onClearPlaylist }) => {
+const Playlist = ({ hasTracklist, onClearPlaylist }) => {
   return (
     <div className='playlist izi-ys' >
       {
-        tracks.length > 0 ? (
+        hasTracklist ? (
           <button className='playlist__clear-button' onClick={onClearPlaylist}>
             clear
           </button>
@@ -18,15 +18,17 @@ const Playlist = ({ tracks, onClearPlaylist }) => {
         )
       }
       {
-        tracks.map(PlaylistTrackConnected)
+        hasTracklist && (
+          <TracklistConnected />
+        )
       }
     </div>
   )
 }
 
 Playlist.propTypes = {
-  tracks: propTypes.array.isRequired,
-  onClearPlaylist: propTypes.func.isRequired
+  onClearPlaylist: propTypes.func.isRequired,
+  hasTracklist: propTypes.bool.isRequired
 }
 
 export default Playlist

@@ -1,25 +1,28 @@
 import { connect } from 'react-redux'
 
 import {
-  getTimelineCurrentPostion,
-  getBufferedMap
+  getAudioTiming,
+  getAudioBufferedMap,
+  getAudioDuration
 } from '#selectors'
 
 import {
-  startSeeking,
-  stopSeeking
-} from '#actions'
+  uiSeekStarted,
+  uiSeekStoped
+} from '#actions-ui'
 
 import TrackTimeline from './TrackTimeline.jsx'
 
-const mapStateToProps = (state) => ({
-  currentPosition: getTimelineCurrentPostion(state),
-  bufferedMap: getBufferedMap(state)
+const mapStateToProps = state => ({
+  currentPosition: getAudioTiming(state),
+  hasBufferedBar: !getAudioBufferedMap(state),
+  duration: getAudioDuration(state),
+  timing: getAudioTiming(state)
 })
 
 const mapDispatchToProps = {
-  onStartSeeking: startSeeking,
-  onStopSeeking: stopSeeking
+  onStartSeeking: uiSeekStarted,
+  onStopSeeking: uiSeekStoped
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackTimeline)

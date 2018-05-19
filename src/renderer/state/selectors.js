@@ -6,5 +6,6 @@ export * from './ducks/volume'
 export * from './ducks/feed'
 export * from './ducks/feedSelection'
 export * from './ducks/share'
+export * from './ducks/cachedTracks'
 
 export * from './selectors/derived'

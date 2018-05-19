@@ -6,6 +6,7 @@ import { default as volume } from './ducks/volume'
 import { default as feed } from './ducks/feed'
 import { default as feedSelection } from './ducks/feedSelection'
 import { default as share } from './ducks/share'
+import { default as cachedTracks } from './ducks/cachedTracks'
 
 export default [
   appStart,
@@ -15,5 +16,6 @@ export default [
   playlist,
   playback,
   volume,
-  share
+  share,
+  cachedTracks
 ]

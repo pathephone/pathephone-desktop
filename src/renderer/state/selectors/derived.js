@@ -34,3 +34,33 @@ export const isFeedAlbumsSelected = state => getDiscoverSelectedAlbums(state).le
 export const isFeedSearchPerformed = state => !!getDiscoverSearchValue(state).searchValue
 
 export const isSharingInProcess = state => !!getSharedFiles(state)
+
+export const getPreviousTrackId = state => {
+  const currentTrackId = getPlayedTrackId(state)
+  const tracklist = getPlaylistTracks(state)
+  for (let i = 0; i < tracklist.length; i++) {
+    if (tracklist[i].id === currentTrackId) {
+      const previousTrack = tracklist[i - 1]
+      if (previousTrack) {
+        return previousTrack.id
+      } else {
+        break
+      }
+    }
+  }
+}
+
+export const getNextTrackId = state => {
+  const currentTrackId = getPlayedTrackId(state)
+  const tracklist = getPlaylistTracks(state)
+  for (let i = 0; i < tracklist.length; i++) {
+    if (tracklist[i].id === currentTrackId) {
+      const nextTrack = tracklist[i + 1]
+      if (nextTrack) {
+        return nextTrack.id
+      } else {
+        break
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { call, put, select } from 'redux-saga/effects'
 
-import albumTrackToPlaylistTrack from '~utils/albumTrackToPlaylistTrack'
+import normalizeAlbumTrackForPlaylist from '~utils/normalizeAlbumTrackForPlaylist'
 
 import {
   systemDiscoverSelectedActionFailed,
@@ -25,7 +25,7 @@ const getPlaylistTracksFromAlbums = async ({ albumsCollection }, cids) => {
     .exec()
   const handleReduce = (acc, { data }) => {
     const handleEach = track => {
-      acc.push(albumTrackToPlaylistTrack(track))
+      acc.push(normalizeAlbumTrackForPlaylist(track))
     }
     data.tracks.forEach(handleEach)
     return acc
@@ -38,10 +38,10 @@ function * playOrQueueSelectedAlbums (args, { type }) {
   try {
     const selectedAlbums = yield select(getDiscoverSelectedAlbums)
     const tracks = yield call(getPlaylistTracksFromAlbums, args, selectedAlbums)
-    if (type === uiDiscoverSelectedPlayed) {
+    if (type === uiDiscoverSelectedPlayed.toString()) {
       yield put(systemPlayedTracksRecieved(tracks))
     }
-    if (type === uiDiscoverSelectedQueued) {
+    if (type === uiDiscoverSelectedQueued.toString()) {
       yield put(systemQueuedTracksRecieved(tracks))
     }
     yield put(systemDiscoverSelectedActionSucceed())

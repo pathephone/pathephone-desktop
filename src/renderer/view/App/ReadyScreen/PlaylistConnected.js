@@ -8,9 +8,13 @@ import {
 
 import { uiPlaylistCleared } from '#actions-ui'
 
-const mapStateToProps = (state) => ({
-  tracks: getPlaylistTracks(state)
-})
+const mapStateToProps = (state) => {
+  const tracks = getPlaylistTracks(state)
+  return {
+    tracks,
+    hasTracklist: tracks.length > 0
+  }
+}
 
 const mapDispatchToProps = {
   onClearPlaylist: uiPlaylistCleared

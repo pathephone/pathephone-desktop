@@ -4,18 +4,16 @@ import {
   getVolume
 } from '#selectors'
 
-import {
-  changeVolume
-} from '#actions'
+import { uiVolumeChanged } from '#actions-ui'
 
 import VolumeInput from './VolumeInput.jsx'
 
 const mapStateToProps = (state) => ({
-  value: getVolume(state)
+  currentVolume: getVolume(state)
 })
 
 const mapDispatchToProps = {
-  changeVolume
+  onVolumeChange: uiVolumeChanged
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VolumeInput)

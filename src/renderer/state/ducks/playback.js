@@ -6,20 +6,20 @@ const initialState = {
   isPaused: true,
   shuffle: false,
   repeat: false,
-  trackId: null
+  currentTrackId: null
 }
 
 export const isPaused = state => state[DOMAIN].isPaused
 export const isShuffleTurnedOn = state => state[DOMAIN].shuffle
 export const isRepeatTurnedOn = state => state[DOMAIN].repeat
-export const getPlayedTrackId = state => state[DOMAIN].trackId
+export const getPlayedTrackId = state => state[DOMAIN].currentTrackId
 
 const actionHandlers = {
   [uiRepeatToggled] ({ state }) {
-    return { ...state, shuffle: !state.shuffle }
+    return { ...state, repeat: !state.repeat }
   },
   [uiShuffleToggled] ({ state }) {
-    return { ...state, repeat: !state.repeat }
+    return { ...state, shuffle: !state.shuffle }
   },
   [uiPlayerPaused] ({ state }) {
     return { ...state, isPaused: true }
@@ -28,7 +28,7 @@ const actionHandlers = {
     return { ...state, isPaused: false }
   },
   [uiPlaylistTrackPlayed] ({ state, payload }) {
-    return { ...state, trackId: payload }
+    return { ...state, currentTrackId: payload }
   }
 }
 

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import {
   getPlayedTrackId,
-  getDownloadedTracks
+  getCachedTracks
 } from '#selectors'
 
 import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '#actions-ui'
@@ -11,7 +11,7 @@ import PlaylistTrack from './PlaylistTrack.jsx'
 
 const mapStateToProps = (state) => ({
   currentTrackId: getPlayedTrackId(state),
-  downloadedTracks: getDownloadedTracks(state)
+  downloadedTracks: getCachedTracks(state)
 })
 
 const mapDispatchToProps = {

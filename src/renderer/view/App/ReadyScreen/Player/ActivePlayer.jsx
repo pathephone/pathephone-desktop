@@ -3,36 +3,36 @@ import propTypes from 'prop-types'
 
 import './ActivePlayer/CustomRangeInput.css'
 
-import ControlsLeft from './ActivePlayer/ControlsLeft.jsx'
-import ControlsRight from './ActivePlayer/ControlsRight.jsx'
-import TrackTimeline from './ActivePlayer/TrackTimeline.jsx'
-import VolumeInput from './ActivePlayer/VolumeInput.jsx'
 import ProgressBar from './ActivePlayer/ProgressBar.jsx'
+import ControlsLeftConnected from './ActivePlayer/ControlsLeftConnected'
+import TrackTimelineConnected from './ActivePlayer/TrackTimelineConnected'
+import VolumeInputConnected from './ActivePlayer/VolumeInputConnected'
+import ControlsRightConnected from './ActivePlayer/ControlsRightConnected'
 
 class ActivePlayer extends React.Component {
   render () {
     const {
-      isReadyToPlay
+      isAudioReadyToPlay
     } = this.props
     return (
       <div className='player'>
-        <ControlsLeft />
+        <ControlsLeftConnected />
         {
-          isReadyToPlay ? (
-            <TrackTimeline />
+          isAudioReadyToPlay ? (
+            <TrackTimelineConnected />
           ) : (
             <ProgressBar />
           )
         }
-        <VolumeInput />
-        <ControlsRight />
+        <VolumeInputConnected />
+        <ControlsRightConnected />
       </div>
     )
   }
 }
 
 ActivePlayer.propTypes = {
-  isReadyToPlay: propTypes.bool.isRequired
+  isAudioReadyToPlay: propTypes.bool.isRequired
 }
 
 export default ActivePlayer
