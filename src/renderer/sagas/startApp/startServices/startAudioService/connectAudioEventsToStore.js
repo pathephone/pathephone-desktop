@@ -1,11 +1,11 @@
 import { take, put } from 'redux-saga/effects'
-import getAudioEventsChannel from './connectAudioEventsToStore/getAudioEventsChannel'
+import getAudioEventsSource from './connectAudioEventsToStore/getAudioEventsSource'
 
 function * connectAudioEventsToStore (audio) {
-  const audioEventsChannel = yield getAudioEventsChannel(audio)
+  const audioEventsSource = yield getAudioEventsSource(audio)
   try {
     while (true) {
-      const action = yield take(audioEventsChannel)
+      const action = yield take(audioEventsSource)
       yield put(action)
     }
   } finally {

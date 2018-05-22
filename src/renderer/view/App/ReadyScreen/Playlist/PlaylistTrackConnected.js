@@ -1,8 +1,9 @@
 import { connect } from 'react-redux'
 
 import {
-  getPlayedTrackId,
-  getCachedTracks
+  getCurrentTrackIndex,
+  getPlaylistTracksByIndex,
+  getPlaylistCachedByCid
 } from '#selectors'
 
 import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '#actions-ui'
@@ -10,23 +11,31 @@ import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '#actions-ui'
 import PlaylistTrack from './PlaylistTrack.jsx'
 
 const mapStateToProps = (state) => ({
-  currentTrackId: getPlayedTrackId(state),
-  downloadedTracks: getCachedTracks(state)
+  currentTrackIndex: getCurrentTrackIndex(state),
+  tracksByIndex: getPlaylistTracksByIndex(state),
+  cachedByCid: getPlaylistCachedByCid(state)
 })
 
 const mapDispatchToProps = {
-  onPlay: uiPlaylistTrackPlayed,
-  onRemove: uiPlaylistTrackRemoved
+  onPlayTrack: uiPlaylistTrackPlayed,
+  onRemoveTrack: uiPlaylistTrackRemoved
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  const { currentTrackId, downloadedTracks } = stateProps
-  const { id, cid } = ownProps
+  const { cachedByCid, tracksByIndex, currentTrackIndex } = stateProps
+  const { index } = ownProps
+  const { cid, ...trackData } = tracksByIndex[index]
   return {
-    ...ownProps,
-    ...dispatchProps,
-    isCurrent: currentTrackId === id,
-    isDownloaded: downloadedTracks.includes(cid)
+    ...trackData,
+    isCurrent: index === currentTrackIndex,
+    isDownloaded: !!cachedByCid[cid],
+    order: index,
+    onPlayClick () {
+      dispatchProps.onPlayTrack(index)
+    },
+    onRemoveClick () {
+      dispatchProps.onRemoveTrack(index)
+    }
   }
 }
 

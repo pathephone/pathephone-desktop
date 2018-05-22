@@ -21,7 +21,7 @@ function * handleIncomingGateAlbums ({ albumsCollection }, album) {
       yield put(systemAlbumSaved(cid))
     }
   } catch (e) {
-    console.error(e.message)
+    console.error(e)
   }
 }
 

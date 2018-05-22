@@ -9,13 +9,16 @@ const initialState = {
 
 export const getSharedFiles = state => state[DOMAIN].files
 
-const actionHandlers = {
-  [uiShareFilesSelected] (payload) {
-    return { files: payload }
-  },
-  [systemShareFilesProcessed] () {
-    return { files: null }
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+  switch (type) {
+    case uiShareFilesSelected.toString():
+      return { files: payload }
+    case systemShareFilesProcessed.toString():
+      return { files: null }
+    default:
+      return state
   }
 }
 
-export default { actionHandlers, initialState, DOMAIN }
+export default reducer

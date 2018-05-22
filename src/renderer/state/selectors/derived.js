@@ -1,31 +1,30 @@
+import { createSelector } from 'reselect'
+
+import calcNextCurrentIndex from '~utils/calcNextCurrentIndex'
+import calcPreviousCurrentIndex from '~utils/calcPreviousCurrentIndex'
 import withIpfsGateway from '~utils/withIpfsGateway'
 
 import {
-  getPlayedTrackId, getPlaylistTracks, getAppStartProgress,
-  getFeedAlbums, getDiscoverSelectedAlbums, getDiscoverSearchValue, getSharedFiles
+  getAppStartProgress,
+  getFeedAlbums,
+  getDiscoverSelectedAlbums,
+  getDiscoverSearchValue,
+  getSharedFiles,
+  getCurrentTrackIndex,
+  getPlaylistLastTrackIndex,
+  getPlaylistTracksByIndex,
+  getPlaylistRemovedByIndex
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
 
-export const getPlayedTrack = state => {
-  const currentTrackId = getPlayedTrackId(state)
-  const tracks = getPlaylistTracks(state)
-  const handleFind = track => {
-    return track.id === currentTrackId
-  }
-  return tracks.find(handleFind)
-}
-
-export const getPlayedTrackSource = state => {
-  const track = getPlayedTrack(state)
-  if (track) {
-    return withIpfsGateway(track.cid)
-  }
-  return undefined
+export const getCurrentTrackSource = state => {
+  const track = getCurrentTrack(state)
+  return withIpfsGateway(track.cid)
 }
 
 export const isPlayerActive = state => {
-  return !!getPlayedTrackId(state)
+  return getCurrentTrackIndex(state) !== null
 }
 
 export const isFeedHasAlbums = state => getFeedAlbums(state).length !== 0
@@ -35,32 +34,22 @@ export const isFeedSearchPerformed = state => !!getDiscoverSearchValue(state).se
 
 export const isSharingInProcess = state => !!getSharedFiles(state)
 
-export const getPreviousTrackId = state => {
-  const currentTrackId = getPlayedTrackId(state)
-  const tracklist = getPlaylistTracks(state)
-  for (let i = 0; i < tracklist.length; i++) {
-    if (tracklist[i].id === currentTrackId) {
-      const previousTrack = tracklist[i - 1]
-      if (previousTrack) {
-        return previousTrack.id
-      } else {
-        break
-      }
-    }
-  }
+export const isPlaylistEmpty = state => !getPlaylistLastTrackIndex(state)
+
+export const getCurrentTrack = state => {
+  return getPlaylistTracksByIndex(state)[getCurrentTrackIndex(state)]
 }
 
-export const getNextTrackId = state => {
-  const currentTrackId = getPlayedTrackId(state)
-  const tracklist = getPlaylistTracks(state)
-  for (let i = 0; i < tracklist.length; i++) {
-    if (tracklist[i].id === currentTrackId) {
-      const nextTrack = tracklist[i + 1]
-      if (nextTrack) {
-        return nextTrack.id
-      } else {
-        break
-      }
-    }
-  }
-}
+export const getNextTrackIndex = createSelector(
+  [
+    getCurrentTrackIndex, getPlaylistRemovedByIndex
+  ],
+  (currentTrackIndex, removedByIndex) => calcNextCurrentIndex({ currentTrackIndex, removedByIndex })
+)
+
+export const getPreviousTrackIndex = createSelector(
+  [
+    getCurrentTrackIndex, getPlaylistRemovedByIndex
+  ],
+  (currentTrackIndex, removedByIndex) => calcPreviousCurrentIndex({ currentTrackIndex, removedByIndex })
+)

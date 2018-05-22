@@ -1,5 +1,5 @@
 import { systemDiscoverAlbumsFetchSucceed } from '#actions-system'
-import { uiDiscoverSearchPerformed, uiDiscoverSearchCleared, uiDiscoverAlbumSelected, uiDiscoverAlbumDeselected, uiDiscoverAlbumsRequested, uiDiscoverSelectedCanceled } from '#actions-ui'
+import { uiDiscoverSearchPerformed, uiDiscoverSearchCleared, uiDiscoverAlbumsRequested } from '#actions-ui'
 import { DISCOVER_FEED_LIMIT_STEP } from '~data/constants'
 
 const DOMAIN = 'feed'
@@ -16,19 +16,20 @@ export const getFeedAlbumsLimit = state => state[DOMAIN].albumsLimit
 export const getFeedAlbums = state => state[DOMAIN].albums
 export const getDiscoverSearchValue = state => state[DOMAIN].searchValue
 
-const actionHandlers = {
-  [uiDiscoverAlbumsRequested] ({ state }) {
-    return { ...state, albumsLimit: state.albumsLimit + DISCOVER_FEED_LIMIT_STEP }
-  },
-  [systemDiscoverAlbumsFetchSucceed] ({ state, payload }) {
-    return { ...state, albums: payload }
-  },
-  [uiDiscoverSearchPerformed] ({ state, payload }) {
-    return { ...state, searchValue: payload }
-  },
-  [uiDiscoverSearchCleared] ({ state }) {
-    return { ...state, searchValue: '' }
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+  switch (type) {
+    case uiDiscoverAlbumsRequested.toString():
+      return { ...state, albumsLimit: state.albumsLimit + DISCOVER_FEED_LIMIT_STEP }
+    case systemDiscoverAlbumsFetchSucceed.toString():
+      return { ...state, albums: payload }
+    case uiDiscoverSearchPerformed.toString():
+      return { ...state, searchValue: payload }
+    case uiDiscoverSearchCleared.toString():
+      return { ...state, searchValue: '' }
+    default:
+      return state
   }
 }
 
-export default { initialState, actionHandlers, DOMAIN }
+export default reducer

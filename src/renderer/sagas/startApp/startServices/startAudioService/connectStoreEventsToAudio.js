@@ -1,18 +1,12 @@
 import { take, select } from 'redux-saga/effects'
-import { uiPlaybackPaused, uiPlaybackResumed, uiVolumeChanged, uiPlaylistTrackPlayed, uiSeekStarted, uiSeekStoped } from '#actions-ui'
-import { getPlayedTrackSource } from '#selectors'
+import { uiPlaybackPaused, uiPlaybackResumed, uiVolumeChanged, uiPlaylistTrackPlayed, uiSeekStoped, uiPlaylistCleared, uiPlaylistTrackRemoved } from '#actions-ui'
+import { getCurrentTrack, getCurrentTrackIndex } from '#selectors'
+import { systemPlayedTracksRecieved, systemAudioEnded } from '#actions-system'
+import withIpfsGateway from '~utils/withIpfsGateway'
 
 function * connectStoreEventsToAudio (audio) {
   while (true) {
-    const { type, payload } = yield take(
-      [
-        uiPlaybackPaused,
-        uiPlaybackResumed,
-        uiPlaylistTrackPlayed,
-        uiSeekStoped,
-        uiVolumeChanged
-      ]
-    )
+    const { type, payload } = yield take('*')
     switch (type) {
       case uiPlaybackPaused.toString():
         audio.pause()
@@ -27,8 +21,23 @@ function * connectStoreEventsToAudio (audio) {
         audio.volume = payload
         break
       case uiPlaylistTrackPlayed.toString():
-        const src = yield select(getPlayedTrackSource)
-        audio.src = src
+      case uiPlaylistTrackRemoved.toString():
+      case systemPlayedTracksRecieved.toString():
+      case systemAudioEnded.toString(): {
+        const track = yield select(getCurrentTrack)
+        if (track) {
+          audio.src = withIpfsGateway(track.cid)
+          audio.play()
+        } else {
+          audio.pause()
+          audio.src = ''
+        }
+        break
+      }
+      case uiPlaylistCleared.toString():
+        audio.pause()
+        audio.src = ''
+        break
     }
   }
 }

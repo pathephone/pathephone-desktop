@@ -13,19 +13,20 @@ const initialState = {
   isLocked: false
 }
 
-const actionHandlers = {
-  [systemAppStartProceed] ({ state, payload }) {
-    return { ...state, progress: payload }
-  },
-  [systemAppStartFailed] ({ state, payload }) {
-    return { ...state, errorMessage: payload }
-  },
-  [systemUiLocked] ({ state }) {
-    return { ...state, isLocked: true }
-  },
-  [systemUiUnlocked] ({ state }) {
-    return { ...state, isLocked: false }
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+  switch (type) {
+    case systemAppStartProceed.toString():
+      return { ...state, progress: payload }
+    case systemAppStartFailed.toString():
+      return { ...state, errorMessage: payload }
+    case systemUiLocked.toString():
+      return { ...state, isLocked: true }
+    case systemUiUnlocked.toString():
+      return { ...state, isLocked: false }
+    default:
+      return state
   }
 }
 
-export default { actionHandlers, initialState, DOMAIN }
+export default reducer

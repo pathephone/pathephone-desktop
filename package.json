@@ -120,6 +120,7 @@
     "redux-form": "^7.3.0",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
     "rxdb": "^7.0.1",
     "rxjs": "^5.5.2",
     "streamifier": "^0.1.1",

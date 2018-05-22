@@ -6,12 +6,15 @@ import {
   uiDiscoverSelectedPlayed,
   uiDiscoverSelectedQueued,
   uiDiscoverSearchPerformed,
-  uiDiscoverSearchCleared
+  uiDiscoverSearchCleared,
+  uiAlbumPlayed,
+  uiAlbumQueued
 } from '#actions-ui'
 
 import deleteSelectedAlbums from './startDiscoverFeedService/deleteSelectedAlbums'
 import fetchDiscoverAlbums from './startDiscoverFeedService/fetchDiscoverAlbums'
 import playOrQueueSelectedAlbums from './startDiscoverFeedService/playOrQueueSelectedAlbums'
+import playOrQueueAlbum from './startDiscoverFeedService/playOrQueueAlbum'
 
 function * startDiscoverFeedService (args) {
   yield all([
@@ -21,8 +24,14 @@ function * startDiscoverFeedService (args) {
       uiDiscoverSearchCleared
     ], fetchDiscoverAlbums, args),
     takeEvery(uiDiscoverSelectedDeleted, deleteSelectedAlbums, args),
-    takeEvery(uiDiscoverSelectedPlayed, playOrQueueSelectedAlbums, args),
-    takeEvery(uiDiscoverSelectedQueued, playOrQueueSelectedAlbums, args)
+    takeEvery([
+      uiDiscoverSelectedPlayed,
+      uiDiscoverSelectedQueued
+    ], playOrQueueSelectedAlbums, args),
+    takeEvery([
+      uiAlbumPlayed,
+      uiAlbumQueued
+    ], playOrQueueAlbum, args)
   ])
   yield put(uiDiscoverAlbumsRequested())
 }

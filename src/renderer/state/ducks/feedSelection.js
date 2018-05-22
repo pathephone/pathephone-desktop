@@ -15,19 +15,19 @@ export const getDiscoverSelectedAlbums = state => state[DOMAIN]
 
 // ACTIONS
 
-const actionHandlers = {
-  [uiDiscoverAlbumSelected] ({ state, payload }) {
-    return [ ...state, payload ]
-  },
-  [uiDiscoverAlbumDeselected] ({ state, payload }) {
-    return state.filter(cid => cid !== payload)
-  },
-  [systemDiscoverSelectedActionSucceed] () {
-    return []
-  },
-  [uiDiscoverSelectedCanceled] () {
-    return []
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+  switch (type) {
+    case uiDiscoverAlbumSelected.toString():
+      return [ ...state, payload ]
+    case uiDiscoverAlbumDeselected.toString():
+      return state.filter(cid => cid !== payload)
+    case systemDiscoverSelectedActionSucceed.toString():
+    case uiDiscoverSelectedCanceled.toString():
+      return []
+    default:
+      return state
   }
 }
 
-export default { initialState, actionHandlers, DOMAIN }
+export default reducer

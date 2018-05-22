@@ -13,13 +13,16 @@ export const isFilesDragged = state => state[DOMAIN].status === DND_STATUS_FILES
 export const getDropedFiles = state => state[DOMAIN].files
 export const isDropedFilesProcessed = state => !!getDropedFiles(state)
 
-const actionHandlers = {
-  [uiFilesDragStarted] () {
-    return { status: DND_STATUS_FILES }
-  },
-  [uiFilesDragEnded] () {
-    return { state: DND_STATUS_PENDING }
+const reducer = (state = initialState, action) => {
+  const { type } = action
+  switch (type) {
+    case uiFilesDragStarted.toString():
+      return { status: DND_STATUS_FILES }
+    case uiFilesDragEnded.toString():
+      return { state: DND_STATUS_PENDING }
+    default:
+      return state
   }
 }
 
-export default { actionHandlers, initialState, DOMAIN }
+export default reducer

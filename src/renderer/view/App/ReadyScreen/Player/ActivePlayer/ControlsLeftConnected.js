@@ -1,33 +1,32 @@
 import { connect } from 'react-redux'
 
 import {
-  getNextTrackId, getPreviousTrackId, isPaused
+  getNextTrackIndex, getPreviousTrackIndex, isPaused
 } from '#selectors'
 
 import ControlsLeft from './ControlsLeft.jsx'
-import { uiPlaylistTrackPlayed, uiPlaybackPaused, uiPlaybackResumed } from '#actions-ui'
+import { uiPlaylistTrackPlayed } from '#actions-ui'
 
 const mapStateToProps = (state) => ({
   isPaused: isPaused(state),
-  nextTrackId: getNextTrackId(state),
-  previousTrackId: getPreviousTrackId(state)
+  nextTrackId: getNextTrackIndex(state),
+  previousTrackId: getPreviousTrackIndex(state)
 })
 
 const mapDispatchToProps = {
-  onPlayTrack: uiPlaylistTrackPlayed,
-  onPaused: uiPlaybackPaused,
-  onResumed: uiPlaybackResumed
+  onPlayTrack: uiPlaylistTrackPlayed
 }
 
-const mergeProps = (stateProps, dispatchProps) => {
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { nextTrackId, previousTrackId, isPaused } = stateProps
-  const { onPlayTrack, onPaused, onResumed } = dispatchProps
+  const { onPlayTrack } = dispatchProps
+  const { onPlayClicked, onPauseClicked } = ownProps
   return {
     onPlaybackToggle () {
       if (isPaused) {
-        onResumed()
+        onPlayClicked()
       } else {
-        onPaused()
+        onPauseClicked()
       }
     },
     onPlayNextClick () {

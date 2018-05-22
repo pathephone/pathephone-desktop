@@ -8,7 +8,7 @@ import startAlbumsReciever from './startServices/startAblumsReciever'
 import startAlbumsPublisher from './startServices/startAlbumsPublisher'
 import startAlbumsSharingService from './startServices/startAlbumsSharingService'
 import startAlbumsDeletingService from './startServices/startAlbumsDeletingService'
-import startAudioService from './startServices/startAudioService'
+// import startAudioService from './startServices/startAudioService'
 import startDiscoverFeedService from './startServices/startDiscoverFeedService'
 import startTracksCache from './startServices/startTracksCache'
 
@@ -19,7 +19,7 @@ function * startServices (args) {
     spawn(startAlbumsPublisher, args),
     spawn(startAlbumsSharingService, args),
     spawn(startAlbumsDeletingService, args),
-    spawn(startAudioService, args),
+    // spawn(startAudioService, args),
     spawn(startDiscoverFeedService, args),
     spawn(startTracksCache, args)
   ])

@@ -7,18 +7,17 @@ const initialState = []
 
 export const getCachedTracks = state => state[DOMAIN]
 
-const actionHandlers = {
-  [systemTrackCached] ({ state, payload }) {
-    if (!state.includes(payload)) {
-      return [ ...state, payload ]
-    }
-  },
-  [uiPlaylistCleared] () {
-    return []
-  },
-  [systemPlayedTracksRecieved] () {
-    return []
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+  switch (type) {
+    case systemTrackCached.toString():
+      return [...state, payload]
+    case uiPlaylistCleared.toString():
+    case systemPlayedTracksRecieved.toString():
+      return []
+    default:
+      return state
   }
 }
 
-export default { initialState, actionHandlers, DOMAIN }
+export default reducer

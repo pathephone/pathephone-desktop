@@ -1,21 +1,19 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import PlaylistTrackConnected from './PlaylistTrackConnected'
+import PlaylistTrackContainerConnected from './PlaylistTrackContainerConnected'
 
-const handleMap = track => (
-  <PlaylistTrackConnected {...track} key={track.id} />
-)
-
-const Tracklist = ({ tracks }) => (
+const Tracklist = ({ lastTrackIndex }) => (
   <div>
     {
-      tracks.map(handleMap)
+      [...Array(lastTrackIndex).keys(), lastTrackIndex].map((index) => (
+        <PlaylistTrackContainerConnected index={index} key={index} />
+      ))
     }
   </div>
 )
 
 Tracklist.propTypes = {
-  tracks: propTypes.array.isRequired
+  lastTrackIndex: propTypes.number.isRequired
 }
 
 export default Tracklist

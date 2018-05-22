@@ -7,22 +7,17 @@ import BufferedBarConnected from './TrackTimiline/BufferedBarConnected'
 
 import './TrackTimeline.css'
 
-class TrackTimeline extends React.Component {
-  constructor (props) {
-    super(props)
-    this.handleRangeChange = this.handleRangeChange.bind(this)
-    this.handleRangeMouseUp = this.handleRangeMouseUp.bind(this)
-    this.state = {
-      seekValue: null
-    }
+class TrackTimeline extends React.PureComponent {
+  state = {
+    seekValue: null
   }
-  handleRangeChange (e) {
+  handleRangeChange = e => {
     const { value } = e.currentTarget
     this.setState({
       seekValue: value
     })
   }
-  handleRangeMouseUp () {
+  handleRangeMouseUp = () => {
     const { onStopSeeking } = this.props
     onStopSeeking(Number(this.state.seekValue))
     this.setState({
@@ -30,7 +25,7 @@ class TrackTimeline extends React.Component {
     })
   }
   render () {
-    const { timing, duration, hasBufferedBar } = this.props
+    const { currentTime, duration, hasBufferedBar } = this.props
     const { seekValue } = this.state
     return (
       <div className='timeline izi-relative'>
@@ -40,7 +35,7 @@ class TrackTimeline extends React.Component {
             type='range'
             min='0'
             max={duration}
-            value={seekValue || timing}
+            value={seekValue || currentTime}
             onChange={this.handleRangeChange}
             onMouseUp={this.handleRangeMouseUp}
           />
@@ -58,9 +53,8 @@ class TrackTimeline extends React.Component {
 
 TrackTimeline.propTypes = {
   hasBufferedBar: propTypes.bool.isRequired,
-  timing: propTypes.number.isRequired,
+  currentTime: propTypes.number.isRequired,
   duration: propTypes.number.isRequired,
-  onStartSeeking: propTypes.func.isRequired,
   onStopSeeking: propTypes.func.isRequired
 }
 

@@ -2,11 +2,14 @@ import { eventChannel, END } from 'redux-saga'
 
 import getBufferedAudioMap from '~utils/getBufferedAudioMap'
 import {
-  systemAudioPlaybackEnded,
+  systemAudioEnded,
   systemAudioTimingChanged,
   systemAudioReadyToPlay,
   systemAudioBufferingProceed,
-  systemAudioDurationRecieved
+  systemAudioDurationRecieved,
+  systemAudioPlayed,
+  systemAudioPaused,
+  systemAudioLoadStarted
 } from '#actions-system'
 
 function getAudioEventsChannel (audio) {
@@ -16,7 +19,6 @@ function getAudioEventsChannel (audio) {
     }
     const handleProgress = () => {
       const bufferedMap = getBufferedAudioMap(audio)
-      console.log(bufferedMap)
       if (bufferedMap) {
         emit(systemAudioBufferingProceed(bufferedMap))
       }
@@ -29,7 +31,16 @@ function getAudioEventsChannel (audio) {
       emit(systemAudioTimingChanged(currentTime))
     }
     const handleEnded = () => {
-      emit(systemAudioPlaybackEnded())
+      emit(systemAudioEnded())
+    }
+    const handlePlay = () => {
+      emit(systemAudioPlayed())
+    }
+    const handlePause = () => {
+      emit(systemAudioPaused())
+    }
+    const handleLoadStart = () => {
+      emit(systemAudioLoadStarted())
     }
 
     audio.onloadedmetadata = handleMetadata
@@ -37,6 +48,9 @@ function getAudioEventsChannel (audio) {
     audio.onprogress = handleProgress
     audio.onended = handleEnded
     audio.ontimeupdate = handleTimeUpdate
+    audio.onplay = handlePlay
+    audio.onpause = handlePause
+    audio.onloadstart = handleLoadStart
 
     return () => emit(END)
   })

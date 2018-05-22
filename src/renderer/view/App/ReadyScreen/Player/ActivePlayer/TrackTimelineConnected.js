@@ -14,10 +14,9 @@ import {
 import TrackTimeline from './TrackTimeline.jsx'
 
 const mapStateToProps = state => ({
-  currentPosition: getAudioTiming(state),
+  currentTime: getAudioTiming(state),
   hasBufferedBar: !getAudioBufferedMap(state),
-  duration: getAudioDuration(state),
-  timing: getAudioTiming(state)
+  duration: getAudioDuration(state)
 })
 
 const mapDispatchToProps = {

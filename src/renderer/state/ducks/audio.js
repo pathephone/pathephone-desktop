@@ -1,9 +1,10 @@
 import {
-  systemAudioPlaybackEnded,
   systemAudioBufferingProceed,
   systemAudioDurationRecieved,
   systemAudioReadyToPlay,
-  systemAudioTimingChanged
+  systemAudioTimingChanged,
+  systemAudioEnded,
+  systemAudioLoadStarted
 } from '#actions-system'
 
 const DOMAIN = 'audio'
@@ -20,22 +21,23 @@ const initialState = {
   isAudioReadyToPlay: false
 }
 
-const actionHandlers = {
-  [systemAudioDurationRecieved] ({ state, payload }) {
-    return { ...state, duration: payload }
-  },
-  [systemAudioBufferingProceed] ({ state, payload }) {
-    return { ...state, bufferedMap: payload }
-  },
-  [systemAudioReadyToPlay] ({ state }) {
-    return { ...state, isAudioReadyToPlay: true }
-  },
-  [systemAudioTimingChanged] ({ state, payload }) {
-    return { ...state, timing: payload }
-  },
-  [systemAudioPlaybackEnded] ({ state }) {
-    return { ...initialState }
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+  switch (type) {
+    case systemAudioDurationRecieved.toString():
+      return { ...state, duration: payload }
+    case systemAudioBufferingProceed.toString():
+      return { ...state, bufferedMap: payload }
+    case systemAudioReadyToPlay.toString():
+      return { ...state, isAudioReadyToPlay: true }
+    case systemAudioTimingChanged.toString():
+      return { ...state, timing: payload }
+    case systemAudioEnded.toString():
+    case systemAudioLoadStarted.toString():
+      return { ...initialState }
+    default:
+      return state
   }
 }
 
-export default { actionHandlers, initialState, DOMAIN }
+export default reducer

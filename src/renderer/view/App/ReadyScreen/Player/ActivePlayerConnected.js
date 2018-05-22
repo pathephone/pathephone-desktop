@@ -1,13 +1,19 @@
 import { connect } from 'react-redux'
 
-import {
-  isAudioReadyToPlay
-} from '#selectors'
-
 import ActivePlayer from './ActivePlayer.jsx'
+import { systemAudioEnded, systemAudioPlayed, systemAudioPaused } from '#actions-system'
+import { getCurrentTrackSource, getVolume, isPaused } from '#selectors'
 
-const mapStateToProps = (...args) => ({
-  isAudioReadyToPlay: isAudioReadyToPlay(...args)
+const mapStateToProps = (state) => ({
+  source: getCurrentTrackSource(state),
+  volume: getVolume(state),
+  isPaused: isPaused(state)
 })
 
-export default connect(mapStateToProps)(ActivePlayer)
+const mapDispatchToProps = {
+  onAudioEnded: systemAudioEnded,
+  onAudioPlayed: systemAudioPlayed,
+  onAudioPaused: systemAudioPaused
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActivePlayer)

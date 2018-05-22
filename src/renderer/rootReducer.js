@@ -1,20 +1,10 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-import { reducerFactory } from '~utils/reduxTools'
-
-import ducks from './state/ducks'
-
-const handleReduce = (acc, duck) => {
-  const { DOMAIN, ...rest } = duck
-  acc[DOMAIN] = reducerFactory(rest)
-  return acc
-}
-
-const reducersMap = ducks.reduce(handleReduce, {})
+import * as reducers from './state/reducers'
 
 const rootReducer = combineReducers({
-  ...reducersMap,
+  ...reducers,
   form: formReducer
 })
 
