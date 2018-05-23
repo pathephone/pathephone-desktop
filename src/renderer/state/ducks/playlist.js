@@ -9,10 +9,13 @@ import {
 import {
   uiPlaylistTrackRemoved,
   uiPlaylistCleared,
-  uiPlaylistTrackPlayed
+  uiPlaylistTrackPlayed,
+  uiNextTrackPlayed,
+  uiPreviousTrackPlayed
 } from '#actions-ui'
 
-import calcNextCurrentIndex from '~utils/calcNextCurrentIndex'
+import calcNextTrackIndex from '~utils/calcNextTrackIndex'
+import calcPreviousTrackIndex from '~utils/calcPreviousTrackIndex'
 
 const DOMAIN = 'playlist'
 
@@ -59,17 +62,25 @@ const reducer = (state = initialState, action) => {
         lastTrackIndex
       }
     }
+    case uiNextTrackPlayed.toString():
     case systemAudioEnded.toString(): {
-      const nextCurrentIndex = calcNextCurrentIndex(state)
+      const newCurrentIndex = calcNextTrackIndex(state)
       return {
         ...state,
-        currentTrackIndex: nextCurrentIndex
+        currentTrackIndex: newCurrentIndex
+      }
+    }
+    case uiPreviousTrackPlayed.toString(): {
+      const newCurrentIndex = calcPreviousTrackIndex(state)
+      return {
+        ...state,
+        currentTrackIndex: newCurrentIndex
       }
     }
     case uiPlaylistTrackRemoved.toString(): {
       let nextCurrentIndex = state.currentTrackIndex
       if (nextCurrentIndex === payload) {
-        nextCurrentIndex = calcNextCurrentIndex(state)
+        nextCurrentIndex = calcNextTrackIndex(state)
       }
       return {
         ...state,

@@ -1,5 +1,5 @@
 
-const calcPreviousCurrentIndex = state => {
+const calcPreviousTrackIndex = state => {
   let index = state.currentTrackIndex
   do {
     if (index > 0) {
@@ -9,4 +9,4 @@ const calcPreviousCurrentIndex = state => {
   return index
 }
 
-export default calcPreviousCurrentIndex
+export default calcPreviousTrackIndex

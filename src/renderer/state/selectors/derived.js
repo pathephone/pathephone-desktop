@@ -1,7 +1,3 @@
-import { createSelector } from 'reselect'
-
-import calcNextCurrentIndex from '~utils/calcNextCurrentIndex'
-import calcPreviousCurrentIndex from '~utils/calcPreviousCurrentIndex'
 import withIpfsGateway from '~utils/withIpfsGateway'
 
 import {
@@ -12,8 +8,7 @@ import {
   getSharedFiles,
   getCurrentTrackIndex,
   getPlaylistLastTrackIndex,
-  getPlaylistTracksByIndex,
-  getPlaylistRemovedByIndex
+  getPlaylistTracksByIndex
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
@@ -39,17 +34,3 @@ export const isPlaylistEmpty = state => !getPlaylistLastTrackIndex(state)
 export const getCurrentTrack = state => {
   return getPlaylistTracksByIndex(state)[getCurrentTrackIndex(state)]
 }
-
-export const getNextTrackIndex = createSelector(
-  [
-    getCurrentTrackIndex, getPlaylistRemovedByIndex
-  ],
-  (currentTrackIndex, removedByIndex) => calcNextCurrentIndex({ currentTrackIndex, removedByIndex })
-)
-
-export const getPreviousTrackIndex = createSelector(
-  [
-    getCurrentTrackIndex, getPlaylistRemovedByIndex
-  ],
-  (currentTrackIndex, removedByIndex) => calcPreviousCurrentIndex({ currentTrackIndex, removedByIndex })
-)

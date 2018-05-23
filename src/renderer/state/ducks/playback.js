@@ -1,5 +1,4 @@
-import { uiRepeatToggled, uiShuffleToggled } from '#actions-ui'
-import { systemAudioPlayed, systemAudioPaused } from '#actions-system'
+import { uiRepeatToggled, uiShuffleToggled, uiPlaylistTrackPlayed, uiPlaybackPaused, uiPlaybackResumed, uiDiscoverSelectedPlayed, uiAlbumPlayed } from '#actions-ui'
 
 const DOMAIN = 'playback'
 
@@ -20,9 +19,12 @@ const reducer = (state = initialState, action) => {
       return { ...state, repeat: !state.repeat }
     case uiShuffleToggled.toString():
       return { ...state, shuffle: !state.shuffle }
-    case systemAudioPaused.toString():
+    case uiPlaybackPaused.toString():
       return { ...state, isPaused: true }
-    case systemAudioPlayed.toString():
+    case uiPlaybackResumed.toString():
+    case uiDiscoverSelectedPlayed.toString():
+    case uiAlbumPlayed.toString():
+    case uiPlaylistTrackPlayed.toString():
       return { ...state, isPaused: false }
     default:
       return state

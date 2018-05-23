@@ -1,5 +1,5 @@
 
-const calcNextCurrentIndex = state => {
+const calcNextTrackIndex = state => {
   let index = state.currentTrackIndex
   do {
     if (index < state.lastTrackIndex) {
@@ -8,7 +8,8 @@ const calcNextCurrentIndex = state => {
       index = null
     }
   } while (index !== null && state.removedByIndex[index] === true)
+  console.log(index)
   return index
 }
 
-export default calcNextCurrentIndex
+export default calcNextTrackIndex
