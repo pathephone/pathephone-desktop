@@ -9,6 +9,7 @@ import VolumeInputConnected from './ActivePlayer/VolumeInputConnected'
 import ControlsRightConnected from './ActivePlayer/ControlsRightConnected'
 import getBufferedAudioMap from '~utils/getBufferedAudioMap'
 import TrackTimeline from './ActivePlayer/TrackTimeline.jsx'
+import TrackInfoConnected from './ActivePlayer/TrackInfoConnected'
 
 const getInitialState = () => ({
   duration: null,
@@ -114,21 +115,29 @@ class ActivePlayer extends React.Component {
     } = this.state
     return (
       <div className='player'>
-        <ControlsLeftConnected onPlayClicked={this.handlePlayClicked} onPauseClicked={this.handlePauseClicked} />
-        {
-          isReadyToPlay ? (
-            <TrackTimeline
-              currentTime={currentTime}
-              duration={duration}
-              bufferedMap={bufferedMap}
-              onStopSeeking={this.handleStopSeeking}
-            />
-          ) : (
-            <ProgressBar />
-          )
-        }
-        <VolumeInputConnected />
-        <ControlsRightConnected />
+        <div className='player__top'>
+          <TrackInfoConnected />
+        </div>
+        <div className='player__bottom'>
+          <ControlsLeftConnected
+            onPlayClicked={this.handlePlayClicked}
+            onPauseClicked={this.handlePauseClicked}
+          />
+          {
+            isReadyToPlay ? (
+              <TrackTimeline
+                currentTime={currentTime}
+                duration={duration}
+                bufferedMap={bufferedMap}
+                onStopSeeking={this.handleStopSeeking}
+              />
+            ) : (
+              <ProgressBar />
+            )
+          }
+          <VolumeInputConnected />
+          <ControlsRightConnected />
+        </div>
       </div>
     )
   }

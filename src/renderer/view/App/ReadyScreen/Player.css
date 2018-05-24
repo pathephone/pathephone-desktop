@@ -1,15 +1,24 @@
 .player {
-    padding: 1em;
+  padding: 1em;
   grid-area: player;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
   border-top: 1px solid #d3d3d3;
 }
 
+.player__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.player__top {
+    text-align: center;
+}
+
 .player__playback-controls {
-    display: flex;
-    flex-shrink: 0;
+  display: flex;
+  flex-shrink: 0;
 }
 
 .player__playback-controls button {
@@ -53,4 +62,14 @@
     background: var(--secondary-color);
     color: white;
     border-radius: 2px;
+}
+
+.player__artist-name {
+    color: grey;
+    margin-left: 2em;
+}
+
+.player__no-playback-message {
+    color: grey;
+    margin: auto;
 }
