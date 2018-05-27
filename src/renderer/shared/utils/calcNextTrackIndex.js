@@ -8,7 +8,6 @@ const calcNextTrackIndex = state => {
       index = null
     }
   } while (index !== null && state.removedByIndex[index] === true)
-  console.log(index)
   return index
 }
 

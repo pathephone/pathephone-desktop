@@ -5,24 +5,18 @@ const normalizeId3Info = ({ title, artist, bitrate, album }) => ({
   title, artist, bitrate, album
 })
 
-const getTracksFromFiles = async ({ selectedFiles, ipfsApi }) => {
-  const audioFiles = selectedFiles.filter(checkFileIsAudio)
-  const ipfsProcess = Promise.all(
-    audioFiles.map(({ path }) => (
-      ipfsApi.util.addFromFs(path)
-    ))
-  )
-  const id3Process = Promise.all(
-    audioFiles.map(id3)
-  )
-  const [ ipfsOutput, id3Output ] = await Promise.all([ipfsProcess, id3Process])
-  const handleReduce = (acc, ipfsItem, index) => {
-    const { hash } = ipfsItem[0]
-    const metadata = normalizeId3Info(id3Output[index])
-    acc.push({ hash, ...metadata })
-    return acc
+const getTracksFromFiles = async files => {
+  const audioFiles = files.filter(checkFileIsAudio)
+  if (audioFiles.length === 0) {
+    return
   }
-  return ipfsOutput.reduce(handleReduce, [])
+  const handleMap = async file => {
+    const id3Output = await id3(file)
+    return { file, ...normalizeId3Info(id3Output) }
+  }
+  return Promise.all(
+    audioFiles.map(handleMap)
+  )
 }
 
 export default getTracksFromFiles

@@ -77,7 +77,6 @@ class ActivePlayer extends React.Component {
     // this.audio.addEventListener('onplay', this.handlePlay)
     // this.audio.addEventListener('pause', this.handlePause)
     this.audio.addEventListener('loadstart', this.handleLoadStart)
-
     this.handleProps(this.props)
   }
   componentDidUpdate () {
@@ -92,6 +91,8 @@ class ActivePlayer extends React.Component {
     // this.audio.removeEventListener('onplay', this.handlePlay)
     // this.audio.removeEventListener('pause', this.handlePause)
     this.audio.removeEventListener('loadstart', this.handleLoadStart)
+    this.audio.pause()
+    this.audio.src = ''
   }
 
   handlePlayClicked = () => {

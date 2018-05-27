@@ -3,8 +3,8 @@ import { albumInstanceSchema, albumCollectionSchema } from '~data/schemas'
 
 import { systemAppStartProceed } from '#actions-system'
 
-import { getDbApi, createDbCollection } from './startApis/rxdb'
-import { getIpfsApi, openGate } from './startApis/ipfs'
+import { getDbApi, createDbCollection } from './getApis/rxdb'
+import { getIpfsApi, openGate } from './getApis/ipfs'
 import { dagParams } from '~data/config'
 
 function * getApis () {
@@ -23,13 +23,18 @@ function * getApis () {
     const cidObj = await ipfsApi.dag.put(obj, dagParams)
     return cidObj.toBaseEncodedString()
   }
+  const shareFsFileToIpfs = async file => {
+    const output = await ipfsApi.util.addFromFs(file)
+    return output[0].hash
+  }
   return {
     dbApi,
     ipfsApi,
     albumsCollection,
     albumsGate,
     saveAlbumToCollection,
-    shareObjectToIpfs
+    shareObjectToIpfs,
+    shareFsFileToIpfs
   }
 }
 

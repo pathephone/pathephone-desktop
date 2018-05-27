@@ -1,0 +1,13 @@
+
+.customTextInput {
+  padding: 0.75em 1em;
+  outline: none;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  width: 20em;
+}
+
+.customTextInput:focus {
+  border-color: lightskyblue;
+  outline: 1px solid lightblue;
+}

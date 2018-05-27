@@ -1,6 +1,5 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import { Field } from 'redux-form'
 
 import DiskIcon from '~components/DiskIcon.jsx'
 
@@ -9,19 +8,42 @@ import withIpfsGateway from '~utils/withIpfsGateway'
 import './CoverInput.css'
 
 class CoverInput extends React.Component {
+  state = {
+    fileLink: null,
+    ipfsLink: null
+  }
+  static getDerivedStateFromProps (state, props) {
+    let fileLink = null
+    let ipfsLink = null
+    if (props.value instanceof File) {
+      fileLink = URL.createObjectURL(props.value)
+    } else
+    if (typeof props.value === 'string') {
+      ipfsLink = withIpfsGateway(props.value)
+    }
+    if (ipfsLink !== state.ipfsLink || fileLink !== state.fileLink) {
+      return { fileLink, ipfsLink }
+    }
+  }
   handleClick = () => {
     this.input.click()
   }
   handleChange = e => {
-    if (e.target.files.length > 0) {
-      const { input } = this.props
-      const { onChange } = input
-      onChange(e.target.files[0])
+    const { files } = e.target
+    if (files.length > 0) {
+      const { onChange } = this.props
+      onChange(files[0])
+    }
+  }
+  componentWillUnmount () {
+    const { fileLink } = this.state
+    if (fileLink) {
+      URL.revokeObjectURL(fileLink)
     }
   }
   render () {
-    const { input } = this.props
-    const { onChange, value, ...rest } = input
+    const { fileLink, ipfsLink } = this.state
+    const coverLink = fileLink || ipfsLink
     return (
       <button
         onClick={this.handleClick}
@@ -29,19 +51,17 @@ class CoverInput extends React.Component {
       >
         <div className='cover-input__inner izi-relative izi-y izi-center'>
           <input
-            {...rest}
             id='input_add-cover'
             className='cover-input__input'
+            name='cover'
             type='file'
             accept='image/*'
             ref={c => { this.input = c }}
             onChange={this.handleChange}
           />
           {
-            (typeof value === 'string' && value) ? (
-              <img className='izi-fill ipfs-image-container' src={withIpfsGateway(value)} />
-            ) : (value instanceof File) ? (
-              <img className='izi-fill ipfs-image-container' src={URL.createObjectURL(value)} />
+            coverLink ? (
+              <img className='izi-fill ipfs-image-container' src={coverLink} />
             ) : (
               <DiskIcon />
             )
@@ -53,7 +73,7 @@ class CoverInput extends React.Component {
 }
 
 CoverInput.propTypes = {
-  input: propTypes.object.isRequired
+  onChange: propTypes.func.isRequired
 }
 
 export default CoverInput

@@ -1,7 +1,7 @@
-import './view/css/izi.css'
-import './view/css/global.css'
-import './view/css/palette.css'
-import './view/css/animate.css'
+import './shared/css/izi.css'
+import './shared/css/global.css'
+import './shared/css/palette.css'
+import './shared/css/animate.css'
 
 import React from 'react'
 import { render } from 'react-dom'

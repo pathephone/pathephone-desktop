@@ -1,26 +1,24 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import { Field } from 'redux-form'
 
 import TrackControls from './TrackControls.jsx'
 
-const TrackInput = ({ track, ...restProps }) => {
+const TrackInput = ({ index, fileName, ...restProps }) => {
   return (
     <React.Fragment>
       <div className='izi-xs '>
         <div className='izi-ys izi-fill-width'>
-          <Field
-            name={`${track}.artist`}
+          <input
+            name={`tracks.${index}.artist`}
             placeholder='artist'
-            component='input'
-            label='Artist'
           />
-          <Field
-            name={`${track}.title`}
+          <input
+            name={`tracks.${index}.title`}
             placeholder='title'
-            component='input'
-            label='Title'
           />
+          <label>
+            {fileName}
+          </label>
         </div>
         <TrackControls
           {...restProps}
@@ -32,7 +30,8 @@ const TrackInput = ({ track, ...restProps }) => {
 }
 
 TrackInput.propTypes = {
-  track: propTypes.string.isRequired
+  index: propTypes.number.isRequired,
+  fileName: propTypes.string.isRequired
 }
 
 export default TrackInput

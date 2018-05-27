@@ -10,6 +10,7 @@ const TrackControls = (props) => {
   return (
     <div className='izi-y izi-center izi-margin-left'>
       <button
+        type='button'
         className='track-form__control-button'
         disabled={!onMoveTrackUp}
         onClick={onMoveTrackUp}
@@ -17,12 +18,14 @@ const TrackControls = (props) => {
         <MdUp />
       </button>
       <button
+        type='button'
         onClick={onDeleteTrack}
         className='track-form__control-button'
       >
         <MdClear />
       </button>
       <button
+        type='button'
         className='track-form__control-button'
         disabled={!onMoveTrackDown}
         onClick={onMoveTrackDown}

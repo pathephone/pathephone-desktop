@@ -1,59 +1,52 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import { FieldArray } from 'redux-form'
 
 import TrackInput from './TracklistFieldset/TrackInput.jsx'
 
-class TracklistRenderer extends React.Component {
+class TracklistFieldset extends React.PureComponent {
   handleMap = (track, index, tracks) => {
-    const props = {
-      track,
-      onDeleteTrack () {
-        tracks.remove(index)
-      }
-    }
-    if (index !== tracks.length - 1) {
-      props.onMoveTrackDown = () => {
-        tracks.move(index, index + 1)
-      }
-    }
-    if (index !== 0) {
-      props.onMoveTrackUp = () => {
-        tracks.move(index, index - 1)
-      }
-    }
+    const fileName = track.file ? track.file.name : track.cid
     return (
       <TrackInput
-        {...props}
+        index={index}
+        fileName={fileName}
         key={index}
       />
     )
   }
   render () {
-    const { fields } = this.props
+    const {
+      tracks,
+      isDisabled,
+      onRemoveTrack,
+      onMoveTrackDown,
+      onMoveTrackUp,
+      onFilesSelect
+    } = this.props
     return (
-      <React.Fragment>
-        <legend>{`Tracklist (${fields.length} tracks)`}</legend>
+      <fieldset disabled={isDisabled} className='izi-ys'>
+        <legend>{`Tracklist (${tracks.length} tracks)`}</legend>
         {
-          fields.map(this.handleMap)
+          tracks.map(this.handleMap)
         }
-      </React.Fragment>
+        <label>
+          add tracks
+          <input
+            type='file'
+            accept='audio/*'
+            onChange={onFilesSelect}
+            multiple
+            hidden
+          />
+        </label>
+      </fieldset>
     )
   }
 }
 
-TracklistRenderer.propTypes = {
-  fields: propTypes.object.isRequired
-}
-
-const TracklistFieldset = ({ isDisabled }) => (
-  <fieldset disabled={isDisabled} className='izi-ys'>
-    <FieldArray name='tracks' component={TracklistRenderer} />
-  </fieldset>
-)
-
 TracklistFieldset.propTypes = {
-  isDisabled: propTypes.bool.isRequired
+  isDisabled: propTypes.bool.isRequired,
+  tracks: propTypes.array.isRequired
 }
 
 export default TracklistFieldset

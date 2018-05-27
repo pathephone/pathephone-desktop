@@ -5,10 +5,10 @@ import {
   getFeedAlbums,
   getDiscoverSelectedAlbums,
   getDiscoverSearchValue,
-  getSharedFiles,
   getCurrentTrackIndex,
   getPlaylistLastTrackIndex,
-  getPlaylistTracksByIndex
+  getPlaylistTracksByIndex,
+  getShareCandidates
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
@@ -27,10 +27,12 @@ export const getSelectedFeedAlbumsCount = state => getDiscoverSelectedAlbums(sta
 export const isFeedAlbumsSelected = state => getDiscoverSelectedAlbums(state).length !== 0
 export const isFeedSearchPerformed = state => !!getDiscoverSearchValue(state).searchValue
 
-export const isSharingInProcess = state => !!getSharedFiles(state)
+export const isShareCandidatesRecieved = state => !!getShareCandidates(state)
 
 export const isPlaylistEmpty = state => !getPlaylistLastTrackIndex(state)
 
 export const getCurrentTrack = state => {
   return getPlaylistTracksByIndex(state)[getCurrentTrackIndex(state)]
 }
+
+export const getShareFormValue = state => getShareCandidates(state)[0]
