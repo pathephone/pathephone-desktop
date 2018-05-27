@@ -2,7 +2,8 @@ import { call, all, put } from 'redux-saga/effects'
 import { systemShareCandidatesSaveSucceed } from '#actions-system'
 
 function * handleShareCandidate (
-  { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumToCollection }, { payload }
+  { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumToCollection },
+  { payload }
 ) {
   try {
     const cover = yield call(shareFsFileToIpfs, payload.cover.path)

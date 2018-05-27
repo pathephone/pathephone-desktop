@@ -40,19 +40,45 @@ class ShareForm extends React.Component {
     const nextValues = dotProp.delete(values, `tracks.${index}`)
     this.props.onChange(nextValues)
   }
-  render () {
+  handleMoveTrack = (index, isUp) => {
     const { values } = this.props
+    const track1Path = `tracks.${index}`
+    const track2Path = `tracks.${isUp ? index - 1 : index + 1}`
+    const track1 = dotProp.get(values, track1Path)
+    const track2 = dotProp.get(values, track2Path)
+    const proxyValues = dotProp.set(values, track1Path, track2)
+    const nextValues = dotProp.set(proxyValues, track2Path, track1)
+    this.props.onChange(nextValues)
+  }
+  handleMoveTrackDown = index => {
+    this.handleMoveTrack(index, false)
+  }
+  handleMoveTrackUp = index => {
+    this.handleMoveTrack(index, true)
+  }
+  handleSubmit = () => {
+    this.props.onSubmit(this.props.values)
+  }
+  render () {
+    const { values, onCancel } = this.props
     return (
-      <IziForm className='shareForm' values={values} onChange={this.handleChange}>
+      <IziForm
+        className='shareForm'
+        values={values}
+        onChange={this.handleChange}
+      >
         <AboutFieldset cover={values.cover} />
         <TracklistFieldset
           tracks={values.tracks}
           onFilesSelect={this.handleAddTracks}
           onMoveTrackUp={this.handleMoveTrackUp}
           onMoveTrackDown={this.handleMoveTrackDown}
-          onRemoveTrack
+          onRemoveTrack={this.handleRemoveTrack}
         />
-        <FormControls {...this.props} />
+        <FormControls
+          onCancelClick={onCancel}
+          onSubmitClick={this.handleSubmit}
+        />
       </IziForm>
     )
   }
@@ -60,6 +86,7 @@ class ShareForm extends React.Component {
 
 ShareForm.propTypes = {
   onSubmit: propTypes.func.isRequired,
+  onCancel: propTypes.func.isRequired,
   onChange: propTypes.func.isRequired,
   values: propTypes.object
 }

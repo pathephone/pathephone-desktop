@@ -1,11 +1,13 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-const FormControls = ({ isDisabled, onCancel }) => (
+const FormControls = ({ isDisabled, onCancelClick, onSubmitClick }) => (
   <div className='shareFormControls'>
     <button
+      type='button'
       className='shareFormSubmit'
       disabled={isDisabled}
+      onClick={onSubmitClick}
     >
       save
     </button>
@@ -13,7 +15,7 @@ const FormControls = ({ isDisabled, onCancel }) => (
       type='button'
       className='shareFormCancel'
       disabled={isDisabled}
-      onClick={onCancel}
+      onClick={onCancelClick}
     >
       cancel
     </button>
@@ -22,7 +24,8 @@ const FormControls = ({ isDisabled, onCancel }) => (
 
 FormControls.propTypes = {
   isDisabled: propTypes.bool.isRequired,
-  onCancel: propTypes.func.isRequired
+  onCancelClick: propTypes.func.isRequired,
+  onSubmitClick: propTypes.func.isRequired
 }
 
 export default FormControls

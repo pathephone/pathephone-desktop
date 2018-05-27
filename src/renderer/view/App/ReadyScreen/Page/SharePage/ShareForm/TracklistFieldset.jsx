@@ -5,11 +5,22 @@ import TrackInput from './TracklistFieldset/TrackInput.jsx'
 
 class TracklistFieldset extends React.PureComponent {
   handleMap = (track, index, tracks) => {
+    const {
+      onRemoveTrack,
+      onMoveTrackDown,
+      onMoveTrackUp
+    } = this.props
+
     const fileName = track.file ? track.file.name : track.cid
     return (
       <TrackInput
         index={index}
         fileName={fileName}
+        onRemoveTrack={onRemoveTrack}
+        onMoveTrackDown={onMoveTrackDown}
+        onMoveTrackUp={onMoveTrackUp}
+        isMoveUpDisabled={index === 0}
+        isMoveDownDisabled={index === tracks.length - 1}
         key={index}
       />
     )
@@ -18,9 +29,6 @@ class TracklistFieldset extends React.PureComponent {
     const {
       tracks,
       isDisabled,
-      onRemoveTrack,
-      onMoveTrackDown,
-      onMoveTrackUp,
       onFilesSelect
     } = this.props
     return (
@@ -46,7 +54,11 @@ class TracklistFieldset extends React.PureComponent {
 
 TracklistFieldset.propTypes = {
   isDisabled: propTypes.bool.isRequired,
-  tracks: propTypes.array.isRequired
+  tracks: propTypes.array.isRequired,
+  onFilesSelect: propTypes.func.isRequired,
+  onMoveTrackDown: propTypes.func.isRequired,
+  onMoveTrackUp: propTypes.func.isRequired,
+  onRemoveTrack: propTypes.func.isRequired
 }
 
 export default TracklistFieldset
