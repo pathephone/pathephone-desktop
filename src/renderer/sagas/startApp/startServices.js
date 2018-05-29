@@ -11,6 +11,7 @@ import startAlbumsDeletingService from './startServices/startAlbumsDeletingServi
 // import startAudioService from './startServices/startAudioService'
 import startDiscoverFeedService from './startServices/startDiscoverFeedService'
 import startTracksCache from './startServices/startTracksCache'
+import startPlaybackService from './startServices/startPlaybackService'
 
 function * startServices (args) {
   yield put(systemAppStartProceed(66))
@@ -21,7 +22,8 @@ function * startServices (args) {
     spawn(startAlbumsDeletingService, args),
     // spawn(startAudioService, args),
     spawn(startDiscoverFeedService, args),
-    spawn(startTracksCache, args)
+    spawn(startTracksCache, args),
+    spawn(startPlaybackService, args)
   ])
   yield put(systemAppStartProceed(100))
   yield call(asyncTimeout, 100)

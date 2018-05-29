@@ -8,7 +8,8 @@ import {
   getCurrentTrackIndex,
   getPlaylistLastTrackIndex,
   getPlaylistTracksByIndex,
-  getShareCandidates
+  getShareCandidates,
+  isRepeatTurnedOn
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
@@ -36,3 +37,9 @@ export const getCurrentTrack = state => {
 }
 
 export const getShareFormValue = state => getShareCandidates(state)[0]
+
+export const shouldPlaylistBeRepeated = state => {
+  const currentTrack = getCurrentTrack(state)
+  const isRepeat = isRepeatTurnedOn(state)
+  return !currentTrack && isRepeat
+}

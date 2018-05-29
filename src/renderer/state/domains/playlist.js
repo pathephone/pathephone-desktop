@@ -3,7 +3,8 @@ import {
   systemPlayedTracksRecieved,
   systemQueuedTracksRecieved,
   systemAudioEnded,
-  systemTrackCached
+  systemTrackCached,
+  systemRepeatedPlaylistEnded
 } from '#actions-system'
 
 import {
@@ -70,6 +71,19 @@ const reducer = (state = initialState, action) => {
         currentTrackIndex: newCurrentIndex
       }
     }
+    case systemRepeatedPlaylistEnded.toString():
+      const proxyState = {
+        ...state,
+        currentTrackIndex: 0
+      }
+      if (!state.removedByIndex['0']) {
+        return proxyState
+      }
+      const newCurrentIndex = calcNextTrackIndex(proxyState)
+      return {
+        ...state,
+        currentTrackIndex: newCurrentIndex
+      }
     case uiPreviousTrackPlayed.toString(): {
       const newCurrentIndex = calcPreviousTrackIndex(state)
       return {

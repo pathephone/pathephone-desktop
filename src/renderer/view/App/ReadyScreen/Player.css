@@ -58,9 +58,12 @@
     margin-left: 0.5em;
 }
 
+.player__toggle,
 .player__toggle--active {
-    background: var(--secondary-color);
-    color: white;
+  padding: 0.15em 0.5em;
+}
+.player__toggle--active {
+    color: var(--secondary-color);
     border-radius: 2px;
 }
 
