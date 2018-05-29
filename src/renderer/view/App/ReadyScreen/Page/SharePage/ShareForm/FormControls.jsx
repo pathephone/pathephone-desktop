@@ -1,25 +1,32 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import MdSave from 'react-icons/lib/md/save'
+import MdCancel from 'react-icons/lib/md/cancel'
+
+import CustomButton from '~components/CustomButton.jsx'
+
 const FormControls = ({ isDisabled, onCancelClick, onSubmitClick }) => (
-  <div className='shareFormControls'>
-    <button
+  <React.Fragment>
+    <CustomButton
       type='button'
       className='shareFormSubmit'
       disabled={isDisabled}
       onClick={onSubmitClick}
     >
-      save
-    </button>
-    <button
+      <span>
+        <MdSave /> <small>save</small>
+      </span>
+    </CustomButton>
+    <CustomButton
       type='button'
       className='shareFormCancel'
       disabled={isDisabled}
       onClick={onCancelClick}
     >
-      cancel
-    </button>
-  </div>
+      <MdCancel /> <small>cancel</small>
+    </CustomButton>
+  </React.Fragment>
 )
 
 FormControls.propTypes = {

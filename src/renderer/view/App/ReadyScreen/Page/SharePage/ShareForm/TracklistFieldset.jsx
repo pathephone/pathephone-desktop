@@ -3,6 +3,8 @@ import propTypes from 'prop-types'
 
 import TrackInput from './TracklistFieldset/TrackInput.jsx'
 
+import './TracklistFieldset.css'
+
 class TracklistFieldset extends React.PureComponent {
   handleMap = (track, index, tracks) => {
     const {
@@ -11,11 +13,13 @@ class TracklistFieldset extends React.PureComponent {
       onMoveTrackUp
     } = this.props
 
-    const fileName = track.file ? track.file.name : track.cid
+    const fileName = track.file && track.file.name
+    const cid = track.cid
     return (
       <TrackInput
         index={index}
         fileName={fileName}
+        cid={cid}
         onRemoveTrack={onRemoveTrack}
         onMoveTrackDown={onMoveTrackDown}
         onMoveTrackUp={onMoveTrackUp}
@@ -32,12 +36,12 @@ class TracklistFieldset extends React.PureComponent {
       onFilesSelect
     } = this.props
     return (
-      <fieldset disabled={isDisabled} className='izi-ys'>
+      <fieldset disabled={isDisabled} className='fieldset tracklistFieldset'>
         <legend>{`Tracklist (${tracks.length} tracks)`}</legend>
         {
           tracks.map(this.handleMap)
         }
-        <label>
+        <label role='button' className='addTracksButton'>
           add tracks
           <input
             type='file'

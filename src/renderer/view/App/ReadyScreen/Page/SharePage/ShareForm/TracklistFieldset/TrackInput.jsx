@@ -1,7 +1,14 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import TrackControls from './TrackControls.jsx'
+import MdDec from 'react-icons/lib/md/blur-on'
+import MdFile from 'react-icons/lib/md/insert-drive-file'
+
+import TrackControlsLeft from './TrackControlsLeft.jsx'
+import TrackControlsRight from './TrackControlsRight.jsx'
+import CustomTextInput from '~components/CustomTextInput.jsx'
+
+import './TrackInput.css'
 
 class TrackInput extends React.PureComponent {
   handleRemove = () => {
@@ -20,35 +27,56 @@ class TrackInput extends React.PureComponent {
     const {
       index,
       fileName,
+      cid,
       isMoveUpDisabled,
       isMoveDownDisabled
     } = this.props
     return (
-      <React.Fragment>
-        <div className='izi-xs '>
-          <div className='izi-ys izi-fill-width'>
-            <input
-              name={`tracks.${index}.artist`}
-              placeholder='artist'
-            />
-            <input
-              name={`tracks.${index}.title`}
-              placeholder='title'
-            />
-            <label>
-              {fileName}
-            </label>
-          </div>
-          <TrackControls
-            onRemoveClick={this.handleRemove}
+      <div className='trackInput izi-xs'>
+        <div className='trackInputControlsLeft'>
+          <TrackControlsLeft
             onMoveUpClick={this.handleMoveUp}
             onMoveDownClick={this.handleMoveDown}
             isMoveDownDisabled={isMoveDownDisabled}
             isMoveUpDisabled={isMoveUpDisabled}
           />
         </div>
-        <hr key='separator' />
-      </React.Fragment>
+        <div className='trackInputBody'>
+          <div className='trackInputSplit'>
+            <label>
+              Artist<br />
+              <CustomTextInput
+                name={`tracks.${index}.artist`}
+                placeholder='artist'
+              />
+            </label>
+            <label>
+              Title<br />
+              <CustomTextInput
+                name={`tracks.${index}.title`}
+                placeholder='title'
+              />
+            </label>
+          </div>
+          <br />
+          {
+            fileName ? (
+              <span>
+                <MdFile /> <span>{fileName}</span>
+              </span>
+            ) : (
+              <span>
+                <MdDec /> {cid}
+              </span>
+            )
+          }
+        </div>
+        <div className='trackInputControlsRight'>
+          <TrackControlsRight
+            onRemoveClick={this.handleRemove}
+          />
+        </div>
+      </div>
     )
   }
 }
@@ -56,6 +84,7 @@ class TrackInput extends React.PureComponent {
 TrackInput.propTypes = {
   index: propTypes.number.isRequired,
   fileName: propTypes.string.isRequired,
+  cid: propTypes.string.isRequired,
   onRemoveTrack: propTypes.func.isRequired,
   onMoveTrackUp: propTypes.func.isRequired,
   onMoveTrackDown: propTypes.func.isRequired,

@@ -1,0 +1,18 @@
+.addTracksButton {
+  display: block;
+  padding: 1em;
+  width: 100%;
+  background-color: antiquewhite;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.addTracksButton:hover {
+  filter: saturate(50%);        
+}
+
+.tracklistFieldset {
+  max-width: 45em;
+  margin: 0 auto;
+}

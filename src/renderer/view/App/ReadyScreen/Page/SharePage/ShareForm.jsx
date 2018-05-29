@@ -67,18 +67,22 @@ class ShareForm extends React.Component {
         values={values}
         onChange={this.handleChange}
       >
-        <AboutFieldset cover={values.cover} />
-        <TracklistFieldset
-          tracks={values.tracks}
-          onFilesSelect={this.handleAddTracks}
-          onMoveTrackUp={this.handleMoveTrackUp}
-          onMoveTrackDown={this.handleMoveTrackDown}
-          onRemoveTrack={this.handleRemoveTrack}
-        />
-        <FormControls
-          onCancelClick={onCancel}
-          onSubmitClick={this.handleSubmit}
-        />
+        <div className='shareFormBody'>
+          <AboutFieldset cover={values.cover} />
+          <TracklistFieldset
+            tracks={values.tracks}
+            onFilesSelect={this.handleAddTracks}
+            onMoveTrackUp={this.handleMoveTrackUp}
+            onMoveTrackDown={this.handleMoveTrackDown}
+            onRemoveTrack={this.handleRemoveTrack}
+          />
+        </div>
+        <div className='shareFormControls'>
+          <FormControls
+            onCancelClick={onCancel}
+            onSubmitClick={this.handleSubmit}
+          />
+        </div>
       </IziForm>
     )
   }

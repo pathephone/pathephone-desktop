@@ -6,6 +6,8 @@ import MdAdd from 'react-icons/lib/md/playlist-add'
 import MdDelete from 'react-icons/lib/md/delete'
 import MdClear from 'react-icons/lib/md/clear'
 
+import CustomButton from '~components/CustomButton.jsx'
+
 import './SelectedActions.css'
 
 class SelectedActions extends React.PureComponent {
@@ -26,33 +28,31 @@ class SelectedActions extends React.PureComponent {
             `${selectedAlbumsCount} album${selectedAlbumsCount > 1 ? 's' : ''} selected`
           }
         </label>
-        <button
-          className='selected-actions__play square-button'
+        <CustomButton
           onClick={onPlaySelected}
         >
           <MdPlay />
           <small>play</small>
-        </button>
-        <button
-          className='selected-actions__add square-button'
+        </CustomButton>
+        <CustomButton
           onClick={onAddSelected}
         >
           <MdAdd />
           <small>add to playlist</small>
-        </button>
-        <button
-          className='selected-actions__delete square-button'
+        </CustomButton>
+        <CustomButton
           onClick={onDeleteSelected}
         >
           <MdDelete />
           <small>delete</small>
-        </button>
-        <button
-          className='selected-actions__cancel square-button'
-          onClick={onCancelSelection}
-        >
-          <MdClear />
-        </button>
+        </CustomButton>
+        <div className='rightActions'>
+          <CustomButton
+            onClick={onCancelSelection}
+          >
+            <MdClear />
+          </CustomButton>
+        </div>
       </div>
     )
   }

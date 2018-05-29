@@ -1,20 +1,19 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import MdClear from 'react-icons/lib/md/clear'
 import MdDown from 'react-icons/lib/md/keyboard-arrow-down'
 import MdUp from 'react-icons/lib/md/keyboard-arrow-up'
 
 const TrackControls = (props) => {
   const {
-    onRemoveClick, onMoveUpClick, onMoveDownClick,
+    onMoveUpClick, onMoveDownClick,
     isMoveUpDisabled, isMoveDownDisabled
   } = props
   return (
-    <div className='izi-y izi-center izi-margin-left'>
+    <React.Fragment>
       <button
         type='button'
-        className='track-form__control-button'
+        className='trackInputControlButton'
         disabled={isMoveUpDisabled}
         onClick={onMoveUpClick}
       >
@@ -22,25 +21,17 @@ const TrackControls = (props) => {
       </button>
       <button
         type='button'
-        onClick={onRemoveClick}
-        className='track-form__control-button'
-      >
-        <MdClear />
-      </button>
-      <button
-        type='button'
-        className='track-form__control-button'
+        className='trackInputControlButton'
         disabled={isMoveDownDisabled}
         onClick={onMoveDownClick}
       >
         <MdDown />
       </button>
-    </div>
+    </React.Fragment>
   )
 }
 
 TrackControls.propTypes = {
-  onRemoveClick: propTypes.func.isRequired,
   onMoveUpClick: propTypes.func.isRequired,
   onMoveDownClick: propTypes.func.isRequired,
   isMoveDownDisabled: propTypes.bool,

@@ -1,5 +1,20 @@
 .shareForm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.shareFormBody {
   padding: 1em;
-  max-width: 40em;
-  margin: 0 auto;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.shareFormControls {
+  border-top: 1px solid lightgrey;
+  padding: 0.5em;
+}
+
+.shareFormControls > * {
+  margin: 0.5em;
 }

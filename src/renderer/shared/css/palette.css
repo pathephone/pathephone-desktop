@@ -20,8 +20,11 @@ $color5: rgba(166, 51, 162, 1);
 
 :root {
   --accent-color-dark: #b32241;
+  --on-accent-color-dark: white;
   --accent-color: rgb(239,45,86);
+  --on-accent-color: white;
   --accent-color-light: #f26280;
+  --on-accent-color-light: black;
   --primary-color-dark: #1e2530;
   --primary-color: rgb(40,48,63);
   --primary-color-light: #4f5561;

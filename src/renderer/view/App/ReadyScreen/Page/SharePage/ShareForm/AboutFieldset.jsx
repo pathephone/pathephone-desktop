@@ -2,9 +2,11 @@ import React from 'react'
 import propTypes from 'prop-types'
 
 import CoverPreview from '~components/CoverPreview.jsx'
+import CustomTextInput from '~components/CustomTextInput.jsx'
+
+import withIpfsGateway from '~utils/withIpfsGateway'
 
 import './AboutFieldset.css'
-import withIpfsGateway from '~utils/withIpfsGateway'
 
 class AboutFieldset extends React.PureComponent {
   state = {
@@ -30,27 +32,26 @@ class AboutFieldset extends React.PureComponent {
   render () {
     const { isDisabled } = this.props
     return (
-      <fieldset disabled={isDisabled}>
-        <legend>About album</legend>
+      <fieldset isDisabled={isDisabled} className='fieldset shareFormAbout'>
         <div className='izi-xu'>
           <div className='izi-ys izi-fill-width izi-margin-top'>
             <label>Title</label>
-            <input
+            <CustomTextInput
               type='text'
               placeholder='Album title'
               name='title'
             />
             <br />
             <label>Artist</label>
-            <input
+            <CustomTextInput
               type='text'
-              placeholder='Album title'
+              placeholder='Album artist'
               name='artist'
             />
           </div>
           <label className='coverLabel'>
             <CoverPreview coverSrc={this.state.fileCoverSrc || this.state.ipfsCoverSrc} />
-            <input
+            <CustomTextInput
               hidden
               name='cover'
               type='file'
