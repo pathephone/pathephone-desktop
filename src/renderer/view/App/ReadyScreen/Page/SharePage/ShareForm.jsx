@@ -60,7 +60,7 @@ class ShareForm extends React.Component {
     this.props.onSubmit(this.props.values)
   }
   render () {
-    const { values, onCancel } = this.props
+    const { values, onCancel, isDisabled } = this.props
     return (
       <IziForm
         className='shareForm'
@@ -68,9 +68,13 @@ class ShareForm extends React.Component {
         onChange={this.handleChange}
       >
         <div className='shareFormBody'>
-          <AboutFieldset cover={values.cover} />
+          <AboutFieldset
+            cover={values.cover}
+            isDisabled={isDisabled}
+          />
           <TracklistFieldset
             tracks={values.tracks}
+            isDisabled={isDisabled}
             onFilesSelect={this.handleAddTracks}
             onMoveTrackUp={this.handleMoveTrackUp}
             onMoveTrackDown={this.handleMoveTrackDown}
@@ -79,6 +83,7 @@ class ShareForm extends React.Component {
         </div>
         <div className='shareFormControls'>
           <FormControls
+            isDisabled={isDisabled}
             onCancelClick={onCancel}
             onSubmitClick={this.handleSubmit}
           />
@@ -92,7 +97,8 @@ ShareForm.propTypes = {
   onSubmit: propTypes.func.isRequired,
   onCancel: propTypes.func.isRequired,
   onChange: propTypes.func.isRequired,
-  values: propTypes.object
+  values: propTypes.object,
+  isDisabled: propTypes.bool.isRequired
 }
 
 export default ShareForm

@@ -32,7 +32,7 @@ class AboutFieldset extends React.PureComponent {
   render () {
     const { isDisabled } = this.props
     return (
-      <fieldset isDisabled={isDisabled} className='fieldset shareFormAbout'>
+      <fieldset disabled={isDisabled} className='fieldset shareFormAbout'>
         <div className='izi-xu'>
           <div className='izi-ys izi-fill-width izi-margin-top'>
             <label>Title</label>

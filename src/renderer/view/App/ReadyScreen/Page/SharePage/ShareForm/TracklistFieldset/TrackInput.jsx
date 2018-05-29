@@ -83,8 +83,8 @@ class TrackInput extends React.PureComponent {
 
 TrackInput.propTypes = {
   index: propTypes.number.isRequired,
-  fileName: propTypes.string.isRequired,
-  cid: propTypes.string.isRequired,
+  fileName: propTypes.string,
+  cid: propTypes.string,
   onRemoveTrack: propTypes.func.isRequired,
   onMoveTrackUp: propTypes.func.isRequired,
   onMoveTrackDown: propTypes.func.isRequired,
