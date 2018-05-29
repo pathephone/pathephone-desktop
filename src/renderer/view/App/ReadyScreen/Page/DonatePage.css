@@ -1,7 +1,19 @@
 
 .donate-pill {
-  border: 1px solid #f2f2f2;
+  display: flex;
 }
-.donate-pill > * {
+.donate-pill__coin {
   padding: 0.5em;
+  background-color: lightskyblue;
+  text-transform: capitalize;
+}
+.donate-pill__address {
+  padding: 0.5em;
+  background-color: bisque;
+  margin-left: auto;
+}
+
+.donateGif {
+  width: 100%;
+  height: auto;
 }

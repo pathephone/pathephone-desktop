@@ -1,13 +1,13 @@
 import React from 'react'
-import suatmm from '~/css/suatmm.gif'
+import suatmm from './DonatePage/suatmm.gif'
 
-import DonatePill from './DonatePage/DonatePill'
+import DonatePill from './DonatePage/DonatePill.jsx'
 
 import './DonatePage.css'
 
 const DonatePage = () => (
   <div className='izi-ys'>
-    <img src={suatmm} />
+    <img className='donateGif' src={suatmm} />
     <div className='izi--gap'>
       <DonatePill coin='bitcoin' address='1F67ofBSixvPt9A5kcGKSnk4ZGYXpUSwmk' />
       <DonatePill coin='ethereum' address='0x7571FfD6D59A275FEda3a7AA5e6503Fa22E91CF8' />

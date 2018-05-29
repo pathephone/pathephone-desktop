@@ -5,6 +5,7 @@ import { ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE, ROUTE_HOME } from '~data/c
 
 import DiscoverPageConnected from './Page/DiscoverPageConnected'
 import SharePage from './Page/SharePageConnected'
+import DonatePage from './Page/DonatePage.jsx'
 
 import './Page.css'
 
@@ -26,7 +27,7 @@ const Page = () => (
       />
       <Route
         path={ROUTE_DONATE}
-        component={SharePage}
+        component={DonatePage}
       />
     </Switch>
   </div>
