@@ -17,7 +17,7 @@ class PlaylistTrackContainer extends React.Component {
 
 PlaylistTrackContainer.propTypes = {
   isRemoved: propTypes.bool.isRequired,
-  index: propTypes.number.isRequired
+  index: propTypes.string.isRequired
 }
 
 export default PlaylistTrackContainer

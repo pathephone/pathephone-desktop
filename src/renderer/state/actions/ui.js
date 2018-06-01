@@ -15,6 +15,7 @@ export const uiShuffleToggled = c('SHUFFLE_TOGGLED')
 
 export const uiPlaybackPaused = c('PLAYBACK_PAUSED')
 export const uiPlaybackResumed = c('PLAYBACK_RESUMED')
+export const uiPlaybackToggled = c('PLAYBACK_TOGGLED')
 
 export const uiNextTrackPlayed = c('NEXT_TRACK_PLAYED')
 export const uiPreviousTrackPlayed = c('PREVIOUS_TRACK_PLAYED')

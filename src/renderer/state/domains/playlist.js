@@ -3,8 +3,7 @@ import {
   systemPlayedTracksRecieved,
   systemQueuedTracksRecieved,
   systemAudioEnded,
-  systemTrackCached,
-  systemRepeatedPlaylistEnded
+  systemTrackCached
 } from '#actions-system'
 
 import {
@@ -12,11 +11,14 @@ import {
   uiPlaylistCleared,
   uiPlaylistTrackPlayed,
   uiNextTrackPlayed,
-  uiPreviousTrackPlayed
+  uiPreviousTrackPlayed,
+  uiRepeatToggled,
+  uiShuffleToggled
 } from '#actions-ui'
 
 import calcNextTrackIndex from '~utils/calcNextTrackIndex'
 import calcPreviousTrackIndex from '~utils/calcPreviousTrackIndex'
+import getRandomBoolean from '~utils/getRandomBoolean'
 
 const DOMAIN = 'playlist'
 
@@ -24,43 +26,58 @@ const initialState = {
   tracksByIndex: {},
   cachedByCid: {},
   removedByIndex: {},
-  lastTrackIndex: null,
-  currentTrackIndex: null
+  currentTrackIndex: null,
+  shuffleOrder: null,
+  isRepeat: false
 }
 
 export const getPlaylistTracksByIndex = state => state[DOMAIN].tracksByIndex
 export const getPlaylistCachedByCid = state => state[DOMAIN].cachedByCid
 export const getPlaylistRemovedByIndex = state => state[DOMAIN].removedByIndex
 export const getCurrentTrackIndex = state => state[DOMAIN].currentTrackIndex
-export const getPlaylistLastTrackIndex = state => state[DOMAIN].lastTrackIndex
+export const isShuffleTurnedOn = state => !!state[DOMAIN].shuffleOrder
+export const isRepeatTurnedOn = state => state[DOMAIN].isRepeat
+
+const toTracksByIndex = (tracks, startIndex) => {
+  let lastTrackIndex = startIndex || -1
+  return tracks.reduce((acc, { cid, title, artist }) => {
+    const index = ++lastTrackIndex
+    acc[index] = {
+      cid, title, artist
+    }
+    return acc
+  }, {})
+}
+
+const toShuffleOrder = (tracksByIndex) => {
+  const shuffleOrder = Object.keys(tracksByIndex)
+  shuffleOrder.sort(() => {
+    if (getRandomBoolean()) {
+      return 1
+    }
+    return 0
+  })
+  return shuffleOrder
+}
 
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case systemPlayedTracksRecieved.toString(): {
-      const tracksByIndex = payload.reduce((acc, { cid, title, artist }, index) => {
-        acc[index] = { cid, title, artist, index }
-        return acc
-      }, {})
+      const tracksByIndex = toTracksByIndex(payload)
       return {
         ...initialState,
         tracksByIndex,
-        lastTrackIndex: payload.length - 1,
-        currentTrackIndex: 0
+        currentTrackIndex: '0',
+        isRepeat: state.isRepeat
       }
     }
     case systemQueuedTracksRecieved.toString(): {
-      let { lastTrackIndex } = state
-      if (!lastTrackIndex) lastTrackIndex = -1
-      const tracksByIndex = payload.reduce((acc, { cid, title, artist }) => {
-        const index = ++lastTrackIndex
-        acc[index] = { cid, title, artist, index }
-        return acc
-      }, {})
+      const newTracksByIndex = toTracksByIndex(payload, state.lastTrackIndex)
+      const tracksByIndex = { ...state.tracksByIndex, ...newTracksByIndex }
       return {
         ...state,
-        tracksByIndex: { ...state.tracksByIndex, ...tracksByIndex },
-        lastTrackIndex
+        tracksByIndex
       }
     }
     case uiNextTrackPlayed.toString():
@@ -71,19 +88,6 @@ const reducer = (state = initialState, action) => {
         currentTrackIndex: newCurrentIndex
       }
     }
-    case systemRepeatedPlaylistEnded.toString():
-      const proxyState = {
-        ...state,
-        currentTrackIndex: 0
-      }
-      if (!state.removedByIndex['0']) {
-        return proxyState
-      }
-      const newCurrentIndex = calcNextTrackIndex(proxyState)
-      return {
-        ...state,
-        currentTrackIndex: newCurrentIndex
-      }
     case uiPreviousTrackPlayed.toString(): {
       const newCurrentIndex = calcPreviousTrackIndex(state)
       return {
@@ -92,24 +96,29 @@ const reducer = (state = initialState, action) => {
       }
     }
     case uiPlaylistTrackRemoved.toString(): {
-      let nextCurrentIndex = state.currentTrackIndex
-      if (nextCurrentIndex === payload) {
-        nextCurrentIndex = calcNextTrackIndex(state)
-      }
       return {
         ...state,
-        currentTrackIndex: nextCurrentIndex,
         removedByIndex: {
           ...state.removedByIndex,
           [payload]: true
         }
       }
     }
-    case uiPlaylistTrackPlayed.toString():
+    case uiPlaylistTrackPlayed.toString(): {
+      let shuffleOrder = null
+      if (state.shuffleOrder) {
+        shuffleOrder = toShuffleOrder(state.tracksByIndex)
+        shuffleOrder.sort(a => {
+          if (a === payload) return -1
+          return 1
+        })
+      }
       return {
         ...state,
-        currentTrackIndex: payload
+        currentTrackIndex: payload,
+        shuffleOrder
       }
+    }
     case systemTrackCached.toString():
       return {
         ...state,
@@ -119,7 +128,27 @@ const reducer = (state = initialState, action) => {
         }
       }
     case uiPlaylistCleared.toString():
-      return { ...initialState }
+      return {
+        ...initialState,
+        isRepeat: state.isRepeat,
+        isShuffle: state.isShuffle
+      }
+    case uiRepeatToggled.toString():
+      return {
+        ...state,
+        isRepeat: !state.isRepeat
+      }
+    case uiShuffleToggled.toString():
+      if (state.shuffleOrder) {
+        return { ...state, shuffleOrder: null }
+      } else {
+        const shuffleOrder = toShuffleOrder(state.tracksByIndex)
+        return {
+          ...state,
+          shuffleOrder,
+          currentTrackIndex: shuffleOrder[0]
+        }
+      }
     default:
       return state
   }

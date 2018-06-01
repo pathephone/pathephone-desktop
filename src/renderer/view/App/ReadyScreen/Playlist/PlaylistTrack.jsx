@@ -57,7 +57,7 @@ class PlaylistTrack extends React.Component {
 PlaylistTrack.propTypes = {
   title: propTypes.string.isRequired,
   artist: propTypes.string.isRequired,
-  order: propTypes.number.isRequired,
+  order: propTypes.string.isRequired,
   onRemoveClick: propTypes.func.isRequired,
   onPlayClick: propTypes.func.isRequired,
   isCurrent: propTypes.bool.isRequired,

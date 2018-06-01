@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect'
 import withIpfsGateway from '~utils/withIpfsGateway'
 
 import {
@@ -6,13 +7,18 @@ import {
   getDiscoverSelectedAlbums,
   getDiscoverSearchValue,
   getCurrentTrackIndex,
-  getPlaylistLastTrackIndex,
   getPlaylistTracksByIndex,
-  getShareCandidates,
-  isRepeatTurnedOn
+  getShareCandidates
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
+
+export const getCurrentTrack = state => {
+  const index = getCurrentTrackIndex(state)
+  if (index !== null) {
+    return getPlaylistTracksByIndex(state)[index]
+  }
+}
 
 export const getCurrentTrackSource = state => {
   const track = getCurrentTrack(state)
@@ -30,16 +36,15 @@ export const isFeedSearchPerformed = state => !!getDiscoverSearchValue(state).se
 
 export const isShareCandidatesRecieved = state => !!getShareCandidates(state)
 
-export const isPlaylistEmpty = state => !getPlaylistLastTrackIndex(state)
+export const getPlaylistTracksIndexes = createSelector(
+  getPlaylistTracksByIndex,
+  (tracks) => {
+    return Object.keys(tracks)
+  }
+)
 
-export const getCurrentTrack = state => {
-  return getPlaylistTracksByIndex(state)[getCurrentTrackIndex(state)]
-}
+export const getPlaylistTracksCount = state => getPlaylistTracksIndexes(state).length
+
+export const isPlaylistEmpty = state => getPlaylistTracksCount(state) === 0
 
 export const getShareFormValue = state => getShareCandidates(state)[0]
-
-export const shouldPlaylistBeRepeated = state => {
-  const currentTrack = getCurrentTrack(state)
-  const isRepeat = isRepeatTurnedOn(state)
-  return !currentTrack && isRepeat
-}

@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import Tracklist from './Tracklist.jsx'
 
 import {
-  getPlaylistLastTrackIndex
+  getPlaylistTracksIndexes
 } from '#selectors'
 
 const mapStateToProps = (state) => {
   return {
-    lastTrackIndex: getPlaylistLastTrackIndex(state)
+    tracksIndexes: getPlaylistTracksIndexes(state)
   }
 }
 

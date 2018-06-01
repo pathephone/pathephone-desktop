@@ -2,10 +2,10 @@ import React from 'react'
 import propTypes from 'prop-types'
 import PlaylistTrackContainerConnected from './PlaylistTrackContainerConnected'
 
-const Tracklist = ({ lastTrackIndex }) => (
+const Tracklist = ({ tracksIndexes }) => (
   <div>
     {
-      [...Array(lastTrackIndex).keys(), lastTrackIndex].map((index) => (
+      tracksIndexes.map((index) => (
         <PlaylistTrackContainerConnected index={index} key={index} />
       ))
     }
@@ -13,7 +13,7 @@ const Tracklist = ({ lastTrackIndex }) => (
 )
 
 Tracklist.propTypes = {
-  lastTrackIndex: propTypes.number.isRequired
+  tracksIndexes: propTypes.array.isRequired
 }
 
 export default Tracklist
