@@ -1,7 +1,7 @@
 import { call, all, put } from 'redux-saga/effects'
 import { systemShareCandidatesSaveSucceed } from '#actions-system'
 
-function * handleShareCandidate (
+function * handleShareFormSubmit (
   { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumToCollection },
   { payload }
 ) {
@@ -36,4 +36,4 @@ function * handleShareCandidate (
   }
 }
 
-export default handleShareCandidate
+export default handleShareFormSubmit

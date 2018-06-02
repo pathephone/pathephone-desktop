@@ -26,7 +26,7 @@ export const systemAlbumSaved = c('ALBUM_SAVED')
 export const systemShareFilesProcessed = c('SHARE_FILES_PROCESSED')
 export const systemShareFormChanged = c('SHARE_FORM_CHANGED')
 export const systemShareCandidatesRecieved = c('SHARE_CANDIDATES_RECIEVED')
-export const systemShareCandidatesSaveSucceed = c('SHARE_CANDIDATES_SAVE_SUCCEED')
+export const systemShareCandidateSaveSucceed = c('SHARE_CANDIDATES_SAVE_SUCCEED')
 export const systemShareCandidatesSaveFailed = c('SHARE_CANDIDATES_SAVE_FAILED')
 
 export const systemDiscoverAlbumsFetchSucceed = c('DISCOVER_ALBUMS_FETCH_SUCCEED')

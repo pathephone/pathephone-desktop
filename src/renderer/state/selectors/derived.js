@@ -34,7 +34,7 @@ export const getSelectedFeedAlbumsCount = state => getDiscoverSelectedAlbums(sta
 export const isFeedAlbumsSelected = state => getDiscoverSelectedAlbums(state).length !== 0
 export const isFeedSearchPerformed = state => !!getDiscoverSearchValue(state).searchValue
 
-export const isShareCandidatesRecieved = state => !!getShareCandidates(state)
+export const isShareCandidatesRecieved = state => getShareCandidates(state).length > 0
 
 export const getPlaylistTracksIndexes = createSelector(
   getPlaylistTracksByIndex,

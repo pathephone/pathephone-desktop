@@ -8,12 +8,10 @@ class DNDarea extends React.Component {
     this.props.onChange(files)
   }
   render () {
-    const { children, className, style, ...input } = this.props
+    const { children, style, ...input } = this.props
     return (
       <div className='izi-relative izi-fill' style={style}>
-        {
-          children
-        }
+        {children}
         <input
           {...input}
           ref={c => { this.input = c }}

@@ -1,10 +1,10 @@
 import { uiShareFilesSelected, uiShareFormSubmited, uiShareFormCanceled } from '#actions-ui'
-import { systemShareCandidatesRecieved, systemShareCandidatesSaveSucceed, systemShareFormChanged } from '#actions-system'
+import { systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged } from '#actions-system'
 
 const DOMAIN = 'share'
 
 const initialState = {
-  candidates: null,
+  candidates: [],
   isProcessing: false
 }
 
@@ -20,11 +20,20 @@ const reducer = (state = initialState, action) => {
       return { candidates: payload, isProcessing: false }
     case uiShareFormSubmited.toString():
       return { ...state, isProcessing: true }
-    case systemShareCandidatesSaveSucceed.toString():
-    case uiShareFormCanceled.toString():
-      return { ...state, isProcessing: false, candidates: null }
-    case systemShareFormChanged.toString():
-      return { ...state, candidates: [ { ...payload } ] }
+    case systemShareCandidateSaveSucceed.toString():
+    case uiShareFormCanceled.toString(): {
+      const candidates = state.candidates
+        .filter((candidate, index) => index !== 0)
+      return { ...state, isProcessing: false, candidates }
+    }
+    case systemShareFormChanged.toString(): {
+      const candidates = state.candidates
+        .map((candidate, index) => {
+          if (index === 0) return payload
+          return candidate
+        })
+      return { ...state, candidates }
+    }
     default:
       return state
   }
