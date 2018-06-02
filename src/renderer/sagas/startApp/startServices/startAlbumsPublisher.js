@@ -3,11 +3,12 @@ import { eventChannel } from 'redux-saga'
 
 import { ALBUMS_PUBLISH_INTERVAL, ALBUMS_APEARENCE_INTERVAL } from '~data/constants'
 
-function getAlbumsCollectionSource ({ albumsCollection }) {
+function getAlbumsCollectionSource (apis) {
+  const { findOutdatedAlbumsInCollection } = apis
   return eventChannel(emit => {
     const handleTick = async () => {
       const period = new Date().getTime() - ALBUMS_APEARENCE_INTERVAL
-      const albums = await albumsCollection.find({ lastSeen: { $lt: period } }).exec()
+      const albums = await findOutdatedAlbumsInCollection(period)
       albums.forEach(emit)
     }
     const interval = setInterval(handleTick, ALBUMS_PUBLISH_INTERVAL)
@@ -17,13 +18,13 @@ function getAlbumsCollectionSource ({ albumsCollection }) {
   })
 }
 
-function * publishAlbum ({ albumsGate }, album) {
-  yield call(albumsGate.send, album.cid)
+function * publishAlbum ({ publishAlbumByCid }, album) {
+  yield call(publishAlbumByCid, album.cid)
 }
 
-function * startAlbumsPublisher (args) {
-  const albumsCollectionSource = yield call(getAlbumsCollectionSource, args)
-  yield takeEvery(albumsCollectionSource, publishAlbum, args)
+function * startAlbumsPublisher (apis) {
+  const albumsCollectionSource = yield call(getAlbumsCollectionSource, apis)
+  yield takeEvery(albumsCollectionSource, publishAlbum, apis)
 }
 
 export default startAlbumsPublisher

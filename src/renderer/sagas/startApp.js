@@ -8,8 +8,7 @@ import getApis from './startApp/getApis'
 function * startApp () {
   try {
     const apis = yield call(getApis)
-    const nextArgs = { ...apis }
-    yield call(startServices, nextArgs)
+    yield call(startServices, apis)
     yield put(systemAppStartSucceed())
   } catch (e) {
     console.error(e)

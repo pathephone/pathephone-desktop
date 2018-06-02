@@ -1,23 +1,25 @@
-import { put, call, takeEvery } from 'redux-saga/effects'
-import gateToSagaChannel from '~utils/gateToSagaChannel'
+import { put, takeEvery } from 'redux-saga/effects'
 import {
   systemAlbumCandidateRecieved,
   systemAlbumUpdated,
   systemAlbumSaved
 } from '#actions-system'
 
-function * handleIncomingGateAlbums ({ albumsCollection }, album) {
+function * handleIncomingAlbums (apis, album) {
+  const {
+    findAlbumInCollectionByCid,
+    saveAlbumToCollection
+  } = apis
   try {
     const { cid, data } = album
     const lastSeen = new Date().getTime()
     yield put(systemAlbumCandidateRecieved(cid))
-    const exists = yield albumsCollection.findOne(cid).exec()
-    if (exists) {
-      exists.lastSeen = lastSeen
-      yield exists.save()
+    const existedAlbum = yield findAlbumInCollectionByCid(cid)
+    if (existedAlbum) {
+      existedAlbum.update({ lastSeen })
       yield put(systemAlbumUpdated(cid))
     } else {
-      yield albumsCollection.insert({ cid, data, lastSeen })
+      yield saveAlbumToCollection({ cid, data, lastSeen })
       yield put(systemAlbumSaved(cid))
     }
   } catch (e) {
@@ -25,10 +27,9 @@ function * handleIncomingGateAlbums ({ albumsCollection }, album) {
   }
 }
 
-function * startAlbumsReciever (args) {
-  const { albumsGate } = args
-  const albumsGateSource = yield call(gateToSagaChannel, albumsGate)
-  yield takeEvery(albumsGateSource, handleIncomingGateAlbums, args)
+function * startAlbumsReciever (apis) {
+  const { incomingAlbumsSource } = apis
+  yield takeEvery(incomingAlbumsSource, handleIncomingAlbums, apis)
 }
 
 export default startAlbumsReciever
