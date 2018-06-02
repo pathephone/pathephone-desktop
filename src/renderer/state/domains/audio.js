@@ -1,40 +1,27 @@
 import {
-  systemAudioBufferingProceed,
-  systemAudioDurationRecieved,
-  systemAudioReadyToPlay,
-  systemAudioTimingChanged,
-  systemAudioEnded,
-  systemAudioLoadStarted
-} from '#actions-system'
+  uiPlaylistTrackPlayed,
+  uiDiscoverSelectedPlayed,
+  uiAlbumPlayed,
+  uiPlaybackToggled
+} from '#actions-ui'
 
 const DOMAIN = 'audio'
 
-export const getAudioTiming = state => state[DOMAIN].timing
-export const getAudioDuration = state => state[DOMAIN].duration
-export const getAudioBufferedMap = state => state[DOMAIN].bufferedMap
-export const isAudioReadyToPlay = state => state[DOMAIN].isAudioReadyToPlay
-
 const initialState = {
-  duration: null,
-  timing: 0,
-  bufferedMap: [],
-  isAudioReadyToPlay: false
+  isPaused: true
 }
 
+export const isPaused = state => state[DOMAIN].isPaused
+
 const reducer = (state = initialState, action) => {
-  const { type, payload } = action
+  const { type } = action
   switch (type) {
-    case systemAudioDurationRecieved.toString():
-      return { ...state, duration: payload }
-    case systemAudioBufferingProceed.toString():
-      return { ...state, bufferedMap: payload }
-    case systemAudioReadyToPlay.toString():
-      return { ...state, isAudioReadyToPlay: true }
-    case systemAudioTimingChanged.toString():
-      return { ...state, timing: payload }
-    case systemAudioEnded.toString():
-    case systemAudioLoadStarted.toString():
-      return { ...initialState }
+    case uiPlaybackToggled.toString():
+      return { ...state, isPaused: !state.isPaused }
+    case uiDiscoverSelectedPlayed.toString():
+    case uiAlbumPlayed.toString():
+    case uiPlaylistTrackPlayed.toString():
+      return { ...state, isPaused: false }
     default:
       return state
   }

@@ -27,8 +27,10 @@ const initialState = {
   cachedByCid: {},
   removedByIndex: {},
   currentTrackIndex: null,
+  lastTrackIndex: null,
   shuffleOrder: null,
-  isRepeat: false
+  isRepeat: false,
+  isShuffle: false
 }
 
 export const getPlaylistTracksByIndex = state => state[DOMAIN].tracksByIndex
@@ -49,9 +51,12 @@ const toTracksByIndex = (tracks, startIndex) => {
   }, {})
 }
 
-const toShuffleOrder = (tracksByIndex) => {
+const toShuffleOrder = (tracksByIndex, currentTrackIndex) => {
   const shuffleOrder = Object.keys(tracksByIndex)
-  shuffleOrder.sort(() => {
+  shuffleOrder.sort((a) => {
+    if (a === currentTrackIndex) {
+      return -1
+    }
     if (getRandomBoolean()) {
       return 1
     }
@@ -65,19 +70,34 @@ const reducer = (state = initialState, action) => {
   switch (type) {
     case systemPlayedTracksRecieved.toString(): {
       const tracksByIndex = toTracksByIndex(payload)
+      let shuffleOrder = null
+      let currentTrackIndex = '0'
+      if (state.isShuffle) {
+        shuffleOrder = toShuffleOrder(tracksByIndex)
+        currentTrackIndex = shuffleOrder[0]
+      }
       return {
         ...initialState,
         tracksByIndex,
-        currentTrackIndex: '0',
-        isRepeat: state.isRepeat
+        shuffleOrder,
+        currentTrackIndex,
+        lastTrackIndex: payload.length - 1,
+        isRepeat: state.isRepeat,
+        isShuffle: state.isShuffle
       }
     }
     case systemQueuedTracksRecieved.toString(): {
       const newTracksByIndex = toTracksByIndex(payload, state.lastTrackIndex)
       const tracksByIndex = { ...state.tracksByIndex, ...newTracksByIndex }
+      let shuffleOrder = null
+      if (state.isShuffle) {
+        shuffleOrder = toShuffleOrder(tracksByIndex, state.currentTrackIndex)
+      }
       return {
         ...state,
-        tracksByIndex
+        tracksByIndex,
+        shuffleOrder,
+        lastTrackIndex: state.lastTrackIndex + payload.length - 1
       }
     }
     case uiNextTrackPlayed.toString():
@@ -106,12 +126,8 @@ const reducer = (state = initialState, action) => {
     }
     case uiPlaylistTrackPlayed.toString(): {
       let shuffleOrder = null
-      if (state.shuffleOrder) {
-        shuffleOrder = toShuffleOrder(state.tracksByIndex)
-        shuffleOrder.sort(a => {
-          if (a === payload) return -1
-          return 1
-        })
+      if (state.isShuffle) {
+        shuffleOrder = toShuffleOrder(state.tracksByIndex, payload)
       }
       return {
         ...state,
@@ -127,27 +143,27 @@ const reducer = (state = initialState, action) => {
           [payload]: true
         }
       }
-    case uiPlaylistCleared.toString():
-      return {
-        ...initialState,
-        isRepeat: state.isRepeat,
-        isShuffle: state.isShuffle
-      }
     case uiRepeatToggled.toString():
       return {
         ...state,
         isRepeat: !state.isRepeat
       }
     case uiShuffleToggled.toString():
-      if (state.shuffleOrder) {
-        return { ...state, shuffleOrder: null }
+      if (state.isShuffle) {
+        return { ...state, shuffleOrder: null, isShuffle: false }
       } else {
-        const shuffleOrder = toShuffleOrder(state.tracksByIndex)
+        const shuffleOrder = toShuffleOrder(state.tracksByIndex, state.currentTrackIndex)
         return {
           ...state,
           shuffleOrder,
-          currentTrackIndex: shuffleOrder[0]
+          isShuffle: true
         }
+      }
+    case uiPlaylistCleared.toString():
+      return {
+        ...initialState,
+        isRepeat: state.isRepeat,
+        isShuffle: state.isShuffle
       }
     default:
       return state

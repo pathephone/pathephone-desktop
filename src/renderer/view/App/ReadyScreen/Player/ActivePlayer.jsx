@@ -36,35 +36,24 @@ class ActivePlayer extends React.Component {
     }
   }
   handleEnded = () => {
-    this.setState(() => getInitialState())
     this.props.onAudioEnded()
   }
   handleTimeUpdate = () => {
     const { currentTime } = this.audio
     this.setState(state => ({ ...state, currentTime }))
   }
-  handlePlay = () => {
-    this.props.onAudioPlayed()
-  }
-  handlePause = () => {
-    this.props.onAudioPaused()
-  }
-  handleLoadStart = () => {
-    this.setState(() => getInitialState())
-  }
-  handleProps = ({ source = '', volume, isPaused }) => {
+  handleProps = (props) => {
+    const { source = '', volume, isPaused } = props
     if (this.audio.volume !== volume) {
       this.audio.volume = volume
     }
-    // src change must go before play / pause requests
     if (this.audio.src !== source) {
       this.audio.src = source
     }
-    if (isPaused && this.audio.played) {
-      this.audio.pause()
-    } else
-    if (!isPaused && this.audio.paused) {
+    if (!isPaused) {
       this.audio.play()
+    } else {
+      this.audio.pause()
     }
   }
 
@@ -74,13 +63,13 @@ class ActivePlayer extends React.Component {
     this.audio.addEventListener('progress', this.handleProgress)
     this.audio.addEventListener('ended', this.handleEnded)
     this.audio.addEventListener('timeupdate', this.handleTimeUpdate)
-    // this.audio.addEventListener('onplay', this.handlePlay)
-    // this.audio.addEventListener('pause', this.handlePause)
-    this.audio.addEventListener('loadstart', this.handleLoadStart)
     this.handleProps(this.props)
   }
-  componentDidUpdate () {
-    this.handleProps(this.props)
+  componentWillReceiveProps (nextProps) {
+    if (this.audio.src !== nextProps.source) {
+      this.setState(getInitialState())
+    }
+    this.handleProps(nextProps)
   }
   componentWillUnmount () {
     this.audio.removeEventListener('loadedmetadata', this.handleLoadedMetadata)
@@ -88,19 +77,7 @@ class ActivePlayer extends React.Component {
     this.audio.removeEventListener('progress', this.handleProgress)
     this.audio.removeEventListener('ended', this.handleEnded)
     this.audio.removeEventListener('timeupdate', this.handleTimeUpdate)
-    // this.audio.removeEventListener('onplay', this.handlePlay)
-    // this.audio.removeEventListener('pause', this.handlePause)
-    this.audio.removeEventListener('loadstart', this.handleLoadStart)
-    this.audio.pause()
     this.audio.src = ''
-  }
-
-  handlePlayClicked = () => {
-    this.audio.play()
-  }
-
-  handlePauseClicked = () => {
-    this.audio.pause()
   }
 
   handleStopSeeking = time => {
@@ -120,10 +97,7 @@ class ActivePlayer extends React.Component {
           <TrackInfoConnected />
         </div>
         <div className='player__bottom'>
-          <ControlsLeftConnected
-            onPlayClicked={this.handlePlayClicked}
-            onPauseClicked={this.handlePauseClicked}
-          />
+          <ControlsLeftConnected />
           {
             isReadyToPlay ? (
               <TrackTimeline
@@ -146,11 +120,9 @@ class ActivePlayer extends React.Component {
 
 ActivePlayer.propTypes = {
   onAudioEnded: propTypes.func.isRequired,
-  onAudioPaused: propTypes.func.isRequired,
-  onAudioPlayed: propTypes.func.isRequired,
   volume: propTypes.number.isRequired,
   isPaused: propTypes.bool.isRequired,
-  src: propTypes.string
+  source: propTypes.string
 }
 
 export default ActivePlayer

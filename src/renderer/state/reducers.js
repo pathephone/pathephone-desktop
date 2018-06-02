@@ -1,7 +1,6 @@
 export { default as appStart } from './domains/appStart'
 export { default as audio } from './domains/audio'
 export { default as playlist } from './domains/playlist'
-export { default as playback } from './domains/playback'
 export { default as volume } from './domains/volume'
 export { default as feed } from './domains/feed'
 export { default as feedSelection } from './domains/feedSelection'

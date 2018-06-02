@@ -1,7 +1,6 @@
 export * from './domains/appStart'
 export * from './domains/audio'
 export * from './domains/playlist'
-export * from './domains/playback'
 export * from './domains/volume'
 export * from './domains/feed'
 export * from './domains/feedSelection'
