@@ -24,8 +24,10 @@ const DOMAIN = 'playlist'
 
 const initialState = {
   tracksByIndex: {},
-  cachedByCid: {},
+  tracksLength: null,
   removedByIndex: {},
+  removedLength: null,
+  cachedByCid: {},
   currentTrackIndex: null,
   lastTrackIndex: null,
   shuffleOrder: null,
@@ -70,6 +72,7 @@ const reducer = (state = initialState, action) => {
   switch (type) {
     case systemPlayedTracksRecieved.toString(): {
       const tracksByIndex = toTracksByIndex(payload)
+      const tracksLength = Object.keys(tracksByIndex).length
       let shuffleOrder = null
       let currentTrackIndex = '0'
       if (state.isShuffle) {
@@ -79,6 +82,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...initialState,
         tracksByIndex,
+        tracksLength,
         shuffleOrder,
         currentTrackIndex,
         lastTrackIndex: payload.length - 1,
@@ -89,6 +93,7 @@ const reducer = (state = initialState, action) => {
     case systemQueuedTracksRecieved.toString(): {
       const newTracksByIndex = toTracksByIndex(payload, state.lastTrackIndex)
       const tracksByIndex = { ...state.tracksByIndex, ...newTracksByIndex }
+      const tracksLength = Object.keys(tracksByIndex).length
       let shuffleOrder = null
       if (state.isShuffle) {
         shuffleOrder = toShuffleOrder(tracksByIndex, state.currentTrackIndex)
@@ -96,6 +101,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         tracksByIndex,
+        tracksLength,
         shuffleOrder,
         lastTrackIndex: state.lastTrackIndex + payload.length - 1
       }
@@ -116,12 +122,20 @@ const reducer = (state = initialState, action) => {
       }
     }
     case uiPlaylistTrackRemoved.toString(): {
+      let newCurrentIndex = state.currentTrackIndex
+      if (newCurrentIndex === payload) {
+        newCurrentIndex = calcNextTrackIndex(state)
+      }
+      const removedByIndex = {
+        ...state.removedByIndex,
+        [payload]: true
+      }
+      const removedLength = Object.keys(removedByIndex).length
       return {
         ...state,
-        removedByIndex: {
-          ...state.removedByIndex,
-          [payload]: true
-        }
+        removedByIndex,
+        removedLength,
+        currentTrackIndex: newCurrentIndex
       }
     }
     case uiPlaylistTrackPlayed.toString(): {

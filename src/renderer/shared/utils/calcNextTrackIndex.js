@@ -24,12 +24,13 @@ const calcForShuffle = ({
 
 const calcForDefault = ({
   tracksByIndex,
+  tracksLength,
   currentTrackIndex,
   removedByIndex,
   isRepeat
 }) => {
   let nextIndex = currentTrackIndex
-  const lastTrackIndex = Object.keys(tracksByIndex).length - 1
+  const lastTrackIndex = tracksLength - 1
   do {
     if (nextIndex < lastTrackIndex) {
       nextIndex++
@@ -46,8 +47,11 @@ const calcForDefault = ({
 
 const calcNextTrackIndex = state => {
   const {
-    shuffleOrder
+    shuffleOrder,
+    tracksLength,
+    removedLength
   } = state
+  if (removedLength + 1 === tracksLength) return null
   if (shuffleOrder) {
     return calcForShuffle(state)
   } else {
