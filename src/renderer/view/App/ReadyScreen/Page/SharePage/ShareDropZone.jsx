@@ -6,7 +6,7 @@ import DNDarea from '~components/DNDarea.jsx'
 
 const ShareDropZone = ({ onFilesSelect }) => {
   return (
-    <DNDarea multiple webkitdirectory='' onChange={onFilesSelect}>
+    <DNDarea multiple onChange={onFilesSelect}>
       <div className='izi-fill izi-y izi-middle share-drop-zone'>
         <MdDrop className='dnd-icon animated infinite bounce' />
         <br />

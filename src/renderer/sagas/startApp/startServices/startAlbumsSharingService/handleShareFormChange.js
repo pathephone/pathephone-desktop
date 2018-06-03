@@ -1,7 +1,8 @@
 import { all, call, put } from 'redux-saga/effects'
+
 import { systemShareFormChanged, systemUiLocked, systemUiUnlocked } from '#actions-system'
 
-import getTracksFromFiles from './getTracksFromFiles'
+import getTracksFromFiles from '~utils/getTracksFromFiles'
 
 function * handleMap (track) {
   if (track.artist === undefined && track.title === undefined) {

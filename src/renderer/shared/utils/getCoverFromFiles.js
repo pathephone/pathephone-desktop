@@ -1,10 +1,14 @@
-import putFilesToIpfs from '../scripts/putFilesToIpfs'
-import checkIsImage from './checkIsImage'
+import checkFileIsImage from '~utils/checkFileIsImage'
 
 const getCoverFromFiles = async (files) => {
-  files = files.filter(checkIsImage) // only images
-  if (files.length > 0) {
-    return (await putFilesToIpfs(files))[0].hash
+  let images = files.filter(checkFileIsImage)
+  if (images.length > 0) {
+    let frontCover
+    if (images.length > 1) {
+      frontCover = images.find(({ name }) => name.includes('front'))
+    }
+    if (frontCover) return frontCover
+    return images[0]
   }
 }
 

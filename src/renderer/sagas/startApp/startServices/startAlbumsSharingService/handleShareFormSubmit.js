@@ -1,5 +1,5 @@
 import { call, all, put } from 'redux-saga/effects'
-import { systemShareCandidatesSaveSucceed } from '#actions-system'
+import { systemShareCandidateSaveSucceed } from '#actions-system'
 
 function * handleShareFormSubmit (
   { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumToCollection },
@@ -30,7 +30,7 @@ function * handleShareFormSubmit (
         throw e
       }
     }
-    yield put(systemShareCandidatesSaveSucceed())
+    yield put(systemShareCandidateSaveSucceed())
   } catch (e) {
     console.error(e)
   }
