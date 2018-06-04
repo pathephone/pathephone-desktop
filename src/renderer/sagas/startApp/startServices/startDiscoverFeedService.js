@@ -16,22 +16,22 @@ import fetchDiscoverAlbums from './startDiscoverFeedService/fetchDiscoverAlbums'
 import playOrQueueSelectedAlbums from './startDiscoverFeedService/playOrQueueSelectedAlbums'
 import playOrQueueAlbum from './startDiscoverFeedService/playOrQueueAlbum'
 
-function * startDiscoverFeedService (args) {
+function * startDiscoverFeedService (apis) {
   yield all([
     takeLatest([
       uiDiscoverAlbumsRequested,
       uiDiscoverSearchPerformed,
       uiDiscoverSearchCleared
-    ], fetchDiscoverAlbums, args),
-    takeEvery(uiDiscoverSelectedDeleted, deleteSelectedAlbums, args),
+    ], fetchDiscoverAlbums, apis),
+    takeEvery(uiDiscoverSelectedDeleted, deleteSelectedAlbums, apis),
     takeEvery([
       uiDiscoverSelectedPlayed,
       uiDiscoverSelectedQueued
-    ], playOrQueueSelectedAlbums, args),
+    ], playOrQueueSelectedAlbums, apis),
     takeEvery([
       uiAlbumPlayed,
       uiAlbumQueued
-    ], playOrQueueAlbum, args)
+    ], playOrQueueAlbum, apis)
   ])
   yield put(uiDiscoverAlbumsRequested())
 }

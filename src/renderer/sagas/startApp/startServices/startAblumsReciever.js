@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects'
 import {
   systemAlbumCandidateRecieved,
   systemAlbumUpdated,
@@ -28,7 +28,8 @@ function * handleIncomingAlbums (apis, album) {
 }
 
 function * startAlbumsReciever (apis) {
-  const { incomingAlbumsSource } = apis
+  const { getIncomingAlbumsSource } = apis
+  const incomingAlbumsSource = yield call(getIncomingAlbumsSource)
   yield takeEvery(incomingAlbumsSource, handleIncomingAlbums, apis)
 }
 

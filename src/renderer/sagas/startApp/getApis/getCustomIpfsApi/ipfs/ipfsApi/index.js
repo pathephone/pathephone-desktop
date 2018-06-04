@@ -21,7 +21,7 @@ export const getIpfs = () => {
 };
 */
 
-export const startIpfsApi = (params = {}) => {
+const startIpfsApi = (params = {}) => {
   const { host = 'localhost', port = '5001' } = params
   const endpoint = `http://${host}:${port}/api/v0`
   node = IPFSapi(host, port)
@@ -39,28 +39,7 @@ export const startIpfsApi = (params = {}) => {
     const r = await put(a, b)
     setTimeout(() => resolve(r), 1)
   })
-  // const addFromFs = node.util.addFromFs
-  // node.util.addFromFs = (...args) => {
-  //   if (args[2]) {
-  //     return addFromFs(...args)
-  //   }
-  //   return new Promise((resolve, reject) => {
-  //     addFromFs(...args, (err, data) => {
-  //       console.log(err)
-  //       console.log(data)
-  //       if (err) {
-  //         reject(err)
-  //       } else {
-  //         resolve(data)
-  //       }
-  //     })
-  //   })
-  // }
-}
-
-export default () => {
-  if (!node) {
-    throw new Error('You need to start IPFS api first.')
-  }
   return node
 }
+
+export default startIpfsApi

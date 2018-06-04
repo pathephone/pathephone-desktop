@@ -1,7 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
-import deleteAlbumsFromCollection from '~utils/deleteAlbumsFromCollection'
-
 import { uiAlbumDeleted } from '#actions-ui'
 
 import {
@@ -11,10 +9,11 @@ import {
   systemUiUnlocked
 } from '#actions-system'
 
-function * handleSingleAlbumDelete (args, { payload }) {
+function * handleSingleAlbumDelete (apis, { payload }) {
+  const { deleteAlbumsFromCollection } = apis
   yield put(systemUiLocked())
   try {
-    yield call(deleteAlbumsFromCollection, args, [payload])
+    yield call(deleteAlbumsFromCollection, [ payload ])
     yield put(systemAlbumDeleteSucceed())
   } catch (e) {
     yield put(systemAlbumDeleteFailed(e.message))
@@ -22,8 +21,8 @@ function * handleSingleAlbumDelete (args, { payload }) {
   yield put(systemUiUnlocked())
 }
 
-function * startAlbumsDeletingService (args) {
-  yield takeEvery(uiAlbumDeleted, handleSingleAlbumDelete, args)
+function * startAlbumsDeletingService (apis) {
+  yield takeEvery(uiAlbumDeleted, handleSingleAlbumDelete, apis)
 }
 
 export default startAlbumsDeletingService

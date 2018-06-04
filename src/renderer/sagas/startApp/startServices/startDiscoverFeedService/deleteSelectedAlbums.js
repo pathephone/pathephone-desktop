@@ -1,7 +1,5 @@
 import { call, put, select } from 'redux-saga/effects'
 
-import deleteAlbumsFromCollection from '~utils/deleteAlbumsFromCollection'
-
 import {
   systemDiscoverSelectedActionSucceed,
   systemDiscoverSelectedActionFailed,
@@ -10,11 +8,12 @@ import {
 } from '#actions-system'
 import { getDiscoverSelectedAlbums } from '#selectors'
 
-function * handleDiscoverSelectedDelete (args) {
+function * handleDiscoverSelectedDelete (apis) {
+  const { deleteAlbumsFromCollection } = apis
   yield put(systemUiLocked())
   try {
     const selectedAlbums = yield select(getDiscoverSelectedAlbums)
-    yield call(deleteAlbumsFromCollection, args, selectedAlbums)
+    yield call(deleteAlbumsFromCollection, selectedAlbums)
     yield put(systemDiscoverSelectedActionSucceed())
   } catch (e) {
     yield put(systemDiscoverSelectedActionFailed(e.message))
