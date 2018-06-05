@@ -47,12 +47,12 @@ const calcForDefault = ({
 
 const calcNextTrackIndex = state => {
   const {
-    shuffleOrder,
+    isShuffle,
     tracksLength,
     removedLength
   } = state
   if (removedLength + 1 === tracksLength) return null
-  if (shuffleOrder) {
+  if (isShuffle) {
     return calcForShuffle(state)
   } else {
     return calcForDefault(state)

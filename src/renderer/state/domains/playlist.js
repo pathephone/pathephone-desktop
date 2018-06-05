@@ -55,16 +55,15 @@ const toTracksByIndex = (tracks, startIndex) => {
 
 const toShuffleOrder = (tracksByIndex, currentTrackIndex) => {
   const shuffleOrder = Object.keys(tracksByIndex)
-  shuffleOrder.sort((a) => {
-    if (a === currentTrackIndex) {
+  const withoutCurrent = shuffleOrder.filter(key => key !== currentTrackIndex)
+  withoutCurrent.sort((a, b) => {
+    if (getRandomBoolean()) {
       return -1
     }
-    if (getRandomBoolean()) {
-      return 1
-    }
-    return 0
+    return 1
   })
-  return shuffleOrder
+  withoutCurrent.unshift(currentTrackIndex)
+  return withoutCurrent
 }
 
 const reducer = (state = initialState, action) => {

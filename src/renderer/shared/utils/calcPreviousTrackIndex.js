@@ -1,26 +1,42 @@
 
-const calcForShuffle = ({ currentTrackIndex, shuffleOrder, removedByIndex }) => {
-  let previousIndex = currentTrackIndex
+const calcForShuffle = ({ currentTrackIndex, shuffleOrder, removedByIndex, isRepeat }) => {
   let shuffleIndex = shuffleOrder.indexOf(currentTrackIndex)
+  let previousIndex = currentTrackIndex
   do {
-    previousIndex = shuffleOrder[shuffleIndex--]
-  } while (shuffleIndex > 0 && removedByIndex[previousIndex] === true)
+    if (--shuffleIndex < 0) {
+      if (isRepeat) {
+        shuffleIndex = shuffleOrder.length - 1
+      } else {
+        break
+      }
+    }
+    previousIndex = shuffleOrder[shuffleIndex]
+  } while (removedByIndex[previousIndex] === true)
+  console.log(previousIndex)
   return previousIndex + ''
 }
 
-const calcForDefault = ({ currentTrackIndex, removedByIndex }) => {
+const calcForDefault = ({ currentTrackIndex, tracksLength, removedByIndex, isRepeat }) => {
   let previousIndex = currentTrackIndex
   do {
-    previousIndex--
-  } while (previousIndex > 0 && removedByIndex[previousIndex] === true)
+    if (previousIndex - 1 < 0) {
+      if (isRepeat) {
+        previousIndex = tracksLength - 1
+      } else {
+        break
+      }
+    } else {
+      --previousIndex
+    }
+  } while (removedByIndex[previousIndex] === true)
   return previousIndex + ''
 }
 
 const calcPreviousTrackIndex = state => {
   const {
-    shuffleOrder
+    isShuffle
   } = state
-  if (shuffleOrder) {
+  if (isShuffle) {
     return calcForShuffle(state)
   } else {
     return calcForDefault(state)
