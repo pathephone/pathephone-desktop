@@ -79,7 +79,6 @@ class ActivePlayer extends React.Component {
   }
 
   handleStopSeeking = time => {
-    console.log(time)
     this.audio.currentTime = time
   }
 

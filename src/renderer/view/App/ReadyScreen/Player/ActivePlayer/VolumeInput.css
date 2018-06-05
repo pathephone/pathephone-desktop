@@ -3,6 +3,7 @@
   height: 100%;
   flex-basis: 15%;
   flex-shrink: 0;
+  margin-left: 1em;
 }
 
 .volumeIcon {
@@ -30,6 +31,7 @@
 
 .volumeInput::-webkit-slider-runnable-track {
   background: none;
+  border-left: 1px solid rgb(230,230,230);
   border-right: 1px solid rgb(230,230,230);
   width: 100%;
   height: 100%;
