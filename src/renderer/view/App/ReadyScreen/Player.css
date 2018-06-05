@@ -1,24 +1,15 @@
 .player {
-  padding: 1em;
   grid-area: player;
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid #d3d3d3;
-}
-
-.player__bottom {
   display: flex;
   align-items: center;
   justify-content: space-around;
-}
-
-.player__top {
-    text-align: center;
+  border-top: 1px solid #d3d3d3;
 }
 
 .player__playback-controls {
   display: flex;
   flex-shrink: 0;
+  padding: 0 1em;
 }
 
 .player__playback-controls button {
@@ -36,9 +27,9 @@
     color: var(--accent-color);
 }
 
-
 .player__rest-controls {
     flex-shrink: 0;
+    padding: 0 1em;
 }
 
 .player__rest-controls {

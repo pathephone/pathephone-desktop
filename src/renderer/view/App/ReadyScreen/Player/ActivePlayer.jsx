@@ -1,15 +1,13 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import './ActivePlayer/CustomRangeInput.css'
+import getBufferedAudioMap from '~utils/getBufferedAudioMap'
 
 import ProgressBar from './ActivePlayer/ProgressBar.jsx'
+import TrackBar from './ActivePlayer/TrackBar.jsx'
 import ControlsLeftConnected from './ActivePlayer/ControlsLeftConnected'
 import VolumeInputConnected from './ActivePlayer/VolumeInputConnected'
 import ControlsRightConnected from './ActivePlayer/ControlsRightConnected'
-import getBufferedAudioMap from '~utils/getBufferedAudioMap'
-import TrackTimeline from './ActivePlayer/TrackTimeline.jsx'
-import TrackInfoConnected from './ActivePlayer/TrackInfoConnected'
 
 const getInitialState = () => ({
   duration: null,
@@ -81,6 +79,7 @@ class ActivePlayer extends React.Component {
   }
 
   handleStopSeeking = time => {
+    console.log(time)
     this.audio.currentTime = time
   }
 
@@ -91,28 +90,26 @@ class ActivePlayer extends React.Component {
       duration,
       bufferedMap
     } = this.state
+    const { title, artist } = this.props
     return (
       <div className='player'>
-        <div className='player__top'>
-          <TrackInfoConnected />
-        </div>
-        <div className='player__bottom'>
-          <ControlsLeftConnected />
-          {
-            isReadyToPlay ? (
-              <TrackTimeline
-                currentTime={currentTime}
-                duration={duration}
-                bufferedMap={bufferedMap}
-                onStopSeeking={this.handleStopSeeking}
-              />
-            ) : (
-              <ProgressBar />
-            )
-          }
-          <VolumeInputConnected />
-          <ControlsRightConnected />
-        </div>
+        <ControlsLeftConnected />
+        {
+          isReadyToPlay ? (
+            <TrackBar
+              title={title}
+              artist={artist}
+              currentTime={currentTime}
+              duration={duration}
+              onStopSeeking={this.handleStopSeeking}
+              bufferedMap={bufferedMap}
+            />
+          ) : (
+            <ProgressBar />
+          )
+        }
+        <VolumeInputConnected />
+        <ControlsRightConnected />
       </div>
     )
   }
@@ -122,7 +119,9 @@ ActivePlayer.propTypes = {
   onAudioEnded: propTypes.func.isRequired,
   volume: propTypes.number.isRequired,
   isPaused: propTypes.bool.isRequired,
-  source: propTypes.string
+  source: propTypes.string.isRequired,
+  title: propTypes.string.isRequired,
+  artist: propTypes.string.isRequired
 }
 
 export default ActivePlayer

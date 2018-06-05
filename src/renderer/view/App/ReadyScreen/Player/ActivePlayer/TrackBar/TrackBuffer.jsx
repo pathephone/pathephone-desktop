@@ -1,6 +1,8 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import './TrackBuffer.css'
+
 const handleMapBuffer = ([ start, end ]) => {
   const style = {
     width: end - start + '%',
@@ -9,16 +11,17 @@ const handleMapBuffer = ([ start, end ]) => {
   return <div className='timeline__buffered-piece' style={style} key={start + '-' + end} />
 }
 
-const BufferedBar = ({ bufferedMap }) => (
+const TrackBuffer = ({ bufferedMap }) => (
   <div className='timeline__buffered-container'>
     {
-      bufferedMap.map(handleMapBuffer)
+      bufferedMap &&
+        bufferedMap.map(handleMapBuffer)
     }
   </div>
 )
 
-BufferedBar.propTypes = {
-  bufferedMap: propTypes.array.isRequired
+TrackBuffer.propTypes = {
+  bufferedMap: propTypes.array
 }
 
-export default BufferedBar
+export default TrackBuffer

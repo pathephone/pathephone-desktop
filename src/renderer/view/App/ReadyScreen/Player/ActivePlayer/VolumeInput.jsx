@@ -15,20 +15,22 @@ const VolumeInput = ({ currentVolume, onVolumeChange }) => {
   }
   const inputValue = currentVolume * 100
   return (
-    <div className='volume-control'>
-      {
-        inputValue === 0 ? (
-          <MdVolumeOff />
-        ) : inputValue < 33 ? (
-          <MdVolumeMute />
-        ) : inputValue < 66 ? (
-          <MdVolumeDown />
-        ) : (
-          <MdVolumeUp />
-        )
-      }
+    <div className='volumeControl'>
+      <div className='volumeIcon'>
+        {
+          inputValue === 0 ? (
+            <MdVolumeOff />
+          ) : inputValue < 33 ? (
+            <MdVolumeMute />
+          ) : inputValue < 66 ? (
+            <MdVolumeDown />
+          ) : (
+            <MdVolumeUp />
+          )
+        }
+      </div>
       <input
-        className='custom-range-input volume-control__input'
+        className='volumeInput'
         type='range'
         min='0'
         max='100'

@@ -1,14 +1,3 @@
-.custom-range-input {
-  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  background: transparent; /* Otherwise white in Chrome */
-  margin: 0;
-  padding: 0.5em 0;
-  cursor: pointer;
-}
-
-.custom-range-input:focus {
-  outline: none;
-}
 
 .custom-range-input:focus::-webkit-slider-thumb {
   box-shadow: 0 0 8px rgba(239,45,86,0.8);
