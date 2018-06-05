@@ -29,8 +29,7 @@ const FormControls = ({ isDisabled, onCancelClick }) => (
 
 FormControls.propTypes = {
   isDisabled: propTypes.bool.isRequired,
-  onCancelClick: propTypes.func.isRequired,
-  onSubmitClick: propTypes.func.isRequired
+  onCancelClick: propTypes.func.isRequired
 }
 
 export default FormControls

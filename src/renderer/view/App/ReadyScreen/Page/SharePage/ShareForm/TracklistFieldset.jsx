@@ -52,7 +52,14 @@ class TracklistFieldset extends React.PureComponent {
           multiple
         />
         <label htmlFor={ADD_TRACK_INPUT_ID} className='addTracksLabel'>
-          add tracks
+          add tracks <br />
+          {
+            tracks.length === 0 && (
+              <span className='noTracksMessage'>
+                you should add at least one track
+              </span>
+            )
+          }
         </label>
       </fieldset>
     )

@@ -21,3 +21,9 @@
 .addTracksInput:focus ~ .addTracksLabel {
   border-color: orange;
 }
+
+.noTracksMessage {
+  color: red;
+  text-transform: uppercase;
+  font-size: 0.75em;
+}

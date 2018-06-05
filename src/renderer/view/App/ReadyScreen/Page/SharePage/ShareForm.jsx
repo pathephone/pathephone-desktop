@@ -62,7 +62,9 @@ class ShareForm extends React.Component {
   }
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.onSubmit(this.props.values)
+    if (Object.keys(this.state.validationErrors).length === 0) {
+      this.props.onSubmit(this.props.values)
+    }
   }
   validate = (values) => {
     const errors = validateShareCandidate(values)
@@ -96,6 +98,7 @@ class ShareForm extends React.Component {
           />
           <TracklistFieldset
             tracks={values.tracks}
+            errors={validationErrors}
             isDisabled={isDisabled}
             onFilesSelect={this.handleAddTracks}
             onMoveTrackUp={this.handleMoveTrackUp}
