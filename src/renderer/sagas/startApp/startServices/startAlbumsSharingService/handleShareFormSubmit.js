@@ -1,10 +1,10 @@
 import { call, all, put } from 'redux-saga/effects'
 import { systemShareCandidateSaveSucceed } from '#actions-system'
 
-function * handleShareFormSubmit (
-  { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumToCollection },
-  { payload }
-) {
+const successMessage = 'Album successfully shared an saved to local collection.'
+
+function * handleShareFormSubmit (apis, { payload }) {
+  const { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumToCollection } = apis
   try {
     const cover = yield call(shareFsFileToIpfs, payload.cover.path)
     const tracks = yield all(
@@ -30,7 +30,7 @@ function * handleShareFormSubmit (
         throw e
       }
     }
-    yield put(systemShareCandidateSaveSucceed())
+    yield put(systemShareCandidateSaveSucceed({ successMessage }))
   } catch (e) {
     console.error(e)
   }

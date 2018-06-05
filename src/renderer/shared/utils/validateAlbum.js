@@ -1,11 +1,11 @@
 import Ajv from 'ajv'
-import albums from '../data/albums'
+import { albumInstanceSchema } from '~data/schemas'
 
 const validateAlbum = (albumCandidate) => {
   const validator = new Ajv({
     allErrors: true
   })
-  const valid = validator.validate(albums.instanceSchema, albumCandidate)
+  const valid = validator.validate(albumInstanceSchema, albumCandidate)
   return {
     valid, errors: validator.errors
   }

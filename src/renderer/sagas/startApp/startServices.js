@@ -10,6 +10,7 @@ import startAlbumsSharingService from './startServices/startAlbumsSharingService
 import startAlbumsDeletingService from './startServices/startAlbumsDeletingService'
 import startDiscoverFeedService from './startServices/startDiscoverFeedService'
 import startTracksCache from './startServices/startTracksCache'
+import startNotificationsService from './startServices/startNotificationsService'
 
 function * startServices (apis) {
   yield put(systemAppStartProceed(66))
@@ -19,7 +20,8 @@ function * startServices (apis) {
     spawn(startAlbumsSharingService, apis),
     spawn(startAlbumsDeletingService, apis),
     spawn(startDiscoverFeedService, apis),
-    spawn(startTracksCache, apis)
+    spawn(startTracksCache, apis),
+    spawn(startNotificationsService, apis)
   ])
   yield put(systemAppStartProceed(100))
   yield call(asyncTimeout, 100)

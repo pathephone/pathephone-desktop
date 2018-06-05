@@ -1,7 +1,7 @@
 
 const splitFoldersAndFiles = files => {
   const handleReduce = (acc, file) => {
-    if (file.type === '') {
+    if (file.type === '' && file.size > 0) {
       acc.folders.push(file)
     } else {
       acc.files.push(file)

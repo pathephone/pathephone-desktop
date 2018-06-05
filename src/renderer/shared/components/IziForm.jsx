@@ -50,6 +50,23 @@ class IziForm extends React.PureComponent {
       }
     }
   }
+  syncErrors = () => {
+    const { errors } = this.props
+    const { elements } = this.formRef
+    for (let i = 0; i < elements.length; i++) {
+      const target = elements[i]
+      const { name } = target
+      if (!name) continue
+      const invalid = getValue(errors, name)
+      if (invalid) {
+        target.setCustomValidity(invalid)
+        target.setAttribute('title', invalid)
+      } else {
+        target.setCustomValidity('')
+        target.removeAttribute('title')
+      }
+    }
+  }
 
   componentDidMount () {
     this.attachOnChangeListeners()
@@ -57,10 +74,16 @@ class IziForm extends React.PureComponent {
     if (this.props.values) {
       this.syncValues()
     }
+    if (this.props.errors) {
+      this.syncErrors()
+    }
   }
   componentDidUpdate (prevProps) {
     if (this.props.values !== prevProps.values) {
       this.syncValues()
+    }
+    if (this.props.errors !== prevProps.errors) {
+      this.syncErrors()
     }
   }
   componentWillUnmount () {
@@ -81,7 +104,8 @@ class IziForm extends React.PureComponent {
 IziForm.propTypes = {
   onChange: propTypes.func.isRequired,
   children: propTypes.node.isRequired,
-  values: propTypes.object
+  values: propTypes.object,
+  errors: propTypes.object
 }
 
 export default IziForm

@@ -8,7 +8,8 @@ import {
   getDiscoverSearchValue,
   getCurrentTrackIndex,
   getPlaylistTracksByIndex,
-  getShareCandidates
+  getShareCandidates,
+  getNotifications
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
@@ -48,3 +49,9 @@ export const getPlaylistTracksCount = state => getPlaylistTracksIndexes(state).l
 export const isPlaylistEmpty = state => getPlaylistTracksCount(state) === 0
 
 export const getShareFormValue = state => getShareCandidates(state)[0]
+
+export const getNotificationsIds = createSelector(
+  getNotifications,
+  Object.keys
+)
+export const getNotificationsLength = state => getNotificationsIds(state).length

@@ -6,13 +6,11 @@ import MdCancel from 'react-icons/lib/md/cancel'
 
 import CustomButton from '~components/CustomButton.jsx'
 
-const FormControls = ({ isDisabled, onCancelClick, onSubmitClick }) => (
+const FormControls = ({ isDisabled, onCancelClick }) => (
   <React.Fragment>
     <CustomButton
-      type='button'
       className='shareFormSubmit'
       disabled={isDisabled}
-      onClick={onSubmitClick}
     >
       <span>
         <MdSave /> <small>save</small>

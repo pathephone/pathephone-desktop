@@ -22,6 +22,7 @@ function * handleShareFormChange (args, { payload }) {
       ...payload,
       tracks
     }
+
     yield put(systemShareFormChanged(album))
   } catch (e) {
     console.error(e)

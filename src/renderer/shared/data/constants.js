@@ -29,3 +29,7 @@ export const DND_EVENT_TYPE_DRAG_END = 5
 export const DND_EVENT_TYPE_DROP = 6
 
 export const DISCOVER_FEED_LIMIT_STEP = 10
+
+export const NOTIFICATION_TYPE_ERROR = 0
+export const NOTIFICATION_TYPE_WARNING = 1
+export const NOTIFICATION_TYPE_SUCCESS = 2

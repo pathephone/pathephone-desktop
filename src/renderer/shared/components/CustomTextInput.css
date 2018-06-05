@@ -1,13 +1,18 @@
 
 .customTextInput {
-  padding: 0.75em 1em;
+  padding: 1em 0;
   outline: none;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid lightgrey;
   width: 20em;
 }
 
+
+.customTextInput:invalid {
+  border-color: red;
+}
+
 .customTextInput:focus {
-  border-color: lightskyblue;
-  outline: 1px solid lightblue;
+  border-color: orange;
 }

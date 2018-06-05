@@ -1,4 +1,4 @@
-const albumInstanceSchema = {
+const shareCandidateSchema = {
   type: 'object',
   properties: {
     title: {
@@ -10,8 +10,15 @@ const albumInstanceSchema = {
       minLength: 1
     },
     cover: {
-      type: 'string',
-      minLength: 1
+      anyOf: [
+        {
+          type: 'string',
+          minLength: 1
+        },
+        {
+          type: 'object'
+        }
+      ]
     },
     tracks: {
       type: 'array',
@@ -31,14 +38,15 @@ const albumInstanceSchema = {
             type: 'number',
             minimum: 128
           },
-          hash: {
-            type: 'string',
-            minLength: 1
+          file: {
+            type: 'object'
           }
-        }
+        },
+        required: [ 'title', 'artist', 'bitrate', 'file' ]
       }
     }
-  }
+  },
+  required: [ 'title', 'artist', 'tracks', 'cover' ]
 }
 
-export default albumInstanceSchema
+export default shareCandidateSchema

@@ -35,9 +35,10 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  background-color: antiquewhite;
   align-items: center;
 }
 
 .trackInputControlButton:hover {
-  background-color: rgba(10,10,10,0.1);
+  filter: contrast(90%); 
 }

@@ -47,14 +47,14 @@ class TrackInput extends React.PureComponent {
               Artist<br />
               <CustomTextInput
                 name={`tracks.${index}.artist`}
-                placeholder='artist'
+                placeholder='Artist'
               />
             </label>
             <label>
               Title<br />
               <CustomTextInput
                 name={`tracks.${index}.title`}
-                placeholder='title'
+                placeholder='Title'
               />
             </label>
           </div>

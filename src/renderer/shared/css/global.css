@@ -129,3 +129,9 @@ main {
 .square-button:active {
   border: 1px solid rgba(0,0,0,0);
 }
+
+.hiddenButReachable {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}

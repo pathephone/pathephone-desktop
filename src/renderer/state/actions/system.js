@@ -23,11 +23,13 @@ export const systemAlbumCandidateRecieved = c('ALBUM_CANDIDATE_RECIEVED')
 export const systemAlbumUpdated = c('ALBUM_UPDATED')
 export const systemAlbumSaved = c('ALBUM_SAVED')
 
-export const systemShareFilesProcessed = c('SHARE_FILES_PROCESSED')
+export const systemShareFilesProcessingFailed = c('SHARE_FILES_PROCESSING_FAILED')
 export const systemShareFormChanged = c('SHARE_FORM_CHANGED')
+export const systemShareFormValidated = c('SHARE_FORM_VALIDATED')
 export const systemShareCandidatesRecieved = c('SHARE_CANDIDATES_RECIEVED')
 export const systemShareCandidateSaveSucceed = c('SHARE_CANDIDATE_SAVE_SUCCEED')
 export const systemShareCandidateSaveFailed = c('SHARE_CANDIDATE_SAVE_FAILED')
+export const systemShareCandidatesNotFound = c('SHARE_CANDIDATES_NOT_FOUND')
 
 export const systemDiscoverAlbumsFetchSucceed = c('DISCOVER_ALBUMS_FETCH_SUCCEED')
 export const systemDiscoverSelectedActionSucceed = c('DISCOVER_SELECTED_ACTION_SUCCEED')
@@ -47,3 +49,6 @@ export const systemQueuedTracksRecieved = c('QUEUED_TRACKS_RECIEVED')
 export const systemTrackCached = c('TRACK_CACHED')
 
 export const systemRepeatedPlaylistEnded = c('REPEATED_PLAYLIST_ENDED')
+
+export const systemNotificationRecieved = c('NOTIFICATION_RECIEVED')
+export const systemNotificationExpired = c('NOTIFICATION_EXPIRED')

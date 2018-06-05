@@ -49,3 +49,5 @@ export const uiShareFormTrackAdded = c('SHARE_FORM_TRACK_ADDED')
 export const uiShareFormTrackRemoved = c('SHARE_FORM_TRACK_REMOVED')
 export const uiShareFormTrackMovedUp = c('SHARE_FORM_TRACK_MOVED_UP')
 export const uiShareFormTrackMovedDown = c('SHARE_FORM_TRACK_MOVED_DOWN')
+
+export const uiNotificationToastRemoved = c('NOTIFICATION_TOAST_REMOVED')

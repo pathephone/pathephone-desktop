@@ -2,6 +2,7 @@ import React from 'react'
 import propTypes from 'prop-types'
 import dotProp from 'dot-prop-immutable'
 
+import validateShareCandidate from '~utils/validateShareCandidate'
 import IziForm from '~components/IziForm.jsx'
 
 import AboutFieldset from './ShareForm/AboutFieldset.jsx'
@@ -11,12 +12,15 @@ import FormControls from './ShareForm/FormControls.jsx'
 import './ShareForm.css'
 
 class ShareForm extends React.Component {
+  state = {
+    validationErrors: {}
+  }
   handleChange = e => {
-    let { name, value, files, type } = e.target
+    let { name, value, files } = e.target
     if (!name) return
     let nextValues
-    if (type === 'file') {
-      nextValues = dotProp.set(this.props.values, name, files[0])
+    if (name === 'cover') {
+      nextValues = dotProp.set(this.props.values, name, (files[0] || null))
     } else {
       nextValues = dotProp.set(this.props.values, name, value)
     }
@@ -56,16 +60,34 @@ class ShareForm extends React.Component {
   handleMoveTrackUp = index => {
     this.handleMoveTrack(index, true)
   }
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
     this.props.onSubmit(this.props.values)
+  }
+  validate = (values) => {
+    const errors = validateShareCandidate(values)
+    this.setState({ validationErrors: errors || {} })
+  }
+  componentWillMount () {
+    if (this.props.values) {
+      this.validate(this.props.values)
+    }
+  }
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.values !== this.props.values) {
+      this.validate(nextProps.values)
+    }
   }
   render () {
     const { values, onCancel, isDisabled } = this.props
+    const { validationErrors } = this.state
     return (
       <IziForm
         className='shareForm'
         values={values}
+        errors={validationErrors}
         onChange={this.handleChange}
+        onSubmit={this.handleSubmit}
       >
         <div className='shareFormBody'>
           <AboutFieldset
@@ -85,7 +107,6 @@ class ShareForm extends React.Component {
           <FormControls
             isDisabled={isDisabled}
             onCancelClick={onCancel}
-            onSubmitClick={this.handleSubmit}
           />
         </div>
       </IziForm>
@@ -94,11 +115,11 @@ class ShareForm extends React.Component {
 }
 
 ShareForm.propTypes = {
+  isDisabled: propTypes.bool.isRequired,
   onSubmit: propTypes.func.isRequired,
   onCancel: propTypes.func.isRequired,
   onChange: propTypes.func.isRequired,
-  values: propTypes.object,
-  isDisabled: propTypes.bool.isRequired
+  values: propTypes.object
 }
 
 export default ShareForm

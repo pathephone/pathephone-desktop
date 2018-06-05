@@ -33,30 +33,33 @@ class AboutFieldset extends React.PureComponent {
     const { isDisabled } = this.props
     return (
       <fieldset disabled={isDisabled} className='fieldset shareFormAbout'>
-        <div className='izi-xu'>
-          <div className='izi-ys izi-fill-width izi-margin-top'>
-            <label>Title</label>
-            <CustomTextInput
-              type='text'
-              placeholder='Album title'
-              name='title'
-            />
+        <div className='izi-x'>
+          <div className='aboutTextInputs'>
+            <label>Title<br />
+              <CustomTextInput
+                type='text'
+                placeholder='Album title'
+                name='title'
+              />
+            </label>
             <br />
-            <label>Artist</label>
-            <CustomTextInput
-              type='text'
-              placeholder='Album artist'
-              name='artist'
-            />
+            <label>Artist<br />
+              <CustomTextInput
+                type='text'
+                placeholder='Album artist'
+                name='artist'
+              />
+            </label>
           </div>
-          <label className='coverLabel'>
+          <input
+            id='share-form__input-cover'
+            className='coverInput hiddenButReachable'
+            name='cover'
+            type='file'
+            accept='image/*'
+          />
+          <label htmlFor='share-form__input-cover' className='coverLabel'>
             <CoverPreview coverSrc={this.state.fileCoverSrc || this.state.ipfsCoverSrc} />
-            <CustomTextInput
-              hidden
-              name='cover'
-              type='file'
-              accept='image/*'
-            />
           </label>
         </div>
       </fieldset>

@@ -1,5 +1,5 @@
 import { uiShareFilesSelected, uiShareFormSubmited, uiShareFormCanceled } from '#actions-ui'
-import { systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged } from '#actions-system'
+import { systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged, systemShareFilesProcessingFailed, systemShareCandidatesNotFound } from '#actions-system'
 
 const DOMAIN = 'share'
 
@@ -33,6 +33,13 @@ const reducer = (state = initialState, action) => {
           return candidate
         })
       return { ...state, candidates }
+    }
+    case systemShareCandidatesNotFound.toString():
+    case systemShareFilesProcessingFailed.toString(): {
+      return {
+        ...state,
+        isProcessing: false
+      }
     }
     default:
       return state

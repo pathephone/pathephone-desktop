@@ -5,6 +5,8 @@ import TrackInput from './TracklistFieldset/TrackInput.jsx'
 
 import './TracklistFieldset.css'
 
+const ADD_TRACK_INPUT_ID = 'share-form__add-tracks-input'
+
 class TracklistFieldset extends React.PureComponent {
   handleMap = (track, index, tracks) => {
     const {
@@ -41,15 +43,16 @@ class TracklistFieldset extends React.PureComponent {
         {
           tracks.map(this.handleMap)
         }
-        <label role='button' className='addTracksButton'>
+        <input
+          id={ADD_TRACK_INPUT_ID}
+          className='addTracksInput hiddenButReachable'
+          type='file'
+          accept='audio/*'
+          onChange={onFilesSelect}
+          multiple
+        />
+        <label htmlFor={ADD_TRACK_INPUT_ID} className='addTracksLabel'>
           add tracks
-          <input
-            type='file'
-            accept='audio/*'
-            onChange={onFilesSelect}
-            multiple
-            hidden
-          />
         </label>
       </fieldset>
     )

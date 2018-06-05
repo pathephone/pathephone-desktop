@@ -1,9 +1,24 @@
+.aboutTextInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 1em;
+  margin-right: auto;
+}
+
 .coverLabel {
   height: 12.5em;
   width: 12.5em;
   border: 1px solid #d3d3d3;
   padding: 0.25em;
   flex-shrink: 0;
+  cursor: pointer;
+}
+.coverInput:invalid ~ .coverLabel {
+  border-color: red;
+}
+.coverInput:focus ~ .coverLabel {
+  border-color: orange;
 }
 
 .shareFormAbout {
