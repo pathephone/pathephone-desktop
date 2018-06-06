@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import fileType from 'file-type'
+import readChunk from 'read-chunk'
 
 import splitFoldersAndFiles from '~utils/splitFilesAndFolders'
 
@@ -15,8 +16,11 @@ const nodeFilesToHTMLFiles = (files, folderPath) => {
     if (fileStat.isDirectory()) {
       type = ''
     } else {
-      buffer = fs.readFileSync(filePath)
+      buffer = readChunk.sync(filePath, 0, 4100)
       type = fileType(buffer).mime
+    }
+    if (type.startsWith('image/')) {
+      buffer = fs.readFileSync(filePath)
     }
     const fileObj = new File([buffer], fileName, { type })
     Object.defineProperties(
@@ -51,8 +55,13 @@ async function getAlbumCandidatesFromFolders (folders) {
   const candidates = []
   const handleMap = async folder => {
     const { files, folders } = await getFolderContents(folder.path)
-    const candidateFromFiles = await getAlbumCandidateFromFiles(files)
-    const candidatesFromFolders = await getAlbumCandidatesFromFolders(folders)
+    const [
+      candidateFromFiles,
+      candidatesFromFolders
+    ] = await Promise.all([
+      getAlbumCandidateFromFiles(files),
+      getAlbumCandidatesFromFolders(folders)
+    ])
     candidates.push(candidateFromFiles, ...candidatesFromFolders)
   }
   await Promise.all(
