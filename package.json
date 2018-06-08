@@ -13,6 +13,9 @@
     "url": "https://github.com/pathephone/pathephone-desktop.git"
   },
   "main": "app/background.js",
+  "go-ipfs": {
+    "version": "v0.4.15"
+  },
   "build": {
     "appId": "space.metabin.pathephone",
     "files": [
@@ -62,7 +65,7 @@
     "publish": null
   },
   "scripts": {
-    "postinstall": "electron-builder install-app-deps && node build/ipfs-download.js",
+    "postinstall": "electron-builder install-app-deps",
     "pretest:unit": "webpack --config=build/webpack.unit.config.js --env=test --display=none",
     "test:unit": "electron-mocha .temp/specs.js --renderer --require source-map-support/register",
     "pretest:e2e-dev": "webpack --config=build/webpack.app.config.js --env=test --display=none && webpack --config=build/webpack.e2e.config.js --env=test --display=none",
@@ -92,9 +95,11 @@
     "fs-jetpack": "^1.0.0",
     "get-value": "^3.0.1",
     "glob-escape": "0.0.2",
+    "go-ipfs-dep": "^0.4.15",
     "ipfs-api": "18.0.0",
     "ipfs-block": "^0.6.1",
     "ipfs-unixfs": "^0.1.14",
+    "ipfsd-ctl": "^0.37.3",
     "ipld-dag-cbor": "^0.11.2",
     "ipld-dag-pb": "^0.11.3",
     "is-ipfs": "^0.3.2",

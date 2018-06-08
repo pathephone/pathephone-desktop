@@ -4,8 +4,6 @@ import propTypes from 'prop-types'
 import CoverPreview from '~components/CoverPreview.jsx'
 import CustomTextInput from '~components/CustomTextInput.jsx'
 
-import withIpfsGateway from '~utils/withIpfsGateway'
-
 import './AboutFieldset.css'
 
 class AboutFieldset extends React.PureComponent {
@@ -13,14 +11,14 @@ class AboutFieldset extends React.PureComponent {
     fileCoverSrc: null,
     ipfsCoverSrc: null
   }
-  static getDerivedStateFromProps ({ cover }) {
+  static getDerivedStateFromProps ({ cover, ipfsGateway }) {
     let fileCoverSrc = null
     let ipfsCoverSrc = null
     if (cover instanceof File) {
       fileCoverSrc = URL.createObjectURL(cover)
     }
     if (typeof cover === 'string') {
-      ipfsCoverSrc = withIpfsGateway(cover)
+      ipfsCoverSrc = `${ipfsGateway}/ipfs/${cover}`
     }
     return { fileCoverSrc, ipfsCoverSrc }
   }

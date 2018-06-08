@@ -8,7 +8,7 @@ import {
 import {
   uiShuffleToggled,
   uiRepeatToggled
-} from '#actions-ui'
+} from '~actions/ui'
 
 import ControlsRight from './ControlsRight.jsx'
 

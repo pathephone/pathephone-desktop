@@ -3,7 +3,7 @@ import {
   uiDiscoverSelectedPlayed,
   uiAlbumPlayed,
   uiPlaybackToggled
-} from '#actions-ui'
+} from '~actions/ui'
 
 const DOMAIN = 'audio'
 

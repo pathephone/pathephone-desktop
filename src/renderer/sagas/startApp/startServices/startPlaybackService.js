@@ -1,6 +1,6 @@
 import { take, select, put } from 'redux-saga/effects'
 
-import { systemAudioEnded, systemRepeatedPlaylistEnded } from '#actions-system'
+import { systemAudioEnded, systemRepeatedPlaylistEnded } from '~actions/system'
 import { shouldPlaylistBeRepeated } from '#selectors'
 
 function * startPlaybackService (args) {

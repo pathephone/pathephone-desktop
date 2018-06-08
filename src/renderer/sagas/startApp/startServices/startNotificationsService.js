@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga'
 import { takeEvery, all, put } from 'redux-saga/effects'
 
-import { systemNotificationRecieved, systemNotificationExpired } from '#actions-system'
+import { systemNotificationRecieved, systemNotificationExpired } from '~actions/system'
 import {
   NOTIFICATION_TYPE_ERROR,
   NOTIFICATION_TYPE_WARNING,

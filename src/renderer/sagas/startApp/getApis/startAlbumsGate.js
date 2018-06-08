@@ -1,16 +1,21 @@
-import gateToSagaChannel from '~utils/gateToSagaChannel'
-
 import { albumInstanceSchema } from '~data/schemas'
+import {
+  IPC_METABIN_GATE_START,
+  IPC_METABIN_GATE_SEND
+} from '~data/ipcTypes'
+
+import { rendererCalls } from '~utils/ipcRenderer'
+
+import getMetabinDataChannel from '~utils/getMetabinDataChannel'
 
 const startAlbumsGate = async ipfsApis => {
-  const { openMetabinGate } = ipfsApis
-  const albumsGate = await openMetabinGate(albumInstanceSchema)
+  const gateId = await rendererCalls(IPC_METABIN_GATE_START, albumInstanceSchema)
 
   const publishAlbumByCid = cid => {
-    return albumsGate.send(cid)
+    return rendererCalls(IPC_METABIN_GATE_SEND, gateId, cid)
   }
   const getIncomingAlbumsSource = () => {
-    return gateToSagaChannel(albumsGate)
+    return getMetabinDataChannel(gateId)
   }
   return {
     publishAlbumByCid,

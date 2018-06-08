@@ -4,7 +4,7 @@ import {
   getVolume
 } from '#selectors'
 
-import { uiVolumeChanged } from '#actions-ui'
+import { uiVolumeChanged } from '~actions/ui'
 
 import VolumeInput from './VolumeInput.jsx'
 

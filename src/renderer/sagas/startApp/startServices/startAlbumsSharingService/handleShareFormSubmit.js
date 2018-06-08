@@ -1,5 +1,5 @@
 import { call, all, put } from 'redux-saga/effects'
-import { systemShareCandidateSaveSucceed } from '#actions-system'
+import { systemShareCandidateSaveSucceed } from '~actions/system'
 
 const successMessage = 'Album successfully shared an saved to local collection.'
 

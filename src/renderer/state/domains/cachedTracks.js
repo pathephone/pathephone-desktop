@@ -1,5 +1,5 @@
-import { systemTrackCached, systemPlayedTracksRecieved } from '#actions-system'
-import { uiPlaylistCleared } from '#actions-ui'
+import { systemTrackCached, systemPlayedTracksRecieved } from '~actions/system'
+import { uiPlaylistCleared } from '~actions/ui'
 
 const DOMAIN = 'cachedTracks'
 

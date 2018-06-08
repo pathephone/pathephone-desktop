@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import { getNotifications } from '#selectors'
 
-import { uiNotificationToastRemoved } from '#actions-ui'
+import { uiNotificationToastRemoved } from '~actions/ui'
 
 import Notifications from './Notifications.jsx'
 

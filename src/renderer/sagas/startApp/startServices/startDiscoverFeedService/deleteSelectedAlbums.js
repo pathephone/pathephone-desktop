@@ -5,7 +5,7 @@ import {
   systemDiscoverSelectedActionFailed,
   systemUiLocked,
   systemUiUnlocked
-} from '#actions-system'
+} from '~actions/system'
 import { getDiscoverSelectedAlbums } from '#selectors'
 
 function * handleDiscoverSelectedDelete (apis) {

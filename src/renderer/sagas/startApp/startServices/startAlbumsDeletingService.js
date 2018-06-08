@@ -1,13 +1,13 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
-import { uiAlbumDeleted } from '#actions-ui'
+import { uiAlbumDeleted } from '~actions/ui'
 
 import {
   systemAlbumDeleteSucceed,
   systemAlbumDeleteFailed,
   systemUiLocked,
   systemUiUnlocked
-} from '#actions-system'
+} from '~actions/system'
 
 function * handleSingleAlbumDelete (apis, { payload }) {
   const { deleteAlbumsFromCollection } = apis

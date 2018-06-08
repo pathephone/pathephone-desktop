@@ -9,7 +9,7 @@ import {
   uiDiscoverSearchCleared,
   uiAlbumPlayed,
   uiAlbumQueued
-} from '#actions-ui'
+} from '~actions/ui'
 
 import deleteSelectedAlbums from './startDiscoverFeedService/deleteSelectedAlbums'
 import fetchDiscoverAlbums from './startDiscoverFeedService/fetchDiscoverAlbums'

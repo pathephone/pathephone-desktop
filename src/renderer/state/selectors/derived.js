@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect'
-import withIpfsGateway from '~utils/withIpfsGateway'
 
 import {
   getAppStartProgress,
@@ -9,7 +8,8 @@ import {
   getCurrentTrackIndex,
   getPlaylistTracksByIndex,
   getShareCandidates,
-  getNotifications
+  getNotifications,
+  getIpfsGateway
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
@@ -23,7 +23,8 @@ export const getCurrentTrack = state => {
 
 export const getCurrentTrackSource = state => {
   const track = getCurrentTrack(state)
-  return withIpfsGateway(track.cid)
+  const gateway = getIpfsGateway(state)
+  return `${gateway}/ipfs/${track.cid}`
 }
 
 export const isPlayerActive = state => {

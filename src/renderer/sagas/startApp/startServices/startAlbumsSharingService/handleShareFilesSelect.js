@@ -2,7 +2,7 @@ import { call, put, all } from 'redux-saga/effects'
 
 import splitFoldersAndFiles from '~utils/splitFilesAndFolders'
 
-import { systemShareCandidatesRecieved, systemShareFilesProcessingFailed, systemShareCandidatesNotFound } from '#actions-system'
+import { systemShareCandidatesRecieved, systemShareFilesProcessingFailed, systemShareCandidatesNotFound } from '~actions/system'
 
 import getAlbumCandidateFromFiles from './handleShareFilesSelect/getAlbumCandidateFromFiles'
 import getAlbumCandidatesFromFolders from './handleShareFilesSelect/getAlbumCandidatesFromFolders'

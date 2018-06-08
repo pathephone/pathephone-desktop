@@ -1,14 +1,14 @@
 import { takeEvery, all } from 'redux-saga/effects'
 
-import cacheTracks from './startTracksCache/cacheTracks'
-import { systemPlayedTracksRecieved, systemQueuedTracksRecieved } from '#actions-system'
+import cachePlaylistTracks from './startTracksCache/cachePlaylistTracks'
+import { systemPlayedTracksRecieved, systemQueuedTracksRecieved } from '~actions/system'
 
 function * startTracksCache (args) {
   yield all([
     takeEvery([
       systemPlayedTracksRecieved,
       systemQueuedTracksRecieved
-    ], cacheTracks, args)
+    ], cachePlaylistTracks, args)
   ])
 }
 

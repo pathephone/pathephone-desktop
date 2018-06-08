@@ -1,4 +1,4 @@
-import { uiVolumeChanged } from '#actions-ui'
+import { uiVolumeChanged } from '~actions/ui'
 
 const DOMAIN = 'volume'
 

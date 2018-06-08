@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import SharePage from './SharePage.jsx'
 
 import { isShareCandidatesRecieved, isShareProcessing } from '#selectors'
-import { uiShareFilesSelected } from '#actions-ui'
+import { uiShareFilesSelected } from '~actions/ui'
 
 const mapStateToProps = state => ({
   hasProcessingScreen: isShareProcessing(state),

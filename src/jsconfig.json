@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~data/*": ["./shared/data/*"],
+      "~utils/*": ["./shared/utils/*"],
+      "~components/*": ["./renderer/components/*"],
+      "~actions/*": ["./renderer/state/actions/*"],
+      "#selectors": ["./renderer/state/selectors.js"]
+    }
+  }
+}

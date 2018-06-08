@@ -16,7 +16,7 @@ import {
   uiDiscoverSelectedDeleted,
   uiDiscoverSelectedQueued,
   uiDiscoverSelectedPlayed
-} from '#actions-ui'
+} from '~actions/ui'
 
 const mapStateToProps = state => {
   const searchValue = getDiscoverSearchValue(state)

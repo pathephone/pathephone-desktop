@@ -7,7 +7,6 @@ import { QUALITY_LABEL_LOW, QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS } from '~
 
 import ImageContainer from '~components/ImageContainer.jsx'
 
-import withIpfsGateway from '~utils/withIpfsGateway'
 import getQualityCode from '~utils/getQualityCode'
 
 import './Album.css'
@@ -42,8 +41,8 @@ const Album = ({
   albumCid,
   albumTitle,
   albumArtist,
-  albumCoverCid,
-  lowestQuality
+  lowestQuality,
+  albumCoverURL
 }) => {
   const handleSelectAlbum = () => {
     onToggleSelect(albumCid)
@@ -58,7 +57,6 @@ const Album = ({
   const qualityLabelFullPrefix = getQualityTitleLong(qualityCode)
   const qualityLabelFull = `${qualityLabelFullPrefix} (~${parseInt(lowestQuality)}kbps)`
   const qualityLabelShort = getQualityTitleShort(qualityCode)
-  const coverURL = withIpfsGateway(albumCoverCid)
   return (
     <div className={`album${hasSelectedView ? '--selected' : ''}`}>
       <div className='izi-relative'>
@@ -66,7 +64,7 @@ const Album = ({
           onClick={handleSelectAlbum}
           className='album__cover izi-rounded'
         >
-          <ImageContainer className='izi-fill izi-rounded' image={coverURL} />
+          <ImageContainer className='izi-fill izi-rounded' image={albumCoverURL} />
         </button>
         <div className='album__quality'>
           <div
@@ -117,7 +115,7 @@ Album.propTypes = {
   albumCid: propTypes.string.isRequired,
   albumArtist: propTypes.string.isRequired,
   albumTitle: propTypes.string.isRequired,
-  albumCoverCid: propTypes.string.isRequired,
+  albumCoverURL: propTypes.string.isRequired,
   lowestQuality: propTypes.number.isRequired
 }
 

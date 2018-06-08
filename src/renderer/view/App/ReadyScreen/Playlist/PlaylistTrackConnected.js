@@ -6,7 +6,7 @@ import {
   getPlaylistCachedByCid
 } from '#selectors'
 
-import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '#actions-ui'
+import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '~actions/ui'
 
 import PlaylistTrack from './PlaylistTrack.jsx'
 

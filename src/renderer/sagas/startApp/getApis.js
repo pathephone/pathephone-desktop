@@ -5,7 +5,7 @@ import getCustomDbApi from './getApis/getCustomDbApi'
 import startAlbumsCollection from './getApis/startAlbumsCollection'
 import startAlbumsGate from './getApis/startAlbumsGate'
 
-import { systemAppStartProceed } from '#actions-system'
+import { systemAppStartProceed } from '~actions/system'
 
 function * getApis () {
   yield put(systemAppStartProceed(11))

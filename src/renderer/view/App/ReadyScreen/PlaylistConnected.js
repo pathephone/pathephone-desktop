@@ -6,7 +6,7 @@ import {
   isPlaylistEmpty
 } from '#selectors'
 
-import { uiPlaylistCleared } from '#actions-ui'
+import { uiPlaylistCleared } from '~actions/ui'
 
 const mapStateToProps = (state) => {
   return {

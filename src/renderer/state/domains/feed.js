@@ -1,5 +1,5 @@
-import { systemDiscoverAlbumsFetchSucceed } from '#actions-system'
-import { uiDiscoverSearchPerformed, uiDiscoverSearchCleared, uiDiscoverAlbumsRequested } from '#actions-ui'
+import { systemDiscoverAlbumsFetchSucceed } from '~actions/system'
+import { uiDiscoverSearchPerformed, uiDiscoverSearchCleared, uiDiscoverAlbumsRequested } from '~actions/ui'
 import { DISCOVER_FEED_LIMIT_STEP } from '~data/constants'
 
 const DOMAIN = 'feed'

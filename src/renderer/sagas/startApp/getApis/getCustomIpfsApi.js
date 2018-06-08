@@ -1,29 +1,31 @@
-import { openGate } from '@metabin/gate'
-import { remote } from 'electron'
+import { call, put } from 'redux-saga/effects'
 
-import { dagParams } from '~data/config'
+import {
+  IPC_IPFS_SHARE_OBJECT,
+  IPC_IPFS_SHARE_FS_FILE,
+  IPC_IPFS_GET_FILES,
+  IPC_IPFS_START
+} from '~data/ipcTypes'
 
-import startIpfsApi from './getCustomIpfsApi/ipfs/ipfsApi'
+import { rendererCalls } from '~utils/ipcRenderer'
+import { systemIpfsInfoRecieved } from '~actions/system'
 
-const startIpfsDaemon = remote.getGlobal('startIpfsDaemon')
+function * getCustomIpfsApi () {
+  const ipfsInfo = yield call(rendererCalls, IPC_IPFS_START)
 
-const getCustomIpfsApi = async () => {
-  await startIpfsDaemon()
-  const ipfsApi = startIpfsApi()
+  yield put(systemIpfsInfoRecieved(ipfsInfo))
 
-  const shareObjectToIpfs = async obj => {
-    const cidObj = await ipfsApi.dag.put(obj, dagParams)
-    return cidObj.toBaseEncodedString()
+  const shareObjectToIpfs = obj => {
+    return rendererCalls(IPC_IPFS_SHARE_OBJECT, obj)
   }
-  const shareFsFileToIpfs = async file => {
-    const output = await ipfsApi.util.addFromFs(file)
-    return output[0].hash
+  const shareFsFileToIpfs = filePath => {
+    return rendererCalls(IPC_IPFS_SHARE_FS_FILE, filePath)
   }
-  const openMetabinGate = (schema) => (
-    openGate(ipfsApi, schema)
-  )
+  const getFilesFromIpfs = cid => {
+    return rendererCalls(IPC_IPFS_GET_FILES, cid)
+  }
 
-  return { shareFsFileToIpfs, shareObjectToIpfs, openMetabinGate, ipfsApi }
+  return { shareFsFileToIpfs, shareObjectToIpfs, getFilesFromIpfs }
 }
 
 export default getCustomIpfsApi

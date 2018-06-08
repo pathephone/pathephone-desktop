@@ -1,6 +1,6 @@
-import { systemNotificationRecieved, systemNotificationExpired } from '#actions-system'
+import { systemNotificationRecieved, systemNotificationExpired } from '~actions/system'
 
-import { uiNotificationToastRemoved } from '#actions-ui'
+import { uiNotificationToastRemoved } from '~actions/ui'
 
 const DOMAIN = 'notifications'
 

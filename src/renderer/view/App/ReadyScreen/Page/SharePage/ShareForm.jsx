@@ -81,7 +81,7 @@ class ShareForm extends React.Component {
     }
   }
   render () {
-    const { values, onCancel, isDisabled } = this.props
+    const { values, onCancel, isDisabled, ipfsGateway } = this.props
     const { validationErrors } = this.state
     return (
       <IziForm
@@ -94,6 +94,7 @@ class ShareForm extends React.Component {
         <div className='shareFormBody'>
           <AboutFieldset
             cover={values.cover}
+            ipfsGateway={ipfsGateway}
             isDisabled={isDisabled}
           />
           <TracklistFieldset
@@ -118,6 +119,7 @@ class ShareForm extends React.Component {
 }
 
 ShareForm.propTypes = {
+  ipfsGateway: propTypes.string.isRequired,
   isDisabled: propTypes.bool.isRequired,
   onSubmit: propTypes.func.isRequired,
   onCancel: propTypes.func.isRequired,

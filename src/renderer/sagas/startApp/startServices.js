@@ -2,7 +2,7 @@ import { call, all, spawn, put } from 'redux-saga/effects'
 
 import asyncTimeout from '~utils/asyncTimeout'
 
-import { systemAppStartProceed } from '#actions-system'
+import { systemAppStartProceed } from '~actions/system'
 
 import startAlbumsReciever from './startServices/startAblumsReciever'
 import startAlbumsPublisher from './startServices/startAlbumsPublisher'

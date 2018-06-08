@@ -7,12 +7,12 @@ import {
   systemPlayedTracksRecieved,
   systemQueuedTracksRecieved,
   systemDiscoverSelectedActionSucceed
-} from '#actions-system'
+} from '~actions/system'
 
 import {
   uiDiscoverSelectedPlayed,
   uiDiscoverSelectedQueued
-} from '#actions-ui'
+} from '~actions/ui'
 
 import { getDiscoverSelectedAlbums } from '#selectors'
 import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums'

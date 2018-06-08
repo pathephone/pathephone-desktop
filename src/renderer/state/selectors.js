@@ -7,5 +7,6 @@ export * from './domains/feedSelection'
 export * from './domains/share'
 export * from './domains/cachedTracks'
 export * from './domains/notifications'
+export * from './domains/ipfsInfo'
 
 export * from './selectors/derived'

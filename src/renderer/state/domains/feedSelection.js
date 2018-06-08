@@ -1,9 +1,9 @@
-import { systemDiscoverSelectedActionSucceed } from '#actions-system'
+import { systemDiscoverSelectedActionSucceed } from '~actions/system'
 import {
   uiDiscoverAlbumSelected,
   uiDiscoverAlbumDeselected,
   uiDiscoverSelectedCanceled
-} from '#actions-ui'
+} from '~actions/ui'
 
 const DOMAIN = 'feedSelection'
 

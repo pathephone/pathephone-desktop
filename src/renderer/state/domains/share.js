@@ -1,5 +1,5 @@
-import { uiShareFilesSelected, uiShareFormSubmited, uiShareFormCanceled } from '#actions-ui'
-import { systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged, systemShareFilesProcessingFailed, systemShareCandidatesNotFound } from '#actions-system'
+import { uiShareFilesSelected, uiShareFormSubmited, uiShareFormCanceled } from '~actions/ui'
+import { systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged, systemShareFilesProcessingFailed, systemShareCandidatesNotFound } from '~actions/system'
 
 const DOMAIN = 'share'
 

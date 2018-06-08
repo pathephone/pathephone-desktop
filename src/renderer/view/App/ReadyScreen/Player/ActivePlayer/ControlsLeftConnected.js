@@ -8,7 +8,7 @@ import {
   uiNextTrackPlayed,
   uiPreviousTrackPlayed,
   uiPlaybackToggled
-} from '#actions-ui'
+} from '~actions/ui'
 
 import ControlsLeft from './ControlsLeft.jsx'
 

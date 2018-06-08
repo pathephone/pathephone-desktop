@@ -3,7 +3,7 @@ import { select, put, call, take } from 'redux-saga/effects'
 import normalizeCollectionAlbum from '~utils/normalizeCollectionAlbum'
 
 import { getFeedAlbumsLimit, getDiscoverSearchValue } from '#selectors'
-import { systemDiscoverAlbumsFetchSucceed } from '#actions-system'
+import { systemDiscoverAlbumsFetchSucceed } from '~actions/system'
 
 function * fetchDiscoverAlbums (apis) {
   const { findAlbumsInCollectionByText } = apis

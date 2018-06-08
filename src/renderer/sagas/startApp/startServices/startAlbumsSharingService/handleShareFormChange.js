@@ -1,6 +1,6 @@
 import { all, call, put } from 'redux-saga/effects'
 
-import { systemShareFormChanged, systemUiLocked, systemUiUnlocked } from '#actions-system'
+import { systemShareFormChanged, systemUiLocked, systemUiUnlocked } from '~actions/system'
 
 import getTracksFromFiles from '~utils/getTracksFromFiles'
 

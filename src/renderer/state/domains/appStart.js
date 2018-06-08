@@ -1,5 +1,5 @@
 
-import { systemAppStartProceed, systemAppStartFailed, systemUiLocked, systemUiUnlocked } from '#actions-system'
+import { systemAppStartProceed, systemAppStartFailed, systemUiLocked, systemUiUnlocked } from '~actions/system'
 
 const DOMAIN = 'appStart'
 

@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects'
 
-import { systemAppStartSucceed, systemAppStartFailed } from '#actions-system'
+import { systemAppStartSucceed, systemAppStartFailed } from '~actions/system'
 
 import startServices from './startApp/startServices'
 import getApis from './startApp/getApis'

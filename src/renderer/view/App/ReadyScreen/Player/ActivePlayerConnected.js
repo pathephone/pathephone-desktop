@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import ActivePlayer from './ActivePlayer.jsx'
-import { systemAudioEnded, systemAudioPlayed, systemAudioPaused } from '#actions-system'
+import { systemAudioEnded, systemAudioPlayed, systemAudioPaused } from '~actions/system'
 import { getCurrentTrackSource, getVolume, isPaused, getCurrentTrack } from '#selectors'
 
 const mapStateToProps = (state) => {

@@ -12,13 +12,14 @@ module.exports = env => ({
   externals: [nodeExternals()],
   resolve: {
     alias: {
-      '~data': path.resolve(__dirname, '../src/renderer/shared/data'),
-      '~utils': path.resolve(__dirname, '../src/renderer/shared/utils'),
-      '~components': path.resolve(__dirname, '../src/renderer/shared/components'),
       '~resources': path.resolve(__dirname, '../resources'),
-      '#environment': path.resolve(__dirname, `../config/env_${env}.json`),
-      '#actions-ui': path.resolve(__dirname, '../src/renderer/state/actions/ui.js'),
-      '#actions-system': path.resolve(__dirname, '../src/renderer/state/actions/system.js'),
+
+      '~data': path.resolve(__dirname, '../src/shared/data'),
+      '~utils': path.resolve(__dirname, '../src/shared/utils'),
+      '#config': path.resolve(__dirname, `../src/shared/config/${env}.js`),
+
+      '~components': path.resolve(__dirname, '../src/renderer/components'),
+      '~actions': path.resolve(__dirname, '../src/renderer/state/actions'),
       '#selectors': path.resolve(__dirname, '../src/renderer/state/selectors.js')
     }
   },

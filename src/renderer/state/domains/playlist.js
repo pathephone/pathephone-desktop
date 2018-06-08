@@ -4,7 +4,7 @@ import {
   systemQueuedTracksRecieved,
   systemAudioEnded,
   systemTrackCached
-} from '#actions-system'
+} from '~actions/system'
 
 import {
   uiPlaylistTrackRemoved,
@@ -14,7 +14,7 @@ import {
   uiPreviousTrackPlayed,
   uiRepeatToggled,
   uiShuffleToggled
-} from '#actions-ui'
+} from '~actions/ui'
 
 import calcNextTrackIndex from '~utils/calcNextTrackIndex'
 import calcPreviousTrackIndex from '~utils/calcPreviousTrackIndex'

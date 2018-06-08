@@ -3,7 +3,7 @@ import {
   systemAlbumCandidateRecieved,
   systemAlbumUpdated,
   systemAlbumSaved
-} from '#actions-system'
+} from '~actions/system'
 
 function * handleIncomingAlbums (apis, album) {
   const {

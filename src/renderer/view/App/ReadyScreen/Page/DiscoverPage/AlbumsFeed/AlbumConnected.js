@@ -1,14 +1,22 @@
 import { connect } from 'react-redux'
 
 import {
-  getDiscoverSelectedAlbums
+  getDiscoverSelectedAlbums,
+  getIpfsGateway
 } from '#selectors'
 
-import Album from './Album.jsx'
-import { uiDiscoverAlbumSelected, uiDiscoverAlbumDeselected, uiAlbumQueued, uiAlbumPlayed } from '#actions-ui'
+import {
+  uiDiscoverAlbumSelected,
+  uiDiscoverAlbumDeselected,
+  uiAlbumQueued,
+  uiAlbumPlayed
+} from '~actions/ui'
 
-const mapStateToProps = (...args) => ({
-  selectedAlbums: getDiscoverSelectedAlbums(...args)
+import Album from './Album.jsx'
+
+const mapStateToProps = (state) => ({
+  selectedAlbums: getDiscoverSelectedAlbums(state),
+  ipfsGateway: getIpfsGateway(state)
 })
 
 const mapDispatchToProps = {
@@ -18,13 +26,27 @@ const mapDispatchToProps = {
   onPlayAlbum: uiAlbumPlayed
 }
 
-const mergeProps = ({ selectedAlbums }, { uiDiscoverAlbumSelected, uiDiscoverAlbumDeselected, ...restDispatch }, ownProps) => {
+const mergeProps = (
+  stateProps,
+  dispatchProps,
+  ownProps
+) => {
+  const { selectedAlbums, ipfsGateway } = stateProps
+  const {
+    uiDiscoverAlbumSelected,
+    uiDiscoverAlbumDeselected,
+    ...restDispatch
+  } = dispatchProps
+  const { albumCoverCid, ...restOwnProps } = ownProps
+
   const handleFind = cid => cid === ownProps.albumCid
   const hasSelectedView = selectedAlbums.some(handleFind)
   const onToggleSelect = hasSelectedView ? uiDiscoverAlbumDeselected : uiDiscoverAlbumSelected
+  const albumCoverURL = `${ipfsGateway}/ipfs/${albumCoverCid}`
   return ({
-    ...ownProps,
+    ...restOwnProps,
     ...restDispatch,
+    albumCoverURL,
     onToggleSelect,
     hasSelectedView
   })

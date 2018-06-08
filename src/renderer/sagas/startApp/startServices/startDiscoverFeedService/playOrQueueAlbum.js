@@ -5,12 +5,12 @@ import {
   systemUiUnlocked,
   systemPlayedTracksRecieved,
   systemQueuedTracksRecieved
-} from '#actions-system'
+} from '~actions/system'
 
 import {
   uiAlbumPlayed,
   uiAlbumQueued
-} from '#actions-ui'
+} from '~actions/ui'
 
 import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums'
 
