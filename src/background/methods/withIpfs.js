@@ -1,4 +1,8 @@
 import { app } from 'electron'
+import path from 'path'
+
+import { ENV_TESTING } from '~data/constants'
+import { ENVIRONMENT } from '#config'
 
 import {
   IPC_IPFS_START
@@ -9,12 +13,13 @@ import {
 
 import startIpfsDaemon from './withIpfs/startIpfsDaemon'
 
-const handleIpfsStartRequest = async (window) => {
+const handleIpfsStartRequest = async (params) => {
   const {
     stopIpfsDaemon,
     ...ipfsInfo
-  } = await startIpfsDaemon(window)
-  app.once('will-quit', (e) => {
+  } = await startIpfsDaemon(params)
+
+  app.once('will-quit', e => {
     e.preventDefault()
     stopIpfsDaemon()
       .then(() => {
@@ -27,7 +32,16 @@ const handleIpfsStartRequest = async (window) => {
 }
 
 const withIpfs = (window) => {
-  mainTakes(IPC_IPFS_START, () => handleIpfsStartRequest(window))
+  const repoPath = path.join(app.getPath('userData'), 'ipfsRepo')
+  const disposable = ENVIRONMENT === ENV_TESTING
+  const startFlags = ['--enable-pubsub-experiment']
+  if (process.env.IPFS_OFFLINE) {
+    startFlags.push('--offline')
+  }
+  const ipfsParams = {
+    window, startFlags, repoPath, disposable
+  }
+  mainTakes(IPC_IPFS_START, () => handleIpfsStartRequest(ipfsParams))
 }
 
 export default withIpfs

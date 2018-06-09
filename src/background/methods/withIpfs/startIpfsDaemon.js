@@ -1,28 +1,14 @@
-import { app } from 'electron'
 import IPFSFactory from 'ipfsd-ctl'
-import path from 'path'
-
-import { ENV_TESTING } from '~data/constants'
-import { ENVIRONMENT } from '#config'
 
 import startIpfsApi from './startIpfsDaemon/startIpfsApi'
 import startMetabinApi from './startIpfsDaemon/startMetabinApi'
 import beforeIpfsDaemonStart from './startIpfsDaemon/beforeIpfsDaemonStart'
 
-const startFlags = ['--enable-pubsub-experiment']
-
-if (process.env.IPFS_OFFLINE) {
-  startFlags.push('--offline')
-}
-
 let ipfsDaemon = null
 
-const startIpfsDaemon = (window) => {
+const startIpfsDaemon = params => {
+  const { window, disposable, repoPath, startFlags } = params
   if (ipfsDaemon) return ipfsDaemon
-  const spawnParams = {
-    repoPath: path.join(app.getPath('userData'), 'ipfsRepo'),
-    disposable: ENVIRONMENT === ENV_TESTING
-  }
   return new Promise((resolve, reject) => {
     const onError = (error) => {
       reject(error)
@@ -74,6 +60,9 @@ const startIpfsDaemon = (window) => {
       if (err) {
         onError(err)
       } else {
+        if (node.disposable) {
+          onSuccess(node)
+        } else
         if (node.initialized) {
           startIpfsNode(node)
         } else {
@@ -86,7 +75,7 @@ const startIpfsDaemon = (window) => {
 
     IPFSFactory
       .create({ type: 'go' })
-      .spawn(spawnParams, spawnCallback)
+      .spawn({ disposable, repoPath }, spawnCallback)
   })
 }
 
