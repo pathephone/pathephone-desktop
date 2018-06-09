@@ -6,27 +6,22 @@ import isIpfs from 'is-ipfs'
 import flac from '~resources/music/track.flac'
 import cover from '~resources/music/cover.jpg'
 
+import {
+  E2E_SHARE_ALBUM_LINK_ID, E2E_SHARE_PAGE_ID
+} from '~data/e2eConstants'
+
 let feedLength
 
-describe('add album process', function () {
-  // OPEN AND CLOSE ADD ALBUM MODAL
-  describe('click openadd album button', () => {
+describe('share page', function () {
+  describe('click share album navigation link', () => {
     it('throws no errors', async function () {
       const { app } = this
-      await app.client.waitForExist('#add-album_open')
-      return app.client.click('#add-album_open')
+      await app.client.waitForExist(E2E_SHARE_ALBUM_LINK_ID)
+      return app.client.click(E2E_SHARE_ALBUM_LINK_ID)
     })
-    it('form appears', function () {
+    it('share page appears', function () {
       const { app } = this
-      return app.client.waitForExist('#add-album_form')
-    })
-    it('submit button appears', async function () {
-      const { app } = this
-      await app.client.waitForExist('#add-album_submit')
-    })
-    it('close button appears', async function () {
-      const { app } = this
-      await app.client.waitForExist('#add-album_submit')
+      return app.client.waitForExist(E2E_SHARE_PAGE_ID)
     })
   })
   describe('click close add album button', () => {

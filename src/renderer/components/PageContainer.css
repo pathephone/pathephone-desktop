@@ -1,4 +1,4 @@
-#page-container {
+.page-container {
   grid-area: page;
   overflow-y: auto;
 }

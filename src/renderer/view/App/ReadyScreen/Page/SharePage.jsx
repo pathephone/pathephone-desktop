@@ -1,6 +1,10 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import { E2E_SHARE_PAGE_ID } from '~data/e2eConstants'
+
+import PageContainer from '~components/PageContainer.jsx'
+
 import ShareProcessingScreen from './SharePage/ShareProcessingScreen.jsx'
 import ShareDropZone from './SharePage/ShareDropZone.jsx'
 import ShareFormConnected from './SharePage/ShareFormConnected'
@@ -8,7 +12,7 @@ import ShareFormConnected from './SharePage/ShareFormConnected'
 const SharePage = (props) => {
   const { hasProcessingScreen, hasEditForm, ...restProps } = props
   return (
-    <React.Fragment>
+    <PageContainer id={E2E_SHARE_PAGE_ID}>
       {
         hasProcessingScreen ? (
           <ShareProcessingScreen />
@@ -18,7 +22,7 @@ const SharePage = (props) => {
           <ShareDropZone {...restProps} />
         )
       }
-    </React.Fragment>
+    </PageContainer>
   )
 }
 

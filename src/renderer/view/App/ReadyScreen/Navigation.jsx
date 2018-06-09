@@ -5,6 +5,7 @@ import DiscoverIcon from 'react-icons/lib/fa/globe'
 import CardIcon from 'react-icons/lib/md/card-giftcard'
 
 import { ROUTE_ADD_ALBUM, ROUTE_ALBUMS, ROUTE_DONATE } from '~data/constants'
+import { E2E_SHARE_ALBUM_LINK_ID } from '~data/e2eConstants'
 
 import NavigationItem from './Navigation/NavigationItem.jsx'
 
@@ -18,6 +19,7 @@ const Navigation = () => (
       icon={<DiscoverIcon />}
     />
     <NavigationItem
+      id={E2E_SHARE_ALBUM_LINK_ID}
       path={ROUTE_ADD_ALBUM}
       title='Share album'
       icon={<UploadIcon />}

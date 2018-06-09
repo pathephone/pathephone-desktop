@@ -35,10 +35,7 @@ const closeApp = function () {
   }
 }
 
-const asyncTimeout = delay => new Promise(resolve => setTimeout(resolve, delay))
-
 module.exports = {
   startApp,
-  closeApp,
-  asyncTimeout
+  closeApp
 }

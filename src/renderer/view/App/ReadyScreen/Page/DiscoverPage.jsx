@@ -1,6 +1,8 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import PageContainer from '~components/PageContainer.jsx'
+
 import SearchBar from './DiscoverPage/SearchBar.jsx'
 import AlbumsFeedConnected from './DiscoverPage/AlbumsFeedConnected'
 import NoAlbumsFound from './DiscoverPage/NoAlbumsFound.jsx'
@@ -18,7 +20,7 @@ class DiscoverPage extends React.Component {
       ...restProps
     } = this.props
     return (
-      <div className='albums-page'>
+      <PageContainer className='albums-page'>
         <SearchBar
           {...restProps}
         />
@@ -38,7 +40,7 @@ class DiscoverPage extends React.Component {
             />
           )
         }
-      </div>
+      </PageContainer>
     )
   }
 }
