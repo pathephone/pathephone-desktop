@@ -9,7 +9,7 @@ import NotificationsConnected from './ReadyScreen/NotificationsConnected'
 import './ReadyScreen.css'
 
 const ReadyScreen = () => (
-  <div id='app' className='izi-fill izi-ys'>
+  <div id='readyScreen'>
     <Navigation />
     <Page />
     <PlaylistConnected />

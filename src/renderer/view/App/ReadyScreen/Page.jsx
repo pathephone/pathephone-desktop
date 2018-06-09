@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE, ROUTE_HOME } from '~data/constants'
 
 import DiscoverPageConnected from './Page/DiscoverPageConnected'
-import SharePage from './Page/SharePageConnected'
+import SharePageConnected from './Page/SharePageConnected'
 import DonatePage from './Page/DonatePage.jsx'
 
 const Page = () => (
@@ -20,7 +20,7 @@ const Page = () => (
     />
     <Route
       path={ROUTE_ADD_ALBUM}
-      component={SharePage}
+      component={SharePageConnected}
     />
     <Route
       path={ROUTE_DONATE}

@@ -13,13 +13,24 @@ import AppConnected from './view/AppConnected'
 
 import store, { persistor } from './store'
 
-render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <HashRouter>
-        <AppConnected />
-      </HashRouter>
-    </PersistGate>
-  </Provider>,
-  document.getElementById('mount-point')
-)
+const renderRoot = (Root) => {
+  render(
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <HashRouter>
+          <Root />
+        </HashRouter>
+      </PersistGate>
+    </Provider>,
+    document.getElementById('app')
+  )
+}
+
+renderRoot(AppConnected)
+
+if (module.hot) {
+  module.hot.accept('./view/AppConnected', () => {
+    const NextAppConnected = require('./view/AppConnected') // eslint-disable-line global-require
+    renderRoot(NextAppConnected)
+  })
+}
