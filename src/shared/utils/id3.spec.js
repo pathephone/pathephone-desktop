@@ -1,12 +1,8 @@
 /* eslint-env mocha */
-import path from 'path'
 import id3 from './id3'
 import assert from 'assert'
-import flac from '$/resources/music/track.flac'
-import mp3 from '$/resources/music/track.mp3'
-
-const flacpath = path.resolve(__dirname, flac)
-const mp3path = path.resolve(__dirname, mp3)
+import flacpath from '~resources/music/track.flac'
+import mp3path from '~resources/music/track.mp3'
 
 describe('id3', function () {
   this.timeout(8000)

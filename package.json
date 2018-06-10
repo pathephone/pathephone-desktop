@@ -12,16 +12,16 @@
     "type": "git",
     "url": "https://github.com/pathephone/pathephone-desktop.git"
   },
-  "main": "app/background.js",
+  "main": "dist/main/main.js",
   "go-ipfs": {
     "version": "v0.4.15"
   },
   "electronWebpack": {
     "main": {
-      "webpackConfig": "build/webpack.base.config.js"
+      "webpackConfig": "build/webpack.main.config.js"
     },
     "renderer": {
-      "webpackConfig": "build/webpack.base.config.js"
+      "webpackConfig": "build/webpack.renderer.config.js"
     }
   },
   "build": {
@@ -29,6 +29,12 @@
     "directories": {
       "buildResources": "resources"
     },
+    "extraResources": [
+      {
+        "from": "resources/icons/64x64.png",
+        "to": "icons/64x64.png"
+      }
+    ],
     "linux": {
       "category": "Audio",
       "target": [
@@ -41,16 +47,21 @@
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "prebuild": "electron-webpack",
+    "compile:e2e": "webpack --config=build/webpack.e2e.config.js",
+    "compile:unit": "webpack --config=build/webpack.unit.config.js",
+    "compile:app": "electron-webpack",
+    "compile:app:dev": "electron-webpack dev",
+    "prebuild": "yarn compile:app",
     "build": "electron-builder",
     "build:dir": "yarn build --dir -c.compression=store -c.mac.identity=null",
-    "test:unit": "electron-mocha 'src/**/*.spec.js' --renderer",
-    "pretest:e2e": "electron-builder --dir",
-    "test:e2e": "mocha src/e2e/index.js",
+    "pretest:unit": "cross-env NODE_ENV=testing yarn compile:unit",
+    "test:unit": "cd .temp/unit && mocha",
+    "pretest:e2e": "cross-env NODE_ENV=testing yarn build:dir && yarn compile:e2e",
+    "test:e2e": "cd .temp/e2e && mocha",
     "test:lint": "eslint .",
     "test": "yarn test:lint && yarn test:unit && yarn test:e2e",
     "lint": "eslint --fix .",
-    "start": "cross-env NODE_ENV=development electron-webpack dev",
+    "start": "cross-env NODE_ENV=development yarn compile:app:dev",
     "start:offline": "cross-env IPFS_OFFLINE=true yarn start"
   },
   "dependencies": {
@@ -93,6 +104,7 @@
     "@semantic-release/changelog": "^1.0.0",
     "@semantic-release/exec": "^2.0.0",
     "@semantic-release/git": "^3.0.0",
+    "babel-eslint": "^8.2.3",
     "chai": "^4.1.2",
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.7",
@@ -110,11 +122,13 @@
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "glob": "^7.1.2",
     "mocha": "^4.0.1",
     "node-sass": "^4.7.1",
     "sass-loader": "^6.0.6",
     "spectron": "^3.8.0",
     "style-loader": "^0.21.0",
-    "webpack": "^4.0.0"
+    "webpack": "^4.0.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }

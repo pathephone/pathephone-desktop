@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 
 const { NODE_ENV = 'production' } = process.env
@@ -5,11 +6,9 @@ const { NODE_ENV = 'production' } = process.env
 module.exports = {
   resolve: {
     alias: {
-      '~resources': path.resolve(__dirname, '../resources'),
-
       '~data': path.resolve(__dirname, '../src/shared/data'),
       '~utils': path.resolve(__dirname, '../src/shared/utils'),
-      '#config': path.resolve(__dirname, `../src/shared/config/${NODE_ENV}.js`),
+      '#config': path.resolve(__dirname, `../src/shared/config.js`),
 
       '~components': path.resolve(__dirname, '../src/renderer/components'),
       '~actions': path.resolve(__dirname, '../src/renderer/state/actions'),
@@ -34,5 +33,10 @@ module.exports = {
       //   ]
       // }
     ]
-  }
+  },
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV
+    })
+  ]
 }

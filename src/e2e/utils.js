@@ -1,20 +1,20 @@
-const { Application } = require('spectron')
+import { Application } from 'spectron'
 
 const { platform } = process
 
 let pathToBin
 
-if (process.env.E2E_TYPE === 'dev') {
+if (process.env.E2E_TYPE === 'fast') {
   pathToBin = require('electron')
 } else {
   if (platform === 'darwin') {
-    pathToBin = 'dist/mac/Pathephone.app/Contents/MacOS/Pathephone'
+    pathToBin = '../../dist/mac/Pathephone.app/Contents/MacOS/Pathephone'
   } else
   if (platform === 'linux') {
-    pathToBin = 'dist/linux-unpacked/pathephone-desktop'
+    pathToBin = '../../dist/linux-unpacked/pathephone-desktop'
   } else
   if (platform === 'win32') {
-    pathToBin = 'dist/win-unpacked/Pathephone.exe'
+    pathToBin = '../../dist/win-unpacked/Pathephone.exe'
   }
 }
 
@@ -35,7 +35,7 @@ const closeApp = function () {
   }
 }
 
-module.exports = {
+export default {
   startApp,
   closeApp
 }
