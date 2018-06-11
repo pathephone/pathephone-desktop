@@ -44,8 +44,8 @@ app.on('ready', () => {
 
   mainWindow.on('close', e => {
     if (!process.platform === 'linux') {
-      e.preventDefault()
       mainWindow.hide()
+      e.preventDefault()
     }
   })
   mainWindow.on('closed', () => {

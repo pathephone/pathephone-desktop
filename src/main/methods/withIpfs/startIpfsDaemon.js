@@ -16,19 +16,20 @@ const startIpfsDaemon = params => {
     const onSuccess = (node) => {
       const stopIpfsApi = startIpfsApi(node)
       const stopMetabinApi = startMetabinApi(node, window)
-      const stopIpfsDaemon = () => {
-        return new Promise((resolve, reject) => {
-          stopMetabinApi()
-          stopIpfsApi()
-          node.stop((err) => {
-            if (err) {
-              reject(err)
-            } else {
-              resolve()
-            }
-          })
-          ipfsDaemon = null
+      const stopIpfsNode = () => new Promise((resolve, reject) => {
+        node.stop(err => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve()
+          }
         })
+      })
+      const stopIpfsDaemon = () => {
+        ipfsDaemon = null
+        return stopMetabinApi()
+          .then(stopIpfsApi)
+          .then(stopIpfsNode)
       }
       const gateway = `http://${node.api.gatewayHost}:${node.api.gatewayPort}`
       ipfsDaemon = {

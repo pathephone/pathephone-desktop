@@ -8,7 +8,6 @@ import {
   IPC_METABIN_GATE_DATA_RECIEVED,
   IPC_METABIN_GATE_UNLISTEN
 } from '~data/ipcTypes'
-import { ipcMain } from 'electron'
 
 const startMetabinApi = ({ api }, window) => {
   let inc = 0
@@ -41,7 +40,7 @@ const startMetabinApi = ({ api }, window) => {
   const handleUnlisten = listenerId => {
     const unlisten = gatesUnlistenersById.get(listenerId)
     gatesUnlistenersById.delete(listenerId)
-    unlisten()
+    return unlisten()
   }
   const ipcUnlisteners = [
     mainTakes(IPC_METABIN_GATE_START, handleStart),
@@ -50,13 +49,14 @@ const startMetabinApi = ({ api }, window) => {
     mainTakes(IPC_METABIN_GATE_UNLISTEN, handleUnlisten)
   ]
   return () => {
-    const handleEach = unlisten => {
-      unlisten()
-    }
+    const handleEach = unlisten => { unlisten() }
+    const handleMap = id => handleUnlisten(id)
     ipcUnlisteners
       .forEach(handleEach)
-    gatesUnlistenersById
-      .forEach(handleEach)
+    return Promise.all(
+      [...gatesUnlistenersById.keys()]
+        .map(handleMap)
+    )
   }
 }
 

@@ -19,14 +19,15 @@ const handleIpfsStartRequest = async (params) => {
     ...ipfsInfo
   } = await startIpfsDaemon(params)
 
-  app.once('will-quit', e => {
+  app.once('will-quit', async e => {
     e.preventDefault()
-    stopIpfsDaemon()
-      .then(() => {
-        console.log('ipfs-d stoped')
-      })
-      .catch(console.error)
-      .then(app.quit)
+    try {
+      await stopIpfsDaemon()
+      console.log('ipfs-d stoped')
+    } catch (error) {
+      console.error(error)
+    }
+    app.quit()
   })
   return ipfsInfo
 }
