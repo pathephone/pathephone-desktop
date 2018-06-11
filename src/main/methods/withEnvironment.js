@@ -15,7 +15,8 @@ const withEnvronment = () => {
   }
 
   if (ENVIRONMENT === ENV_DEVELOPMENT) {
-    require('electron-debug')({showDevTools: true})
+    app.commandLine.appendSwitch('remote-debugging-port', '9223')
+    // require('electron-debug')({showDevTools: true})
     require('electron-context-menu')({})
   }
 }
