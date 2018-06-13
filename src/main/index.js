@@ -22,7 +22,8 @@ const isSecondInstance = app.makeSingleInstance(() => {
 })
 
 if (isSecondInstance) {
-  app.quit()
+  console.log('-- second instance detected, exit')
+  app.exit()
 }
 
 withEnvironment()
