@@ -1,5 +1,5 @@
 import Ajv from 'ajv'
-import { shareCandidateSchema } from '~data/schemas'
+import { albumSchema } from '~data/schemas'
 
 const normalizeDataPath = dataPath => {
   const noDot = dataPath.slice(1, dataPath.length)
@@ -19,7 +19,7 @@ const validateShareCandidate = (candidate) => {
   const validator = new Ajv({
     allErrors: true
   })
-  const valid = validator.validate(shareCandidateSchema, candidate)
+  const valid = validator.validate(albumSchema.shareCandidateSchema, candidate)
   if (!valid) {
     return normalizeErrors(validator.errors)
   }

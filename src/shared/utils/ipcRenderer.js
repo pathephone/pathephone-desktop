@@ -18,6 +18,14 @@ export const rendererCalls = (chan, ...sendPayload) => {
   })
 }
 
+export const rendererCallsSync = (chan, ...sendPayload) => {
+  const { error, payload } = ipcRenderer.sendSync(chan, ...sendPayload)
+  if (error) {
+    throw new Error(error)
+  }
+  return payload
+}
+
 export const rendererTakes = (channel, handler) => {
   ipcRenderer.on(channel, async (event, id, ...args) => {
     try {

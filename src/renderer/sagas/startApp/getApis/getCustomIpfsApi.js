@@ -12,7 +12,6 @@ import { systemIpfsInfoRecieved } from '~actions/system'
 
 function * getCustomIpfsApi () {
   const ipfsInfo = yield call(rendererCalls, IPC_IPFS_START)
-
   yield put(systemIpfsInfoRecieved(ipfsInfo))
 
   const shareObjectToIpfs = obj => {

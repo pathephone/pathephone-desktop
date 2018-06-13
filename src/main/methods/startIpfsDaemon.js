@@ -1,42 +1,13 @@
 import IPFSFactory from 'ipfsd-ctl'
 
-import startIpfsApi from './startIpfsDaemon/startIpfsApi'
-import startMetabinApi from './startIpfsDaemon/startMetabinApi'
 import beforeIpfsDaemonStart from './startIpfsDaemon/beforeIpfsDaemonStart'
 
-let ipfsDaemon = null
-
 const startIpfsDaemon = params => {
-  const { window, disposable, repoPath, startFlags } = params
-  if (ipfsDaemon) return ipfsDaemon
   return new Promise((resolve, reject) => {
-    const onError = (error) => {
-      reject(error)
-    }
-    const onSuccess = (node) => {
-      const stopIpfsApi = startIpfsApi(node)
-      const stopMetabinApi = startMetabinApi(node, window)
-      const stopIpfsNode = () => new Promise((resolve, reject) => {
-        node.stop(err => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve()
-          }
-        })
-      })
-      const stopIpfsDaemon = () => {
-        ipfsDaemon = null
-        return stopMetabinApi()
-          .then(stopIpfsApi)
-          .then(stopIpfsNode)
-      }
-      const gateway = `http://${node.api.gatewayHost}:${node.api.gatewayPort}`
-      ipfsDaemon = {
-        gateway, stopIpfsDaemon
-      }
-      resolve(ipfsDaemon)
-    }
+    const { disposable, repoPath, startFlags } = params
+
+    const onError = reject
+    const onSuccess = resolve
 
     const startIpfsNode = (node) => {
       const startCallback = (err) => {

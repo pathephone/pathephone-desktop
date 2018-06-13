@@ -6,7 +6,7 @@
 import { app, BrowserWindow, screen } from 'electron'
 import jetpack from 'fs-jetpack'
 
-const createWindow = (name, options) => {
+const createElectronWindow = (name, options) => {
   const userDataDir = jetpack.cwd(app.getPath('userData'))
   const stateStoreFile = `window-state-${name}.json`
   const defaultSize = {
@@ -84,4 +84,4 @@ const createWindow = (name, options) => {
   return win
 }
 
-export default createWindow
+export default createElectronWindow

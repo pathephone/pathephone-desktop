@@ -1,54 +1,73 @@
 import { app } from 'electron'
-import path from 'path'
-import url from 'url'
 
-import { ENVIRONMENT } from '#config'
-
-import createWindow from './methods/createWindow'
 import withEnvironment from './methods/withEnvironment'
-import withSingleInstanceBehavior from './methods/withSingleInstanceBehavior'
-import withTray from './methods/withTray'
-import withIpfs from './methods/withIpfs'
-import withNoNavigation from './methods/withNoNavigation'
-import withMenu from './methods/withMenu'
-import { ENV_DEVELOPMENT } from '~data/constants'
+import startIpfsDaemon from './methods/startIpfsDaemon'
+import getIpfsDaemonParams from './methods/getIpfsDaemonParams'
+import startCommunication from './methods/startCommunication'
+import createMainWindow from './methods/createMainWindow'
+import startMainWindowLifecycle from './methods/startMainWindowLifecycle'
+import loadMainWindow from './methods/loadMainWindow'
+
+let mainWindow = null
+let readyToQuit = false
+
+const isSecondInstance = app.makeSingleInstance(() => {
+  // Someone tried to run a second instance, we should focus our window.
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) {
+      mainWindow.restore()
+    }
+    window.focus()
+  }
+})
+
+if (isSecondInstance) {
+  app.quit()
+}
 
 withEnvironment()
 
-app.on('ready', () => {
+const ipfsDaemonPromise = startIpfsDaemon(getIpfsDaemonParams())
+
+const communication = startCommunication({
+  ipfsDaemonPromise
+})
+
+const handleReady = () => {
   console.log('-- loading main window')
 
-  let mainWindow = createWindow()
+  mainWindow = createMainWindow()
 
-  withSingleInstanceBehavior(mainWindow)
-
-  withTray(mainWindow)
-
-  withIpfs(mainWindow)
-
-  withNoNavigation(mainWindow)
-
-  withMenu(mainWindow)
-
-  if (ENVIRONMENT === ENV_DEVELOPMENT) {
-    mainWindow.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`)
-  } else {
-    mainWindow.loadURL(
-      url.format({
-        pathname: path.join(__dirname, 'index.html'),
-        protocol: 'file',
-        slashes: true
-      })
-    )
+  const handleClosed = () => {
+    mainWindow = null
   }
 
-  mainWindow.on('close', e => {
-    if (!process.platform === 'linux') {
-      mainWindow.hide()
-      e.preventDefault()
+  mainWindow.on('closed', handleClosed)
+
+  startMainWindowLifecycle({
+    mainWindow,
+    ipfsDaemonPromise,
+    communication
+  })
+
+  loadMainWindow(mainWindow)
+}
+
+const handleBeforeQuit = async e => {
+  if (!readyToQuit) {
+    e.preventDefault()
+    try {
+      await communication.stop()
+      const ipfsDaemon = await ipfsDaemonPromise
+      await ipfsDaemon.stop()
+      console.log('-- app ready to quit')
+    } catch (error) {
+      console.error(error)
     }
-  })
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
-})
+    readyToQuit = true
+    app.quit()
+  }
+}
+
+app.on('ready', handleReady)
+app.on('before-quit', handleBeforeQuit)

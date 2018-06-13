@@ -3,7 +3,7 @@ import { call, put } from 'redux-saga/effects'
 import getCustomIpfsApi from './getApis/getCustomIpfsApi'
 import getCustomDbApi from './getApis/getCustomDbApi'
 import startAlbumsCollection from './getApis/startAlbumsCollection'
-import startAlbumsGate from './getApis/startAlbumsGate'
+import getAlbumsGateApi from './getApis/getAlbumsGateApi'
 
 import { systemAppStartProceed } from '~actions/system'
 
@@ -15,7 +15,7 @@ function * getApis () {
   yield put(systemAppStartProceed(33))
   const [ albumsCollectionApi, albumsGateApi ] = yield [
     call(startAlbumsCollection, dbApi),
-    call(startAlbumsGate, ipfsApi)
+    call(getAlbumsGateApi, ipfsApi)
   ]
 
   return {

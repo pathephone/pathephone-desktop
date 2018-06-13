@@ -1,12 +1,12 @@
 import { eventChannel } from 'redux-saga'
 
-import { albumCollectionSchema } from '~data/schemas'
 import createAlbumsQuery from '~utils/createAlbumsQuery'
+import { albumSchema } from '~data/schemas'
 
 const getAlbumsCollection = async dbApis => {
   const albumsCollection = await dbApis
     .createCollection({
-      schema: albumCollectionSchema,
+      schema: albumSchema.collectionSchema,
       name: 'albums'
     })
   const findAlbumInCollectionByCid = async cid => {

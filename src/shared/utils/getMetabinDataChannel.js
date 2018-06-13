@@ -1,26 +1,26 @@
-import { ipcRenderer } from 'electron'
 import { eventChannel } from 'redux-saga'
 
-import { rendererCalls } from '~utils/ipcRenderer'
+import { rendererCalls } from './ipcRenderer'
 
 import {
-  IPC_METABIN_GATE_DATA_RECIEVED,
   IPC_METABIN_GATE_LISTEN,
-  IPC_METABIN_GATE_UNLISTEN
+  IPC_METABIN_GATE_UNLISTEN,
+  IPC_METABIN_GATE_DATA_RECIEVED
 } from '~data/ipcTypes'
+import { ipcRenderer } from 'electron'
 
-async function getMetabinDataChannel (gateId) {
-  await rendererCalls(IPC_METABIN_GATE_LISTEN, gateId)
+async function getMetabinDataChannel (channelName) {
+  await rendererCalls(IPC_METABIN_GATE_LISTEN, channelName)
   return eventChannel(emitt => {
-    const handleData = (event, id, payload) => {
-      if (id === gateId) {
+    const handleIncomingMessage = (event, { schemaName, payload }) => {
+      if (schemaName === channelName) {
         emitt(payload)
       }
     }
-    ipcRenderer.on(IPC_METABIN_GATE_DATA_RECIEVED, handleData)
+    ipcRenderer.on(IPC_METABIN_GATE_DATA_RECIEVED, handleIncomingMessage)
     return () => {
-      ipcRenderer.removeListener(IPC_METABIN_GATE_DATA_RECIEVED, handleData)
-      rendererCalls(IPC_METABIN_GATE_UNLISTEN, gateId)
+      ipcRenderer.removeListener(IPC_METABIN_GATE_DATA_RECIEVED, handleIncomingMessage)
+      return rendererCalls(IPC_METABIN_GATE_UNLISTEN, channelName)
     }
   })
 }
