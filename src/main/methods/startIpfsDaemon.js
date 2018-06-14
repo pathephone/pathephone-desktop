@@ -19,15 +19,16 @@ const startIpfsDaemon = params => {
       }
       node.start(startFlags, startCallback)
     }
-
-    const initCallback = (err, node) => {
-      if (err) {
-        onError(err)
-      } else {
-        startIpfsNode(node)
+    const initIpfsNode = node => {
+      const initCallback = (err) => {
+        if (err) {
+          onError(err)
+        } else {
+          startIpfsNode(node)
+        }
       }
+      node.init(initCallback)
     }
-
     const spawnCallback = (err, node) => {
       if (err) {
         onError(err)
@@ -38,7 +39,7 @@ const startIpfsDaemon = params => {
         if (node.initialized) {
           startIpfsNode(node)
         } else {
-          node.init(initCallback)
+          initIpfsNode(node)
         }
       }
     }

@@ -5,70 +5,58 @@ import startIpfsDaemon from './methods/startIpfsDaemon'
 import getIpfsDaemonParams from './methods/getIpfsDaemonParams'
 import startCommunication from './methods/startCommunication'
 import createMainWindow from './methods/createMainWindow'
-import startMainWindowLifecycle from './methods/startMainWindowLifecycle'
 import loadMainWindow from './methods/loadMainWindow'
+import withSingleInstanceBehaviour from './methods/withSingleInstanceBehaviour'
 
-let mainWindow = null
-let readyToQuit = false
-
-const isSecondInstance = app.makeSingleInstance(() => {
-  // Someone tried to run a second instance, we should focus our window.
-  if (mainWindow) {
-    if (mainWindow.isMinimized()) {
-      mainWindow.restore()
-    }
-    window.focus()
-  }
-})
-
-if (isSecondInstance) {
-  console.log('-- second instance detected, exit')
-  app.exit()
+const state = {
+  mainWindow: null,
+  readyToQuit: false
 }
+
+withSingleInstanceBehaviour(state)
 
 withEnvironment()
 
-const ipfsDaemonPromise = startIpfsDaemon(getIpfsDaemonParams())
-
-const communication = startCommunication({
-  ipfsDaemonPromise
-})
-
 const handleReady = () => {
-  console.log('-- loading main window')
+  console.log('-- starting ipfs daemon')
 
-  mainWindow = createMainWindow()
+  const ipfsDaemonPromise = startIpfsDaemon(getIpfsDaemonParams())
 
-  const handleClosed = () => {
-    mainWindow = null
-  }
+  console.log('-- starting ipc')
 
-  mainWindow.on('closed', handleClosed)
-
-  startMainWindowLifecycle({
-    mainWindow,
-    ipfsDaemonPromise,
-    communication
+  const communication = startCommunication({
+    ipfsDaemonPromise
   })
 
-  loadMainWindow(mainWindow)
-}
+  console.log('-- loading main window')
 
-const handleBeforeQuit = async e => {
-  if (!readyToQuit) {
-    e.preventDefault()
-    try {
-      await communication.stop()
-      const ipfsDaemon = await ipfsDaemonPromise
-      await ipfsDaemon.stop()
-      console.log('-- app ready to quit')
-    } catch (error) {
-      console.error(error)
-    }
-    readyToQuit = true
-    app.quit()
+  state.mainWindow = createMainWindow()
+
+  const handleClosed = () => {
+    state.mainWindow = null
   }
+
+  state.mainWindow.on('closed', handleClosed)
+
+  loadMainWindow(state.mainWindow)
+
+  const handleBeforeQuit = async e => {
+    if (!state.readyToQuit) {
+      e.preventDefault()
+      try {
+        await communication.stop()
+        const ipfsDaemon = await ipfsDaemonPromise
+        await ipfsDaemon.stop()
+        console.log('-- app ready to quit')
+      } catch (error) {
+        console.error(error)
+      }
+      state.readyToQuit = true
+      app.quit()
+    }
+  }
+
+  app.on('before-quit', handleBeforeQuit)
 }
 
 app.on('ready', handleReady)
-app.on('before-quit', handleBeforeQuit)
