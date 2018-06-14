@@ -1,16 +1,15 @@
-import { ENV_DEVELOPMENT, ENV_TESTING, ENV_PRODUCTION } from './data/constants'
+const { resourcesPath } = process
 
-let ACTUAL_ENVIRONMENT
+const ENV_DEVELOPMENT = 'development'
+const ENV_PRODUCTION = 'production'
+const ENV_TESTING = 'testing'
 
-switch (process.env.NODE_ENV) {
-  case ENV_DEVELOPMENT:
-    ACTUAL_ENVIRONMENT = ENV_DEVELOPMENT
-    break
-  case ENV_PRODUCTION:
-    ACTUAL_ENVIRONMENT = ENV_TESTING
-    break
-  default:
-    ACTUAL_ENVIRONMENT = ENV_PRODUCTION
-}
+export const ENVIRONMENT = process.env.NODE_ENV || ENV_PRODUCTION
 
-export const ENVIRONMENT = ACTUAL_ENVIRONMENT
+export const IS_PRODUCTION = ENVIRONMENT === ENV_PRODUCTION
+export const IS_DEVELOPMENT = ENVIRONMENT === ENV_DEVELOPMENT
+export const IS_TESTING = ENVIRONMENT === ENV_TESTING
+
+export const IS_OFFLINE = process.env.OFFLINE === 'true'
+
+export const RESOURCES_PATH = (IS_PRODUCTION || IS_TESTING) ? resourcesPath : 'resources'

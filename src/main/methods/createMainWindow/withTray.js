@@ -1,11 +1,9 @@
 import { app, Tray, Menu } from 'electron'
 
-import { ENVIRONMENT } from '#config'
-
-const resourcesPath = ENVIRONMENT === 'production' ? process.resourcesPath : 'resources'
+import { RESOURCES_PATH } from '#config'
 
 export default (mainWindow) => {
-  const tray = new Tray(`${resourcesPath}/icons/64x64.png`)
+  const tray = new Tray(`${RESOURCES_PATH}/icons/64x64.png`)
 
   tray.on('click', () => {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()

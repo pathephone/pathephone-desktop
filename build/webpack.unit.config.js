@@ -13,6 +13,7 @@ if (entryFiles.length === 0) {
 
 module.exports = {
   target: 'node',
+  mode: 'development',
   node: {
     __dirname: false,
     __filename: false

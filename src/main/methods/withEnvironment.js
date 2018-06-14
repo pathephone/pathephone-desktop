@@ -1,20 +1,19 @@
 import { app } from 'electron'
 import jetpack from 'fs-jetpack'
 
-import { ENVIRONMENT } from '#config'
-import { ENV_PRODUCTION, ENV_TESTING, ENV_DEVELOPMENT } from '~data/constants'
+import { ENVIRONMENT, IS_PRODUCTION, IS_TESTING, IS_DEVELOPMENT } from '#config'
 
 const withEnvronment = () => {
-  if (ENVIRONMENT !== ENV_PRODUCTION) {
+  if (IS_PRODUCTION) {
     const userDataPath = app.getPath('userData')
     const nextDataPath = `${userDataPath} (${ENVIRONMENT})`
-    if (ENVIRONMENT === ENV_TESTING) {
+    if (IS_TESTING) {
       jetpack.remove(nextDataPath)
     }
     app.setPath('userData', nextDataPath)
   }
 
-  if (ENVIRONMENT === ENV_DEVELOPMENT) {
+  if (IS_DEVELOPMENT) {
     app.commandLine.appendSwitch('remote-debugging-port', '9223')
     // require('electron-debug')({showDevTools: true})
     require('electron-context-menu')({})

@@ -1,8 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
 
-const { NODE_ENV = 'production' } = process.env
-
 module.exports = {
   resolve: {
     alias: {
@@ -35,8 +33,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.EnvironmentPlugin({
-      NODE_ENV
-    })
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'OFFLINE'])
   ]
 }

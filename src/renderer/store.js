@@ -4,11 +4,10 @@ import reduxLogger from 'redux-logger'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import { ENV_DEVELOPMENT } from '~data/constants'
-import { ENVIRONMENT } from '#config'
-
 import rootReducer from './rootReducer'
 import rootSaga from './rootSaga'
+
+import { IS_DEVELOPMENT } from '#config'
 
 const persistConfig = {
   key: 'root',
@@ -22,7 +21,7 @@ const sagaMiddleware = createSagaMiddleware()
 
 const middlewares = [sagaMiddleware]
 
-if (ENVIRONMENT === ENV_DEVELOPMENT) {
+if (IS_DEVELOPMENT) {
   middlewares.push(reduxLogger)
 }
 

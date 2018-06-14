@@ -6,6 +6,7 @@ const outputDir = path.resolve(process.cwd(), '.temp/e2e')
 
 module.exports = {
   target: 'node',
+  mode: 'development',
   node: {
     __dirname: false,
     __filename: false

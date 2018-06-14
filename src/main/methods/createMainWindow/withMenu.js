@@ -1,8 +1,7 @@
-import { ENVIRONMENT } from '#config'
-import { ENV_DEVELOPMENT } from '~data/constants'
+import { IS_DEVELOPMENT } from '#config'
 
 const withMenu = window => {
-  if (ENVIRONMENT !== ENV_DEVELOPMENT) {
+  if (!IS_DEVELOPMENT) {
     window.setMenu(null)
   }
 }

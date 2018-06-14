@@ -62,7 +62,7 @@
     "test": "yarn test:lint && yarn test:unit && yarn test:e2e",
     "lint": "eslint --fix .",
     "start": "cross-env NODE_ENV=development yarn compile:app:dev",
-    "start:offline": "cross-env IPFS_OFFLINE=true yarn start"
+    "start:offline": "cross-env OFFLINE=true yarn start"
   },
   "dependencies": {
     "@metabin/gate": "^2.1.0",
