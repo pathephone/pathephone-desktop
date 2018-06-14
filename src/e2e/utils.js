@@ -1,5 +1,7 @@
 import { Application } from 'spectron'
 
+import { E2E_READY_APP_ID } from '~data/e2eConstants'
+
 const { platform } = process
 
 let pathToBin
@@ -22,7 +24,7 @@ const startApp = async function () {
     waitTimeout: 30000
   })
   await this.app.start()
-  return this.app.client.waitForExist('#app')
+  return this.app.client.waitForExist(E2E_READY_APP_ID)
 }
 
 const closeApp = function () {

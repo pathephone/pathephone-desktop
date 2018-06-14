@@ -8,8 +8,10 @@ import NotificationsConnected from './ReadyScreen/NotificationsConnected'
 
 import './ReadyScreen.css'
 
+import { E2E_READY_APP_ID } from '~data/e2eConstants'
+
 const ReadyScreen = () => (
-  <div id='readyScreen'>
+  <div id={E2E_READY_APP_ID} className='readyScreen'>
     <Navigation />
     <Page />
     <PlaylistConnected />
