@@ -1,14 +1,24 @@
 const { resourcesPath, type } = process
 
-const ENV_DEVELOPMENT = 'development'
-const ENV_PRODUCTION = 'production'
-const ENV_TESTING = 'testing'
+const ENVIRONMENT = process.env.NODE_ENV
 
-export const ENVIRONMENT = process.env.NODE_ENV || ENV_PRODUCTION
+let IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING
 
-export const IS_PRODUCTION = ENVIRONMENT === ENV_PRODUCTION
-export const IS_DEVELOPMENT = ENVIRONMENT === ENV_DEVELOPMENT
-export const IS_TESTING = ENVIRONMENT === ENV_TESTING
+switch (ENVIRONMENT) {
+  case 'development':
+    IS_DEVELOPMENT = true
+    break
+  case 'testing':
+    IS_TESTING = true
+    break
+  case 'production':
+    IS_PRODUCTION = true
+    break
+  default:
+    throw new Error('No valid environment detected.')
+}
+
+export { ENVIRONMENT, IS_DEVELOPMENT, IS_TESTING, IS_PRODUCTION }
 
 export const IS_OFFLINE = process.env.OFFLINE === 'true'
 
