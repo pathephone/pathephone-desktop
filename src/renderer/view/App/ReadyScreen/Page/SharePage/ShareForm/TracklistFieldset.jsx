@@ -4,8 +4,7 @@ import propTypes from 'prop-types'
 import TrackInput from './TracklistFieldset/TrackInput.jsx'
 
 import './TracklistFieldset.css'
-
-const ADD_TRACK_INPUT_ID = 'share-form__add-tracks-input'
+import { E2E_SHARE_FORM_TRACKLIST_ID, E2E_SHARE_FORM_ADD_TRACK_INPUT_ID } from '~data/e2eConstants'
 
 class TracklistFieldset extends React.PureComponent {
   handleMap = (track, index, tracks) => {
@@ -15,7 +14,7 @@ class TracklistFieldset extends React.PureComponent {
       onMoveTrackUp
     } = this.props
 
-    const fileName = track.file && track.file.name
+    const fileName = track.file
     const cid = track.cid
     return (
       <TrackInput
@@ -38,20 +37,28 @@ class TracklistFieldset extends React.PureComponent {
       onFilesSelect
     } = this.props
     return (
-      <fieldset disabled={isDisabled} className='fieldset tracklistFieldset'>
+      <fieldset
+        disabled={isDisabled}
+        className='fieldset tracklistFieldset'
+      >
         <legend>{`Tracklist (${tracks.length} tracks)`}</legend>
-        {
-          tracks.map(this.handleMap)
-        }
+        <div id={E2E_SHARE_FORM_TRACKLIST_ID}>
+          {
+            tracks.map(this.handleMap)
+          }
+        </div>
         <input
-          id={ADD_TRACK_INPUT_ID}
+          id={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
           className='addTracksInput hiddenButReachable'
           type='file'
           accept='audio/*'
           onChange={onFilesSelect}
           multiple
         />
-        <label htmlFor={ADD_TRACK_INPUT_ID} className='addTracksLabel'>
+        <label
+          htmlFor={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
+          className='addTracksLabel'
+        >
           add tracks <br />
           {
             tracks.length === 0 && (

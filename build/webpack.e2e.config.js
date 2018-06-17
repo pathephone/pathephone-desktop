@@ -18,6 +18,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      '~reusable': path.resolve(__dirname, '../src/e2e/reusable'),
       '~data': path.resolve(__dirname, '../src/shared/data'),
       '~utils': path.resolve(__dirname, '../src/shared/utils'),
       '~resources': path.resolve(__dirname, '../src/shared/assets')
@@ -32,7 +33,7 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac)$/,
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac|txt|svg)$/,
         use: 'file-loader'
       }
     ]

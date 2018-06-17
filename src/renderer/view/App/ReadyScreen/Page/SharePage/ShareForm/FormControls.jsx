@@ -6,10 +6,13 @@ import MdCancel from 'react-icons/lib/md/cancel'
 
 import CustomButton from '~components/CustomButton.jsx'
 
+import { E2E_SHARE_FORM_CANCEL_BUTTON_ID, E2E_SHARE_FORM_SAVE_BUTTON_ID } from '~data/e2eConstants'
+
 const FormControls = ({ isDisabled, onCancelClick }) => (
   <React.Fragment>
     <CustomButton
       className='shareFormSubmit'
+      id={E2E_SHARE_FORM_SAVE_BUTTON_ID}
       disabled={isDisabled}
     >
       <span>
@@ -18,6 +21,7 @@ const FormControls = ({ isDisabled, onCancelClick }) => (
     </CustomButton>
     <CustomButton
       type='button'
+      id={E2E_SHARE_FORM_CANCEL_BUTTON_ID}
       className='shareFormCancel'
       disabled={isDisabled}
       onClick={onCancelClick}

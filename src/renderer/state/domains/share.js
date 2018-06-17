@@ -1,4 +1,4 @@
-import { uiShareFilesSelected, uiShareFormSubmited, uiShareFormCanceled } from '~actions/ui'
+import { uiShareItemsSelected, uiShareFormSubmited, uiShareFormCanceled } from '~actions/ui'
 import { systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged, systemShareFilesProcessingFailed, systemShareCandidatesNotFound } from '~actions/system'
 
 const DOMAIN = 'share'
@@ -14,7 +14,7 @@ export const isShareProcessing = state => state[DOMAIN].isProcessing
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    case uiShareFilesSelected.toString():
+    case uiShareItemsSelected.toString():
       return { ...state, isProcessing: true }
     case systemShareCandidatesRecieved.toString():
       return { candidates: payload, isProcessing: false }

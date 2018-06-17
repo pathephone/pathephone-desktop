@@ -1,3 +1,4 @@
+import path from 'path'
 import { createSelector } from 'reselect'
 
 import {
@@ -50,6 +51,18 @@ export const getPlaylistTracksCount = state => getPlaylistTracksIndexes(state).l
 export const isPlaylistEmpty = state => getPlaylistTracksCount(state) === 0
 
 export const getShareFormValue = state => getShareCandidates(state)[0]
+
+export const getShareCoverSrc = state => {
+  const { cover } = getShareCandidates(state)[0]
+  if (cover) {
+    if (cover.includes(path.sep)) {
+      return `file:///${cover}`
+    } else {
+      return `${getIpfsGateway(state)}/ipfs/${cover}`
+    }
+  }
+  return null
+}
 
 export const getNotificationsIds = createSelector(
   getNotifications,

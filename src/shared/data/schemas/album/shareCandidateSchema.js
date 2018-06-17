@@ -10,15 +10,8 @@ const shareCandidateSchema = {
       minLength: 1
     },
     cover: {
-      anyOf: [
-        {
-          type: 'string',
-          minLength: 1
-        },
-        {
-          type: 'object'
-        }
-      ]
+      type: 'string',
+      minLength: 1
     },
     tracks: {
       type: 'array',
@@ -39,7 +32,7 @@ const shareCandidateSchema = {
             minimum: 128
           },
           file: {
-            type: 'object'
+            type: 'string'
           }
         },
         required: [ 'title', 'artist', 'bitrate', 'file' ]

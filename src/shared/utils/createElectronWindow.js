@@ -77,7 +77,12 @@ const createElectronWindow = (name, options) => {
 
   state = ensureVisibleOnSomeDisplay(restore())
 
-  win = new BrowserWindow(Object.assign({}, options, state))
+  win = new BrowserWindow(Object.assign({
+    webPreferences: {
+      webSecurity: false,
+      allowRunningInsecureContent: false
+    }
+  }, options, state))
 
   win.on('close', saveState)
 

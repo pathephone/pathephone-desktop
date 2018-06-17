@@ -41,7 +41,7 @@ export const uiVolumeChanged = c('VOLUME_CHANGED')
 
 export const uiAppClosed = c('APP_CLOSED')
 
-export const uiShareFilesSelected = c('ALBUM_FILES_SELECTED')
+export const uiShareItemsSelected = c('SHARE_ITEMS_SELECTED')
 export const uiShareFormSubmited = c('SHARE_FORM_SUBMITED')
 export const uiShareFormCanceled = c('SHARE_CANDIDATE_CANCELED')
 export const uiShareFormChanged = c('SHARE_CANDIDATE_CHANGED')

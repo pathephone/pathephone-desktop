@@ -7,7 +7,7 @@ export const rendererCalls = (chan, ...sendPayload) => {
   return new Promise((resolve, reject) => {
     const handleResponse = (event, { error, payload }) => {
       if (error) {
-        reject(error)
+        reject(new Error(error))
       } else {
         resolve(payload)
       }

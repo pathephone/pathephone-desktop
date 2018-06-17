@@ -6,7 +6,7 @@ export const ipcMainTake = (channel, handler) => {
       const payload = await handler(...args, event)
       event.sender.send(id, { payload })
     } catch (error) {
-      event.sender.send(id, { error })
+      event.sender.send(id, { error: error.message })
     }
   })
   return () => {
@@ -20,7 +20,7 @@ export const ipcMainTakeSync = (channel, handler) => {
       const payload = await handler(...args, event)
       event.returnValue = { payload }
     } catch (error) {
-      event.returnValue = { error }
+      event.returnValue = { error: error.message }
     }
   })
   return () => {

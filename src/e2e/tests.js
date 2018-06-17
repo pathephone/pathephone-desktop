@@ -6,9 +6,9 @@ describe('testing app', function () {
 
   before(utils.startApp)
 
-  require('./tests/share-page')
+  require('./tests/sharePage')
   // require('./tests/albums-search')
-  require('./tests/albums-feed')
+  // require('./tests/albums-feed')
 
   after(utils.closeApp)
 })

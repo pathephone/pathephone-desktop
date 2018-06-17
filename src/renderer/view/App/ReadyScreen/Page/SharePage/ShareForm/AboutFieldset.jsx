@@ -5,36 +5,18 @@ import CoverPreview from '~components/CoverPreview.jsx'
 import CustomTextInput from '~components/CustomTextInput.jsx'
 
 import './AboutFieldset.css'
+import { E2E_SHARE_FORM_COVER_PREVIEW_ID, E2E_SHARE_FORM_TITLE_INPUT_ID, E2E_SHARE_FORM_ARTIST_INPUT_ID, E2E_SHARE_FORM_COVER_INPUT_ID } from '~data/e2eConstants'
 
 class AboutFieldset extends React.PureComponent {
-  state = {
-    fileCoverSrc: null,
-    ipfsCoverSrc: null
-  }
-  static getDerivedStateFromProps ({ cover, ipfsGateway }) {
-    let fileCoverSrc = null
-    let ipfsCoverSrc = null
-    if (cover instanceof File) {
-      fileCoverSrc = URL.createObjectURL(cover)
-    }
-    if (typeof cover === 'string') {
-      ipfsCoverSrc = `${ipfsGateway}/ipfs/${cover}`
-    }
-    return { fileCoverSrc, ipfsCoverSrc }
-  }
-  componentWillUnmount () {
-    if (this.state.fileCoverSrc) {
-      URL.revokeObjectURL(this.state.fileCoverSrc)
-    }
-  }
   render () {
-    const { isDisabled } = this.props
+    const { isDisabled, coverSrc } = this.props
     return (
       <fieldset disabled={isDisabled} className='fieldset shareFormAbout'>
         <div className='izi-x'>
           <div className='aboutTextInputs'>
             <label>Title<br />
               <CustomTextInput
+                id={E2E_SHARE_FORM_TITLE_INPUT_ID}
                 type='text'
                 placeholder='Album title'
                 name='title'
@@ -43,6 +25,7 @@ class AboutFieldset extends React.PureComponent {
             <br />
             <label>Artist<br />
               <CustomTextInput
+                id={E2E_SHARE_FORM_ARTIST_INPUT_ID}
                 type='text'
                 placeholder='Album artist'
                 name='artist'
@@ -50,14 +33,17 @@ class AboutFieldset extends React.PureComponent {
             </label>
           </div>
           <input
-            id='share-form__input-cover'
+            id={E2E_SHARE_FORM_COVER_INPUT_ID}
             className='coverInput hiddenButReachable'
             name='cover'
             type='file'
             accept='image/*'
           />
-          <label htmlFor='share-form__input-cover' className='coverLabel'>
-            <CoverPreview coverSrc={this.state.fileCoverSrc || this.state.ipfsCoverSrc} />
+          <label htmlFor={E2E_SHARE_FORM_COVER_INPUT_ID} className='coverLabel'>
+            <CoverPreview
+              id={E2E_SHARE_FORM_COVER_PREVIEW_ID}
+              coverSrc={coverSrc}
+            />
           </label>
         </div>
       </fieldset>
@@ -66,11 +52,8 @@ class AboutFieldset extends React.PureComponent {
 }
 
 AboutFieldset.propTypes = {
-  isDisabled: propTypes.bool.isRequired
-  // cover: propTypes.oneOfType([
-  //   propTypes.string,
-  //   propTypes.object
-  // ])
+  isDisabled: propTypes.bool.isRequired,
+  coverSrc: propTypes.string
 }
 
 export default AboutFieldset

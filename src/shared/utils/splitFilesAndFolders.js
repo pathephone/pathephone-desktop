@@ -1,17 +1,21 @@
+import fs from 'fs'
 
 const splitFoldersAndFiles = files => {
-  const handleReduce = (acc, file) => {
-    if (file.type === '' && file.size > 0) {
-      acc.folders.push(file)
+  const initialMap = {
+    files: [],
+    folders: []
+  }
+  const handleReduce = (acc, filePath) => {
+    const isDireactory = fs.lstatSync(filePath).isDirectory()
+    if (isDireactory) {
+      acc.folders.push(filePath)
     } else {
-      acc.files.push(file)
+      acc.files.push(filePath)
     }
     return acc
   }
-  return files.reduce(handleReduce, {
-    files: [],
-    folders: []
-  })
+  const finalMap = files.reduce(handleReduce, initialMap)
+  return finalMap
 }
 
 export default splitFoldersAndFiles

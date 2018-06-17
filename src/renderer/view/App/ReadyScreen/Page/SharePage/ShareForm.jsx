@@ -2,6 +2,8 @@ import React from 'react'
 import propTypes from 'prop-types'
 import dotProp from 'dot-prop-immutable'
 
+import { E2E_SHARE_FORM_ID } from '~data/e2eConstants'
+
 import validateShareCandidate from '~utils/validateShareCandidate'
 import IziForm from '~components/IziForm.jsx'
 
@@ -16,23 +18,24 @@ class ShareForm extends React.Component {
     validationErrors: {}
   }
   handleChange = e => {
-    let { name, value, files } = e.target
+    const { name, value, files } = e.target
     if (!name) return
     let nextValues
     if (name === 'cover') {
-      nextValues = dotProp.set(this.props.values, name, (files[0] || null))
+      const coverValue = files[0] ? files[0].path : null
+      nextValues = dotProp.set(this.props.values, name, coverValue)
     } else {
       nextValues = dotProp.set(this.props.values, name, value)
     }
     this.props.onChange(nextValues)
   }
   handleAddTracks = e => {
-    const { values } = this.props
+    const { values, onChange } = this.props
     const { files } = e.target
     if (files.length > 0) {
       const newTracks = Array.from(files)
-        .map(file => ({ file }))
-      this.props.onChange({
+        .map(file => ({ file: file.path }))
+      onChange({
         ...values,
         tracks: [ ...values.tracks, ...newTracks ]
       })
@@ -81,10 +84,11 @@ class ShareForm extends React.Component {
     }
   }
   render () {
-    const { values, onCancel, isDisabled, ipfsGateway } = this.props
+    const { values, onCancel, isDisabled, coverSrc } = this.props
     const { validationErrors } = this.state
     return (
       <IziForm
+        id={E2E_SHARE_FORM_ID}
         className='shareForm'
         values={values}
         errors={validationErrors}
@@ -93,8 +97,7 @@ class ShareForm extends React.Component {
       >
         <div className='shareFormBody'>
           <AboutFieldset
-            cover={values.cover}
-            ipfsGateway={ipfsGateway}
+            coverSrc={coverSrc}
             isDisabled={isDisabled}
           />
           <TracklistFieldset
@@ -119,11 +122,11 @@ class ShareForm extends React.Component {
 }
 
 ShareForm.propTypes = {
-  ipfsGateway: propTypes.string.isRequired,
   isDisabled: propTypes.bool.isRequired,
   onSubmit: propTypes.func.isRequired,
   onCancel: propTypes.func.isRequired,
   onChange: propTypes.func.isRequired,
+  coverSrc: propTypes.string,
   values: propTypes.object
 }
 

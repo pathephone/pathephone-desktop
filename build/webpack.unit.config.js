@@ -39,7 +39,7 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac)$/,
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac|txt|svg)$/,
         use: 'file-loader'
       }
     ]

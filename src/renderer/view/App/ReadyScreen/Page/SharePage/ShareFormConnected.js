@@ -2,11 +2,11 @@ import { connect } from 'react-redux'
 
 import ShareForm from './ShareForm.jsx'
 import { uiShareFormSubmited, uiShareFormCanceled, uiShareFormChanged } from '~actions/ui'
-import { getShareFormValue, isShareProcessing, getIpfsGateway } from '#selectors'
+import { getShareFormValue, isShareProcessing, getShareCoverSrc } from '#selectors'
 
 const mapStateToProps = (state) => ({
   values: getShareFormValue(state),
-  ipfsGateway: getIpfsGateway(state),
+  coverSrc: getShareCoverSrc(state),
   isDisabled: isShareProcessing(state)
 })
 

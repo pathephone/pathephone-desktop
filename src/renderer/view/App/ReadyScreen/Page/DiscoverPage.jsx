@@ -1,6 +1,8 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import { E2E_DISCOVER_PAGE_ID } from '~data/e2eConstants'
+
 import PageContainer from '~components/PageContainer.jsx'
 
 import SearchBar from './DiscoverPage/SearchBar.jsx'
@@ -20,7 +22,10 @@ class DiscoverPage extends React.Component {
       ...restProps
     } = this.props
     return (
-      <PageContainer className='albums-page'>
+      <PageContainer
+        id={E2E_DISCOVER_PAGE_ID}
+        className='albums-page'
+      >
         <SearchBar
           {...restProps}
         />
