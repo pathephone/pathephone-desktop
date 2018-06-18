@@ -1,6 +1,3 @@
-/* eslint-env mocha */
-import { expect } from 'chai'
-
 import {
   E2E_SHARE_FORM_COVER_INPUT_ID, E2E_SHARE_FORM_COVER_PREVIEW_ID
 } from '~data/e2eConstants'

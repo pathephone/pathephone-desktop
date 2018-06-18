@@ -7,17 +7,13 @@ describe('share page', function () {
     it('share page appears', openSharePage)
   })
 
-  // SELECT CASES
-
   require('./sharePage/selectWrongFiles')
 
   require('./sharePage/selectTrackFiles')
 
-  // VALIDATE
-
-  require('./sharePage/shareFormCases')
-
-  require('./sharePage/selectAndSave')
+  require('./sharePage/checkFormValues')
+  require('./sharePage/checkFormValidation')
+  require('./sharePage/checkTracksOperations')
 
   describe('no albums has been shared yet', () => {
     it('discover feed is empty', async function () {

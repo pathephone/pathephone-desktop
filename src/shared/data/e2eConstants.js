@@ -31,10 +31,19 @@ export const E2E_SHARE_FORM_ID = id('share-form')
 // SHARE FORM ELEMENTS
 
 export const E2E_SHARE_FORM_TRACKLIST_ID = id('share-form-tracklist')
-export const E2E_SHARE_FORM_COVER_PREVIEW_ID = id('share-form-cover-preview')
+
 export const E2E_SHARE_FORM_COVER_INPUT_ID = id('share-form-cover-input')
+export const E2E_SHARE_FORM_COVER_LABEL_ID = id('share-form-cover-label')
+export const E2E_SHARE_FORM_COVER_PREVIEW_ID = id('share-form-cover-preview')
+
 export const E2E_SHARE_FORM_TITLE_INPUT_ID = id('share-form-title-input')
 export const E2E_SHARE_FORM_ARTIST_INPUT_ID = id('share-form-artist-input')
+export const E2E_SHARE_FORM_ADD_TRACK_INPUT_ID = id('share-form-add-track-input')
+
+export const E2E_SHARE_FORM_MOVE_TRACK_UP = 'share-form-move-track-up'
+export const E2E_SHARE_FORM_MOVE_TRACK_DOWN = 'share-form-move-track-down'
+export const E2E_SHARE_FORM_REMOVE_TRACK = 'share-form-remove-track'
+
 export const E2E_SHARE_FORM_CANCEL_BUTTON_ID = id('share-form-cancel-button')
 export const E2E_SHARE_FORM_SAVE_BUTTON_ID = id('share-form-save-button')
-export const E2E_SHARE_FORM_ADD_TRACK_INPUT_ID = id('share-form-add-track-input')
+export const E2E_SHARE_FORM_RESET_BUTTON_ID = id('share-form-reset-button')

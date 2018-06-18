@@ -1,6 +1,3 @@
-/* eslint-env mocha */
-import { expect } from 'chai'
-
 import { MESSAGE_NO_ALBUMS_FOUND } from '~data/textMessages'
 import { txtFile, svgFile } from '~data/assets/files'
 
@@ -9,7 +6,10 @@ import {
   allNotificationsHaveDisappeared
 } from '~reusable/notifications'
 
-import { selectFile, shareDropZoneExists } from '~reusable/sharePage'
+import {
+  selectFile,
+  shareDropZoneExists
+} from '~reusable/sharePage'
 
 describe('select wrong files', () => {
   [ txtFile, svgFile ].forEach((file, index) => {

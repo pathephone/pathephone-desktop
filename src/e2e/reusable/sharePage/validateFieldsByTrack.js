@@ -1,5 +1,4 @@
 /* eslint-env mocha */
-import { expect } from 'chai'
 
 import {
   E2E_SHARE_FORM_TRACKLIST_ID,
@@ -33,7 +32,7 @@ function validateFormByTrack (track) {
     const tracklist = await app.client.$$(`${E2E_SHARE_FORM_TRACKLIST_ID} > *`)
     expect(tracklist.length).equal(1)
   })
-  describe('validate track fields', async function () {
+  describe('validate track fields', function () {
     it('title value matches', async function () {
       const { app } = this
       const titleValue = await app.client

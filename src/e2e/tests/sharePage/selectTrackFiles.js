@@ -1,4 +1,3 @@
-/* eslint-env mocha */
 import { cancelShareForm, shareDropZoneExists, selectFile, shareFormExists } from '~reusable/sharePage'
 
 import { tracks } from '~data/assets'

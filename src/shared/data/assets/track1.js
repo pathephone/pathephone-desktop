@@ -4,7 +4,8 @@ const track1 = {
   title: 'City Under Sky (Intro)',
   album: 'Red Flower',
   artist: 'DEgITx',
-  file: flacFile
+  file: flacFile,
+  bitrate: 1052
 }
 
 export default track1

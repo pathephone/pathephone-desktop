@@ -27,3 +27,7 @@
   text-transform: uppercase;
   font-size: 0.75em;
 }
+
+.addTracksInput:not(:invalid) ~ .addTracksLabel .noTracksMessage {
+  display: none;
+}

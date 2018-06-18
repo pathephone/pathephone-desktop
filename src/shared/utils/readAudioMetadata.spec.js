@@ -1,25 +1,18 @@
 /* eslint-env mocha */
 import readAudioMetadata from './readAudioMetadata'
 import assert from 'assert'
-import flacPath from '~resources/music/track.flac'
-import mp3Path from '~resources/music/track.mp3'
 
-describe('readAudioMetadata', function () {
-  this.timeout(8000)
+import { tracks } from '~data/assets'
 
-  describe('metatags', function () {
-    it('mp3', async function () {
-      const tags = await readAudioMetadata(mp3Path)
-      assert.equal(tags.title, 'Memories (Memories EP Version)')
-      assert.equal(tags.album, 'Memories')
-      assert.equal(parseInt(tags.bitrate), 352)
-    })
-
-    it('flac', async () => {
-      const tags = await readAudioMetadata(flacPath)
-      assert.equal(tags.title, 'City Under Sky (Intro)')
-      assert.equal(tags.album, 'Red Flower')
-      assert.equal(parseInt(tags.bitrate), 1052)
+describe('readAudioMetadata()', function () {
+  tracks.forEach((track) => {
+    describe('read file metadata', function () {
+      it('metadata matches', async () => {
+        const tags = await readAudioMetadata(track.file)
+        assert.equal(tags.title, track.title)
+        assert.equal(tags.album, track.album)
+        assert.equal(parseInt(tags.bitrate), track.bitrate)
+      })
     })
   })
 })

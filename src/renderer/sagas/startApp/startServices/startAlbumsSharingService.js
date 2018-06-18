@@ -1,6 +1,11 @@
 import { all, takeEvery } from 'redux-saga/effects'
 
-import { uiShareItemsSelected, uiShareFormSubmited, uiShareFormChanged } from '~actions/ui'
+import {
+  uiShareItemsSelected,
+  uiShareFormSubmited,
+  uiShareFormChanged
+} from '~actions/ui'
+
 import handleShareFormChange from './startAlbumsSharingService/handleShareFormChange'
 import handleShareFormSubmit from './startAlbumsSharingService/handleShareFormSubmit'
 import handleShareItemsSelect from './startAlbumsSharingService/handleShareItemsSelect'

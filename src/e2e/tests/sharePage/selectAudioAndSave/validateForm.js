@@ -1,6 +1,3 @@
-/* eslint-env mocha */
-import { expect } from 'chai'
-
 import {
   E2E_SHARE_FORM_TRACKLIST_ID,
   E2E_SHARE_FORM_COVER_PREVIEW_ID,

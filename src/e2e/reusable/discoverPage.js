@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 
 import {
   E2E_NAV_DISCOVER_LINK_ID,

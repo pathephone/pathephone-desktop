@@ -3,7 +3,6 @@ import propTypes from 'prop-types'
 import dotProp from 'dot-prop-immutable'
 
 import { E2E_SHARE_FORM_ID } from '~data/e2eConstants'
-
 import validateShareCandidate from '~utils/validateShareCandidate'
 import IziForm from '~components/IziForm.jsx'
 
@@ -84,7 +83,13 @@ class ShareForm extends React.Component {
     }
   }
   render () {
-    const { values, onCancel, isDisabled, coverSrc } = this.props
+    const {
+      values,
+      isDisabled,
+      coverSrc,
+      onCancel,
+      onReset
+    } = this.props
     const { validationErrors } = this.state
     return (
       <IziForm
@@ -114,6 +119,7 @@ class ShareForm extends React.Component {
           <FormControls
             isDisabled={isDisabled}
             onCancelClick={onCancel}
+            onResetClick={onReset}
           />
         </div>
       </IziForm>
@@ -126,6 +132,7 @@ ShareForm.propTypes = {
   onSubmit: propTypes.func.isRequired,
   onCancel: propTypes.func.isRequired,
   onChange: propTypes.func.isRequired,
+  onReset: propTypes.func.isRequired,
   coverSrc: propTypes.string,
   values: propTypes.object
 }

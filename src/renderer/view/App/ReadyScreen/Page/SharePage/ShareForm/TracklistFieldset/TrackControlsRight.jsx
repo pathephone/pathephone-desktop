@@ -2,8 +2,8 @@ import React from 'react'
 import propTypes from 'prop-types'
 
 import MdClear from 'react-icons/lib/md/clear'
-import MdDown from 'react-icons/lib/md/keyboard-arrow-down'
-import MdUp from 'react-icons/lib/md/keyboard-arrow-up'
+
+import { E2E_SHARE_FORM_REMOVE_TRACK } from '~data/e2eConstants'
 
 const TrackControls = (props) => {
   const {
@@ -13,6 +13,7 @@ const TrackControls = (props) => {
     <React.Fragment>
       <button
         type='button'
+        data-e2e={E2E_SHARE_FORM_REMOVE_TRACK}
         onClick={onRemoveClick}
         className='trackInputControlButton'
       >

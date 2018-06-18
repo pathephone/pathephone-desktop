@@ -1,5 +1,3 @@
-/* eslint-env mocha */
-
 import {
   E2E_SHARE_DROP_ZONE_ID,
   E2E_SHARE_FORM_ID

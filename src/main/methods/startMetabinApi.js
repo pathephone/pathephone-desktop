@@ -1,6 +1,6 @@
 import { openGate } from '@metabin/gate'
 
-import { ipcMainTake, ipcMainTakeSync } from '~utils/ipcMain'
+import { ipcMainTake } from '~utils/ipcMain'
 
 import {
   IPC_METABIN_GATE_SEND,

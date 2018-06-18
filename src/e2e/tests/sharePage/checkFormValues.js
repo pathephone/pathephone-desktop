@@ -1,10 +1,13 @@
-/* eslint-env mocha */
-import { cancelShareForm, shareDropZoneExists, selectFile } from '~reusable/sharePage'
+import validateFieldsByTrack from '~reusable/sharePage/validateFieldsByTrack'
+import {
+  cancelShareForm,
+  shareDropZoneExists,
+  selectFile
+} from '~reusable/sharePage'
 
 import { tracks } from '~data/assets'
-import validateFieldByTrack from '~reusable/sharePage/validateFieldsByTrack'
 
-describe('validate fileds by tracks', () => {
+describe('check form values', () => {
   tracks.forEach((track, index) => {
     describe(`track #${index}`, () => {
       before(function () {
@@ -12,7 +15,7 @@ describe('validate fileds by tracks', () => {
       })
 
       describe('validate form fields', function () {
-        return validateFieldByTrack(track)
+        return validateFieldsByTrack(track)
       })
 
       after(async function () {

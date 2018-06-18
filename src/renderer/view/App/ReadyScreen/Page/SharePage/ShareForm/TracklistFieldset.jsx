@@ -1,10 +1,14 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import {
+  E2E_SHARE_FORM_TRACKLIST_ID,
+  E2E_SHARE_FORM_ADD_TRACK_INPUT_ID
+} from '~data/e2eConstants'
+
 import TrackInput from './TracklistFieldset/TrackInput.jsx'
 
 import './TracklistFieldset.css'
-import { E2E_SHARE_FORM_TRACKLIST_ID, E2E_SHARE_FORM_ADD_TRACK_INPUT_ID } from '~data/e2eConstants'
 
 class TracklistFieldset extends React.PureComponent {
   handleMap = (track, index, tracks) => {
@@ -50,6 +54,7 @@ class TracklistFieldset extends React.PureComponent {
         <input
           id={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
           className='addTracksInput hiddenButReachable'
+          name='tracks'
           type='file'
           accept='audio/*'
           onChange={onFilesSelect}
@@ -60,13 +65,9 @@ class TracklistFieldset extends React.PureComponent {
           className='addTracksLabel'
         >
           add tracks <br />
-          {
-            tracks.length === 0 && (
-              <span className='noTracksMessage'>
-                you should add at least one track
-              </span>
-            )
-          }
+          <span className='noTracksMessage'>
+            you should add at least one track
+          </span>
         </label>
       </fieldset>
     )
