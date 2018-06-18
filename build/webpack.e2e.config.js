@@ -17,7 +17,7 @@ module.exports = {
     filename: 'test.js'
   },
   resolveLoader: {
-    root: path.join(__dirname, '../node_modules')
+    modules: [ path.join(__dirname, '../node_modules') ]
   },
   resolve: {
     alias: {
