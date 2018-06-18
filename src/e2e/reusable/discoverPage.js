@@ -17,6 +17,12 @@ export async function discoverFeedDoesNotExist () {
   expect(isFeedExists).equal(false)
 }
 
+export async function discoverFeedLengthIs (number) {
+  const { app } = this
+  const feedItems = await app.client.$$(E2E_DISCOVER_FEED_ID)
+  expect(feedItems.length).equal(number)
+}
+
 export async function discoverFeedExists () {
   const { app } = this
   const isFeedExists = await app.client.isExisting(E2E_DISCOVER_FEED_ID)

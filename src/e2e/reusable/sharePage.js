@@ -28,7 +28,7 @@ export function shareFormExists () {
   return app.client.waitForExist(E2E_SHARE_FORM_ID)
 }
 
-export function selectFile (filePath) {
+export function shareDropZoneSelect (filePath) {
   const { app } = this
   return app.client.chooseFile(E2E_SHARE_DROP_ZONE_ID, filePath)
 }

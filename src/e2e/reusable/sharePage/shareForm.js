@@ -7,7 +7,9 @@ import {
   E2E_SHARE_FORM_MOVE_TRACK_DOWN,
   E2E_SHARE_FORM_REMOVE_TRACK,
   E2E_SHARE_FORM_SAVE_BUTTON_ID,
-  E2E_SHARE_FORM_RESET_BUTTON_ID
+  E2E_SHARE_FORM_RESET_BUTTON_ID,
+  E2E_SHARE_FORM_COVER_LABEL_ID,
+  E2E_SHARE_FORM_COVER_INPUT_ID
 } from '~data/e2eConstants'
 
 export function shareFormAddTrack (file) {
@@ -23,6 +25,15 @@ export function shareFormReset () {
 export function shareFormSubmit () {
   const { app } = this
   return app.client.click(E2E_SHARE_FORM_SAVE_BUTTON_ID)
+}
+
+export function coverPreviewHasIamge () {
+  const { app } = this
+  return app.client.isExisting(`${E2E_SHARE_FORM_COVER_LABEL_ID} img`)
+}
+
+export function shareFormSelectCover (file) {
+  return this.app.client.chooseFile(E2E_SHARE_FORM_COVER_INPUT_ID, file)
 }
 
 export async function getShareFormTracksLength () {

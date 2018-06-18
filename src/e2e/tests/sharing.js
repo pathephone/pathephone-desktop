@@ -1,187 +1,37 @@
 /* eslint-env mocha */
 import { openSharePage } from '~reusable/sharePage'
-import { discoverFeedDoesNotExist, openDiscoverPage } from '~reusable/discoverPage'
+import {
+  discoverFeedDoesNotExist,
+  openDiscoverPage,
+  discoverFeedLengthIs
+} from '~reusable/discoverPage'
 
 describe('share page', function () {
   describe('click share album navigation link', () => {
     it('share page appears', openSharePage)
   })
 
-  require('./sharePage/selectWrongFiles')
+  require('./sharing/selectWrongFiles')
+  require('./sharing/selectTrackFiles')
+  // TODO: require('./sharePage/selectFolderWithoutAudio')
+  // TODO: require('./sharePage/selectFolderWithAudio')
+  require('./sharing/checkFormValues')
+  require('./sharing/checkFormValidation')
+  require('./sharing/checkCoverInput')
+  require('./sharing/checkTracksOperations')
 
-  require('./sharePage/selectTrackFiles')
-
-  require('./sharePage/checkFormValues')
-  require('./sharePage/checkFormValidation')
-  require('./sharePage/checkTracksOperations')
-
-  describe('no albums has been shared yet', () => {
-    it('discover feed is empty', async function () {
-      await openDiscoverPage.call(this)
-      await discoverFeedDoesNotExist.call(this)
-    })
+  describe('check discover feed', () => {
+    before(openDiscoverPage)
+    it('discover feed is empty', discoverFeedDoesNotExist)
+    after(openSharePage)
   })
 
-  // require('./sharePage/selectFolderAndCancel')
+  require('./sharing/submitValidForm')
 
-  // SUBMIT INVALID DATA
-
-  // describe('submit raw form data', () => {
-  //   it('errors fieldset appears', async function () {
-  //     const { app } = this
-  //     await app.client.waitForExist('#add-album_open')
-  //     await app.client.click('#add-album_open')
-  //     await app.client.click('#add-album_submit')
-  //     return app.client.waitForExist('#add-album_errors')
-  //   })
-  // })
-
-  // // ADD TRACK
-  // describe('add track manually', () => {
-  //   it('throws no errors', function () {
-  //     const { app } = this
-  //     const testFilePath = path.join(__dirname, flac)
-  //     return app.client.chooseFile('#input_add-tracks', testFilePath)
-  //   })
-  //   it('autofills album.title data', async function () {
-  //     const selector = 'input[name="album.title"]'
-  //     const { app } = this
-  //     await app.client.waitForValue(selector)
-  //     const value = await app.client
-  //       .$(selector)
-  //       .getValue()
-  //     if (value !== 'Red Flower') {
-  //       throw new Error('Value does not match.')
-  //     }
-  //   })
-  //   it('autofills album.artist data', async function () {
-  //     const selector = 'input[name="album.artist"]'
-  //     const { app } = this
-  //     await app.client.waitForValue(selector)
-  //     const value = await app.client
-  //       .$(selector)
-  //       .getValue()
-  //     if (value !== 'DEgITx') {
-  //       throw new Error('Value does not match.')
-  //     }
-  //   })
-  //   it('fills album.tracks[0].artist data', async function () {
-  //     const selector = 'input[name="album.tracks[0].artist"]'
-  //     const { app } = this
-  //     await app.client.waitForValue(selector)
-  //     const value = await app.client
-  //       .$(selector)
-  //       .getValue()
-  //     if (value !== 'DEgITx') {
-  //       throw new Error('Value does not match.')
-  //     }
-  //   })
-  //   it('fills album.tracks[0].title data', async function () {
-  //     const selector = 'input[name="album.tracks[0].title"]'
-  //     const { app } = this
-  //     await app.client.waitForValue(selector)
-  //     const value = await app.client
-  //       .$(selector)
-  //       .getValue()
-  //     if (value !== 'City Under Sky (Intro)') {
-  //       throw new Error('Value does not match.')
-  //     }
-  //   })
-  //   it('fills album.tracks[0].hash data', async function () {
-  //     const selector = 'input[name="album.tracks[0].hash"]'
-  //     const { app } = this
-  //     const value = await app.client
-  //       .$(selector)
-  //       .getValue()
-  //     if (!isIpfs.cid(value)) {
-  //       throw new Error('Received value is not an IPFS CID value.')
-  //     }
-  //   })
-  //   it('can edit song title after add', async function () {
-  //     const nextValue = 'Awesome song'
-  //     const selector = 'input[name="album.tracks[0].title"]'
-  //     const { app } = this
-  //     await app.client.$(selector).setValue(nextValue)
-  //     const value = await app.client.$(selector).getValue()
-  //     expect(value).to.be.equal(nextValue)
-  //   })
-  //   it('can edit album title', async function () {
-  //     const nextValue = 'Awesome album'
-  //     const selector = 'input[name="album.title"]'
-  //     const { app } = this
-  //     await app.client.$(selector).setValue(nextValue)
-  //     const value = await app.client.$(selector).getValue()
-  //     expect(value).to.be.equal(nextValue)
-  //   })
-  // })
-
-  // // ADD COVER
-
-  // describe('add cover manually', () => {
-  //   it('throws no errors', function () {
-  //     const { app } = this
-  //     const testFilePath = path.join(__dirname, cover)
-  //     return app.client.chooseFile('#input_add-cover', testFilePath)
-  //   })
-  //   it('fills album.cover data', async function () {
-  //     const selector = 'input[name="album.cover"]'
-  //     const { app } = this
-  //     await app.client.waitForValue(selector)
-  //     const value = await app.client
-  //       .$(selector)
-  //       .getValue()
-  //     if (!isIpfs.cid(value)) {
-  //       throw new Error('Received value is not an IPFS CID value.')
-  //     }
-  //   })
-  //   it('image apears in form', async function () {
-  //     const selector = '.ipfs-image-container'
-  //     const { app } = this
-  //     await app.client.waitForValue(selector)
-  //   })
-  // })
-
-  // // SUBMIT VALID DATA
-
-  // describe('submit valid form data', () => {
-  //   it('save number of albums on the feed', async function () {
-  //     const { app } = this
-  //     const albums = await app.client.$$('#albums-feed .album__title')
-  //     feedLength = albums.length
-  //   })
-  //   it('form disappears', async function () {
-  //     const { app } = this
-  //     await app.client.click('#add-album_submit')
-  //     return app.client.waitUntil(async () => {
-  //       const exists = await app.client.isExisting('#add-album_form')
-  //       return !exists
-  //     })
-  //   })
-  //   it('new number of albums on the feed should be greater than previous', async function () {
-  //     const { app } = this
-  //     await app.client.waitUntil(async () => {
-  //       const albums = await app.client.$$('#albums-feed .album__title')
-  //       return feedLength < albums.length
-  //     })
-  //   })
-  /* TODO: refactor when https://github.com/electron/spectron/issues/271 will be resolved
-    describe('album appears in albums feed', function () {
-      it('title match', async function () {
-        const { app } = this
-        await app.client.waitForExist('#albums-feed .album__title')
-        const title = await app.client.$$('.album__title')
-        const titles = title.map((el) => {
-          console.log(el)
-        })
-        console.log(titles)
-        expect(title).to.be.equal('Awesome album')
-      })
-      it('artist match', async function () {
-        const { app } = this
-        await app.client.waitForExist('#albums-feed .album')
-        const artist = await app.client.$('.album__artist').getText()
-        expect(artist).to.be.equal('DEgITx')
-      })
+  describe('check discover feed', () => {
+    before(openDiscoverPage)
+    it('discover feed has 1 item', function () {
+      return discoverFeedLengthIs.call(this, 1)
     })
-    */
+  })
 })

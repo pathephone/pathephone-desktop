@@ -12,34 +12,42 @@ import FormControls from './ShareForm/FormControls.jsx'
 
 import './ShareForm.css'
 
+const toNextValues = (values, e) => {
+  const { name, value, files } = e.target
+  let nextValue
+  switch (name) {
+    case 'cover': {
+      if (files[0] && files[0].type.startsWith('image/')) {
+        nextValue = files[0].path
+      }
+      break
+    }
+    case 'tracks': {
+      if (files.length > 0) {
+        const newTracks = Array.from(files)
+          .map(file => ({ file: file.path }))
+        nextValue = [ ...values.tracks, ...newTracks ]
+        e.target.value = ''
+      }
+      break
+    }
+    default:
+      nextValue = value
+  }
+  if (nextValue) {
+    return dotProp.set(values, name, nextValue)
+  }
+}
+
 class ShareForm extends React.Component {
   state = {
     validationErrors: {}
   }
   handleChange = e => {
-    const { name, value, files } = e.target
-    if (!name) return
-    let nextValues
-    if (name === 'cover') {
-      const coverValue = files[0] ? files[0].path : null
-      nextValues = dotProp.set(this.props.values, name, coverValue)
-    } else {
-      nextValues = dotProp.set(this.props.values, name, value)
+    const nextValues = toNextValues(this.props.values, e)
+    if (nextValues) {
+      this.props.onChange(nextValues)
     }
-    this.props.onChange(nextValues)
-  }
-  handleAddTracks = e => {
-    const { values, onChange } = this.props
-    const { files } = e.target
-    if (files.length > 0) {
-      const newTracks = Array.from(files)
-        .map(file => ({ file: file.path }))
-      onChange({
-        ...values,
-        tracks: [ ...values.tracks, ...newTracks ]
-      })
-    }
-    e.target.value = ''
   }
   handleRemoveTrack = index => {
     const { values } = this.props
@@ -109,7 +117,6 @@ class ShareForm extends React.Component {
             tracks={values.tracks}
             errors={validationErrors}
             isDisabled={isDisabled}
-            onFilesSelect={this.handleAddTracks}
             onMoveTrackUp={this.handleMoveTrackUp}
             onMoveTrackDown={this.handleMoveTrackDown}
             onRemoveTrack={this.handleRemoveTrack}

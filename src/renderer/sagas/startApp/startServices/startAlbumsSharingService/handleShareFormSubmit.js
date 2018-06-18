@@ -1,7 +1,11 @@
 import { call, all, put } from 'redux-saga/effects'
-import { systemShareCandidateSaveSucceed, systemShareCandidateSaveFailed } from '~actions/system'
-
-const successMessage = 'Album successfully shared an saved to local collection.'
+import {
+  systemShareCandidateSaveSucceed,
+  systemShareCandidateSaveFailed
+} from '~actions/system'
+import {
+  MESSAGE_SHARE_FORM_SUBMIT_SUCCEED, MESSAGE_SHARE_FORM_SUBMIT_FAILED
+} from '~data/textMessages'
 
 function * shareTracksToIpfs (apis, tracks) {
   const { shareFsFileToIpfs } = apis
@@ -38,11 +42,15 @@ function * handleShareFormSubmit (apis, { payload }) {
       }
     }
     yield put(
-      systemShareCandidateSaveSucceed({ successMessage })
+      systemShareCandidateSaveSucceed({
+        successMessage: MESSAGE_SHARE_FORM_SUBMIT_SUCCEED
+      })
     )
   } catch (e) {
     console.error(e)
-    yield put(systemShareCandidateSaveFailed({ errorMessage: e.message }))
+    yield put(systemShareCandidateSaveFailed({
+      errorMessage: MESSAGE_SHARE_FORM_SUBMIT_FAILED
+    }))
   }
 }
 

@@ -1,4 +1,4 @@
-import { cancelShareForm, shareDropZoneExists, selectFile } from '~reusable/sharePage'
+import { cancelShareForm, shareDropZoneExists, shareDropZoneSelect } from '~reusable/sharePage'
 
 import { tracks } from '~data/assets'
 import { shareFormSubmit, shareFormReset } from '~reusable/sharePage/shareForm'
@@ -15,7 +15,7 @@ const testTrack = tracks[0]
 
 describe('check form validation', () => {
   before(async function () {
-    await selectFile.call(this, testTrack.file)
+    await shareDropZoneSelect.call(this, testTrack.file)
     await shareFormSubmit.call(this)
   })
 

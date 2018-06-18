@@ -2,7 +2,7 @@
 
 import {
   E2E_SHARE_FORM_TRACKLIST_ID,
-  E2E_SHARE_FORM_COVER_PREVIEW_ID,
+  E2E_SHARE_FORM_COVER_LABEL_ID,
   E2E_SHARE_FORM_ARTIST_INPUT_ID,
   E2E_SHARE_FORM_TITLE_INPUT_ID
 } from '~data/e2eConstants'
@@ -10,7 +10,7 @@ import {
 function validateFormByTrack (track) {
   it('has no album cover preview', async function () {
     const { app } = this
-    const tracklist = await app.client.$$(`${E2E_SHARE_FORM_COVER_PREVIEW_ID} img`)
+    const tracklist = await app.client.$$(`${E2E_SHARE_FORM_COVER_LABEL_ID} img`)
     expect(tracklist.length).equal(0)
   })
   it('album artist value matches', async function () {

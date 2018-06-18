@@ -34,7 +34,6 @@ export const E2E_SHARE_FORM_TRACKLIST_ID = id('share-form-tracklist')
 
 export const E2E_SHARE_FORM_COVER_INPUT_ID = id('share-form-cover-input')
 export const E2E_SHARE_FORM_COVER_LABEL_ID = id('share-form-cover-label')
-export const E2E_SHARE_FORM_COVER_PREVIEW_ID = id('share-form-cover-preview')
 
 export const E2E_SHARE_FORM_TITLE_INPUT_ID = id('share-form-title-input')
 export const E2E_SHARE_FORM_ARTIST_INPUT_ID = id('share-form-artist-input')

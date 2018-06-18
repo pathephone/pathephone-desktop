@@ -5,7 +5,12 @@ import CoverPreview from '~components/CoverPreview.jsx'
 import CustomTextInput from '~components/CustomTextInput.jsx'
 
 import './AboutFieldset.css'
-import { E2E_SHARE_FORM_COVER_PREVIEW_ID, E2E_SHARE_FORM_TITLE_INPUT_ID, E2E_SHARE_FORM_ARTIST_INPUT_ID, E2E_SHARE_FORM_COVER_INPUT_ID, E2E_SHARE_FORM_COVER_LABEL_ID } from '~data/e2eConstants'
+import {
+  E2E_SHARE_FORM_COVER_LABEL_ID,
+  E2E_SHARE_FORM_TITLE_INPUT_ID,
+  E2E_SHARE_FORM_ARTIST_INPUT_ID,
+  E2E_SHARE_FORM_COVER_INPUT_ID
+} from '~data/e2eConstants'
 
 class AboutFieldset extends React.PureComponent {
   render () {
@@ -45,7 +50,6 @@ class AboutFieldset extends React.PureComponent {
             className='coverLabel'
           >
             <CoverPreview
-              id={E2E_SHARE_FORM_COVER_PREVIEW_ID}
               coverSrc={coverSrc}
             />
           </label>

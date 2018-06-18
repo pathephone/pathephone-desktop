@@ -1,7 +1,7 @@
 import {
   cancelShareForm,
   shareDropZoneExists,
-  selectFile
+  shareDropZoneSelect
 } from '~reusable/sharePage'
 import {
   shareFormAddTrack,
@@ -16,7 +16,7 @@ import { tracks } from '~data/assets'
 
 describe('check tracks operations', () => {
   before(function () {
-    return selectFile.call(this, tracks[0].file)
+    return shareDropZoneSelect.call(this, tracks[0].file)
   })
 
   describe('remove #1 track', () => {
