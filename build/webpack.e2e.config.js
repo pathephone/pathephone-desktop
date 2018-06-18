@@ -16,6 +16,9 @@ module.exports = {
     path: outputDir,
     filename: 'test.js'
   },
+  resolveLoader: {
+    root: path.join(__dirname, '../node_modules')
+  },
   resolve: {
     alias: {
       '~reusable': path.resolve(__dirname, '../src/e2e/reusable'),

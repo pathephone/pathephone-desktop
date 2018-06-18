@@ -23,6 +23,9 @@ module.exports = {
     path: outputDir,
     filename: 'test.js'
   },
+  resolveLoader: {
+    root: path.join(__dirname, '../node_modules')
+  },
   resolve: {
     alias: {
       '~data': path.resolve(__dirname, '../src/shared/data'),
