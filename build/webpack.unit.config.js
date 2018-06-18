@@ -26,6 +26,7 @@ module.exports = {
   resolveLoader: {
     modules: [ path.join(__dirname, '../node_modules') ]
   },
+  stats: 'errors-only',
   resolve: {
     alias: {
       '~data': path.resolve(__dirname, '../src/shared/data'),

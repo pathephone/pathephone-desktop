@@ -19,6 +19,7 @@ module.exports = {
   resolveLoader: {
     modules: [ path.join(__dirname, '../node_modules') ]
   },
+  stats: 'errors-only',
   resolve: {
     alias: {
       '~reusable': path.resolve(__dirname, '../src/e2e/reusable'),
