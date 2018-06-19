@@ -7,6 +7,6 @@ chai.use(chaiAsPromised)
 
 describe('testing app', function () {
   this.timeout(30000)
-  // require('./tests/sharePageTests')
+  require('./tests/sharePageTests')
   require('./tests/discoverPageTests')
 })
