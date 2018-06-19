@@ -48,7 +48,7 @@ const startIpfsDaemon = params => {
 
     IPFSFactory
       .create({ type: 'go' })
-      .spawn({ disposable, repoPath }, spawnCallback)
+      .spawn({ disposable, repoPath, start: false }, spawnCallback)
   })
 }
 
