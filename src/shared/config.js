@@ -2,7 +2,9 @@ const { resourcesPath, type } = process
 
 const ENVIRONMENT = process.env.NODE_ENV
 
-let IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING
+let IS_DEVELOPMENT = false
+let IS_PRODUCTION = false
+let IS_TESTING = false
 
 switch (ENVIRONMENT) {
   case 'development':

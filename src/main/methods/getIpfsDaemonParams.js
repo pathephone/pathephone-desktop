@@ -1,13 +1,16 @@
 import { app } from 'electron'
 import path from 'path'
 
-import { IS_TESTING } from '#config'
+import {
+  IS_TESTING,
+  IS_OFFLINE
+} from '#config'
 
 const getIpfsDaemonParams = () => {
   const repoPath = path.join(app.getPath('userData'), 'ipfsRepo')
   const disposable = IS_TESTING
   const startFlags = ['--enable-pubsub-experiment']
-  if (process.env.IPFS_OFFLINE) {
+  if (IS_OFFLINE) {
     startFlags.push('--offline')
   }
   return {

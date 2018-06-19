@@ -1,5 +1,5 @@
 import { uiShareItemsSelected, uiShareFormSubmited, uiShareFormCanceled, uiShareFormReseted } from '~actions/ui'
-import { systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged, systemShareFilesProcessingFailed, systemShareCandidatesNotFound } from '~actions/system'
+import { systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged, systemShareFilesProcessingFailed, systemShareCandidatesNotFound, systemShareCandidateSaveFailed } from '~actions/system'
 
 const DOMAIN = 'share'
 
@@ -25,6 +25,9 @@ const reducer = (state = initialState, action) => {
       const candidates = state.candidates
         .filter((candidate, index) => index !== 0)
       return { ...state, isProcessing: false, candidates }
+    }
+    case systemShareCandidateSaveFailed.toString(): {
+      return { ...state, isProcessing: false }
     }
     case uiShareFormReseted.toString(): {
       const handleMap = (candidate, index) => {
