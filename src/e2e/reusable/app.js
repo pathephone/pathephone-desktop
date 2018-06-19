@@ -15,7 +15,7 @@ if (platform === 'win32') {
   pathToBin = '../../dist/win-unpacked/Pathephone.exe'
 }
 
-const startApp = async function () {
+export const startApp = async function () {
   this.timeout(30000)
   this.app = new Application({
     path: pathToBin,
@@ -26,13 +26,8 @@ const startApp = async function () {
   return this.app.client.waitForExist(E2E_READY_SCREEN_ID)
 }
 
-const closeApp = function () {
+export const closeApp = function () {
   if (this.app && this.app.isRunning()) {
     return this.app.stop()
   }
-}
-
-export default {
-  startApp,
-  closeApp
 }

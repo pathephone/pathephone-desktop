@@ -1,7 +1,12 @@
-import { cancelShareForm, shareDropZoneExists, shareDropZoneSelect } from '~reusable/sharePage'
+import {
+  cancelShareForm,
+  shareDropZoneExists,
+  shareDropZoneSelect,
+  shareFormSubmit,
+  shareFormReset
+} from '~reusable/sharePage'
 
 import { tracks } from '~data/assets'
-import { shareFormSubmit, shareFormReset } from '~reusable/sharePage/shareForm'
 
 import {
   E2E_SHARE_FORM_COVER_INPUT_ID,

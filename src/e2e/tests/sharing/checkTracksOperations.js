@@ -1,16 +1,14 @@
 import {
   cancelShareForm,
   shareDropZoneExists,
-  shareDropZoneSelect
-} from '~reusable/sharePage'
-import {
+  shareDropZoneSelect,
+  removeTrack,
   shareFormAddTrack,
   getShareFormTracksLength,
-  moveTrackUp,
-  moveTrackDown,
   validateTrackFields,
-  removeTrack
-} from '~reusable/sharePage/shareForm'
+  moveTrackDown,
+  moveTrackUp
+} from '~reusable/sharePage'
 
 import { tracks } from '~data/assets'
 

@@ -1,4 +1,9 @@
-import { cancelShareForm, shareDropZoneExists, shareDropZoneSelect, shareFormExists } from '~reusable/sharePage'
+import {
+  cancelShareForm,
+  shareDropZoneExists,
+  shareDropZoneSelect,
+  shareFormExists
+} from '~reusable/sharePage'
 
 import { tracks } from '~data/assets'
 

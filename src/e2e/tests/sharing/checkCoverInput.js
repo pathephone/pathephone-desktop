@@ -1,6 +1,9 @@
-import { cancelShareForm, shareDropZoneExists, shareDropZoneSelect } from '~reusable/sharePage'
-
-import { coverPreviewHasIamge } from '~reusable/sharePage/shareForm'
+import {
+  shareDropZoneSelect,
+  coverPreviewHasIamge,
+  cancelShareForm,
+  shareDropZoneExists
+} from '~reusable/sharePage'
 
 import {
   E2E_SHARE_FORM_COVER_INPUT_ID

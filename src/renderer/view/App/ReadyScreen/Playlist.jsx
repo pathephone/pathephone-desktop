@@ -1,6 +1,8 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import { E2E_PLAYLIST_CLEAR_BUTTON_ID } from '~data/e2eConstants'
+
 import TracklistConnected from './Playlist/TracklistConnected'
 
 import './Playlist.css'
@@ -10,7 +12,11 @@ const Playlist = ({ hasTracklist, onClearPlaylist }) => {
     <div className='playlist izi-ys' >
       {
         hasTracklist ? (
-          <button className='playlist__clear-button' onClick={onClearPlaylist}>
+          <button
+            id={E2E_PLAYLIST_CLEAR_BUTTON_ID}
+            className='playlist__clear-button'
+            onClick={onClearPlaylist}
+          >
             clear
           </button>
         ) : (

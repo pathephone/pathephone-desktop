@@ -1,17 +1,15 @@
+import album1 from '~data/assets/album1'
+import { MESSAGE_SHARE_FORM_SUBMIT_SUCCEED } from '~data/textMessages'
+
 import {
   shareDropZoneExists,
-  shareDropZoneSelect
+  shareDropZoneSelect,
+  shareFormSelectCover,
+  shareFormSubmit
 } from '~reusable/sharePage'
-import {
-  shareFormSubmit,
-  shareFormSelectCover
-} from '~reusable/sharePage/shareForm'
-
-import album1 from '~data/assets/album1'
 import {
   getNotificationMessage, waitForNotification
 } from '~reusable/notifications'
-import { MESSAGE_SHARE_FORM_SUBMIT_SUCCEED } from '~data/textMessages'
 
 describe('submit valid form', () => {
   before(async function () {

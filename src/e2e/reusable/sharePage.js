@@ -1,34 +1,11 @@
-import {
-  E2E_SHARE_PAGE_ID,
-  E2E_NAV_SHARE_LINK_ID,
-  E2E_SHARE_FORM_CANCEL_BUTTON_ID,
-  E2E_SHARE_DROP_ZONE_ID,
-  E2E_SHARE_FORM_ID
-} from '~data/e2eConstants'
+import { shareFormSelectCover, shareFormSubmit } from '~reusable/sharePage/shareForm'
+import { shareDropZoneSelect } from '~reusable/sharePage/shareDropZone'
 
-export async function openSharePage () {
-  const { app } = this
-  await app.client.waitForExist(E2E_NAV_SHARE_LINK_ID)
-  await app.client.click(E2E_NAV_SHARE_LINK_ID)
-  return app.client.waitForExist(E2E_SHARE_PAGE_ID)
-}
+export * from './sharePage/shareDropZone'
+export * from './sharePage/shareForm'
 
-export function cancelShareForm () {
-  const { app } = this
-  return app.client.click(E2E_SHARE_FORM_CANCEL_BUTTON_ID)
-}
-
-export function shareDropZoneExists () {
-  const { app } = this
-  return app.client.waitForExist(E2E_SHARE_DROP_ZONE_ID)
-}
-
-export function shareFormExists () {
-  const { app } = this
-  return app.client.waitForExist(E2E_SHARE_FORM_ID)
-}
-
-export function shareDropZoneSelect (filePath) {
-  const { app } = this
-  return app.client.chooseFile(E2E_SHARE_DROP_ZONE_ID, filePath)
+export async function shareAlbum (album) {
+  await shareDropZoneSelect.call(this, album.tracks[0].file)
+  await shareFormSelectCover.call(this, album.cover)
+  await shareFormSubmit.call(this)
 }

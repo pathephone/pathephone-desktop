@@ -10,6 +10,7 @@ import ImageContainer from '~components/ImageContainer.jsx'
 import getQualityCode from '~utils/getQualityCode'
 
 import './Album.css'
+import { E2E_DISCOVER_ALBUM_QUEUE_BUTTON, E2E_DISCOVER_ALBUM_PLAY_BUTTON } from '~data/e2eConstants'
 
 const getQualityTitleLong = (code) => {
   switch (code) {
@@ -86,12 +87,14 @@ const Album = ({
           !hasSelectedView && (
             <div className='album__actions izi-x izi-absolute'>
               <button
+                data-e2e={E2E_DISCOVER_ALBUM_QUEUE_BUTTON}
                 className='album__actions-button round-button'
                 onClick={handleAddAlbum}
               >
                 <MdAdd />
               </button>
               <button
+                data-e2e={E2E_DISCOVER_ALBUM_PLAY_BUTTON}
                 className='album__actions-button round-button'
                 onClick={handlePlayAlbum}
               >

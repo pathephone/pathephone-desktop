@@ -1,14 +1,18 @@
 /* eslint-env mocha */
-import { openSharePage } from '~reusable/sharePage'
+import { startApp, closeApp } from '~reusable/app'
+import {
+  openDiscoverPage,
+  openSharePage
+} from '~reusable/navigation'
 import {
   discoverFeedDoesNotExist,
-  openDiscoverPage,
-  discoverFeedLengthIs
+  discoverFeedLengthEquals
 } from '~reusable/discoverPage'
 
-describe('share page', function () {
-  describe('click share album navigation link', () => {
-    it('share page appears', openSharePage)
+describe('SHARE PAGE TESTS', function () {
+  before(async function () {
+    await startApp.call(this)
+    await openSharePage.call(this)
   })
 
   require('./sharing/selectWrongFiles')
@@ -31,7 +35,8 @@ describe('share page', function () {
   describe('check discover feed', () => {
     before(openDiscoverPage)
     it('discover feed has 1 item', function () {
-      return discoverFeedLengthIs.call(this, 1)
+      return discoverFeedLengthEquals.call(this, 1)
     })
   })
+  after(closeApp)
 })

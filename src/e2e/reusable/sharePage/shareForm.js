@@ -9,8 +9,20 @@ import {
   E2E_SHARE_FORM_SAVE_BUTTON_ID,
   E2E_SHARE_FORM_RESET_BUTTON_ID,
   E2E_SHARE_FORM_COVER_LABEL_ID,
-  E2E_SHARE_FORM_COVER_INPUT_ID
+  E2E_SHARE_FORM_COVER_INPUT_ID,
+  E2E_SHARE_FORM_CANCEL_BUTTON_ID,
+  E2E_SHARE_FORM_ID
 } from '~data/e2eConstants'
+
+export function cancelShareForm () {
+  const { app } = this
+  return app.client.click(E2E_SHARE_FORM_CANCEL_BUTTON_ID)
+}
+
+export function shareFormExists () {
+  const { app } = this
+  return app.client.waitForExist(E2E_SHARE_FORM_ID)
+}
 
 export function shareFormAddTrack (file) {
   const { app } = this
@@ -72,23 +84,28 @@ export function moveTrackDown (index) {
   )
 }
 
-export async function validateTrackArtistField (index, track) {
+export async function validateTrackArtistField (index, value) {
   const { app } = this
   const artistValue = await app.client
     .getValue(`${E2E_SHARE_FORM_TRACKLIST_ID} > *:nth-child(${index}) input[name="tracks.${index - 1}.artist"]`)
-  expect(artistValue).equal(track.artist)
+  expect(artistValue).equal(value)
 }
 
-export async function validateTrackTitleField (index, track) {
+export async function validateTrackTitleField (index, value) {
   const { app } = this
   const titleValue = await app.client
     .getValue(`${E2E_SHARE_FORM_TRACKLIST_ID} > *:nth-child(${index}) input[name="tracks.${index - 1}.title"]`)
-  expect(titleValue).equal(track.title)
+  expect(titleValue).equal(value)
 }
 
 export function validateTrackFields (index, track) {
   return Promise.all([
-    validateTrackArtistField.call(this, index, track),
-    validateTrackTitleField.call(this, index, track)
+    validateTrackArtistField.call(this, index, track.artist),
+    validateTrackTitleField.call(this, index, track.title)
   ])
+}
+
+export async function shareFormTracklistLengthEquals (expectedLength) {
+  const tracklist = await this.app.client.$$(`${E2E_SHARE_FORM_TRACKLIST_ID} > *`)
+  expect(tracklist.length).equal(expectedLength)
 }
