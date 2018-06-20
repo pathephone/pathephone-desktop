@@ -1,29 +1,51 @@
-const merge = require('webpack-merge')
-const jetpack = require('fs-jetpack')
-const base = require('./webpack.base.config')
+const nodeExternals = require('webpack-node-externals')
+const path = require('path')
+const glob = require('glob')
 
-// Test files are scattered through the whole project. Here we're searching
-// for them and generating entry file for webpack.
+const entryFiles = glob.sync('src/**/*.spec.js')
+  .map(filePath => path.resolve(process.cwd(), filePath))
+const outputDir = path.resolve(process.cwd(), '.temp/unit')
 
-const srcDir = jetpack.cwd('src')
-const tempDir = jetpack.cwd('.temp')
-const entryFilePath = tempDir.path('specs_entry.js')
+if (entryFiles.length === 0) {
+  console.log('No unit tests found.')
+  return
+}
 
-const entryFileContent = srcDir
-  .find({ matching: '*.spec.js' })
-  .reduce((fileContent, path) => {
-    const normalizedPath = path.replace(/\\/g, '/')
-    return `${fileContent}import "../src/${normalizedPath}";\n`
-  }, '')
-
-jetpack.write(entryFilePath, entryFileContent)
-
-module.exports = env => {
-  return merge(base(env), {
-    entry: entryFilePath,
-    output: {
-      filename: 'specs.js',
-      path: tempDir.path()
+module.exports = {
+  target: 'node',
+  mode: 'development',
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+  entry: entryFiles,
+  output: {
+    path: outputDir,
+    filename: 'test.js'
+  },
+  resolveLoader: {
+    modules: [ path.join(__dirname, '../node_modules') ]
+  },
+  stats: 'errors-only',
+  resolve: {
+    alias: {
+      '~data': path.resolve(__dirname, '../src/shared/data'),
+      '~utils': path.resolve(__dirname, '../src/shared/utils'),
+      '~resources': path.resolve(__dirname, '../src/shared/assets')
     }
-  })
+  },
+  externals: [nodeExternals()],
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac|txt|svg)$/,
+        use: 'file-loader'
+      }
+    ]
+  }
 }

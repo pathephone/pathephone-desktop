@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "type": "node",
+          "request": "attach",
+          "name": "Electron: Main",
+          "protocol": "inspector",
+          "port": 5858,
+          "timeout": 30000
+      },
+      {
+          "name": "Electron: Renderer",
+          "type": "node",
+          "request": "attach",
+          "port": 9223,
+          "protocol":"inspector",
+          "timeout": 30000
+      }
+  ],
+  "compounds": [
+      {
+          "name": "Electron: All",
+          "configurations": [
+              "Electron: Main",
+              "Electron: Renderer"
+          ]
+      }
+  ]
+}

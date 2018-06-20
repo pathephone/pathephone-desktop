@@ -1,0 +1,12 @@
+
+.selected-actions {
+  border-top: 1px solid #ededed;
+}
+
+.selected-actions small:not(:first-child) {
+  margin-left: 0.25em;
+}
+
+.rightActions {
+  margin-left: auto;
+}

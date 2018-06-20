@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~data/*": ["../shared/data/*"],
+      "~utils/*": ["../shared/utils/*"],
+      "#config": ["../shared/config.js"]
+    }
+  }
+}

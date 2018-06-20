@@ -1,0 +1,44 @@
+.trackInput {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  background-color: antiquewhite;
+  border-radius: 2px;
+  margin-bottom: 0.5em;
+}
+
+.trackInputBody {
+  padding: 1em;
+  width: 100%;
+}
+
+.trackInputSplit {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.trackInputControlsRight,
+.trackInputControlsLeft {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.trackInputControlsRight {
+  border-left: 1px solid rgba(10,10,10,0.1);
+}
+.trackInputControlsLeft {
+  border-right: 1px solid rgba(10,10,10,0.1);
+}
+
+.trackInputControlButton {
+  padding: 1em;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: antiquewhite;
+  align-items: center;
+}
+
+.trackInputControlButton:hover {
+  filter: contrast(90%); 
+}

@@ -1,0 +1,5 @@
+.timeline__buffered-piece {
+  position: absolute;
+  height: 100%;
+  background-color: rgba(9, 58, 70, 0.05);
+}

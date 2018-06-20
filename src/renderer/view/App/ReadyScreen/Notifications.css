@@ -1,0 +1,28 @@
+.notificationsContainer {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.notificationToastError,
+.notificationToastWarning,
+.notificationToastSuccess {
+  width: 20em;
+  border-radius: 2px;
+  box-shadow: var(--material-shadow-2);
+  color: white;
+  padding: 1em;
+}
+
+.notificationToastError {
+  background-color: red;
+}
+
+.notificationToastWarning {
+  background-color: orange;
+}
+
+.notificationToastSuccess {
+  background-color: green;
+}

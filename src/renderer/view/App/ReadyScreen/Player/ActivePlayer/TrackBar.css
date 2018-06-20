@@ -1,0 +1,16 @@
+.playerTrackBar {
+  position: relative;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-basis: 70%;
+  height: 100%;
+}
+
+.playerTrackBar > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

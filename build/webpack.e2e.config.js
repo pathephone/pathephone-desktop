@@ -1,19 +1,45 @@
-const merge = require('webpack-merge')
+const nodeExternals = require('webpack-node-externals')
 const path = require('path')
-const base = require('./webpack.base.config')
-
-// Test files are scattered through the whole project. Here we're searching
-// for them and generating entry file for webpack.
 
 const entryFile = path.resolve(process.cwd(), 'src/e2e/tests.js')
-const outputDir = path.resolve(process.cwd(), '.temp')
+const outputDir = path.resolve(process.cwd(), '.temp/e2e')
 
-module.exports = env => {
-  return merge(base(env), {
-    entry: entryFile,
-    output: {
-      filename: 'e2e.js',
-      path: outputDir
+module.exports = {
+  target: 'node',
+  mode: 'development',
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+  entry: entryFile,
+  output: {
+    path: outputDir,
+    filename: 'test.js'
+  },
+  resolveLoader: {
+    modules: [ path.join(__dirname, '../node_modules') ]
+  },
+  stats: 'errors-only',
+  resolve: {
+    alias: {
+      '~reusable': path.resolve(__dirname, '../src/e2e/reusable'),
+      '~data': path.resolve(__dirname, '../src/shared/data'),
+      '~utils': path.resolve(__dirname, '../src/shared/utils'),
+      '~resources': path.resolve(__dirname, '../src/shared/assets')
     }
-  })
+  },
+  externals: [nodeExternals()],
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac|txt|svg)$/,
+        use: 'file-loader'
+      }
+    ]
+  }
 }
