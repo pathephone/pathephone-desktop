@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/pathephone/pathephone-desktop/compare/v1.3.0...v1.4.0) (2018-06-20)
+
+
+### Features
+
+* multiple albums sharing ([#165](https://github.com/pathephone/pathephone-desktop/issues/165)) ([9598a37](https://github.com/pathephone/pathephone-desktop/commit/9598a37))
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/pathephone/pathephone-desktop/compare/v1.2.1...v1.3.0) (2018-03-24)
 
