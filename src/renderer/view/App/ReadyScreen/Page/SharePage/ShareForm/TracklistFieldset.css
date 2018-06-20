@@ -1,0 +1,33 @@
+.addTracksLabel {
+  display: block;
+  padding: 1em;
+  width: 100%;
+  background-color: antiquewhite;
+  border: 1px solid antiquewhite;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.addTracksLabel:hover {
+  filter: contrast(90%); 
+}
+
+.tracklistFieldset {
+  max-width: 45em;
+  margin: 0 auto;
+}
+
+.addTracksInput:focus ~ .addTracksLabel {
+  border-color: orange;
+}
+
+.noTracksMessage {
+  color: red;
+  text-transform: uppercase;
+  font-size: 0.75em;
+}
+
+.addTracksInput:not(:invalid) ~ .addTracksLabel .noTracksMessage {
+  display: none;
+}

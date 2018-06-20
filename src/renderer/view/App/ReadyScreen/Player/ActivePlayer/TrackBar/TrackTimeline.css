@@ -1,0 +1,44 @@
+.timeline__input-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.timelineInput {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  appearance: none;
+  background: transparent; /* Otherwise white in Chrome */
+  margin: 0;
+  flex-shrink: 0;
+  height: 100%;
+  cursor: pointer;
+}
+.timelineInput:focus {
+  outline: none;
+}
+
+.timelineInput::-webkit-slider-runnable-track {
+  background: none;
+  border-left: 1px solid rgb(230,230,230);
+  border-right: 1px solid rgb(230,230,230);
+  width: 100%;
+  height: 100%;
+}
+.timelineInput:hover::-webkit-slider-runnable-track,
+.timelineInput:active::-webkit-slider-runnable-track {
+}
+
+.timelineInput::-webkit-slider-thumb {
+  height: 100%;
+  width: 1px;
+  background: var(--secondary-color);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.timelineInput:focus::-webkit-slider-thumb {
+  background: orange;
+}

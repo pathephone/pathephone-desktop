@@ -1,14 +1,12 @@
 /* eslint-env mocha */
-import utils from './utils'
+import chai from 'chai'
+import chaiAsPromised from 'chai-as-promised'
+import 'chai/register-expect' // Using Expect style
+
+chai.use(chaiAsPromised)
 
 describe('testing app', function () {
   this.timeout(30000)
-
-  before(utils.startApp)
-
-  require('./tests/add-album')
-  // require('./tests/albums-search')
-  require('./tests/albums-feed')
-
-  after(utils.closeApp)
+  require('./tests/sharePageTests')
+  require('./tests/discoverPageTests')
 })

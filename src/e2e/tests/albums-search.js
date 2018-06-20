@@ -1,5 +1,4 @@
 /* eslint-env mocha */
-import { expect } from 'chai'
 
 const inputSelector = '#albums-search'
 const buttonSelector = '#cancel-search'
