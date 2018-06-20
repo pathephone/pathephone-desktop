@@ -27,3 +27,7 @@ export const IS_OFFLINE = process.env.OFFLINE === 'true'
 export const RESOURCES_PATH = (IS_PRODUCTION || IS_TESTING) ? resourcesPath : 'resources'
 
 export const IS_RENDERER = process && type === 'renderer'
+
+export const IS_WINDOWS = process.platform === 'win32'
+export const IS_MAC = process.platform === 'darwin'
+export const IS_LINUX = process.platform === 'linux'

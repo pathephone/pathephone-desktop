@@ -8,8 +8,8 @@
   "copyright": "Copyright © 2018 Maxim Ilyin",
   "license": "MIT",
   "homepage": "http://pathephone.metabin.space",
-  "engines" : {
-    "node" : ">=8.9.3"
+  "engines": {
+    "node": ">=8.9.3"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,10 @@
       {
         "from": "resources/icons/64x64.png",
         "to": "icons/64x64.png"
+      },
+      {
+        "from": "node_modules/go-ipfs-dep/go-ipfs/LICENSE",
+        "to": "go-ipfs/LICENSE"
       }
     ],
     "linux": {
@@ -44,6 +48,28 @@
         "AppImage",
         "rpm",
         "deb"
+      ],
+      "extraResources": [
+        {
+          "from": "node_modules/go-ipfs-dep/go-ipfs/ipfs",
+          "to": "go-ipfs/ipfs"
+        }
+      ]
+    },
+    "mac": {
+      "extraResources": [
+        {
+          "from": "node_modules/go-ipfs-dep/go-ipfs/ipfs",
+          "to": "go-ipfs/ipfs"
+        }
+      ]
+    },
+    "win": {
+      "extraResources": [
+        {
+          "from": "node_modules/go-ipfs-dep/go-ipfs/ipfs.exe",
+          "to": "go-ipfs/ipfs.exe"
+        }
       ]
     },
     "publish": null
@@ -57,6 +83,10 @@
     "prebuild": "yarn compile:app",
     "build": "electron-builder",
     "build:dir": "yarn build --dir -c.compression=store -c.mac.identity=null",
+    "get-ipfs": "yarn add --dev go-ipfs-dep",
+    "get-ipfs:win": "cross-env TARGET_OS=windows yarn get-ipfs",
+    "get-ipfs:lin": "cross-env TARGET_OS=linux yarn get-ipfs",
+    "get-ipfs:mac": "cross-env TARGET_OS=darwin yarn get-ipfs",
     "pretest:unit": "cross-env NODE_ENV=testing yarn compile:unit",
     "test:unit": "cd .temp/unit && mocha",
     "pretest:e2e": "cross-env NODE_ENV=testing yarn build:dir && yarn compile:e2e",
@@ -76,7 +106,6 @@
     "file-type": "^7.4.0",
     "fs-jetpack": "^1.0.0",
     "get-value": "^3.0.1",
-    "go-ipfs-dep": "^0.4.15",
     "ipfsd-ctl": "^0.37.3",
     "is-ipfs": "^0.3.2",
     "musicmetadata": "^2.0.5",
@@ -127,6 +156,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "glob": "^7.1.2",
+    "go-ipfs-dep": "^0.4.15",
     "mocha": "^4.0.1",
     "node-sass": "^4.7.1",
     "sass-loader": "^6.0.6",

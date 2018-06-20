@@ -2,7 +2,7 @@ import IPFSFactory from 'ipfsd-ctl'
 
 import beforeIpfsDaemonStart from './startIpfsDaemon/beforeIpfsDaemonStart'
 
-const startIpfsDaemon = ({ spawnParams, startFlags }) => {
+const startIpfsDaemon = ({ createParams, spawnParams, startFlags }) => {
   return new Promise((resolve, reject) => {
     const onError = reject
     const onSuccess = resolve
@@ -49,7 +49,7 @@ ipfs gateway running on ${node.gatewayAddr}
     beforeIpfsDaemonStart()
 
     IPFSFactory
-      .create({ type: 'go' })
+      .create(createParams)
       .spawn(spawnParams, spawnCallback)
   })
 }
