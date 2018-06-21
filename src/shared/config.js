@@ -31,3 +31,12 @@ export const IS_RENDERER = process && type === 'renderer'
 export const IS_WINDOWS = process.platform === 'win32'
 export const IS_MAC = process.platform === 'darwin'
 export const IS_LINUX = process.platform === 'linux'
+
+let HAS_TRAY
+if (!IS_LINUX || process.env.XDG_CURRENT_DESKTOP === 'Unity') {
+  HAS_TRAY = true
+} else {
+  HAS_TRAY = false
+}
+
+export { HAS_TRAY }

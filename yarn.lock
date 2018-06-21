@@ -6161,9 +6161,9 @@ ipfs-unixfs@~0.1.14:
   dependencies:
     protons "^1.0.0"
 
-ipfsd-ctl@^0.37.3:
-  version "0.37.3"
-  resolved "https://registry.yarnpkg.com/ipfsd-ctl/-/ipfsd-ctl-0.37.3.tgz#c69d0ff87fd51c6137ad084e9987661c3cc4bdbc"
+ipfsd-ctl@^0.37.4:
+  version "0.37.4"
+  resolved "https://registry.yarnpkg.com/ipfsd-ctl/-/ipfsd-ctl-0.37.4.tgz#5025266c135a446880e56b3b930e64961a4c84b5"
   dependencies:
     async "^2.6.0"
     boom "^7.2.0"
@@ -6187,7 +6187,6 @@ ipfsd-ctl@^0.37.3:
     stream-http "^2.8.1"
     subcomandante "^1.0.5"
     superagent "^3.8.2"
-    truthy "~0.0.1"
 
 ipld-dag-cbor@~0.12.0:
   version "0.12.0"
@@ -11446,10 +11445,6 @@ truncate-utf8-bytes@^1.0.0:
   resolved "https://registry.yarnpkg.com/truncate-utf8-bytes/-/truncate-utf8-bytes-1.0.2.tgz#405923909592d56f78a5818434b0b78489ca5f2b"
   dependencies:
     utf8-byte-length "^1.0.1"
-
-truthy@~0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/truthy/-/truthy-0.0.1.tgz#789f33059dc1f02fdd90cf0563acb1a6766fc7bc"
 
 tslib@^1.9.0:
   version "1.9.2"
