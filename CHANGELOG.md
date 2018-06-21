@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/pathephone/pathephone-desktop/compare/v1.3.0...v1.4.0) (2018-06-21)
+
+
+### Features
+
+* appindicator support on some Linux systems ([#166](https://github.com/pathephone/pathephone-desktop/issues/166)) ([99183d9](https://github.com/pathephone/pathephone-desktop/commit/99183d9))
+* multiple sharing, validation ([#165](https://github.com/pathephone/pathephone-desktop/issues/165)) ([154bde5](https://github.com/pathephone/pathephone-desktop/commit/154bde5))
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/pathephone/pathephone-desktop/compare/v1.2.1...v1.3.0) (2018-03-24)
 
