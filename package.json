@@ -34,8 +34,8 @@
     },
     "extraResources": [
       {
-        "from": "resources/icons/64x64.png",
-        "to": "icons/64x64.png"
+        "from": "resources/indicator-icon.png",
+        "to": "./indicator-icon.png"
       },
       {
         "from": "node_modules/go-ipfs-dep/go-ipfs/LICENSE",
