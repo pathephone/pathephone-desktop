@@ -11,6 +11,7 @@ const createMainWindow = () => {
   const window = createElectronWindow(MAIN_WINDOW_NAME)
 
   if (HAS_TRAY) {
+    console.log('-- tray support enabled')
     withTray(window)
   }
 

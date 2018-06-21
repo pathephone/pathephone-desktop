@@ -43,7 +43,7 @@
       }
     ],
     "linux": {
-      "category": "Audio",
+      "category": "AudioVideo",
       "target": [
         "AppImage",
         "rpm",
@@ -54,7 +54,10 @@
           "from": "node_modules/go-ipfs-dep/go-ipfs/ipfs",
           "to": "go-ipfs/ipfs"
         }
-      ]
+      ],
+      "desktop": {
+        "StartupWMClass": "Pathephone"
+      }
     },
     "mac": {
       "extraResources": [
@@ -106,7 +109,7 @@
     "file-type": "^7.4.0",
     "fs-jetpack": "^1.0.0",
     "get-value": "^3.0.1",
-    "ipfsd-ctl": "^0.37.3",
+    "ipfsd-ctl": "^0.37.4",
     "is-ipfs": "^0.3.2",
     "musicmetadata": "^2.0.5",
     "pouchdb-adapter-idb": "^6.3.4",

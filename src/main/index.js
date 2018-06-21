@@ -45,15 +45,21 @@ const handleReady = () => {
 
   const handleClosed = () => {
     state.mainWindow = null
+    console.log('-- window reference destroyed')
   }
 
-  app.on('closed', handleClosed)
+  state.mainWindow.on('closed', handleClosed)
 
-  loadMainWindow(state.mainWindow)
+  const handleAllClosed = () => {
+    app.quit()
+  }
+
+  app.on('window-all-closed', handleAllClosed)
 
   const handleBeforeQuit = async e => {
     if (state.isQuiting || !state.isReadyToQuit) {
       e.preventDefault()
+      console.log('-- app quit prevented')
     }
     if (!state.isReadyToQuit) {
       state.isQuiting = true
@@ -72,6 +78,8 @@ const handleReady = () => {
   }
 
   app.on('before-quit', handleBeforeQuit)
+
+  loadMainWindow(state.mainWindow)
 }
 
 app.on('ready', handleReady)
