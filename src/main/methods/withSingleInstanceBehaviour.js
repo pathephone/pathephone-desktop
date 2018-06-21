@@ -5,10 +5,7 @@ const withSingleInstanceBehaviour = state => {
   // Someone tried to run a second instance, we should focus our window.
     const { mainWindow } = state
     if (mainWindow) {
-      if (mainWindow.isMinimized()) {
-        mainWindow.restore()
-      }
-      mainWindow.focus()
+      mainWindow.show()
     }
   })
 
