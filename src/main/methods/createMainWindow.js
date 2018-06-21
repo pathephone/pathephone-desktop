@@ -3,13 +3,16 @@ import createElectronWindow from '~utils/createElectronWindow'
 import withTray from './createMainWindow/withTray'
 import withNoNavigation from './createMainWindow/withNoNavigation'
 import withMenu from './createMainWindow/withMenu'
+import { HAS_TRAY } from '#config'
 
 const MAIN_WINDOW_NAME = 'main'
 
 const createMainWindow = () => {
   const window = createElectronWindow(MAIN_WINDOW_NAME)
 
-  withTray(window)
+  if (HAS_TRAY) {
+    withTray(window)
+  }
 
   withNoNavigation(window)
 

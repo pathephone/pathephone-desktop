@@ -22,8 +22,7 @@ export default (mainWindow) => {
       }},
     { label: 'Quit',
       click: () => {
-        app.isQuiting = true
-        mainWindow.close()
+        app.quit()
       }}
   ])
 
