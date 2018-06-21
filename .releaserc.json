@@ -16,6 +16,6 @@
       "assets": ["CHANGELOG.md"]
     }
   ],
-  "assets": "dist/*",
+  "assets": "dist/*.{zip, dmg, blockmap, AppImage, rpm, deb, exe}",
   "npmPublish": false
 }
