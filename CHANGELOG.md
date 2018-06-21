@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/pathephone/pathephone-desktop/compare/v1.4.0...v1.4.1) (2018-06-21)
+
+
+### Bug Fixes
+
+* glob pattern for assets to include ([#167](https://github.com/pathephone/pathephone-desktop/issues/167)) ([d640901](https://github.com/pathephone/pathephone-desktop/commit/d640901))
+
 # [1.4.0](https://github.com/pathephone/pathephone-desktop/compare/v1.3.0...v1.4.0) (2018-06-20)
 
 
