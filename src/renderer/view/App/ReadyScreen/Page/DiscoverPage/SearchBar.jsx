@@ -3,37 +3,50 @@ import propTypes from 'prop-types'
 
 import MdClose from 'react-icons/lib/md/close'
 
-const SearchBar = ({ searchValue, onSearchValueChange, onCancelSearch }) => {
-  const handleChange = e => {
+import './SearchBar.css'
+import { E2E_DISCOVER_PAGE_SEARCH_INPUT_ID } from '~data/e2eConstants'
+
+class SearchBar extends React.Component {
+  handleChange = e => {
     const { value } = e.currentTarget
-    onSearchValueChange(value)
+    const {
+      onSearchValueChange,
+      onCancelSearch
+    } = this.props
+    if (value === '') {
+      onCancelSearch()
+    } else {
+      onSearchValueChange(value)
+    }
   }
-  const handleCancelSearch = () => {
+  handleCancelSearchClicked = () => {
+    const { onCancelSearch } = this.props
     onCancelSearch()
   }
-  return (
-    <div className='albums-page__search-bar'>
-      <input
-        id='albums-search'
-        placeholder='search albums'
-        className='albums-page__search-input'
-        type='text'
-        value={searchValue}
-        onChange={handleChange}
-      />
-      {
-        searchValue && (
-          <button
-            id='cancel-search'
-            className='albums-page__cancel-search round-button'
-            onClick={handleCancelSearch}
-          >
-            <MdClose />
-          </button>
-        )
-      }
-    </div>
-  )
+  render () {
+    const { searchValue } = this.props
+    return (
+      <div className='albums-page__search-bar'>
+        <input
+          id={E2E_DISCOVER_PAGE_SEARCH_INPUT_ID}
+          placeholder='Search albums'
+          className='albums-page__search-input'
+          type='text'
+          value={searchValue}
+          onChange={this.handleChange}
+        />
+        <button
+          disabled={searchValue === ''}
+          id='cancel-search'
+          className='albums-page__cancel-search round-button'
+          onClick={this.handleCancelSearchClicked}
+        >
+          <MdClose />
+        </button>
+
+      </div>
+    )
+  }
 }
 
 SearchBar.propTypes = {

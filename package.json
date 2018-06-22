@@ -103,6 +103,7 @@
   "dependencies": {
     "@metabin/gate": "^2.1.0",
     "ajv": "^6.1.1",
+    "dexie": "^2.0.4",
     "dot-prop-immutable": "^1.4.0",
     "electron-context-menu": "^0.9.1",
     "eslint": "^4.11.0",
@@ -112,7 +113,6 @@
     "ipfsd-ctl": "^0.37.4",
     "is-ipfs": "^0.3.2",
     "musicmetadata": "^2.0.5",
-    "pouchdb-adapter-idb": "^6.3.4",
     "prop-types": "^15.6.1",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
@@ -126,8 +126,6 @@
     "redux-persist": "^5.9.1",
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1",
-    "rxdb": "^7.0.1",
-    "rxjs": "^5.5.2",
     "source-map-support": "^0.5.0"
   },
   "devDependencies": {

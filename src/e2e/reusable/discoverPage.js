@@ -5,7 +5,10 @@ import {
   E2E_DISCOVER_FEED_ID,
   E2E_DISCOVER_PAGE_SELECTED_BAR_ID,
   E2E_DISCOVER_ALBUM_QUEUE_BUTTON,
-  E2E_DISCOVER_ALBUM_PLAY_BUTTON
+  E2E_DISCOVER_ALBUM_PLAY_BUTTON,
+  E2E_DISCOVER_ALBUM_TITLE,
+  E2E_DISCOVER_ALBUM_ARTIST,
+  E2E_DISCOVER_PAGE_SEARCH_INPUT_ID
 } from '~data/e2eConstants'
 
 export async function openDiscoverPage () {
@@ -20,16 +23,24 @@ export async function discoverFeedDoesNotExist () {
   expect(isFeedExists).equal(false)
 }
 
+export async function discoverWaitForFeedExists () {
+  return this.app.client.waitForExist(E2E_DISCOVER_FEED_ID)
+}
+
 export async function discoverFeedExists () {
   const { app } = this
   const isFeedExists = await app.client.isExisting(E2E_DISCOVER_FEED_ID)
   expect(isFeedExists).equal(true)
 }
 
+export async function discoverGetFeedLength () {
+  const feedItems = await this.app.client.$$(`${E2E_DISCOVER_FEED_ID} > *`)
+  return feedItems.length
+}
+
 export async function discoverFeedLengthEquals (number) {
-  const { app } = this
-  const feedItems = await app.client.$$(E2E_DISCOVER_FEED_ID)
-  expect(feedItems.length).equal(number)
+  const length = await discoverGetFeedLength.call(this)
+  expect(length).equal(number)
 }
 
 export async function discoverFeedAlbumClick (index) {
@@ -96,3 +107,50 @@ export function discoverAlbumHover (index) {
   return this.app.client
     .moveToObject(selector)
 }
+
+export async function discoverAlbumTitleEquals (index, expectedTitle) {
+  const selector = `${
+    E2E_DISCOVER_FEED_ID
+  } > *:nth-child(${
+    index
+  }) *[data-e2e="${E2E_DISCOVER_ALBUM_TITLE}"]`
+  const title = await this.app.client
+    .getText(selector)
+  expect(title).equals(expectedTitle)
+}
+
+export async function discoverAlbumArtistEquals (index, expectedArtist) {
+  const selector = `${
+    E2E_DISCOVER_FEED_ID
+  } > *:nth-child(${
+    index
+  }) *[data-e2e="${E2E_DISCOVER_ALBUM_ARTIST}"]`
+  const artist = await this.app.client
+    .getText(selector)
+  expect(artist).equals(expectedArtist)
+}
+
+export function discoverSetSearchValue (value) {
+  return this.app.client
+    .setValue(E2E_DISCOVER_PAGE_SEARCH_INPUT_ID, value)
+}
+
+// export async function discoverClearFeed () {
+//   // TODO: find out why isn't working
+//   const task = async () => {
+//     await discoverWaitForFeedExists.call(this)
+//     const length = await discoverGetFeedLength.call(this)
+//     if (length === 0) return
+//     let inc = 1
+//     const click = async () => {
+//       if (inc > length) return
+//       await discoverFeedAlbumClick.call(this, inc)
+//       inc++
+//       await click()
+//     }
+//     await click()
+//     await this.app.client.click(E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID)
+//     await task()
+//   }
+//   return task()
+// }

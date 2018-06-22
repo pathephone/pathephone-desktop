@@ -1,27 +1,19 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import {
   systemAlbumCandidateRecieved,
-  systemAlbumUpdated,
   systemAlbumSaved
 } from '~actions/system'
 
 function * handleIncomingAlbums (apis, album) {
   const {
-    findAlbumInCollectionByCid,
-    saveAlbumToCollection
+    saveOrUpdateAlbum
   } = apis
   try {
     const { cid, data } = album
-    const lastSeen = new Date().getTime()
+    const lastSeenAt = new Date().getTime()
     yield put(systemAlbumCandidateRecieved(cid))
-    const existedAlbum = yield findAlbumInCollectionByCid(cid)
-    if (existedAlbum) {
-      existedAlbum.update({ lastSeen })
-      yield put(systemAlbumUpdated(cid))
-    } else {
-      yield saveAlbumToCollection({ cid, data, lastSeen })
-      yield put(systemAlbumSaved(cid))
-    }
+    yield call(saveOrUpdateAlbum, { cid, data, lastSeenAt })
+    yield put(systemAlbumSaved(cid))
   } catch (e) {
     console.error(e)
   }

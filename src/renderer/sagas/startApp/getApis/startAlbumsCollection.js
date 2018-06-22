@@ -1,69 +1,82 @@
 import { eventChannel } from 'redux-saga'
 
-import createAlbumsQuery from '~utils/createAlbumsQuery'
-import { albumSchema } from '~data/schemas'
-
 const getAlbumsCollection = async dbApis => {
-  const albumsCollection = await dbApis
-    .createCollection({
-      schema: albumSchema.collectionSchema,
-      name: 'albums'
-    })
+  const { albumsCollection } = dbApis
   const findAlbumInCollectionByCid = async cid => {
-    const album = await albumsCollection.findOne(cid).exec()
-    if (album) {
-      return {
-        update (data) {
-          for (const [key, value] of Object.entries(data)) {
-            album[key] = value
-          }
-          return album.save()
-        }
-      }
-    }
+    return albumsCollection
+      .get(cid)
+      .toArray()
   }
   const findAlbumsInCollectionByCids = cids => {
-    const query = {
-      cid: {
-        $in: cids
-      }
-    }
     return albumsCollection
-      .find(query)
-      .exec()
+      .where('cid')
+      .anyOf(cids)
+      .toArray()
   }
 
-  const deleteAlbumsFromCollection = (cids) => {
-    const handleDoc = doc => doc.remove()
-    const handleDocs = docs => {
-      return Promise.all(docs.map(handleDoc))
-    }
-    findAlbumsInCollectionByCids(cids)
-      .then(handleDocs)
+  const deleteAlbumsFromCollection = cids => {
+    return albumsCollection
+      .where('cid')
+      .anyOf(cids)
+      .delete()
   }
-  const findOutdatedAlbumsInCollection = (period) => {
-    return albumsCollection.find({ lastSeen: { $lt: period } }).exec()
+  const findOutdatedAlbumsInCollection = period => {
+    return albumsCollection
+      .where('lastSeenAt')
+      .below(period)
+      .toArray()
   }
-  const saveAlbumToCollection = ({ cid, data, lastSeen = 0 }) => {
-    return albumsCollection.insert({ cid, data, lastSeen })
+  const saveAlbumIfNotExists = ({ cid, data, lastSeenAt = 0 }) => {
+    return albumsCollection.add({ cid, data, lastSeenAt })
   }
-  const findAlbumsInCollectionByText = ({ limit, text }) => {
-    return eventChannel(emitter => {
-      const subscription = albumsCollection
-        .find(createAlbumsQuery(text))
-        .limit(limit)
-        .$
-        .subscribe(emitter)
-      return () => subscription.unsubscribe()
+  const saveOrUpdateAlbum = ({ cid, data, lastSeenAt }) => {
+    return albumsCollection
+      .put({ cid, data, lastSeenAt })
+  }
+  const findAlbumsInCollection = ({ limit, text }) => {
+    return eventChannel(emitt => {
+      const makeQuery = () => {
+        let collection
+        if (text) {
+          collection = albumsCollection
+            .where('searchWords')
+            .startsWithIgnoreCase(text)
+            .distinct()
+            .sortBy('createdAt')
+        } else {
+          collection = albumsCollection
+            .orderBy('createdAt')
+            .reverse()
+            .limit(limit)
+            .toArray()
+        }
+        collection
+          .then(albums => {
+            emitt({ albums })
+          })
+          .catch(error => {
+            emitt({ error })
+          })
+      }
+      makeQuery()
+      const listener = (...args) => {
+        args[2].on('complete', makeQuery)
+      }
+      albumsCollection.hook('creating', listener)
+      albumsCollection.hook('deleting', listener)
+      return () => {
+        albumsCollection.unsubscribe('creating', listener)
+        albumsCollection.unsubscribe('deleting', listener)
+      }
     })
   }
   return {
-    albumsCollection,
-    saveAlbumToCollection,
+    saveAlbumIfNotExists,
+    saveOrUpdateAlbum,
     findAlbumInCollectionByCid,
     findAlbumsInCollectionByCids,
     findOutdatedAlbumsInCollection,
-    findAlbumsInCollectionByText,
+    findAlbumsInCollection,
     deleteAlbumsFromCollection
   }
 }

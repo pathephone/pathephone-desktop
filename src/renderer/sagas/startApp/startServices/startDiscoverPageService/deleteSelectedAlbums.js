@@ -6,17 +6,20 @@ import {
   systemUiLocked,
   systemUiUnlocked
 } from '~actions/system'
-import { getDiscoverSelectedAlbums } from '#selectors'
+
+import {
+  getDiscoverSelectedCids
+} from '#selectors'
 
 function * handleDiscoverSelectedDelete (apis) {
   const { deleteAlbumsFromCollection } = apis
   yield put(systemUiLocked())
   try {
-    const selectedAlbums = yield select(getDiscoverSelectedAlbums)
+    const selectedAlbums = yield select(getDiscoverSelectedCids)
     yield call(deleteAlbumsFromCollection, selectedAlbums)
     yield put(systemDiscoverSelectedActionSucceed())
   } catch (e) {
-    yield put(systemDiscoverSelectedActionFailed(e.message))
+    yield put(systemDiscoverSelectedActionFailed({ errorMessage: e.message }))
   }
   yield put(systemUiUnlocked())
 }

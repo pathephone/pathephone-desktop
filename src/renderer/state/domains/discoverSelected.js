@@ -5,13 +5,13 @@ import {
   uiDiscoverSelectedCanceled
 } from '~actions/ui'
 
-const DOMAIN = 'feedSelection'
+const DOMAIN = 'discoverSelected'
 
 const initialState = []
 
 // SELECTORS
 
-export const getDiscoverSelectedAlbums = state => state[DOMAIN]
+export const getDiscoverSelectedIds = state => state[DOMAIN]
 
 // ACTIONS
 

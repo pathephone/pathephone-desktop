@@ -14,13 +14,13 @@ import {
   uiDiscoverSelectedQueued
 } from '~actions/ui'
 
-import { getDiscoverSelectedAlbums } from '#selectors'
+import { getDiscoverSelectedCids } from '#selectors'
 import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums'
 
 function * playOrQueueSelectedAlbums (args, { type }) {
   yield put(systemUiLocked())
   try {
-    const selectedAlbums = yield select(getDiscoverSelectedAlbums)
+    const selectedAlbums = yield select(getDiscoverSelectedCids)
     const tracks = yield call(getPlaylistTracksFromAlbums, args, selectedAlbums)
     if (type === uiDiscoverSelectedPlayed.toString()) {
       yield put(systemPlayedTracksRecieved(tracks))

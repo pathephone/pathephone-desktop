@@ -3,8 +3,8 @@ import { createSelector } from 'reselect'
 
 import {
   getAppStartProgress,
-  getFeedAlbums,
-  getDiscoverSelectedAlbums,
+  getDiscoverFeedAlbums,
+  getDiscoverSelectedIds,
   getDiscoverSearchValue,
   getCurrentTrackIndex,
   getPlaylistTracksByIndex,
@@ -31,11 +31,6 @@ export const getCurrentTrackSource = state => {
 export const isPlayerActive = state => {
   return getCurrentTrackIndex(state) !== null
 }
-
-export const isFeedHasAlbums = state => getFeedAlbums(state).length !== 0
-export const getSelectedFeedAlbumsCount = state => getDiscoverSelectedAlbums(state).length
-export const isFeedAlbumsSelected = state => getDiscoverSelectedAlbums(state).length !== 0
-export const isFeedSearchPerformed = state => !!getDiscoverSearchValue(state).searchValue
 
 export const isShareCandidatesRecieved = state => getShareCandidates(state).length > 0
 
@@ -69,3 +64,18 @@ export const getNotificationsIds = createSelector(
   Object.keys
 )
 export const getNotificationsLength = state => getNotificationsIds(state).length
+
+// DISCOVER PAGE
+
+export const isDiscoverHasAlbums = state => (
+  getDiscoverFeedAlbums(state) !== null &&
+  getDiscoverFeedAlbums(state).length > 0
+)
+export const isDiscoverSearchPerformed = state => !!getDiscoverSearchValue(state)
+export const getDiscoverSelectedCount = state => getDiscoverSelectedIds(state).length
+export const isDiscoverSelected = state => getDiscoverSelectedCount(state) !== 0
+export const getDiscoverAlbumsIds = state => Array.from(getDiscoverFeedAlbums(state).keys())
+export const getDiscoverSelectedCids = createSelector(
+  [ getDiscoverSelectedIds, getDiscoverFeedAlbums ],
+  (selectedIds, albums) => selectedIds.map(id => albums[id].albumCid)
+)

@@ -22,7 +22,7 @@ function * shareTracksToIpfs (apis, tracks) {
 }
 
 function * handleShareFormSubmit (apis, { payload }) {
-  const { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumToCollection } = apis
+  const { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumIfNotExists } = apis
   try {
     const [ cover, tracks ] = yield all([
       call(shareFsFileToIpfs, payload.cover),
@@ -34,13 +34,7 @@ function * handleShareFormSubmit (apis, { payload }) {
       tracks
     }
     const albumCid = yield call(shareObjectToIpfs, album)
-    try {
-      yield call(saveAlbumToCollection, { data: album, cid: albumCid })
-    } catch (e) {
-      if (e.status !== 409) {
-        throw e
-      }
-    }
+    yield call(saveAlbumIfNotExists, { data: album, cid: albumCid })
     yield put(
       systemShareCandidateSaveSucceed({
         successMessage: MESSAGE_SHARE_FORM_SUBMIT_SUCCEED

@@ -7,6 +7,7 @@ const id = (id) => {
   return `#${id}`
 }
 
+export const E2E_LOCK_SCREEN_ID = id('locker')
 export const E2E_READY_SCREEN_ID = id('ready-app')
 export const E2E_NOTIFICATIONS_CONTAINER_ID = id('notifications-container')
 
@@ -28,13 +29,15 @@ export const E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID = id('discover-page-queu
 export const E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID = id('discover-page-delete-selected-button')
 export const E2E_DISCOVER_ALBUM_PLAY_BUTTON = 'discover-album-play-button'
 export const E2E_DISCOVER_ALBUM_QUEUE_BUTTON = 'discover-album-queue-button'
+export const E2E_DISCOVER_ALBUM_TITLE = 'discover-album-title'
+export const E2E_DISCOVER_ALBUM_ARTIST = 'discover-album-artist'
 
 // SHARE PAGE
 
 export const E2E_SHARE_PAGE_ID = id('share-page')
 
 export const E2E_SHARE_DROP_ZONE_ID = id('share-input')
-export const E2E_SHARE_PROCESSING_SCREEN_ID = id('share-processing-screen')
+export const E2E_PROCESSING_SCREEN_ID = id('share-processing-screen')
 export const E2E_SHARE_FORM_ID = id('share-form')
 
 // SHARE FORM ELEMENTS

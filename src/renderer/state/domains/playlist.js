@@ -75,7 +75,7 @@ const reducer = (state = initialState, action) => {
       let shuffleOrder = null
       let currentTrackIndex = '0'
       if (state.isShuffle) {
-        shuffleOrder = toShuffleOrder(tracksByIndex)
+        shuffleOrder = toShuffleOrder(tracksByIndex, currentTrackIndex)
         currentTrackIndex = shuffleOrder[0]
       }
       return {

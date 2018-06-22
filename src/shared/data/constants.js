@@ -11,11 +11,11 @@ export const ROUTE_HOME = ROUTE_ALBUMS
 export const ALBUMS_APEARENCE_INTERVAL = 60000 * 10
 export const ALBUMS_PUBLISH_INTERVAL = 60000 * 1
 
-export const QUALITY_LABEL_LOW = 'low'
-export const QUALITY_LABEL_HIGH = 'high'
-export const QUALITY_LABEL_LOSSLESS = 'lossless'
+export const QUALITY_LABEL_LOW = 0
+export const QUALITY_LABEL_HIGH = 1
+export const QUALITY_LABEL_LOSSLESS = 2
 
-export const DISCOVER_FEED_LIMIT_STEP = 10
+export const DISCOVER_FEED_LIMIT = 50
 
 export const NOTIFICATION_TYPE_ERROR = 0
 export const NOTIFICATION_TYPE_WARNING = 1
