@@ -23,13 +23,13 @@ const extractAlbumInfoFromTracks = tracks => {
 }
 
 async function getAlbumCandidateFromFiles (files) {
-  const [ tracks, cover = null ] = await Promise.all([
+  const [ tracks, coverImage = null ] = await Promise.all([
     getTracksFromFiles(files),
     getCoverFromFiles(files)
   ])
   if (!tracks) return
   const { title, artist } = extractAlbumInfoFromTracks(tracks)
-  return { tracks, cover, artist, title }
+  return { tracks, cover: { image: coverImage }, artist, title }
 }
 
 export default getAlbumCandidateFromFiles

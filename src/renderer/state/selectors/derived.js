@@ -25,7 +25,7 @@ export const getCurrentTrack = state => {
 export const getCurrentTrackSource = state => {
   const track = getCurrentTrack(state)
   const gateway = getIpfsGateway(state)
-  return `${gateway}/ipfs/${track.cid}`
+  return `${gateway}/ipfs/${track.audio}`
 }
 
 export const isPlayerActive = state => {
@@ -48,12 +48,12 @@ export const isPlaylistEmpty = state => getPlaylistTracksCount(state) === 0
 export const getShareFormValue = state => getShareCandidates(state)[0]
 
 export const getShareCoverSrc = state => {
-  const { cover } = getShareCandidates(state)[0]
-  if (cover) {
-    if (cover.includes(path.sep)) {
-      return `file:///${cover}`
+  const { cover: { image } } = getShareCandidates(state)[0]
+  if (image) {
+    if (image.includes(path.sep)) {
+      return `file:///${image}`
     } else {
-      return `${getIpfsGateway(state)}/ipfs/${cover}`
+      return `${getIpfsGateway(state)}/ipfs/${image}`
     }
   }
   return null

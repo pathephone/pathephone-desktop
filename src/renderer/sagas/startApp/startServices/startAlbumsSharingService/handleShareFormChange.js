@@ -6,7 +6,7 @@ import getTracksFromFiles from '~utils/getTracksFromFiles'
 
 function * handleMap (track) {
   if (track.artist === undefined && track.title === undefined) {
-    const tracks = yield call(getTracksFromFiles, [ track.file ])
+    const tracks = yield call(getTracksFromFiles, [ track.audio ])
     return tracks[0]
   }
   return track

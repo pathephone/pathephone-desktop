@@ -18,13 +18,10 @@ class TracklistFieldset extends React.PureComponent {
       onMoveTrackUp
     } = this.props
 
-    const fileName = track.file
-    const cid = track.cid
     return (
       <TrackInput
         index={index}
-        fileName={fileName}
-        cid={cid}
+        fileName={track.audio}
         onRemoveTrack={onRemoveTrack}
         onMoveTrackDown={onMoveTrackDown}
         onMoveTrackUp={onMoveTrackUp}

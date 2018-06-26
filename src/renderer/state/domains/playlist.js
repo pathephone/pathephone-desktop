@@ -44,10 +44,10 @@ export const isRepeatTurnedOn = state => state[DOMAIN].isRepeat
 
 const toTracksByIndex = (tracks, startIndex) => {
   let lastTrackIndex = startIndex || -1
-  return tracks.reduce((acc, { cid, title, artist }) => {
+  return tracks.reduce((acc, { audio, title, artist }) => {
     const index = ++lastTrackIndex
     acc[index] = {
-      cid, title, artist
+      audio, title, artist
     }
     return acc
   }, {})

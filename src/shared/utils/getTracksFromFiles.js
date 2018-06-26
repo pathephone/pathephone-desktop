@@ -12,7 +12,7 @@ const getTracksFromFiles = async files => {
   }
   const handleMap = async file => {
     const id3Output = await readAudioMetadata(file)
-    return { file, ...normalizeMetadata(id3Output) }
+    return { audio: file, ...normalizeMetadata(id3Output) }
   }
   return Promise.all(
     audioFiles.map(handleMap)

@@ -9,9 +9,9 @@ function * cacheTrack ({ getFilesFromIpfs }, cid) {
 
 function * cachePlaylistTracks (args, { payload }) {
   const cached = yield select(getCachedTracks)
-  const uniqueCids = payload.reduce((acc, { cid }) => {
-    if (!cached.includes(cid)) {
-      acc.push(cid)
+  const uniqueCids = payload.reduce((acc, { audio }) => {
+    if (!cached.includes(audio)) {
+      acc.push(audio)
     }
     return acc
   }, [])

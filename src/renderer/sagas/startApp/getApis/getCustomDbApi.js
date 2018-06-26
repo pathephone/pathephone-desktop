@@ -1,4 +1,5 @@
 import Dexie from 'dexie'
+import validateAlbum from '~utils/validateAlbum'
 
 const DB_NAME = 'pathephone'
 
@@ -10,10 +11,17 @@ const getCustomDbApi = async () => {
       albumsCollection: '&cid, createdAt, lastSeenAt, *searchWords'
     })
   db.albumsCollection.hook('creating', (primary, obj) => {
-    const { title, artist } = obj.data
-    const searchWords = [ title, artist ]
-    obj.searchWords = searchWords
-    obj.createdAt = new Date().getTime()
+    const { valid, errors } = validateAlbum(obj.data)
+    if (valid) {
+      const { title, artist } = obj.data
+      const searchWords = [ title, artist ]
+      obj.searchWords = searchWords
+      obj.createdAt = new Date().getTime()
+    } else {
+      console.log(obj)
+      console.error(errors)
+      throw new Error('Album instance is invalid.')
+    }
   })
   await db.open()
   return db

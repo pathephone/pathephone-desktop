@@ -24,11 +24,11 @@ const mapDispatchToProps = {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { cachedByCid, tracksByIndex, currentTrackIndex } = stateProps
   const { index } = ownProps
-  const { cid, ...trackData } = tracksByIndex[index]
+  const { audio, ...trackData } = tracksByIndex[index]
   return {
     ...trackData,
     isCurrent: index === currentTrackIndex,
-    isDownloaded: !!cachedByCid[cid],
+    isDownloaded: !!cachedByCid[audio],
     order: index,
     onPlayClick () {
       dispatchProps.onPlayTrack(index)

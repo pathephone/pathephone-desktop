@@ -9,10 +9,10 @@ import {
 
 function * shareTracksToIpfs (apis, tracks) {
   const { shareFsFileToIpfs } = apis
-  function * shareSingleTrack ({ file, ...rest }) {
-    const hash = yield call(shareFsFileToIpfs, file)
+  function * shareSingleTrack ({ audio, ...rest }) {
+    const audioCid = yield call(shareFsFileToIpfs, audio)
     return {
-      ...rest, hash
+      ...rest, audio: audioCid
     }
   }
   const sharedTracks = yield all(
@@ -24,13 +24,13 @@ function * shareTracksToIpfs (apis, tracks) {
 function * handleShareFormSubmit (apis, { payload }) {
   const { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumIfNotExists } = apis
   try {
-    const [ cover, tracks ] = yield all([
-      call(shareFsFileToIpfs, payload.cover),
+    const [ coverImage, tracks ] = yield all([
+      call(shareFsFileToIpfs, payload.cover.image),
       call(shareTracksToIpfs, apis, payload.tracks)
     ])
     const album = {
       ...payload,
-      cover,
+      cover: { image: coverImage },
       tracks
     }
     const albumCid = yield call(shareObjectToIpfs, album)

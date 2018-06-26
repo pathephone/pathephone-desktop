@@ -40,7 +40,7 @@ class AboutFieldset extends React.PureComponent {
           <input
             id={E2E_SHARE_FORM_COVER_INPUT_ID}
             className='coverInput hiddenButReachable'
-            name='cover'
+            name='cover.image'
             type='file'
             accept='image/*'
           />
