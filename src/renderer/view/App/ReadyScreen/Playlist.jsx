@@ -1,31 +1,22 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import { E2E_PLAYLIST_CLEAR_BUTTON_ID } from '~data/e2eConstants'
-
 import TracklistConnected from './Playlist/TracklistConnected'
+import PlaylistControlsConnected from './Playlist/PlaylistControlsConnected'
 
 import './Playlist.css'
 
-const Playlist = ({ hasTracklist, onClearPlaylist }) => {
+const Playlist = ({ hasTracklist }) => {
   return (
-    <div className='playlist izi-ys' >
+    <div className='playlist' >
       {
         hasTracklist ? (
-          <button
-            id={E2E_PLAYLIST_CLEAR_BUTTON_ID}
-            className='playlist__clear-button'
-            onClick={onClearPlaylist}
-          >
-            clear
-          </button>
+          <React.Fragment>
+            <PlaylistControlsConnected />
+            <TracklistConnected />
+          </React.Fragment>
         ) : (
           <label className='playlist__empty-message'>playlist is empty</label>
-        )
-      }
-      {
-        hasTracklist && (
-          <TracklistConnected />
         )
       }
     </div>
@@ -33,7 +24,6 @@ const Playlist = ({ hasTracklist, onClearPlaylist }) => {
 }
 
 Playlist.propTypes = {
-  onClearPlaylist: propTypes.func.isRequired,
   hasTracklist: propTypes.bool.isRequired
 }
 

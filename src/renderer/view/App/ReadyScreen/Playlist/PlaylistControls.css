@@ -1,0 +1,16 @@
+.playlist-controls {
+  padding: 0.75em;
+  flex-shrink: 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.playlist__clear-button:hover {
+  background-color: rgba(10,10,10,0.1);
+}
+.playlist__clear-button:focus {
+  outline: none;
+  border: 1px solid orange;
+}
+.playlist__clear-button:active {
+  color: var(--accent-color);
+}
