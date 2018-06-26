@@ -12,7 +12,7 @@ import { IS_DEVELOPMENT } from '#config'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [ 'volume', 'playlist' ]
+  whitelist: [ 'volume', 'playlist', 'legalAgreement' ]
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

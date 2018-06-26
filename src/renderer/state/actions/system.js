@@ -2,6 +2,7 @@ import { newCreatorFactory, newDomainTypeFactory } from '~utils/reduxTools'
 
 const c = newCreatorFactory(newDomainTypeFactory('system'))
 
+export const systemAppRootMounted = c('APP_ROOT_MOUNTED')
 export const systemAppStartProceed = c('APP_START_PROCEED')
 export const systemAppStartSucceed = c('APP_START_SUCCEED')
 export const systemAppStartFailed = c('APP_START_FAILED')

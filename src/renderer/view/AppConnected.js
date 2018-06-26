@@ -9,6 +9,9 @@ import {
 } from '#selectors'
 
 import App from './App.jsx'
+import {
+  systemAppRootMounted
+} from '~actions/system'
 
 const mapStateToProps = state => {
   const appIsReady = isAppReady(state)
@@ -22,4 +25,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(App))
+const mapDispatchToProps = {
+  onDidMount: systemAppRootMounted
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
