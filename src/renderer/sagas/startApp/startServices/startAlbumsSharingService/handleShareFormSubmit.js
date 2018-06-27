@@ -4,7 +4,8 @@ import {
   systemShareCandidateSaveFailed
 } from '~actions/system'
 import {
-  MESSAGE_SHARE_FORM_SUBMIT_SUCCEED, MESSAGE_SHARE_FORM_SUBMIT_FAILED
+  MESSAGE_SHARE_FORM_SUBMIT_SUCCEED,
+  MESSAGE_SHARE_ALBUM_ALREADY_EXISTS
 } from '~data/textMessages'
 
 function * shareTracksToIpfs (apis, tracks) {
@@ -42,9 +43,15 @@ function * handleShareFormSubmit (apis, { payload }) {
     )
   } catch (e) {
     console.error(e)
-    yield put(systemShareCandidateSaveFailed({
-      errorMessage: MESSAGE_SHARE_FORM_SUBMIT_FAILED
-    }))
+    if (e.name === 'ConstraintError') {
+      yield put(systemShareCandidateSaveFailed({
+        warningMessage: MESSAGE_SHARE_ALBUM_ALREADY_EXISTS
+      }))
+    } else {
+      yield put(systemShareCandidateSaveFailed({
+        errorMessage: e.message
+      }))
+    }
   }
 }
 

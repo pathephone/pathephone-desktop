@@ -1,5 +1,5 @@
 import album1 from '~data/assets/album1'
-import { MESSAGE_SHARE_FORM_SUBMIT_SUCCEED } from '~data/textMessages'
+import { MESSAGE_SHARE_FORM_SUBMIT_SUCCEED, MESSAGE_SHARE_ALBUM_ALREADY_EXISTS } from '~data/textMessages'
 
 import {
   shareDropZoneExists,
@@ -7,10 +7,11 @@ import {
   shareFormSelectCover,
   shareFormSubmit,
   shareFormSetAlbumArtist,
-  shareFormSetAlbumTitle
+  shareFormSetAlbumTitle,
+  shareWaitForFormExists
 } from '~reusable/sharePage'
 import {
-  getNotificationMessage, waitForNotification
+  getNotificationMessage, waitForNotification, waitForNoNotifications
 } from '~reusable/notifications'
 import {
   openDiscoverPage,
@@ -90,6 +91,34 @@ describe('check submit valid form...', () => {
     })
     it('discover feed album artist match', async function () {
       return discoverAlbumArtistEquals.call(this, 1, ALBUM_ARTIST)
+    })
+    after(async function () {
+      await openSharePage.call(this)
+      await waitForNoNotifications.call(this)
+    })
+  })
+  describe('...twice', () => {
+    before(async function () {
+      await shareDropZoneSelect.call(this, album1.tracks[0].file)
+      await shareFormSelectCover.call(this, album1.cover)
+      await shareFormSetAlbumArtist.call(this, ALBUM_ARTIST)
+      await shareFormSetAlbumTitle.call(this, ALBUM_TITLE)
+    })
+    it('throws no error', function () {
+      return shareFormSubmit.call(this)
+    })
+    it('correct notification message appears', async function () {
+      await waitForNotification.call(this)
+      const message = await getNotificationMessage.call(this)
+      expect(message).equal(MESSAGE_SHARE_ALBUM_ALREADY_EXISTS)
+    })
+    it('share form remains', async function () {
+      await shareWaitForFormExists.call(this)
+    })
+    it('discover feed still has 1 album', async function () {
+      await openDiscoverPage.call(this)
+      await discoverWaitForFeedExists.call(this)
+      return discoverFeedLengthEquals.call(this, 1)
     })
   })
 })

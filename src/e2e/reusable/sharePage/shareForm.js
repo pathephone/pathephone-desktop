@@ -21,7 +21,7 @@ export function cancelShareForm () {
   return app.client.click(E2E_SHARE_FORM_CANCEL_BUTTON_ID)
 }
 
-export function shareFormExists () {
+export function shareWaitForFormExists () {
   const { app } = this
   return app.client.waitForExist(E2E_SHARE_FORM_ID)
 }

@@ -3,7 +3,7 @@ import { txtFile, svgFile } from '~data/assets/files'
 
 import {
   getNotificationMessage,
-  allNotificationsHaveDisappeared
+  waitForNoNotifications
 } from '~reusable/notifications'
 
 import {
@@ -25,7 +25,7 @@ describe('select wrong files', () => {
         expect(message).equal(MESSAGE_NO_ALBUMS_FOUND)
       })
       it('notification disappears', async function () {
-        await allNotificationsHaveDisappeared.call(this)
+        await waitForNoNotifications.call(this)
       })
     })
   })
