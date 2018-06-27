@@ -23,6 +23,10 @@ const getCustomDbApi = async () => {
       throw new Error('Album instance is invalid.')
     }
   })
+  db.albumsCollection.hook('updating', (mod, prim, obj) => {
+    const { createdAt, searchWords } = obj
+    return { ...mod, createdAt, searchWords }
+  })
   await db.open()
   return db
 }
