@@ -8,7 +8,8 @@ import {
   E2E_DISCOVER_ALBUM_PLAY_BUTTON,
   E2E_DISCOVER_ALBUM_TITLE,
   E2E_DISCOVER_ALBUM_ARTIST,
-  E2E_DISCOVER_PAGE_SEARCH_INPUT_ID
+  E2E_DISCOVER_PAGE_SEARCH_INPUT_ID,
+  E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID
 } from '~data/e2eConstants'
 
 export async function openDiscoverPage () {
@@ -55,6 +56,11 @@ export async function discoverFeedAlbumClick (index) {
 
 export function discoverPageSelectedBarExists () {
   return this.app.client.isExisting(E2E_DISCOVER_PAGE_SELECTED_BAR_ID)
+}
+
+export async function discoverPageDeleteSelected () {
+  await this.app.client.click(E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID)
+  await this.app.client.waitForVisible(E2E_DISCOVER_PAGE_ID)
 }
 
 export async function discoverAlbumActionsVisible (index) {

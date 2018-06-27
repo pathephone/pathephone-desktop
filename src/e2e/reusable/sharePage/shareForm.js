@@ -12,7 +12,8 @@ import {
   E2E_SHARE_FORM_COVER_INPUT_ID,
   E2E_SHARE_FORM_CANCEL_BUTTON_ID,
   E2E_SHARE_FORM_ID,
-  E2E_SHARE_FORM_TITLE_INPUT_ID
+  E2E_SHARE_FORM_TITLE_INPUT_ID,
+  E2E_SHARE_FORM_ARTIST_INPUT_ID
 } from '~data/e2eConstants'
 
 export function cancelShareForm () {
@@ -113,4 +114,8 @@ export async function shareFormTracklistLengthEquals (expectedLength) {
 
 export function shareFormSetAlbumTitle (title) {
   return this.app.client.setValue(E2E_SHARE_FORM_TITLE_INPUT_ID, title)
+}
+
+export function shareFormSetAlbumArtist (title) {
+  return this.app.client.setValue(E2E_SHARE_FORM_ARTIST_INPUT_ID, title)
 }
