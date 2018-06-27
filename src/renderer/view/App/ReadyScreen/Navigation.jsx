@@ -1,8 +1,8 @@
 import React from 'react'
 
-import UploadIcon from 'react-icons/lib/md/cloud-upload'
-import DiscoverIcon from 'react-icons/lib/fa/globe'
-import CardIcon from 'react-icons/lib/md/card-giftcard'
+import UploadIcon from 'react-icons/lib/md/share'
+import DiscoverIcon from 'react-icons/lib/md/search'
+import InfoIcon from 'react-icons/lib/md/info'
 
 import { ROUTE_ADD_ALBUM, ROUTE_ALBUMS, ROUTE_DONATE } from '~data/constants'
 import { E2E_NAV_SHARE_LINK_ID, E2E_NAV_DISCOVER_LINK_ID } from '~data/e2eConstants'
@@ -16,19 +16,19 @@ const Navigation = () => (
     <NavigationItem
       id={E2E_NAV_DISCOVER_LINK_ID}
       path={ROUTE_ALBUMS}
-      title='Discover albums'
+      title='Discover'
       icon={<DiscoverIcon />}
     />
     <NavigationItem
       id={E2E_NAV_SHARE_LINK_ID}
       path={ROUTE_ADD_ALBUM}
-      title='Share album'
+      title='Share'
       icon={<UploadIcon />}
     />
     <NavigationItem
       path={ROUTE_DONATE}
-      title='Donate'
-      icon={<CardIcon />}
+      title='About'
+      icon={<InfoIcon />}
     />
   </nav>
 )

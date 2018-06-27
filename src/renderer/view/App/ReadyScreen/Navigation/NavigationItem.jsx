@@ -10,7 +10,9 @@ const NavigationItem = ({ path, title, icon, id }) => (
     activeClassName='navigation__item--active'
   >
     {icon}
-    {title}
+    <span>
+      {title}
+    </span>
   </NavLink>
 )
 

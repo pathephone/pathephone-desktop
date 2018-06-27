@@ -1,4 +1,8 @@
 
+.donatePage {
+  padding: 1em;
+}
+
 .donate-pill {
   display: flex;
 }

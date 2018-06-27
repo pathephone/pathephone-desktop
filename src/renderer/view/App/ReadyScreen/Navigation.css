@@ -7,7 +7,8 @@
 
 .navigation__item {
   margin: 0.5em 0;
-  display: block;
+  display: flex;
+  align-items: center;
   text-transform: uppercase;
   text-decoration: none;
   color: white;
@@ -19,7 +20,6 @@
 
 .navigation__item > *:first-child {
   margin: 0 1.5em 0 1em;
-  display: inline;
 }
 
 .navigation__item--active {

@@ -1,0 +1,10 @@
+.donateCard {
+  box-shadow: var(--material-shadow-1);
+  border-radius: 2px;
+  width: 40em;
+  margin: 0 auto;
+}
+
+.donateGif {
+  border-radius: 2px 2px 0 0;
+}

@@ -1,0 +1,16 @@
+
+.aboutHero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutHeroSocial {
+  padding: 1em 0;
+  margin: 2.5em 0;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}

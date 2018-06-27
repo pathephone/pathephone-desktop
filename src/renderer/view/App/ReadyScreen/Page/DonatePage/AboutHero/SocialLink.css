@@ -1,0 +1,16 @@
+
+.socialLink {
+  border-radius: 2px;
+  color: var(--secondary-color);
+  margin: 0 1em;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+}
+
+.socialLink:hover {
+  background-color: rgba(10,10,10,0.1);
+}
+.socialLink:active {
+  background-color: var(--accent-color);
+  color: white;
+}
