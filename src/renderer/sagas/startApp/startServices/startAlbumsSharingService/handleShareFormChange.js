@@ -2,21 +2,20 @@ import { all, call, put } from 'redux-saga/effects'
 
 import { systemShareFormChanged, systemUiLocked, systemUiUnlocked } from '~actions/system'
 
-import getTracksFromFiles from '~utils/getTracksFromFiles'
-
-function * handleMap (track) {
+function * handleMap (api, track) {
+  const { getTracksFromFsFiles } = api
   if (track.artist === undefined && track.title === undefined) {
-    const tracks = yield call(getTracksFromFiles, [ track.audio ])
+    const tracks = yield call(getTracksFromFsFiles, [ track.audio ])
     return tracks[0]
   }
   return track
 }
 
-function * handleShareFormChange (args, { payload }) {
+function * handleShareFormChange (apis, { payload }) {
   yield put(systemUiLocked())
   try {
     const tracks = yield all(
-      payload.tracks.map(handleMap)
+      payload.tracks.map(track => handleMap(apis, track))
     )
     const album = {
       ...payload,

@@ -1,5 +1,5 @@
-const musicmetadata = require('musicmetadata')
-const fs = require('fs')
+import musicmetadata from 'musicmetadata'
+import fs from 'fs'
 
 const readAudioMetadata = filePath => new Promise((resolve, reject) => {
   const fileStats = fs.statSync(filePath)
@@ -9,7 +9,9 @@ const readAudioMetadata = filePath => new Promise((resolve, reject) => {
       if (err) {
         reject(err)
       } else {
-        if (Array.isArray(metadata.artist)) { metadata.artist = metadata.artist[0] }
+        if (Array.isArray(metadata.artist)) {
+          metadata.artist = metadata.artist[0]
+        }
         metadata.bitrate = fileSize * 8 / (metadata.duration * 1000)
         resolve(metadata)
       }

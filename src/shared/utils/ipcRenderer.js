@@ -1,5 +1,6 @@
 
 import { ipcRenderer } from 'electron'
+import { eventChannel, END } from 'redux-saga'
 
 let inc = 0
 
@@ -15,6 +16,21 @@ export const rendererCalls = (chan, ...sendPayload) => {
     let id = `${inc++}`
     ipcRenderer.on(id, handleResponse)
     ipcRenderer.send(chan, id, ...sendPayload)
+  })
+}
+
+export const rendererCallsSaga = (chan, ...sendPayload) => {
+  return eventChannel(emit => {
+    const handleResponse = (event, response) => {
+      emit(response)
+      emit(END)
+    }
+    let id = `${inc++}`
+    ipcRenderer.on(id, handleResponse)
+    ipcRenderer.send(chan, id, ...sendPayload)
+    return () => {
+      ipcRenderer.removeListener(id, handleResponse)
+    }
   })
 }
 

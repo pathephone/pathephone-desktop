@@ -1,9 +1,8 @@
 import { basename } from 'path'
 
-import checkFsFileIsImage from '~utils/checkFsFileIsImage'
-
-const getCoverFromFiles = async (files) => {
-  let images = files.filter(checkFsFileIsImage)
+const getCoverFromFiles = async (apis, files) => {
+  const { filterFsFilesByMime } = apis
+  let images = await filterFsFilesByMime(files, 'image/')
   if (images.length > 0) {
     let frontCover
     if (images.length > 1) {

@@ -48,7 +48,8 @@ export const isPlaylistEmpty = state => getPlaylistTracksCount(state) === 0
 export const getShareFormValue = state => getShareCandidates(state)[0]
 
 export const getShareCoverSrc = state => {
-  const { cover: { image } } = getShareCandidates(state)[0]
+  const candidate = getShareCandidates(state)[0]
+  const { cover: { image } } = candidate
   if (image) {
     if (image.includes(path.sep)) {
       return `file:///${image}`

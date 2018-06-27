@@ -34,7 +34,7 @@ const toNextValues = (values, e) => {
     default:
       nextValue = value
   }
-  if (nextValue) {
+  if (typeof nextValue !== 'undefined') {
     return dotProp.set(values, name, nextValue)
   }
 }

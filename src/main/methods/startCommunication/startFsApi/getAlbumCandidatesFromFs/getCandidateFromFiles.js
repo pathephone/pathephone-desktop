@@ -1,13 +1,13 @@
-import getTracksFromFiles from '~utils/getTracksFromFiles'
 
 import getCoverFromFiles from './getCandidatesFromFiles/getCoverFromFiles'
 import extractAlbumInfoFromTracks from './getCandidatesFromFiles/extractAlbumInfoFromTracks'
+import getTracksFromFiles from './getCandidatesFromFiles/getTracksFromFiles'
 
-async function getCandidateFromFiles (apis, files) {
+async function getCandidateFromFiles (files) {
   if (files.length === 0) return
-  const [ tracks, coverImage ] = await Promise.all([
-    getTracksFromFiles(apis, files),
-    getCoverFromFiles(apis, files)
+  const [ tracks, coverImage = null ] = await Promise.all([
+    getTracksFromFiles(files),
+    getCoverFromFiles(files)
   ])
   if (!tracks) return
   const { title, artist } = extractAlbumInfoFromTracks(tracks)

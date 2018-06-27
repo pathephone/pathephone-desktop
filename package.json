@@ -112,6 +112,7 @@
     "get-value": "^3.0.1",
     "ipfsd-ctl": "^0.37.4",
     "is-ipfs": "^0.3.2",
+    "mime": "^2.3.1",
     "musicmetadata": "^2.0.5",
     "prop-types": "^15.6.1",
     "react": "^16.3.0",

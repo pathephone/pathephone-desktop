@@ -11,13 +11,12 @@ import {
   MESSAGE_ERROR_PROCESSING_FILES
 } from '~data/textMessages'
 
-import getAlbumCandidatesFromItems from './handleShareFilesSelect/getAlbumCandidatesFromItems'
-
 function * handleShareItemsSelect (apis, { payload }) {
+  const { getAlbumCandidatesFromFs } = apis
   try {
     const selectedFsItems = Array.from(payload)
       .map(file => file.path)
-    const candidates = yield call(getAlbumCandidatesFromItems, apis, selectedFsItems)
+    const candidates = yield call(getAlbumCandidatesFromFs, selectedFsItems)
 
     if (candidates.length > 0) {
       yield put(systemShareCandidatesRecieved(candidates))
