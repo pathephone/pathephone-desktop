@@ -4,7 +4,6 @@ import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdAdd from 'react-icons/lib/md/playlist-add'
 
 import ImageContainer from '~components/ImageContainer.jsx'
-import QualityLabel from '~components/QualityLabel.jsx'
 
 import { E2E_DISCOVER_ALBUM_QUEUE_BUTTON, E2E_DISCOVER_ALBUM_PLAY_BUTTON, E2E_DISCOVER_ALBUM_TITLE, E2E_DISCOVER_ALBUM_ARTIST } from '~data/e2eConstants'
 
@@ -49,9 +48,6 @@ class Album extends React.Component {
           >
             <ImageContainer className='izi-fill izi-rounded' image={albumCoverURL} />
           </button>
-          <div className='album__quality'>
-            <QualityLabel {...this.props} />
-          </div>
           {
             !hasSelectedView && (
               <div className='album__actions izi-x izi-absolute'>

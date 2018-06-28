@@ -53,8 +53,7 @@ const mergeProps = (
     albumTitle,
     albumCid,
     albumArtist,
-    albumCoverCid,
-    qualityCode
+    albumCoverCid
   } = latestAlbums[albumId]
 
   const handleSome = id => id === albumId
@@ -68,7 +67,6 @@ const mergeProps = (
     albumTitle,
     albumArtist,
     albumCoverURL,
-    qualityCode,
     onToggleSelect,
     hasSelectedView
   })

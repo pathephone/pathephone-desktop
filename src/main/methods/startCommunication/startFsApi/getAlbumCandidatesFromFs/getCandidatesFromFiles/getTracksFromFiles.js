@@ -1,8 +1,10 @@
 import filterFsFilesByMime from '~utils/filterFsFilesByMime'
-import readAudioMetadata from '~utils/readAudioMetadata'
+import getAudioMetadataFromFsFile from '~utils/getAudioMetadataFromFsFile'
 
-const normalizeMetadata = ({ title, artist, bitrate, album }) => ({
-  title, artist, bitrate, album
+const normalizeMetadata = ({
+  common: { track, title, album, artist }
+}) => ({
+  title, artist, album, trackNumber: track.no
 })
 
 const getTracksFromFiles = async (files) => {
@@ -11,12 +13,23 @@ const getTracksFromFiles = async (files) => {
     return
   }
   const handleMap = async file => {
-    const id3Output = await readAudioMetadata(file)
-    return { audio: file, ...normalizeMetadata(id3Output) }
+    const metadata = await getAudioMetadataFromFsFile(file)
+    return { audio: file, ...normalizeMetadata(metadata) }
   }
-  return Promise.all(
+  const tracks = await Promise.all(
     audioFiles.map(handleMap)
   )
+  const handleSort = (a, b) => {
+    if (a.trackNumber === null) {
+      return 0
+    }
+    if (a.trackNumber < b.trackNumber) {
+      return -1
+    }
+    return 1
+  }
+  tracks.sort(handleSort)
+  return tracks
 }
 
 export default getTracksFromFiles

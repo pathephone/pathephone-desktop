@@ -37,16 +37,12 @@ const albumInstanceSchema = {
             minLength: 1,
             maxLength: 100
           },
-          bitrate: {
-            type: 'number',
-            minimum: 128
-          },
           audio: {
             type: 'string',
             length: 46
           }
         },
-        required: [ 'title', 'artist', 'bitrate', 'audio' ]
+        required: [ 'title', 'artist', 'audio' ]
       }
     }
   },
