@@ -1,3 +1,8 @@
+const CIDv0Schema = {
+  type: 'string',
+  pattern: '^(Qm)[1-9A-HJ-NP-Za-km-z]{44}$'
+}
+
 const albumInstanceSchema = {
   type: 'object',
   properties: {
@@ -14,10 +19,7 @@ const albumInstanceSchema = {
     cover: {
       type: 'object',
       properties: {
-        image: {
-          type: 'string',
-          length: 46
-        }
+        image: CIDv0Schema
       },
       required: [ 'image' ]
     },
@@ -37,10 +39,7 @@ const albumInstanceSchema = {
             minLength: 1,
             maxLength: 100
           },
-          audio: {
-            type: 'string',
-            length: 46
-          }
+          audio: CIDv0Schema
         },
         required: [ 'title', 'artist', 'audio' ]
       }
