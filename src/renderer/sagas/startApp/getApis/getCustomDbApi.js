@@ -14,7 +14,8 @@ const getCustomDbApi = async () => {
     const { valid, errors } = validateAlbum(obj.data)
     if (valid) {
       const { title, artist } = obj.data
-      const searchWords = [ title, artist ]
+      const searchWords = [ ...title.split(' '), ...artist.split(' ') ]
+      searchWords.filter(w => !!w)
       obj.searchWords = searchWords
       obj.createdAt = new Date().getTime()
     } else {
