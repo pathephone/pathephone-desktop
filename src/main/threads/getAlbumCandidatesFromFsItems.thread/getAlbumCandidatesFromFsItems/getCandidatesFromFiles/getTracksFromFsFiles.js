@@ -7,7 +7,7 @@ const normalizeMetadata = ({
   title, artist, album, trackNumber: track.no
 })
 
-const getTracksFromFiles = async (files) => {
+const getTracksFromFsFiles = async (files) => {
   const audioFiles = await filterFsFilesByMime(files, 'audio/')
   if (audioFiles.length === 0) {
     return
@@ -32,4 +32,4 @@ const getTracksFromFiles = async (files) => {
   return tracks
 }
 
-export default getTracksFromFiles
+export default getTracksFromFsFiles

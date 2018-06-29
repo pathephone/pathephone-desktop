@@ -1,9 +1,10 @@
+
 import getFolderContents from '~utils/getFolderContents'
 import splitFoldersAndFiles from '~utils/splitFoldersAndFiles'
 
-import getCandidateFromFiles from './getAlbumCandidatesFromFs/getCandidateFromFiles'
+import getCandidateFromFiles from './getAlbumCandidatesFromFsItems/getCandidateFromFiles'
 
-const getAlbumCandidatesFromFs = async (fsItems, candidates = []) => {
+const getAlbumCandidatesFromFsItems = async (fsItems, candidates = []) => {
   const { folders, files } = await splitFoldersAndFiles(fsItems)
   const candidateFromFiles = await getCandidateFromFiles(files)
   if (candidateFromFiles) {
@@ -11,7 +12,7 @@ const getAlbumCandidatesFromFs = async (fsItems, candidates = []) => {
   }
   const handleMap = async folderPath => {
     const nextFsItems = await getFolderContents(folderPath)
-    await getAlbumCandidatesFromFs(nextFsItems, candidates)
+    await getAlbumCandidatesFromFsItems(nextFsItems, candidates)
   }
   await Promise.all(
     folders.map(handleMap)
@@ -19,4 +20,4 @@ const getAlbumCandidatesFromFs = async (fsItems, candidates = []) => {
   return candidates
 }
 
-export default getAlbumCandidatesFromFs
+export default getAlbumCandidatesFromFsItems

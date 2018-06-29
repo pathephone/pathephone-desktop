@@ -1,6 +1,6 @@
 import {
-  cancelShareForm,
-  shareDropZoneExists,
+  shareCancelForm,
+  shareWaitForDropZoneExists,
   shareDropZoneSelect,
   shareWaitForFormExists
 } from '~reusable/sharePage'
@@ -17,8 +17,8 @@ describe('select track files', () => {
         return shareWaitForFormExists.call(this)
       })
       after(async function () {
-        await cancelShareForm.call(this)
-        await shareDropZoneExists.call(this)
+        await shareCancelForm.call(this)
+        await shareWaitForDropZoneExists.call(this)
       })
     })
   })

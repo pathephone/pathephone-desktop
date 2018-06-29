@@ -2,7 +2,7 @@ import {
   E2E_SHARE_DROP_ZONE_ID
 } from '~data/e2eConstants'
 
-export function shareDropZoneExists () {
+export function shareWaitForDropZoneExists () {
   const { app } = this
   return app.client.waitForExist(E2E_SHARE_DROP_ZONE_ID)
 }

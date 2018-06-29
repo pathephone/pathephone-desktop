@@ -16,14 +16,13 @@ import {
   E2E_SHARE_FORM_ARTIST_INPUT_ID
 } from '~data/e2eConstants'
 
-export function cancelShareForm () {
+export function shareCancelForm () {
   const { app } = this
   return app.client.click(E2E_SHARE_FORM_CANCEL_BUTTON_ID)
 }
 
 export function shareWaitForFormExists () {
-  const { app } = this
-  return app.client.waitForExist(E2E_SHARE_FORM_ID)
+  return this.app.client.waitForExist(E2E_SHARE_FORM_ID)
 }
 
 export function shareFormAddTrack (file) {

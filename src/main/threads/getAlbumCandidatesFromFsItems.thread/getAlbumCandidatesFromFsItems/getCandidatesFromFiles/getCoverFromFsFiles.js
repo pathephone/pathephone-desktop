@@ -1,7 +1,7 @@
 import { basename } from 'path'
 import filterFsFilesByMime from '~utils/filterFsFilesByMime'
 
-const getCoverFromFiles = async (files) => {
+const getCoverFromFsFiles = async (files) => {
   let images = await filterFsFilesByMime(files, 'image/')
   if (images.length > 0) {
     let frontCover
@@ -13,4 +13,4 @@ const getCoverFromFiles = async (files) => {
   }
 }
 
-export default getCoverFromFiles
+export default getCoverFromFsFiles

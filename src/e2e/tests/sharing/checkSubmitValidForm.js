@@ -2,7 +2,7 @@ import album1 from '~data/assets/album1'
 import { MESSAGE_SHARE_FORM_SUBMIT_SUCCEED, MESSAGE_SHARE_ALBUM_ALREADY_EXISTS } from '~data/textMessages'
 
 import {
-  shareDropZoneExists,
+  shareWaitForDropZoneExists,
   shareDropZoneSelect,
   shareFormSelectCover,
   shareFormSubmit,
@@ -31,6 +31,7 @@ describe('check submit valid form...', () => {
   describe('...without changes', () => {
     before(async function () {
       await shareDropZoneSelect.call(this, album1.tracks[0].file)
+      await shareWaitForFormExists.call(this)
       await shareFormSelectCover.call(this, album1.cover)
     })
     it('throws no error', function () {
@@ -42,7 +43,7 @@ describe('check submit valid form...', () => {
       expect(message).equal(MESSAGE_SHARE_FORM_SUBMIT_SUCCEED)
     })
     it('share drop zone appears', async function () {
-      const isExists = await shareDropZoneExists.call(this)
+      const isExists = await shareWaitForDropZoneExists.call(this)
       expect(isExists).equal(true)
     })
     it('discover feed has 1 album', async function () {
@@ -65,6 +66,7 @@ describe('check submit valid form...', () => {
   describe('...with changes', () => {
     before(async function () {
       await shareDropZoneSelect.call(this, album1.tracks[0].file)
+      await shareWaitForFormExists.call(this)
       await shareFormSelectCover.call(this, album1.cover)
       await shareFormSetAlbumArtist.call(this, ALBUM_ARTIST)
       await shareFormSetAlbumTitle.call(this, ALBUM_TITLE)
@@ -78,7 +80,7 @@ describe('check submit valid form...', () => {
       expect(message).equal(MESSAGE_SHARE_FORM_SUBMIT_SUCCEED)
     })
     it('share drop zone appears', async function () {
-      const isExists = await shareDropZoneExists.call(this)
+      const isExists = await shareWaitForDropZoneExists.call(this)
       expect(isExists).equal(true)
     })
     it('discover feed has 1 album', async function () {
@@ -100,6 +102,7 @@ describe('check submit valid form...', () => {
   describe('...twice', () => {
     before(async function () {
       await shareDropZoneSelect.call(this, album1.tracks[0].file)
+      await shareWaitForFormExists.call(this)
       await shareFormSelectCover.call(this, album1.cover)
       await shareFormSetAlbumArtist.call(this, ALBUM_ARTIST)
       await shareFormSetAlbumTitle.call(this, ALBUM_TITLE)

@@ -32,6 +32,10 @@
     "directories": {
       "buildResources": "resources"
     },
+    "files": [
+      "./dist/main/**/*",
+      "./dist/renderer/**/*"
+    ],
     "extraResources": [
       {
         "from": "resources/indicator_icons",
@@ -81,8 +85,9 @@
     "postinstall": "electron-builder install-app-deps",
     "compile:e2e": "webpack --config=build/webpack.e2e.config.js",
     "compile:unit": "webpack --config=build/webpack.unit.config.js",
-    "compile:app": "electron-webpack",
-    "compile:app:dev": "electron-webpack dev",
+    "compile:threads": "webpack --config=build/webpack.threads.config.js",
+    "compile:app": "yarn compile:threads && electron-webpack",
+    "compile:app:dev": "yarn compile:threads && electron-webpack dev",
     "prebuild": "yarn compile:app",
     "build": "electron-builder",
     "build:dir": "yarn build --dir -c.compression=store -c.mac.identity=null",
@@ -141,6 +146,8 @@
     "babel-eslint": "^8.2.3",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.7",
     "devtron": "^1.4.0",

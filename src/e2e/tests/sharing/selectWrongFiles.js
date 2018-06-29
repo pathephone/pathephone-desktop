@@ -8,7 +8,7 @@ import {
 
 import {
   shareDropZoneSelect,
-  shareDropZoneExists
+  shareWaitForDropZoneExists
 } from '~reusable/sharePage'
 
 describe('select wrong files', () => {
@@ -18,7 +18,7 @@ describe('select wrong files', () => {
         return shareDropZoneSelect.call(this, file)
       })
       it('share drop zone remains', async function () {
-        return shareDropZoneExists.call(this)
+        return shareWaitForDropZoneExists.call(this)
       })
       it('correct notification message appears', async function () {
         const message = await getNotificationMessage.call(this)

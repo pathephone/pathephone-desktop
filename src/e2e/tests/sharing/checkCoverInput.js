@@ -1,8 +1,9 @@
 import {
   shareDropZoneSelect,
   coverPreviewHasIamge,
-  cancelShareForm,
-  shareDropZoneExists
+  shareCancelForm,
+  shareWaitForDropZoneExists,
+  shareWaitForFormExists
 } from '~reusable/sharePage'
 
 import {
@@ -17,6 +18,7 @@ const testTrack = album1.tracks[0]
 describe('check cover input', () => {
   before(async function () {
     await shareDropZoneSelect.call(this, testTrack.file)
+    await shareWaitForFormExists.call(this)
   })
 
   describe('select NOT an image', () => {
@@ -54,7 +56,7 @@ describe('check cover input', () => {
   })
 
   after(async function () {
-    await cancelShareForm.call(this)
-    await shareDropZoneExists.call(this)
+    await shareCancelForm.call(this)
+    await shareWaitForDropZoneExists.call(this)
   })
 })

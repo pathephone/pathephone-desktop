@@ -1,7 +1,7 @@
 
-import getCoverFromFiles from './getCandidatesFromFiles/getCoverFromFiles'
+import getCoverFromFiles from './getCandidatesFromFiles/getCoverFromFsFiles'
 import extractAlbumInfoFromTracks from './getCandidatesFromFiles/extractAlbumInfoFromTracks'
-import getTracksFromFiles from './getCandidatesFromFiles/getTracksFromFiles'
+import getTracksFromFiles from './getCandidatesFromFiles/getTracksFromFsFiles'
 
 async function getCandidateFromFiles (files) {
   if (files.length === 0) return

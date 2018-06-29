@@ -1,5 +1,5 @@
-import startIpfsApi from './startIpfsApi'
-import startMetabinApi from './startMetabinApi'
+import startIpfsApi from './startCommunication/startIpfsApi'
+import startMetabinApi from './startCommunication/startMetabinApi'
 import { IPC_IPFS_START } from '~data/ipcTypes'
 import { ipcMainTake } from '~utils/ipcMain'
 import startFsApi from './startCommunication/startFsApi'
