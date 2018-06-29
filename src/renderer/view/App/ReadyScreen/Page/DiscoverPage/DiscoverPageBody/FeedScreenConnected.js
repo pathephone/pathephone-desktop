@@ -1,16 +1,17 @@
 import { connect } from 'react-redux'
 
 import {
-  getDiscoverAlbumsIds, isDiscoverSearchPerformed
+  getDiscoverAlbumsIds,
+  getDiscoverSearchValue
 } from '#selectors'
 
 import FeedScreen from './FeedScreen.jsx'
 
 const mapStateToProps = state => {
-  const searchPerformed = isDiscoverSearchPerformed(state)
+  const searchValue = getDiscoverSearchValue(state)
   let title
-  if (searchPerformed) {
-    title = 'Search results'
+  if (searchValue) {
+    title = `Search results for "${searchValue}"`
   } else {
     title = 'Latest albums'
   }

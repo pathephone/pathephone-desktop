@@ -7,51 +7,54 @@ import './SearchBar.css'
 import { E2E_DISCOVER_PAGE_SEARCH_INPUT_ID } from '~data/e2eConstants'
 
 class SearchBar extends React.Component {
+  state = {
+    inputValue: this.props.searchValue
+  }
+  handleSubmit = e => {
+    e.preventDefault()
+    this.props.onFormSubmit(this.state.inputValue)
+  }
   handleChange = e => {
     const { value } = e.currentTarget
-    const {
-      onSearchValueChange,
-      onCancelSearch
-    } = this.props
+    this.setState(() => ({ inputValue: value }))
     if (value === '') {
-      onCancelSearch()
-    } else {
-      onSearchValueChange(value)
+      this.props.onCancelSearch()
     }
   }
   handleCancelSearchClicked = () => {
     const { onCancelSearch } = this.props
+    this.setState(() => ({ inputValue: '' }))
     onCancelSearch()
   }
   render () {
-    const { searchValue } = this.props
+    const { inputValue } = this.state
     return (
-      <div className='albums-page__search-bar'>
+      <form className='albums-page__search-bar' onSubmit={this.handleSubmit}>
         <input
           id={E2E_DISCOVER_PAGE_SEARCH_INPUT_ID}
           placeholder='Search albums'
           className='albums-page__search-input'
           type='text'
-          value={searchValue}
+          value={inputValue}
           onChange={this.handleChange}
         />
         <button
-          disabled={searchValue === ''}
+          type='button'
+          disabled={inputValue === ''}
           id='cancel-search'
           className='albums-page__cancel-search round-button'
           onClick={this.handleCancelSearchClicked}
         >
           <MdClose />
         </button>
-
-      </div>
+      </form>
     )
   }
 }
 
 SearchBar.propTypes = {
   searchValue: propTypes.string.isRequired,
-  onSearchValueChange: propTypes.func.isRequired,
+  onFormSubmit: propTypes.func.isRequired,
   onCancelSearch: propTypes.func.isRequired
 }
 

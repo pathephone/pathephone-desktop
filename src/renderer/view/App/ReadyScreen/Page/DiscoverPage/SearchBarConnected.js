@@ -6,7 +6,8 @@ import {
 
 import {
   uiDiscoverSearchPerformed,
-  uiDiscoverSearchCleared
+  uiDiscoverSearchCleared,
+  uiDiscoverSearchValueChanged
 } from '~actions/ui'
 
 import SearchBar from './SearchBar.jsx'
@@ -16,8 +17,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  onSearchValueChange: uiDiscoverSearchPerformed,
-  onCancelSearch: uiDiscoverSearchCleared
+  onInputChange: uiDiscoverSearchValueChanged,
+  onCancelSearch: uiDiscoverSearchCleared,
+  onFormSubmit: uiDiscoverSearchPerformed
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

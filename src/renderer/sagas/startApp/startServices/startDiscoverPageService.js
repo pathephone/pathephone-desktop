@@ -1,4 +1,4 @@
-import { takeLatest, takeEvery, all, throttle } from 'redux-saga/effects'
+import { takeLatest, takeEvery, all } from 'redux-saga/effects'
 
 import {
   uiDiscoverSelectedDeleted,
@@ -19,7 +19,7 @@ import fetchDiscoverAlbums from './startDiscoverPageService/fetchDiscoverAlbums'
 function * startDiscoverPageService (apis) {
   yield all([
     takeLatest(uiDiscoverPageOpened, fetchDiscoverAlbums, apis),
-    throttle(500, [ uiDiscoverSearchPerformed, uiDiscoverSearchCleared ], fetchDiscoverAlbums, apis),
+    takeLatest([ uiDiscoverSearchPerformed, uiDiscoverSearchCleared ], fetchDiscoverAlbums, apis),
     takeEvery(uiDiscoverSelectedDeleted, deleteSelectedAlbums, apis),
     takeEvery([
       uiDiscoverSelectedPlayed,

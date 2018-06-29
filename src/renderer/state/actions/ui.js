@@ -20,8 +20,9 @@ export const uiPlaybackToggled = c('PLAYBACK_TOGGLED')
 export const uiNextTrackPlayed = c('NEXT_TRACK_PLAYED')
 export const uiPreviousTrackPlayed = c('PREVIOUS_TRACK_PLAYED')
 
-export const uiDiscoverSearchPerformed = c('ALBUMS_SEARCH_PERFORMED')
-export const uiDiscoverSearchCleared = c('ALBUMS_SEARCH_CLEARED')
+export const uiDiscoverSearchPerformed = c('DISCOVER_SEARCH_PERFORMED')
+export const uiDiscoverSearchValueChanged = c('DISCOVER_SEARCH_VALUE_CHANGED')
+export const uiDiscoverSearchCleared = c('DISCOVER_SEARCH_CLEARED')
 
 export const uiDiscoverAlbumSelected = c('ALBUM_SELECTED')
 export const uiDiscoverAlbumDeselected = c('ALBUM_DESELECTED')
