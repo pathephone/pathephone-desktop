@@ -1,4 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
+
+import { IS_OFFLINE } from '#config'
+
 import {
   systemAlbumCandidateRecieved,
   systemAlbumSaved
@@ -20,9 +23,10 @@ function * handleIncomingAlbums (apis, album) {
 }
 
 function * startAlbumsReciever (apis) {
-  const { getIncomingAlbumsSource } = apis
-  const incomingAlbumsSource = yield call(getIncomingAlbumsSource)
-  yield takeEvery(incomingAlbumsSource, handleIncomingAlbums, apis)
+  if (!IS_OFFLINE) {
+    const incomingAlbumsSource = yield call(apis.getIncomingAlbumsSource)
+    yield takeEvery(incomingAlbumsSource, handleIncomingAlbums, apis)
+  }
 }
 
 export default startAlbumsReciever
