@@ -3,6 +3,9 @@ const path = require('path')
 
 module.exports = {
   stats: 'errors-only',
+  output: {
+    globalObject: 'this'
+  },
   resolve: {
     alias: {
       '~data': path.resolve(__dirname, '../src/shared/data'),
@@ -20,6 +23,10 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader' }
       }
       // {
       //   test: /\.css$/,

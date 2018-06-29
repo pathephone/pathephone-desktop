@@ -3,7 +3,7 @@ import validateAlbum from '~utils/validateAlbum'
 
 const DB_NAME = 'pathephone'
 
-const getCustomDbApi = async () => {
+const startDb = async () => {
   const db = new Dexie(DB_NAME)
   db
     .version(1)
@@ -32,4 +32,4 @@ const getCustomDbApi = async () => {
   return db
 }
 
-export default getCustomDbApi
+export default startDb

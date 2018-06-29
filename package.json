@@ -172,6 +172,7 @@
     "spectron": "^3.8.0",
     "style-loader": "^0.21.0",
     "webpack": "^4.0.0",
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "worker-loader": "^2.0.0"
   }
 }

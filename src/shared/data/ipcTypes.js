@@ -21,3 +21,16 @@ export const IPC_READ_AUDIO_METADATA = 'read-audio-metadata'
 export const IPC_FILTER_FS_FILES_BY_MIME = 'filter-fs-files-by-mime'
 export const IPC_GET_ALBUM_CANDIDATES_FROM_FS_ITEMS = 'get-album-candidates-from-fs-items'
 export const IPC_GET_TRACKS_FROM_FS_FILES = 'get-tracks-from-fs-files'
+
+// WORKERS
+
+export const IPC_START_DB = 'start-db'
+export const IPC_FIND_ALBUM_IN_COLLECTION_BY_CID = 'find-album-in-collection-by-cid'
+export const IPC_FIND_ALBUMS_IN_COLLECTION_BY_CIDS = 'find-album-in-collection-by-cids'
+export const IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION = 'find-outdated-albums-in-collection'
+export const IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS = 'delete-albums-in-collection-by-cids'
+export const IPC_OPEN_ALBUMS_STREAM = 'open-albums-stream'
+export const IPC_CLOSE_ALBUMS_STREAM = 'close-albums-stream'
+export const IPC_ALBUMS_STREAMED = 'albums-streamed'
+export const IPC_SAVE_ALBUM_IF_NOT_EXISTS = 'save-album-if-not-exists'
+export const IPC_SAVE_OR_UPDATE_ALBUM = 'save-or-update-album'

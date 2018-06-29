@@ -43,7 +43,7 @@ function * handleShareFormSubmit (apis, { payload }) {
     )
   } catch (e) {
     console.error(e)
-    if (e.name === 'ConstraintError') {
+    if (e.message === 'Key already exists in the object store.') {
       yield put(systemShareCandidateSaveFailed({
         warningMessage: MESSAGE_SHARE_ALBUM_ALREADY_EXISTS
       }))
