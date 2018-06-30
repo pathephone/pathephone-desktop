@@ -1,7 +1,5 @@
 import IPFSFactory from 'ipfsd-ctl'
 
-import beforeIpfsDaemonStart from './startIpfsDaemon/beforeIpfsDaemonStart'
-
 const startIpfsDaemon = ({ createParams, spawnParams, startFlags }) => {
   return new Promise((resolve, reject) => {
     const onError = reject
@@ -45,8 +43,6 @@ ipfs gateway running on ${node.gatewayAddr}
         }
       }
     }
-
-    beforeIpfsDaemonStart()
 
     IPFSFactory
       .create(createParams)

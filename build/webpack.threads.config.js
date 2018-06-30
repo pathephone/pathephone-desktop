@@ -37,7 +37,8 @@ module.exports = {
     alias: {
       '~data': path.resolve(__dirname, '../src/shared/data'),
       '~utils': path.resolve(__dirname, '../src/shared/utils'),
-      '~resources': path.resolve(__dirname, '../src/shared/assets')
+      '~resources': path.resolve(__dirname, '../src/shared/assets'),
+      '#config': path.resolve(__dirname, `../src/shared/config.js`)
     }
   },
   externals: [nodeExternals()],

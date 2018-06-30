@@ -1,5 +1,5 @@
+import createThreadReducer from '~utils/createThreadReducer'
 
 import getTracksFromFsFiles from './getAlbumCandidatesFromFsItems.thread/getAlbumCandidatesFromFsItems/getCandidatesFromFiles/getTracksFromFsFiles'
-import { createThreadMethod } from '~utils/ipcMain'
 
-createThreadMethod(getTracksFromFsFiles)
+createThreadReducer(({ payload }) => getTracksFromFsFiles(payload))

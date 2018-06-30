@@ -4,14 +4,14 @@ import {
   IPC_IPFS_SHARE_OBJECT,
   IPC_IPFS_SHARE_FS_FILE,
   IPC_IPFS_GET_FILES,
-  IPC_IPFS_START
+  IPC_IPFS_GET_INFO
 } from '~data/ipcTypes'
 
 import { rendererCalls } from '~utils/ipcRenderer'
 import { systemIpfsInfoRecieved } from '~actions/system'
 
 function * getCustomIpfsApi () {
-  const ipfsInfo = yield call(rendererCalls, IPC_IPFS_START)
+  const ipfsInfo = yield call(rendererCalls, IPC_IPFS_GET_INFO)
   yield put(systemIpfsInfoRecieved(ipfsInfo))
 
   const shareObjectToIpfs = obj => {
