@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 
 import {
-  getDiscoverSearchValue
+  getDiscoverSearchValue,
+  getAlbumsCount
 } from '#selectors'
 
 import {
@@ -13,7 +14,8 @@ import {
 import SearchBar from './SearchBar.jsx'
 
 const mapStateToProps = state => ({
-  searchValue: getDiscoverSearchValue(state)
+  searchValue: getDiscoverSearchValue(state),
+  albumsCount: getAlbumsCount(state)
 })
 
 const mapDispatchToProps = {

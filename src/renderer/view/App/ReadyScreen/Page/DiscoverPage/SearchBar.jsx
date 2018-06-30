@@ -28,11 +28,13 @@ class SearchBar extends React.Component {
   }
   render () {
     const { inputValue } = this.state
+    const { albumsCount } = this.props
+    const placeholder = albumsCount && `Search in ${albumsCount} albums`
     return (
       <form className='albums-page__search-bar' onSubmit={this.handleSubmit}>
         <input
           id={E2E_DISCOVER_PAGE_SEARCH_INPUT_ID}
-          placeholder='Search albums'
+          placeholder={placeholder}
           className='albums-page__search-input'
           type='text'
           value={inputValue}
@@ -54,6 +56,7 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   searchValue: propTypes.string.isRequired,
+  albumsCount: propTypes.number.isRequired,
   onFormSubmit: propTypes.func.isRequired,
   onCancelSearch: propTypes.func.isRequired
 }

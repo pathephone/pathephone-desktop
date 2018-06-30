@@ -7,7 +7,8 @@ import {
   IPC_SAVE_OR_UPDATE_ALBUM,
   IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS,
   IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION,
-  IPC_CLOSE_ALBUMS_STREAM
+  IPC_CLOSE_ALBUMS_STREAM,
+  IPC_GET_ALBUMS_COLLECTION_INFO
 } from '~data/ipcTypes'
 
 import createWorkerReducer from '~utils/createWorkerReducer'
@@ -22,7 +23,8 @@ import {
   saveOrUpdateAlbum,
   findOutdatedAlbumsInCollection,
   closeAlbumsStream,
-  deleteAlbumsFromCollection
+  deleteAlbumsFromCollection,
+  getAlbumsCollectionInfo
 } from './dbApi.worker/albumsCollectionApi'
 
 let dbApi
@@ -31,7 +33,9 @@ const messageHandler = async ({ type, payload }) => {
   switch (type) {
     case IPC_START_DB:
       dbApi = await startDb(payload)
-      break
+      return
+    case IPC_GET_ALBUMS_COLLECTION_INFO:
+      return getAlbumsCollectionInfo(dbApi)
     case IPC_OPEN_ALBUMS_STREAM:
       return openAlbumsStream(dbApi, payload)
     case IPC_CLOSE_ALBUMS_STREAM:

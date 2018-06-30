@@ -56,3 +56,5 @@ export const systemNotificationRecieved = c('NOTIFICATION_RECIEVED')
 export const systemNotificationExpired = c('NOTIFICATION_EXPIRED')
 
 export const systemIpfsInfoRecieved = c('IPFS_INFO_RECIEVED')
+
+export const systemAlbumsCollectionInfoRecieved = c('ALBUMS_COUNT_RECIEVED')

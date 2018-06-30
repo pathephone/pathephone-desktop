@@ -11,6 +11,7 @@ import startAlbumsDeletingService from './startServices/startAlbumsDeletingServi
 import startDiscoverPageService from './startServices/startDiscoverPageService'
 import startTracksCache from './startServices/startTracksCache'
 import startNotificationsService from './startServices/startNotificationsService'
+import startAlbumsCollectionInfo from './startServices/startAlbumsCollectionInfo'
 
 function * startServices (apis) {
   yield put(systemAppStartProceed(66))
@@ -21,6 +22,7 @@ function * startServices (apis) {
     spawn(startAlbumsDeletingService, apis),
     spawn(startDiscoverPageService, apis),
     spawn(startTracksCache, apis),
+    spawn(startAlbumsCollectionInfo, apis),
     spawn(startNotificationsService, apis)
   ])
   yield put(systemAppStartProceed(100))

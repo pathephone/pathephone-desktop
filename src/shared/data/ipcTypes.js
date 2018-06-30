@@ -27,6 +27,7 @@ export const IPC_GET_TRACKS_FROM_FS_FILES = 'get-tracks-from-fs-files'
 // WORKERS
 
 export const IPC_START_DB = 'start-db'
+export const IPC_GET_ALBUMS_COLLECTION_INFO = 'get-albums-collection-info'
 export const IPC_FIND_ALBUM_IN_COLLECTION_BY_CID = 'find-album-in-collection-by-cid'
 export const IPC_FIND_ALBUMS_IN_COLLECTION_BY_CIDS = 'find-album-in-collection-by-cids'
 export const IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION = 'find-outdated-albums-in-collection'

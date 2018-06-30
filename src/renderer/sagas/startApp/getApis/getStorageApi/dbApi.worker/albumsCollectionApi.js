@@ -77,6 +77,11 @@ export const saveOrUpdateAlbum = (dbApis, { cid, data, lastSeenAt }) => {
     .put({ cid, data, lastSeenAt })
 }
 
+export const getAlbumsCollectionInfo = async (dbApis) => {
+  const albumsCount = await dbApis.albumsCollection.count()
+  return { albumsCount }
+}
+
 let closeStream = null
 
 export const openAlbumsStream = (dbApis, params) => {

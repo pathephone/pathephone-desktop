@@ -9,5 +9,6 @@ export * from './domains/cachedTracks'
 export * from './domains/notifications'
 export * from './domains/ipfsInfo'
 export * from './domains/legalAgreement'
+export * from './domains/albumsInfo'
 
 export * from './selectors/derived'
