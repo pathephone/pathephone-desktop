@@ -17,14 +17,19 @@ class DiscoverPage extends React.Component {
 
   render () {
     const {
-      hasSelectedActions
+      hasSelectedActions,
+      hasSearchBar
     } = this.props
     return (
       <PageContainer
         id={E2E_DISCOVER_PAGE_ID}
         className='albums-page'
       >
-        <SearchBarConnected />
+        {
+          hasSearchBar && (
+            <SearchBarConnected />
+          )
+        }
         <DiscoverPageBodyConnected />
         {
           hasSelectedActions && (
@@ -38,6 +43,7 @@ class DiscoverPage extends React.Component {
 
 DiscoverPage.propTypes = {
   hasSelectedActions: propTypes.bool.isRequired,
+  hasSearchBar: propTypes.bool.isRequired,
   onWillMount: propTypes.func.isRequired,
   onWillUnmount: propTypes.func.isRequired
 }

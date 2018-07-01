@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
   render () {
     const { inputValue } = this.state
     const { albumsCount } = this.props
-    const placeholder = albumsCount && `Search in ${albumsCount} albums`
+    const placeholder = `Search in ${albumsCount} albums`
     return (
       <form className='albums-page__search-bar' onSubmit={this.handleSubmit}>
         <input
