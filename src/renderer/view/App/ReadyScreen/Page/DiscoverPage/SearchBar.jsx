@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
   handleChange = e => {
     const { value } = e.currentTarget
     this.setState(() => ({ inputValue: value }))
-    if (value === '') {
+    if (value === '' && this.props.searchValue !== '') {
       this.props.onCancelSearch()
     }
   }
