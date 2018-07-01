@@ -3,15 +3,12 @@ import { shareAlbum } from '~reusable/sharePage'
 import { openSharePage, openDiscoverPage } from '~reusable/navigation'
 
 import {
-  E2E_DISCOVER_FEED_ID
-} from '~data/e2eConstants'
-
-import {
   discoverFeedLengthEquals,
   discoverAlbumTitleEquals,
   discoverSetSearchValue,
   discoverWaitForFeedExists,
-  discoverAlbumArtistEquals
+  discoverAlbumArtistEquals,
+  discoverWaitForSearchExists
 } from '~reusable/discoverPage'
 
 import album1 from '~data/assets/album1'
@@ -25,7 +22,7 @@ describe('search tests', function () {
     await shareAlbum.call(this, album1)
     await shareAlbum.call(this, album2)
     await openDiscoverPage.call(this)
-    await this.app.client.waitForExist(E2E_DISCOVER_FEED_ID)
+    await discoverWaitForSearchExists.call(this)
   })
 
   describe('type album1 title', () => {

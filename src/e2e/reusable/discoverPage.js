@@ -28,6 +28,10 @@ export async function discoverWaitForFeedExists () {
   return this.app.client.waitForExist(E2E_DISCOVER_FEED_ID)
 }
 
+export async function discoverWaitForSearchExists () {
+  return this.app.client.waitForExist(E2E_DISCOVER_PAGE_SEARCH_INPUT_ID)
+}
+
 export async function discoverFeedExists () {
   const { app } = this
   const isFeedExists = await app.client.isExisting(E2E_DISCOVER_FEED_ID)
