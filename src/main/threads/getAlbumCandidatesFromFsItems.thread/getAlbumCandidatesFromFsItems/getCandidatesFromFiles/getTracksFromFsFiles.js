@@ -4,7 +4,7 @@ import getAudioMetadataFromFsFile from '~utils/getAudioMetadataFromFsFile'
 const normalizeMetadata = ({
   common: { track, title, album, artist }
 }) => ({
-  title, artist, album, trackNumber: track.no
+  title, artist, album, trackNumber: track && track.no
 })
 
 const getTracksFromFsFiles = async (files) => {
@@ -20,7 +20,10 @@ const getTracksFromFsFiles = async (files) => {
     audioFiles.map(handleMap)
   )
   const handleSort = (a, b) => {
-    if (a.trackNumber === null) {
+    if (
+      typeof a.trackNumber !== 'number' ||
+      typeof b.trackNumber !== 'number'
+    ) {
       return 0
     }
     if (a.trackNumber < b.trackNumber) {
