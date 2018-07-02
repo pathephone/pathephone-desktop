@@ -16,6 +16,7 @@ export const QUALITY_LABEL_HIGH = 1
 export const QUALITY_LABEL_LOSSLESS = 2
 
 export const DISCOVER_FEED_LIMIT = 50
+export const ALBUMS_COLLECTION_LIMIT = 50000
 
 export const NOTIFICATION_TYPE_ERROR = 0
 export const NOTIFICATION_TYPE_WARNING = 1

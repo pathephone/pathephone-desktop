@@ -1,7 +1,28 @@
 import Dexie from 'dexie'
 import validateAlbum from '~utils/validateAlbum'
+import { ALBUMS_COLLECTION_LIMIT } from '~data/constants'
 
 const DB_NAME = 'pathephone'
+
+const patchObjectWithDerivedData = obj => {
+  const { title, artist } = obj.data
+  const searchWords = [ ...title.split(' '), ...artist.split(' ') ]
+  searchWords.filter(w => !!w)
+  obj.searchWords = searchWords
+  obj.createdAt = new Date().getTime()
+}
+
+const cutOutdatedAlbums = async db => {
+  const count = await db.albumsCollection.count()
+  const extraCount = count - ALBUMS_COLLECTION_LIMIT + 1
+  if (extraCount > 0) {
+    await db
+      .albumsCollection
+      .orderBy('createdAt')
+      .limit(extraCount)
+      .delete()
+  }
+}
 
 const startDb = async () => {
   const db = new Dexie(DB_NAME)
@@ -10,14 +31,11 @@ const startDb = async () => {
     .stores({
       albumsCollection: '&cid, createdAt, lastSeenAt, *searchWords'
     })
-  db.albumsCollection.hook('creating', (primary, obj) => {
+  db.albumsCollection.hook('creating', async (primary, obj) => {
     const { valid, errors } = validateAlbum(obj.data)
     if (valid) {
-      const { title, artist } = obj.data
-      const searchWords = [ ...title.split(' '), ...artist.split(' ') ]
-      searchWords.filter(w => !!w)
-      obj.searchWords = searchWords
-      obj.createdAt = new Date().getTime()
+      patchObjectWithDerivedData(obj)
+      await cutOutdatedAlbums(db)
     } else {
       console.log(obj)
       console.error(errors)
