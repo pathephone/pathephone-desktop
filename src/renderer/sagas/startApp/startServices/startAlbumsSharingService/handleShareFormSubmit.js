@@ -35,10 +35,11 @@ function * handleShareFormSubmit (apis, { payload }) {
       tracks
     }
     const albumCid = yield call(shareObjectToIpfs, album)
-    yield call(saveAlbumIfNotExists, { data: album, cid: albumCid })
+    const collectionStat = yield call(saveAlbumIfNotExists, { data: album, cid: albumCid })
     yield put(
       systemShareCandidateSaveSucceed({
-        successMessage: MESSAGE_SHARE_FORM_SUBMIT_SUCCEED
+        successMessage: MESSAGE_SHARE_FORM_SUBMIT_SUCCEED,
+        ...collectionStat
       })
     )
   } catch (e) {

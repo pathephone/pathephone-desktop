@@ -1,12 +1,16 @@
 import {
   systemDiscoverFetchSucceed,
-  systemDiscoverFetchFailed
+  systemDiscoverFetchFailed,
+  systemShareCandidateSaveSucceed,
+  systemAlbumsRecievedCacheTransited
 } from '~actions/system'
+
 import {
   uiDiscoverSearchPerformed,
   uiDiscoverSearchCleared,
   uiDiscoverPageClosed,
-  uiDiscoverPageOpened
+  uiDiscoverPageOpened,
+  uiDiscoverRefreshButtonClicked
 } from '~actions/ui'
 
 const DOMAIN = 'discoverPage'
@@ -15,7 +19,8 @@ const initialState = {
   albums: null,
   searchValue: '',
   isFailed: false,
-  isProcessing: false
+  isProcessing: false,
+  isAlbumsOutdated: false
 }
 
 // SELECTORS
@@ -24,12 +29,14 @@ export const getDiscoverFeedAlbums = state => state[DOMAIN].albums
 export const getDiscoverSearchValue = state => state[DOMAIN].searchValue
 export const isDiscoverHasFailed = state => state[DOMAIN].isFailed
 export const isDiscoverPageProcessing = state => state[DOMAIN].isProcessing
+export const isDiscoverAlbumsOutdated = state => state[DOMAIN].isAlbumsOutdated
 
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
     case uiDiscoverPageOpened.toString():
-      return { ...state, isProcessing: true }
+    case uiDiscoverRefreshButtonClicked.toString():
+      return { ...initialState, isProcessing: true }
     case uiDiscoverPageClosed.toString():
       return { ...initialState }
     case uiDiscoverSearchPerformed.toString():
@@ -41,7 +48,29 @@ const reducer = (state = initialState, action) => {
     case uiDiscoverSearchCleared.toString():
       return { ...initialState, isProcessing: true }
     case systemDiscoverFetchSucceed.toString():
-      return { ...state, albums: payload, isProcessing: false }
+      return {
+        ...state,
+        albums: payload,
+        isProcessing: false,
+        isAlbumsOutdated: false
+      }
+    case systemShareCandidateSaveSucceed.toString():
+      if (state.albums) {
+        return {
+          ...state,
+          isAlbumsOutdated: true
+        }
+      }
+      return state
+    case systemAlbumsRecievedCacheTransited.toString():
+      const { latestCid } = payload
+      if (state.albums && state.albums[0].albumCid !== latestCid) {
+        return {
+          ...state,
+          isAlbumsOutdated: true
+        }
+      }
+      return state
     case systemDiscoverFetchFailed.toString():
       return { ...state, isFailed: true, isProcessing: false }
     default:

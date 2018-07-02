@@ -12,8 +12,9 @@ export const IPC_IPFS_GET_FILES = 'ipfs-get-files'
 export const IPC_METABIN_GATE_START = 'metabin-gate-start'
 export const IPC_METABIN_GATE_SEND = 'metabin-gate-send'
 export const IPC_METABIN_GATE_SUBSCRIBE = 'metabin-gate-subscribe'
-export const IPC_METABIN_GATE_UNLISTEN = 'metabin-gate-unlisten'
+export const IPC_METABIN_GATE_UNSUBSCRIBE = 'metabin-gate-unlisten'
 export const IPC_METABIN_GATE_DATA_RECIEVED = 'metabin-gate-data-recieved'
+export const IPC_METABIN_GET_RECIEVED_DATA_CACHE = 'metabin-get-recieved-data-cache'
 
 export const IPC_SPLIT_FOLDERS_AND_FILES = 'split-folders-and-files'
 export const IPC_CHECK_FS_FILE_IS_AUDIO = 'check-fs-file-is-audio'
@@ -32,8 +33,11 @@ export const IPC_FIND_ALBUM_IN_COLLECTION_BY_CID = 'find-album-in-collection-by-
 export const IPC_FIND_ALBUMS_IN_COLLECTION_BY_CIDS = 'find-album-in-collection-by-cids'
 export const IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION = 'find-outdated-albums-in-collection'
 export const IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS = 'delete-albums-in-collection-by-cids'
+
 export const IPC_OPEN_ALBUMS_STREAM = 'open-albums-stream'
 export const IPC_CLOSE_ALBUMS_STREAM = 'close-albums-stream'
 export const IPC_ALBUMS_STREAMED = 'albums-streamed'
+
 export const IPC_SAVE_ALBUM_IF_NOT_EXISTS = 'save-album-if-not-exists'
 export const IPC_SAVE_OR_UPDATE_ALBUM = 'save-or-update-album'
+export const IPC_SAVE_OR_UPDATE_ALBUMS = 'save-or-update-albums'

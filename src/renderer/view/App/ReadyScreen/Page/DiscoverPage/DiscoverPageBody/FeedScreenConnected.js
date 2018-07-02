@@ -2,8 +2,10 @@ import { connect } from 'react-redux'
 
 import {
   getDiscoverAlbumsIds,
-  getDiscoverSearchValue
+  getDiscoverSearchValue,
+  isDiscoverAlbumsOutdated
 } from '#selectors'
+import { uiDiscoverRefreshButtonClicked } from '~actions/ui'
 
 import FeedScreen from './FeedScreen.jsx'
 
@@ -17,8 +19,13 @@ const mapStateToProps = state => {
   }
   return {
     albumsIds: getDiscoverAlbumsIds(state),
+    hasRefreshButton: !searchValue && isDiscoverAlbumsOutdated(state),
     title
   }
 }
 
-export default connect(mapStateToProps)(FeedScreen)
+const mapDispatchToProps = {
+  onRefreshButtonClick: uiDiscoverRefreshButtonClicked
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedScreen)

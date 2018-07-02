@@ -16,8 +16,8 @@ function * handleDiscoverSelectedDelete (apis) {
   yield put(systemUiLocked())
   try {
     const selectedAlbums = yield select(getDiscoverSelectedCids)
-    yield call(deleteAlbumsFromCollection, selectedAlbums)
-    yield put(systemDiscoverSelectedActionSucceed())
+    const collectionStat = yield call(deleteAlbumsFromCollection, selectedAlbums)
+    yield put(systemDiscoverSelectedActionSucceed(collectionStat))
   } catch (e) {
     yield put(systemDiscoverSelectedActionFailed({ errorMessage: e.message }))
   }

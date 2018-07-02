@@ -9,7 +9,40 @@
 }
 
 .albums-page__title {
-  padding-left: 2em;
   text-transform: uppercase;
   color: grey;
+}
+
+.feed-screen__title-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 2em;
+}
+
+.feed-screen__refresh-button {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  background-color: var(--secondary-color);  
+  padding: 0.25em 0.75em;
+  border-radius:  0.85em;
+  text-transform: uppercase;
+  color: white;
+  box-shadow: var(--material-shadow-1);
+  border: 1px solid var(--secondary-color);
+}
+
+.feed-screen__refresh-button:focus {
+  outline: none;
+  border-color: orange;
+}
+
+.feed-screen__refresh-button:active {
+  color: var(--secondary-color);
+  background-color: white;
+  box-shadow: none;
+}
+
+.feed-screen__refresh-text {
+  margin-left: 1em;
 }

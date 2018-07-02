@@ -10,10 +10,11 @@ import {
   IPC_SAVE_OR_UPDATE_ALBUM,
   IPC_ALBUMS_STREAMED,
   IPC_CLOSE_ALBUMS_STREAM,
-  IPC_GET_ALBUMS_COLLECTION_INFO
+  IPC_GET_ALBUMS_COLLECTION_INFO,
+  IPC_SAVE_OR_UPDATE_ALBUMS
 } from '~data/ipcTypes'
 
-const getAlbumCollectionApi = (worker) => {
+const getAlbumsCollectionApi = (worker) => {
   const getAlbumsCollectionInfo = () => {
     return worker.call({
       type: IPC_GET_ALBUMS_COLLECTION_INFO
@@ -78,6 +79,12 @@ const getAlbumCollectionApi = (worker) => {
       payload: payload
     })
   }
+  const saveOrUpdateAlbums = payload => {
+    return worker.call({
+      type: IPC_SAVE_OR_UPDATE_ALBUMS,
+      payload: payload
+    })
+  }
   const deleteAlbumsFromCollection = cids => {
     return worker.call({
       type: IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS,
@@ -87,6 +94,7 @@ const getAlbumCollectionApi = (worker) => {
   return {
     saveAlbumIfNotExists,
     saveOrUpdateAlbum,
+    saveOrUpdateAlbums,
     findAlbumInCollectionByCid,
     findAlbumsInCollectionByCids,
     findOutdatedAlbumsInCollection,
@@ -96,4 +104,4 @@ const getAlbumCollectionApi = (worker) => {
   }
 }
 
-export default getAlbumCollectionApi
+export default getAlbumsCollectionApi

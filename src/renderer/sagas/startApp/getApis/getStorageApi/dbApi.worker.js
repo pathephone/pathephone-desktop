@@ -8,7 +8,8 @@ import {
   IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS,
   IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION,
   IPC_CLOSE_ALBUMS_STREAM,
-  IPC_GET_ALBUMS_COLLECTION_INFO
+  IPC_GET_ALBUMS_COLLECTION_INFO,
+  IPC_SAVE_OR_UPDATE_ALBUMS
 } from '~data/ipcTypes'
 
 import createWorkerReducer from '~utils/createWorkerReducer'
@@ -24,7 +25,8 @@ import {
   findOutdatedAlbumsInCollection,
   closeAlbumsStream,
   deleteAlbumsFromCollection,
-  getAlbumsCollectionInfo
+  getAlbumsCollectionInfo,
+  saveOrUpdateAlbums
 } from './dbApi.worker/albumsCollectionApi'
 
 let dbApi
@@ -48,6 +50,8 @@ const messageHandler = async ({ type, payload }) => {
       return saveAlbumIfNotExists(dbApi, payload)
     case IPC_SAVE_OR_UPDATE_ALBUM:
       return saveOrUpdateAlbum(dbApi, payload)
+    case IPC_SAVE_OR_UPDATE_ALBUMS:
+      return saveOrUpdateAlbums(dbApi, payload)
     case IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS:
       return deleteAlbumsFromCollection(dbApi, payload)
     case IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION:

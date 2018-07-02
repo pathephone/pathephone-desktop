@@ -1,10 +1,12 @@
 import { openGate } from '@metabin/gate'
 
+import validateAlbum from '~utils/validateAlbum'
+
 import * as schemas from '~data/schemas'
-import { IPC_METABIN_GATE_DATA_RECIEVED } from '~data/ipcTypes'
 
 const gatesByName = new Map()
 const gatesUnlistenersByName = new Map()
+const dataCacheByName = new Map()
 
 const getGate = async (ipfsDaemonPromise, schemaName) => {
   let gate = gatesByName.get(schemaName)
@@ -24,22 +26,42 @@ export const metabinSend = async ({ ipfsDaemonPromise, payload: { schemaName, da
 
 export const metabinSubscribe = async ({ ipfsDaemonPromise, payload: schemaName }) => {
   const gate = await getGate(ipfsDaemonPromise, schemaName)
-  const unlisten = gatesUnlistenersByName.get(schemaName)
-  if (unlisten) {
-    await unlisten()
-  }
   const listener = (data, cid) => {
-    process.send({
-      type: IPC_METABIN_GATE_DATA_RECIEVED,
-      payload: { data, cid, schemaName }
-    })
+    const { valid } = validateAlbum(data)
+    if (valid) {
+      const lastSeenAt = new Date().getTime()
+      const dataCache = dataCacheByName.get(schemaName)
+      dataCache.set(cid, { data, lastSeenAt })
+    }
   }
-  const gateUnlistener = await gate.listen(listener)
-  gatesUnlistenersByName.set(schemaName, gateUnlistener)
+  try {
+    dataCacheByName.set(schemaName, new Map())
+    const gateUnlistener = await gate.listen(listener)
+    gatesUnlistenersByName.set(schemaName, gateUnlistener)
+  } catch (e) {
+    dataCacheByName.delete(schemaName)
+    throw e
+  }
+}
+
+export const metabinGetRecievedDataCache = ({ payload: schemaName }) => {
+  const dataCache = dataCacheByName.get(schemaName)
+  if (dataCache) {
+    const dataCacheArray = [
+      ...dataCache.entries()
+    ]
+    dataCache.clear()
+    return dataCacheArray.map(
+      ([cid, data]) => ({ cid, ...data })
+    )
+  } else {
+    throw new Error(`No data cache for ${schemaName} found. Subscribe first.`)
+  }
 }
 
 export const metabinUnsubscribe = ({ payload: schemaName }) => {
   const unlisten = gatesUnlistenersByName.get(schemaName)
   gatesUnlistenersByName.delete(schemaName)
+  dataCacheByName.delete(schemaName)
   return unlisten()
 }

@@ -7,8 +7,9 @@ import {
   IPC_IPFS_SHARE_OBJECT,
   IPC_METABIN_GATE_SUBSCRIBE,
   IPC_METABIN_GATE_SEND,
-  IPC_METABIN_GATE_UNLISTEN,
-  IPC_IPFS_GET_INFO
+  IPC_METABIN_GATE_UNSUBSCRIBE,
+  IPC_IPFS_GET_INFO,
+  IPC_METABIN_GET_RECIEVED_DATA_CACHE
 } from '~data/ipcTypes'
 
 import startIpfsDaemon from './ipfs.thread/startIpfsDaemon'
@@ -23,7 +24,8 @@ import {
 import {
   metabinSubscribe,
   metabinSend,
-  metabinUnsubscribe
+  metabinUnsubscribe,
+  metabinGetRecievedDataCache
 } from './ipfs.thread/metabinApi'
 
 let ipfsDaemonPromise
@@ -46,8 +48,10 @@ const reducer = ({ type, payload }) => {
       return metabinSubscribe(args)
     case IPC_METABIN_GATE_SEND:
       return metabinSend(args)
-    case IPC_METABIN_GATE_UNLISTEN:
+    case IPC_METABIN_GATE_UNSUBSCRIBE:
       return metabinUnsubscribe(args)
+    case IPC_METABIN_GET_RECIEVED_DATA_CACHE:
+      return metabinGetRecievedDataCache(args)
     default:
       throw new Error('ipfs.thread: Unknown message type.')
   }

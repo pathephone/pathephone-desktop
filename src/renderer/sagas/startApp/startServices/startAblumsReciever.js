@@ -1,31 +1,34 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, takeEvery, put } from 'redux-saga/effects'
 
+import { systemAlbumsRecievedCacheTransited } from '~actions/system'
 import { IS_OFFLINE } from '#config'
 
-import {
-  systemAlbumCandidateRecieved,
-  systemAlbumSaved
-} from '~actions/system'
+import reduxSagaTicker from '~utils/reduxSagaTicker'
 
-function * handleIncomingAlbums (apis, album) {
+function * transitCachedAlbumsToStore (apis) {
   const {
-    saveOrUpdateAlbum
+    saveOrUpdateAlbums,
+    getRecievedAlbumsCache
   } = apis
   try {
-    const { cid, data } = album
-    const lastSeenAt = new Date().getTime()
-    yield put(systemAlbumCandidateRecieved(cid))
-    yield call(saveOrUpdateAlbum, { cid, data, lastSeenAt })
-    yield put(systemAlbumSaved(cid))
+    const albums = yield call(getRecievedAlbumsCache)
+    if (albums.length > 0) {
+      const collectionStat = yield call(saveOrUpdateAlbums, albums)
+      yield put(systemAlbumsRecievedCacheTransited(collectionStat))
+    }
   } catch (e) {
     console.error(e)
   }
 }
 
 function * startAlbumsReciever (apis) {
+  const {
+    subscribeToAlbumsGate
+  } = apis
   if (!IS_OFFLINE) {
-    const incomingAlbumsSource = yield call(apis.getIncomingAlbumsSource)
-    yield takeEvery(incomingAlbumsSource, handleIncomingAlbums, apis)
+    yield call(subscribeToAlbumsGate)
+    const ticker = yield call(reduxSagaTicker, 10000)
+    yield takeEvery(ticker, transitCachedAlbumsToStore, apis)
   }
 }
 

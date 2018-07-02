@@ -7,7 +7,6 @@ import { systemAppStartProceed } from '~actions/system'
 import startAlbumsReciever from './startServices/startAblumsReciever'
 import startAlbumsPublisher from './startServices/startAlbumsPublisher'
 import startAlbumsSharingService from './startServices/startAlbumsSharingService'
-import startAlbumsDeletingService from './startServices/startAlbumsDeletingService'
 import startDiscoverPageService from './startServices/startDiscoverPageService'
 import startTracksCache from './startServices/startTracksCache'
 import startNotificationsService from './startServices/startNotificationsService'
@@ -19,7 +18,6 @@ function * startServices (apis) {
     spawn(startAlbumsReciever, apis),
     spawn(startAlbumsPublisher, apis),
     spawn(startAlbumsSharingService, apis),
-    spawn(startAlbumsDeletingService, apis),
     spawn(startDiscoverPageService, apis),
     spawn(startTracksCache, apis),
     spawn(startAlbumsCollectionInfo, apis),

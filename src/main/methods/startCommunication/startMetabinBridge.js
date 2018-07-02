@@ -3,8 +3,8 @@ import { ipcMainTake } from '~utils/ipcMain'
 import {
   IPC_METABIN_GATE_SEND,
   IPC_METABIN_GATE_SUBSCRIBE,
-  IPC_METABIN_GATE_UNLISTEN,
-  IPC_METABIN_GATE_DATA_RECIEVED
+  IPC_METABIN_GATE_UNSUBSCRIBE,
+  IPC_METABIN_GET_RECIEVED_DATA_CACHE
 } from '~data/ipcTypes'
 
 const startMetabinBridge = ({ ipfsProcessPromise }) => {
@@ -13,33 +13,32 @@ const startMetabinBridge = ({ ipfsProcessPromise }) => {
     return ipfsProcess.call({ type: IPC_METABIN_GATE_SEND, payload: { schemaName, data } })
   }
 
-  const handleListen = async (schemaName, event) => {
+  const handleSubscribe = async (schemaName, event) => {
     let ipcUnlistener
     const ipfsProcess = await ipfsProcessPromise
     await ipfsProcess.call({ type: IPC_METABIN_GATE_SUBSCRIBE, payload: schemaName })
 
-    const handleMessage = ({ type, payload }) => {
-      if (type === IPC_METABIN_GATE_DATA_RECIEVED) {
-        event.sender.send(
-          IPC_METABIN_GATE_DATA_RECIEVED, { schemaName, payload }
-        )
-      }
-    }
-    ipfsProcess.on('message', handleMessage)
-
     const handleUnlisten = async schemaNameToUnlisten => {
       if (schemaNameToUnlisten === schemaName) {
-        ipfsProcess.removeListener('message', handleMessage)
         ipcUnlistener()
-        await ipfsProcess.call({ type: IPC_METABIN_GATE_UNLISTEN, payload: schemaName })
+        await ipfsProcess.call({ type: IPC_METABIN_GATE_UNSUBSCRIBE, payload: schemaName })
       }
     }
-    ipcUnlistener = ipcMainTake(IPC_METABIN_GATE_UNLISTEN, handleUnlisten)
+    ipcUnlistener = ipcMainTake(IPC_METABIN_GATE_UNSUBSCRIBE, handleUnlisten)
+  }
+
+  const handleGetCache = async (schemaName) => {
+    const ipfsProcess = await ipfsProcessPromise
+    return ipfsProcess.call({
+      type: IPC_METABIN_GET_RECIEVED_DATA_CACHE,
+      payload: schemaName
+    })
   }
 
   const ipcUnlisteners = [
     ipcMainTake(IPC_METABIN_GATE_SEND, handleSend),
-    ipcMainTake(IPC_METABIN_GATE_SUBSCRIBE, handleListen)
+    ipcMainTake(IPC_METABIN_GATE_SUBSCRIBE, handleSubscribe),
+    ipcMainTake(IPC_METABIN_GET_RECIEVED_DATA_CACHE, handleGetCache)
   ]
   return () => {
     ipcUnlisteners
