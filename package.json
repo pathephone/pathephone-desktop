@@ -7,7 +7,7 @@
   "author": "Maxim Ilyin <negamaxi@gmail.com>",
   "copyright": "Copyright © 2018 Maxim Ilyin",
   "license": "MIT",
-  "homepage": "http://pathephone.metabin.space",
+  "homepage": "https://pathephone.github.io",
   "engines": {
     "node": ">=8.9.3"
   },
