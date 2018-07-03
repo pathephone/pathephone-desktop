@@ -3,6 +3,7 @@ import propTypes from 'prop-types'
 
 import GithubIcon from 'react-icons/lib/go/mark-github'
 import TwitterIcon from 'react-icons/lib/io/social-twitter'
+import GlobeIcon from 'react-icons/lib/io/earth'
 
 import getMyAppVersion from '~utils/getMyAppVersion'
 
@@ -24,11 +25,14 @@ const Hero = ({ hasNewReleaseCard }) => (
       )
     }
     <small className='aboutHeroSocial'>
+      <SocialLink link='https://pathephone.github.io'>
+        <GlobeIcon /> <span>Site</span>
+      </SocialLink>
       <SocialLink link='https://twitter.com/patheplayer'>
-        <TwitterIcon /> Twitter
+        <TwitterIcon /> <span>Twitter</span>
       </SocialLink>
       <SocialLink link='https://github.com/pathephone'>
-        <GithubIcon /> GitHub
+        <GithubIcon /> <span>GitHub</span>
       </SocialLink>
     </small>
   </div>
