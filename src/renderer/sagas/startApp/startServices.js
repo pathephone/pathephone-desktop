@@ -11,6 +11,7 @@ import startDiscoverPageService from './startServices/startDiscoverPageService'
 import startTracksCache from './startServices/startTracksCache'
 import startNotificationsService from './startServices/startNotificationsService'
 import startAlbumsCollectionInfo from './startServices/startAlbumsCollectionInfo'
+import startNewReleaseChecker from './startServices/startNewReleaseChecker'
 
 function * startServices (apis) {
   yield put(systemAppStartProceed(66))
@@ -21,7 +22,8 @@ function * startServices (apis) {
     spawn(startDiscoverPageService, apis),
     spawn(startTracksCache, apis),
     spawn(startAlbumsCollectionInfo, apis),
-    spawn(startNotificationsService, apis)
+    spawn(startNotificationsService, apis),
+    spawn(startNewReleaseChecker, apis)
   ])
   yield put(systemAppStartProceed(100))
   yield call(asyncTimeout, 100)

@@ -10,6 +10,7 @@ export const ROUTE_HOME = ROUTE_ALBUMS
 
 export const ALBUMS_APEARENCE_INTERVAL = 60000 * 10
 export const ALBUMS_PUBLISH_INTERVAL = 60000 * 1
+export const CHECK_FOR_UPDATE_INTERVAL = 60000 * 30
 
 export const QUALITY_LABEL_LOW = 0
 export const QUALITY_LABEL_HIGH = 1

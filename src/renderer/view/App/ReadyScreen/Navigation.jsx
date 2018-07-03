@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 import UploadIcon from 'react-icons/lib/md/share'
 import DiscoverIcon from 'react-icons/lib/md/search'
@@ -11,7 +12,7 @@ import NavigationItem from './Navigation/NavigationItem.jsx'
 
 import './Navigation.css'
 
-const Navigation = () => (
+const Navigation = ({ hasUpdateIndicator }) => (
   <nav className='navigation'>
     <NavigationItem
       id={E2E_NAV_DISCOVER_LINK_ID}
@@ -29,8 +30,13 @@ const Navigation = () => (
       path={ROUTE_DONATE}
       title='About'
       icon={<InfoIcon />}
+      hasIndicator={hasUpdateIndicator}
     />
   </nav>
 )
+
+Navigation.propTypes = {
+  hasUpdateIndicator: propTypes.bool.isRequired
+}
 
 export default Navigation
