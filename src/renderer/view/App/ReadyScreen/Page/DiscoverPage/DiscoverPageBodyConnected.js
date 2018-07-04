@@ -7,8 +7,6 @@ import {
   isDiscoverHasFailed
 } from '#selectors'
 
-import { uiDiscoverPageOpened, uiDiscoverPageClosed } from '~actions/ui'
-
 import DiscoverPageBody from './DiscoverPageBody.jsx'
 
 const mapStateToProps = state => {
@@ -24,9 +22,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = {
-  onWillMount: uiDiscoverPageOpened,
-  onWillUnmount: uiDiscoverPageClosed
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPageBody)
+export default connect(mapStateToProps)(DiscoverPageBody)

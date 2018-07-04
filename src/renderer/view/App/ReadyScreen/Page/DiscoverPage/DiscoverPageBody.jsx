@@ -10,9 +10,6 @@ import FeedScreenConnected from './DiscoverPageBody/FeedScreenConnected'
 import './DiscoverPageBody.css'
 
 class DiscoverPageBody extends React.Component {
-  componentWillMount = this.props.onWillMount
-  componentWillUnmount = this.props.onWillUnmount
-
   render () {
     const {
       hasNoAlbumsScreen,
@@ -53,9 +50,7 @@ DiscoverPageBody.propTypes = {
   hasNoAlbumsScreen: propTypes.bool.isRequired,
   hasNoSearchResultsScreen: propTypes.bool.isRequired,
   hasFeedScreen: propTypes.bool.isRequired,
-  hasProcessingScreen: propTypes.bool.isRequired,
-  onWillMount: propTypes.func,
-  onWillUnmount: propTypes.func
+  hasProcessingScreen: propTypes.bool.isRequired
 }
 
 export default DiscoverPageBody
