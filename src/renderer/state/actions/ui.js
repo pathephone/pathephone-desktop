@@ -27,8 +27,6 @@ export const uiDiscoverSearchCleared = c('DISCOVER_SEARCH_CLEARED')
 export const uiDiscoverAlbumSelected = c('ALBUM_SELECTED')
 export const uiDiscoverAlbumDeselected = c('ALBUM_DESELECTED')
 
-export const uiDiscoverRefreshButtonClicked = c('DISCOVER_REFRESH_BUTTON_CLICKED')
-export const uiDiscoverPageOpened = c('DISCOVER_PAGE_OPENED')
 export const uiDiscoverPageClosed = c('DISCOVER_PAGE_CLOSED')
 export const uiDiscoverSelectedQueued = c('DISCOVER_SELECTED_QUEUED')
 export const uiDiscoverSelectedPlayed = c('DISCOVER_SELECTED_PLAYED')

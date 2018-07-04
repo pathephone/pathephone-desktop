@@ -5,9 +5,11 @@ import {
 } from '#selectors'
 
 import {
-  uiDiscoverPageOpened,
   uiDiscoverPageClosed
 } from '~actions/ui'
+import {
+  systemDiscoverAlbumsFetch
+} from '~actions/system'
 
 import DiscoverPage from './DiscoverPage.jsx'
 
@@ -20,7 +22,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  onWillMount: uiDiscoverPageOpened,
+  onWillMount: systemDiscoverAlbumsFetch,
   onWillUnmount: uiDiscoverPageClosed
 }
 

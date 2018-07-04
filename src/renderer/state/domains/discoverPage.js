@@ -1,6 +1,7 @@
 import {
-  systemDiscoverFetchSucceed,
-  systemDiscoverFetchFailed,
+  systemDiscoverAlbumsFetch,
+  systemDiscoverAlbumsFetchSucceed,
+  systemDiscoverAlbumsFetchFailed,
   systemShareCandidateSaveSucceed,
   systemAlbumsRecievedCacheTransited
 } from '~actions/system'
@@ -8,9 +9,7 @@ import {
 import {
   uiDiscoverSearchPerformed,
   uiDiscoverSearchCleared,
-  uiDiscoverPageClosed,
-  uiDiscoverPageOpened,
-  uiDiscoverRefreshButtonClicked
+  uiDiscoverPageClosed
 } from '~actions/ui'
 
 const DOMAIN = 'discoverPage'
@@ -34,8 +33,7 @@ export const isDiscoverAlbumsOutdated = state => state[DOMAIN].isAlbumsOutdated
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    case uiDiscoverPageOpened.toString():
-    case uiDiscoverRefreshButtonClicked.toString():
+    case systemDiscoverAlbumsFetch.toString():
       return { ...initialState, isProcessing: true }
     case uiDiscoverPageClosed.toString():
       return { ...initialState }
@@ -47,7 +45,7 @@ const reducer = (state = initialState, action) => {
       }
     case uiDiscoverSearchCleared.toString():
       return { ...initialState, isProcessing: true }
-    case systemDiscoverFetchSucceed.toString():
+    case systemDiscoverAlbumsFetchSucceed.toString():
       return {
         ...state,
         albums: payload,
@@ -71,7 +69,7 @@ const reducer = (state = initialState, action) => {
         }
       }
       return state
-    case systemDiscoverFetchFailed.toString():
+    case systemDiscoverAlbumsFetchFailed.toString():
       return { ...state, isFailed: true, isProcessing: false }
     default:
       return state

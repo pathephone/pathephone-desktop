@@ -32,9 +32,9 @@ export const systemShareCandidateSaveSucceed = c('SHARE_CANDIDATE_SAVE_SUCCEED')
 export const systemShareCandidateSaveFailed = c('SHARE_CANDIDATE_SAVE_FAILED')
 export const systemShareCandidatesNotFound = c('SHARE_CANDIDATES_NOT_FOUND')
 
-export const systemDiscoverFetch = c('DISCOVER_FETCH_SUCCEED')
-export const systemDiscoverFetchSucceed = c('DISCOVER_LATEST_FETCH_SUCCEED')
-export const systemDiscoverFetchFailed = c('DISCOVER_LATEST_FETCH_FAILED')
+export const systemDiscoverAlbumsFetch = c('DISCOVER_FETCH_SUCCEED')
+export const systemDiscoverAlbumsFetchSucceed = c('DISCOVER_LATEST_FETCH_SUCCEED')
+export const systemDiscoverAlbumsFetchFailed = c('DISCOVER_LATEST_FETCH_FAILED')
 export const systemDiscoverSelectedActionSucceed = c('DISCOVER_SELECTED_ACTION_SUCCEED')
 export const systemDiscoverSelectedActionFailed = c('DISCOVER_SELECTED_ACTION_FAILED')
 

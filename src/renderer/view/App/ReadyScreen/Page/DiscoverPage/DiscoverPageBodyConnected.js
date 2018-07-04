@@ -9,7 +9,7 @@ import {
 } from '#selectors'
 
 import DiscoverPageBody from './DiscoverPageBody.jsx'
-import { systemDiscoverFetch } from '~actions/system'
+import { systemDiscoverAlbumsFetch } from '~actions/system'
 
 const mapStateToProps = state => {
   const hasAlbums = isDiscoverHasAlbums(state)
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  onAlbumsUpdateRequest: systemDiscoverFetch
+  onAlbumsUpdateRequest: systemDiscoverAlbumsFetch
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPageBody)

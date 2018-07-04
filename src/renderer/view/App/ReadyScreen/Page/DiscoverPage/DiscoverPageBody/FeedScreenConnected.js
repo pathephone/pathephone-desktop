@@ -5,9 +5,9 @@ import {
   getDiscoverSearchValue,
   isDiscoverAlbumsOutdated
 } from '#selectors'
-import { uiDiscoverRefreshButtonClicked } from '~actions/ui'
 
 import FeedScreen from './FeedScreen.jsx'
+import { systemDiscoverAlbumsFetch } from '~actions/system'
 
 const mapStateToProps = state => {
   const searchValue = getDiscoverSearchValue(state)
@@ -25,7 +25,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  onRefreshButtonClick: uiDiscoverRefreshButtonClicked
+  onRefreshButtonClick: systemDiscoverAlbumsFetch
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeedScreen)

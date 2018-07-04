@@ -7,12 +7,10 @@ import {
   uiDiscoverSearchPerformed,
   uiAlbumPlayed,
   uiAlbumQueued,
-  uiDiscoverPageOpened,
-  uiDiscoverSearchCleared,
-  uiDiscoverRefreshButtonClicked
+  uiDiscoverSearchCleared
 } from '~actions/ui'
 import {
-  systemDiscoverFetch
+  systemDiscoverAlbumsFetch
 } from '~actions/system'
 
 import deleteSelectedAlbums from './startDiscoverPageService/deleteSelectedAlbums'
@@ -23,11 +21,9 @@ import fetchDiscoverAlbums from './startDiscoverPageService/fetchDiscoverAlbums'
 function * startDiscoverPageService (apis) {
   yield all([
     takeLatest([
-      uiDiscoverPageOpened,
       uiDiscoverSearchPerformed,
       uiDiscoverSearchCleared,
-      uiDiscoverRefreshButtonClicked,
-      systemDiscoverFetch
+      systemDiscoverAlbumsFetch
     ], fetchDiscoverAlbums, apis),
     takeEvery(uiDiscoverSelectedDeleted, deleteSelectedAlbums, apis),
     takeEvery([
