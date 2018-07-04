@@ -52,7 +52,7 @@ FeedScreen.propTypes = {
   albumsIds: propTypes.array.isRequired,
   title: propTypes.string.isRequired,
   hasRefreshButton: propTypes.bool.isRequired,
-  onRefreshButtonClick: propTypes.bool.isRequired
+  onRefreshButtonClick: propTypes.func.isRequired
 }
 
 export default FeedScreen

@@ -27,7 +27,7 @@ NavigationItem.propTypes = {
   path: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   icon: propTypes.object.isRequired,
-  hasIndicator: propTypes.bool.isRequired,
+  hasIndicator: propTypes.bool,
   id: propTypes.string
 }
 
