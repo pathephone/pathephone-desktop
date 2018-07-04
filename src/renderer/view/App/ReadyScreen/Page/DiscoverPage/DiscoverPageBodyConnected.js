@@ -4,22 +4,30 @@ import {
   isDiscoverSearchPerformed,
   isDiscoverHasAlbums,
   isDiscoverPageProcessing,
-  isDiscoverHasFailed
+  isDiscoverHasFailed,
+  isDiscoverAlbumsOutdated
 } from '#selectors'
 
 import DiscoverPageBody from './DiscoverPageBody.jsx'
+import { systemDiscoverFetch } from '~actions/system'
 
 const mapStateToProps = state => {
   const hasAlbums = isDiscoverHasAlbums(state)
   const hasError = isDiscoverHasFailed(state)
   const isSearchPerformed = isDiscoverSearchPerformed(state)
   const isProcessing = isDiscoverPageProcessing(state)
+  const isAlbumsOutdated = isDiscoverAlbumsOutdated(state)
   return {
     hasNoAlbumsScreen: !hasAlbums && !hasError && !isSearchPerformed && !isProcessing,
     hasNoSearchResultsScreen: isSearchPerformed && !isProcessing && !hasError && !hasAlbums,
     hasFeedScreen: hasAlbums,
-    hasProcessingScreen: isProcessing
+    hasProcessingScreen: isProcessing,
+    isAlbumsUpdateNeeded: isAlbumsOutdated && !hasAlbums
   }
 }
 
-export default connect(mapStateToProps)(DiscoverPageBody)
+const mapDispatchToProps = {
+  onAlbumsUpdateRequest: systemDiscoverFetch
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPageBody)

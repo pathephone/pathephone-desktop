@@ -10,6 +10,12 @@ import FeedScreenConnected from './DiscoverPageBody/FeedScreenConnected'
 import './DiscoverPageBody.css'
 
 class DiscoverPageBody extends React.Component {
+  componentDidUpdate () {
+    const { isAlbumsUpdateNeeded, onAlbumsUpdateRequest } = this.props
+    if (isAlbumsUpdateNeeded) {
+      onAlbumsUpdateRequest()
+    }
+  }
   render () {
     const {
       hasNoAlbumsScreen,
@@ -50,7 +56,9 @@ DiscoverPageBody.propTypes = {
   hasNoAlbumsScreen: propTypes.bool.isRequired,
   hasNoSearchResultsScreen: propTypes.bool.isRequired,
   hasFeedScreen: propTypes.bool.isRequired,
-  hasProcessingScreen: propTypes.bool.isRequired
+  hasProcessingScreen: propTypes.bool.isRequired,
+  isAlbumsUpdateNeeded: propTypes.bool.isRequired,
+  onAlbumsUpdateRequest: propTypes.func.isRequired
 }
 
 export default DiscoverPageBody
