@@ -23,6 +23,7 @@ import {
   discoverPageDeleteSelected
 } from '~reusable/discoverPage'
 import { openSharePage } from '~reusable/navigation'
+import { lockScreenWaitForNotExists } from '~reusable/lockScreen'
 
 const ALBUM_ARTIST = 'custom artist'
 const ALBUM_TITLE = 'custom title'
@@ -58,6 +59,7 @@ describe('check submit valid form...', () => {
       return discoverAlbumArtistEquals.call(this, 1, album1.autoArtist)
     })
     after(async function () {
+      await lockScreenWaitForNotExists.call(this, 1)
       await discoverFeedAlbumClick.call(this, 1)
       await discoverPageDeleteSelected.call(this)
       await openSharePage.call(this)
