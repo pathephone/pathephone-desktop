@@ -26,6 +26,7 @@ const albumInstanceSchema = {
     tracks: {
       type: 'array',
       minItems: 1,
+      maxItems: 100,
       items: {
         type: 'object',
         properties: {
