@@ -1,4 +1,8 @@
 
+.donatePage {
+  padding: 1em;
+}
+
 .donate-pill {
   display: flex;
 }
@@ -11,9 +15,4 @@
   padding: 0.5em;
   background-color: bisque;
   margin-left: auto;
-}
-
-.donateGif {
-  width: 100%;
-  height: auto;
 }

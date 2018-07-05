@@ -5,6 +5,11 @@ import {
   E2E_SHARE_FORM_TRACKLIST_ID,
   E2E_SHARE_FORM_ADD_TRACK_INPUT_ID
 } from '~data/e2eConstants'
+import {
+  LOCAL_TRACKLIST,
+  LOCAL_ADD_TRACKS,
+  LOCAL_YOU_SHOULD_ADD_TRACK
+} from '~data/i18nConstants'
 
 import TrackInput from './TracklistFieldset/TrackInput.jsx'
 
@@ -18,13 +23,10 @@ class TracklistFieldset extends React.PureComponent {
       onMoveTrackUp
     } = this.props
 
-    const fileName = track.file
-    const cid = track.cid
     return (
       <TrackInput
         index={index}
-        fileName={fileName}
-        cid={cid}
+        fileName={track.audio}
         onRemoveTrack={onRemoveTrack}
         onMoveTrackDown={onMoveTrackDown}
         onMoveTrackUp={onMoveTrackUp}
@@ -45,7 +47,7 @@ class TracklistFieldset extends React.PureComponent {
         disabled={isDisabled}
         className='fieldset tracklistFieldset'
       >
-        <legend>{`Tracklist (${tracks.length} tracks)`}</legend>
+        <legend>{`${LOCAL_TRACKLIST} (${tracks.length})`}</legend>
         <div id={E2E_SHARE_FORM_TRACKLIST_ID}>
           {
             tracks.map(this.handleMap)
@@ -64,9 +66,9 @@ class TracklistFieldset extends React.PureComponent {
           htmlFor={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
           className='addTracksLabel'
         >
-          add tracks <br />
+          {LOCAL_ADD_TRACKS} <br />
           <span className='noTracksMessage'>
-            you should add at least one track
+            {LOCAL_YOU_SHOULD_ADD_TRACK}
           </span>
         </label>
       </fieldset>

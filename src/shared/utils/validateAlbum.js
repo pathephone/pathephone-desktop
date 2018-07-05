@@ -1,5 +1,5 @@
 import Ajv from 'ajv'
-import { albumInstanceSchema } from '~data/schemas'
+import albumInstanceSchema from '~data/schemas/album/albumInstanceSchema'
 
 const validateAlbum = (albumCandidate) => {
   const validator = new Ajv({

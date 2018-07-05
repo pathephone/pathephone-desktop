@@ -1,0 +1,36 @@
+.donateCard {
+  border-radius: 2px;
+}
+
+.donateGif {
+  border-radius: 2px;
+  width: 30em;
+  margin: 0 auto;
+}
+
+.cryptoTable {
+  border: 1px solid lightgrey;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 40em;
+}
+
+.cryptoTable,
+.cryptoTable td {
+  border: 1px solid lightgray;
+}
+
+.cryptoTable td {
+  padding: 0.75em 1em;
+  word-wrap: break-word;
+}
+
+.cryptoTable td:first-child {
+  width: 30%;
+}
+
+.yandexCard {
+  text-align: center;
+}

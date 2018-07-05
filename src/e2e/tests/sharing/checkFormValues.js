@@ -1,6 +1,6 @@
 import {
-  cancelShareForm,
-  shareDropZoneExists,
+  shareCancelForm,
+  shareWaitForDropZoneExists,
   shareDropZoneSelect,
   coverPreviewHasIamge,
   shareFormTracklistLengthEquals,
@@ -25,6 +25,8 @@ describe('check form values', () => {
       })
       it('album artist value matches', async function () {
         const { app } = this
+        await app.client
+          .waitForExist(E2E_SHARE_FORM_ARTIST_INPUT_ID)
         const value = await app.client
           .$(E2E_SHARE_FORM_ARTIST_INPUT_ID)
           .getValue()
@@ -45,8 +47,8 @@ describe('check form values', () => {
       })
 
       after(async function () {
-        await cancelShareForm.call(this)
-        await shareDropZoneExists.call(this)
+        await shareCancelForm.call(this)
+        await shareWaitForDropZoneExists.call(this)
       })
     })
   })

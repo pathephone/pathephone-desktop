@@ -1,8 +1,6 @@
 import { app } from 'electron'
 
 import withEnvironment from './methods/withEnvironment'
-import startIpfsDaemon from './methods/startIpfsDaemon'
-import getIpfsDaemonParams from './methods/getIpfsDaemonParams'
 import startCommunication from './methods/startCommunication'
 import createMainWindow from './methods/createMainWindow'
 import loadMainWindow from './methods/loadMainWindow'
@@ -20,15 +18,9 @@ withSingleInstanceBehaviour(state)
 withEnvironment()
 
 const handleReady = () => {
-  console.log('-- starting ipfs daemon')
-
-  const ipfsDaemonPromise = startIpfsDaemon(getIpfsDaemonParams())
-
   console.log('-- starting ipc')
 
-  const communication = startCommunication({
-    ipfsDaemonPromise
-  })
+  const communicationPromise = startCommunication()
 
   console.log('-- loading main window')
 
@@ -64,9 +56,8 @@ const handleReady = () => {
     if (!state.isReadyToQuit) {
       state.isQuiting = true
       try {
-        await communication.stop()
-        const ipfsDaemon = await ipfsDaemonPromise
-        await ipfsDaemon.stop()
+        const stopCommunication = await communicationPromise
+        await stopCommunication()
         console.log('-- app ready to quit')
       } catch (error) {
         console.error(error)

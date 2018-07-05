@@ -4,31 +4,3 @@
   background-color: var(--primary-color);
   overflow-y: auto;
 }
-
-.navigation__item {
-  margin: 0.5em 0;
-  display: block;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: white;
-  padding: 1em;
-  transition: 0.2s;
-  border-left: 2px solid rgba(0,0,0,0);
-  cursor: pointer;
-}
-
-.navigation__item > *:first-child {
-  margin: 0 1.5em 0 1em;
-  display: inline;
-}
-
-.navigation__item--active {
-  border-left-color: var(--accent-color);
-}
-.navigation__item:hover {
-  background-color: var(--white-shade-1);
-}
-.navigation__item:focus {
-  color: var(--accent-color);
-  outline: none;
-}

@@ -5,7 +5,7 @@
   justify-items: stretch;
   align-items: stretch;
   grid-template-columns: 17.5em auto 17.5em;
-  grid-template-rows: auto 6em;
+  grid-template-rows: calc(100% - 6em) 6em;
   grid-template-areas: 
     "navigation page playlist"
     "player player player";

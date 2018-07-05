@@ -23,6 +23,8 @@ describe('DISCOVER PAGE TESTS', function () {
   require('./discoverPageTests/albumActionsTests')
   require('./discoverPageTests/selectAlbumTests')
   require('./discoverPageTests/selectedActionsTests')
+  require('./discoverPageTests/searchTests.js')
+  require('./discoverPageTests/paginationTests.js')
 
   after(closeApp)
 })

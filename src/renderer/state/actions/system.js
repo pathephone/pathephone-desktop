@@ -2,6 +2,7 @@ import { newCreatorFactory, newDomainTypeFactory } from '~utils/reduxTools'
 
 const c = newCreatorFactory(newDomainTypeFactory('system'))
 
+export const systemAppRootMounted = c('APP_ROOT_MOUNTED')
 export const systemAppStartProceed = c('APP_START_PROCEED')
 export const systemAppStartSucceed = c('APP_START_SUCCEED')
 export const systemAppStartFailed = c('APP_START_FAILED')
@@ -31,7 +32,9 @@ export const systemShareCandidateSaveSucceed = c('SHARE_CANDIDATE_SAVE_SUCCEED')
 export const systemShareCandidateSaveFailed = c('SHARE_CANDIDATE_SAVE_FAILED')
 export const systemShareCandidatesNotFound = c('SHARE_CANDIDATES_NOT_FOUND')
 
-export const systemDiscoverAlbumsFetchSucceed = c('DISCOVER_ALBUMS_FETCH_SUCCEED')
+export const systemDiscoverAlbumsFetch = c('DISCOVER_FETCH_SUCCEED')
+export const systemDiscoverAlbumsFetchSucceed = c('DISCOVER_LATEST_FETCH_SUCCEED')
+export const systemDiscoverAlbumsFetchFailed = c('DISCOVER_LATEST_FETCH_FAILED')
 export const systemDiscoverSelectedActionSucceed = c('DISCOVER_SELECTED_ACTION_SUCCEED')
 export const systemDiscoverSelectedActionFailed = c('DISCOVER_SELECTED_ACTION_FAILED')
 
@@ -46,7 +49,8 @@ export const systemPlaylistCleared = c('PLAYLIST_CLEARED')
 export const systemPlayedTracksRecieved = c('PLAYED_TRACKS_RECIEVED')
 export const systemQueuedTracksRecieved = c('QUEUED_TRACKS_RECIEVED')
 
-export const systemTrackCached = c('TRACK_CACHED')
+export const systemCacheTracks = c('CACHE_TRACKS')
+export const systemCacheTrackSucceed = c('CACHE_TRACK_SUCCEED')
 
 export const systemRepeatedPlaylistEnded = c('REPEATED_PLAYLIST_ENDED')
 
@@ -54,3 +58,8 @@ export const systemNotificationRecieved = c('NOTIFICATION_RECIEVED')
 export const systemNotificationExpired = c('NOTIFICATION_EXPIRED')
 
 export const systemIpfsInfoRecieved = c('IPFS_INFO_RECIEVED')
+
+export const systemAlbumsCollectionInfoRecieved = c('ALBUMS_COUNT_RECIEVED')
+export const systemAlbumsRecievedCacheTransited = c('RECIEVED_CACHE_TRANSITED')
+
+export const systemNewRelaseDetected = c('NEW_RELEASE_DETECTED')

@@ -1,9 +1,10 @@
 import {
-  cancelShareForm,
-  shareDropZoneExists,
+  shareCancelForm,
+  shareWaitForDropZoneExists,
   shareDropZoneSelect,
   shareFormSubmit,
-  shareFormReset
+  shareFormReset,
+  shareWaitForFormExists
 } from '~reusable/sharePage'
 
 import { tracks } from '~data/assets'
@@ -21,6 +22,7 @@ const testTrack = tracks[0]
 describe('check form validation', () => {
   before(async function () {
     await shareDropZoneSelect.call(this, testTrack.file)
+    await shareWaitForFormExists.call(this)
     await shareFormSubmit.call(this)
   })
 
@@ -71,7 +73,7 @@ describe('check form validation', () => {
   })
 
   after(async function () {
-    await cancelShareForm.call(this)
-    await shareDropZoneExists.call(this)
+    await shareCancelForm.call(this)
+    await shareWaitForDropZoneExists.call(this)
   })
 })

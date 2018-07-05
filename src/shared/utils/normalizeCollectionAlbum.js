@@ -1,11 +1,9 @@
-
-const normalizeCollectionAlbum = ({ cid, data: { cover, title, tracks } }) =>
+const normalizeCollectionAlbum = ({ cid, data: { cover, artist, title, tracks } }) =>
   ({
     albumCid: cid,
-    albumArtist: tracks[0].artist,
+    albumArtist: artist,
     albumTitle: title,
-    albumCoverCid: cover,
-    lowestQuality: tracks[0].bitrate
+    albumCoverCid: cover.image
   })
 
 export default normalizeCollectionAlbum

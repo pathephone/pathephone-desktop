@@ -1,45 +1,19 @@
-const shareCandidateSchema = {
-  type: 'object',
-  properties: {
-    title: {
-      type: 'string',
-      minLength: 1
-    },
-    artist: {
-      type: 'string',
-      minLength: 1
-    },
-    cover: {
-      type: 'string',
-      minLength: 1
-    },
-    tracks: {
-      type: 'array',
-      minItems: 1,
-      items: {
-        type: 'object',
-        properties: {
-          title: {
-            type: 'string',
-            minLength: 1
-          },
-          artist: {
-            type: 'string',
-            minLength: 1
-          },
-          bitrate: {
-            type: 'number',
-            minimum: 128
-          },
-          file: {
-            type: 'string'
-          }
-        },
-        required: [ 'title', 'artist', 'bitrate', 'file' ]
-      }
-    }
-  },
-  required: [ 'title', 'artist', 'tracks', 'cover' ]
-}
+import dotProp from 'dot-prop-immutable'
+
+import albumInstanceSchema from '~data/schemas/album/albumInstanceSchema'
+
+const localFileSchema = { type: 'string', minLength: 1 }
+
+let shareCandidateSchema = dotProp.set(
+  albumInstanceSchema,
+  'properties.cover.properties.image',
+  localFileSchema
+)
+
+shareCandidateSchema = dotProp.set(
+  shareCandidateSchema,
+  'properties.tracks.items.properties.audio',
+  localFileSchema
+)
 
 export default shareCandidateSchema

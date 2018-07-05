@@ -1,10 +1,13 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import MdDrop from 'react-icons/lib/md/arrow-downward'
 
 import { E2E_SHARE_DROP_ZONE_ID } from '~data/e2eConstants'
+import { LOCAL_SELECT_OR_DND } from '~data/i18nConstants'
 
-import MdDrop from 'react-icons/lib/md/arrow-downward'
 import DNDarea from '~components/DNDarea.jsx'
+
+import './ShareDropZone.css'
 
 const ShareDropZone = ({ onFilesSelect }) => {
   return (
@@ -12,7 +15,7 @@ const ShareDropZone = ({ onFilesSelect }) => {
       <div className='izi-fill izi-y izi-middle share-drop-zone'>
         <MdDrop className='dnd-icon animated infinite bounce' />
         <br />
-        <label className='izi-uppercase izi-text-center'>select or drag and drop<br /> your album files</label>
+        <label className='selectOrDND'>{LOCAL_SELECT_OR_DND}</label>
       </div>
     </DNDarea>
   )

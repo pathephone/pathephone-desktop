@@ -20,13 +20,14 @@ export const uiPlaybackToggled = c('PLAYBACK_TOGGLED')
 export const uiNextTrackPlayed = c('NEXT_TRACK_PLAYED')
 export const uiPreviousTrackPlayed = c('PREVIOUS_TRACK_PLAYED')
 
-export const uiDiscoverSearchPerformed = c('ALBUMS_SEARCH_PERFORMED')
-export const uiDiscoverSearchCleared = c('ALBUMS_SEARCH_CLEARED')
+export const uiDiscoverSearchPerformed = c('DISCOVER_SEARCH_PERFORMED')
+export const uiDiscoverSearchValueChanged = c('DISCOVER_SEARCH_VALUE_CHANGED')
+export const uiDiscoverSearchCleared = c('DISCOVER_SEARCH_CLEARED')
 
 export const uiDiscoverAlbumSelected = c('ALBUM_SELECTED')
 export const uiDiscoverAlbumDeselected = c('ALBUM_DESELECTED')
 
-export const uiDiscoverAlbumsRequested = c('MORE_DISCOVER_ALBUMS_REQUESTED')
+export const uiDiscoverPageClosed = c('DISCOVER_PAGE_CLOSED')
 export const uiDiscoverSelectedQueued = c('DISCOVER_SELECTED_QUEUED')
 export const uiDiscoverSelectedPlayed = c('DISCOVER_SELECTED_PLAYED')
 export const uiDiscoverSelectedDeleted = c('DISCOVER_SELECTED_DELETED')
@@ -52,3 +53,5 @@ export const uiShareFormTrackMovedUp = c('SHARE_FORM_TRACK_MOVED_UP')
 export const uiShareFormTrackMovedDown = c('SHARE_FORM_TRACK_MOVED_DOWN')
 
 export const uiNotificationToastRemoved = c('NOTIFICATION_TOAST_REMOVED')
+
+export const uiLegalAgreementGranted = c('LEGAL_AGREEMENT_GRANTED')

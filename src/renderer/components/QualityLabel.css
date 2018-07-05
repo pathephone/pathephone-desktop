@@ -1,0 +1,23 @@
+.quality-label--low,
+.quality-label--high,
+.quality-label--lossless {
+  font-size: 0.6em;
+  padding: 0.25em 0.5em;
+  font-weight: bold;
+  cursor: default;
+}
+
+.quality-label--low {
+  background: orange;
+  color: black;
+}
+
+.quality-label--high {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.quality-label--lossless {
+  background: lightseagreen;
+  color: white;
+}

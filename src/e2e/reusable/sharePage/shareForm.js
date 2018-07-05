@@ -11,17 +11,18 @@ import {
   E2E_SHARE_FORM_COVER_LABEL_ID,
   E2E_SHARE_FORM_COVER_INPUT_ID,
   E2E_SHARE_FORM_CANCEL_BUTTON_ID,
-  E2E_SHARE_FORM_ID
+  E2E_SHARE_FORM_ID,
+  E2E_SHARE_FORM_TITLE_INPUT_ID,
+  E2E_SHARE_FORM_ARTIST_INPUT_ID
 } from '~data/e2eConstants'
 
-export function cancelShareForm () {
+export function shareCancelForm () {
   const { app } = this
   return app.client.click(E2E_SHARE_FORM_CANCEL_BUTTON_ID)
 }
 
-export function shareFormExists () {
-  const { app } = this
-  return app.client.waitForExist(E2E_SHARE_FORM_ID)
+export function shareWaitForFormExists () {
+  return this.app.client.waitForExist(E2E_SHARE_FORM_ID)
 }
 
 export function shareFormAddTrack (file) {
@@ -108,4 +109,12 @@ export function validateTrackFields (index, track) {
 export async function shareFormTracklistLengthEquals (expectedLength) {
   const tracklist = await this.app.client.$$(`${E2E_SHARE_FORM_TRACKLIST_ID} > *`)
   expect(tracklist.length).equal(expectedLength)
+}
+
+export function shareFormSetAlbumTitle (title) {
+  return this.app.client.setValue(E2E_SHARE_FORM_TITLE_INPUT_ID, title)
+}
+
+export function shareFormSetAlbumArtist (title) {
+  return this.app.client.setValue(E2E_SHARE_FORM_ARTIST_INPUT_ID, title)
 }

@@ -1,24 +1,20 @@
-import startIpfsApi from './startIpfsApi'
-import startMetabinApi from './startMetabinApi'
-import { IPC_IPFS_START } from '~data/ipcTypes'
-import { ipcMainTake } from '~utils/ipcMain'
+import startFsBridge from './startCommunication/startFsBridge'
+import startIpfsBridge from './startCommunication/startIpfsBridge'
+import startMetabinBridge from './startCommunication/startMetabinBridge'
+import startIpfsProcess from './startCommunication/startIpfsProcess'
 
-const startCommunication = (params) => {
-  const stopIpfsApi = startIpfsApi(params)
-  const stopMetabinApi = startMetabinApi(params)
-  const handleStartRequest = async () => {
-    const { ipfsDaemonPromise } = params
-    const { api } = await ipfsDaemonPromise
-    const gateway = `http://${api.gatewayHost}:${api.gatewayPort}`
-    return { gateway }
-  }
-  const stopListener = ipcMainTake(IPC_IPFS_START, handleStartRequest)
-  return {
-    async stop () {
-      stopListener()
-      await stopMetabinApi()
-      await stopIpfsApi()
-    }
+const startCommunication = () => {
+  const ipfsProcessPromise = startIpfsProcess()
+
+  const stopFsBridge = startFsBridge()
+  const stopIpfsBridge = startIpfsBridge({ ipfsProcessPromise })
+  const stopMetabinBridge = startMetabinBridge({ ipfsProcessPromise })
+  return async () => {
+    stopFsBridge()
+    stopIpfsBridge()
+    stopMetabinBridge()
+    const ipfsProcess = await ipfsProcessPromise
+    ipfsProcess.disconnect()
   }
 }
 

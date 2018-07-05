@@ -1,14 +1,14 @@
-import { MESSAGE_NO_ALBUMS_FOUND } from '~data/textMessages'
+import { LOCAL_NO_ALBUMS_FOUND } from '~data/i18nConstants'
 import { txtFile, svgFile } from '~data/assets/files'
 
 import {
   getNotificationMessage,
-  allNotificationsHaveDisappeared
+  waitForNoNotifications
 } from '~reusable/notifications'
 
 import {
   shareDropZoneSelect,
-  shareDropZoneExists
+  shareWaitForDropZoneExists
 } from '~reusable/sharePage'
 
 describe('select wrong files', () => {
@@ -18,14 +18,14 @@ describe('select wrong files', () => {
         return shareDropZoneSelect.call(this, file)
       })
       it('share drop zone remains', async function () {
-        return shareDropZoneExists.call(this)
+        return shareWaitForDropZoneExists.call(this)
       })
       it('correct notification message appears', async function () {
         const message = await getNotificationMessage.call(this)
-        expect(message).equal(MESSAGE_NO_ALBUMS_FOUND)
+        expect(message).equal(LOCAL_NO_ALBUMS_FOUND)
       })
       it('notification disappears', async function () {
-        await allNotificationsHaveDisappeared.call(this)
+        await waitForNoNotifications.call(this)
       })
     })
   })
