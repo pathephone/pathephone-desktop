@@ -7,9 +7,9 @@ import {
 } from '~actions/system'
 
 import {
-  MESSAGE_NO_ALBUMS_FOUND,
-  MESSAGE_ERROR_PROCESSING_FILES
-} from '~data/textMessages'
+  LOCAL_NO_ALBUMS_FOUND,
+  LOCAL_ERROR_PROCESSING_FILES
+} from '~data/i18nConstants'
 
 function * handleShareItemsSelect (apis, { payload }) {
   const { getAlbumCandidatesFromFs } = apis
@@ -22,13 +22,13 @@ function * handleShareItemsSelect (apis, { payload }) {
       yield put(systemShareCandidatesRecieved(candidates))
     } else {
       yield put(systemShareCandidatesNotFound(
-        { warningMessage: MESSAGE_NO_ALBUMS_FOUND }
+        { warningMessage: LOCAL_NO_ALBUMS_FOUND }
       ))
     }
   } catch (e) {
     console.error(e)
     yield put(systemShareFilesProcessingFailed(
-      { errorMessage: MESSAGE_ERROR_PROCESSING_FILES }
+      { errorMessage: LOCAL_ERROR_PROCESSING_FILES }
     ))
   }
 }

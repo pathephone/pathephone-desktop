@@ -1,10 +1,11 @@
 import React from 'react'
 import propTypes from 'prop-types'
-
 import MdClose from 'react-icons/lib/md/close'
 
-import './SearchBar.css'
 import { E2E_DISCOVER_PAGE_SEARCH_INPUT_ID } from '~data/e2eConstants'
+import { LOCAL_SEARCH_IN_ALBUMS_COLLECTION } from '~data/i18nConstants'
+
+import './SearchBar.css'
 
 class SearchBar extends React.Component {
   state = {
@@ -29,7 +30,7 @@ class SearchBar extends React.Component {
   render () {
     const { inputValue } = this.state
     const { albumsCount } = this.props
-    const placeholder = `Search in ${albumsCount} albums`
+    const placeholder = `${LOCAL_SEARCH_IN_ALBUMS_COLLECTION} (${albumsCount})`
     return (
       <form className='albums-page__search-bar' onSubmit={this.handleSubmit}>
         <input

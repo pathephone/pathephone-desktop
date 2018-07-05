@@ -1,4 +1,4 @@
-import { MESSAGE_NO_ALBUMS_FOUND } from '~data/textMessages'
+import { LOCAL_NO_ALBUMS_FOUND } from '~data/i18nConstants'
 import { txtFile, svgFile } from '~data/assets/files'
 
 import {
@@ -22,7 +22,7 @@ describe('select wrong files', () => {
       })
       it('correct notification message appears', async function () {
         const message = await getNotificationMessage.call(this)
-        expect(message).equal(MESSAGE_NO_ALBUMS_FOUND)
+        expect(message).equal(LOCAL_NO_ALBUMS_FOUND)
       })
       it('notification disappears', async function () {
         await waitForNoNotifications.call(this)

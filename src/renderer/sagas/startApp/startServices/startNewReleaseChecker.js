@@ -7,6 +7,7 @@ import getMyAppVersion from '~utils/getMyAppVersion'
 
 import { systemNewRelaseDetected } from '~actions/system'
 import { CHECK_FOR_UPDATE_INTERVAL } from '~data/constants'
+import { LOCAL_NEW_RELEASE_NOTIFICATION } from '~data/i18nConstants'
 
 import { getNewRelease } from '#selectors'
 import { IS_PRODUCTION } from '#config'
@@ -29,7 +30,7 @@ function * checkForNewRelease () {
       yield put(
         systemNewRelaseDetected({
           release,
-          successMessage: 'New Pathephone release is available for download.'
+          successMessage: LOCAL_NEW_RELEASE_NOTIFICATION
         })
       )
     }

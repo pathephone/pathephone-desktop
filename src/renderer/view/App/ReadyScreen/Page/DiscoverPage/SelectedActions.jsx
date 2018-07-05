@@ -6,7 +6,19 @@ import MdAdd from 'react-icons/lib/md/playlist-add'
 import MdDelete from 'react-icons/lib/md/delete'
 import MdClear from 'react-icons/lib/md/clear'
 
-import { E2E_DISCOVER_PAGE_SELECTED_BAR_ID, E2E_DISCOVER_PAGE_SELECTED_COUNT_ID, E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID, E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID, E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID } from '~data/e2eConstants'
+import {
+  E2E_DISCOVER_PAGE_SELECTED_BAR_ID,
+  E2E_DISCOVER_PAGE_SELECTED_COUNT_ID,
+  E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID,
+  E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID,
+  E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID
+} from '~data/e2eConstants'
+import {
+  LOCAL_ALBUMS_SELECTED,
+  LOCAL_PLAY,
+  LOCAL_QUEUE,
+  LOCAL_DELETE
+} from '~data/i18nConstants'
 
 import CustomButton from '~components/CustomButton.jsx'
 
@@ -31,31 +43,30 @@ class SelectedActions extends React.PureComponent {
         >
           <span
             id={E2E_DISCOVER_PAGE_SELECTED_COUNT_ID}
-          >{selectedAlbumsCount}</span>
-          {
-            ` album${selectedAlbumsCount > 1 ? 's' : ''} selected`
-          }
+          >
+            {`${LOCAL_ALBUMS_SELECTED}: ${selectedAlbumsCount}`}
+          </span>
         </label>
         <CustomButton
           onClick={onPlaySelected}
           id={E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID}
         >
           <MdPlay />
-          <small>play</small>
+          <small>{LOCAL_PLAY}</small>
         </CustomButton>
         <CustomButton
           id={E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID}
           onClick={onAddSelected}
         >
           <MdAdd />
-          <small>add to playlist</small>
+          <small>{LOCAL_QUEUE}</small>
         </CustomButton>
         <CustomButton
           id={E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID}
           onClick={onDeleteSelected}
         >
           <MdDelete />
-          <small>delete</small>
+          <small>{LOCAL_DELETE}</small>
         </CustomButton>
         <div className='rightActions'>
           <CustomButton

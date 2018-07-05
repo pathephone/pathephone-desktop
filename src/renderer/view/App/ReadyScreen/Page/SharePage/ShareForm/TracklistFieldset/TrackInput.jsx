@@ -4,9 +4,17 @@ import propTypes from 'prop-types'
 import MdDec from 'react-icons/lib/md/blur-on'
 import MdFile from 'react-icons/lib/md/insert-drive-file'
 
+import {
+  LOCAL_ARTIST,
+  LOCAL_TITLE,
+  LOCAL_TRACK_TITLE,
+  LOCAL_TRACK_ARTIST
+} from '~data/i18nConstants'
+
+import CustomTextInput from '~components/CustomTextInput.jsx'
+
 import TrackControlsLeft from './TrackControlsLeft.jsx'
 import TrackControlsRight from './TrackControlsRight.jsx'
-import CustomTextInput from '~components/CustomTextInput.jsx'
 
 import './TrackInput.css'
 
@@ -44,17 +52,17 @@ class TrackInput extends React.PureComponent {
         <div className='trackInputBody'>
           <div className='trackInputSplit'>
             <label>
-              Artist<br />
+              {LOCAL_ARTIST}<br />
               <CustomTextInput
                 name={`tracks.${index}.artist`}
-                placeholder='Artist'
+                placeholder={LOCAL_TRACK_ARTIST}
               />
             </label>
             <label>
-              Title<br />
+              {LOCAL_TITLE}<br />
               <CustomTextInput
                 name={`tracks.${index}.title`}
-                placeholder='Title'
+                placeholder={LOCAL_TRACK_TITLE}
               />
             </label>
           </div>

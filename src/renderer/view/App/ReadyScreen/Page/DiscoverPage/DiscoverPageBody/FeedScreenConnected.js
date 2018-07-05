@@ -1,5 +1,11 @@
 import { connect } from 'react-redux'
 
+import { systemDiscoverAlbumsFetch } from '~actions/system'
+import {
+  LOCAL_LATEST_ALBUMS,
+  LOCAL_SEARCH_RESULTS_FOR
+} from '~data/i18nConstants'
+
 import {
   getDiscoverAlbumsIds,
   getDiscoverSearchValue,
@@ -7,15 +13,14 @@ import {
 } from '#selectors'
 
 import FeedScreen from './FeedScreen.jsx'
-import { systemDiscoverAlbumsFetch } from '~actions/system'
 
 const mapStateToProps = state => {
   const searchValue = getDiscoverSearchValue(state)
   let title
   if (searchValue) {
-    title = `Search results for "${searchValue}"`
+    title = `${LOCAL_SEARCH_RESULTS_FOR} "${searchValue}"`
   } else {
-    title = 'Latest albums'
+    title = LOCAL_LATEST_ALBUMS
   }
   return {
     albumsIds: getDiscoverAlbumsIds(state),

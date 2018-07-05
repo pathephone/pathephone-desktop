@@ -5,8 +5,20 @@ import UploadIcon from 'react-icons/lib/md/share'
 import DiscoverIcon from 'react-icons/lib/md/search'
 import InfoIcon from 'react-icons/lib/md/info'
 
-import { ROUTE_ADD_ALBUM, ROUTE_ALBUMS, ROUTE_DONATE } from '~data/constants'
-import { E2E_NAV_SHARE_LINK_ID, E2E_NAV_DISCOVER_LINK_ID } from '~data/e2eConstants'
+import {
+  ROUTE_ADD_ALBUM,
+  ROUTE_ALBUMS,
+  ROUTE_DONATE
+} from '~data/constants'
+import {
+  E2E_NAV_SHARE_LINK_ID,
+  E2E_NAV_DISCOVER_LINK_ID
+} from '~data/e2eConstants'
+import {
+  LOCAL_DISCOVER_BUTTON,
+  LOCAL_SHARE_BUTTON,
+  LOCAL_ABOUT_BUTTON
+} from '~data/i18nConstants'
 
 import NavigationItem from './Navigation/NavigationItem.jsx'
 
@@ -17,18 +29,18 @@ const Navigation = ({ hasUpdateIndicator }) => (
     <NavigationItem
       id={E2E_NAV_DISCOVER_LINK_ID}
       path={ROUTE_ALBUMS}
-      title='Discover'
+      title={LOCAL_DISCOVER_BUTTON}
       icon={<DiscoverIcon />}
     />
     <NavigationItem
       id={E2E_NAV_SHARE_LINK_ID}
       path={ROUTE_ADD_ALBUM}
-      title='Share'
+      title={LOCAL_SHARE_BUTTON}
       icon={<UploadIcon />}
     />
     <NavigationItem
       path={ROUTE_DONATE}
-      title='About'
+      title={LOCAL_ABOUT_BUTTON}
       icon={<InfoIcon />}
       hasIndicator={hasUpdateIndicator}
     />

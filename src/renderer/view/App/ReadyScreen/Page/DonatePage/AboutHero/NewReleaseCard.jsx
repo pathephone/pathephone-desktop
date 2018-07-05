@@ -2,8 +2,12 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
-import AssetsButtons from './NewReleaseCard/AssetsButtons.jsx'
+import {
+  LOCAL_NEW_VERSION_AVAILABLE,
+  LOCAL_AVAILABLE_FOR_OS
+} from '~data/i18nConstants'
 
+import AssetsButtons from './NewReleaseCard/AssetsButtons.jsx'
 import './NewReleaseCard.css'
 
 const NewReleaseCard = props => {
@@ -11,14 +15,14 @@ const NewReleaseCard = props => {
   return (
     <div className='newReleaseCardContainer'>
       <h4 className='newReleaseCardTitle'>
-        new version is available
+        {LOCAL_NEW_VERSION_AVAILABLE}
       </h4>
       <h5>{newReleaseName}</h5>
       <hr />
       <AssetsButtons {...props} />
       <br />
       <a className='githubReleaseLink' href='https://github.com/pathephone/pathephone-desktop/releases/latest'>
-        <small>available for Mac, Windows and Linux</small>
+        <small>{LOCAL_AVAILABLE_FOR_OS}</small>
       </a>
     </div>
   )
