@@ -1,3 +1,64 @@
+# [2.0.0](https://github.com/pathephone/pathephone-desktop/compare/v1.4.0...v2.0.0) (2018-07-05)
+
+
+### Bug Fixes
+
+*  add yandex donate button to about page ([78946b9](https://github.com/pathephone/pathephone-desktop/commit/78946b9))
+* add CIDv0 regex pattern to album instance schema ([0390d55](https://github.com/pathephone/pathephone-desktop/commit/0390d55))
+* add web site link to about page ([98cdc92](https://github.com/pathephone/pathephone-desktop/commit/98cdc92))
+* cache playlist CIDs on app start if any ([b7cd076](https://github.com/pathephone/pathephone-desktop/commit/b7cd076))
+* correct feed album artist if it was edited ([53f1f2a](https://github.com/pathephone/pathephone-desktop/commit/53f1f2a))
+* disable latest albums request on empty search if search was not performed ([07d7581](https://github.com/pathephone/pathephone-desktop/commit/07d7581))
+* disable pubsub-related tasks when offline ([418db3d](https://github.com/pathephone/pathephone-desktop/commit/418db3d))
+* hide search bar when albums count equals 0 ([f53d73c](https://github.com/pathephone/pathephone-desktop/commit/f53d73c))
+* limit max tracklist size ([e958e25](https://github.com/pathephone/pathephone-desktop/commit/e958e25))
+* perform search on enter only ([b09d3f5](https://github.com/pathephone/pathephone-desktop/commit/b09d3f5))
+* playlist controls fixed position ([5cda3b5](https://github.com/pathephone/pathephone-desktop/commit/5cda3b5))
+* prevent nested metadata field access error ([76aa4fc](https://github.com/pathephone/pathephone-desktop/commit/76aa4fc))
+* return missing fields on album update ([2925f5f](https://github.com/pathephone/pathephone-desktop/commit/2925f5f))
+* set albums collection limit to 50000 ([a733b5e](https://github.com/pathephone/pathephone-desktop/commit/a733b5e))
+* update feed automatically when first album arrive ([0b984e9](https://github.com/pathephone/pathephone-desktop/commit/0b984e9))
+* updated indicator icons with retina display support ([9241b5f](https://github.com/pathephone/pathephone-desktop/commit/9241b5f))
+* updated tray icon ([e79d9ed](https://github.com/pathephone/pathephone-desktop/commit/e79d9ed))
+* warning notifiaction for duplicate album sharing ([be5a1bc](https://github.com/pathephone/pathephone-desktop/commit/be5a1bc))
+
+
+### Code Refactoring
+
+* album instance schema update ([f86b362](https://github.com/pathephone/pathephone-desktop/commit/f86b362))
+* replace musicmetadata with music-metadata package ([b7db52d](https://github.com/pathephone/pathephone-desktop/commit/b7db52d))
+
+
+### Features
+
+* **ui:** discover latest albums ([c42ab1b](https://github.com/pathephone/pathephone-desktop/commit/c42ab1b))
+* **ui:** legal notice on first start ([e07c6cb](https://github.com/pathephone/pathephone-desktop/commit/e07c6cb))
+* about page with version number ([00626cc](https://github.com/pathephone/pathephone-desktop/commit/00626cc))
+* add "new albums available" button to Discover page ([7b518c0](https://github.com/pathephone/pathephone-desktop/commit/7b518c0))
+* add check for new release ([762f3e2](https://github.com/pathephone/pathephone-desktop/commit/762f3e2))
+* add russian localization ([48c785d](https://github.com/pathephone/pathephone-desktop/commit/48c785d))
+* add text search with custom allOf implementation ([6c0566c](https://github.com/pathephone/pathephone-desktop/commit/6c0566c))
+* display time left ([016e761](https://github.com/pathephone/pathephone-desktop/commit/016e761))
+* display total albums count in search bar ([8c2652b](https://github.com/pathephone/pathephone-desktop/commit/8c2652b))
+
+
+### Performance Improvements
+
+* move all Dexie operations to Web Worker ([75370f3](https://github.com/pathephone/pathephone-desktop/commit/75370f3))
+* move fs-related methods to child process ([5551ba4](https://github.com/pathephone/pathephone-desktop/commit/5551ba4))
+* move ipfs to a child process ([7d22361](https://github.com/pathephone/pathephone-desktop/commit/7d22361))
+* move performance-affecting methods to main thread ([bf78b84](https://github.com/pathephone/pathephone-desktop/commit/bf78b84))
+* remove second get discover albums request ([7935531](https://github.com/pathephone/pathephone-desktop/commit/7935531))
+
+
+### BREAKING CHANGES
+
+* modify album instance schema with no backward compatibility (tracks[])
+* modify album instance schema with no backward compatibility (cover.image, tracks[].audio fields)
+* modify album instance schema with no backward compatibility (tracks[].bitrate field).
+* remove quality bage as bitrate field is removed as well.
+* modify album instance schema with no backward compatibility (cover, tracks fields)
+
 # [1.4.0](https://github.com/pathephone/pathephone-desktop/compare/v1.3.0...v1.4.0) (2018-06-21)
 
 
