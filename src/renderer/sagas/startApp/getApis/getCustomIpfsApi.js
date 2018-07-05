@@ -1,10 +1,15 @@
 import { call, put } from 'redux-saga/effects'
+import { eventChannel } from 'redux-saga'
+import { ipcRenderer } from 'electron'
 
 import {
   IPC_IPFS_SHARE_OBJECT,
   IPC_IPFS_SHARE_FS_FILE,
-  IPC_IPFS_GET_FILES,
-  IPC_IPFS_GET_INFO
+  IPC_IPFS_CACHE_CIDS,
+  IPC_IPFS_GET_INFO,
+  IPC_IPFS_CID_CACHE_FAILED,
+  IPC_IPFS_CID_CACHE_SUCCEED,
+  IPC_IPFS_OPEN_CACHED_CIDS_STREAM
 } from '~data/ipcTypes'
 
 import { rendererCalls } from '~utils/ipcRenderer'
@@ -20,11 +25,33 @@ function * getCustomIpfsApi () {
   const shareFsFileToIpfs = filePath => {
     return rendererCalls(IPC_IPFS_SHARE_FS_FILE, filePath)
   }
-  const getFilesFromIpfs = cid => {
-    return rendererCalls(IPC_IPFS_GET_FILES, cid)
+  const cacheIPFSFilesByCIDs = cids => {
+    return rendererCalls(IPC_IPFS_CACHE_CIDS, cids)
+  }
+  const openCachedCIDsStream = () => {
+    return rendererCalls(IPC_IPFS_OPEN_CACHED_CIDS_STREAM)
+  }
+  const getCachedCIDsChannel = () => {
+    return eventChannel(emit => {
+      const handleMessage = (e, arg) => {
+        emit(arg)
+      }
+      ipcRenderer.on(IPC_IPFS_CID_CACHE_SUCCEED, handleMessage)
+      ipcRenderer.on(IPC_IPFS_CID_CACHE_FAILED, handleMessage)
+      return () => {
+        ipcRenderer.removeListener(IPC_IPFS_CID_CACHE_SUCCEED, handleMessage)
+        ipcRenderer.removeListener(IPC_IPFS_CID_CACHE_FAILED, handleMessage)
+      }
+    })
   }
 
-  return { shareFsFileToIpfs, shareObjectToIpfs, getFilesFromIpfs }
+  return {
+    shareFsFileToIpfs,
+    shareObjectToIpfs,
+    cacheIPFSFilesByCIDs,
+    openCachedCIDsStream,
+    getCachedCIDsChannel
+  }
 }
 
 export default getCustomIpfsApi

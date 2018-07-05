@@ -2,7 +2,7 @@ import createThreadReducer from '~utils/createThreadReducer'
 
 import {
   IPC_IPFS_START,
-  IPC_IPFS_GET_FILES,
+  IPC_IPFS_CACHE_CIDS,
   IPC_IPFS_SHARE_FS_FILE,
   IPC_IPFS_SHARE_OBJECT,
   IPC_METABIN_GATE_SUBSCRIBE,
@@ -15,10 +15,10 @@ import {
 import startIpfsDaemon from './ipfs.thread/startIpfsDaemon'
 
 import {
-  ipfsGetFile,
   getIpfsInfo,
   ipfsShareFsFile,
-  ipfsShareObject
+  ipfsShareObject,
+  ipfsCacheFilesByCIDs
 } from './ipfs.thread/ipfsApi'
 
 import {
@@ -38,8 +38,8 @@ const reducer = ({ type, payload }) => {
       return
     case IPC_IPFS_GET_INFO:
       return getIpfsInfo(args)
-    case IPC_IPFS_GET_FILES:
-      return ipfsGetFile(args)
+    case IPC_IPFS_CACHE_CIDS:
+      return ipfsCacheFilesByCIDs(args)
     case IPC_IPFS_SHARE_FS_FILE:
       return ipfsShareFsFile(args)
     case IPC_IPFS_SHARE_OBJECT:

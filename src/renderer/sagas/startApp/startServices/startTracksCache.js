@@ -1,15 +1,16 @@
-import { takeEvery, all } from 'redux-saga/effects'
+import { takeEvery, fork, call } from 'redux-saga/effects'
 
-import cachePlaylistTracks from './startTracksCache/cachePlaylistTracks'
 import { systemPlayedTracksRecieved, systemQueuedTracksRecieved } from '~actions/system'
 
-function * startTracksCache (args) {
-  yield all([
-    takeEvery([
-      systemPlayedTracksRecieved,
-      systemQueuedTracksRecieved
-    ], cachePlaylistTracks, args)
-  ])
+import cachePlaylistTracks from './startTracksCache/cachePlaylistTracks'
+import startCachedCIDsReciever from './startTracksCache/startCachedCIDsReciever'
+
+function * startTracksCache (api) {
+  yield fork(startCachedCIDsReciever, api)
+  yield call(cachePlaylistTracks, api)
+  yield takeEvery(
+    [ systemPlayedTracksRecieved, systemQueuedTracksRecieved ], cachePlaylistTracks, api
+  )
 }
 
 export default startTracksCache

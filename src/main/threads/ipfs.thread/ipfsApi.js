@@ -1,3 +1,7 @@
+import {
+  IPC_IPFS_CID_CACHE_SUCCEED,
+  IPC_IPFS_CID_CACHE_FAILED
+} from '~data/ipcTypes'
 
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 
@@ -21,7 +25,24 @@ export const ipfsShareFsFile = async ({ ipfsDaemonPromise, payload: filePath }) 
   return hash
 }
 
-export const ipfsGetFile = async ({ ipfsDaemonPromise, payload: cid }) => {
+export const ipfsCacheFilesByCIDs = async ({ ipfsDaemonPromise, payload: cids }) => {
   const { api } = await ipfsDaemonPromise
-  await api.files.get(cid)
+  const handleGetCID = async cid => {
+    try {
+      await api.files.get(cid)
+      process.send({
+        type: IPC_IPFS_CID_CACHE_SUCCEED,
+        payload: cid
+      })
+    } catch (e) {
+      console.error(e)
+      process.send({
+        type: IPC_IPFS_CID_CACHE_FAILED,
+        errorMessage: e.message
+      })
+    }
+  }
+  Promise.all(
+    cids.map(handleGetCID)
+  )
 }

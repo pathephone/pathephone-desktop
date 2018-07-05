@@ -2,8 +2,7 @@
 import {
   systemPlayedTracksRecieved,
   systemQueuedTracksRecieved,
-  systemAudioEnded,
-  systemTrackCached
+  systemAudioEnded
 } from '~actions/system'
 
 import {
@@ -27,7 +26,6 @@ const initialState = {
   tracksLength: null,
   removedByIndex: {},
   removedLength: null,
-  cachedByCid: {},
   currentTrackIndex: null,
   lastTrackIndex: null,
   shuffleOrder: null,
@@ -36,7 +34,6 @@ const initialState = {
 }
 
 export const getPlaylistTracksByIndex = state => state[DOMAIN].tracksByIndex
-export const getPlaylistCachedByCid = state => state[DOMAIN].cachedByCid
 export const getPlaylistRemovedByIndex = state => state[DOMAIN].removedByIndex
 export const getCurrentTrackIndex = state => state[DOMAIN].currentTrackIndex
 export const isShuffleTurnedOn = state => !!state[DOMAIN].shuffleOrder
@@ -148,14 +145,6 @@ const reducer = (state = initialState, action) => {
         shuffleOrder
       }
     }
-    case systemTrackCached.toString():
-      return {
-        ...state,
-        cachedByCid: {
-          ...state.cachedByCid,
-          [payload]: true
-        }
-      }
     case uiRepeatToggled.toString():
       return {
         ...state,

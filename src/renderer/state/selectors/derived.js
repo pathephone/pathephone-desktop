@@ -10,7 +10,8 @@ import {
   getPlaylistTracksByIndex,
   getShareCandidates,
   getNotifications,
-  getIpfsGateway
+  getIpfsGateway,
+  getCachedCIDs
 } from '#selectors'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
@@ -42,6 +43,20 @@ export const getPlaylistTracksIndexes = createSelector(
 )
 
 export const getPlaylistTracksCount = state => getPlaylistTracksIndexes(state).length
+
+export const getPlaylistTracksCids = createSelector(
+  getPlaylistTracksByIndex,
+  tracks => {
+    return Object.values(tracks).map(({ audio }) => audio)
+  }
+)
+
+export const getPlaylistUncachedTracksCIDs = createSelector(
+  [ getPlaylistTracksCids, getCachedCIDs ],
+  (tracksCIDs, cachedCIDs) => {
+    return tracksCIDs.filter(cid => !cachedCIDs[cid])
+  }
+)
 
 export const isPlaylistEmpty = state => getPlaylistTracksCount(state) === 0
 
