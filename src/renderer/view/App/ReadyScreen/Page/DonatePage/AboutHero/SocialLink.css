@@ -1,0 +1,22 @@
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  color: black;
+  margin: 0 1em;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+}
+
+.socialLink:hover {
+  background-color: rgba(10,10,10,0.1);
+}
+.socialLink:active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.socialLink span {
+  margin-left: 0.5em;
+}

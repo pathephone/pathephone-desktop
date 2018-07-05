@@ -30,7 +30,7 @@ renderRoot(AppConnected)
 
 if (module.hot) {
   module.hot.accept('./view/AppConnected', () => {
-    const NextAppConnected = require('./view/AppConnected') // eslint-disable-line global-require
+    const NextAppConnected = require('./view/AppConnected').default // eslint-disable-line global-require
     renderRoot(NextAppConnected)
   })
 }

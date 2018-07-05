@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
           return {
             title: '',
             artist: '',
-            cover: '',
+            cover: { image: '' },
             tracks: []
           }
         }

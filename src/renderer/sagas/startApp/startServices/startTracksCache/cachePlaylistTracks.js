@@ -1,23 +1,14 @@
-import { call, put, all, select } from 'redux-saga/effects'
-import { systemTrackCached } from '~actions/system'
-import { getCachedTracks } from '#selectors'
+import { call, select } from 'redux-saga/effects'
+import { getPlaylistUncachedTracksCIDs } from '#selectors'
 
-function * cacheTrack ({ getFilesFromIpfs }, cid) {
-  yield call(getFilesFromIpfs, cid)
-  yield put(systemTrackCached(cid))
+function * cachePlaylistTracks (api) {
+  const { cacheIPFSFilesByCIDs } = api
+  const uncachedTracks = yield select(getPlaylistUncachedTracksCIDs)
+  try {
+    yield call(cacheIPFSFilesByCIDs, uncachedTracks)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
-function * cachePlaylistTracks (args, { payload }) {
-  const cached = yield select(getCachedTracks)
-  const uniqueCids = payload.reduce((acc, { cid }) => {
-    if (!cached.includes(cid)) {
-      acc.push(cid)
-    }
-    return acc
-  }, [])
-  const handleMap = cid => call(cacheTrack, args, cid)
-  yield all(
-    uniqueCids.map(handleMap)
-  )
-}
 export default cachePlaylistTracks

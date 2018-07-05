@@ -1,0 +1,37 @@
+
+.albums-page__search-bar {
+  padding: 0.5em 1em;
+  display: flex;
+  flex-shrink: 0;
+  border-bottom: 1px solid #dedede;
+}
+
+.albums-page__search-input {
+  height: 2em;
+  padding-left: 1em;
+  flex-basis: 100%;
+  border: none;
+  outline: none;
+}
+
+.albums-page__cancel-search {
+  color: var(--accent-color);
+  background: none;
+  border: 1px solid white;
+  transition: color 0.2s;
+}
+
+.albums-page__cancel-search:disabled {
+  color: lightgray;
+  cursor: default;
+}
+
+.albums-page__cancel-search:focus {
+  border: 1px solid orange;
+  outline: none;
+}
+
+.albums-page__cancel-search:hover:not(:disabled) {
+  background: var(--accent-color);
+  color: white;
+}

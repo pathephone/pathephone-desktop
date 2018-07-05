@@ -5,44 +5,35 @@ import { E2E_DISCOVER_PAGE_ID } from '~data/e2eConstants'
 
 import PageContainer from '~components/PageContainer.jsx'
 
-import SearchBar from './DiscoverPage/SearchBar.jsx'
-import AlbumsFeedConnected from './DiscoverPage/AlbumsFeedConnected'
-import NoAlbumsFound from './DiscoverPage/NoAlbumsFound.jsx'
-import NoSearchResults from './DiscoverPage/NoSearchResults.jsx'
-import SelectedActions from './DiscoverPage/SelectedActions.jsx'
+import SearchBarConnected from './DiscoverPage/SearchBarConnected'
+import SelectedActionsConnected from './DiscoverPage/SelectedActionsConnected'
+import DiscoverPageBodyConnected from './DiscoverPage/DiscoverPageBodyConnected'
 
 import './DiscoverPage.css'
 
 class DiscoverPage extends React.Component {
+  componentWillMount = this.props.onWillMount
+  componentWillUnmound = this.props.onWillUnmount
+
   render () {
     const {
-      hasAlbumsFeed,
-      hasSelectedBar,
-      hasNoSearchResultsMessage,
-      ...restProps
+      hasSelectedActions,
+      hasSearchBar
     } = this.props
     return (
       <PageContainer
         id={E2E_DISCOVER_PAGE_ID}
         className='albums-page'
       >
-        <SearchBar
-          {...restProps}
-        />
         {
-          hasAlbumsFeed ? (
-            <AlbumsFeedConnected />
-          ) : hasNoSearchResultsMessage ? (
-            <NoSearchResults />
-          ) : (
-            <NoAlbumsFound />
+          hasSearchBar && (
+            <SearchBarConnected />
           )
         }
+        <DiscoverPageBodyConnected />
         {
-          hasSelectedBar && (
-            <SelectedActions
-              {...restProps}
-            />
+          hasSelectedActions && (
+            <SelectedActionsConnected />
           )
         }
       </PageContainer>
@@ -51,9 +42,10 @@ class DiscoverPage extends React.Component {
 }
 
 DiscoverPage.propTypes = {
-  hasAlbumsFeed: propTypes.bool.isRequired,
-  hasSelectedBar: propTypes.bool.isRequired,
-  hasNoSearchResultsMessage: propTypes.bool.isRequired
+  hasSelectedActions: propTypes.bool.isRequired,
+  hasSearchBar: propTypes.bool.isRequired,
+  onWillMount: propTypes.func.isRequired,
+  onWillUnmount: propTypes.func.isRequired
 }
 
 export default DiscoverPage

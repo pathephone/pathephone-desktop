@@ -1,20 +1,23 @@
 import {
-  cancelShareForm,
-  shareDropZoneExists,
+  shareCancelForm,
+  shareWaitForDropZoneExists,
   shareDropZoneSelect,
   removeTrack,
   shareFormAddTrack,
   getShareFormTracksLength,
   validateTrackFields,
   moveTrackDown,
-  moveTrackUp
+  moveTrackUp,
+  shareWaitForFormExists
 } from '~reusable/sharePage'
 
 import { tracks } from '~data/assets'
+import { lockScreenWaitForNotExists } from '~reusable/lockScreen'
 
 describe('check tracks operations', () => {
-  before(function () {
-    return shareDropZoneSelect.call(this, tracks[0].file)
+  before(async function () {
+    await shareDropZoneSelect.call(this, tracks[0].file)
+    await shareWaitForFormExists.call(this)
   })
 
   describe('remove #1 track', () => {
@@ -27,8 +30,9 @@ describe('check tracks operations', () => {
     tracks.forEach((track, index) => {
       const expectedLength = index + 1
       describe(`add track #${expectedLength}`, () => {
-        it('throws no error', function () {
-          return shareFormAddTrack.call(this, track.file)
+        before(async function () {
+          await shareFormAddTrack.call(this, track.file)
+          await lockScreenWaitForNotExists.call(this)
         })
         it(`tracks length should be ${expectedLength}`, async function () {
           const tracksCount = await getShareFormTracksLength.call(this)
@@ -85,7 +89,7 @@ describe('check tracks operations', () => {
   })
 
   after(async function () {
-    await cancelShareForm.call(this)
-    await shareDropZoneExists.call(this)
+    await shareCancelForm.call(this)
+    await shareWaitForDropZoneExists.call(this)
   })
 })

@@ -1,9 +1,16 @@
 import { app, Tray, Menu } from 'electron'
 
-import { RESOURCES_PATH } from '#config'
+import { RESOURCES_PATH, IS_MAC, IS_LINUX, IS_WINDOWS } from '#config'
 
 export default (mainWindow) => {
-  const tray = new Tray(`${RESOURCES_PATH}/indicator-icon.png`)
+  let trayIconPath
+  if (IS_MAC || IS_LINUX) {
+    trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16.png`
+  }
+  if (IS_WINDOWS) {
+    trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16@2x.png`
+  }
+  const tray = new Tray(trayIconPath)
 
   tray.on('click', () => {
     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()

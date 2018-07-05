@@ -1,12 +1,16 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import PlaylistTrackContainerConnected from './PlaylistTrackContainerConnected'
+
 import {
   E2E_PLAYLIST_TRAKLIST_ID
 } from '~data/e2eConstants'
 
+import PlaylistTrackContainerConnected from './PlaylistTrackContainerConnected'
+
+import './Tracklist.css'
+
 const Tracklist = ({ tracksIndexes }) => (
-  <div id={E2E_PLAYLIST_TRAKLIST_ID}>
+  <div className='tracklist' id={E2E_PLAYLIST_TRAKLIST_ID}>
     {
       tracksIndexes.map((index) => (
         <PlaylistTrackContainerConnected index={index} key={index} />

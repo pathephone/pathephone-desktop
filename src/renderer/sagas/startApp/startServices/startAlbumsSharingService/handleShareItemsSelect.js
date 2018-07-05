@@ -7,29 +7,28 @@ import {
 } from '~actions/system'
 
 import {
-  MESSAGE_NO_ALBUMS_FOUND,
-  MESSAGE_ERROR_PROCESSING_FILES
-} from '~data/textMessages'
-
-import getAlbumCandidatesFromItems from './handleShareFilesSelect/getAlbumCandidatesFromItems'
+  LOCAL_NO_ALBUMS_FOUND,
+  LOCAL_ERROR_PROCESSING_FILES
+} from '~data/i18nConstants'
 
 function * handleShareItemsSelect (apis, { payload }) {
+  const { getAlbumCandidatesFromFs } = apis
   try {
     const selectedFsItems = Array.from(payload)
       .map(file => file.path)
-    const candidates = yield call(getAlbumCandidatesFromItems, apis, selectedFsItems)
+    const candidates = yield call(getAlbumCandidatesFromFs, selectedFsItems)
 
     if (candidates.length > 0) {
       yield put(systemShareCandidatesRecieved(candidates))
     } else {
       yield put(systemShareCandidatesNotFound(
-        { warningMessage: MESSAGE_NO_ALBUMS_FOUND }
+        { warningMessage: LOCAL_NO_ALBUMS_FOUND }
       ))
     }
   } catch (e) {
     console.error(e)
     yield put(systemShareFilesProcessingFailed(
-      { errorMessage: MESSAGE_ERROR_PROCESSING_FILES }
+      { errorMessage: LOCAL_ERROR_PROCESSING_FILES }
     ))
   }
 }

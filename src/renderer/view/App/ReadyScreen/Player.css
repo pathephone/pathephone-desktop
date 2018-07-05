@@ -66,4 +66,5 @@
 .player__no-playback-message {
     color: grey;
     margin: auto;
+    text-transform: uppercase;
 }

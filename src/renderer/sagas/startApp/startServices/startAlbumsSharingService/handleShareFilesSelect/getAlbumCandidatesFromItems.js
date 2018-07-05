@@ -1,19 +1,24 @@
 import { all, call } from 'redux-saga/effects'
 
-import splitFoldersAndFiles from '~utils/splitFilesAndFolders'
-import getAlbumCandidateFromFiles from './getAlbumCandidatesFromItems/getCandidateFromFiles'
+import getCandidateFromFiles from './getAlbumCandidatesFromItems/getCandidateFromFiles'
 import getAlbumCandidatesFromFolders from './getAlbumCandidatesFromItems/getCandidatesFromFolders'
 
 // Rewrite to pure File solution once https://github.com/electron/electron/issues/839 resolved
 
 function * getAlbumCandidatesFromItems (apis, selectedItems) {
-  const { folders, files } = splitFoldersAndFiles(selectedItems)
+  const { splitFoldersAndFiles } = apis
+  const { folders, files } = yield call(splitFoldersAndFiles, selectedItems)
   const [ candidateFromFiles, candidatesFromFolders ] = yield all([
-    call(getAlbumCandidateFromFiles, files),
-    call(getAlbumCandidatesFromFolders, folders)
+    call(getCandidateFromFiles, apis, files),
+    call(getAlbumCandidatesFromFolders, apis, folders)
   ])
-  const candidates = [ candidateFromFiles, ...candidatesFromFolders ]
-    .filter(c => !!c)
+  let candidates = []
+  if (candidateFromFiles) {
+    candidates.push(candidateFromFiles)
+  }
+  if (candidatesFromFolders) {
+    candidates.push(...candidatesFromFolders)
+  }
   return candidates
 }
 

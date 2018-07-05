@@ -1,0 +1,16 @@
+.assetDownloadButton {
+  border-radius: 2px;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  margin: 0.5em;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+}
+
+.assetDownloadButton:hover {
+  background-color: rgba(10,10,10,0.1);
+}
+.assetDownloadButton:active {
+  background-color: var(--accent-color);
+  color: white;
+}

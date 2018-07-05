@@ -12,6 +12,11 @@ import {
   E2E_SHARE_FORM_SAVE_BUTTON_ID,
   E2E_SHARE_FORM_RESET_BUTTON_ID
 } from '~data/e2eConstants'
+import {
+  LOCAL_SAVE,
+  LOCAL_CANCEL,
+  LOCAL_RESET
+} from '~data/i18nConstants'
 
 const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
   <React.Fragment>
@@ -21,7 +26,7 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       disabled={isDisabled}
     >
       <span>
-        <MdSave /> <small>save</small>
+        <MdSave /> <small>{LOCAL_SAVE}</small>
       </span>
     </CustomButton>
     <CustomButton
@@ -31,7 +36,7 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       disabled={isDisabled}
       onClick={onCancelClick}
     >
-      <MdCancel /> <small>cancel</small>
+      <MdCancel /> <small>{LOCAL_CANCEL}</small>
     </CustomButton>
     <CustomButton
       type='button'
@@ -40,7 +45,7 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       disabled={isDisabled}
       onClick={onResetClick}
     >
-      <MdReset /> <small>reset</small>
+      <MdReset /> <small>{LOCAL_RESET}</small>
     </CustomButton>
   </React.Fragment>
 )

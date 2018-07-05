@@ -5,8 +5,7 @@ import {
   openSharePage
 } from '~reusable/navigation'
 import {
-  discoverFeedDoesNotExist,
-  discoverFeedLengthEquals
+  discoverFeedDoesNotExist
 } from '~reusable/discoverPage'
 
 describe('SHARE PAGE TESTS', function () {
@@ -30,13 +29,6 @@ describe('SHARE PAGE TESTS', function () {
     after(openSharePage)
   })
 
-  require('./sharing/submitValidForm')
-
-  describe('check discover feed', () => {
-    before(openDiscoverPage)
-    it('discover feed has 1 item', function () {
-      return discoverFeedLengthEquals.call(this, 1)
-    })
-  })
+  require('./sharing/checkSubmitValidForm')
   after(closeApp)
 })

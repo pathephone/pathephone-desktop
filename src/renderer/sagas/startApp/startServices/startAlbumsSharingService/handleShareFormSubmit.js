@@ -4,15 +4,16 @@ import {
   systemShareCandidateSaveFailed
 } from '~actions/system'
 import {
-  MESSAGE_SHARE_FORM_SUBMIT_SUCCEED, MESSAGE_SHARE_FORM_SUBMIT_FAILED
-} from '~data/textMessages'
+  LOCAL_SHARE_FORM_SUBMIT_SUCCEED,
+  LOCAL_SHARE_ALBUM_ALREADY_EXISTS
+} from '~data/i18nConstants'
 
 function * shareTracksToIpfs (apis, tracks) {
   const { shareFsFileToIpfs } = apis
-  function * shareSingleTrack ({ file, ...rest }) {
-    const hash = yield call(shareFsFileToIpfs, file)
+  function * shareSingleTrack ({ audio, ...rest }) {
+    const audioCid = yield call(shareFsFileToIpfs, audio)
     return {
-      ...rest, hash
+      ...rest, audio: audioCid
     }
   }
   const sharedTracks = yield all(
@@ -22,35 +23,36 @@ function * shareTracksToIpfs (apis, tracks) {
 }
 
 function * handleShareFormSubmit (apis, { payload }) {
-  const { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumToCollection } = apis
+  const { shareFsFileToIpfs, shareObjectToIpfs, saveAlbumIfNotExists } = apis
   try {
-    const [ cover, tracks ] = yield all([
-      call(shareFsFileToIpfs, payload.cover),
+    const [ coverImage, tracks ] = yield all([
+      call(shareFsFileToIpfs, payload.cover.image),
       call(shareTracksToIpfs, apis, payload.tracks)
     ])
     const album = {
       ...payload,
-      cover,
+      cover: { image: coverImage },
       tracks
     }
     const albumCid = yield call(shareObjectToIpfs, album)
-    try {
-      yield call(saveAlbumToCollection, { data: album, cid: albumCid })
-    } catch (e) {
-      if (e.status !== 409) {
-        throw e
-      }
-    }
+    const collectionStat = yield call(saveAlbumIfNotExists, { data: album, cid: albumCid })
     yield put(
       systemShareCandidateSaveSucceed({
-        successMessage: MESSAGE_SHARE_FORM_SUBMIT_SUCCEED
+        successMessage: LOCAL_SHARE_FORM_SUBMIT_SUCCEED,
+        ...collectionStat
       })
     )
   } catch (e) {
     console.error(e)
-    yield put(systemShareCandidateSaveFailed({
-      errorMessage: MESSAGE_SHARE_FORM_SUBMIT_FAILED
-    }))
+    if (e.message === 'Key already exists in the object store.') {
+      yield put(systemShareCandidateSaveFailed({
+        warningMessage: LOCAL_SHARE_ALBUM_ALREADY_EXISTS
+      }))
+    } else {
+      yield put(systemShareCandidateSaveFailed({
+        errorMessage: e.message
+      }))
+    }
   }
 }
 
