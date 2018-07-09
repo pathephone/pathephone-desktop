@@ -8,7 +8,7 @@ export const ROUTE_ADD_ALBUM = '/add-album'
 export const ROUTE_DONATE = '/donate'
 export const ROUTE_HOME = ROUTE_ALBUMS
 
-export const ALBUMS_APEARENCE_INTERVAL = 60000 * 10
+export const ALBUMS_APPEARENCE_INTERVAL = 60000 * 2
 export const ALBUMS_PUBLISH_INTERVAL = 60000 * 1
 export const CHECK_FOR_UPDATE_INTERVAL = 60000 * 30
 
