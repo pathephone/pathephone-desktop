@@ -60,6 +60,10 @@ const reducer = ({ type, payload }) => {
 createThreadReducer(reducer)
 
 process.on('disconnect', async () => {
-  const daemon = await ipfsDaemonPromise
-  daemon.stop()
+  try {
+    const daemon = await ipfsDaemonPromise
+    daemon.stop()
+  } catch (e) {
+    console.error(e)
+  }
 })

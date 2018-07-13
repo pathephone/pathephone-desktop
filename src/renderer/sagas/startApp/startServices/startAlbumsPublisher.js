@@ -3,13 +3,13 @@ import { eventChannel } from 'redux-saga'
 
 import { IS_OFFLINE } from '#config'
 
-import { ALBUMS_PUBLISH_INTERVAL, ALBUMS_APEARENCE_INTERVAL } from '~data/constants'
+import { ALBUMS_PUBLISH_INTERVAL, ALBUMS_APPEARENCE_INTERVAL } from '~data/constants'
 
 function getAlbumsCollectionSource (apis) {
   const { findOutdatedAlbumsInCollection } = apis
   return eventChannel(emit => {
     const handleTick = async () => {
-      const period = new Date().getTime() - ALBUMS_APEARENCE_INTERVAL
+      const period = new Date().getTime() - ALBUMS_APPEARENCE_INTERVAL
       const albums = await findOutdatedAlbumsInCollection(period)
       albums.forEach(emit)
     }

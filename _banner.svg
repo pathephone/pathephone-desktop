@@ -16,10 +16,10 @@
    version="1.1"
    id="svg8"
    sodipodi:docname="_banner.svg"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   inkscape:export-filename="/mnt/sda5/Projects/metabin.space/metabin/banner.png"
-   inkscape:export-xdpi="10.04"
-   inkscape:export-ydpi="10.04">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:export-filename="/home/negamaxi/Projects/pathephone/pathephone-desktop/_banner.png"
+   inkscape:export-xdpi="95.56662"
+   inkscape:export-ydpi="95.56662">
   <defs
      id="defs2">
     <linearGradient
@@ -73,10 +73,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.99936756"
-     inkscape:cx="583.50915"
+     inkscape:cx="526.06776"
      inkscape:cy="485.86137"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer5"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:measure-start="580.923,263.086"
@@ -116,7 +116,7 @@
        inkscape:export-filename="/mnt/sda5/Projects/metabin.space/metabin-logo/banner.png" />
     <g
        id="g903"
-       transform="translate(4.1437254)">
+       transform="translate(4.1185608)">
       <circle
          r="16.66629"
          cy="167.26073"
@@ -172,7 +172,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0.26458332px;word-spacing:0px;opacity:0.98000004;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="126.70709"
+       x="126.68193"
        y="195.14941"
        id="text38"
        inkscape:export-filename="/mnt/sda5/Projects/metabin.space/metabin-logo/banner.png"
@@ -180,13 +180,13 @@
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
          id="tspan36"
-         x="126.70709"
+         x="126.68193"
          y="195.14941"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0.26458332px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332px">PATHEPHONE</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:0.98000004;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="122.0475"
+       x="118.53349"
        y="205.67099"
        id="text847"
        inkscape:export-filename="/mnt/sda5/Projects/metabin.space/metabin-logo/banner.png"
@@ -194,9 +194,9 @@
        inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
          id="tspan845"
-         x="122.0475"
+         x="118.53349"
          y="205.67099"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.58611107px;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332px">distributed audio player</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.58611107px;font-family:'URW Gothic L';-inkscape-font-specification:'URW Gothic L';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332px">decentralized music player</tspan></text>
     <g
        style="display:inline"
        id="g2773"
@@ -246,7 +246,7 @@
            y="110.26855" /></flowRegion><flowPara
          id="flowPara1105" /></flowRoot>    <path
        style="fill:none;stroke:#fbfbfb;stroke-width:0.21016516px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.31764706"
-       d="m 141.50927,199.04221 h 14.03179"
+       d="m 141.4841,199.04221 h 14.03179"
        id="path2734"
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="96"
