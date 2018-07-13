@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/pathephone/pathephone-desktop/compare/v2.0.0...v2.0.1) (2018-07-13)
+
+
+### Bug Fixes
+
+* make albums appearence interval 2 min ([41eb42f](https://github.com/pathephone/pathephone-desktop/commit/41eb42f))
+
 # [2.0.0](https://github.com/pathephone/pathephone-desktop/compare/v1.4.0...v2.0.0) (2018-07-05)
 
 
