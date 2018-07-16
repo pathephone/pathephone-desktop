@@ -1,14 +1,17 @@
-![](/_banner.png)
+# Pathephone
+
+Completely serverless, distributed, decentralized, p2p music streaming app for your desktop.
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-# Pathephone
+![](https://pathephone.github.io/screenshot.png)
 
-Completely serverless, distributed music streaming app for your desktop.
-
-- *Truly distributed ecosystem*. Even meta-information (covers, tracklists, artist's info) shared via p2p.
-- *Built-in content discovery*. No need to go anywhere to get magnet-links or something, Pathephone discovers new content for you! And yes, without a single server or tracker!
-- *No quality limits*. You are free to share / listen vynil rips if you wish.
+- Pure p2p music sharing, discovery and streaming. Thanks to IPFS.
+- Built in music collection that constantly updates itself.
+- Share and listen music in any quality you want. 
+- Works everywhere, even behind Great Firewall of China. Just cause p2p.
+- You can use it in your home network to share music between devices. No internet connection required. Cause of, you know, p2p.
+- Impossible to censor, shut down or restrict in any other way. Try to guess why.
 
 A lot more is yet to come!
 
