@@ -1,6 +1,8 @@
 import { app } from 'electron'
 import path from 'path'
 
+import defaultIPFSdaemonConfig from '~data/defaultIPFSDaemonConfig'
+
 import {
   IS_TESTING,
   IS_OFFLINE,
@@ -21,7 +23,7 @@ const getIpfsDaemonParams = () => {
   }
   const repoPath = path.join(app.getPath('userData'), 'ipfsRepo')
   const disposable = IS_TESTING
-  const defaultAddrs = !IS_TESTING
+  const config = !IS_TESTING && defaultIPFSdaemonConfig
   const startFlags = ['--enable-pubsub-experiment']
   if (IS_OFFLINE) {
     startFlags.push('--offline')
@@ -31,7 +33,7 @@ const getIpfsDaemonParams = () => {
       type, exec
     },
     spawnParams: {
-      repoPath, disposable, defaultAddrs
+      repoPath, disposable, config
     },
     startFlags
   }
