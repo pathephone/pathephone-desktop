@@ -53,24 +53,26 @@ class TracklistFieldset extends React.PureComponent {
             tracks.map(this.handleMap)
           }
         </div>
-        <input
-          id={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
-          className='addTracksInput hiddenButReachable'
-          name='tracks'
-          type='file'
-          accept='audio/*'
-          onChange={onFilesSelect}
-          multiple
-        />
-        <label
-          htmlFor={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
-          className='addTracksLabel'
-        >
-          {LOCAL_ADD_TRACKS} <br />
-          <span className='noTracksMessage'>
-            {LOCAL_YOU_SHOULD_ADD_TRACK}
-          </span>
-        </label>
+        <div className='addTracksInputContainer'>
+          <input
+            id={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
+            className='addTracksInput'
+            name='tracks'
+            type='file'
+            accept='audio/*'
+            onChange={onFilesSelect}
+            multiple
+          />
+          <label
+            htmlFor={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
+            className='addTracksLabel'
+          >
+            {LOCAL_ADD_TRACKS} <br />
+            <span className='noTracksMessage'>
+              {LOCAL_YOU_SHOULD_ADD_TRACK}
+            </span>
+          </label>
+        </div>
       </fieldset>
     )
   }

@@ -18,6 +18,16 @@
   margin: 0 auto;
 }
 
+.addTracksInputContainer {
+  position: relative;
+}
+
+.addTracksInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
 .addTracksInput:focus ~ .addTracksLabel {
   border-color: orange;
 }
