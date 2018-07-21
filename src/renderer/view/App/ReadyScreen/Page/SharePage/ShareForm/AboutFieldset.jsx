@@ -44,22 +44,24 @@ class AboutFieldset extends React.PureComponent {
               />
             </label>
           </div>
-          <input
-            id={E2E_SHARE_FORM_COVER_INPUT_ID}
-            className='coverInput hiddenButReachable'
-            name='cover.image'
-            type='file'
-            accept='image/*'
-          />
-          <label
-            id={E2E_SHARE_FORM_COVER_LABEL_ID}
-            htmlFor={E2E_SHARE_FORM_COVER_INPUT_ID}
-            className='coverLabel'
-          >
-            <CoverPreview
-              coverSrc={coverSrc}
+          <div className='coverInputContainer'>
+            <input
+              id={E2E_SHARE_FORM_COVER_INPUT_ID}
+              className='coverInput'
+              name='cover.image'
+              type='file'
+              accept='image/*'
             />
-          </label>
+            <label
+              id={E2E_SHARE_FORM_COVER_LABEL_ID}
+              htmlFor={E2E_SHARE_FORM_COVER_INPUT_ID}
+              className='coverLabel'
+            >
+              <CoverPreview
+                coverSrc={coverSrc}
+              />
+            </label>
+          </div>
         </div>
       </fieldset>
     )
