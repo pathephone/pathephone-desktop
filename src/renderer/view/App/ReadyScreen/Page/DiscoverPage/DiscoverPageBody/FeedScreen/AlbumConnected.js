@@ -2,8 +2,8 @@ import { connect } from 'react-redux'
 
 import {
   getDiscoverSelectedIds,
-  getIpfsGateway,
-  getDiscoverFeedAlbums
+  getDiscoverFeedAlbums,
+  getIpfsApiEndpoint
 } from '#selectors'
 
 import {
@@ -18,7 +18,7 @@ import Album from './Album.jsx'
 const mapStateToProps = (state) => ({
   latestAlbums: getDiscoverFeedAlbums(state),
   selectedAlbums: getDiscoverSelectedIds(state),
-  ipfsGateway: getIpfsGateway(state)
+  ipfsApiEndpoint: getIpfsApiEndpoint(state)
 })
 
 const mapDispatchToProps = {
@@ -36,7 +36,7 @@ const mergeProps = (
   const {
     latestAlbums,
     selectedAlbums,
-    ipfsGateway
+    ipfsApiEndpoint
   } = stateProps
 
   const {
@@ -59,7 +59,7 @@ const mergeProps = (
   const handleSome = id => id === albumId
   const hasSelectedView = selectedAlbums.some(handleSome)
   const onToggleSelect = hasSelectedView ? uiDiscoverAlbumDeselected : uiDiscoverAlbumSelected
-  const albumCoverURL = `${ipfsGateway}/ipfs/${albumCoverCid}`
+  const albumCoverURL = `${ipfsApiEndpoint}/cat?arg=${albumCoverCid}`
   return ({
     ...restDispatch,
     albumCid,
