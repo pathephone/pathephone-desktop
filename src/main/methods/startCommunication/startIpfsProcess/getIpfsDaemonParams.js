@@ -24,7 +24,7 @@ const getIpfsDaemonParams = () => {
   const repoPath = path.join(app.getPath('userData'), 'ipfsRepo')
   const disposable = IS_TESTING
   const config = !IS_TESTING && defaultIPFSdaemonConfig
-  const startFlags = ['--enable-pubsub-experiment']
+  const startFlags = ['--enable-pubsub-experiment', '--migrate=true']
   if (IS_OFFLINE) {
     startFlags.push('--offline')
   }

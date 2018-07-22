@@ -5231,14 +5231,14 @@ globule@^1.0.0:
     lodash "~4.17.10"
     minimatch "~3.0.2"
 
-go-ipfs-dep@^0.4.15:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/go-ipfs-dep/-/go-ipfs-dep-0.4.15.tgz#0268d573fc8d485fa70e1db03f69d7a85c727fa5"
+go-ipfs-dep@^0.4.16:
+  version "0.4.16"
+  resolved "https://registry.yarnpkg.com/go-ipfs-dep/-/go-ipfs-dep-0.4.16.tgz#a209879d4b449b75e31ee19807d56018ec570fde"
   dependencies:
     go-platform "^1.0.0"
     gunzip-maybe "^1.4.1"
-    request "^2.85.0"
-    tar-fs "^1.16.2"
+    request "^2.87.0"
+    tar-fs "^1.16.3"
     unzip-stream "^0.3.0"
 
 go-platform@^1.0.0:
@@ -9287,7 +9287,7 @@ replace-ext@^1.0.0:
     tunnel-agent "^0.6.0"
     uuid "^3.0.0"
 
-request@^2.45.0, request@^2.79.0, request@^2.81.0, request@^2.83.0, request@^2.85.0:
+request@^2.45.0, request@^2.79.0, request@^2.81.0, request@^2.83.0, request@^2.87.0:
   version "2.87.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
   dependencies:
@@ -10315,7 +10315,7 @@ tapable@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.0.0.tgz#cbb639d9002eed9c6b5975eb20598d7936f1f9f2"
 
-tar-fs@^1.16.2:
+tar-fs@^1.16.3:
   version "1.16.3"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-1.16.3.tgz#966a628841da2c4010406a82167cbd5e0c72d509"
   dependencies:
