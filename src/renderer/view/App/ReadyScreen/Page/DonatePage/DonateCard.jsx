@@ -21,7 +21,7 @@ const DonateCard = () => (
         <td>0x7571FfD6D59A275FEda3a7AA5e6503Fa22E91CF8</td>
       </tr>
       <tr>
-        <td><b>Bitcoin Cache</b></td>
+        <td><b>Bitcoin Cash</b></td>
         <td>1F67ofBSixvPt9A5kcGKSnk4ZGYXpUSwmk</td>
       </tr>
     </table>
