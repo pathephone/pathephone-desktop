@@ -7,8 +7,7 @@ import {
 } from '~data/e2eConstants'
 import {
   LOCAL_TRACKLIST,
-  LOCAL_ADD_TRACKS,
-  LOCAL_YOU_SHOULD_ADD_TRACK
+  LOCAL_ADD_TRACKS
 } from '~data/i18nConstants'
 
 import TrackInput from './TracklistFieldset/TrackInput.jsx'
@@ -40,7 +39,8 @@ class TracklistFieldset extends React.PureComponent {
     const {
       tracks,
       isDisabled,
-      onFilesSelect
+      onFilesSelect,
+      errorMessage
     } = this.props
     return (
       <fieldset
@@ -69,7 +69,7 @@ class TracklistFieldset extends React.PureComponent {
           >
             {LOCAL_ADD_TRACKS} <br />
             <span className='noTracksMessage'>
-              {LOCAL_YOU_SHOULD_ADD_TRACK}
+              {errorMessage}
             </span>
           </label>
         </div>
@@ -80,6 +80,7 @@ class TracklistFieldset extends React.PureComponent {
 
 TracklistFieldset.propTypes = {
   isDisabled: propTypes.bool.isRequired,
+  errorMessage: propTypes.string.isRequired,
   tracks: propTypes.array.isRequired,
   onFilesSelect: propTypes.func.isRequired,
   onMoveTrackDown: propTypes.func.isRequired,

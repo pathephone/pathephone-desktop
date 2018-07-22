@@ -1,14 +1,10 @@
-import { IS_PRODUCTION } from '#config'
+import getLocaleCode from '~utils/getLocaleCode'
 
 const c = map => {
-  let code = 'en'
-  if (IS_PRODUCTION) {
-    if (navigator && navigator.language.startsWith('ru')) {
-      code = 'ru'
-    }
-  }
+  const code = getLocaleCode()
   return map[code]
 }
+
 export const LOCAL_NO_ALBUMS_FOUND = c({
   en: 'No albums have been found',
   ru: 'Альбомов не найдено'
@@ -126,6 +122,11 @@ export const LOCAL_ADD_TRACKS = c({
 export const LOCAL_YOU_SHOULD_ADD_TRACK = c({
   en: 'you should add at least one track',
   ru: 'необходимо добавить хотябы одну композицию'
+})
+
+export const LOCAL_TOO_MUCH_TRACKS = c({
+  en: 'tracklist length is limited to 100',
+  ru: 'размер треклиста не должен превышать 100'
 })
 
 export const LOCAL_LATEST_ALBUMS = c({

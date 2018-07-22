@@ -115,7 +115,7 @@ class ShareForm extends React.Component {
           />
           <TracklistFieldset
             tracks={values.tracks}
-            errors={validationErrors}
+            errorMessage={validationErrors.tracks}
             isDisabled={isDisabled}
             onMoveTrackUp={this.handleMoveTrackUp}
             onMoveTrackDown={this.handleMoveTrackDown}
