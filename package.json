@@ -17,7 +17,7 @@
   },
   "main": "dist/main/main.js",
   "go-ipfs": {
-    "version": "v0.4.15"
+    "version": "v0.4.16"
   },
   "electronWebpack": {
     "main": {
@@ -166,7 +166,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "glob": "^7.1.2",
-    "go-ipfs-dep": "^0.4.15",
+    "go-ipfs-dep": "^0.4.16",
     "mocha": "^4.0.1",
     "node-sass": "^4.7.1",
     "sass-loader": "^6.0.6",
