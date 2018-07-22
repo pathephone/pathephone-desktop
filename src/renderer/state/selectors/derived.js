@@ -13,6 +13,7 @@ import {
   getIpfsGateway,
   getCachedCIDs
 } from '#selectors'
+import { getIpfsApiEndpoint } from '../domains/ipfsInfo'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
 
@@ -62,18 +63,21 @@ export const isPlaylistEmpty = state => getPlaylistTracksCount(state) === 0
 
 export const getShareFormValue = state => getShareCandidates(state)[0]
 
-export const getShareCoverSrc = state => {
-  const candidate = getShareCandidates(state)[0]
-  const { cover: { image } } = candidate
-  if (image) {
-    if (image.includes(path.sep)) {
-      return `file:///${image}`
-    } else {
-      return `${getIpfsGateway(state)}/ipfs/${image}`
+export const getShareCoverSrc = createSelector(
+  [ getShareCandidates, getIpfsApiEndpoint ],
+  (candidates, apiEndpoint) => {
+    const candidate = candidates[0]
+    const { cover: { image } } = candidate
+    if (image) {
+      if (image.includes(path.sep)) {
+        return `file:///${image}`
+      } else {
+        return `${apiEndpoint}/cat?arg=${image}`
+      }
     }
+    return null
   }
-  return null
-}
+)
 
 export const getNotificationsIds = createSelector(
   getNotifications,

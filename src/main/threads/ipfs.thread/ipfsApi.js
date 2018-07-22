@@ -8,7 +8,8 @@ const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' }
 export const getIpfsInfo = async ({ ipfsDaemonPromise }) => {
   const { api } = await ipfsDaemonPromise
   const gateway = `http://${api.gatewayHost}:${api.gatewayPort}`
-  return { gateway }
+  const apiEndpoint = `http://${api.apiHost}:${api.apiPort}/api/v0`
+  return { gateway, apiEndpoint }
 }
 
 export const ipfsShareObject = async ({ ipfsDaemonPromise, payload: object }) => {
