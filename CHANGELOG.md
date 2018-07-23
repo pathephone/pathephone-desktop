@@ -1,3 +1,15 @@
+## [2.0.2](https://github.com/pathephone/pathephone-desktop/compare/v2.0.1...v2.0.2) (2018-07-23)
+
+
+### Bug Fixes
+
+* add cover placeholder icon for discover page albums ([4cad8e4](https://github.com/pathephone/pathephone-desktop/commit/4cad8e4))
+* add random gateway port ([991bb41](https://github.com/pathephone/pathephone-desktop/commit/991bb41))
+* fix 'Bitcoin Cache' typo ([92efaa6](https://github.com/pathephone/pathephone-desktop/commit/92efaa6))
+* focus empty cover input on submit ([fc9e3c9](https://github.com/pathephone/pathephone-desktop/commit/fc9e3c9))
+* replace custom tracklist errors with ajv native errors ([258d375](https://github.com/pathephone/pathephone-desktop/commit/258d375))
+* replace ipfs gateway endpoint with api endpoint for images ([4bc93cb](https://github.com/pathephone/pathephone-desktop/commit/4bc93cb))
+
 ## [2.0.1](https://github.com/pathephone/pathephone-desktop/compare/v2.0.0...v2.0.1) (2018-07-13)
 
 
