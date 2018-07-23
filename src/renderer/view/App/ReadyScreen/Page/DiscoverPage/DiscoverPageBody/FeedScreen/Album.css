@@ -1,17 +1,14 @@
 .album__cover {
+  position: relative;
   height: 12.5em;
   width: 12.5em;
   flex-shrink: 0;
   flex-grow: 0;
   font-size: 1em;
-  padding: 0.25em;
   background: none;
   border: 1px solid #d3d3d3;
   outline: none;
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-.album__cover-image {
-  width: 100%;
 }
 .album__cover:focus {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);

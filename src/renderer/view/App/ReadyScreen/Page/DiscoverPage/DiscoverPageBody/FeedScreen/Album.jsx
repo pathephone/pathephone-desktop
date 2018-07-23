@@ -3,7 +3,14 @@ import propTypes from 'prop-types'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdAdd from 'react-icons/lib/md/playlist-add'
 
-import { E2E_DISCOVER_ALBUM_QUEUE_BUTTON, E2E_DISCOVER_ALBUM_PLAY_BUTTON, E2E_DISCOVER_ALBUM_TITLE, E2E_DISCOVER_ALBUM_ARTIST } from '~data/e2eConstants'
+import {
+  E2E_DISCOVER_ALBUM_QUEUE_BUTTON,
+  E2E_DISCOVER_ALBUM_PLAY_BUTTON,
+  E2E_DISCOVER_ALBUM_TITLE,
+  E2E_DISCOVER_ALBUM_ARTIST
+} from '~data/e2eConstants'
+
+import CoverImage from './Album/CoverImage.jsx'
 
 import './Album.css'
 
@@ -42,9 +49,9 @@ class Album extends React.Component {
         <div className='izi-relative'>
           <button
             onClick={this.handleAlbumClick}
-            className='album__cover izi-rounded'
+            className='album__cover'
           >
-            <img className='album__cover-image' src={albumCoverURL} />
+            <CoverImage src={albumCoverURL} />
           </button>
           {
             !hasSelectedView && (
