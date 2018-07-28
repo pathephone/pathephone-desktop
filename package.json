@@ -106,7 +106,7 @@
     "start:offline": "cross-env OFFLINE=true yarn start"
   },
   "dependencies": {
-    "@metabin/gate": "^2.1.0",
+    "@metabin/gate": "2.4.0",
     "ajv": "^6.1.1",
     "dexie": "^2.0.4",
     "dot-prop-immutable": "^1.4.0",

@@ -7,7 +7,8 @@ import {
   IPC_IPFS_GET_INFO,
   IPC_IPFS_CID_CACHE_SUCCEED,
   IPC_IPFS_CID_CACHE_FAILED,
-  IPC_IPFS_OPEN_CACHED_CIDS_STREAM
+  IPC_IPFS_OPEN_CACHED_CIDS_STREAM,
+  IPC_IPFS_GET_STATS
 } from '~data/ipcTypes'
 
 const startIpfsBridge = ({ ipfsProcessPromise }) => {
@@ -43,13 +44,18 @@ const startIpfsBridge = ({ ipfsProcessPromise }) => {
       ipfsProcess.removeListener('message', handleMessage)
     })
   }
+  const handleGetStats = async () => {
+    const ipfsProcess = await ipfsProcessPromise
+    return ipfsProcess.call({ type: IPC_IPFS_GET_STATS })
+  }
 
   const apiUnlisteners = [
     ipcMainTake(IPC_IPFS_GET_INFO, handleIpfsStartRequest),
     ipcMainTake(IPC_IPFS_SHARE_OBJECT, handleShareObject),
     ipcMainTake(IPC_IPFS_SHARE_FS_FILE, handleShareFsFile),
     ipcMainTake(IPC_IPFS_CACHE_CIDS, handleCacheFilesByCIDs),
-    ipcMainTake(IPC_IPFS_OPEN_CACHED_CIDS_STREAM, handleOpenCachedCIDsStream)
+    ipcMainTake(IPC_IPFS_OPEN_CACHED_CIDS_STREAM, handleOpenCachedCIDsStream),
+    ipcMainTake(IPC_IPFS_GET_STATS, handleGetStats)
   ]
   return () => {
     apiUnlisteners.forEach(unlisten => { unlisten() })
