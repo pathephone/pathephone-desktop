@@ -106,7 +106,7 @@
     "start:offline": "cross-env OFFLINE=true yarn start"
   },
   "dependencies": {
-    "@metabin/gate": "^2.1.0",
+    "@metabin/gate": "2.4.1",
     "ajv": "^6.1.1",
     "dexie": "^2.0.4",
     "dot-prop-immutable": "^1.4.0",
@@ -180,7 +180,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "glob": "^7.1.2",
-    "go-ipfs-dep": "^0.4.16",
+    "go-ipfs-dep": "^0.4.17",
     "mocha": "^5.0.0",
     "node-sass": "^4.7.1",
     "sass-loader": "^7.0.0",
