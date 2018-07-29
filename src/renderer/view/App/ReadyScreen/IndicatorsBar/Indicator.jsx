@@ -3,17 +3,18 @@ import propTypes from 'prop-types'
 
 import './Indicator.css'
 
-const Indicator = ({ content, tooltip, isAccented }) => (
+const Indicator = ({ text, Icon, tooltip, isAccented }) => (
   <span title={tooltip} className={isAccented ? 'indicatorAccented' : 'indicator'}>
-    {content}
+    {
+      Icon && <Icon />
+    }
+    {text}
   </span>
 )
 
 Indicator.propTypes = {
-  content: propTypes.oneOfType([
-    propTypes.string,
-    propTypes.element
-  ]),
+  text: propTypes.string.isRequired,
+  Icon: propTypes.func,
   tooltip: propTypes.string,
   isAccented: propTypes.bool
 }

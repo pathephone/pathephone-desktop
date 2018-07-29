@@ -5,6 +5,13 @@ import MdUpload from 'react-icons/lib/md/file-upload'
 import MdDownload from 'react-icons/lib/md/file-download'
 import MdStorage from 'react-icons/lib/md/storage'
 
+import {
+  LOCAL_BANDWIDTH_OUT,
+  LOCAL_BANDWIDTH_IN,
+  LOCAL_IPFS_REPO_STAT,
+  LOCAL_PEERS_INDICATOR
+} from '~data/i18nConstants'
+
 import Indicator from './IndicatorsBar/Indicator.jsx'
 
 import './IndicatorsBar.css'
@@ -25,54 +32,51 @@ const IndicatorsBar = ({
     <div className='indicatorsBar'>
       {
         isOffline && (
-          <Indicator content='offline' isAccented />
+          <Indicator
+            text='offline'
+            isAccented
+          />
         )
       }
       <Indicator
-        content={
-          <span>
-            <MdSwap />{` ${resolveIndicatorString(ipfsPeers)} (${resolveIndicatorString(metabinPeers)})`}
-          </span>
+        Icon={MdSwap}
+        text={
+          ` ${resolveIndicatorString(ipfsPeers)} (${resolveIndicatorString(metabinPeers)})`
         }
-        tooltip='peers: ipfs (pathephone)'
+        tooltip={LOCAL_PEERS_INDICATOR}
       />
       <Indicator
-        content={
-          <span>
-            <MdStorage />{` ${resolveIndicatorString(ipfsRepoUsage)}`}
-          </span>
+        Icon={MdStorage}
+        text={
+          ` ${resolveIndicatorString(ipfsRepoUsage)}`
         }
-        tooltip='storage: used / limit'
+        tooltip={LOCAL_IPFS_REPO_STAT}
       />
       <Indicator
-        content={<span><MdDownload />{` ${resolveIndicatorString(ipfsBandwidthIn)}`}</span>} />
-      <Indicator content={<span><MdUpload />{` ${resolveIndicatorString(ipfsBandwidthOut)}`}</span>} />
+        Icon={MdDownload}
+        text={
+          ` ${resolveIndicatorString(ipfsBandwidthIn)}`
+        }
+        tooltip={LOCAL_BANDWIDTH_IN}
+      />
+      <Indicator
+        Icon={MdUpload}
+        text={
+          ` ${resolveIndicatorString(ipfsBandwidthOut)}`
+        }
+        tooltip={LOCAL_BANDWIDTH_OUT}
+      />
     </div>
   )
 }
 
 IndicatorsBar.propTypes = {
   isOffline: propTypes.bool.isRequired,
-  ipfsPeers: propTypes.oneOfType([
-    propTypes.number,
-    propTypes.null
-  ]),
-  metabinPeers: propTypes.oneOfType([
-    propTypes.number,
-    propTypes.null
-  ]),
-  ipfsRepoUsage: propTypes.oneOfType([
-    propTypes.string,
-    propTypes.null
-  ]),
-  ipfsBandwidthIn: propTypes.oneOfType([
-    propTypes.number,
-    propTypes.null
-  ]),
-  ipfsBandwidthOut: propTypes.oneOfType([
-    propTypes.number,
-    propTypes.null
-  ])
+  ipfsPeers: propTypes.number,
+  metabinPeers: propTypes.number,
+  ipfsRepoUsage: propTypes.string,
+  ipfsBandwidthIn: propTypes.string,
+  ipfsBandwidthOut: propTypes.string
 }
 
 export default IndicatorsBar
