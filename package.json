@@ -9,7 +9,7 @@
   "license": "MIT",
   "homepage": "https://pathephone.github.io",
   "engines": {
-    "node": ">=8.9.3"
+    "node": ">=9.10.0"
   },
   "repository": {
     "type": "git",
