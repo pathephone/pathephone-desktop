@@ -63,7 +63,7 @@ const mergeProps = (
   const hasSelectedView = selectedAlbums.some(handleSome)
   const onToggleSelect = hasSelectedView ? uiDiscoverAlbumDeselected : uiDiscoverAlbumSelected
   const albumCoverURL = `${ipfsApiEndpoint}/cat?arg=${albumCoverCid}`
-  const isLocalCover = localCoversCIDs[albumCoverCid] === true
+  const isCoverCached = localCoversCIDs[albumCoverCid] === true
   return {
     ...restDispatch,
     albumCid,
@@ -73,7 +73,7 @@ const mergeProps = (
     albumCoverURL,
     onToggleSelect,
     hasSelectedView,
-    isLocalCover
+    isCoverCached
   }
 }
 

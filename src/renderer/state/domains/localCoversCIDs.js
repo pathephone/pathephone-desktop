@@ -9,7 +9,7 @@ const DOMAIN = 'localCoversCIDs'
 
 const initialState = {}
 
-export const getLocalCovdersCIDs = state => state[DOMAIN]
+export const getLocalCoversCIDs = state => state[DOMAIN]
 
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
