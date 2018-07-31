@@ -2,10 +2,10 @@ import { call, put, take } from 'redux-saga/effects'
 import { systemCacheTrackSucceed } from '~actions/system'
 
 function * startCachedCIDsReciever (api) {
-  const { getCachedCIDsChannel, openCachedCIDsStream } = api
+  const { getLocalAudiosCIDsChannel, openCachedCIDsStream } = api
   try {
     yield call(openCachedCIDsStream)
-    const channel = yield call(getCachedCIDsChannel)
+    const channel = yield call(getLocalAudiosCIDsChannel)
     while (true) {
       const { errorMessage, payload } = yield take(channel)
       if (!errorMessage) {

@@ -11,7 +11,7 @@ import {
   getShareCandidates,
   getNotifications,
   getIpfsGateway,
-  getCachedCIDs
+  getLocalAudiosCIDs
 } from '#selectors'
 import { getIpfsApiEndpoint } from '../domains/ipfsInfo'
 
@@ -53,7 +53,7 @@ export const getPlaylistTracksCids = createSelector(
 )
 
 export const getPlaylistUncachedTracksCIDs = createSelector(
-  [ getPlaylistTracksCids, getCachedCIDs ],
+  [ getPlaylistTracksCids, getLocalAudiosCIDs ],
   (tracksCIDs, cachedCIDs) => {
     return tracksCIDs.filter(cid => !cachedCIDs[cid])
   }

@@ -1,11 +1,11 @@
 import { systemCacheTrackSucceed, systemPlayedTracksRecieved } from '~actions/system'
 import { uiPlaylistCleared } from '~actions/ui'
 
-const DOMAIN = 'cachedCIDs'
+const DOMAIN = 'localAudiosCIDs'
 
 const initialState = {}
 
-export const getCachedCIDs = state => state[DOMAIN]
+export const getLocalAudiosCIDs = state => state[DOMAIN]
 
 const reducer = (state = initialState, action) => {
   const { type, payload } = action

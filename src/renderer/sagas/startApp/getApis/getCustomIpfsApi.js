@@ -31,7 +31,7 @@ function * getCustomIpfsApi () {
   const openCachedCIDsStream = () => {
     return rendererCalls(IPC_IPFS_OPEN_CACHED_CIDS_STREAM)
   }
-  const getCachedCIDsChannel = () => {
+  const getLocalAudiosCIDsChannel = () => {
     return eventChannel(emit => {
       const handleMessage = (e, arg) => {
         emit(arg)
@@ -50,7 +50,7 @@ function * getCustomIpfsApi () {
     shareObjectToIpfs,
     cacheIPFSFilesByCIDs,
     openCachedCIDsStream,
-    getCachedCIDsChannel
+    getLocalAudiosCIDsChannel
   }
 }
 
