@@ -49,11 +49,7 @@ export const systemPlaylistCleared = c('PLAYLIST_CLEARED')
 export const systemPlayedTracksRecieved = c('PLAYED_TRACKS_RECIEVED')
 export const systemQueuedTracksRecieved = c('QUEUED_TRACKS_RECIEVED')
 
-export const systemCacheTracks = c('CACHE_TRACKS')
-export const systemCacheTrackSucceed = c('CACHE_TRACK_SUCCEED')
-
-export const systemCacheCovers = c('CACHE_COVERS')
-export const systemCacheCoverSucceed = c('CACHE_COVER_SUCCEED')
+export const systemIPFSFileCached = c('IPFS_FILE_CACHED')
 
 export const systemRepeatedPlaylistEnded = c('REPEATED_PLAYLIST_ENDED')
 

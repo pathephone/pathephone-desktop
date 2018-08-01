@@ -29,7 +29,7 @@ const startIpfsBridge = ({ ipfsProcessPromise }) => {
     return ipfsProcess.call({ type: IPC_IPFS_CACHE_CIDS, payload: cids })
   }
 
-  const handleOpenCachedCIDsStream = async event => {
+  const handleopenCachedIPFSFilesStream = async event => {
     const ipfsProcess = await ipfsProcessPromise
     const handleMessage = ({ type, ...rest }) => {
       switch (type) {
@@ -49,7 +49,7 @@ const startIpfsBridge = ({ ipfsProcessPromise }) => {
     ipcMainTake(IPC_IPFS_SHARE_OBJECT, handleShareObject),
     ipcMainTake(IPC_IPFS_SHARE_FS_FILE, handleShareFsFile),
     ipcMainTake(IPC_IPFS_CACHE_CIDS, handleCacheFilesByCIDs),
-    ipcMainTake(IPC_IPFS_OPEN_CACHED_CIDS_STREAM, handleOpenCachedCIDsStream)
+    ipcMainTake(IPC_IPFS_OPEN_CACHED_CIDS_STREAM, handleopenCachedIPFSFilesStream)
   ]
   return () => {
     apiUnlisteners.forEach(unlisten => { unlisten() })

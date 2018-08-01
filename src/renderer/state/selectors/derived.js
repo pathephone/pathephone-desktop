@@ -53,9 +53,15 @@ export const getPlaylistTracksCids = createSelector(
 )
 
 export const getPlaylistUncachedTracksCIDs = createSelector(
-  [ getPlaylistTracksCids, getLocalAudiosCIDs ],
-  (tracksCIDs, cachedCIDs) => {
-    return tracksCIDs.filter(cid => !cachedCIDs[cid])
+  [ getLocalAudiosCIDs ],
+  (localCIDs) => {
+    const handleReduce = (acc, cid) => {
+      if (localCIDs[cid] === false) {
+        acc.push(cid)
+      }
+      return acc
+    }
+    return Object.keys(localCIDs).reduce(handleReduce, [])
   }
 )
 
