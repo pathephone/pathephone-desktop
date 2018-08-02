@@ -19,9 +19,11 @@ const getGate = async (ipfsDaemonPromise, schemaName) => {
   return gate
 }
 
-export const metabinSend = async ({ ipfsDaemonPromise, payload: { schemaName, data } }) => {
+export const metabinSendEach = async ({ ipfsDaemonPromise, payload: { schemaName, data } }) => {
   const gate = await getGate(ipfsDaemonPromise, schemaName)
-  return gate.send(data)
+  return Promise.all(
+    data.map(gate.send)
+  )
 }
 
 export const metabinSubscribe = async ({ ipfsDaemonPromise, payload: schemaName }) => {

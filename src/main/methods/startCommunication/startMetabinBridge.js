@@ -1,7 +1,7 @@
 import { ipcMainTake } from '~utils/ipcMain'
 
 import {
-  IPC_METABIN_GATE_SEND,
+  IPC_METABIN_GATE_SEND_EACH,
   IPC_METABIN_GATE_SUBSCRIBE,
   IPC_METABIN_GATE_UNSUBSCRIBE,
   IPC_METABIN_GET_RECIEVED_DATA_CACHE
@@ -10,7 +10,7 @@ import {
 const startMetabinBridge = ({ ipfsProcessPromise }) => {
   const handleSend = async (schemaName, data) => {
     const ipfsProcess = await ipfsProcessPromise
-    return ipfsProcess.call({ type: IPC_METABIN_GATE_SEND, payload: { schemaName, data } })
+    return ipfsProcess.call({ type: IPC_METABIN_GATE_SEND_EACH, payload: { schemaName, data } })
   }
 
   const handleSubscribe = async (schemaName, event) => {
@@ -36,7 +36,7 @@ const startMetabinBridge = ({ ipfsProcessPromise }) => {
   }
 
   const ipcUnlisteners = [
-    ipcMainTake(IPC_METABIN_GATE_SEND, handleSend),
+    ipcMainTake(IPC_METABIN_GATE_SEND_EACH, handleSend),
     ipcMainTake(IPC_METABIN_GATE_SUBSCRIBE, handleSubscribe),
     ipcMainTake(IPC_METABIN_GET_RECIEVED_DATA_CACHE, handleGetCache)
   ]

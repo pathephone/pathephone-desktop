@@ -5,13 +5,13 @@ import { IS_OFFLINE } from '#config'
 
 import { ALBUMS_PUBLISH_INTERVAL, ALBUMS_APPEARENCE_INTERVAL } from '~data/constants'
 
-function getAlbumsCollectionSource (apis) {
+function getOutdatedAlbumsChannel (apis) {
   const { findOutdatedAlbumsInCollection } = apis
   return eventChannel(emit => {
     const handleTick = async () => {
       const period = new Date().getTime() - ALBUMS_APPEARENCE_INTERVAL
       const albums = await findOutdatedAlbumsInCollection(period)
-      albums.forEach(emit)
+      emit(albums)
     }
     const interval = setInterval(handleTick, ALBUMS_PUBLISH_INTERVAL)
     return () => {
@@ -20,14 +20,14 @@ function getAlbumsCollectionSource (apis) {
   })
 }
 
-function * publishAlbum ({ publishAlbumByCid }, album) {
-  yield call(publishAlbumByCid, album.cid)
+function * publishAlbum ({ publishAlbumsByCIDs }, albums) {
+  yield call(publishAlbumsByCIDs, albums)
 }
 
 function * startAlbumsPublisher (apis) {
   if (!IS_OFFLINE) {
-    const albumsCollectionSource = yield call(getAlbumsCollectionSource, apis)
-    yield takeEvery(albumsCollectionSource, publishAlbum, apis)
+    const outdatedAlbumsChannel = yield call(getOutdatedAlbumsChannel, apis)
+    yield takeEvery(outdatedAlbumsChannel, publishAlbum, apis)
   }
 }
 
