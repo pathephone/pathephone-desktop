@@ -10,10 +10,10 @@ import {
   getPlaylistTracksByIndex,
   getShareCandidates,
   getNotifications,
-  getIpfsGateway,
-  getLocalAudiosCIDs
+  getIpfsGateway
 } from '#selectors'
 import { getIpfsApiEndpoint } from '../domains/ipfsInfo'
+import { getCachedCIDs } from '../domains/cachedCIDs'
 
 export const isAppReady = state => getAppStartProgress(state) === 100
 
@@ -45,7 +45,7 @@ export const getPlaylistTracksIndexes = createSelector(
 
 export const getPlaylistTracksCount = state => getPlaylistTracksIndexes(state).length
 
-export const getPlaylistTracksCids = createSelector(
+export const getPlaylistTracksCIDs = createSelector(
   getPlaylistTracksByIndex,
   tracks => {
     return Object.values(tracks).map(({ audio }) => audio)
@@ -53,15 +53,9 @@ export const getPlaylistTracksCids = createSelector(
 )
 
 export const getPlaylistUncachedTracksCIDs = createSelector(
-  [ getLocalAudiosCIDs ],
-  (localCIDs) => {
-    const handleReduce = (acc, cid) => {
-      if (localCIDs[cid] === false) {
-        acc.push(cid)
-      }
-      return acc
-    }
-    return Object.keys(localCIDs).reduce(handleReduce, [])
+  [ getPlaylistTracksCIDs, getCachedCIDs ],
+  (tracksCIDs, cachedCIDs) => {
+    return tracksCIDs.filter(cid => !cachedCIDs[cid])
   }
 )
 

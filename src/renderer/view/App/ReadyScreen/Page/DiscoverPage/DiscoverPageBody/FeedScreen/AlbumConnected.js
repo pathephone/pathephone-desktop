@@ -4,7 +4,7 @@ import {
   getDiscoverSelectedIds,
   getDiscoverFeedAlbums,
   getIpfsApiEndpoint,
-  getLocalCoversCIDs
+  getCachedCIDs
 } from '#selectors'
 
 import {
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
   latestAlbums: getDiscoverFeedAlbums(state),
   selectedAlbums: getDiscoverSelectedIds(state),
   ipfsApiEndpoint: getIpfsApiEndpoint(state),
-  localCoversCIDs: getLocalCoversCIDs(state)
+  localCoversCIDs: getCachedCIDs(state)
 })
 
 const mapDispatchToProps = {
