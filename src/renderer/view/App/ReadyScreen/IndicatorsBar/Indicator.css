@@ -1,0 +1,10 @@
+
+.indicator,
+.indicatorAccented {
+  text-transform: uppercase;
+  margin-left: 1em;
+}
+
+.indicatorAccented {
+  color: var(--accent-color);
+}
