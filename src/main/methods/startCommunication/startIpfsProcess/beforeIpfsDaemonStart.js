@@ -24,10 +24,11 @@ const beforeIpfsDaemonStart = () => {
   }
   if (fs.existsSync(configPath)) {
     try {
-      const config = require(configPath)
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'))
       config.Addresses = defaultIPFSDaemonConfig.Addresses
       fs.writeFileSync(configPath, JSON.stringify(config), 'utf8')
     } catch (e) {
+      console.error(e)
       console.log('Could not edit ipfs daemon config.')
     }
   }
