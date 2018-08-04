@@ -8,7 +8,7 @@ cache:
   - '%USERPROFILE%\.electron'
 
 install:
-  - ps: Install-Product node 8 x64
+  - ps: Install-Product node 9 x64
   - yarn
 
 build_script:
