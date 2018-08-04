@@ -3,9 +3,9 @@ import { getPlaylistUncachedTracksCIDs } from '#selectors'
 
 function * cachePlaylistTracks (api) {
   const { cacheIPFSFilesByCIDs } = api
-  const uncachedTracks = yield select(getPlaylistUncachedTracksCIDs)
+  const uncachedCIDs = yield select(getPlaylistUncachedTracksCIDs)
   try {
-    yield call(cacheIPFSFilesByCIDs, uncachedTracks)
+    yield call(cacheIPFSFilesByCIDs, uncachedCIDs)
   } catch (e) {
     console.error(e)
   }

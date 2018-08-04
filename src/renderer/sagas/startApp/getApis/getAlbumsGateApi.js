@@ -2,7 +2,8 @@ import {
   IPC_METABIN_GATE_SEND_EACH,
   IPC_METABIN_GATE_SUBSCRIBE,
   IPC_METABIN_GATE_UNSUBSCRIBE,
-  IPC_METABIN_GET_RECIEVED_DATA_CACHE
+  IPC_METABIN_GET_RECIEVED_DATA_CACHE,
+  IPC_METABIN_GET_PEERS_COUNT
 } from '~data/ipcTypes'
 
 import { rendererCalls } from '~utils/ipcRenderer'
@@ -22,11 +23,16 @@ const getAlbumsGateApi = async () => {
   const getRecievedAlbumsCache = () => {
     return rendererCalls(IPC_METABIN_GET_RECIEVED_DATA_CACHE, schemaName)
   }
+  const getMetabinPeersCount = () => {
+    return rendererCalls(IPC_METABIN_GET_PEERS_COUNT, schemaName)
+  }
+
   return {
     publishAlbumsByCIDs,
     subscribeToAlbumsGate,
     unsubscribeFromAlbumsGate,
-    getRecievedAlbumsCache
+    getRecievedAlbumsCache,
+    getMetabinPeersCount
   }
 }
 

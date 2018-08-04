@@ -49,8 +49,7 @@ export const systemPlaylistCleared = c('PLAYLIST_CLEARED')
 export const systemPlayedTracksRecieved = c('PLAYED_TRACKS_RECIEVED')
 export const systemQueuedTracksRecieved = c('QUEUED_TRACKS_RECIEVED')
 
-export const systemCacheTracks = c('CACHE_TRACKS')
-export const systemCacheTrackSucceed = c('CACHE_TRACK_SUCCEED')
+export const systemIPFSFileCached = c('IPFS_FILE_CACHED')
 
 export const systemRepeatedPlaylistEnded = c('REPEATED_PLAYLIST_ENDED')
 
@@ -58,6 +57,10 @@ export const systemNotificationRecieved = c('NOTIFICATION_RECIEVED')
 export const systemNotificationExpired = c('NOTIFICATION_EXPIRED')
 
 export const systemIpfsInfoRecieved = c('IPFS_INFO_RECIEVED')
+export const systemIpfsPeersRecieved = c('IPFS_PEERS_RECIEVED')
+export const systemIpfsStatsRecieved = c('IPFS_REPO_STATS_RECIEVED')
+
+export const systemMetabinPeersRecieved = c('METABIN_PEERS_RECIEVED')
 
 export const systemAlbumsCollectionInfoRecieved = c('ALBUMS_COUNT_RECIEVED')
 export const systemAlbumsRecievedCacheTransited = c('RECIEVED_CACHE_TRANSITED')

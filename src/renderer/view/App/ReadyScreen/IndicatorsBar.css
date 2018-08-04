@@ -1,0 +1,7 @@
+.indicatorsBar {
+  display: flex;
+  align-items: center;
+  grid-area: indibar;
+  border-top: 1px solid lightgray;
+  font-size: 0.75em;
+}

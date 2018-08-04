@@ -198,3 +198,23 @@ export const LOCAL_DELETE = c({
   en: 'delete',
   ru: 'удалить'
 })
+
+export const LOCAL_BANDWIDTH_IN = c({
+  en: 'incoming bandwidth',
+  ru: 'входящий трафик'
+})
+
+export const LOCAL_BANDWIDTH_OUT = c({
+  en: 'outcoming bandwidth',
+  ru: 'исходящий трафик'
+})
+
+export const LOCAL_IPFS_REPO_STAT = c({
+  en: 'ipfs repo: used / limit',
+  ru: 'ipfs-репозиторий: использовано / лимит'
+})
+
+export const LOCAL_PEERS_INDICATOR = c({
+  en: 'peers: ipfs (pathephone)',
+  ru: 'пиры: ipfs (pathephone)'
+})
