@@ -3,19 +3,20 @@
     "@semantic-release/changelog",
     "@semantic-release/git"
   ],
-  "publish": [
-    "@semantic-release/changelog",
+  "prepare": [
     "@semantic-release/npm",
+    "@semantic-release/changelog",
     {
       "path": "@semantic-release/exec",
       "cmd": "yarn get-ipfs:mac && yarn build -m && yarn get-ipfs:win && yarn build -w && yarn get-ipfs:lin && yarn build -l"
     },
-    "@semantic-release/github",
     {
       "path": "@semantic-release/git",
       "assets": ["CHANGELOG.md"]
     }
   ],
+  "publish": ["@semantic-release/github"],
+  "success": ["@semantic-release/github"],
   "assets": "dist/*.{zip,dmg,blockmap,AppImage,rpm,deb,exe}",
   "npmPublish": false
 }
