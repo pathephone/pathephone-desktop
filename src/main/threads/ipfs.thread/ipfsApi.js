@@ -47,3 +47,17 @@ export const ipfsCacheFilesByCIDs = async ({ ipfsDaemonPromise, payload: cids })
     cids.map(handleGetCID)
   )
 }
+
+export const getIPFSStats = async ({ ipfsDaemonPromise }) => {
+  const { api } = await ipfsDaemonPromise
+  const [ peers, repoStat, bandwidthStat ] = await Promise.all([
+    api.swarm.peers(),
+    api.repo.stat(),
+    api.stats.bw()
+  ])
+  return {
+    peersCount: peers.length,
+    repoStat,
+    bandwidthStat
+  }
+}
