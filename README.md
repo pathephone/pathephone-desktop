@@ -19,7 +19,7 @@ A [Metabin.Space](https://github.com/metabin) project.
 
 ## Download
 
-[Get latest Release for Mac, Linux or Windows](https://github.com/pathephone/pathephone-desktop/releases/tag/v2.0.0)
+[Get latest Release for Mac, Linux or Windows](https://github.com/pathephone/pathephone-desktop/releases/latest)
 
 ## Contacts
 
