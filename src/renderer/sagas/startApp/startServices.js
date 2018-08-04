@@ -8,10 +8,10 @@ import startAlbumsReciever from './startServices/startAblumsReciever'
 import startAlbumsPublisher from './startServices/startAlbumsPublisher'
 import startAlbumsSharingService from './startServices/startAlbumsSharingService'
 import startDiscoverPageService from './startServices/startDiscoverPageService'
-import startTracksCache from './startServices/startTracksCache'
 import startNotificationsService from './startServices/startNotificationsService'
 import startAlbumsCollectionInfo from './startServices/startAlbumsCollectionInfo'
 import startNewReleaseChecker from './startServices/startNewReleaseChecker'
+import startIPFSCachingService from './startServices/startIPFSCachingService'
 import startIndicatorsBarService from './startServices/startIndicatorsBarService'
 
 function * startServices (apis) {
@@ -21,7 +21,7 @@ function * startServices (apis) {
     spawn(startAlbumsPublisher, apis),
     spawn(startAlbumsSharingService, apis),
     spawn(startDiscoverPageService, apis),
-    spawn(startTracksCache, apis),
+    spawn(startIPFSCachingService, apis),
     spawn(startAlbumsCollectionInfo, apis),
     spawn(startNotificationsService, apis),
     spawn(startNewReleaseChecker, apis),

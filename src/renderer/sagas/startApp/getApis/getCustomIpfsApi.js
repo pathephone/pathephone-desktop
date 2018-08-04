@@ -34,10 +34,10 @@ function * getCustomIpfsApi () {
   const cacheIPFSFilesByCIDs = cids => {
     return rendererCalls(IPC_IPFS_CACHE_CIDS, cids)
   }
-  const openCachedCIDsStream = () => {
+  const openCachedIPFSFilesStream = () => {
     return rendererCalls(IPC_IPFS_OPEN_CACHED_CIDS_STREAM)
   }
-  const getCachedCIDsChannel = () => {
+  const getCachedIPFSFilesChannel = () => {
     return eventChannel(emit => {
       const handleMessage = (e, arg) => {
         emit(arg)
@@ -58,8 +58,8 @@ function * getCustomIpfsApi () {
     shareFsFileToIpfs,
     shareObjectToIpfs,
     cacheIPFSFilesByCIDs,
-    openCachedCIDsStream,
-    getCachedCIDsChannel,
+    openCachedIPFSFilesStream,
+    getCachedIPFSFilesChannel,
     getIPFSStats
   }
 }

@@ -50,3 +50,23 @@
   background-color: var(--accent-color);
   color: white;
 }
+
+.album__cover-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0.25em;
+  object-fit: contain;
+}
+
+.album__cover-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0.25em;
+  object-fit: contain;
+}
