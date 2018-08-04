@@ -3,14 +3,14 @@ import propTypes from 'prop-types'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdAdd from 'react-icons/lib/md/playlist-add'
 
+import NoCover from '~components/DiskIcon.jsx'
+
 import {
   E2E_DISCOVER_ALBUM_QUEUE_BUTTON,
   E2E_DISCOVER_ALBUM_PLAY_BUTTON,
   E2E_DISCOVER_ALBUM_TITLE,
   E2E_DISCOVER_ALBUM_ARTIST
 } from '~data/e2eConstants'
-
-import CoverImage from './Album/CoverImage.jsx'
 
 import './Album.css'
 
@@ -41,7 +41,8 @@ class Album extends React.Component {
       hasSelectedView,
       albumTitle,
       albumArtist,
-      albumCoverURL
+      albumCoverURL,
+      isCoverCached
     } = this.props
 
     return (
@@ -51,7 +52,17 @@ class Album extends React.Component {
             onClick={this.handleAlbumClick}
             className='album__cover'
           >
-            <CoverImage src={albumCoverURL} />
+            {
+              isCoverCached ? (
+                <img
+                  className='album__cover-image'
+                  src={albumCoverURL}
+                  onLoad={this.handleImageLoad}
+                />
+              ) : (
+                <NoCover />
+              )
+            }
           </button>
           {
             !hasSelectedView && (
@@ -100,7 +111,8 @@ Album.propTypes = {
   albumCid: propTypes.string.isRequired,
   albumArtist: propTypes.string.isRequired,
   albumTitle: propTypes.string.isRequired,
-  albumCoverURL: propTypes.string.isRequired
+  albumCoverURL: propTypes.string.isRequired,
+  isCoverCached: propTypes.bool.isRequired
 }
 
 export default Album
