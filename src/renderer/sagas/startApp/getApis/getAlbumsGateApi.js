@@ -1,5 +1,5 @@
 import {
-  IPC_METABIN_GATE_SEND,
+  IPC_METABIN_GATE_SEND_EACH,
   IPC_METABIN_GATE_SUBSCRIBE,
   IPC_METABIN_GATE_UNSUBSCRIBE,
   IPC_METABIN_GET_RECIEVED_DATA_CACHE,
@@ -11,8 +11,8 @@ import { rendererCalls } from '~utils/ipcRenderer'
 const schemaName = 'albumSchema'
 
 const getAlbumsGateApi = async () => {
-  const publishAlbumByCid = cid => {
-    return rendererCalls(IPC_METABIN_GATE_SEND, schemaName, cid)
+  const publishAlbumsByCIDs = cids => {
+    return rendererCalls(IPC_METABIN_GATE_SEND_EACH, schemaName, cids)
   }
   const subscribeToAlbumsGate = () => {
     return rendererCalls(IPC_METABIN_GATE_SUBSCRIBE, schemaName)
@@ -28,7 +28,7 @@ const getAlbumsGateApi = async () => {
   }
 
   return {
-    publishAlbumByCid,
+    publishAlbumsByCIDs,
     subscribeToAlbumsGate,
     unsubscribeFromAlbumsGate,
     getRecievedAlbumsCache,

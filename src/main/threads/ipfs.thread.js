@@ -6,7 +6,7 @@ import {
   IPC_IPFS_SHARE_FS_FILE,
   IPC_IPFS_SHARE_OBJECT,
   IPC_METABIN_GATE_SUBSCRIBE,
-  IPC_METABIN_GATE_SEND,
+  IPC_METABIN_GATE_SEND_EACH,
   IPC_METABIN_GATE_UNSUBSCRIBE,
   IPC_IPFS_GET_INFO,
   IPC_METABIN_GET_RECIEVED_DATA_CACHE,
@@ -26,9 +26,9 @@ import {
 
 import {
   metabinSubscribe,
-  metabinSend,
   metabinUnsubscribe,
   metabinGetRecievedDataCache,
+  metabinSendEach,
   getMetabinPeersCount
 } from './ipfs.thread/metabinApi'
 
@@ -52,8 +52,8 @@ const reducer = ({ type, payload }) => {
       return getIPFSStats(args)
     case IPC_METABIN_GATE_SUBSCRIBE:
       return metabinSubscribe(args)
-    case IPC_METABIN_GATE_SEND:
-      return metabinSend(args)
+    case IPC_METABIN_GATE_SEND_EACH:
+      return metabinSendEach(args)
     case IPC_METABIN_GATE_UNSUBSCRIBE:
       return metabinUnsubscribe(args)
     case IPC_METABIN_GET_RECIEVED_DATA_CACHE:
