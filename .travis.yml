@@ -26,6 +26,6 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-    - npx travis-deploy-once "npx semantic-release@13"
+    - npx travis-deploy-once "npx semantic-release@15"
   on:
     branch: master
