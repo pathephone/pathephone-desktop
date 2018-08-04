@@ -924,9 +924,9 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@metabin/gate@^2.1.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@metabin/gate/-/gate-2.3.0.tgz#ec196c3a760862f1a020bc27de5f67615cfeed0a"
+"@metabin/gate@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@metabin/gate/-/gate-2.4.0.tgz#0009eac86d88b4589dd4214f2dfda505f6e7b040"
   dependencies:
     cids "^0.5.2"
     multibase "^0.4.0"

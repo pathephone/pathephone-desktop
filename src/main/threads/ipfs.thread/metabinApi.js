@@ -65,3 +65,13 @@ export const metabinUnsubscribe = ({ payload: schemaName }) => {
   dataCacheByName.delete(schemaName)
   return unlisten()
 }
+
+export const getMetabinPeersCount = async () => {
+  const gates = [...gatesByName.values()]
+  const peersArray = await Promise.all(
+    gates.map(gate => gate.getPeers())
+  )
+  return peersArray.reduce((acc, item) => {
+    return acc + item.length
+  }, 0)
+}
