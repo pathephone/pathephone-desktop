@@ -1,3 +1,21 @@
+# [2.1.0](https://github.com/pathephone/pathephone-desktop/compare/v2.0.2...v2.1.0) (2018-08-04)
+
+
+### Bug Fixes
+
+* preget albums covers before rendering them ([#192](https://github.com/pathephone/pathephone-desktop/issues/192)) ([f7d5ac9](https://github.com/pathephone/pathephone-desktop/commit/f7d5ac9))
+* use random IPFS api port ([bda4535](https://github.com/pathephone/pathephone-desktop/commit/bda4535)), closes [#174](https://github.com/pathephone/pathephone-desktop/issues/174) [#178](https://github.com/pathephone/pathephone-desktop/issues/178)
+
+
+### Features
+
+* **UI:** add indicator bar with some basic stats ([#190](https://github.com/pathephone/pathephone-desktop/issues/190)) ([a2e2d0b](https://github.com/pathephone/pathephone-desktop/commit/a2e2d0b))
+
+
+### Performance Improvements
+
+* make a single ipc call when publishing outdated albums ([#193](https://github.com/pathephone/pathephone-desktop/issues/193)) ([326194a](https://github.com/pathephone/pathephone-desktop/commit/326194a))
+
 ## [2.0.2](https://github.com/pathephone/pathephone-desktop/compare/v2.0.1...v2.0.2) (2018-07-23)
 
 
