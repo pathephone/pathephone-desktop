@@ -10,8 +10,8 @@ describe('readAudioMetadata()', function () {
     describe('read file metadata', function () {
       it('metadata matches', async () => {
         const { common } = await getAudioMetadataFromFsFile(track.file)
-        assert.equal(common.title, track.title)
-        assert.equal(common.album, track.album)
+        assert.strictEqual(common.title, track.title)
+        assert.strictEqual(common.album, track.album)
       })
     })
   })

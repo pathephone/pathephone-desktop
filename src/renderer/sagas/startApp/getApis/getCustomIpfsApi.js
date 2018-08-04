@@ -2,6 +2,8 @@ import { call, put } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
 import { ipcRenderer } from 'electron'
 
+import { IS_OFFLINE } from '#config'
+
 import {
   IPC_IPFS_SHARE_OBJECT,
   IPC_IPFS_SHARE_FS_FILE,
@@ -9,7 +11,8 @@ import {
   IPC_IPFS_GET_INFO,
   IPC_IPFS_CID_CACHE_FAILED,
   IPC_IPFS_CID_CACHE_SUCCEED,
-  IPC_IPFS_OPEN_CACHED_CIDS_STREAM
+  IPC_IPFS_OPEN_CACHED_CIDS_STREAM,
+  IPC_IPFS_GET_STATS
 } from '~data/ipcTypes'
 
 import { rendererCalls } from '~utils/ipcRenderer'
@@ -17,7 +20,10 @@ import { systemIpfsInfoRecieved } from '~actions/system'
 
 function * getCustomIpfsApi () {
   const ipfsInfo = yield call(rendererCalls, IPC_IPFS_GET_INFO)
-  yield put(systemIpfsInfoRecieved(ipfsInfo))
+  yield put(systemIpfsInfoRecieved({
+    ...ipfsInfo,
+    isOffline: IS_OFFLINE
+  }))
 
   const shareObjectToIpfs = obj => {
     return rendererCalls(IPC_IPFS_SHARE_OBJECT, obj)
@@ -44,13 +50,17 @@ function * getCustomIpfsApi () {
       }
     })
   }
+  const getIPFSStats = () => {
+    return rendererCalls(IPC_IPFS_GET_STATS)
+  }
 
   return {
     shareFsFileToIpfs,
     shareObjectToIpfs,
     cacheIPFSFilesByCIDs,
     openCachedIPFSFilesStream,
-    getCachedIPFSFilesChannel
+    getCachedIPFSFilesChannel,
+    getIPFSStats
   }
 }
 

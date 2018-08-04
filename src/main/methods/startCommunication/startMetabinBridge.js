@@ -4,7 +4,8 @@ import {
   IPC_METABIN_GATE_SEND,
   IPC_METABIN_GATE_SUBSCRIBE,
   IPC_METABIN_GATE_UNSUBSCRIBE,
-  IPC_METABIN_GET_RECIEVED_DATA_CACHE
+  IPC_METABIN_GET_RECIEVED_DATA_CACHE,
+  IPC_METABIN_GET_PEERS_COUNT
 } from '~data/ipcTypes'
 
 const startMetabinBridge = ({ ipfsProcessPromise }) => {
@@ -34,11 +35,16 @@ const startMetabinBridge = ({ ipfsProcessPromise }) => {
       payload: schemaName
     })
   }
+  const handleGetPeersCount = async () => {
+    const ipfsProcess = await ipfsProcessPromise
+    return ipfsProcess.call({ type: IPC_METABIN_GET_PEERS_COUNT })
+  }
 
   const ipcUnlisteners = [
     ipcMainTake(IPC_METABIN_GATE_SEND, handleSend),
     ipcMainTake(IPC_METABIN_GATE_SUBSCRIBE, handleSubscribe),
-    ipcMainTake(IPC_METABIN_GET_RECIEVED_DATA_CACHE, handleGetCache)
+    ipcMainTake(IPC_METABIN_GET_RECIEVED_DATA_CACHE, handleGetCache),
+    ipcMainTake(IPC_METABIN_GET_PEERS_COUNT, handleGetPeersCount)
   ]
   return () => {
     ipcUnlisteners
