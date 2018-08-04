@@ -14,7 +14,7 @@ export const IPC_IPFS_OPEN_CACHED_CIDS_STREAM = 'open-cached-cids-stream'
 export const IPC_IPFS_GET_STATS = 'ipfs-get-repo-stats'
 
 export const IPC_METABIN_GATE_START = 'metabin-gate-start'
-export const IPC_METABIN_GATE_SEND = 'metabin-gate-send'
+export const IPC_METABIN_GATE_SEND_EACH = 'metabin-gate-send-each'
 export const IPC_METABIN_GATE_SUBSCRIBE = 'metabin-gate-subscribe'
 export const IPC_METABIN_GATE_UNSUBSCRIBE = 'metabin-gate-unlisten'
 export const IPC_METABIN_GATE_DATA_RECIEVED = 'metabin-gate-data-recieved'
