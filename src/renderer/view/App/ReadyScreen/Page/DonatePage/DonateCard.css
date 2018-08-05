@@ -31,6 +31,30 @@
   width: 30%;
 }
 
-.yandexCard {
-  text-align: center;
+.donateButtons {
+  padding: 2em 0;
+  display: flex;
+  justify-content: center;
+}
+
+.donateCreditCardLink {
+  color: inherit;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  border: 1px solid orange;
+  border-radius: 2px;
+}
+
+.donateCreditCardLink:focus,
+.donateCreditCardLink:active {
+  box-shadow: 0 0 0 0.2rem antiquewhite;
+  outline: none;
+}
+
+.donateCreditCardLink:hover {
+  background-color: rgba(10,10,10,0.1);
+}
+
+.donateCreditCardLink:active {
+  background-color: orange;
 }
