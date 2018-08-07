@@ -1,15 +1,15 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import { getNewRelease } from '#selectors'
+import { getNewRelease } from '#selectors';
 
-import NewReleaseCard from './NewReleaseCard.jsx'
+import NewReleaseCard from './NewReleaseCard.jsx';
 
-const mapStateToProps = state => {
-  const { name, assets } = getNewRelease(state)
+const mapStateToProps = (state) => {
+  const { name, assets } = getNewRelease(state);
   return {
     newReleaseName: name,
-    newReleaseAssets: assets
-  }
-}
+    newReleaseAssets: assets,
+  };
+};
 
-export default connect(mapStateToProps)(NewReleaseCard)
+export default connect(mapStateToProps)(NewReleaseCard);

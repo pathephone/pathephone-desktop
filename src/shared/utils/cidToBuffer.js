@@ -1,5 +1,3 @@
-const multibase = require('multibase')
+const multibase = require('multibase');
 
-export default (cid) => {
-  return multibase.decode(cid)
-}
+export default cid => multibase.decode(cid);

@@ -1,25 +1,25 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import {
   isRepeatTurnedOn,
-  isShuffleTurnedOn
-} from '#selectors'
+  isShuffleTurnedOn,
+} from '#selectors';
 
 import {
   uiShuffleToggled,
-  uiRepeatToggled
-} from '~actions/ui'
+  uiRepeatToggled,
+} from '~actions/ui';
 
-import ControlsRight from './ControlsRight.jsx'
+import ControlsRight from './ControlsRight.jsx';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isShuffleTurnedOn: isShuffleTurnedOn(state),
-  isRepeatTurnedOn: isRepeatTurnedOn(state)
-})
+  isRepeatTurnedOn: isRepeatTurnedOn(state),
+});
 
 const mapDispatchToProps = {
   onToggleShuffle: uiShuffleToggled,
-  onToggleRepeat: uiRepeatToggled
-}
+  onToggleRepeat: uiRepeatToggled,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ControlsRight)
+export default connect(mapStateToProps, mapDispatchToProps)(ControlsRight);

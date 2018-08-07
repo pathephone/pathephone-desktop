@@ -1,37 +1,37 @@
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import reduxLogger from 'redux-logger'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import reduxLogger from 'redux-logger';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import rootReducer from './rootReducer'
-import rootSaga from './rootSaga'
+import rootReducer from './rootReducer';
+import rootSaga from './rootSaga';
 
-import { IS_DEVELOPMENT } from '#config'
+import { IS_DEVELOPMENT } from '#config';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [ 'volume', 'playlist', 'legalAgreement' ]
-}
+  whitelist: ['volume', 'playlist', 'legalAgreement'],
+};
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [sagaMiddleware]
+const middlewares = [sagaMiddleware];
 
 if (IS_DEVELOPMENT) {
-  middlewares.push(reduxLogger)
+  middlewares.push(reduxLogger);
 }
 
 const store = createStore(
   persistedReducer,
-  applyMiddleware(...middlewares)
-)
+  applyMiddleware(...middlewares),
+);
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
 
-sagaMiddleware.run(rootSaga)
+sagaMiddleware.run(rootSaga);
 
-export default store
+export default store;

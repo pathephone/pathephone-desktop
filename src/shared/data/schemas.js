@@ -1,3 +1,3 @@
-import * as albumSchema from './schemas/album'
+import * as albumSchema from './schemas/album';
 
-export { albumSchema }
+export { albumSchema };

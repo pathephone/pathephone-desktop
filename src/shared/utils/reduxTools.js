@@ -1,33 +1,33 @@
 
-export const reducerFactory = ({ initialState, actionHandlers }) =>
+export const reducerFactory = ({ initialState, actionHandlers }) => (
   (state = initialState, action) => {
-    const { type, payload } = action
-    const actionHandler = actionHandlers[type]
+    const { type, payload } = action;
+    const actionHandler = actionHandlers[type];
     if (actionHandler) {
-      return actionHandler({ payload, state })
+      return actionHandler({ payload, state });
     }
-    return state
+    return state;
   }
+);
 
 export const creatorFactory = (type) => {
-  const creator = payload => ({ type, payload })
-  creator.toString = () => type
-  Object.freeze(creator)
-  return creator
-}
+  const creator = payload => ({ type, payload });
+  creator.toString = () => type;
+  Object.freeze(creator);
+  return creator;
+};
 
-export const newDomainTypeFactory = (domain) => (type) => `@@${domain}/${type}`
+export const newDomainTypeFactory = domain => type => `@@${domain}/${type}`;
 
-const handleReduce = (state, field) => field ? state[field] : state
-export const newDomainSelectorFactory =
-  domain => pathString => {
-    const path = pathString.split('.').filter(key => !!key)
-    return (state) => path.reduce(handleReduce, state[domain])
-  }
+const handleReduce = (state, field) => (field ? state[field] : state);
+export const newDomainSelectorFactory = domain => (pathString) => {
+  const path = pathString.split('.').filter(key => !!key);
+  return state => path.reduce(handleReduce, state[domain]);
+};
 
-export const newCreatorFactory = (domainTypeFactory) => {
-  return actionType => creatorFactory(domainTypeFactory(actionType))
-}
+export const newCreatorFactory = domainTypeFactory => (
+  actionType => creatorFactory(domainTypeFactory(actionType))
+);
 
 // function capitalizeFirstLetter(string) {
 //   return string.charAt(0).toUpperCase() + string.slice(1);

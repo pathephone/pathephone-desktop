@@ -1,4 +1,4 @@
-import { ipcMainTake } from '~utils/ipcMain'
+import { ipcMainTake } from '~utils/ipcMain';
 
 import {
   IPC_IPFS_SHARE_OBJECT,
@@ -8,46 +8,46 @@ import {
   IPC_IPFS_CID_CACHE_SUCCEED,
   IPC_IPFS_CID_CACHE_FAILED,
   IPC_IPFS_OPEN_CACHED_CIDS_STREAM,
-  IPC_IPFS_GET_STATS
-} from '~data/ipcTypes'
+  IPC_IPFS_GET_STATS,
+} from '~data/ipcTypes';
 
 const startIpfsBridge = ({ ipfsProcessPromise }) => {
   const handleIpfsStartRequest = async () => {
-    const ipfsProcess = await ipfsProcessPromise
-    const ipfsInfo = await ipfsProcess.call({ type: IPC_IPFS_GET_INFO })
-    return ipfsInfo
-  }
-  const handleShareObject = async obj => {
-    const ipfsProcess = await ipfsProcessPromise
-    return ipfsProcess.call({ type: IPC_IPFS_SHARE_OBJECT, payload: obj })
-  }
-  const handleShareFsFile = async filePath => {
-    const ipfsProcess = await ipfsProcessPromise
-    return ipfsProcess.call({ type: IPC_IPFS_SHARE_FS_FILE, payload: filePath })
-  }
-  const handleCacheFilesByCIDs = async cids => {
-    const ipfsProcess = await ipfsProcessPromise
-    return ipfsProcess.call({ type: IPC_IPFS_CACHE_CIDS, payload: cids })
-  }
+    const ipfsProcess = await ipfsProcessPromise;
+    const ipfsInfo = await ipfsProcess.call({ type: IPC_IPFS_GET_INFO });
+    return ipfsInfo;
+  };
+  const handleShareObject = async (obj) => {
+    const ipfsProcess = await ipfsProcessPromise;
+    return ipfsProcess.call({ type: IPC_IPFS_SHARE_OBJECT, payload: obj });
+  };
+  const handleShareFsFile = async (filePath) => {
+    const ipfsProcess = await ipfsProcessPromise;
+    return ipfsProcess.call({ type: IPC_IPFS_SHARE_FS_FILE, payload: filePath });
+  };
+  const handleCacheFilesByCIDs = async (cids) => {
+    const ipfsProcess = await ipfsProcessPromise;
+    return ipfsProcess.call({ type: IPC_IPFS_CACHE_CIDS, payload: cids });
+  };
 
-  const handleopenCachedIPFSFilesStream = async event => {
-    const ipfsProcess = await ipfsProcessPromise
+  const handleopenCachedIPFSFilesStream = async (event) => {
+    const ipfsProcess = await ipfsProcessPromise;
     const handleMessage = ({ type, ...rest }) => {
       switch (type) {
         case IPC_IPFS_CID_CACHE_SUCCEED:
         case IPC_IPFS_CID_CACHE_FAILED:
-          event.sender.send(type, rest)
+          event.sender.send(type, rest);
       }
-    }
-    ipfsProcess.on('message', handleMessage)
+    };
+    ipfsProcess.on('message', handleMessage);
     event.sender.on('destroyed', () => {
-      ipfsProcess.removeListener('message', handleMessage)
-    })
-  }
+      ipfsProcess.removeListener('message', handleMessage);
+    });
+  };
   const handleGetStats = async () => {
-    const ipfsProcess = await ipfsProcessPromise
-    return ipfsProcess.call({ type: IPC_IPFS_GET_STATS })
-  }
+    const ipfsProcess = await ipfsProcessPromise;
+    return ipfsProcess.call({ type: IPC_IPFS_GET_STATS });
+  };
 
   const apiUnlisteners = [
     ipcMainTake(IPC_IPFS_GET_INFO, handleIpfsStartRequest),
@@ -55,11 +55,11 @@ const startIpfsBridge = ({ ipfsProcessPromise }) => {
     ipcMainTake(IPC_IPFS_SHARE_FS_FILE, handleShareFsFile),
     ipcMainTake(IPC_IPFS_CACHE_CIDS, handleCacheFilesByCIDs),
     ipcMainTake(IPC_IPFS_OPEN_CACHED_CIDS_STREAM, handleopenCachedIPFSFilesStream),
-    ipcMainTake(IPC_IPFS_GET_STATS, handleGetStats)
-  ]
+    ipcMainTake(IPC_IPFS_GET_STATS, handleGetStats),
+  ];
   return () => {
-    apiUnlisteners.forEach(unlisten => { unlisten() })
-  }
-}
+    apiUnlisteners.forEach((unlisten) => { unlisten(); });
+  };
+};
 
-export default startIpfsBridge
+export default startIpfsBridge;

@@ -1,19 +1,19 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import {
-  getVolume
-} from '#selectors'
+  getVolume,
+} from '#selectors';
 
-import { uiVolumeChanged } from '~actions/ui'
+import { uiVolumeChanged } from '~actions/ui';
 
-import VolumeInput from './VolumeInput.jsx'
+import VolumeInput from './VolumeInput.jsx';
 
-const mapStateToProps = (state) => ({
-  currentVolume: getVolume(state)
-})
+const mapStateToProps = state => ({
+  currentVolume: getVolume(state),
+});
 
 const mapDispatchToProps = {
-  onVolumeChange: uiVolumeChanged
-}
+  onVolumeChange: uiVolumeChanged,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(VolumeInput)
+export default connect(mapStateToProps, mapDispatchToProps)(VolumeInput);

@@ -1,4 +1,4 @@
-import { eventChannel } from 'redux-saga'
+import { eventChannel } from 'redux-saga';
 
 import {
   IPC_FIND_ALBUM_IN_COLLECTION_BY_CID,
@@ -11,86 +11,70 @@ import {
   IPC_ALBUMS_STREAMED,
   IPC_CLOSE_ALBUMS_STREAM,
   IPC_GET_ALBUMS_COLLECTION_INFO,
-  IPC_SAVE_OR_UPDATE_ALBUMS
-} from '~data/ipcTypes'
+  IPC_SAVE_OR_UPDATE_ALBUMS,
+} from '~data/ipcTypes';
 
 const getAlbumsCollectionApi = (worker) => {
-  const getAlbumsCollectionInfo = () => {
-    return worker.call({
-      type: IPC_GET_ALBUMS_COLLECTION_INFO
-    })
-  }
-  const findAlbumInCollectionByCid = cid => {
-    return worker.call({
-      type: IPC_FIND_ALBUM_IN_COLLECTION_BY_CID,
-      payload: cid
-    })
-  }
-  const findAlbumsInCollectionByCids = cids => {
-    return worker.call({
-      type: IPC_FIND_ALBUMS_IN_COLLECTION_BY_CIDS,
-      payload: cids
-    })
-  }
+  const getAlbumsCollectionInfo = () => worker.call({
+    type: IPC_GET_ALBUMS_COLLECTION_INFO,
+  });
+  const findAlbumInCollectionByCid = cid => worker.call({
+    type: IPC_FIND_ALBUM_IN_COLLECTION_BY_CID,
+    payload: cid,
+  });
+  const findAlbumsInCollectionByCids = cids => worker.call({
+    type: IPC_FIND_ALBUMS_IN_COLLECTION_BY_CIDS,
+    payload: cids,
+  });
 
-  const findOutdatedAlbumsInCollection = period => {
-    return worker.call({
-      type: IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION,
-      payload: period
-    })
-  }
+  const findOutdatedAlbumsInCollection = period => worker.call({
+    type: IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION,
+    payload: period,
+  });
 
-  const findAlbumsInCollection = async payload => {
+  const findAlbumsInCollection = async (payload) => {
     await worker.call({
       type: IPC_OPEN_ALBUMS_STREAM,
-      payload
-    })
-    return eventChannel(emitt => {
+      payload,
+    });
+    return eventChannel((emitt) => {
       const handleMessage = ({ data }) => {
-        const { type, payload, errorMessage } = data
+        const { type, payload, errorMessage } = data;
         if (type === IPC_ALBUMS_STREAMED) {
           if (errorMessage) {
             emitt({
-              error: new Error(errorMessage)
-            })
+              error: new Error(errorMessage),
+            });
           } else {
-            emitt({ albums: payload })
+            emitt({ albums: payload });
           }
         }
-      }
-      worker.addEventListener('message', handleMessage)
+      };
+      worker.addEventListener('message', handleMessage);
       return () => {
-        worker.removeEventListener('message', handleMessage)
+        worker.removeEventListener('message', handleMessage);
         worker.call({
-          type: IPC_CLOSE_ALBUMS_STREAM
-        })
-      }
-    })
-  }
-  const saveAlbumIfNotExists = payload => {
-    return worker.call({
-      type: IPC_SAVE_ALBUM_IF_NOT_EXISTS,
-      payload: payload
-    })
-  }
-  const saveOrUpdateAlbum = payload => {
-    return worker.call({
-      type: IPC_SAVE_OR_UPDATE_ALBUM,
-      payload: payload
-    })
-  }
-  const saveOrUpdateAlbums = payload => {
-    return worker.call({
-      type: IPC_SAVE_OR_UPDATE_ALBUMS,
-      payload: payload
-    })
-  }
-  const deleteAlbumsFromCollection = cids => {
-    return worker.call({
-      type: IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS,
-      payload: cids
-    })
-  }
+          type: IPC_CLOSE_ALBUMS_STREAM,
+        });
+      };
+    });
+  };
+  const saveAlbumIfNotExists = payload => worker.call({
+    type: IPC_SAVE_ALBUM_IF_NOT_EXISTS,
+    payload,
+  });
+  const saveOrUpdateAlbum = payload => worker.call({
+    type: IPC_SAVE_OR_UPDATE_ALBUM,
+    payload,
+  });
+  const saveOrUpdateAlbums = payload => worker.call({
+    type: IPC_SAVE_OR_UPDATE_ALBUMS,
+    payload,
+  });
+  const deleteAlbumsFromCollection = cids => worker.call({
+    type: IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS,
+    payload: cids,
+  });
   return {
     saveAlbumIfNotExists,
     saveOrUpdateAlbum,
@@ -100,8 +84,8 @@ const getAlbumsCollectionApi = (worker) => {
     findOutdatedAlbumsInCollection,
     findAlbumsInCollection,
     deleteAlbumsFromCollection,
-    getAlbumsCollectionInfo
-  }
-}
+    getAlbumsCollectionInfo,
+  };
+};
 
-export default getAlbumsCollectionApi
+export default getAlbumsCollectionApi;

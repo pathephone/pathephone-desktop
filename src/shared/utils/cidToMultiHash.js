@@ -1,5 +1,3 @@
-import cidToBuffer from './cidToBuffer'
+import cidToBuffer from './cidToBuffer';
 
-export default (cid) => {
-  return cidToBuffer(cid).slice(2)
-}
+export default cid => cidToBuffer(cid).slice(2);

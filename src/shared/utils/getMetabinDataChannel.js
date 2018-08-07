@@ -1,28 +1,28 @@
-import { eventChannel } from 'redux-saga'
+import { eventChannel } from 'redux-saga';
 
-import { rendererCalls } from './ipcRenderer'
+import { ipcRenderer } from 'electron';
+import { rendererCalls } from './ipcRenderer';
 
 import {
   IPC_METABIN_GATE_SUBSCRIBE,
   IPC_METABIN_GATE_UNLISTEN,
-  IPC_METABIN_GATE_DATA_RECIEVED
-} from '~data/ipcTypes'
-import { ipcRenderer } from 'electron'
+  IPC_METABIN_GATE_DATA_RECIEVED,
+} from '~data/ipcTypes';
 
-async function getMetabinDataChannel (channelName) {
-  await rendererCalls(IPC_METABIN_GATE_SUBSCRIBE, channelName)
-  return eventChannel(emitt => {
+async function getMetabinDataChannel(channelName) {
+  await rendererCalls(IPC_METABIN_GATE_SUBSCRIBE, channelName);
+  return eventChannel((emitt) => {
     const handleIncomingMessage = (event, { schemaName, payload }) => {
       if (schemaName === channelName) {
-        emitt(payload)
+        emitt(payload);
       }
-    }
-    ipcRenderer.on(IPC_METABIN_GATE_DATA_RECIEVED, handleIncomingMessage)
+    };
+    ipcRenderer.on(IPC_METABIN_GATE_DATA_RECIEVED, handleIncomingMessage);
     return () => {
-      ipcRenderer.removeListener(IPC_METABIN_GATE_DATA_RECIEVED, handleIncomingMessage)
-      return rendererCalls(IPC_METABIN_GATE_UNLISTEN, channelName)
-    }
-  })
+      ipcRenderer.removeListener(IPC_METABIN_GATE_DATA_RECIEVED, handleIncomingMessage);
+      return rendererCalls(IPC_METABIN_GATE_UNLISTEN, channelName);
+    };
+  });
 }
 
-export default getMetabinDataChannel
+export default getMetabinDataChannel;

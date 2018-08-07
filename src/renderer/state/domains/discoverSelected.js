@@ -1,33 +1,33 @@
-import { systemDiscoverSelectedActionSucceed } from '~actions/system'
+import { systemDiscoverSelectedActionSucceed } from '~actions/system';
 import {
   uiDiscoverAlbumSelected,
   uiDiscoverAlbumDeselected,
-  uiDiscoverSelectedCanceled
-} from '~actions/ui'
+  uiDiscoverSelectedCanceled,
+} from '~actions/ui';
 
-const DOMAIN = 'discoverSelected'
+const DOMAIN = 'discoverSelected';
 
-const initialState = []
+const initialState = [];
 
 // SELECTORS
 
-export const getDiscoverSelectedIds = state => state[DOMAIN]
+export const getDiscoverSelectedIds = state => state[DOMAIN];
 
 // ACTIONS
 
 const reducer = (state = initialState, action) => {
-  const { type, payload } = action
+  const { type, payload } = action;
   switch (type) {
     case uiDiscoverAlbumSelected.toString():
-      return [ ...state, payload ]
+      return [...state, payload];
     case uiDiscoverAlbumDeselected.toString():
-      return state.filter(cid => cid !== payload)
+      return state.filter(cid => cid !== payload);
     case systemDiscoverSelectedActionSucceed.toString():
     case uiDiscoverSelectedCanceled.toString():
-      return []
+      return [];
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

@@ -1,30 +1,28 @@
-import { take, call } from 'redux-saga/effects'
+import { take, call } from 'redux-saga/effects';
 
-import { rendererCalls, rendererCallsSaga } from '~utils/ipcRenderer'
+import { rendererCalls, rendererCallsSaga } from '~utils/ipcRenderer';
 
 import {
   IPC_GET_ALBUM_CANDIDATES_FROM_FS_ITEMS,
-  IPC_GET_TRACKS_FROM_FS_FILES
-} from '~data/ipcTypes'
+  IPC_GET_TRACKS_FROM_FS_FILES,
+} from '~data/ipcTypes';
 
-function getRestRemoteApis () {
-  function * getAlbumCandidatesFromFs (...args) {
-    const chan = yield call(rendererCallsSaga, IPC_GET_ALBUM_CANDIDATES_FROM_FS_ITEMS, ...args)
-    const { error, payload } = yield take(chan)
+function getRestRemoteApis() {
+  function* getAlbumCandidatesFromFs(...args) {
+    const chan = yield call(rendererCallsSaga, IPC_GET_ALBUM_CANDIDATES_FROM_FS_ITEMS, ...args);
+    const { error, payload } = yield take(chan);
     if (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
-    return payload
+    return payload;
   }
 
-  const getTracksFromFsFiles = (...args) => {
-    return rendererCalls(IPC_GET_TRACKS_FROM_FS_FILES, ...args)
-  }
+  const getTracksFromFsFiles = (...args) => rendererCalls(IPC_GET_TRACKS_FROM_FS_FILES, ...args);
 
   return {
     getAlbumCandidatesFromFs,
-    getTracksFromFsFiles
-  }
+    getTracksFromFsFiles,
+  };
 }
 
-export default getRestRemoteApis
+export default getRestRemoteApis;

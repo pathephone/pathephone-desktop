@@ -1,23 +1,23 @@
 
-import getFolderContents from '~utils/getFolderContents'
-import splitFoldersAndFiles from '~utils/splitFoldersAndFiles'
+import getFolderContents from '~utils/getFolderContents';
+import splitFoldersAndFiles from '~utils/splitFoldersAndFiles';
 
-import getCandidateFromFiles from './getAlbumCandidatesFromFsItems/getCandidateFromFiles'
+import getCandidateFromFiles from './getAlbumCandidatesFromFsItems/getCandidateFromFiles';
 
 const getAlbumCandidatesFromFsItems = async (fsItems, candidates = []) => {
-  const { folders, files } = await splitFoldersAndFiles(fsItems)
-  const candidateFromFiles = await getCandidateFromFiles(files)
+  const { folders, files } = await splitFoldersAndFiles(fsItems);
+  const candidateFromFiles = await getCandidateFromFiles(files);
   if (candidateFromFiles) {
-    candidates.push(candidateFromFiles)
+    candidates.push(candidateFromFiles);
   }
-  const handleMap = async folderPath => {
-    const nextFsItems = await getFolderContents(folderPath)
-    await getAlbumCandidatesFromFsItems(nextFsItems, candidates)
-  }
+  const handleMap = async (folderPath) => {
+    const nextFsItems = await getFolderContents(folderPath);
+    await getAlbumCandidatesFromFsItems(nextFsItems, candidates);
+  };
   await Promise.all(
-    folders.map(handleMap)
-  )
-  return candidates
-}
+    folders.map(handleMap),
+  );
+  return candidates;
+};
 
-export default getAlbumCandidatesFromFsItems
+export default getAlbumCandidatesFromFsItems;

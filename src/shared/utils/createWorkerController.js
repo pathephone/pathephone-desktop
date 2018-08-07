@@ -1,30 +1,30 @@
 
 const createWorkerController = (Worker) => {
-  let inc = 0
-  const worker = new Worker()
+  let inc = 0;
+  const worker = new Worker();
   worker.call = ({ type, payload }) => {
-    const requestId = ++inc + ''
+    const requestId = `${++inc}`;
     return new Promise((resolve, reject) => {
       const handleMessage = ({ data }) => {
-        const { responseId, payload, errorMessage } = data
+        const { responseId, payload, errorMessage } = data;
         if (responseId === requestId) {
-          worker.removeEventListener('message', handleMessage)
+          worker.removeEventListener('message', handleMessage);
           if (errorMessage) {
-            reject(new Error(errorMessage))
+            reject(new Error(errorMessage));
           } else {
-            resolve(payload)
+            resolve(payload);
           }
         }
-      }
-      worker.addEventListener('message', handleMessage)
+      };
+      worker.addEventListener('message', handleMessage);
       worker.postMessage({
         requestId,
         type,
-        payload
-      })
-    })
-  }
-  return worker
-}
+        payload,
+      });
+    });
+  };
+  return worker;
+};
 
-export default createWorkerController
+export default createWorkerController;

@@ -1,76 +1,76 @@
-import { app } from 'electron'
+import { app } from 'electron';
 
-import withEnvironment from './methods/withEnvironment'
-import startCommunication from './methods/startCommunication'
-import createMainWindow from './methods/createMainWindow'
-import loadMainWindow from './methods/loadMainWindow'
-import withSingleInstanceBehaviour from './methods/withSingleInstanceBehaviour'
-import { HAS_TRAY } from '#config'
+import withEnvironment from './methods/withEnvironment';
+import startCommunication from './methods/startCommunication';
+import createMainWindow from './methods/createMainWindow';
+import loadMainWindow from './methods/loadMainWindow';
+import withSingleInstanceBehaviour from './methods/withSingleInstanceBehaviour';
+import { HAS_TRAY } from '#config';
 
 const state = {
   mainWindow: null,
   isReadyToQuit: false,
-  isQuiting: false
-}
+  isQuiting: false,
+};
 
-withSingleInstanceBehaviour(state)
+withSingleInstanceBehaviour(state);
 
-withEnvironment()
+withEnvironment();
 
 const handleReady = () => {
-  console.log('-- starting ipc')
+  console.log('-- starting ipc');
 
-  const communicationPromise = startCommunication()
+  const communicationPromise = startCommunication();
 
-  console.log('-- loading main window')
+  console.log('-- loading main window');
 
-  state.mainWindow = createMainWindow()
+  state.mainWindow = createMainWindow();
 
   const handleClose = (e) => {
     if (HAS_TRAY && !state.isReadyToQuit) {
-      e.preventDefault()
-      state.mainWindow.hide()
+      e.preventDefault();
+      state.mainWindow.hide();
     }
-  }
+  };
 
-  state.mainWindow.on('close', handleClose)
+  state.mainWindow.on('close', handleClose);
 
   const handleClosed = () => {
-    state.mainWindow = null
-    console.log('-- window reference destroyed')
-  }
+    state.mainWindow = null;
+    console.log('-- window reference destroyed');
+  };
 
-  state.mainWindow.on('closed', handleClosed)
+  state.mainWindow.on('closed', handleClosed);
 
   const handleAllClosed = () => {
-    app.quit()
-  }
+    app.quit();
+  };
 
-  app.on('window-all-closed', handleAllClosed)
+  app.on('window-all-closed', handleAllClosed);
 
-  const handleBeforeQuit = async e => {
+  const handleBeforeQuit = async (e) => {
     if (state.isQuiting || !state.isReadyToQuit) {
-      e.preventDefault()
-      console.log('-- app quit prevented')
+      e.preventDefault();
+      console.log('-- app quit prevented');
     }
     if (!state.isReadyToQuit) {
-      state.isQuiting = true
+      state.isQuiting = true;
       try {
-        const stopCommunication = await communicationPromise
-        await stopCommunication()
-        console.log('-- app ready to quit')
+        const stopCommunication = await communicationPromise;
+        await stopCommunication();
+        console.log('-- app ready to quit');
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-      state.isReadyToQuit = true
-      state.isQuiting = false
-      app.quit()
+      state.isReadyToQuit = true;
+      state.isQuiting = false;
+      app.quit();
     }
-  }
+  };
 
-  app.on('before-quit', handleBeforeQuit)
+  app.on('before-quit', handleBeforeQuit);
 
-  loadMainWindow(state.mainWindow)
-}
+  loadMainWindow(state.mainWindow);
+};
 
-app.on('ready', handleReady)
+app.on('ready', handleReady);

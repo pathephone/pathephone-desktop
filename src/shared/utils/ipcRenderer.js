@@ -1,57 +1,53 @@
 
-import { ipcRenderer } from 'electron'
-import { eventChannel, END } from 'redux-saga'
+import { ipcRenderer } from 'electron';
+import { eventChannel, END } from 'redux-saga';
 
-let inc = 0
+let inc = 0;
 
-export const rendererCalls = (chan, ...sendPayload) => {
-  return new Promise((resolve, reject) => {
-    const handleResponse = (event, { error, payload }) => {
-      if (error) {
-        reject(new Error(`${chan}: ${error}`))
-      } else {
-        resolve(payload)
-      }
+export const rendererCalls = (chan, ...sendPayload) => new Promise((resolve, reject) => {
+  const handleResponse = (event, { error, payload }) => {
+    if (error) {
+      reject(new Error(`${chan}: ${error}`));
+    } else {
+      resolve(payload);
     }
-    let id = `${inc++}`
-    ipcRenderer.on(id, handleResponse)
-    ipcRenderer.send(chan, id, ...sendPayload)
-  })
-}
+  };
+  const id = `${inc++}`;
+  ipcRenderer.on(id, handleResponse);
+  ipcRenderer.send(chan, id, ...sendPayload);
+});
 
-export const rendererCallsSaga = (chan, ...sendPayload) => {
-  return eventChannel(emit => {
-    const handleResponse = (event, response) => {
-      emit(response)
-      emit(END)
-    }
-    let id = `${inc++}`
-    ipcRenderer.on(id, handleResponse)
-    ipcRenderer.send(chan, id, ...sendPayload)
-    return () => {
-      ipcRenderer.removeListener(id, handleResponse)
-    }
-  })
-}
+export const rendererCallsSaga = (chan, ...sendPayload) => eventChannel((emit) => {
+  const handleResponse = (event, response) => {
+    emit(response);
+    emit(END);
+  };
+  const id = `${inc++}`;
+  ipcRenderer.on(id, handleResponse);
+  ipcRenderer.send(chan, id, ...sendPayload);
+  return () => {
+    ipcRenderer.removeListener(id, handleResponse);
+  };
+});
 
 export const rendererCallsSync = (chan, ...sendPayload) => {
-  const { error, payload } = ipcRenderer.sendSync(chan, ...sendPayload)
+  const { error, payload } = ipcRenderer.sendSync(chan, ...sendPayload);
   if (error) {
-    throw new Error(error)
+    throw new Error(error);
   }
-  return payload
-}
+  return payload;
+};
 
 export const rendererTakes = (channel, handler) => {
   ipcRenderer.on(channel, async (event, id, ...args) => {
     try {
-      const payload = await handler(...args)
-      event.sender.send(id, { payload })
+      const payload = await handler(...args);
+      event.sender.send(id, { payload });
     } catch (error) {
-      event.sender.send(id, { error })
+      event.sender.send(id, { error });
     }
-  })
+  });
   return () => {
-    ipcRenderer.removeListener(channel, handler)
-  }
-}
+    ipcRenderer.removeListener(channel, handler);
+  };
+};

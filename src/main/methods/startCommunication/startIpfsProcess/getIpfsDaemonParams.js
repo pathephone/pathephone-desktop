@@ -1,42 +1,42 @@
-import { app } from 'electron'
-import path from 'path'
+import { app } from 'electron';
+import path from 'path';
 
-import defaultIPFSdaemonConfig from '~data/defaultIPFSDaemonConfig'
+import defaultIPFSdaemonConfig from '~data/defaultIPFSDaemonConfig';
 
 import {
   IS_TESTING,
   IS_OFFLINE,
   IS_WINDOWS,
   RESOURCES_PATH,
-  IS_DEVELOPMENT
-} from '#config'
+  IS_DEVELOPMENT,
+} from '#config';
 
 const getIpfsDaemonParams = () => {
-  const type = 'go'
-  let exec
+  const type = 'go';
+  let exec;
   if (!IS_DEVELOPMENT) {
     if (IS_WINDOWS) {
-      exec = `${RESOURCES_PATH}/go-ipfs/ipfs.exe`
+      exec = `${RESOURCES_PATH}/go-ipfs/ipfs.exe`;
     } else {
-      exec = `${RESOURCES_PATH}/go-ipfs/ipfs`
+      exec = `${RESOURCES_PATH}/go-ipfs/ipfs`;
     }
   }
-  const repoPath = path.join(app.getPath('userData'), 'ipfsRepo')
-  const disposable = IS_TESTING
-  const config = !IS_TESTING && defaultIPFSdaemonConfig
-  const startFlags = ['--enable-pubsub-experiment', '--migrate=true']
+  const repoPath = path.join(app.getPath('userData'), 'ipfsRepo');
+  const disposable = IS_TESTING;
+  const config = !IS_TESTING && defaultIPFSdaemonConfig;
+  const startFlags = ['--enable-pubsub-experiment', '--migrate=true'];
   if (IS_OFFLINE) {
-    startFlags.push('--offline')
+    startFlags.push('--offline');
   }
   return {
     createParams: {
-      type, exec
+      type, exec,
     },
     spawnParams: {
-      repoPath, disposable, config
+      repoPath, disposable, config,
     },
-    startFlags
-  }
-}
+    startFlags,
+  };
+};
 
-export default getIpfsDaemonParams
+export default getIpfsDaemonParams;

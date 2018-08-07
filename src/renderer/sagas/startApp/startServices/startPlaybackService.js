@@ -1,16 +1,16 @@
-import { take, select, put } from 'redux-saga/effects'
+import { take, select, put } from 'redux-saga/effects';
 
-import { systemAudioEnded, systemRepeatedPlaylistEnded } from '~actions/system'
-import { shouldPlaylistBeRepeated } from '#selectors'
+import { systemAudioEnded, systemRepeatedPlaylistEnded } from '~actions/system';
+import { shouldPlaylistBeRepeated } from '#selectors';
 
-function * startPlaybackService (args) {
+function* startPlaybackService(args) {
   while (true) {
-    yield take(systemAudioEnded)
-    const isRepeat = yield select(shouldPlaylistBeRepeated)
+    yield take(systemAudioEnded);
+    const isRepeat = yield select(shouldPlaylistBeRepeated);
     if (isRepeat) {
-      yield put(systemRepeatedPlaylistEnded())
+      yield put(systemRepeatedPlaylistEnded());
     }
   }
 }
 
-export default startPlaybackService
+export default startPlaybackService;

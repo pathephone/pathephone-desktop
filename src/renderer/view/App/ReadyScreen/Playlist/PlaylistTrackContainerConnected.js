@@ -1,15 +1,13 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import {
-  getPlaylistRemovedByIndex
-} from '#selectors'
+  getPlaylistRemovedByIndex,
+} from '#selectors';
 
-import PlaylistTrackContainer from './PlaylistTrackContainer.jsx'
+import PlaylistTrackContainer from './PlaylistTrackContainer.jsx';
 
-const mapStateToProps = (_, ownProps) => {
-  return (state) => ({
-    isRemoved: !!getPlaylistRemovedByIndex(state)[ownProps.index]
-  })
-}
+const mapStateToProps = (_, ownProps) => state => ({
+  isRemoved: !!getPlaylistRemovedByIndex(state)[ownProps.index],
+});
 
-export default connect(mapStateToProps)(PlaylistTrackContainer)
+export default connect(mapStateToProps)(PlaylistTrackContainer);

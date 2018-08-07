@@ -1,28 +1,28 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects';
 
 import {
   systemAppStartSucceed,
-  systemAppStartFailed
-} from '~actions/system'
+  systemAppStartFailed,
+} from '~actions/system';
 
-import { IS_TESTING } from '#config'
+import { IS_TESTING } from '#config';
 
-import startServices from './startApp/startServices'
-import getApis from './startApp/getApis'
-import checkLegalAgreement from './startApp/checkLegalAgreement'
+import startServices from './startApp/startServices';
+import getApis from './startApp/getApis';
+import checkLegalAgreement from './startApp/checkLegalAgreement';
 
-function * startApp () {
+function* startApp() {
   try {
     if (!IS_TESTING) {
-      yield call(checkLegalAgreement)
+      yield call(checkLegalAgreement);
     }
-    const apis = yield call(getApis)
-    yield call(startServices, apis)
-    yield put(systemAppStartSucceed())
+    const apis = yield call(getApis);
+    yield call(startServices, apis);
+    yield put(systemAppStartSucceed());
   } catch (e) {
-    console.error(e)
-    yield put(systemAppStartFailed(e.message))
+    console.error(e);
+    yield put(systemAppStartFailed(e.message));
   }
 }
 
-export default startApp
+export default startApp;

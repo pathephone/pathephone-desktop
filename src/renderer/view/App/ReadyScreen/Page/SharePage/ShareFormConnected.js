@@ -1,20 +1,22 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import ShareForm from './ShareForm.jsx'
-import { uiShareFormSubmited, uiShareFormCanceled, uiShareFormChanged, uiShareFormReseted } from '~actions/ui'
-import { getShareFormValue, isShareProcessing, getShareCoverSrc } from '#selectors'
+import ShareForm from './ShareForm.jsx';
+import {
+  uiShareFormSubmited, uiShareFormCanceled, uiShareFormChanged, uiShareFormReseted,
+} from '~actions/ui';
+import { getShareFormValue, isShareProcessing, getShareCoverSrc } from '#selectors';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   values: getShareFormValue(state),
   coverSrc: getShareCoverSrc(state),
-  isDisabled: isShareProcessing(state)
-})
+  isDisabled: isShareProcessing(state),
+});
 
 const mapDispatchToProps = {
   onSubmit: uiShareFormSubmited,
   onCancel: uiShareFormCanceled,
   onChange: uiShareFormChanged,
-  onReset: uiShareFormReseted
-}
+  onReset: uiShareFormReseted,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShareForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ShareForm);

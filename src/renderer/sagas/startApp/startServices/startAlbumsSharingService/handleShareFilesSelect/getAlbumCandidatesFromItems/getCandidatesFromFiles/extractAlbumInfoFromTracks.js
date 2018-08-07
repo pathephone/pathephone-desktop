@@ -1,23 +1,23 @@
 
-const extractAlbumInfoFromTracks = tracks => {
-  let title
-  let artist
-  for (let track of tracks) {
+const extractAlbumInfoFromTracks = (tracks) => {
+  let title;
+  let artist;
+  for (const track of tracks) {
     if (title === undefined) {
-      title = track.album
+      title = track.album;
     } else
     if (title !== track.album) {
-      title = null
+      title = null;
     }
     if (artist === undefined) {
-      artist = track.artist
+      artist = track.artist;
     } else
     if (artist !== track.artist) {
-      artist = null
+      artist = null;
     }
-    if (title === null && artist === null) break
+    if (title === null && artist === null) break;
   }
-  return { title, artist }
-}
+  return { title, artist };
+};
 
-export default extractAlbumInfoFromTracks
+export default extractAlbumInfoFromTracks;

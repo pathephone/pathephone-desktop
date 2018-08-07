@@ -1,6 +1,4 @@
 
-const checkFileIsImage = (file) => {
-  return file.type.includes('image')
-}
+const checkFileIsImage = file => file.type.includes('image');
 
-export default checkFileIsImage
+export default checkFileIsImage;
