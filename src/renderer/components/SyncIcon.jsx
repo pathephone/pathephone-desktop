@@ -1,9 +1,11 @@
 import React from 'react'
 import MdSync from 'react-icons/lib/md/sync'
 
+import './SyncIcon.css'
+
 const SyncCover = () => (
   <MdSync
-    className='sync-icon izi-gray rotating'
+    className='syncIcon rotating'
   />
 )
 
