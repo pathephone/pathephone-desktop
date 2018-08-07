@@ -1,4 +1,3 @@
-import './css/izi.css'
 import './css/global.css'
 import './css/palette.css'
 import './css/animate.css'
