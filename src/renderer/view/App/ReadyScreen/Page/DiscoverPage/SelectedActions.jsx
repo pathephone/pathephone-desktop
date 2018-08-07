@@ -36,10 +36,10 @@ class SelectedActions extends React.PureComponent {
     return (
       <div
         id={E2E_DISCOVER_PAGE_SELECTED_BAR_ID}
-        className='selected-actions izi-fill-width izi--gap izi-x'
+        className='selectedActions'
       >
         <label
-          className='selected-actions__count'
+          className='selectedActionsCount'
         >
           <span
             id={E2E_DISCOVER_PAGE_SELECTED_COUNT_ID}
@@ -51,24 +51,21 @@ class SelectedActions extends React.PureComponent {
           onClick={onPlaySelected}
           id={E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID}
         >
-          <MdPlay />
-          <small>{LOCAL_PLAY}</small>
+          <MdPlay /> <small>{LOCAL_PLAY}</small>
         </CustomButton>
         <CustomButton
           id={E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID}
           onClick={onAddSelected}
         >
-          <MdAdd />
-          <small>{LOCAL_QUEUE}</small>
+          <MdAdd /> <small>{LOCAL_QUEUE}</small>
         </CustomButton>
         <CustomButton
           id={E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID}
           onClick={onDeleteSelected}
         >
-          <MdDelete />
-          <small>{LOCAL_DELETE}</small>
+          <MdDelete /> <small>{LOCAL_DELETE}</small>
         </CustomButton>
-        <div className='rightActions'>
+        <div className='selectedActionsRight'>
           <CustomButton
             onClick={onCancelSelection}
           >

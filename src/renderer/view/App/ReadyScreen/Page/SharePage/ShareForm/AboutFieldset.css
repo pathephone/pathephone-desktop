@@ -34,7 +34,14 @@
   border-color: orange;
 }
 
-.shareFormAbout {
-  max-width: 40em;
+.shareFormAboutFieldset {
+  width: 40em;
   margin: 0 auto;
+  border: none;
+  display: flex;
+}
+
+.shareFormAboutFieldsetInline {
+  display: flex;
+  align-items: center;
 }

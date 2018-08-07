@@ -23,8 +23,8 @@ class AboutFieldset extends React.PureComponent {
   render () {
     const { isDisabled, coverSrc } = this.props
     return (
-      <fieldset disabled={isDisabled} className='fieldset shareFormAbout'>
-        <div className='izi-x'>
+      <fieldset disabled={isDisabled} className='shareFormAboutFieldset'>
+        <div className='shareFormAboutFieldsetInline'>
           <div className='aboutTextInputs'>
             <label>{LOCAL_TITLE}<br />
               <CustomTextInput
