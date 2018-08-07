@@ -70,8 +70,7 @@ svg {
   border-radius: 50%;
 }
 
-.sync-icon,
-.dnd-icon {
+.sync-icon {
   font-size: 2.5em;
 }
 
@@ -90,10 +89,6 @@ svg {
 
 .broken-image-icon {
   font-size: 2.5em;
-}
-
-.no-cover-icon {
-  font-size: 5em;
 }
 
 #root {

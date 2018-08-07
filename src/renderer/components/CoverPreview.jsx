@@ -1,7 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
-
-import DiskIcon from '~components/DiskIcon.jsx'
+import MdAlbum from 'react-icons/lib/md/album'
 
 import './CoverPreview.css'
 
@@ -12,7 +11,7 @@ const CoverPreview = ({ coverSrc }) => {
         coverSrc ? (
           <img className='coverPreviewImage' src={coverSrc} />
         ) : (
-          <DiskIcon />
+          <MdAlbum className='coverPreviewNoCoverIcon' />
         )
       }
     </div>
