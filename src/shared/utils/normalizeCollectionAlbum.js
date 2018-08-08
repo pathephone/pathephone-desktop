@@ -1,6 +1,6 @@
 const normalizeCollectionAlbum = ({
   cid, data: {
-    cover, artist, title, tracks,
+    cover, artist, title,
   },
 }) => ({
   albumCid: cid,

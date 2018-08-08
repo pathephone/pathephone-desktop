@@ -18,9 +18,9 @@ export const ipcMainTakeSync = (channel, handler) => {
   ipcMain.on(channel, async (event, ...args) => {
     try {
       const payload = await handler(...args, event);
-      event.returnValue = { payload };
+      event.returnValue = { payload }; // eslint-disable-line no-param-reassign
     } catch (error) {
-      event.returnValue = { error: error.message };
+      event.returnValue = { error: error.message }; // eslint-disable-line no-param-reassign
     }
   });
   return () => {

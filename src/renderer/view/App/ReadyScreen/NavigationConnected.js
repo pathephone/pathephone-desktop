@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import { getNewRelease } from '#selectors';
 
-import Navigation from './Navigation.jsx';
+import Navigation from './Navigation';
 
 const mapStateToProps = state => ({
   hasUpdateIndicator: !!getNewRelease(state),

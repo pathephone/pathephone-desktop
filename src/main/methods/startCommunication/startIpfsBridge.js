@@ -37,6 +37,9 @@ const startIpfsBridge = ({ ipfsProcessPromise }) => {
         case IPC_IPFS_CID_CACHE_SUCCEED:
         case IPC_IPFS_CID_CACHE_FAILED:
           event.sender.send(type, rest);
+          break;
+        default:
+          break;
       }
     };
     ipfsProcess.on('message', handleMessage);

@@ -47,7 +47,7 @@ const createElectronWindow = (name, options) => {
   );
 
   const resetToDefaults = () => {
-    const bounds = screen.getPrimaryDisplay().bounds;
+    const { bounds } = screen.getPrimaryDisplay();
     return Object.assign({}, defaultSize, {
       x: (bounds.width - defaultSize.width) / 2,
       y: (bounds.height - defaultSize.height) / 2,
@@ -55,7 +55,8 @@ const createElectronWindow = (name, options) => {
   };
 
   const ensureVisibleOnSomeDisplay = (windowState) => {
-    const visible = screen.getAllDisplays().some(display => windowWithinBounds(windowState, display.bounds));
+    const visible = screen.getAllDisplays()
+      .some(display => windowWithinBounds(windowState, display.bounds));
     if (!visible) {
       // Window is partially or fully not visible now.
       // Reset it to safe defaults.

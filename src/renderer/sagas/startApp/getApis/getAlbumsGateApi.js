@@ -14,7 +14,9 @@ const getAlbumsGateApi = async () => {
   const publishAlbumsByCIDs = cids => rendererCalls(IPC_METABIN_GATE_SEND_EACH, schemaName, cids);
   const subscribeToAlbumsGate = () => rendererCalls(IPC_METABIN_GATE_SUBSCRIBE, schemaName);
   const unsubscribeFromAlbumsGate = () => rendererCalls(IPC_METABIN_GATE_UNSUBSCRIBE, schemaName);
-  const getRecievedAlbumsCache = () => rendererCalls(IPC_METABIN_GET_RECIEVED_DATA_CACHE, schemaName);
+  const getRecievedAlbumsCache = () => (
+    rendererCalls(IPC_METABIN_GET_RECIEVED_DATA_CACHE, schemaName)
+  );
   const getMetabinPeersCount = () => rendererCalls(IPC_METABIN_GET_PEERS_COUNT, schemaName);
 
   return {

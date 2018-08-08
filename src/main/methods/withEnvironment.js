@@ -19,7 +19,7 @@ const withEnvronment = () => {
   if (IS_DEVELOPMENT) {
     app.commandLine.appendSwitch('remote-debugging-port', '9223');
     // require('electron-debug')({showDevTools: true})
-    require('electron-context-menu')({});
+    require('electron-context-menu')({}); // eslint-disable-line global-require
   }
 };
 

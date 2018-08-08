@@ -4,7 +4,7 @@ import {
   getPlaylistRemovedByIndex,
 } from '#selectors';
 
-import PlaylistTrackContainer from './PlaylistTrackContainer.jsx';
+import PlaylistTrackContainer from './PlaylistTrackContainer';
 
 const mapStateToProps = (_, ownProps) => state => ({
   isRemoved: !!getPlaylistRemovedByIndex(state)[ownProps.index],

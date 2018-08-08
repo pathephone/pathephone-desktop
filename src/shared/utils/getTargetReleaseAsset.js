@@ -9,6 +9,7 @@ const getTargetReleaseAsset = (assets) => {
     } if (IS_LINUX) {
       return asset.name.endsWith('.rpm') || asset.name.endsWith('.deb') || asset.name.endsWith('.AppImage');
     }
+    return undefined;
   };
   return assets.filter(handleFind);
 };

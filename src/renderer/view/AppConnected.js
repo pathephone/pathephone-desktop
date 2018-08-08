@@ -8,7 +8,7 @@ import {
   isAppLocked,
 } from '#selectors';
 
-import App from './App.jsx';
+import App from './App';
 import {
   systemAppRootMounted,
 } from '~actions/system';

@@ -35,7 +35,7 @@ const messageHandler = async ({ type, payload }) => {
   switch (type) {
     case IPC_START_DB:
       dbApi = await startDb(payload);
-      return;
+      return undefined;
     case IPC_GET_ALBUMS_COLLECTION_INFO:
       return getAlbumsCollectionInfo(dbApi);
     case IPC_OPEN_ALBUMS_STREAM:

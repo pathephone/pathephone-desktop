@@ -60,7 +60,7 @@ const reducer = (state = initialState, action) => {
         };
       }
       return state;
-    case systemAlbumsRecievedCacheTransited.toString():
+    case systemAlbumsRecievedCacheTransited.toString(): {
       const { latestCid } = payload;
       if (state.albums && state.albums[0].albumCid !== latestCid) {
         return {
@@ -69,6 +69,7 @@ const reducer = (state = initialState, action) => {
         };
       }
       return state;
+    }
     case systemDiscoverAlbumsFetchFailed.toString():
       return { ...state, isFailed: true, isProcessing: false };
     default:

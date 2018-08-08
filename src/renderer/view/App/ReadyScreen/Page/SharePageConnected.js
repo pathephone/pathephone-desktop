@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import SharePage from './SharePage.jsx';
+import SharePage from './SharePage';
 
 import { isShareCandidatesRecieved, isShareProcessing } from '#selectors';
 import { uiShareItemsSelected } from '~actions/ui';

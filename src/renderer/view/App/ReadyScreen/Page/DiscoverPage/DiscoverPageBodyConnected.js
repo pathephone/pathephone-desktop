@@ -8,7 +8,7 @@ import {
   isDiscoverAlbumsOutdated,
 } from '#selectors';
 
-import DiscoverPageBody from './DiscoverPageBody.jsx';
+import DiscoverPageBody from './DiscoverPageBody';
 import { systemDiscoverAlbumsFetch } from '~actions/system';
 
 const mapStateToProps = (state) => {

@@ -8,8 +8,8 @@ const patchObjectWithDerivedData = (obj) => {
   const { title, artist } = obj.data;
   const searchWords = [...title.split(' '), ...artist.split(' ')];
   searchWords.filter(w => !!w);
-  obj.searchWords = searchWords;
-  obj.createdAt = new Date().getTime();
+  obj.searchWords = searchWords; // eslint-disable-line no-param-reassign
+  obj.createdAt = new Date().getTime(); // eslint-disable-line no-param-reassign
 };
 
 const cutOutdatedAlbums = async (db) => {

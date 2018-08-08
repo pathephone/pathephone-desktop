@@ -19,8 +19,8 @@ const splitFoldersAndFiles = async (files) => {
       }
     });
   });
-  for (const fileIndex in file) {
-    await resolveFile(files[fileIndex]);
+  for (let i = 0; i < files.length; i += 1) {
+    await resolveFile(files[i]); // eslint-disable-line no-await-in-loop
   }
   return data;
 };

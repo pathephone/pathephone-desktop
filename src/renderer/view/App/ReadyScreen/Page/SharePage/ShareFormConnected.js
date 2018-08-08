@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ShareForm from './ShareForm.jsx';
+import ShareForm from './ShareForm';
 import {
   uiShareFormSubmited, uiShareFormCanceled, uiShareFormChanged, uiShareFormReseted,
 } from '~actions/ui';

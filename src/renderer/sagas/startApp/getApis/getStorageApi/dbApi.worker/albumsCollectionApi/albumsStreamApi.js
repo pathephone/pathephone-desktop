@@ -5,7 +5,7 @@ import { IPC_ALBUMS_STREAMED } from '~data/ipcTypes';
 
 function findAlbumsByText(dbApis, { text, limit }) {
   const { albumsCollection } = dbApis;
-  return dbApis.transaction('r', albumsCollection, function* () {
+  function* handleTransaction() {
     const prefixes = text.split(' ');
     // Parallell search for all prefixes - just select resulting primary keys
     const results = yield Dexie.Promise.all(prefixes.map(prefix => albumsCollection
@@ -25,7 +25,8 @@ function findAlbumsByText(dbApis, { text, limit }) {
       .anyOf(reduced)
       .limit(limit)
       .sortBy('createdAt');
-  });
+  }
+  return dbApis.transaction('r', albumsCollection, handleTransaction);
 }
 
 function findLatestAlbums(dbApis, { limit }) {

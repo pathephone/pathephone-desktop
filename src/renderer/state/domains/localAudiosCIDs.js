@@ -22,12 +22,13 @@ const reducer = (state = initialState, action) => {
       return state;
     case systemPlayedTracksRecieved.toString():
       return payload.reduce(handleReduceTracks, {});
-    case systemQueuedTracksRecieved.toString():
+    case systemQueuedTracksRecieved.toString(): {
       const newCids = payload.reduce(handleReduceTracks, {});
       return {
         ...newCids,
         ...state,
       };
+    }
     case uiPlaylistCleared.toString():
       return {};
     default:

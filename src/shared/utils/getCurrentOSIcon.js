@@ -11,6 +11,7 @@ const getCurrentOSIcon = () => {
   } if (IS_LINUX) {
     return FaLinux;
   }
+  return undefined;
 };
 
 export default getCurrentOSIcon;

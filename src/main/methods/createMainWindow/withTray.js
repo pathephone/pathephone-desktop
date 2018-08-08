@@ -15,7 +15,11 @@ export default (mainWindow) => {
   const tray = new Tray(trayIconPath);
 
   tray.on('click', () => {
-    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+    if (mainWindow.isVisible()) {
+      mainWindow.hide();
+    } else {
+      mainWindow.show();
+    }
   });
   mainWindow.on('show', () => {
     tray.setHighlightMode('always');

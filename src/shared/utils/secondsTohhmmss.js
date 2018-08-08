@@ -1,5 +1,5 @@
 
-const secondsTohhmmss = function (totalSeconds) {
+const secondsTohhmmss = (totalSeconds) => {
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
   let seconds = Math.floor(totalSeconds - (hours * 3600) - (minutes * 60));

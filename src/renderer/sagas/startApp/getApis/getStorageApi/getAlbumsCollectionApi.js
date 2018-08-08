@@ -39,14 +39,14 @@ const getAlbumsCollectionApi = (worker) => {
     });
     return eventChannel((emitt) => {
       const handleMessage = ({ data }) => {
-        const { type, payload, errorMessage } = data;
+        const { type, payload: messagePayload, errorMessage } = data;
         if (type === IPC_ALBUMS_STREAMED) {
           if (errorMessage) {
             emitt({
               error: new Error(errorMessage),
             });
           } else {
-            emitt({ albums: payload });
+            emitt({ albums: messagePayload });
           }
         }
       };

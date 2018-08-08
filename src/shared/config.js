@@ -1,3 +1,5 @@
+/* eslint-disable import/no-mutable-exports */
+
 const { resourcesPath, type } = process;
 
 const ENVIRONMENT = process.env.NODE_ENV;

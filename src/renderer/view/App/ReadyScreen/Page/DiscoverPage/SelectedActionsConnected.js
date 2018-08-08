@@ -11,7 +11,7 @@ import {
   uiDiscoverSelectedPlayed,
 } from '~actions/ui';
 
-import SelectedActions from './SelectedActions.jsx';
+import SelectedActions from './SelectedActions';
 
 const mapStateToProps = state => ({
   selectedAlbumsCount: getDiscoverSelectedCount(state),

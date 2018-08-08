@@ -8,7 +8,7 @@ import {
   getIPFSBandwidthStat,
 } from '#selectors';
 
-import IndicatorsBar from './IndicatorsBar.jsx';
+import IndicatorsBar from './IndicatorsBar';
 
 const mapStateToProps = state => ({
   isOffline: getIpfsIsOffline(state),

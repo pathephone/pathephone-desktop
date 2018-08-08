@@ -10,7 +10,7 @@ import {
   uiRepeatToggled,
 } from '~actions/ui';
 
-import ControlsRight from './ControlsRight.jsx';
+import ControlsRight from './ControlsRight';
 
 const mapStateToProps = state => ({
   isShuffleTurnedOn: isShuffleTurnedOn(state),

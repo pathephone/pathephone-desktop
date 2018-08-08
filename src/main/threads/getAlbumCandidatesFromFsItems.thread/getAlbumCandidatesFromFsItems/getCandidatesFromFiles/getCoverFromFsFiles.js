@@ -11,6 +11,7 @@ const getCoverFromFsFiles = async (files) => {
     if (frontCover) return frontCover;
     return images[0];
   }
+  return undefined;
 };
 
 export default getCoverFromFsFiles;

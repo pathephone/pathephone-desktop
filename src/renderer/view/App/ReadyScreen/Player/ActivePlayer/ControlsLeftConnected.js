@@ -10,7 +10,7 @@ import {
   uiPlaybackToggled,
 } from '~actions/ui';
 
-import ControlsLeft from './ControlsLeft.jsx';
+import ControlsLeft from './ControlsLeft';
 
 const mapStateToProps = state => ({
   hasPauseIcon: !isPaused(state),

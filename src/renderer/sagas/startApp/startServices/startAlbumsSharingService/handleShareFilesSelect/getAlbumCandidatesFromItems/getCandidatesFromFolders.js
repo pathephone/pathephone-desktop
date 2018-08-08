@@ -1,7 +1,7 @@
 import getCandidateFromFiles from './getCandidateFromFiles';
 
-async function getCandidatesFromFolders(apis, folders) {
-  if (folders.length === 0) return;
+async function getCandidatesFromFolders(apis, foldersCandidates) {
+  if (foldersCandidates.length === 0) return undefined;
   const { getFolderContents } = apis;
   const candidates = [];
   const handleMapFolders = async (folder) => {
@@ -21,7 +21,7 @@ async function getCandidatesFromFolders(apis, folders) {
     }
   };
   await Promise.all(
-    folders.map(handleMapFolders),
+    foldersCandidates.map(handleMapFolders),
   );
   return candidates;
 }

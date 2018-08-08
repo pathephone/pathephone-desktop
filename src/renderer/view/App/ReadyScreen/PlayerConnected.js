@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Player from './Player.jsx';
+import Player from './Player';
 
 import {
   isPlayerActive,

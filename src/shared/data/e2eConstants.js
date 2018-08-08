@@ -1,10 +1,10 @@
 import { IS_RENDERER } from '../config';
 
-const id = (id) => {
+const id = (idString) => {
   if (IS_RENDERER) {
-    return id;
+    return idString;
   }
-  return `#${id}`;
+  return `#${idString}`;
 };
 
 export const E2E_LOCK_SCREEN_ID = id('locker');

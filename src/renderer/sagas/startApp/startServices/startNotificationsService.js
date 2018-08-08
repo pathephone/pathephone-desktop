@@ -35,11 +35,11 @@ function* handleAction({ payload }) {
       };
     }
     if (nextPayload) {
-      const id = counter++;
-      nextPayload.id = id;
+      counter += 1;
+      nextPayload.id = counter;
       yield put(systemNotificationRecieved(nextPayload));
       yield delay(3000);
-      yield put(systemNotificationExpired(id));
+      yield put(systemNotificationExpired(counter));
     }
   }
 }

@@ -20,18 +20,22 @@ describe('select album tests', () => {
   describe('selected actions bar has ...', () => {
     it('correct albums count', async function () {
       const { app } = this;
-      return app.client.getText(E2E_DISCOVER_PAGE_SELECTED_COUNT_ID) === '1';
+      return app.client
+        .getText(E2E_DISCOVER_PAGE_SELECTED_COUNT_ID) === '1';
     });
     it('play selected button', async function () {
-      const isExists = await this.app.client.isExisting(E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID);
+      const isExists = await this.app.client
+        .isExisting(E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID);
       expect(isExists).equal(true);
     });
     it('has queue selected to playlist button', async function () {
-      const isExists = await this.app.client.isExisting(E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID);
+      const isExists = await this.app.client
+        .isExisting(E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID);
       expect(isExists).equal(true);
     });
     it('has delete selected button', async function () {
-      const isExists = await this.app.client.isExisting(E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID);
+      const isExists = await this.app.client
+        .isExisting(E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID);
       expect(isExists).equal(true);
     });
   });

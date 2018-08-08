@@ -14,7 +14,7 @@ const startMetabinBridge = ({ ipfsProcessPromise }) => {
     return ipfsProcess.call({ type: IPC_METABIN_GATE_SEND_EACH, payload: { schemaName, data } });
   };
 
-  const handleSubscribe = async (schemaName, event) => {
+  const handleSubscribe = async (schemaName) => {
     let ipcUnlistener;
     const ipfsProcess = await ipfsProcessPromise;
     await ipfsProcess.call({ type: IPC_METABIN_GATE_SUBSCRIBE, payload: schemaName });

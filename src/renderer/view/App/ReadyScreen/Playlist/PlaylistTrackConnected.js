@@ -8,7 +8,7 @@ import {
 
 import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '~actions/ui';
 
-import PlaylistTrack from './PlaylistTrack.jsx';
+import PlaylistTrack from './PlaylistTrack';
 
 const mapStateToProps = state => ({
   currentTrackIndex: getCurrentTrackIndex(state),

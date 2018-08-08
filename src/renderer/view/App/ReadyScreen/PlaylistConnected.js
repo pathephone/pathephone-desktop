@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Playlist from './Playlist.jsx';
+import Playlist from './Playlist';
 
 import {
   isPlaylistEmpty,

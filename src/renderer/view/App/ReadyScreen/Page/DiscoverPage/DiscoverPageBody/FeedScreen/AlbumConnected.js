@@ -14,7 +14,7 @@ import {
   uiAlbumPlayed,
 } from '~actions/ui';
 
-import Album from './Album.jsx';
+import Album from './Album';
 
 const mapStateToProps = state => ({
   latestAlbums: getDiscoverFeedAlbums(state),
@@ -24,8 +24,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  uiDiscoverAlbumSelected,
-  uiDiscoverAlbumDeselected,
+  onAlbumSelected: uiDiscoverAlbumSelected,
+  onAlbumDeselected: uiDiscoverAlbumDeselected,
   onAddAlbumToPlaylist: uiAlbumQueued,
   onPlayAlbum: uiAlbumPlayed,
 };
@@ -43,8 +43,8 @@ const mergeProps = (
   } = stateProps;
 
   const {
-    uiDiscoverAlbumSelected,
-    uiDiscoverAlbumDeselected,
+    onAlbumSelected,
+    onAlbumDeselected,
     ...restDispatch
   } = dispatchProps;
 
@@ -61,7 +61,7 @@ const mergeProps = (
 
   const handleSome = id => id === albumId;
   const hasSelectedView = selectedAlbums.some(handleSome);
-  const onToggleSelect = hasSelectedView ? uiDiscoverAlbumDeselected : uiDiscoverAlbumSelected;
+  const onToggleSelect = hasSelectedView ? onAlbumDeselected : onAlbumSelected;
   const albumCoverURL = `${ipfsApiEndpoint}/cat?arg=${albumCoverCid}`;
   const isCoverCached = localCoversCIDs[albumCoverCid] === true;
   return {

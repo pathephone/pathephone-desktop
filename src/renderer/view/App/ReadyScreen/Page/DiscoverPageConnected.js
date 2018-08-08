@@ -11,7 +11,7 @@ import {
   systemDiscoverAlbumsFetch,
 } from '~actions/system';
 
-import DiscoverPage from './DiscoverPage.jsx';
+import DiscoverPage from './DiscoverPage';
 
 const mapStateToProps = (state) => {
   const isSelected = isDiscoverSelected(state);

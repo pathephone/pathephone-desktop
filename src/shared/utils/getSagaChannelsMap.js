@@ -6,7 +6,7 @@ const getSagaChannelsMap = async (names) => {
     names.map(handleMap),
   );
   const handleReduce = (aggr, name, index) => {
-    aggr[name] = channelsSet[index];
+    aggr[name] = channelsSet[index]; // eslint-disable-line no-param-reassign
     return aggr;
   };
   return names.reduce(handleReduce, {});

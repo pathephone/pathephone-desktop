@@ -22,6 +22,7 @@ export const getCurrentTrack = (state) => {
   if (index !== null) {
     return getPlaylistTracksByIndex(state)[index];
   }
+  return undefined;
 };
 
 export const getCurrentTrackSource = (state) => {

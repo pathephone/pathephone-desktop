@@ -27,7 +27,7 @@ describe('pagination tests', () => {
     const publishNextAlbum = async () => {
       if (inc > ALBUMS_COUNT) return;
       await shareAlbum.call(this, album1, `album ${inc}`);
-      inc++;
+      inc += 1;
       await publishNextAlbum();
     };
     await publishNextAlbum();
@@ -40,7 +40,7 @@ describe('pagination tests', () => {
   });
 
   describe('albums must be ordered from newest to oldest', () => {
-    for (let i = 1; i <= DISCOVER_FEED_LIMIT; i++) {
+    for (let i = 1; i <= DISCOVER_FEED_LIMIT; i += 1) {
       const name = `album ${ALBUMS_COUNT + 1 - i}`;
       it(`album #${i} should be named "${name}"`, function () {
         return discoverAlbumTitleEquals.call(this, i, name);

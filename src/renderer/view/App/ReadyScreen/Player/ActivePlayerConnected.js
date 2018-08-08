@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ActivePlayer from './ActivePlayer.jsx';
+import ActivePlayer from './ActivePlayer';
 import { systemAudioEnded, systemAudioPlayed, systemAudioPaused } from '~actions/system';
 import {
   getCurrentTrackSource, getVolume, isPaused, getCurrentTrack,

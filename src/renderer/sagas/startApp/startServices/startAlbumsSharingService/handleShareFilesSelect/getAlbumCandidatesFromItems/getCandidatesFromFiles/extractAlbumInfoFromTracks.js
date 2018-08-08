@@ -2,7 +2,8 @@
 const extractAlbumInfoFromTracks = (tracks) => {
   let title;
   let artist;
-  for (const track of tracks) {
+  for (let i = 0; i < tracks.length; i += 1) {
+    const track = tracks[i];
     if (title === undefined) {
       title = track.album;
     } else
@@ -10,7 +11,7 @@ const extractAlbumInfoFromTracks = (tracks) => {
       title = null;
     }
     if (artist === undefined) {
-      artist = track.artist;
+      ({ artist } = track);
     } else
     if (artist !== track.artist) {
       artist = null;

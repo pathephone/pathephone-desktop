@@ -12,7 +12,7 @@ import {
   isDiscoverAlbumsOutdated,
 } from '#selectors';
 
-import FeedScreen from './FeedScreen.jsx';
+import FeedScreen from './FeedScreen';
 
 const mapStateToProps = (state) => {
   const searchValue = getDiscoverSearchValue(state);

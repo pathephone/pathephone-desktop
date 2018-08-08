@@ -2,7 +2,7 @@ import {
   E2E_PLAYER_ACTIVE_ID,
 } from '~data/e2eConstants';
 
-export function playerWaitForActiveStatus() {
+export function playerWaitForActiveStatus() { // eslint-disable-line import/prefer-default-export
   return this.app.client
     .waitForExist(E2E_PLAYER_ACTIVE_ID);
 }

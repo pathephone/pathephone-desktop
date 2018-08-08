@@ -12,7 +12,7 @@ const normalizeMetadata = ({
 const getTracksFromFsFiles = async (files) => {
   const audioFiles = await filterFsFilesByMime(files, 'audio/');
   if (audioFiles.length === 0) {
-    return;
+    return undefined;
   }
   const handleMap = async (file) => {
     const metadata = await getAudioMetadataFromFsFile(file);

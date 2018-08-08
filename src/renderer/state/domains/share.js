@@ -2,7 +2,12 @@ import {
   uiShareItemsSelected, uiShareFormSubmited, uiShareFormCanceled, uiShareFormReseted,
 } from '~actions/ui';
 import {
-  systemShareCandidatesRecieved, systemShareCandidateSaveSucceed, systemShareFormChanged, systemShareFilesProcessingFailed, systemShareCandidatesNotFound, systemShareCandidateSaveFailed,
+  systemShareCandidatesRecieved,
+  systemShareCandidateSaveSucceed,
+  systemShareFormChanged,
+  systemShareFilesProcessingFailed,
+  systemShareCandidatesNotFound,
+  systemShareCandidateSaveFailed,
 } from '~actions/system';
 
 const DOMAIN = 'share';

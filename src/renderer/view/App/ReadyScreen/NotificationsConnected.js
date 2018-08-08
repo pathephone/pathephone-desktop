@@ -4,7 +4,7 @@ import { getNotifications } from '#selectors';
 
 import { uiNotificationToastRemoved } from '~actions/ui';
 
-import Notifications from './Notifications.jsx';
+import Notifications from './Notifications';
 
 const mapStateToProps = state => ({
   notifications: getNotifications(state),

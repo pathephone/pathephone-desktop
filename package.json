@@ -99,9 +99,9 @@
     "test:unit": "cd .temp/unit && mocha",
     "pretest:e2e": "cross-env NODE_ENV=testing yarn build:dir && yarn compile:e2e",
     "test:e2e": "cd .temp/e2e && mocha",
-    "test:lint": "eslint .",
+    "test:lint": "eslint --ext .jsx --ext .js .",
     "test": "yarn test:lint && yarn test:unit && yarn test:e2e",
-    "lint": "eslint --fix .",
+    "lint": "eslint --fix --ext .jsx --ext .js .",
     "start": "cross-env NODE_ENV=development yarn compile:app:dev",
     "start:offline": "cross-env OFFLINE=true yarn start"
   },

@@ -2,15 +2,22 @@
   "parser": "babel-eslint",
   "extends": "airbnb",
   "env": {
-    "node": true
+    "browser": true
   },
   "rules": {
+    "no-nested-ternary": "off",
     "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": true
       }
-    ]
+    ],
+    "react/destructuring-assignment": "off",
+    "jsx-a11y/label-has-for": [ "error", {
+      "required": {
+        "every": [ "id" ]
+      }
+    }]
   }
 }

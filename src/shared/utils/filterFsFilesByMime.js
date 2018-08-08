@@ -5,6 +5,7 @@ const filterFsFilesByMime = async (files, mime) => {
     files.map(async (file) => {
       const isMatch = await checkFsFileMime(file, mime);
       if (isMatch) return file;
+      return undefined;
     }),
   );
   return result.filter(f => !!f);

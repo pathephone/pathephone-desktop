@@ -6,7 +6,7 @@ import {
 
 import { uiVolumeChanged } from '~actions/ui';
 
-import VolumeInput from './VolumeInput.jsx';
+import VolumeInput from './VolumeInput';
 
 const mapStateToProps = state => ({
   currentVolume: getVolume(state),

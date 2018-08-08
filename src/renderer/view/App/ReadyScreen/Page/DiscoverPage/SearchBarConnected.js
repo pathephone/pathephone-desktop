@@ -11,7 +11,7 @@ import {
   uiDiscoverSearchValueChanged,
 } from '~actions/ui';
 
-import SearchBar from './SearchBar.jsx';
+import SearchBar from './SearchBar';
 
 const mapStateToProps = state => ({
   searchValue: getDiscoverSearchValue(state),

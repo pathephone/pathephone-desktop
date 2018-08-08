@@ -39,7 +39,7 @@ const reducer = ({ type, payload }) => {
   switch (type) {
     case IPC_IPFS_START:
       ipfsDaemonPromise = startIpfsDaemon(payload);
-      return;
+      return undefined;
     case IPC_IPFS_GET_INFO:
       return getIpfsInfo(args);
     case IPC_IPFS_CACHE_CIDS:

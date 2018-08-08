@@ -33,6 +33,7 @@ const createAlbumsQuery = (searchText) => {
       };
     }
   }
+  return undefined;
 };
 
 export default createAlbumsQuery;

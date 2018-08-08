@@ -12,7 +12,7 @@ export const rendererCalls = (chan, ...sendPayload) => new Promise((resolve, rej
       resolve(payload);
     }
   };
-  const id = `${inc++}`;
+  const id = `${inc += 1}`;
   ipcRenderer.on(id, handleResponse);
   ipcRenderer.send(chan, id, ...sendPayload);
 });
@@ -22,7 +22,7 @@ export const rendererCallsSaga = (chan, ...sendPayload) => eventChannel((emit) =
     emit(response);
     emit(END);
   };
-  const id = `${inc++}`;
+  const id = `${inc += 1}`;
   ipcRenderer.on(id, handleResponse);
   ipcRenderer.send(chan, id, ...sendPayload);
   return () => {

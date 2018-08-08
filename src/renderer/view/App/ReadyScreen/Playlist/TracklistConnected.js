@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Tracklist from './Tracklist.jsx';
+import Tracklist from './Tracklist';
 
 import {
   getPlaylistTracksIndexes,
