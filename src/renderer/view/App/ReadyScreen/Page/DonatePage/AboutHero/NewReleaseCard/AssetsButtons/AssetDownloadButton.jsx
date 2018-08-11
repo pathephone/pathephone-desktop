@@ -1,31 +1,33 @@
-import React from 'react'
-import propTypes from 'prop-types'
-import MdDownload from 'react-icons/lib/md/file-download'
+import React from 'react';
+import propTypes from 'prop-types';
+import MdDownload from 'react-icons/lib/md/file-download';
 
-import getCurrentOSIcon from '~utils/getCurrentOSIcon'
+import getCurrentOSIcon from '~utils/getCurrentOSIcon';
 
-import './AssetDownloadButton.css'
+import './AssetDownloadButton.css';
 
-let Icon = getCurrentOSIcon()
+let Icon = getCurrentOSIcon();
 
 if (!Icon) {
-  Icon = MdDownload
+  Icon = MdDownload;
 }
 
-const AssetDownloadButton = ({ downloadURL, assetName }) => {
-  return (
-    <a
-      className='assetDownloadButton'
-      href={downloadURL}
-    >
-      <Icon /> <b>{assetName}</b>
-    </a>
-  )
-}
+const AssetDownloadButton = ({ downloadURL, assetName }) => (
+  <a
+    className="assetDownloadButton"
+    href={downloadURL}
+  >
+    <Icon />
+    {' '}
+    <b>
+      {assetName}
+    </b>
+  </a>
+);
 
 AssetDownloadButton.propTypes = {
   downloadURL: propTypes.string.isRequired,
-  assetName: propTypes.string.isRequired
-}
+  assetName: propTypes.string.isRequired,
+};
 
-export default AssetDownloadButton
+export default AssetDownloadButton;

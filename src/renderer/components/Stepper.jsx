@@ -1,25 +1,28 @@
-import React from 'react'
+import React from 'react';
 
 class Stepper extends React.Component {
   state = {
-    step: null
+    step: null,
   }
-  componentWillMount () {
-    const { generator } = this.props
-    const onNextStage = this.nextStage
-    generator({ onNextStage })
+
+  componentWillMount() {
+    const { generator } = this.props;
+    const onNextStage = this.nextStage;
+    generator({ onNextStage });
   }
+
   nextStage = (step) => {
     this.setState({
-      step
-    })
+      step,
+    });
   }
-  render () {
-    const { step } = this.state
-    const { View } = this.props
-    if (step === null) return null
-    return <View step={step} />
+
+  render() {
+    const { step } = this.state;
+    const { View } = this.props;
+    if (step === null) return null;
+    return <View step={step} />;
   }
 }
 
-export default Stepper
+export default Stepper;

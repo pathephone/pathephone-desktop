@@ -1,27 +1,28 @@
-import React from 'react'
+import React from 'react';
 
-import './DNDarea.css'
+import './DNDarea.css';
 
 class DNDarea extends React.Component {
   handleChange = (e) => {
-    const { files } = e.currentTarget
-    this.props.onChange(files)
+    const { files } = e.currentTarget;
+    this.props.onChange(files);
   }
-  render () {
-    const { children, style, ...input } = this.props
+
+  render() {
+    const { children, style, ...input } = this.props;
     return (
-      <div className='DNDAreaContainer' style={style}>
+      <div className="DNDAreaContainer" style={style}>
         {children}
         <input
           {...input}
-          ref={c => { this.input = c }}
+          ref={(c) => { this.input = c; }}
           onChange={this.handleChange}
-          type='file'
-          className='DNDAreaInput'
+          type="file"
+          className="DNDAreaInput"
         />
       </div>
-    )
+    );
   }
 }
 
-export default DNDarea
+export default DNDarea;

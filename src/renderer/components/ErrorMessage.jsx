@@ -1,14 +1,16 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import './ErrorMessage.css'
+import './ErrorMessage.css';
 
-const ErrorMessage = ({ message }) => {
-  return <h4 className='errorMessage'>{message}</h4>
-}
+const ErrorMessage = ({ message }) => (
+  <h4 className="errorMessage">
+    {message}
+  </h4>
+);
 
 ErrorMessage.propTypes = {
-  message: propTypes.string.isRequired
-}
+  message: propTypes.string.isRequired,
+};
 
-export default ErrorMessage
+export default ErrorMessage;

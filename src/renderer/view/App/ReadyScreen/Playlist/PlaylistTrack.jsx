@@ -1,22 +1,24 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import MdClose from 'react-icons/lib/md/close'
-import MdGet from 'react-icons/lib/md/file-download'
+import MdClose from 'react-icons/lib/md/close';
+import MdGet from 'react-icons/lib/md/file-download';
 
-import './PlaylistTrack.css'
+import './PlaylistTrack.css';
 
 class PlaylistTrack extends React.Component {
   handlePlayClick = () => {
-    this.props.onPlayClick()
+    this.props.onPlayClick();
   }
+
   handleRemoveClick = () => {
-    this.props.onRemoveClick()
+    this.props.onRemoveClick();
   }
-  render () {
+
+  render() {
     const {
-      title, artist, isCurrent, isDownloaded, order
-    } = this.props
+      title, artist, isCurrent, isDownloaded, order,
+    } = this.props;
     return (
       <div
         className={
@@ -29,27 +31,27 @@ class PlaylistTrack extends React.Component {
           disabled={isCurrent}
           onClick={this.handlePlayClick}
         >
-          <span className='playlist-track__title'>
+          <span className="playlist-track__title">
             {
               !isDownloaded && (
-                <MdGet className='playlist-track__download-icon animated flash infinite' />
+                <MdGet className="playlist-track__download-icon animated flash infinite" />
               )
             }
             {title}
           </span>
           <br />
-          <small className='playlist-track__artist-name'>
+          <small className="playlist-track__artist-name">
             {artist}
           </small>
         </button>
         <div
-          className='playlist-track__remove round-button'
+          className="playlist-track__remove round-button"
           onClick={this.handleRemoveClick}
         >
           <MdClose />
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -60,7 +62,7 @@ PlaylistTrack.propTypes = {
   onRemoveClick: propTypes.func.isRequired,
   onPlayClick: propTypes.func.isRequired,
   isCurrent: propTypes.bool.isRequired,
-  isDownloaded: propTypes.bool.isRequired
-}
+  isDownloaded: propTypes.bool.isRequired,
+};
 
-export default PlaylistTrack
+export default PlaylistTrack;

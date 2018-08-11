@@ -1,14 +1,14 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import ErrorMessage from '~components/ErrorMessage.jsx'
+import ErrorMessage from '~components/ErrorMessage';
 
-import ProgressBar from './StartScreen/ProgressBar.jsx'
+import ProgressBar from './StartScreen/ProgressBar';
 
-import './StartScreen.css'
+import './StartScreen.css';
 
 const StartScreen = ({ errorMessage, infoMessage, progress }) => (
-  <div className='startScreen'>
+  <div className="startScreen">
     <ProgressBar message={infoMessage} percent={progress} />
     {
       errorMessage && (
@@ -16,12 +16,12 @@ const StartScreen = ({ errorMessage, infoMessage, progress }) => (
       )
     }
   </div>
-)
+);
 
 StartScreen.propTypes = {
   errorMessage: propTypes.string,
   progress: propTypes.number.isRequired,
-  infoMessage: propTypes.string
-}
+  infoMessage: propTypes.string,
+};
 
-export default StartScreen
+export default StartScreen;

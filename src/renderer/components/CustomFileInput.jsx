@@ -1,16 +1,18 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
 class CustomFileInput extends React.Component {
   handleAddFileClick = () => {
-    this.fileInput.click()
+    this.fileInput.click();
   }
+
   handleFileInputChange = async (e) => {
-    const { files } = e.currentTarget
-    if (files.length === 0) return
-    this.props.onChange(files)
+    const { files } = e.currentTarget;
+    if (files.length === 0) return;
+    this.props.onChange(files);
   }
-  render () {
+
+  render() {
     const {
       children,
       id,
@@ -18,7 +20,7 @@ class CustomFileInput extends React.Component {
       multiple,
       accept,
       ...buttonParams
-    } = this.props
+    } = this.props;
     return (
       <React.Fragment>
         <button
@@ -32,13 +34,13 @@ class CustomFileInput extends React.Component {
           id={id}
           name={name}
           accept={accept}
-          type='file'
+          type="file"
           style={{ display: 'none' }}
-          ref={c => { this.fileInput = c }}
+          ref={(c) => { this.fileInput = c; }}
           onChange={this.handleFileInputChange}
         />
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -48,7 +50,7 @@ CustomFileInput.propTypes = {
   accept: propTypes.string,
   multiple: propTypes.bool,
   children: propTypes.any.isRequired,
-  onChange: propTypes.func.isRequired
-}
+  onChange: propTypes.func.isRequired,
+};
 
-export default CustomFileInput
+export default CustomFileInput;

@@ -1,23 +1,23 @@
-import React from 'react'
-import propTypes from 'prop-types'
-import PlaylistTrackConnected from './PlaylistTrackConnected'
+import React from 'react';
+import propTypes from 'prop-types';
+import PlaylistTrackConnected from './PlaylistTrackConnected';
 
 class PlaylistTrackContainer extends React.Component {
-  render () {
+  render() {
     const {
       isRemoved,
-      index
-    } = this.props
-    if (isRemoved) return null
+      index,
+    } = this.props;
+    if (isRemoved) return null;
     return (
       <PlaylistTrackConnected index={index} />
-    )
+    );
   }
 }
 
 PlaylistTrackContainer.propTypes = {
   isRemoved: propTypes.bool.isRequired,
-  index: propTypes.string.isRequired
-}
+  index: propTypes.string.isRequired,
+};
 
-export default PlaylistTrackContainer
+export default PlaylistTrackContainer;

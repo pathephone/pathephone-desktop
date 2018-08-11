@@ -1,100 +1,108 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import getBufferedAudioMap from '~utils/getBufferedAudioMap'
+import getBufferedAudioMap from '~utils/getBufferedAudioMap';
 
-import ProgressBar from './ActivePlayer/ProgressBar.jsx'
-import TrackBar from './ActivePlayer/TrackBar.jsx'
-import ControlsLeftConnected from './ActivePlayer/ControlsLeftConnected'
-import VolumeInputConnected from './ActivePlayer/VolumeInputConnected'
-import ControlsRightConnected from './ActivePlayer/ControlsRightConnected'
-import { E2E_PLAYER_ACTIVE_ID } from '~data/e2eConstants'
+import ProgressBar from './ActivePlayer/ProgressBar';
+import TrackBar from './ActivePlayer/TrackBar';
+import ControlsLeftConnected from './ActivePlayer/ControlsLeftConnected';
+import VolumeInputConnected from './ActivePlayer/VolumeInputConnected';
+import ControlsRightConnected from './ActivePlayer/ControlsRightConnected';
+import { E2E_PLAYER_ACTIVE_ID } from '~data/e2eConstants';
 
 const getInitialState = () => ({
   duration: null,
   currentTime: 0,
   bufferedMap: null,
-  isReadyToPlay: false
-})
+  isReadyToPlay: false,
+});
 
 class ActivePlayer extends React.Component {
   audio = new Audio()
+
   state = getInitialState()
 
   handleCanPlayThrough = () => {
-    this.setState(state => ({ ...state, isReadyToPlay: true }))
+    this.setState(state => ({ ...state, isReadyToPlay: true }));
   }
+
   handleLoadedMetadata = () => {
-    const { duration } = this.audio
-    this.setState(state => ({ ...state, duration }))
+    const { duration } = this.audio;
+    this.setState(state => ({ ...state, duration }));
   }
+
   handleProgress = () => {
-    const bufferedMap = getBufferedAudioMap(this.audio)
+    const bufferedMap = getBufferedAudioMap(this.audio);
     if (bufferedMap) {
-      this.setState(state => ({ ...state, bufferedMap }))
+      this.setState(state => ({ ...state, bufferedMap }));
     }
   }
+
   handleEnded = () => {
-    this.props.onAudioEnded()
+    this.props.onAudioEnded();
   }
+
   handleTimeUpdate = () => {
-    const { currentTime } = this.audio
-    this.setState(state => ({ ...state, currentTime }))
+    const { currentTime } = this.audio;
+    this.setState(state => ({ ...state, currentTime }));
   }
+
   handleProps = (props) => {
-    const { source = '', volume, isPaused } = props
+    const { source = '', volume, isPaused } = props;
     if (this.audio.volume !== volume) {
-      this.audio.volume = volume
+      this.audio.volume = volume;
     }
     if (this.audio.src !== source) {
-      this.audio.src = source
+      this.audio.src = source;
     }
     if (!isPaused) {
-      this.audio.play()
+      this.audio.play();
     } else {
-      this.audio.pause()
+      this.audio.pause();
     }
   }
 
-  componentWillMount () {
-    this.audio.addEventListener('loadedmetadata', this.handleLoadedMetadata)
-    this.audio.addEventListener('canplaythrough', this.handleCanPlayThrough)
-    this.audio.addEventListener('progress', this.handleProgress)
-    this.audio.addEventListener('ended', this.handleEnded)
-    this.audio.addEventListener('timeupdate', this.handleTimeUpdate)
-    this.handleProps(this.props)
+  componentWillMount() {
+    this.audio.addEventListener('loadedmetadata', this.handleLoadedMetadata);
+    this.audio.addEventListener('canplaythrough', this.handleCanPlayThrough);
+    this.audio.addEventListener('progress', this.handleProgress);
+    this.audio.addEventListener('ended', this.handleEnded);
+    this.audio.addEventListener('timeupdate', this.handleTimeUpdate);
+    this.handleProps(this.props);
   }
-  componentWillReceiveProps (nextProps) {
+
+  componentWillReceiveProps(nextProps) {
     if (this.audio.src !== nextProps.source) {
-      this.setState(getInitialState())
+      this.setState(getInitialState());
     }
-    this.handleProps(nextProps)
-  }
-  componentWillUnmount () {
-    this.audio.removeEventListener('loadedmetadata', this.handleLoadedMetadata)
-    this.audio.removeEventListener('canplaythrough', this.handleCanPlayThrough)
-    this.audio.removeEventListener('progress', this.handleProgress)
-    this.audio.removeEventListener('ended', this.handleEnded)
-    this.audio.removeEventListener('timeupdate', this.handleTimeUpdate)
-    this.audio.src = ''
+    this.handleProps(nextProps);
   }
 
-  handleStopSeeking = time => {
-    this.audio.currentTime = time
+  componentWillUnmount() {
+    this.audio.removeEventListener('loadedmetadata', this.handleLoadedMetadata);
+    this.audio.removeEventListener('canplaythrough', this.handleCanPlayThrough);
+    this.audio.removeEventListener('progress', this.handleProgress);
+    this.audio.removeEventListener('ended', this.handleEnded);
+    this.audio.removeEventListener('timeupdate', this.handleTimeUpdate);
+    this.audio.src = '';
   }
 
-  render () {
+  handleStopSeeking = (time) => {
+    this.audio.currentTime = time;
+  }
+
+  render() {
     const {
       isReadyToPlay,
       currentTime,
       duration,
-      bufferedMap
-    } = this.state
-    const { title, artist } = this.props
+      bufferedMap,
+    } = this.state;
+    const { title, artist } = this.props;
     return (
       <div
         id={E2E_PLAYER_ACTIVE_ID}
-        className='player'
+        className="player"
       >
         <ControlsLeftConnected />
         {
@@ -114,7 +122,7 @@ class ActivePlayer extends React.Component {
         <VolumeInputConnected />
         <ControlsRightConnected />
       </div>
-    )
+    );
   }
 }
 
@@ -124,7 +132,7 @@ ActivePlayer.propTypes = {
   isPaused: propTypes.bool.isRequired,
   source: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
-  artist: propTypes.string.isRequired
-}
+  artist: propTypes.string.isRequired,
+};
 
-export default ActivePlayer
+export default ActivePlayer;

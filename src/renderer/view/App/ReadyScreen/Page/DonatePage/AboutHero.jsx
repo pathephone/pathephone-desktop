@@ -1,21 +1,26 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import GithubIcon from 'react-icons/lib/go/mark-github'
-import TwitterIcon from 'react-icons/lib/io/social-twitter'
-import GlobeIcon from 'react-icons/lib/io/earth'
+import GithubIcon from 'react-icons/lib/go/mark-github';
+import TwitterIcon from 'react-icons/lib/io/social-twitter';
+import GlobeIcon from 'react-icons/lib/io/earth';
 
-import getMyAppVersion from '~utils/getMyAppVersion'
+import getMyAppVersion from '~utils/getMyAppVersion';
 
-import SocialLink from './AboutHero/SocialLink.jsx'
-import NewReleaseCardConnected from './AboutHero/NewReleaseCardConnected'
+import SocialLink from './AboutHero/SocialLink';
+import NewReleaseCardConnected from './AboutHero/NewReleaseCardConnected';
 
-import './AboutHero.css'
+import './AboutHero.css';
 
 const Hero = ({ hasNewReleaseCard }) => (
-  <div className='aboutHero'>
-    <h1>Pathephone</h1>
-    <div>v{getMyAppVersion()}</div>
+  <div className="aboutHero">
+    <h1>
+Pathephone
+    </h1>
+    <div>
+v
+      {getMyAppVersion()}
+    </div>
     {
       hasNewReleaseCard && (
         <React.Fragment>
@@ -24,22 +29,34 @@ const Hero = ({ hasNewReleaseCard }) => (
         </React.Fragment>
       )
     }
-    <small className='aboutHeroSocial'>
-      <SocialLink link='https://pathephone.github.io'>
-        <GlobeIcon /> <span>Site</span>
+    <small className="aboutHeroSocial">
+      <SocialLink link="https://pathephone.github.io">
+        <GlobeIcon />
+        {' '}
+        <span>
+Site
+        </span>
       </SocialLink>
-      <SocialLink link='https://twitter.com/patheplayer'>
-        <TwitterIcon /> <span>Twitter</span>
+      <SocialLink link="https://twitter.com/patheplayer">
+        <TwitterIcon />
+        {' '}
+        <span>
+Twitter
+        </span>
       </SocialLink>
-      <SocialLink link='https://github.com/pathephone'>
-        <GithubIcon /> <span>GitHub</span>
+      <SocialLink link="https://github.com/pathephone">
+        <GithubIcon />
+        {' '}
+        <span>
+GitHub
+        </span>
       </SocialLink>
     </small>
   </div>
-)
+);
 
 Hero.propTypes = {
-  hasNewReleaseCard: propTypes.bool.isRequired
-}
+  hasNewReleaseCard: propTypes.bool.isRequired,
+};
 
-export default Hero
+export default Hero;

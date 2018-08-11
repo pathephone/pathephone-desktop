@@ -1,16 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 const Input = ({ label, ...rest }) => {
-  const view = []
+  const view = [];
   if (label) {
     view.push(
-      <label key='label'>{rest.placeholder}</label>
-    )
+      <label key="label">
+        {rest.placeholder}
+      </label>,
+    );
   }
   view.push(
-    <input className='input' {...rest} key='input' />
-  )
-  return view
-}
+    <input className="input" {...rest} key="input" />,
+  );
+  return view;
+};
 
-export default Input
+export default Input;
