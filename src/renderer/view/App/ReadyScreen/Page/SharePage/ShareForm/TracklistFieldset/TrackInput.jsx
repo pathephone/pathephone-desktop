@@ -40,7 +40,7 @@ class TrackInput extends React.PureComponent {
       isMoveDownDisabled
     } = this.props
     return (
-      <div className='trackInput izi-xs'>
+      <div className='trackInput'>
         <div className='trackInputControlsLeft'>
           <TrackControlsLeft
             onMoveUpClick={this.handleMoveUp}

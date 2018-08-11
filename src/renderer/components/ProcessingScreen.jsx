@@ -1,13 +1,15 @@
 import React from 'react'
 import { E2E_PROCESSING_SCREEN_ID } from '~data/e2eConstants'
 
+import './ProcessingScreen.css'
+
 const ProcessingScreen = () => {
   return (
     <div
       id={E2E_PROCESSING_SCREEN_ID}
-      className='izi-fill izi-y izi-middle processing-screen'
+      className='processingScreen'
     >
-      <label className='izi-uppercase'>processing...</label>
+      <span className='processingScreenText'>processing...</span>
     </div>
   )
 }

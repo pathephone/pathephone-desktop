@@ -1,3 +1,7 @@
+.album__cover-actions {
+  position: relative;
+}
+
 .album__cover {
   position: relative;
   height: 12.5em;
@@ -27,6 +31,9 @@
   color: darkgray;
 }
 .album__actions {
+  position: absolute;
+  display: flex;
+  align-items: center;
   bottom: 0.5em;
   right: 0.5em;
 }
@@ -69,4 +76,9 @@
   height: 100%;
   padding: 0.25em;
   object-fit: contain;
+}
+
+.album__no-cover-icon {
+  font-size: 5em;
+  color: lightgray;
 }

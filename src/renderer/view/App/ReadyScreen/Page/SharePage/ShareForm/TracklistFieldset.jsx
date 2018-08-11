@@ -45,7 +45,7 @@ class TracklistFieldset extends React.PureComponent {
     return (
       <fieldset
         disabled={isDisabled}
-        className='fieldset tracklistFieldset'
+        className='tracklistFieldset'
       >
         <legend>{`${LOCAL_TRACKLIST} (${tracks.length})`}</legend>
         <div id={E2E_SHARE_FORM_TRACKLIST_ID}>

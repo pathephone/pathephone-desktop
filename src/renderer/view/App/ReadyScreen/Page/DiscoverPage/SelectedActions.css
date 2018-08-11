@@ -1,12 +1,16 @@
 
-.selected-actions {
+.selectedActions {
   border-top: 1px solid #ededed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
-.selected-actions small:not(:first-child) {
-  margin-left: 0.25em;
+.selectedActions > * {
+  margin: 0.5em;
 }
 
-.rightActions {
+.selectedActionsRight {
   margin-left: auto;
 }

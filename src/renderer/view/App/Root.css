@@ -1,0 +1,17 @@
+.root {
+  width: 100%;
+  height: 100%;
+  font-size: calc(1em + (1vw / 5));
+}
+
+.root * {
+  word-wrap: break-word;
+  max-width: 100%;
+  min-width: 0; 
+}
+
+.root img {
+  display: block;
+  flex-shrink: 0;
+  align-self: inherit; 
+}

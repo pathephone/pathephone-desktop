@@ -8,7 +8,7 @@ import ProgressBar from './StartScreen/ProgressBar.jsx'
 import './StartScreen.css'
 
 const StartScreen = ({ errorMessage, infoMessage, progress }) => (
-  <div className='start-screen izi-fill izi-middle izi-y'>
+  <div className='startScreen'>
     <ProgressBar message={infoMessage} percent={progress} />
     {
       errorMessage && (

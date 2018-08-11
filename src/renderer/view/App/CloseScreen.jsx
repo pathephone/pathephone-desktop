@@ -3,9 +3,11 @@ import propTypes from 'prop-types'
 
 import ErrorMessage from '~components/ErrorMessage.jsx'
 
+import './CloseScreen.css'
+
 const CloseScreen = ({ errorMessage }) => (
-  <div className='izi-fill izi-middle'>
-    <h4 className='izi-gray izi-uppercase'>closing app</h4>
+  <div className='closeScreen'>
+    <h4 className='closeScreenText'>closing app</h4>
     {
       errorMessage && (
         <ErrorMessage message={errorMessage} />
