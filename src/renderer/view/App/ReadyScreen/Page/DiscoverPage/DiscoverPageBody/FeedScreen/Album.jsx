@@ -2,8 +2,7 @@ import React from 'react'
 import propTypes from 'prop-types'
 import MdPlay from 'react-icons/lib/md/play-arrow'
 import MdAdd from 'react-icons/lib/md/playlist-add'
-
-import NoCover from '~components/DiskIcon.jsx'
+import MdAlbum from 'react-icons/lib/md/album'
 
 import {
   E2E_DISCOVER_ALBUM_QUEUE_BUTTON,
@@ -47,7 +46,7 @@ class Album extends React.Component {
 
     return (
       <div className={`album${hasSelectedView ? '--selected' : ''}`}>
-        <div className='izi-relative'>
+        <div className='album__cover-actions'>
           <button
             onClick={this.handleAlbumClick}
             className='album__cover'
@@ -60,13 +59,15 @@ class Album extends React.Component {
                   onLoad={this.handleImageLoad}
                 />
               ) : (
-                <NoCover />
+                <MdAlbum
+                  className='album__no-cover-icon'
+                />
               )
             }
           </button>
           {
             !hasSelectedView && (
-              <div className='album__actions izi-x izi-absolute'>
+              <div className='album__actions'>
                 <button
                   data-e2e={E2E_DISCOVER_ALBUM_QUEUE_BUTTON}
                   className='album__actions-button round-button'

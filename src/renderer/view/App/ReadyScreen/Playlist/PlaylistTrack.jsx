@@ -20,28 +20,27 @@ class PlaylistTrack extends React.Component {
     return (
       <div
         className={
-          `playlist-track ${isDownloaded ? '' : 'playlist-track--downloading'} izi-x`
+          `playlist-track ${isDownloaded ? '' : 'playlist-track--downloading'}`
         }
         style={{ order }}
       >
         <button
-          className={`playlist-track__button ${isCurrent ? 'playlist-track__current' : ''} izi-x izi-fill-width izi-padding`}
+          className={`playlist-track__button ${isCurrent ? 'playlist-track__current' : ''}`}
           disabled={isCurrent}
           onClick={this.handlePlayClick}
         >
-          <div className='playlist-track__info izi-yl'>
-            <span className='playlist-track__title'>
-              {
-                !isDownloaded && (
-                  <MdGet className='playlist-track__download-icon animated flash infinite' />
-                )
-              }
-              {title}
-            </span>
-            <small className='playlist-track__artist-name'>
-              {artist}
-            </small>
-          </div>
+          <span className='playlist-track__title'>
+            {
+              !isDownloaded && (
+                <MdGet className='playlist-track__download-icon animated flash infinite' />
+              )
+            }
+            {title}
+          </span>
+          <br />
+          <small className='playlist-track__artist-name'>
+            {artist}
+          </small>
         </button>
         <div
           className='playlist-track__remove round-button'

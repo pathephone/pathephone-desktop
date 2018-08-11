@@ -12,10 +12,10 @@ import './ShareDropZone.css'
 const ShareDropZone = ({ onFilesSelect }) => {
   return (
     <DNDarea id={E2E_SHARE_DROP_ZONE_ID} multiple onChange={onFilesSelect}>
-      <div className='izi-fill izi-y izi-middle share-drop-zone'>
-        <MdDrop className='dnd-icon animated infinite bounce' />
+      <div className='shareDropZoneContainer'>
+        <MdDrop className='shareDropZoneIcon animated infinite bounce' />
         <br />
-        <label className='selectOrDND'>{LOCAL_SELECT_OR_DND}</label>
+        <label className='shareDropZoneText'>{LOCAL_SELECT_OR_DND}</label>
       </div>
     </DNDarea>
   )

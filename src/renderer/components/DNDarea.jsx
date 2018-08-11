@@ -10,14 +10,14 @@ class DNDarea extends React.Component {
   render () {
     const { children, style, ...input } = this.props
     return (
-      <div className='izi-relative izi-fill' style={style}>
+      <div className='DNDAreaContainer' style={style}>
         {children}
         <input
           {...input}
           ref={c => { this.input = c }}
           onChange={this.handleChange}
           type='file'
-          className='dnd__input izi-fill izi-absolute izi-top izi-left'
+          className='DNDAreaInput'
         />
       </div>
     )
