@@ -6,10 +6,10 @@ import './DonateCard.css';
 
 const DonateCard = () => (
   <div className="donateCard">
-    <img className="donateGif" src={suatmm} />
+    <img className="donateGif" alt="Shut up and take my money!" src={suatmm} />
     <br />
     <div className="yandexCard">
-      <iframe src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=To%20support%20Pathephone%20development&targets-hint=&default-sum=&button-text=14&payment-type-choice=on&hint=&successURL=&quickpay=shop&account=410015891281482" width="423" height="226" frameBorder="0" allowTransparency="true" scrolling="no" />
+      <iframe title="yandex-donate" src="https://money.yandex.ru/quickpay/shop-widget?writer=seller&targets=To%20support%20Pathephone%20development&targets-hint=&default-sum=&button-text=14&payment-type-choice=on&hint=&successURL=&quickpay=shop&account=410015891281482" width="423" height="226" frameBorder="0" allowTransparency="true" scrolling="no" />
     </div>
     <table className="cryptoTable">
       <tr>

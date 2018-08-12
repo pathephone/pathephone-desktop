@@ -14,9 +14,9 @@ const ShareDropZone = ({ onFilesSelect }) => (
     <div className="shareDropZoneContainer">
       <MdDrop className="shareDropZoneIcon animated infinite bounce" />
       <br />
-      <label className="shareDropZoneText">
+      <div className="shareDropZoneText">
         {LOCAL_SELECT_OR_DND}
-      </label>
+      </div>
     </div>
   </DNDarea>
 );

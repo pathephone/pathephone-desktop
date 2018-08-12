@@ -51,6 +51,7 @@ class Album extends React.Component {
       <div className={`album${hasSelectedView ? '--selected' : ''}`}>
         <div className="album__cover-actions">
           <button
+            type="button"
             onClick={this.handleAlbumClick}
             className="album__cover"
           >
@@ -59,6 +60,7 @@ class Album extends React.Component {
                 <img
                   className="album__cover-image"
                   src={albumCoverURL}
+                  alt="album cover"
                   onLoad={this.handleImageLoad}
                 />
               ) : (
@@ -72,6 +74,7 @@ class Album extends React.Component {
             !hasSelectedView && (
               <div className="album__actions">
                 <button
+                  type="button"
                   data-e2e={E2E_DISCOVER_ALBUM_QUEUE_BUTTON}
                   className="album__actions-button round-button"
                   onClick={this.handleQueueAlbumClick}
@@ -79,6 +82,7 @@ class Album extends React.Component {
                   <MdAdd />
                 </button>
                 <button
+                  type="button"
                   data-e2e={E2E_DISCOVER_ALBUM_PLAY_BUTTON}
                   className="album__actions-button round-button"
                   onClick={this.handlePlayAlbumClick}

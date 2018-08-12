@@ -26,7 +26,7 @@ class AboutFieldset extends React.PureComponent {
       <fieldset disabled={isDisabled} className="shareFormAboutFieldset">
         <div className="shareFormAboutFieldsetInline">
           <div className="aboutTextInputs">
-            <label>
+            <label htmlFor={E2E_SHARE_FORM_TITLE_INPUT_ID}>
               {LOCAL_TITLE}
               <br />
               <CustomTextInput
@@ -37,7 +37,7 @@ class AboutFieldset extends React.PureComponent {
               />
             </label>
             <br />
-            <label>
+            <label htmlFor={E2E_SHARE_FORM_ARTIST_INPUT_ID}>
               {LOCAL_ARTIST}
               <br />
               <CustomTextInput
@@ -71,6 +71,10 @@ class AboutFieldset extends React.PureComponent {
     );
   }
 }
+
+AboutFieldset.defaultProps = {
+  coverSrc: null,
+};
 
 AboutFieldset.propTypes = {
   isDisabled: propTypes.bool.isRequired,

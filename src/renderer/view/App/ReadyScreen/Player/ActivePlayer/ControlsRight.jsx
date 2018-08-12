@@ -12,12 +12,14 @@ const ControlsRight = ({
 }) => (
   <div className="player__rest-controls">
     <button
+      type="button"
       className={isShuffleTurnedOn ? 'player__toggle--active' : 'player__toggle'}
       onClick={onToggleShuffle}
     >
       <MdShuffle />
     </button>
     <button
+      type="button"
       className={isRepeatTurnedOn ? 'player__toggle--active' : 'player__toggle'}
       onClick={onToggleRepeat}
     >

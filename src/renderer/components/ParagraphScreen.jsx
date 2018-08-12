@@ -27,6 +27,12 @@ const ParagraphScreen = ({ title, paragraph, id }) => (
   </div>
 );
 
+ParagraphScreen.defaultProps = {
+  title: null,
+  paragraph: null,
+  id: null,
+};
+
 ParagraphScreen.propTypes = {
   title: propTypes.string,
   paragraph: propTypes.string,

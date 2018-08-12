@@ -14,7 +14,7 @@ import './DiscoverPage.css';
 class DiscoverPage extends React.Component {
   componentWillMount = this.props.onWillMount
 
-  componentWillUnmound = this.props.onWillUnmount
+  componentWillUnmount = this.props.onWillUnmount
 
   render() {
     const {

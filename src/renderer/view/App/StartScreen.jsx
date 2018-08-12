@@ -18,6 +18,11 @@ const StartScreen = ({ errorMessage, infoMessage, progress }) => (
   </div>
 );
 
+StartScreen.defaultProps = {
+  errorMessage: null,
+  infoMessage: null,
+};
+
 StartScreen.propTypes = {
   errorMessage: propTypes.string,
   progress: propTypes.number.isRequired,

@@ -4,13 +4,12 @@
   "env": {
     "node": true
   },
-  "rules": {
-    "import/no-unresolved": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true
-      }
+  "settings": {
+    "import/core-modules": [ 
+      "electron"
     ]
+  },
+  "rules": {
+    "import/no-unresolved": "off"
   }
 }

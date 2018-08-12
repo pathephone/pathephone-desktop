@@ -20,7 +20,7 @@ const Tracklist = ({ tracksIndexes }) => (
 );
 
 Tracklist.propTypes = {
-  tracksIndexes: propTypes.array.isRequired,
+  tracksIndexes: propTypes.arrayOf(propTypes.string).isRequired,
 };
 
 export default Tracklist;

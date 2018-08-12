@@ -55,7 +55,9 @@ const QualityLabel = ({
 };
 
 QualityLabel.propTypes = {
-  qualityCode: propTypes.oneOf([QUALITY_LABEL_LOW, QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS]),
+  qualityCode: propTypes.oneOf(
+    [QUALITY_LABEL_LOW, QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS],
+  ).isRequired,
 };
 
 export default QualityLabel;

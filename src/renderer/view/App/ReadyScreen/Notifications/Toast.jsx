@@ -16,7 +16,8 @@ class Toast extends React.Component {
   render() {
     const { text, type } = this.props;
     return (
-      <p
+      <button
+        type="button"
         className={
           type === NOTIFICATION_TYPE_SUCCESS
             ? 'notificationToastSuccess'
@@ -28,7 +29,7 @@ class Toast extends React.Component {
         onClick={this.handleToastClick}
       >
         {text}
-      </p>
+      </button>
     );
   }
 }

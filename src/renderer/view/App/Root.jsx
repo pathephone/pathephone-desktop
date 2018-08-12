@@ -10,7 +10,7 @@ const Root = ({ children }) => (
 );
 
 Root.propTypes = {
-  children: propTypes.array.isRequired,
+  children: propTypes.node.isRequired,
 };
 
 export default Root;

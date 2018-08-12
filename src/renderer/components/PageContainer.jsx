@@ -4,10 +4,14 @@ import propTypes from 'prop-types';
 import './PageContainer.css';
 
 const PageContainer = ({ children, className, ...restProps }) => (
-  <div className={`page-container ${className || ''}`} {...restProps}>
+  <div className={`page-container ${className}`} {...restProps}>
     {children}
   </div>
 );
+
+PageContainer.defaultProps = {
+  className: '',
+};
 
 PageContainer.propTypes = {
   children: propTypes.node.isRequired,

@@ -20,7 +20,7 @@ const Notifications = ({ notifications, onToastClick }) => (
 );
 
 Notifications.propTypes = {
-  notifications: propTypes.array.isRequired,
+  notifications: propTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   onToastClick: propTypes.func.isRequired,
 };
 

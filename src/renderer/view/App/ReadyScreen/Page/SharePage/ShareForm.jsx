@@ -37,11 +37,24 @@ const toNextValues = (values, e) => {
   if (typeof nextValue !== 'undefined') {
     return dotProp.set(values, name, nextValue);
   }
+  return undefined;
 };
 
 class ShareForm extends React.Component {
   state = {
     validationErrors: {},
+  }
+
+  componentWillMount() {
+    if (this.props.values) {
+      this.validate(this.props.values);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.values !== this.props.values) {
+      this.validate(nextProps.values);
+    }
   }
 
   handleChange = (e) => {
@@ -88,18 +101,6 @@ class ShareForm extends React.Component {
     this.setState({ validationErrors: errors || {} });
   }
 
-  componentWillMount() {
-    if (this.props.values) {
-      this.validate(this.props.values);
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.values !== this.props.values) {
-      this.validate(nextProps.values);
-    }
-  }
-
   render() {
     const {
       values,
@@ -144,6 +145,11 @@ class ShareForm extends React.Component {
   }
 }
 
+ShareForm.defaultProps = {
+  coverSrc: null,
+  values: null,
+};
+
 ShareForm.propTypes = {
   isDisabled: propTypes.bool.isRequired,
   onSubmit: propTypes.func.isRequired,
@@ -151,7 +157,7 @@ ShareForm.propTypes = {
   onChange: propTypes.func.isRequired,
   onReset: propTypes.func.isRequired,
   coverSrc: propTypes.string,
-  values: propTypes.object,
+  values: propTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 export default ShareForm;

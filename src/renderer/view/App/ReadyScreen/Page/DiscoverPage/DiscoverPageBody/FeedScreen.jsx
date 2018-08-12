@@ -30,12 +30,13 @@ class FeedScreen extends React.Component {
           {
             hasRefreshButton && (
               <button
+                type="button"
                 className="feed-screen__refresh-button"
                 onClick={this.handleRefreshButtonClick}
               >
                 <MdRefresh />
                 <small className="feed-screen__refresh-text">
-              new albums available
+new albums available
                 </small>
               </button>
             )
@@ -52,7 +53,7 @@ class FeedScreen extends React.Component {
 }
 
 FeedScreen.propTypes = {
-  albumsIds: propTypes.array.isRequired,
+  albumsIds: propTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   title: propTypes.string.isRequired,
   hasRefreshButton: propTypes.bool.isRequired,
   onRefreshButtonClick: propTypes.func.isRequired,

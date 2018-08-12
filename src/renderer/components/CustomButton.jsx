@@ -3,6 +3,8 @@ import propTypes from 'prop-types';
 
 import './CustomButton.css';
 
+/* eslint-disable react/button-has-type */
+
 const CustomButton = ({ children, ...restProps }) => (
   <button {...restProps} className="customButton">
     {children}
@@ -11,6 +13,7 @@ const CustomButton = ({ children, ...restProps }) => (
 
 CustomButton.propTypes = {
   children: propTypes.node.isRequired,
+  type: propTypes.string.isRequired,
 };
 
 export default CustomButton;

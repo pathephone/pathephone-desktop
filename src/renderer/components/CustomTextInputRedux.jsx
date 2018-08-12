@@ -8,7 +8,7 @@ const CustomTextInputRedux = ({ input }) => (
 );
 
 CustomTextInputRedux.propTypes = {
-  input: propTypes.object.isRequired,
+  input: propTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default CustomTextInputRedux;

@@ -8,6 +8,14 @@ class TrackTimeline extends React.PureComponent {
     seekValue: undefined,
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentTime === this.state.seekValue) {
+      this.setState({
+        seekValue: undefined,
+      });
+    }
+  }
+
   handleRangeChange = (e) => {
     const { value } = e.currentTarget;
     this.setState({
@@ -30,14 +38,6 @@ class TrackTimeline extends React.PureComponent {
       if (seekValue) {
         onStopSeeking(this.state.seekValue);
       }
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentTime === this.state.seekValue) {
-      this.setState({
-        seekValue: undefined,
-      });
     }
   }
 

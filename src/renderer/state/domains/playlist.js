@@ -42,8 +42,8 @@ export const isRepeatTurnedOn = state => state[DOMAIN].isRepeat;
 const toTracksByIndex = (tracks, startIndex) => {
   let lastTrackIndex = startIndex || -1;
   return tracks.reduce((acc, { audio, title, artist }) => {
-    const index = ++lastTrackIndex;
-    acc[index] = {
+    lastTrackIndex += 1;
+    acc[lastTrackIndex] = {
       audio, title, artist,
     };
     return acc;
@@ -53,7 +53,7 @@ const toTracksByIndex = (tracks, startIndex) => {
 const toShuffleOrder = (tracksByIndex, currentTrackIndex) => {
   const shuffleOrder = Object.keys(tracksByIndex);
   const withoutCurrent = shuffleOrder.filter(key => key !== currentTrackIndex);
-  withoutCurrent.sort((a, b) => {
+  withoutCurrent.sort(() => {
     if (getRandomBoolean()) {
       return -1;
     }
@@ -73,7 +73,7 @@ const reducer = (state = initialState, action) => {
       let currentTrackIndex = '0';
       if (state.isShuffle) {
         shuffleOrder = toShuffleOrder(tracksByIndex, currentTrackIndex);
-        currentTrackIndex = shuffleOrder[0];
+        [currentTrackIndex] = shuffleOrder;
       }
       return {
         ...initialState,
@@ -150,7 +150,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isRepeat: !state.isRepeat,
       };
-    case uiShuffleToggled.toString():
+    case uiShuffleToggled.toString(): {
       if (state.isShuffle) {
         return { ...state, shuffleOrder: null, isShuffle: false };
       }
@@ -160,7 +160,7 @@ const reducer = (state = initialState, action) => {
         shuffleOrder,
         isShuffle: true,
       };
-
+    }
     case uiPlaylistCleared.toString():
       return {
         ...initialState,

@@ -37,6 +37,11 @@ const TrackControls = (props) => {
   );
 };
 
+TrackControls.defaultProps = {
+  isMoveDownDisabled: false,
+  isMoveUpDisabled: false,
+};
+
 TrackControls.propTypes = {
   onMoveUpClick: propTypes.func.isRequired,
   onMoveDownClick: propTypes.func.isRequired,

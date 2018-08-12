@@ -14,6 +14,12 @@ const Indicator = ({
   </span>
 );
 
+Indicator.defaultProps = {
+  Icon: null,
+  tooltip: null,
+  isAccented: false,
+};
+
 Indicator.propTypes = {
   text: propTypes.string.isRequired,
   Icon: propTypes.func,

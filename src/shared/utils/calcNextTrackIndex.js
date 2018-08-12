@@ -13,7 +13,7 @@ const calcForShuffle = ({
       nextIndex = shuffleOrder[shuffleIndex];
     } else
     if (isRepeat) {
-      nextIndex = shuffleOrder[0];
+      [nextIndex] = shuffleOrder;
     } else {
       nextIndex = null;
     }
@@ -23,7 +23,6 @@ const calcForShuffle = ({
 };
 
 const calcForDefault = ({
-  tracksByIndex,
   tracksLength,
   currentTrackIndex,
   removedByIndex,

@@ -34,7 +34,7 @@ const NewReleaseCard = (props) => {
 
 NewReleaseCard.propTypes = {
   newReleaseName: propTypes.string.isRequired,
-  newReleaseAssets: propTypes.array.isRequired,
+  newReleaseAssets: propTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default NewReleaseCard;

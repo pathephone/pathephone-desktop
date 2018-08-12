@@ -10,17 +10,29 @@ const ControlsLeft = ({
   hasPauseIcon, onPlayPreviousClick, onPlayNextClick, onPlaybackToggle,
 }) => (
   <div className="player__playback-controls">
-    <button className="round-button" onClick={onPlayPreviousClick}>
+    <button
+      type="button"
+      className="round-button"
+      onClick={onPlayPreviousClick}
+    >
       <MdSkipPrev />
     </button>
-    <button className="round-button" onClick={onPlaybackToggle}>
+    <button
+      type="button"
+      className="round-button"
+      onClick={onPlaybackToggle}
+    >
       {
         hasPauseIcon
           ? <MdPause />
           : <MdPlay />
       }
     </button>
-    <button className="round-button" onClick={onPlayNextClick}>
+    <button
+      type="button"
+      className="round-button"
+      onClick={onPlayNextClick}
+    >
       <MdSkipNext />
     </button>
   </div>

@@ -36,7 +36,7 @@ const AssetsButtons = ({ newReleaseAssets }) => {
 };
 
 AssetsButtons.propTypes = {
-  newReleaseAssets: propTypes.array.isRequired,
+  newReleaseAssets: propTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default AssetsButtons;

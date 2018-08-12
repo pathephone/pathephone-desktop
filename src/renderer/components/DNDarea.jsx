@@ -1,8 +1,9 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 import './DNDarea.css';
 
-class DNDarea extends React.Component {
+class DragAndDropArea extends React.Component {
   handleChange = (e) => {
     const { files } = e.currentTarget;
     this.props.onChange(files);
@@ -25,4 +26,16 @@ class DNDarea extends React.Component {
   }
 }
 
-export default DNDarea;
+DragAndDropArea.defaultProps = {
+  style: null,
+  children: null,
+};
+
+
+DragAndDropArea.propTypes = {
+  onChange: propTypes.func.isRequired,
+  children: propTypes.node,
+  style: propTypes.object, // eslint-disable-line react/forbid-prop-types
+};
+
+export default DragAndDropArea;

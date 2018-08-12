@@ -20,8 +20,14 @@ const TrackBuffer = ({ bufferedMap }) => (
   </div>
 );
 
+TrackBuffer.defaultProps = {
+  bufferedMap: null,
+};
+
 TrackBuffer.propTypes = {
-  bufferedMap: propTypes.array,
+  bufferedMap: propTypes.arrayOf(
+    propTypes.arrayOf(propTypes.number),
+  ),
 };
 
 export default TrackBuffer;

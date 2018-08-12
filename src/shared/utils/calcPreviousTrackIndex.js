@@ -5,7 +5,8 @@ const calcForShuffle = ({
   let shuffleIndex = shuffleOrder.indexOf(currentTrackIndex);
   let previousIndex = currentTrackIndex;
   do {
-    if (--shuffleIndex < 0) {
+    shuffleIndex -= 1;
+    if (shuffleIndex < 0) {
       if (isRepeat) {
         shuffleIndex = shuffleOrder.length - 1;
       } else {
@@ -14,7 +15,6 @@ const calcForShuffle = ({
     }
     previousIndex = shuffleOrder[shuffleIndex];
   } while (removedByIndex[previousIndex] === true);
-  console.log(previousIndex);
   return `${previousIndex}`;
 };
 
@@ -30,7 +30,7 @@ const calcForDefault = ({
         break;
       }
     } else {
-      --previousIndex;
+      previousIndex -= 1;
     }
   } while (removedByIndex[previousIndex] === true);
   return `${previousIndex}`;

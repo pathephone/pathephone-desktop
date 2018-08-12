@@ -8,13 +8,17 @@ const CoverPreview = ({ coverSrc }) => (
   <div className="coverPreviewContainer">
     {
         coverSrc ? (
-          <img className="coverPreviewImage" src={coverSrc} />
+          <img className="coverPreviewImage" alt="cover preview" src={coverSrc} />
         ) : (
           <MdAlbum className="coverPreviewNoCoverIcon" />
         )
       }
   </div>
 );
+
+CoverPreview.defaultProps = {
+  coverSrc: null,
+};
 
 CoverPreview.propTypes = {
   coverSrc: propTypes.string,

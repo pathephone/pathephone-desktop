@@ -22,46 +22,6 @@ class ActivePlayer extends React.Component {
 
   state = getInitialState()
 
-  handleCanPlayThrough = () => {
-    this.setState(state => ({ ...state, isReadyToPlay: true }));
-  }
-
-  handleLoadedMetadata = () => {
-    const { duration } = this.audio;
-    this.setState(state => ({ ...state, duration }));
-  }
-
-  handleProgress = () => {
-    const bufferedMap = getBufferedAudioMap(this.audio);
-    if (bufferedMap) {
-      this.setState(state => ({ ...state, bufferedMap }));
-    }
-  }
-
-  handleEnded = () => {
-    this.props.onAudioEnded();
-  }
-
-  handleTimeUpdate = () => {
-    const { currentTime } = this.audio;
-    this.setState(state => ({ ...state, currentTime }));
-  }
-
-  handleProps = (props) => {
-    const { source = '', volume, isPaused } = props;
-    if (this.audio.volume !== volume) {
-      this.audio.volume = volume;
-    }
-    if (this.audio.src !== source) {
-      this.audio.src = source;
-    }
-    if (!isPaused) {
-      this.audio.play();
-    } else {
-      this.audio.pause();
-    }
-  }
-
   componentWillMount() {
     this.audio.addEventListener('loadedmetadata', this.handleLoadedMetadata);
     this.audio.addEventListener('canplaythrough', this.handleCanPlayThrough);
@@ -85,6 +45,46 @@ class ActivePlayer extends React.Component {
     this.audio.removeEventListener('ended', this.handleEnded);
     this.audio.removeEventListener('timeupdate', this.handleTimeUpdate);
     this.audio.src = '';
+  }
+
+  handleProps = (props) => {
+    const { source = '', volume, isPaused } = props;
+    if (this.audio.volume !== volume) {
+      this.audio.volume = volume;
+    }
+    if (this.audio.src !== source) {
+      this.audio.src = source;
+    }
+    if (!isPaused) {
+      this.audio.play();
+    } else {
+      this.audio.pause();
+    }
+  }
+
+  handleCanPlayThrough = () => {
+    this.setState(state => ({ ...state, isReadyToPlay: true }));
+  }
+
+  handleLoadedMetadata = () => {
+    const { duration } = this.audio;
+    this.setState(state => ({ ...state, duration }));
+  }
+
+  handleProgress = () => {
+    const bufferedMap = getBufferedAudioMap(this.audio);
+    if (bufferedMap) {
+      this.setState(state => ({ ...state, bufferedMap }));
+    }
+  }
+
+  handleEnded = () => {
+    this.props.onAudioEnded();
+  }
+
+  handleTimeUpdate = () => {
+    const { currentTime } = this.audio;
+    this.setState(state => ({ ...state, currentTime }));
   }
 
   handleStopSeeking = (time) => {
@@ -128,8 +128,8 @@ class ActivePlayer extends React.Component {
 
 ActivePlayer.propTypes = {
   onAudioEnded: propTypes.func.isRequired,
-  volume: propTypes.number.isRequired,
-  isPaused: propTypes.bool.isRequired,
+  volume: propTypes.number.isRequired, // eslint-disable-line react/no-unused-prop-types
+  isPaused: propTypes.bool.isRequired, // eslint-disable-line react/no-unused-prop-types
   source: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   artist: propTypes.string.isRequired,

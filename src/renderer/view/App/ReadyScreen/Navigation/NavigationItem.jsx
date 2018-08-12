@@ -25,10 +25,15 @@ const NavigationItem = ({
   </NavLink>
 );
 
+NavigationItem.defaultProps = {
+  hasIndicator: false,
+  id: null,
+};
+
 NavigationItem.propTypes = {
   path: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
-  icon: propTypes.object.isRequired,
+  icon: propTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   hasIndicator: propTypes.bool,
   id: propTypes.string,
 };

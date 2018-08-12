@@ -68,6 +68,14 @@ const IndicatorsBar = ({
   </div>
 );
 
+IndicatorsBar.defaultProps = {
+  ipfsPeers: null,
+  metabinPeers: null,
+  ipfsRepoUsage: null,
+  ipfsBandwidthIn: null,
+  ipfsBandwidthOut: null,
+};
+
 IndicatorsBar.propTypes = {
   isOffline: propTypes.bool.isRequired,
   ipfsPeers: propTypes.number,

@@ -16,9 +16,9 @@ const Playlist = ({ hasTracklist }) => (
             <TracklistConnected />
           </React.Fragment>
         ) : (
-          <label className="playlist__empty-message">
+          <div className="playlist__empty-message">
             {LOCAL_PLAYLIST_IS_EMPTY}
-          </label>
+          </div>
         )
       }
   </div>

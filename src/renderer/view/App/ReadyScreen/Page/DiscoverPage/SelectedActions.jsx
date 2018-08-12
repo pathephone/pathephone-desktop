@@ -38,7 +38,7 @@ class SelectedActions extends React.PureComponent {
         id={E2E_DISCOVER_PAGE_SELECTED_BAR_ID}
         className="selectedActions"
       >
-        <label
+        <div
           className="selectedActionsCount"
         >
           <span
@@ -46,7 +46,7 @@ class SelectedActions extends React.PureComponent {
           >
             {`${LOCAL_ALBUMS_SELECTED}: ${selectedAlbumsCount}`}
           </span>
-        </label>
+        </div>
         <CustomButton
           onClick={onPlaySelected}
           id={E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID}

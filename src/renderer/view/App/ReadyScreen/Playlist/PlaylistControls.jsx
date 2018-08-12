@@ -10,6 +10,7 @@ import './PlaylistControls.css';
 const PlaylistControls = ({ onClearPlaylist }) => (
   <div className="playlist-controls">
     <button
+      type="button"
       id={E2E_PLAYLIST_CLEAR_BUTTON_ID}
       title={LOCAL_CLEAR_PLAYLIST}
       className="playlist__clear-button round-button"

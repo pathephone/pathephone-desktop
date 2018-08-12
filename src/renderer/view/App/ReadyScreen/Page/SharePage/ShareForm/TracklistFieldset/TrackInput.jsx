@@ -18,6 +18,9 @@ import TrackControlsRight from './TrackControlsRight';
 
 import './TrackInput.css';
 
+const TRACK_ARTIST_ID = 'track-artist-input';
+const TRACK_TITLE_ID = 'track-title-id';
+
 class TrackInput extends React.PureComponent {
   handleRemove = () => {
     const { index, onRemoveTrack } = this.props;
@@ -54,18 +57,20 @@ class TrackInput extends React.PureComponent {
         </div>
         <div className="trackInputBody">
           <div className="trackInputSplit">
-            <label>
+            <label htmlFor={TRACK_ARTIST_ID}>
               {LOCAL_ARTIST}
               <br />
               <CustomTextInput
+                id={TRACK_ARTIST_ID}
                 name={`tracks.${index}.artist`}
                 placeholder={LOCAL_TRACK_ARTIST}
               />
             </label>
-            <label>
+            <label htmlFor={TRACK_TITLE_ID}>
               {LOCAL_TITLE}
               <br />
               <CustomTextInput
+                id={TRACK_TITLE_ID}
                 name={`tracks.${index}.title`}
                 placeholder={LOCAL_TRACK_TITLE}
               />
@@ -99,6 +104,11 @@ class TrackInput extends React.PureComponent {
     );
   }
 }
+
+TrackInput.defaultProps = {
+  cid: null,
+  fileName: null,
+};
 
 TrackInput.propTypes = {
   index: propTypes.number.isRequired,

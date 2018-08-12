@@ -4,15 +4,14 @@
   "env": {
     "browser": true
   },
+  "settings": {
+    "import/core-modules": [
+      "electron"
+    ]
+  },
   "rules": {
     "no-nested-ternary": "off",
     "import/no-unresolved": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true
-      }
-    ],
     "react/destructuring-assignment": "off",
     "jsx-a11y/label-has-for": [ "error", {
       "required": {

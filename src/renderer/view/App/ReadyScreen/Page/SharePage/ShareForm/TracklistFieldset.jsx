@@ -86,7 +86,7 @@ class TracklistFieldset extends React.PureComponent {
 TracklistFieldset.propTypes = {
   isDisabled: propTypes.bool.isRequired,
   errorMessage: propTypes.string.isRequired,
-  tracks: propTypes.array.isRequired,
+  tracks: propTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   onFilesSelect: propTypes.func.isRequired,
   onMoveTrackDown: propTypes.func.isRequired,
   onMoveTrackUp: propTypes.func.isRequired,

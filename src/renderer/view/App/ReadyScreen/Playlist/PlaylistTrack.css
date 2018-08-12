@@ -42,6 +42,7 @@
 
 .playlist-track__artist-name,
 .playlist-track__title {
+  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
