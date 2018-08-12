@@ -9,7 +9,8 @@ const calcForShuffle = ({
   const lastShuffleIndex = shuffleOrder.length - 1;
   do {
     if (shuffleIndex < lastShuffleIndex) {
-      shuffleIndex++;
+      shuffleIndex = parseInt(shuffleIndex, 10);
+      shuffleIndex += 1;
       nextIndex = shuffleOrder[shuffleIndex];
     } else
     if (isRepeat) {
@@ -32,7 +33,8 @@ const calcForDefault = ({
   const lastTrackIndex = tracksLength - 1;
   do {
     if (nextIndex < lastTrackIndex) {
-      nextIndex++;
+      nextIndex = parseInt(nextIndex, 10);
+      nextIndex += 1;
     } else
     if (isRepeat) {
       nextIndex = 0;
