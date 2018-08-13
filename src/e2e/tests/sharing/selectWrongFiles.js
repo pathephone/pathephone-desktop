@@ -3,7 +3,7 @@ import { txtFile, svgFile } from '~data/assets/files';
 
 import {
   getNotificationMessage,
-  waitForNoNotifications,
+  hideNotificationMessage,
 } from '~reusable/notifications';
 
 import {
@@ -22,10 +22,8 @@ describe('select wrong files', () => {
       });
       it('correct notification message appears', async function () {
         const message = await getNotificationMessage.call(this);
+        await hideNotificationMessage.call(this);
         expect(message).equal(LOCAL_NO_ALBUMS_FOUND);
-      });
-      it('notification disappears', async function () {
-        await waitForNoNotifications.call(this);
       });
     });
   });

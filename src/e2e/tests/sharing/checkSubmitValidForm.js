@@ -14,7 +14,9 @@ import {
   shareWaitForFormExists,
 } from '~reusable/sharePage';
 import {
-  getNotificationMessage, waitForNotification, waitForNoNotifications,
+  getNotificationMessage,
+  waitForNotification,
+  hideNotificationMessage,
 } from '~reusable/notifications';
 import {
   openDiscoverPage,
@@ -31,6 +33,14 @@ import { lockScreenWaitForNotExists } from '~reusable/lockScreen';
 const ALBUM_ARTIST = 'custom artist';
 const ALBUM_TITLE = 'custom title';
 
+async function addAlbum() {
+  await shareDropZoneSelect.call(this, album1.tracks[0].file);
+  await shareWaitForFormExists.call(this);
+  await shareFormSelectCover.call(this, album1.cover);
+  await shareFormSetAlbumArtist.call(this, ALBUM_ARTIST);
+  await shareFormSetAlbumTitle.call(this, ALBUM_TITLE);
+}
+
 describe('check submit valid form...', () => {
   describe('...without changes', () => {
     before(async function () {
@@ -44,6 +54,7 @@ describe('check submit valid form...', () => {
     it('correct notification message appears', async function () {
       await waitForNotification.call(this);
       const message = await getNotificationMessage.call(this);
+      await hideNotificationMessage.call(this);
       expect(message).equal(LOCAL_SHARE_FORM_SUBMIT_SUCCEED);
     });
     it('share drop zone appears', async function () {
@@ -69,19 +80,14 @@ describe('check submit valid form...', () => {
     });
   });
   describe('...with changes', () => {
-    before(async function () {
-      await shareDropZoneSelect.call(this, album1.tracks[0].file);
-      await shareWaitForFormExists.call(this);
-      await shareFormSelectCover.call(this, album1.cover);
-      await shareFormSetAlbumArtist.call(this, ALBUM_ARTIST);
-      await shareFormSetAlbumTitle.call(this, ALBUM_TITLE);
-    });
+    before(addAlbum);
     it('throws no error', function () {
       return shareFormSubmit.call(this);
     });
     it('correct notification message appears', async function () {
       await waitForNotification.call(this);
       const message = await getNotificationMessage.call(this);
+      await hideNotificationMessage.call(this);
       expect(message).equal(LOCAL_SHARE_FORM_SUBMIT_SUCCEED);
     });
     it('share drop zone appears', async function () {
@@ -101,23 +107,17 @@ describe('check submit valid form...', () => {
     });
     after(async function () {
       await openSharePage.call(this);
-      await waitForNoNotifications.call(this);
     });
   });
   describe('...twice', () => {
-    before(async function () {
-      await shareDropZoneSelect.call(this, album1.tracks[0].file);
-      await shareWaitForFormExists.call(this);
-      await shareFormSelectCover.call(this, album1.cover);
-      await shareFormSetAlbumArtist.call(this, ALBUM_ARTIST);
-      await shareFormSetAlbumTitle.call(this, ALBUM_TITLE);
-    });
+    before(addAlbum);
     it('throws no error', function () {
       return shareFormSubmit.call(this);
     });
     it('correct notification message appears', async function () {
       await waitForNotification.call(this);
       const message = await getNotificationMessage.call(this);
+      await hideNotificationMessage.call(this);
       expect(message).equal(LOCAL_SHARE_ALBUM_ALREADY_EXISTS);
     });
     it('share form remains', async function () {
