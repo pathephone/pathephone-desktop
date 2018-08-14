@@ -51,8 +51,10 @@ describe('check submit valid form...', () => {
     it('throws no error', function () {
       return shareFormSubmit.call(this);
     });
-    it('correct notification message appears', async function () {
+    it('notification appears', async function () {
       await waitForNotification.call(this);
+    });
+    it('notification message is correct', async function () {
       const message = await getNotificationMessage.call(this);
       await hideNotificationMessage.call(this);
       expect(message).equal(LOCAL_SHARE_FORM_SUBMIT_SUCCEED);
@@ -84,8 +86,10 @@ describe('check submit valid form...', () => {
     it('throws no error', function () {
       return shareFormSubmit.call(this);
     });
-    it('correct notification message appears', async function () {
+    it('notification appears', async function () {
       await waitForNotification.call(this);
+    });
+    it('notification message is correct', async function () {
       const message = await getNotificationMessage.call(this);
       await hideNotificationMessage.call(this);
       expect(message).equal(LOCAL_SHARE_FORM_SUBMIT_SUCCEED);
@@ -114,8 +118,10 @@ describe('check submit valid form...', () => {
     it('throws no error', function () {
       return shareFormSubmit.call(this);
     });
-    it('correct notification message appears', async function () {
+    it('notification appears', async function () {
       await waitForNotification.call(this);
+    });
+    it('notification message is correct', async function () {
       const message = await getNotificationMessage.call(this);
       await hideNotificationMessage.call(this);
       expect(message).equal(LOCAL_SHARE_ALBUM_ALREADY_EXISTS);
