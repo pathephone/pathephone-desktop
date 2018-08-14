@@ -14,7 +14,7 @@ import {
   discoverFeedLengthEquals,
   discoverAlbumTitleEquals,
 } from '~reusable/discoverPage';
-import { hideNotificationMessage, waitForNotification } from '~reusable/notifications';
+import { hideNotificationMessage } from '~reusable/notifications';
 
 const ALBUMS_COUNT = DISCOVER_FEED_LIMIT + 1;
 
