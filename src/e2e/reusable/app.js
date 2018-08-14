@@ -21,6 +21,7 @@ export const startApp = async function () {
     path: pathToBin,
     args: ['.'],
     waitTimeout: 30000,
+    requireName: 'nodeRequire',
   });
   await this.app.start();
   return this.app.client.waitForExist(E2E_READY_SCREEN_ID);
