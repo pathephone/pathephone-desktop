@@ -14,6 +14,7 @@ import {
   discoverFeedLengthEquals,
   discoverAlbumTitleEquals,
 } from '~reusable/discoverPage';
+import { hideNotificationMessage, waitForNotification } from '~reusable/notifications';
 
 const ALBUMS_COUNT = DISCOVER_FEED_LIMIT + 1;
 
@@ -27,6 +28,8 @@ describe('pagination tests', () => {
     const publishNextAlbum = async () => {
       if (inc > ALBUMS_COUNT) return;
       await shareAlbum.call(this, album1, `album ${inc}`);
+      await waitForNotification.call(this);
+      await hideNotificationMessage.call(this);
       inc += 1;
       await publishNextAlbum();
     };

@@ -8,6 +8,7 @@
 .notificationToastError,
 .notificationToastWarning,
 .notificationToastSuccess {
+  display: block;
   width: 20em;
   border-radius: 2px;
   box-shadow: var(--material-shadow-2);
