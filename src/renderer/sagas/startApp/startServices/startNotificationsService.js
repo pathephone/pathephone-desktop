@@ -9,6 +9,7 @@ import {
 } from '~data/constants';
 
 import isObject from '~utils/isObject';
+import { IS_TESTING } from '#config';
 
 let counter = 0;
 
@@ -38,8 +39,10 @@ function* handleAction({ payload }) {
       counter += 1;
       nextPayload.id = counter;
       yield put(systemNotificationRecieved(nextPayload));
-      yield delay(3000);
-      yield put(systemNotificationExpired(counter));
+      if (!IS_TESTING) {
+        yield delay(3000);
+        yield put(systemNotificationExpired(counter));
+      }
     }
   }
 }

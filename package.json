@@ -98,7 +98,7 @@
     "pretest:unit": "cross-env NODE_ENV=testing yarn compile:unit",
     "test:unit": "cd .temp/unit && mocha",
     "pretest:e2e": "cross-env NODE_ENV=testing yarn build:dir && yarn compile:e2e",
-    "test:e2e": "cd .temp/e2e && cross-env NO_PROXY='127.0.0.1' mocha",
+    "test:e2e": "cd .temp/e2e && mocha",
     "test:lint": "eslint --ext .js --ext .jsx ./src/renderer ./src/main ./src/shared ./src/e2e ./build",
     "test": "yarn test:lint && yarn test:unit && yarn test:e2e",
     "lint": "yarn test:lint -- --fix",

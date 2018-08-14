@@ -33,8 +33,3 @@ export function waitForNotification(number) {
   }
   return this.app.client.waitForExist(selector);
 }
-
-export function waitForNoNotifications() {
-  const { app } = this;
-  return app.client.waitUntil(async () => !(await app.client.isExisting(`${E2E_NOTIFICATIONS_CONTAINER_ID} > *:first-child`)), 10000);
-}
