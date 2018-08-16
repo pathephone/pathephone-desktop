@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 import MdClear from 'react-icons/lib/md/clear';
 
-import { E2E_SHARE_FORM_REMOVE_TRACK } from '~data/e2eConstants';
+import { ids } from '~data';
 
 const TrackControls = (props) => {
   const {
@@ -13,7 +13,7 @@ const TrackControls = (props) => {
     <React.Fragment>
       <button
         type="button"
-        data-e2e={E2E_SHARE_FORM_REMOVE_TRACK}
+        data-e2e={ids.SHARE_FORM_REMOVE_TRACK}
         onClick={onRemoveClick}
         className="trackInputControlButton"
       >

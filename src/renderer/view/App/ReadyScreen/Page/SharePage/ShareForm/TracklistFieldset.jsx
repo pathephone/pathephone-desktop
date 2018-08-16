@@ -2,9 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 import {
-  E2E_SHARE_FORM_TRACKLIST_ID,
-  E2E_SHARE_FORM_ADD_TRACK_INPUT_ID,
-} from '~data/e2eConstants';
+  ids
+} from '~data';
 import {
   LOCAL_TRACKLIST,
   LOCAL_ADD_TRACKS,
@@ -51,14 +50,14 @@ class TracklistFieldset extends React.PureComponent {
         <legend>
           {`${LOCAL_TRACKLIST} (${tracks.length})`}
         </legend>
-        <div id={E2E_SHARE_FORM_TRACKLIST_ID}>
+        <div id={ids.SHARE_FORM_TRACKLIST_ID}>
           {
             tracks.map(this.handleMap)
           }
         </div>
         <div className="addTracksInputContainer">
           <input
-            id={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
+            id={ids.SHARE_FORM_ADD_TRACK_INPUT_ID}
             className="addTracksInput"
             name="tracks"
             type="file"
@@ -67,7 +66,7 @@ class TracklistFieldset extends React.PureComponent {
             multiple
           />
           <label
-            htmlFor={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
+            htmlFor={ids.SHARE_FORM_ADD_TRACK_INPUT_ID}
             className="addTracksLabel"
           >
             {LOCAL_ADD_TRACKS}

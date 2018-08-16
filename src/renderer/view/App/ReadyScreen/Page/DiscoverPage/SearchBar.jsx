@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MdClose from 'react-icons/lib/md/close';
 
-import { E2E_DISCOVER_PAGE_SEARCH_INPUT_ID } from '~data/e2eConstants';
+import { ids } from '~data';
 import { LOCAL_SEARCH_IN_ALBUMS_COLLECTION } from '~data/i18nConstants';
 
 import './SearchBar.css';
@@ -38,7 +38,7 @@ class SearchBar extends React.Component {
     return (
       <form className="albums-page__search-bar" onSubmit={this.handleSubmit}>
         <input
-          id={E2E_DISCOVER_PAGE_SEARCH_INPUT_ID}
+          id={ids.DISCOVER_PAGE_SEARCH_INPUT_ID}
           placeholder={placeholder}
           className="albums-page__search-input"
           type="text"
