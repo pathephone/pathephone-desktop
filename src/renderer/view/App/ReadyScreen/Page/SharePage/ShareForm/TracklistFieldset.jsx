@@ -2,12 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 import {
-  ids
+  ids, i18n,
 } from '~data';
-import {
-  LOCAL_TRACKLIST,
-  LOCAL_ADD_TRACKS,
-} from '~data/i18nConstants';
 
 import TrackInput from './TracklistFieldset/TrackInput';
 
@@ -48,7 +44,7 @@ class TracklistFieldset extends React.PureComponent {
         className="tracklistFieldset"
       >
         <legend>
-          {`${LOCAL_TRACKLIST} (${tracks.length})`}
+          {`${i18n.TRACKLIST} (${tracks.length})`}
         </legend>
         <div id={ids.SHARE_FORM_TRACKLIST_ID}>
           {
@@ -69,7 +65,7 @@ class TracklistFieldset extends React.PureComponent {
             htmlFor={ids.SHARE_FORM_ADD_TRACK_INPUT_ID}
             className="addTracksLabel"
           >
-            {LOCAL_ADD_TRACKS}
+            {i18n.ADD_TRACKS}
             {' '}
             <br />
             <span className="noTracksMessage">

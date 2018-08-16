@@ -2,9 +2,8 @@ import { connect } from 'react-redux';
 
 import { systemDiscoverAlbumsFetch } from '~actions/system';
 import {
-  LOCAL_LATEST_ALBUMS,
-  LOCAL_SEARCH_RESULTS_FOR,
-} from '~data/i18nConstants';
+  i18n,
+} from '~data';
 
 import {
   getDiscoverAlbumsIds,
@@ -18,9 +17,9 @@ const mapStateToProps = (state) => {
   const searchValue = getDiscoverSearchValue(state);
   let title;
   if (searchValue) {
-    title = `${LOCAL_SEARCH_RESULTS_FOR} "${searchValue}"`;
+    title = `${i18n.SEARCH_RESULTS_FOR} "${searchValue}"`;
   } else {
-    title = LOCAL_LATEST_ALBUMS;
+    title = i18n.LATEST_ALBUMS;
   }
   return {
     albumsIds: getDiscoverAlbumsIds(state),

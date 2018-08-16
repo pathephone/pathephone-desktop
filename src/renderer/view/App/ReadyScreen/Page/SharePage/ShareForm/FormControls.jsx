@@ -8,13 +8,8 @@ import MdReset from 'react-icons/lib/md/autorenew';
 import CustomButton from '~components/CustomButton';
 
 import {
-  ids
+  ids, i18n,
 } from '~data';
-import {
-  LOCAL_SAVE,
-  LOCAL_CANCEL,
-  LOCAL_RESET,
-} from '~data/i18nConstants';
 
 const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
   <React.Fragment>
@@ -27,7 +22,7 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
         <MdSave />
         {' '}
         <small>
-          {LOCAL_SAVE}
+          {i18n.SAVE}
         </small>
       </span>
     </CustomButton>
@@ -41,7 +36,7 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       <MdCancel />
       {' '}
       <small>
-        {LOCAL_CANCEL}
+        {i18n.CANCEL}
       </small>
     </CustomButton>
     <CustomButton
@@ -54,7 +49,7 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       <MdReset />
       {' '}
       <small>
-        {LOCAL_RESET}
+        {i18n.RESET}
       </small>
     </CustomButton>
   </React.Fragment>

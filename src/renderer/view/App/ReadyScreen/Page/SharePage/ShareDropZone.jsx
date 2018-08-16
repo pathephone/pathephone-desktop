@@ -2,8 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MdDrop from 'react-icons/lib/md/arrow-downward';
 
-import { ids } from '~data';
-import { LOCAL_SELECT_OR_DND } from '~data/i18nConstants';
+import { ids, i18n } from '~data';
 
 import DNDarea from '~components/DNDarea';
 
@@ -15,7 +14,7 @@ const ShareDropZone = ({ onFilesSelect }) => (
       <MdDrop className="shareDropZoneIcon animated infinite bounce" />
       <br />
       <div className="shareDropZoneText">
-        {LOCAL_SELECT_OR_DND}
+        {i18n.SELECT_OR_DND}
       </div>
     </div>
   </DNDarea>

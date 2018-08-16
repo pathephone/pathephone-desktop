@@ -9,7 +9,7 @@ import getMyAppVersion from '~utils/getMyAppVersion';
 
 import { systemNewRelaseDetected } from '~actions/system';
 import { CHECK_FOR_UPDATE_INTERVAL } from '~data/constants';
-import { LOCAL_NEW_RELEASE_NOTIFICATION } from '~data/i18nConstants';
+import { i18n } from '~data';
 
 import { getNewRelease } from '#selectors';
 import { IS_PRODUCTION } from '#config';
@@ -32,7 +32,7 @@ function* checkForNewRelease() {
       yield put(
         systemNewRelaseDetected({
           release,
-          successMessage: LOCAL_NEW_RELEASE_NOTIFICATION,
+          successMessage: i18n.NEW_RELEASE_NOTIFICATION,
         }),
       );
     }

@@ -1,6 +1,5 @@
 import React from 'react';
-import { ids } from '~data';
-import { LOCAL_NO_PLAYBACK } from '~data/i18nConstants';
+import { ids, i18n } from '~data';
 
 const PendingPlayer = () => (
   <div
@@ -8,7 +7,7 @@ const PendingPlayer = () => (
     className="player"
   >
     <b className="player__no-playback-message">
-      {LOCAL_NO_PLAYBACK}
+      {i18n.NO_PLAYBACK}
     </b>
   </div>
 );

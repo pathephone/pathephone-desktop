@@ -4,9 +4,8 @@ import {
   systemShareCandidateSaveFailed,
 } from '~actions/system';
 import {
-  LOCAL_SHARE_FORM_SUBMIT_SUCCEED,
-  LOCAL_SHARE_ALBUM_ALREADY_EXISTS,
-} from '~data/i18nConstants';
+  i18n
+} from '~data';
 
 function* shareTracksToIpfs(apis, tracks) {
   const { shareFsFileToIpfs } = apis;
@@ -38,7 +37,7 @@ function* handleShareFormSubmit(apis, { payload }) {
     const collectionStat = yield call(saveAlbumIfNotExists, { data: album, cid: albumCid });
     yield put(
       systemShareCandidateSaveSucceed({
-        successMessage: LOCAL_SHARE_FORM_SUBMIT_SUCCEED,
+        successMessage: i18n.SHARE_FORM_SUBMIT_SUCCEED,
         ...collectionStat,
       }),
     );
@@ -46,7 +45,7 @@ function* handleShareFormSubmit(apis, { payload }) {
     console.error(e);
     if (e.message === 'Key already exists in the object store.') {
       yield put(systemShareCandidateSaveFailed({
-        warningMessage: LOCAL_SHARE_ALBUM_ALREADY_EXISTS,
+        warningMessage: i18n.SHARE_ALBUM_ALREADY_EXISTS,
       }));
     } else {
       yield put(systemShareCandidateSaveFailed({

@@ -7,14 +7,8 @@ import MdDelete from 'react-icons/lib/md/delete';
 import MdClear from 'react-icons/lib/md/clear';
 
 import {
-  ids
+  ids, i18n,
 } from '~data';
-import {
-  LOCAL_ALBUMS_SELECTED,
-  LOCAL_PLAY,
-  LOCAL_QUEUE,
-  LOCAL_DELETE,
-} from '~data/i18nConstants';
 
 import CustomButton from '~components/CustomButton';
 
@@ -40,7 +34,7 @@ class SelectedActions extends React.PureComponent {
           <span
             id={ids.DISCOVER_PAGE_SELECTED_COUNT_ID}
           >
-            {`${LOCAL_ALBUMS_SELECTED}: ${selectedAlbumsCount}`}
+            {`${i18n.ALBUMS_SELECTED}: ${selectedAlbumsCount}`}
           </span>
         </div>
         <CustomButton
@@ -50,7 +44,7 @@ class SelectedActions extends React.PureComponent {
           <MdPlay />
           {' '}
           <small>
-            {LOCAL_PLAY}
+            {i18n.PLAY}
           </small>
         </CustomButton>
         <CustomButton
@@ -60,7 +54,7 @@ class SelectedActions extends React.PureComponent {
           <MdAdd />
           {' '}
           <small>
-            {LOCAL_QUEUE}
+            {i18n.QUEUE}
           </small>
         </CustomButton>
         <CustomButton
@@ -70,7 +64,7 @@ class SelectedActions extends React.PureComponent {
           <MdDelete />
           {' '}
           <small>
-            {LOCAL_DELETE}
+            {i18n.DELETE}
           </small>
         </CustomButton>
         <div className="selectedActionsRight">

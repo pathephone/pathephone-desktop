@@ -1,8 +1,7 @@
 import album1 from '~data/assets/album1';
 import {
-  LOCAL_SHARE_FORM_SUBMIT_SUCCEED,
-  LOCAL_SHARE_ALBUM_ALREADY_EXISTS,
-} from '~data/i18nConstants';
+  i18n
+} from '~data';
 
 import {
   shareWaitForDropZoneExists,
@@ -57,7 +56,7 @@ describe('check submit valid form...', () => {
     it('notification message is correct', async function () {
       const message = await getNotificationMessage.call(this);
       await hideNotificationMessage.call(this);
-      expect(message).equal(LOCAL_SHARE_FORM_SUBMIT_SUCCEED);
+      expect(message).equal(i18n.SHARE_FORM_SUBMIT_SUCCEED);
     });
     it('share drop zone appears', async function () {
       const isExists = await shareWaitForDropZoneExists.call(this);
@@ -92,7 +91,7 @@ describe('check submit valid form...', () => {
     it('notification message is correct', async function () {
       const message = await getNotificationMessage.call(this);
       await hideNotificationMessage.call(this);
-      expect(message).equal(LOCAL_SHARE_FORM_SUBMIT_SUCCEED);
+      expect(message).equal(i18n.SHARE_FORM_SUBMIT_SUCCEED);
     });
     it('share drop zone appears', async function () {
       const isExists = await shareWaitForDropZoneExists.call(this);
@@ -124,7 +123,7 @@ describe('check submit valid form...', () => {
     it('notification message is correct', async function () {
       const message = await getNotificationMessage.call(this);
       await hideNotificationMessage.call(this);
-      expect(message).equal(LOCAL_SHARE_ALBUM_ALREADY_EXISTS);
+      expect(message).equal(i18n.SHARE_ALBUM_ALREADY_EXISTS);
     });
     it('share form remains', async function () {
       await shareWaitForFormExists.call(this);

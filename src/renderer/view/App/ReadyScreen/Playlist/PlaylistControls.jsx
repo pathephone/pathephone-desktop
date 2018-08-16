@@ -2,8 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MdClear from 'react-icons/lib/md/clear-all';
 
-import { LOCAL_CLEAR_PLAYLIST } from '~data/i18nConstants';
-import { ids } from '~data';
+import { ids, i18n } from '~data';
 
 import './PlaylistControls.css';
 
@@ -12,7 +11,7 @@ const PlaylistControls = ({ onClearPlaylist }) => (
     <button
       type="button"
       id={ids.PLAYLIST_CLEAR_BUTTON_ID}
-      title={LOCAL_CLEAR_PLAYLIST}
+      title={i18n.CLEAR_PLAYLIST}
       className="playlist__clear-button round-button"
       onClick={onClearPlaylist}
     >

@@ -5,14 +5,8 @@ import CoverPreview from '~components/CoverPreview';
 import CustomTextInput from '~components/CustomTextInput';
 
 import {
-  ids
+  ids, i18n,
 } from '~data';
-import {
-  LOCAL_TITLE,
-  LOCAL_ARTIST,
-  LOCAL_ALBUM_ARTIST,
-  LOCAL_ALBUM_TITLE,
-} from '~data/i18nConstants';
 
 import './AboutFieldset.css';
 
@@ -24,23 +18,23 @@ class AboutFieldset extends React.PureComponent {
         <div className="shareFormAboutFieldsetInline">
           <div className="aboutTextInputs">
             <label htmlFor={ids.SHARE_FORM_TITLE_INPUT_ID}>
-              {LOCAL_TITLE}
+              {i18n.TITLE}
               <br />
               <CustomTextInput
                 id={ids.SHARE_FORM_TITLE_INPUT_ID}
                 type="text"
-                placeholder={LOCAL_ALBUM_TITLE}
+                placeholder={i18n.ALBUM_TITLE}
                 name="title"
               />
             </label>
             <br />
             <label htmlFor={ids.SHARE_FORM_ARTIST_INPUT_ID}>
-              {LOCAL_ARTIST}
+              {i18n.ARTIST}
               <br />
               <CustomTextInput
                 id={ids.SHARE_FORM_ARTIST_INPUT_ID}
                 type="text"
-                placeholder={LOCAL_ALBUM_ARTIST}
+                placeholder={i18n.ALBUM_ARTIST}
                 name="artist"
               />
             </label>

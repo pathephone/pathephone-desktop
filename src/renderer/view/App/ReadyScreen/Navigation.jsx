@@ -11,13 +11,8 @@ import {
   ROUTE_DONATE,
 } from '~data/constants';
 import {
-  ids
+  ids, i18n,
 } from '~data';
-import {
-  LOCAL_DISCOVER_BUTTON,
-  LOCAL_SHARE_BUTTON,
-  LOCAL_ABOUT_BUTTON,
-} from '~data/i18nConstants';
 
 import NavigationItem from './Navigation/NavigationItem';
 
@@ -28,18 +23,18 @@ const Navigation = ({ hasUpdateIndicator }) => (
     <NavigationItem
       id={ids.NAV_DISCOVER_LINK_ID}
       path={ROUTE_ALBUMS}
-      title={LOCAL_DISCOVER_BUTTON}
+      title={i18n.DISCOVER_BUTTON}
       icon={<DiscoverIcon />}
     />
     <NavigationItem
       id={ids.NAV_SHARE_LINK_ID}
       path={ROUTE_ADD_ALBUM}
-      title={LOCAL_SHARE_BUTTON}
+      title={i18n.SHARE_BUTTON}
       icon={<UploadIcon />}
     />
     <NavigationItem
       path={ROUTE_DONATE}
-      title={LOCAL_ABOUT_BUTTON}
+      title={i18n.ABOUT_BUTTON}
       icon={<InfoIcon />}
       hasIndicator={hasUpdateIndicator}
     />

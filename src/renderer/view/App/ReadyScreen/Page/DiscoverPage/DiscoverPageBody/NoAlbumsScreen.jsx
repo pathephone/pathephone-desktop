@@ -1,18 +1,14 @@
 import React from 'react';
 
 import {
-  ids
+  ids, i18n
 } from '~data';
-import {
-  LOCAL_NO_ALBUMS_SHORT,
-  LOCAL_NO_ALBUMS_LONG,
-} from '~data/i18nConstants';
 import ParagraphScreen from '~components/ParagraphScreen';
 
 const NoAlbumsScreen = () => (
   <ParagraphScreen
-    title={LOCAL_NO_ALBUMS_SHORT}
-    paragraph={LOCAL_NO_ALBUMS_LONG}
+    title={i18n.NO_ALBUMS_SHORT}
+    paragraph={i18n.NO_ALBUMS_LONG}
     id={ids.DISCOVER_NO_ALBUMS_MESSAGE_ID}
   />
 );

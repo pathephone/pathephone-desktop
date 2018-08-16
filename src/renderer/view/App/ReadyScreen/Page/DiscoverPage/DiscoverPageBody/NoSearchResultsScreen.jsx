@@ -1,9 +1,9 @@
 import React from 'react';
 import ParagraphScreen from '~components/ParagraphScreen';
-import { LOCAL_NO_ALBUMS_FOUND } from '~data/i18nConstants';
+import { i18n } from '~data';
 
 const NoSearchResultsScreen = () => (
-  <ParagraphScreen title={LOCAL_NO_ALBUMS_FOUND} />
+  <ParagraphScreen title={i18n.NO_ALBUMS_FOUND} />
 );
 
 export default NoSearchResultsScreen;
