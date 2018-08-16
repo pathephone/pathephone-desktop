@@ -1,6 +1,6 @@
 import album1 from '~data/assets/album1';
 import {
-  i18n
+  i18n,
 } from '~data';
 
 import {

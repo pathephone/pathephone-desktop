@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 import {
-  ids
+  ids,
 } from '~data';
 
 import PlaylistTrackContainerConnected from './PlaylistTrackContainerConnected';

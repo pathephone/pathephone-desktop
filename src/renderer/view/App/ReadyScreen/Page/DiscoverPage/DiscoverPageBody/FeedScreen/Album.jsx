@@ -5,7 +5,7 @@ import MdAdd from 'react-icons/lib/md/playlist-add';
 import MdAlbum from 'react-icons/lib/md/album';
 
 import {
-  ids
+  ids,
 } from '~data';
 
 import './Album.css';

@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import MdDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdUp from 'react-icons/lib/md/keyboard-arrow-up';
 import {
-  ids
+  ids,
 } from '~data';
 
 const TrackControls = (props) => {

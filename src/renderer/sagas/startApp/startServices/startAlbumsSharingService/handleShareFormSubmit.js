@@ -4,7 +4,7 @@ import {
   systemShareCandidateSaveFailed,
 } from '~actions/system';
 import {
-  i18n
+  i18n,
 } from '~data';
 
 function* shareTracksToIpfs(apis, tracks) {

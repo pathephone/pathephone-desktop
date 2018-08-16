@@ -7,7 +7,7 @@ import {
 } from '~actions/system';
 
 import {
-  i18n
+  i18n,
 } from '~data';
 
 function* handleShareItemsSelect(apis, { payload }) {

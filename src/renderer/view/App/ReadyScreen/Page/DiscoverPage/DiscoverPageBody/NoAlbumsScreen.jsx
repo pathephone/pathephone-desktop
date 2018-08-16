@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  ids, i18n
+  ids, i18n,
 } from '~data';
 import ParagraphScreen from '~components/ParagraphScreen';
 

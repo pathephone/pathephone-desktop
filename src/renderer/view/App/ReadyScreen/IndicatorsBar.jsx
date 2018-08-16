@@ -6,7 +6,7 @@ import MdDownload from 'react-icons/lib/md/file-download';
 import MdStorage from 'react-icons/lib/md/storage';
 
 import {
-  i18n
+  i18n,
 } from '~data';
 
 import Indicator from './IndicatorsBar/Indicator';
