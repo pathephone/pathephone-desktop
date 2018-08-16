@@ -1,8 +1,8 @@
-import { IPC_ALBUM_CREATED } from '~data/ipcTypes';
+import ipc from '~data/ipc';
 
 const sendMessage = () => {
   postMessage({
-    type: IPC_ALBUM_CREATED,
+    type: ipc.ALBUM_CREATED,
   });
 };
 

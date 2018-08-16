@@ -1,5 +1,5 @@
 import Dexie from 'dexie';
-import { IPC_ALBUMS_STREAMED } from '~data/ipcTypes';
+import ipc from '~data/ipc';
 
 // UTILS
 
@@ -55,12 +55,12 @@ export const openAlbumsStream = (dbApis, params) => {
       const albums = await collection;
       postMessage({
         payload: albums,
-        type: IPC_ALBUMS_STREAMED,
+        type: ipc.ALBUMS_STREAMED,
       });
     } catch (e) {
       postMessage({
         errorMessage: e.message,
-        type: IPC_ALBUMS_STREAMED,
+        type: ipc.ALBUMS_STREAMED,
       });
     }
   };

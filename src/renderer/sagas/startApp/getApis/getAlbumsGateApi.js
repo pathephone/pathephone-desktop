@@ -1,23 +1,17 @@
-import {
-  IPC_METABIN_GATE_SEND_EACH,
-  IPC_METABIN_GATE_SUBSCRIBE,
-  IPC_METABIN_GATE_UNSUBSCRIBE,
-  IPC_METABIN_GET_RECIEVED_DATA_CACHE,
-  IPC_METABIN_GET_PEERS_COUNT,
-} from '~data/ipcTypes';
+import ipc from '~data/ipc';
 
 import { rendererCalls } from '~utils/ipcRenderer';
 
 const schemaName = 'albumSchema';
 
 const getAlbumsGateApi = async () => {
-  const publishAlbumsByCIDs = cids => rendererCalls(IPC_METABIN_GATE_SEND_EACH, schemaName, cids);
-  const subscribeToAlbumsGate = () => rendererCalls(IPC_METABIN_GATE_SUBSCRIBE, schemaName);
-  const unsubscribeFromAlbumsGate = () => rendererCalls(IPC_METABIN_GATE_UNSUBSCRIBE, schemaName);
+  const publishAlbumsByCIDs = cids => rendererCalls(ipc.METABIN_GATE_SEND_EACH, schemaName, cids);
+  const subscribeToAlbumsGate = () => rendererCalls(ipc.METABIN_GATE_SUBSCRIBE, schemaName);
+  const unsubscribeFromAlbumsGate = () => rendererCalls(ipc.METABIN_GATE_UNSUBSCRIBE, schemaName);
   const getRecievedAlbumsCache = () => (
-    rendererCalls(IPC_METABIN_GET_RECIEVED_DATA_CACHE, schemaName)
+    rendererCalls(ipc.METABIN_GET_RECIEVED_DATA_CACHE, schemaName)
   );
-  const getMetabinPeersCount = () => rendererCalls(IPC_METABIN_GET_PEERS_COUNT, schemaName);
+  const getMetabinPeersCount = () => rendererCalls(ipc.METABIN_GET_PEERS_COUNT, schemaName);
 
   return {
     publishAlbumsByCIDs,

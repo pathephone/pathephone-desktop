@@ -1,7 +1,4 @@
-import {
-  IPC_IPFS_CID_CACHE_SUCCEED,
-  IPC_IPFS_CID_CACHE_FAILED,
-} from '~data/ipcTypes';
+import ipc from '~data/ipc';
 
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' };
 
@@ -32,13 +29,13 @@ export const ipfsCacheFilesByCIDs = async ({ ipfsDaemonPromise, payload: cids })
     try {
       await api.files.get(cid);
       process.send({
-        type: IPC_IPFS_CID_CACHE_SUCCEED,
+        type: ipc.IPFS_CID_CACHE_SUCCEED,
         payload: cid,
       });
     } catch (e) {
       console.error(e);
       process.send({
-        type: IPC_IPFS_CID_CACHE_FAILED,
+        type: ipc.IPFS_CID_CACHE_FAILED,
         errorMessage: e.message,
       });
     }
