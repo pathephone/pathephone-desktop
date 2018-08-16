@@ -1,12 +1,12 @@
-import React from 'react'
-import MdSync from 'react-icons/lib/md/sync'
+import React from 'react';
+import MdSync from 'react-icons/lib/md/sync';
 
-import './SyncIcon.css'
+import './SyncIcon.css';
 
 const SyncCover = () => (
   <MdSync
-    className='syncIcon rotating'
+    className="syncIcon rotating"
   />
-)
+);
 
-export default SyncCover
+export default SyncCover;

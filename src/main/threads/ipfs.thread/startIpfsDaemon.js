@@ -1,53 +1,51 @@
-import IPFSFactory from 'ipfsd-ctl'
+import IPFSFactory from 'ipfsd-ctl';
 
-const startIpfsDaemon = ({ createParams, spawnParams, startFlags }) => {
-  return new Promise((resolve, reject) => {
-    const onError = reject
-    const onSuccess = resolve
+const startIpfsDaemon = ({ createParams, spawnParams, startFlags }) => (
+  new Promise((resolve, reject) => {
+    const onError = reject;
+    const onSuccess = resolve;
 
     const startIpfsNode = (node) => {
       const startCallback = (err) => {
         if (err) {
-          onError(err)
+          onError(err);
         } else {
-          onSuccess(node)
+          onSuccess(node);
           console.log(`
-ipfs api running on ${node.apiAddr}
-ipfs gateway running on ${node.gatewayAddr}
-`)
+  ipfs api running on ${node.apiAddr}
+  ipfs gateway running on ${node.gatewayAddr}
+  `);
         }
-      }
-      node.start(startFlags, startCallback)
-    }
-    const initIpfsNode = node => {
+      };
+      node.start(startFlags, startCallback);
+    };
+    const initIpfsNode = (node) => {
       const initCallback = (err) => {
         if (err) {
-          onError(err)
+          onError(err);
         } else {
-          startIpfsNode(node)
+          startIpfsNode(node);
         }
-      }
-      node.init(initCallback)
-    }
+      };
+      node.init(initCallback);
+    };
     const spawnCallback = (err, node) => {
       if (err) {
-        onError(err)
+        onError(err);
+      } else if (node.disposable) {
+        onSuccess(node);
+      } else
+      if (node.initialized) {
+        startIpfsNode(node);
       } else {
-        if (node.disposable) {
-          onSuccess(node)
-        } else
-        if (node.initialized) {
-          startIpfsNode(node)
-        } else {
-          initIpfsNode(node)
-        }
+        initIpfsNode(node);
       }
-    }
+    };
 
     IPFSFactory
       .create(createParams)
-      .spawn(spawnParams, spawnCallback)
+      .spawn(spawnParams, spawnCallback);
   })
-}
+);
 
-export default startIpfsDaemon
+export default startIpfsDaemon;

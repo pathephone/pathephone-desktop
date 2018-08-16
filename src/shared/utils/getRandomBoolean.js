@@ -1,3 +1,3 @@
-const getRandomBoolean = () => Math.random() >= 0.5
+const getRandomBoolean = () => Math.random() >= 0.5;
 
-export default getRandomBoolean
+export default getRandomBoolean;

@@ -1,13 +1,13 @@
 import {
-  E2E_SHARE_DROP_ZONE_ID
-} from '~data/e2eConstants'
+  E2E_SHARE_DROP_ZONE_ID,
+} from '~data/e2eConstants';
 
-export function shareWaitForDropZoneExists () {
-  const { app } = this
-  return app.client.waitForExist(E2E_SHARE_DROP_ZONE_ID)
+export function shareWaitForDropZoneExists() {
+  const { app } = this;
+  return app.client.waitForExist(E2E_SHARE_DROP_ZONE_ID);
 }
 
-export function shareDropZoneSelect (filePath) {
-  const { app } = this
-  return app.client.chooseFile(E2E_SHARE_DROP_ZONE_ID, filePath)
+export function shareDropZoneSelect(filePath) {
+  const { app } = this;
+  return app.client.chooseFile(E2E_SHARE_DROP_ZONE_ID, filePath);
 }

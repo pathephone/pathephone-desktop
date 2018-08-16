@@ -1,71 +1,83 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import MdPlay from 'react-icons/lib/md/play-arrow'
-import MdAdd from 'react-icons/lib/md/playlist-add'
-import MdDelete from 'react-icons/lib/md/delete'
-import MdClear from 'react-icons/lib/md/clear'
+import MdPlay from 'react-icons/lib/md/play-arrow';
+import MdAdd from 'react-icons/lib/md/playlist-add';
+import MdDelete from 'react-icons/lib/md/delete';
+import MdClear from 'react-icons/lib/md/clear';
 
 import {
   E2E_DISCOVER_PAGE_SELECTED_BAR_ID,
   E2E_DISCOVER_PAGE_SELECTED_COUNT_ID,
   E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID,
   E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID,
-  E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID
-} from '~data/e2eConstants'
+  E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID,
+} from '~data/e2eConstants';
 import {
   LOCAL_ALBUMS_SELECTED,
   LOCAL_PLAY,
   LOCAL_QUEUE,
-  LOCAL_DELETE
-} from '~data/i18nConstants'
+  LOCAL_DELETE,
+} from '~data/i18nConstants';
 
-import CustomButton from '~components/CustomButton.jsx'
+import CustomButton from '~components/CustomButton';
 
-import './SelectedActions.css'
+import './SelectedActions.css';
 
 class SelectedActions extends React.PureComponent {
-  render () {
+  render() {
     const {
       selectedAlbumsCount,
       onPlaySelected,
       onAddSelected,
       onDeleteSelected,
-      onCancelSelection
-    } = this.props
+      onCancelSelection,
+    } = this.props;
     return (
       <div
         id={E2E_DISCOVER_PAGE_SELECTED_BAR_ID}
-        className='selectedActions'
+        className="selectedActions"
       >
-        <label
-          className='selectedActionsCount'
+        <div
+          className="selectedActionsCount"
         >
           <span
             id={E2E_DISCOVER_PAGE_SELECTED_COUNT_ID}
           >
             {`${LOCAL_ALBUMS_SELECTED}: ${selectedAlbumsCount}`}
           </span>
-        </label>
+        </div>
         <CustomButton
           onClick={onPlaySelected}
           id={E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID}
         >
-          <MdPlay /> <small>{LOCAL_PLAY}</small>
+          <MdPlay />
+          {' '}
+          <small>
+            {LOCAL_PLAY}
+          </small>
         </CustomButton>
         <CustomButton
           id={E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID}
           onClick={onAddSelected}
         >
-          <MdAdd /> <small>{LOCAL_QUEUE}</small>
+          <MdAdd />
+          {' '}
+          <small>
+            {LOCAL_QUEUE}
+          </small>
         </CustomButton>
         <CustomButton
           id={E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID}
           onClick={onDeleteSelected}
         >
-          <MdDelete /> <small>{LOCAL_DELETE}</small>
+          <MdDelete />
+          {' '}
+          <small>
+            {LOCAL_DELETE}
+          </small>
         </CustomButton>
-        <div className='selectedActionsRight'>
+        <div className="selectedActionsRight">
           <CustomButton
             onClick={onCancelSelection}
           >
@@ -73,7 +85,7 @@ class SelectedActions extends React.PureComponent {
           </CustomButton>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -82,7 +94,7 @@ SelectedActions.propTypes = {
   onPlaySelected: propTypes.func.isRequired,
   onAddSelected: propTypes.func.isRequired,
   onDeleteSelected: propTypes.func.isRequired,
-  onCancelSelection: propTypes.func.isRequired
-}
+  onCancelSelection: propTypes.func.isRequired,
+};
 
-export default SelectedActions
+export default SelectedActions;

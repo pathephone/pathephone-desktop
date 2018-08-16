@@ -1,13 +1,13 @@
-import { IS_PRODUCTION } from '#config'
+import { IS_PRODUCTION } from '#config';
 
 const getLocaleCode = () => {
-  let code = 'en'
+  let code = 'en';
   if (IS_PRODUCTION) {
     if (navigator && navigator.language.startsWith('ru')) {
-      code = 'ru'
+      code = 'ru';
     }
   }
-  return code
-}
+  return code;
+};
 
-export default getLocaleCode
+export default getLocaleCode;

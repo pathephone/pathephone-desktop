@@ -1,17 +1,19 @@
-import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE, ROUTE_HOME } from '~data/constants'
+import {
+  ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE, ROUTE_HOME,
+} from '~data/constants';
 
-import DiscoverPageConnected from './Page/DiscoverPageConnected'
-import SharePageConnected from './Page/SharePageConnected'
-import DonatePage from './Page/DonatePage.jsx'
+import DiscoverPageConnected from './Page/DiscoverPageConnected';
+import SharePageConnected from './Page/SharePageConnected';
+import DonatePage from './Page/DonatePage';
 
 const Page = () => (
   <Switch>
     <Route
       exact
-      path='/'
+      path="/"
       render={() => <Redirect to={ROUTE_HOME} />}
     />
     <Route
@@ -27,6 +29,6 @@ const Page = () => (
       component={DonatePage}
     />
   </Switch>
-)
+);
 
-export default Page
+export default Page;

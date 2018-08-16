@@ -1,13 +1,13 @@
 
-import { eventChannel } from 'redux-saga'
+import { eventChannel } from 'redux-saga';
 
-function reduxSagaTicker (interval) {
-  return eventChannel(emit => {
-    const intervalId = setInterval(() => emit(true), interval)
+function reduxSagaTicker(interval) {
+  return eventChannel((emit) => {
+    const intervalId = setInterval(() => emit(true), interval);
     return () => {
-      clearInterval(intervalId)
-    }
-  })
+      clearInterval(intervalId);
+    };
+  });
 }
 
-export default reduxSagaTicker
+export default reduxSagaTicker;

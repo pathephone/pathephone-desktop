@@ -2,24 +2,24 @@ import {
   shareCancelForm,
   shareWaitForDropZoneExists,
   shareDropZoneSelect,
-  shareWaitForFormExists
-} from '~reusable/sharePage'
+  shareWaitForFormExists,
+} from '~reusable/sharePage';
 
-import { tracks } from '~data/assets'
+import { tracks } from '~data/assets';
 
 describe('select track files', () => {
   tracks.forEach((track, index) => {
     describe(`track #${index}`, () => {
       it('throws no error', function () {
-        return shareDropZoneSelect.call(this, track.file)
-      })
+        return shareDropZoneSelect.call(this, track.file);
+      });
       it('share form appears', function () {
-        return shareWaitForFormExists.call(this)
-      })
+        return shareWaitForFormExists.call(this);
+      });
       after(async function () {
-        await shareCancelForm.call(this)
-        await shareWaitForDropZoneExists.call(this)
-      })
-    })
-  })
-})
+        await shareCancelForm.call(this);
+        await shareWaitForDropZoneExists.call(this);
+      });
+    });
+  });
+});

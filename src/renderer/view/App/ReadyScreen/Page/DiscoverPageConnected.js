@@ -1,29 +1,29 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import {
-  isDiscoverSelected, getAlbumsCount
-} from '#selectors'
+  isDiscoverSelected, getAlbumsCount,
+} from '#selectors';
 
 import {
-  uiDiscoverPageClosed
-} from '~actions/ui'
+  uiDiscoverPageClosed,
+} from '~actions/ui';
 import {
-  systemDiscoverAlbumsFetch
-} from '~actions/system'
+  systemDiscoverAlbumsFetch,
+} from '~actions/system';
 
-import DiscoverPage from './DiscoverPage.jsx'
+import DiscoverPage from './DiscoverPage';
 
-const mapStateToProps = state => {
-  const isSelected = isDiscoverSelected(state)
+const mapStateToProps = (state) => {
+  const isSelected = isDiscoverSelected(state);
   return {
     hasSelectedActions: isSelected,
-    hasSearchBar: getAlbumsCount(state) > 0
-  }
-}
+    hasSearchBar: getAlbumsCount(state) > 0,
+  };
+};
 
 const mapDispatchToProps = {
   onWillMount: systemDiscoverAlbumsFetch,
-  onWillUnmount: uiDiscoverPageClosed
-}
+  onWillUnmount: uiDiscoverPageClosed,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPage)
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPage);

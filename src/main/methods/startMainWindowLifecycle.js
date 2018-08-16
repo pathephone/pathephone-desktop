@@ -1,10 +1,10 @@
 const startMainWindowLifecycle = ({ mainWindow }) => {
-  mainWindow.on('close', e => {
+  mainWindow.on('close', (e) => {
     if (!process.platform === 'linux') {
-      mainWindow.hide()
-      e.preventDefault()
+      mainWindow.hide();
+      e.preventDefault();
     }
-  })
-}
+  });
+};
 
-export default startMainWindowLifecycle
+export default startMainWindowLifecycle;

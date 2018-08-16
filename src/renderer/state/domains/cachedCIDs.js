@@ -1,25 +1,25 @@
 
 import {
-  systemIPFSFileCached
-} from '~actions/system'
+  systemIPFSFileCached,
+} from '~actions/system';
 
-const DOMAIN = 'cachedCIDs'
+const DOMAIN = 'cachedCIDs';
 
-const initialState = {}
+const initialState = {};
 
-export const getCachedCIDs = state => state[DOMAIN]
+export const getCachedCIDs = state => state[DOMAIN];
 
 const reducer = (state = initialState, action) => {
-  const { type, payload } = action
+  const { type, payload } = action;
   switch (type) {
     case systemIPFSFileCached.toString():
       return {
         ...state,
-        [payload]: true
-      }
+        [payload]: true,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

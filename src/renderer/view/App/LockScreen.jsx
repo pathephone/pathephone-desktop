@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import './LockScreen.css'
-import { E2E_LOCK_SCREEN_ID } from '~data/e2eConstants'
+import './LockScreen.css';
+import { E2E_LOCK_SCREEN_ID } from '~data/e2eConstants';
 
 const LockScreen = () => (
-  <div id={E2E_LOCK_SCREEN_ID} className='lockScreen'>
+  <div id={E2E_LOCK_SCREEN_ID} className="lockScreen">
     processing...
   </div>
-)
+);
 
-export default LockScreen
+export default LockScreen;

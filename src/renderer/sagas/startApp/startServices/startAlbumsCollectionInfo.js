@@ -1,14 +1,14 @@
-import { put, call } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects';
 
-import { systemAlbumsCollectionInfoRecieved } from '~actions/system'
+import { systemAlbumsCollectionInfoRecieved } from '~actions/system';
 
-function * updateAlbumsCollectionInfo ({ getAlbumsCollectionInfo }) {
-  const dbInfo = yield call(getAlbumsCollectionInfo)
-  yield put(systemAlbumsCollectionInfoRecieved(dbInfo))
+function* updateAlbumsCollectionInfo({ getAlbumsCollectionInfo }) {
+  const dbInfo = yield call(getAlbumsCollectionInfo);
+  yield put(systemAlbumsCollectionInfoRecieved(dbInfo));
 }
 
-function * startAlbumsCollectionInfo (apis) {
-  yield updateAlbumsCollectionInfo(apis)
+function* startAlbumsCollectionInfo(apis) {
+  yield updateAlbumsCollectionInfo(apis);
 }
 
-export default startAlbumsCollectionInfo
+export default startAlbumsCollectionInfo;

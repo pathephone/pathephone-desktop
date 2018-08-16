@@ -1,27 +1,27 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import {
-  getDiscoverSelectedCount
-} from '#selectors'
+  getDiscoverSelectedCount,
+} from '#selectors';
 
 import {
   uiDiscoverSelectedCanceled,
   uiDiscoverSelectedDeleted,
   uiDiscoverSelectedQueued,
-  uiDiscoverSelectedPlayed
-} from '~actions/ui'
+  uiDiscoverSelectedPlayed,
+} from '~actions/ui';
 
-import SelectedActions from './SelectedActions.jsx'
+import SelectedActions from './SelectedActions';
 
 const mapStateToProps = state => ({
-  selectedAlbumsCount: getDiscoverSelectedCount(state)
-})
+  selectedAlbumsCount: getDiscoverSelectedCount(state),
+});
 
 const mapDispatchToProps = {
   onCancelSelection: uiDiscoverSelectedCanceled,
   onPlaySelected: uiDiscoverSelectedPlayed,
   onAddSelected: uiDiscoverSelectedQueued,
-  onDeleteSelected: uiDiscoverSelectedDeleted
-}
+  onDeleteSelected: uiDiscoverSelectedDeleted,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SelectedActions)
+export default connect(mapStateToProps, mapDispatchToProps)(SelectedActions);

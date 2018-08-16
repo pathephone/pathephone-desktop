@@ -1,4 +1,4 @@
-import { takeLatest, takeEvery, all } from 'redux-saga/effects'
+import { takeLatest, takeEvery, all } from 'redux-saga/effects';
 
 import {
   uiDiscoverSelectedDeleted,
@@ -7,34 +7,34 @@ import {
   uiDiscoverSearchPerformed,
   uiAlbumPlayed,
   uiAlbumQueued,
-  uiDiscoverSearchCleared
-} from '~actions/ui'
+  uiDiscoverSearchCleared,
+} from '~actions/ui';
 import {
-  systemDiscoverAlbumsFetch
-} from '~actions/system'
+  systemDiscoverAlbumsFetch,
+} from '~actions/system';
 
-import deleteSelectedAlbums from './startDiscoverPageService/deleteSelectedAlbums'
-import playOrQueueSelectedAlbums from './startDiscoverPageService/playOrQueueSelectedAlbums'
-import playOrQueueAlbum from './startDiscoverPageService/playOrQueueAlbum'
-import fetchDiscoverAlbums from './startDiscoverPageService/fetchDiscoverAlbums'
+import deleteSelectedAlbums from './startDiscoverPageService/deleteSelectedAlbums';
+import playOrQueueSelectedAlbums from './startDiscoverPageService/playOrQueueSelectedAlbums';
+import playOrQueueAlbum from './startDiscoverPageService/playOrQueueAlbum';
+import fetchDiscoverAlbums from './startDiscoverPageService/fetchDiscoverAlbums';
 
-function * startDiscoverPageService (apis) {
+function* startDiscoverPageService(apis) {
   yield all([
     takeLatest([
       uiDiscoverSearchPerformed,
       uiDiscoverSearchCleared,
-      systemDiscoverAlbumsFetch
+      systemDiscoverAlbumsFetch,
     ], fetchDiscoverAlbums, apis),
     takeEvery(uiDiscoverSelectedDeleted, deleteSelectedAlbums, apis),
     takeEvery([
       uiDiscoverSelectedPlayed,
-      uiDiscoverSelectedQueued
+      uiDiscoverSelectedQueued,
     ], playOrQueueSelectedAlbums, apis),
     takeEvery([
       uiAlbumPlayed,
-      uiAlbumQueued
-    ], playOrQueueAlbum, apis)
-  ])
+      uiAlbumQueued,
+    ], playOrQueueAlbum, apis),
+  ]);
 }
 
-export default startDiscoverPageService
+export default startDiscoverPageService;

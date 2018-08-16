@@ -1,0 +1,16 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "settings": {
+    "import/core-modules": [
+      "electron"
+    ]
+  },
+  "rules": {
+    "import/no-unresolved": "off"
+  }
+}

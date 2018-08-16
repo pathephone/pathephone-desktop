@@ -1,26 +1,26 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
 import {
-  E2E_PLAYLIST_TRAKLIST_ID
-} from '~data/e2eConstants'
+  E2E_PLAYLIST_TRAKLIST_ID,
+} from '~data/e2eConstants';
 
-import PlaylistTrackContainerConnected from './PlaylistTrackContainerConnected'
+import PlaylistTrackContainerConnected from './PlaylistTrackContainerConnected';
 
-import './Tracklist.css'
+import './Tracklist.css';
 
 const Tracklist = ({ tracksIndexes }) => (
-  <div className='tracklist' id={E2E_PLAYLIST_TRAKLIST_ID}>
+  <div className="tracklist" id={E2E_PLAYLIST_TRAKLIST_ID}>
     {
-      tracksIndexes.map((index) => (
+      tracksIndexes.map(index => (
         <PlaylistTrackContainerConnected index={index} key={index} />
       ))
     }
   </div>
-)
+);
 
 Tracklist.propTypes = {
-  tracksIndexes: propTypes.array.isRequired
-}
+  tracksIndexes: propTypes.arrayOf(propTypes.string).isRequired,
+};
 
-export default Tracklist
+export default Tracklist;

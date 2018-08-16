@@ -1,16 +1,19 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import StartScreen from './App/StartScreen.jsx'
-import CloseScreen from './App/CloseScreen.jsx'
-import ReadyScreen from './App/ReadyScreen.jsx'
-import LockScreen from './App/LockScreen.jsx'
-import Root from './App/Root.jsx'
+import StartScreen from './App/StartScreen';
+import CloseScreen from './App/CloseScreen';
+import ReadyScreen from './App/ReadyScreen';
+import LockScreen from './App/LockScreen';
+import Root from './App/Root';
 
 class App extends React.Component {
   componentDidMount = this.props.onDidMount
-  render () {
-    const { hasStartScreen, hasLockScreen, hasReadyScreen, hasCloseScreen, ...restProps } = this.props
+
+  render() {
+    const {
+      hasStartScreen, hasLockScreen, hasReadyScreen, hasCloseScreen, ...restProps
+    } = this.props;
     return (
       <Root>
         {
@@ -28,7 +31,7 @@ class App extends React.Component {
           )
         }
       </Root>
-    )
+    );
   }
 }
 
@@ -37,7 +40,7 @@ App.propTypes = {
   hasReadyScreen: propTypes.bool.isRequired,
   hasCloseScreen: propTypes.bool.isRequired,
   hasLockScreen: propTypes.bool.isRequired,
-  onDidMount: propTypes.func.isRequired
-}
+  onDidMount: propTypes.func.isRequired,
+};
 
-export default App
+export default App;

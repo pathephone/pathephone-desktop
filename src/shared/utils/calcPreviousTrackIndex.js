@@ -1,46 +1,49 @@
 
-const calcForShuffle = ({ currentTrackIndex, shuffleOrder, removedByIndex, isRepeat }) => {
-  let shuffleIndex = shuffleOrder.indexOf(currentTrackIndex)
-  let previousIndex = currentTrackIndex
+const calcForShuffle = ({
+  currentTrackIndex, shuffleOrder, removedByIndex, isRepeat,
+}) => {
+  let shuffleIndex = shuffleOrder.indexOf(currentTrackIndex);
+  let previousIndex = currentTrackIndex;
   do {
-    if (--shuffleIndex < 0) {
+    shuffleIndex -= 1;
+    if (shuffleIndex < 0) {
       if (isRepeat) {
-        shuffleIndex = shuffleOrder.length - 1
+        shuffleIndex = shuffleOrder.length - 1;
       } else {
-        break
+        break;
       }
     }
-    previousIndex = shuffleOrder[shuffleIndex]
-  } while (removedByIndex[previousIndex] === true)
-  console.log(previousIndex)
-  return previousIndex + ''
-}
+    previousIndex = shuffleOrder[shuffleIndex];
+  } while (removedByIndex[previousIndex] === true);
+  return `${previousIndex}`;
+};
 
-const calcForDefault = ({ currentTrackIndex, tracksLength, removedByIndex, isRepeat }) => {
-  let previousIndex = currentTrackIndex
+const calcForDefault = ({
+  currentTrackIndex, tracksLength, removedByIndex, isRepeat,
+}) => {
+  let previousIndex = currentTrackIndex;
   do {
     if (previousIndex - 1 < 0) {
       if (isRepeat) {
-        previousIndex = tracksLength - 1
+        previousIndex = tracksLength - 1;
       } else {
-        break
+        break;
       }
     } else {
-      --previousIndex
+      previousIndex -= 1;
     }
-  } while (removedByIndex[previousIndex] === true)
-  return previousIndex + ''
-}
+  } while (removedByIndex[previousIndex] === true);
+  return `${previousIndex}`;
+};
 
-const calcPreviousTrackIndex = state => {
+const calcPreviousTrackIndex = (state) => {
   const {
-    isShuffle
-  } = state
+    isShuffle,
+  } = state;
   if (isShuffle) {
-    return calcForShuffle(state)
-  } else {
-    return calcForDefault(state)
+    return calcForShuffle(state);
   }
-}
+  return calcForDefault(state);
+};
 
-export default calcPreviousTrackIndex
+export default calcPreviousTrackIndex;

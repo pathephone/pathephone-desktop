@@ -1,11 +1,9 @@
-import { parseFile } from 'music-metadata'
+import { parseFile } from 'music-metadata';
 
 const parseOptions = {
-  skipCovers: true
-}
+  skipCovers: true,
+};
 
-const getAudioMetadataFromFsFile = filePath => {
-  return parseFile(filePath, parseOptions)
-}
+const getAudioMetadataFromFsFile = filePath => parseFile(filePath, parseOptions);
 
-export default getAudioMetadataFromFsFile
+export default getAudioMetadataFromFsFile;

@@ -1,23 +1,23 @@
-const nodeExternals = require('webpack-node-externals')
-const path = require('path')
+const nodeExternals = require('webpack-node-externals');
+const path = require('path');
 
-const entryFile = path.resolve(process.cwd(), 'src/e2e/tests.js')
-const outputDir = path.resolve(process.cwd(), '.temp/e2e')
+const entryFile = path.resolve(process.cwd(), 'src/e2e/tests.js');
+const outputDir = path.resolve(process.cwd(), '.temp/e2e');
 
 module.exports = {
   target: 'node',
   mode: 'development',
   node: {
     __dirname: false,
-    __filename: false
+    __filename: false,
   },
   entry: entryFile,
   output: {
     path: outputDir,
-    filename: 'test.js'
+    filename: 'test.js',
   },
   resolveLoader: {
-    modules: [ path.join(__dirname, '../node_modules') ]
+    modules: [path.join(__dirname, '../node_modules')],
   },
   stats: 'errors-only',
   resolve: {
@@ -26,8 +26,8 @@ module.exports = {
       '~data': path.resolve(__dirname, '../src/shared/data'),
       '~utils': path.resolve(__dirname, '../src/shared/utils'),
       '~resources': path.resolve(__dirname, '../src/shared/assets'),
-      '#config': path.resolve(__dirname, '../src/shared/config')
-    }
+      '#config': path.resolve(__dirname, '../src/shared/config'),
+    },
   },
   externals: [nodeExternals()],
   module: {
@@ -35,12 +35,12 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac|txt|svg)$/,
-        use: 'file-loader'
-      }
-    ]
-  }
-}
+        use: 'file-loader',
+      },
+    ],
+  },
+};

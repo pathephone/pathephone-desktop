@@ -9,12 +9,12 @@ import {
   IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION,
   IPC_CLOSE_ALBUMS_STREAM,
   IPC_GET_ALBUMS_COLLECTION_INFO,
-  IPC_SAVE_OR_UPDATE_ALBUMS
-} from '~data/ipcTypes'
+  IPC_SAVE_OR_UPDATE_ALBUMS,
+} from '~data/ipcTypes';
 
-import createWorkerReducer from '~utils/createWorkerReducer'
+import createWorkerReducer from '~utils/createWorkerReducer';
 
-import startDb from './dbApi.worker/startDb'
+import startDb from './dbApi.worker/startDb';
 
 import {
   openAlbumsStream,
@@ -26,39 +26,39 @@ import {
   closeAlbumsStream,
   deleteAlbumsFromCollection,
   getAlbumsCollectionInfo,
-  saveOrUpdateAlbums
-} from './dbApi.worker/albumsCollectionApi'
+  saveOrUpdateAlbums,
+} from './dbApi.worker/albumsCollectionApi';
 
-let dbApi
+let dbApi;
 
 const messageHandler = async ({ type, payload }) => {
   switch (type) {
     case IPC_START_DB:
-      dbApi = await startDb(payload)
-      return
+      dbApi = await startDb(payload);
+      return undefined;
     case IPC_GET_ALBUMS_COLLECTION_INFO:
-      return getAlbumsCollectionInfo(dbApi)
+      return getAlbumsCollectionInfo(dbApi);
     case IPC_OPEN_ALBUMS_STREAM:
-      return openAlbumsStream(dbApi, payload)
+      return openAlbumsStream(dbApi, payload);
     case IPC_CLOSE_ALBUMS_STREAM:
-      return closeAlbumsStream(dbApi, payload)
+      return closeAlbumsStream(dbApi, payload);
     case IPC_FIND_ALBUM_IN_COLLECTION_BY_CID:
-      return findAlbumInCollectionByCid(dbApi, payload)
+      return findAlbumInCollectionByCid(dbApi, payload);
     case IPC_FIND_ALBUMS_IN_COLLECTION_BY_CIDS:
-      return findAlbumsInCollectionByCids(dbApi, payload)
+      return findAlbumsInCollectionByCids(dbApi, payload);
     case IPC_SAVE_ALBUM_IF_NOT_EXISTS:
-      return saveAlbumIfNotExists(dbApi, payload)
+      return saveAlbumIfNotExists(dbApi, payload);
     case IPC_SAVE_OR_UPDATE_ALBUM:
-      return saveOrUpdateAlbum(dbApi, payload)
+      return saveOrUpdateAlbum(dbApi, payload);
     case IPC_SAVE_OR_UPDATE_ALBUMS:
-      return saveOrUpdateAlbums(dbApi, payload)
+      return saveOrUpdateAlbums(dbApi, payload);
     case IPC_DELETE_ALBUMS_IN_COLLECTION_BY_CIDS:
-      return deleteAlbumsFromCollection(dbApi, payload)
+      return deleteAlbumsFromCollection(dbApi, payload);
     case IPC_FIND_OUTDATED_ALBUMS_IN_COLLECTION:
-      return findOutdatedAlbumsInCollection(dbApi, payload)
+      return findOutdatedAlbumsInCollection(dbApi, payload);
     default:
-      throw new Error('dbApi.worker: Unknown message type.')
+      throw new Error('dbApi.worker: Unknown message type.');
   }
-}
+};
 
-createWorkerReducer(messageHandler)
+createWorkerReducer(messageHandler);

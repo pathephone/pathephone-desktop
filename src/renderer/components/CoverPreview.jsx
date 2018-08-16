@@ -1,25 +1,27 @@
-import React from 'react'
-import propTypes from 'prop-types'
-import MdAlbum from 'react-icons/lib/md/album'
+import React from 'react';
+import propTypes from 'prop-types';
+import MdAlbum from 'react-icons/lib/md/album';
 
-import './CoverPreview.css'
+import './CoverPreview.css';
 
-const CoverPreview = ({ coverSrc }) => {
-  return (
-    <div className='coverPreviewContainer'>
-      {
+const CoverPreview = ({ coverSrc }) => (
+  <div className="coverPreviewContainer">
+    {
         coverSrc ? (
-          <img className='coverPreviewImage' src={coverSrc} />
+          <img className="coverPreviewImage" alt="cover preview" src={coverSrc} />
         ) : (
-          <MdAlbum className='coverPreviewNoCoverIcon' />
+          <MdAlbum className="coverPreviewNoCoverIcon" />
         )
       }
-    </div>
-  )
-}
+  </div>
+);
+
+CoverPreview.defaultProps = {
+  coverSrc: null,
+};
 
 CoverPreview.propTypes = {
-  coverSrc: propTypes.string
-}
+  coverSrc: propTypes.string,
+};
 
-export default CoverPreview
+export default CoverPreview;

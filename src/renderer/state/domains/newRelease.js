@@ -1,19 +1,19 @@
-import { systemNewRelaseDetected } from '~actions/system'
+import { systemNewRelaseDetected } from '~actions/system';
 
-const DOMAIN = 'newRelease'
+const DOMAIN = 'newRelease';
 
-const initialState = null
+const initialState = null;
 
-export const getNewRelease = state => state[DOMAIN]
+export const getNewRelease = state => state[DOMAIN];
 
 const reducer = (state = initialState, action) => {
-  const { type, payload } = action
+  const { type, payload } = action;
   switch (type) {
     case systemNewRelaseDetected.toString():
-      return payload.release
+      return payload.release;
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

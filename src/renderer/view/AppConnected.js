@@ -1,32 +1,32 @@
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import {
   getAppStartErrorMessage,
   getAppStartProgress,
   isAppReady,
-  isAppLocked
-} from '#selectors'
+  isAppLocked,
+} from '#selectors';
 
-import App from './App.jsx'
+import App from './App';
 import {
-  systemAppRootMounted
-} from '~actions/system'
+  systemAppRootMounted,
+} from '~actions/system';
 
-const mapStateToProps = state => {
-  const appIsReady = isAppReady(state)
+const mapStateToProps = (state) => {
+  const appIsReady = isAppReady(state);
   return {
     hasStartScreen: !appIsReady,
     hasReadyScreen: appIsReady,
     hasCloseScreen: false,
     hasLockScreen: isAppLocked(state),
     errorMessage: getAppStartErrorMessage(state),
-    progress: getAppStartProgress(state)
-  }
-}
+    progress: getAppStartProgress(state),
+  };
+};
 
 const mapDispatchToProps = {
-  onDidMount: systemAppRootMounted
-}
+  onDidMount: systemAppRootMounted,
+};
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

@@ -1,28 +1,28 @@
-import fs from 'fs'
+import fs from 'fs';
 
-const splitFoldersAndFiles = async files => {
+const splitFoldersAndFiles = async (files) => {
   const data = {
     files: [],
-    folders: []
-  }
-  const resolveFile = (filePath) => new Promise((resolve, reject) => {
+    folders: [],
+  };
+  const resolveFile = filePath => new Promise((resolve, reject) => {
     fs.lstat(filePath, (err, stat) => {
       if (err) {
-        reject(err)
+        reject(err);
       } else {
         if (stat.isDirectory()) {
-          data.folders.push(filePath)
+          data.folders.push(filePath);
         } else {
-          data.files.push(filePath)
+          data.files.push(filePath);
         }
-        resolve()
+        resolve();
       }
-    })
-  })
-  for (const fileIndex in files) {
-    await resolveFile(files[fileIndex])
+    });
+  });
+  for (let i = 0; i < files.length; i += 1) {
+    await resolveFile(files[i]); // eslint-disable-line no-await-in-loop
   }
-  return data
-}
+  return data;
+};
 
-export default splitFoldersAndFiles
+export default splitFoldersAndFiles;

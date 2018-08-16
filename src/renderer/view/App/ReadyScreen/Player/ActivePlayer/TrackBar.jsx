@@ -1,18 +1,18 @@
 
-import React from 'react'
+import React from 'react';
 
-import TrackInfo from './TrackBar/TrackInfo.jsx'
-import TrackTimeline from './TrackBar/TrackTimeline.jsx'
-import TrackBuffer from './TrackBar/TrackBuffer.jsx'
+import TrackInfo from './TrackBar/TrackInfo';
+import TrackTimeline from './TrackBar/TrackTimeline';
+import TrackBuffer from './TrackBar/TrackBuffer';
 
-import './TrackBar.css'
+import './TrackBar.css';
 
-const TrackBar = (props) => (
-  <div className='playerTrackBar'>
+const TrackBar = props => (
+  <div className="playerTrackBar">
     <TrackBuffer {...props} />
     <TrackInfo {...props} />
     <TrackTimeline {...props} />
   </div>
-)
+);
 
-export default TrackBar
+export default TrackBar;

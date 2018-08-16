@@ -1,33 +1,33 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects';
 
 import {
   systemUiLocked,
   systemUiUnlocked,
   systemPlayedTracksRecieved,
-  systemQueuedTracksRecieved
-} from '~actions/system'
+  systemQueuedTracksRecieved,
+} from '~actions/system';
 
 import {
   uiAlbumPlayed,
-  uiAlbumQueued
-} from '~actions/ui'
+  uiAlbumQueued,
+} from '~actions/ui';
 
-import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums'
+import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums';
 
-function * playOrQueueAlbum (args, { type, payload }) {
-  yield put(systemUiLocked())
+function* playOrQueueAlbum(args, { type, payload }) {
+  yield put(systemUiLocked());
   try {
-    const tracks = yield call(getPlaylistTracksFromAlbums, args, [payload])
+    const tracks = yield call(getPlaylistTracksFromAlbums, args, [payload]);
     if (type === uiAlbumPlayed.toString()) {
-      yield put(systemPlayedTracksRecieved(tracks))
+      yield put(systemPlayedTracksRecieved(tracks));
     }
     if (type === uiAlbumQueued.toString()) {
-      yield put(systemQueuedTracksRecieved(tracks))
+      yield put(systemQueuedTracksRecieved(tracks));
     }
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
-  yield put(systemUiUnlocked())
+  yield put(systemUiUnlocked());
 }
 
-export default playOrQueueAlbum
+export default playOrQueueAlbum;
