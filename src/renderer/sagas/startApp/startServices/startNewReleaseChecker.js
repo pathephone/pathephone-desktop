@@ -7,12 +7,12 @@ import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
 import getLatestRelease from '~shared/utils/getLatestRelease';
 import getMyAppVersion from '~shared/utils/getMyAppVersion';
 
-import actions from '#actions';
 import { CHECK_FOR_UPDATE_INTERVAL } from '~shared/data/constants';
 import i18n from '~shared/data/i18n';
-
-import { getNewRelease } from '#selectors';
 import { IS_PRODUCTION } from '~shared/config';
+
+import actions from '#actions';
+import selectors from '#selectors';
 
 function* checkForNewRelease() {
   try {
@@ -20,7 +20,7 @@ function* checkForNewRelease() {
     if (release.prerelease) return;
     const releaseSemVer = semver.coerce(release.tag_name);
     let isGreater;
-    const previousNewRelease = yield select(getNewRelease);
+    const previousNewRelease = yield select(selectors.getNewRelease);
     if (!previousNewRelease) {
       const appSemVer = semver.coerce(getMyAppVersion());
       isGreater = semver.gt(releaseSemVer, appSemVer);

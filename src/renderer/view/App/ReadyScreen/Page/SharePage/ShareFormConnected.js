@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 
-import ShareForm from './ShareForm';
 import actions from '#actions';
-import { getShareFormValue, isShareProcessing, getShareCoverSrc } from '#selectors';
+import selectors from '#selectors';
+
+import ShareForm from './ShareForm';
 
 const mapStateToProps = state => ({
-  values: getShareFormValue(state),
-  coverSrc: getShareCoverSrc(state),
-  isDisabled: isShareProcessing(state),
+  values: selectors.getShareFormValue(state),
+  coverSrc: selectors.getShareCoverSrc(state),
+  isDisabled: selectors.isShareProcessing(state),
 });
 
 const mapDispatchToProps = {

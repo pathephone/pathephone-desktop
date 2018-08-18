@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 
-import SharePage from './SharePage';
-
-import { isShareCandidatesRecieved, isShareProcessing } from '#selectors';
+import selectors from '#selectors';
 import actions from '#actions';
 
+import SharePage from './SharePage';
+
 const mapStateToProps = state => ({
-  hasProcessingScreen: isShareProcessing(state),
-  hasEditForm: isShareCandidatesRecieved(state),
+  hasProcessingScreen: selectors.isShareProcessing(state),
+  hasEditForm: selectors.isShareCandidatesRecieved(state),
 });
 
 const mapDispatchToProps = {

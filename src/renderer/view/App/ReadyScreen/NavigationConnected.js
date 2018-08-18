@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { getNewRelease } from '#selectors';
+import selectors from '#selectors';
 
 import Navigation from './Navigation';
 
 const mapStateToProps = state => ({
-  hasUpdateIndicator: !!getNewRelease(state),
+  hasUpdateIndicator: !!selectors.getNewRelease(state),
 });
 
 export default withRouter(connect(mapStateToProps)(Navigation));

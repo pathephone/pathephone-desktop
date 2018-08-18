@@ -1,15 +1,13 @@
 import { connect } from 'react-redux';
 
-import {
-  getDiscoverSelectedCount,
-} from '#selectors';
+import selectors from '#selectors';
 
 import actions from '#actions';
 
 import SelectedActions from './SelectedActions';
 
 const mapStateToProps = state => ({
-  selectedAlbumsCount: getDiscoverSelectedCount(state),
+  selectedAlbumsCount: selectors.getDiscoverSelectedCount(state),
 });
 
 const mapDispatchToProps = {

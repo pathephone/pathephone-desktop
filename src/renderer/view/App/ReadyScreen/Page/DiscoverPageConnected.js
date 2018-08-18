@@ -1,18 +1,15 @@
 import { connect } from 'react-redux';
 
-import {
-  isDiscoverSelected, getAlbumsCount,
-} from '#selectors';
-
+import selectors from '#selectors';
 import actions from '#actions';
 
 import DiscoverPage from './DiscoverPage';
 
 const mapStateToProps = (state) => {
-  const isSelected = isDiscoverSelected(state);
+  const isSelected = selectors.isDiscoverSelected(state);
   return {
     hasSelectedActions: isSelected,
-    hasSearchBar: getAlbumsCount(state) > 0,
+    hasSearchBar: selectors.getAlbumsCount(state) > 0,
   };
 };
 

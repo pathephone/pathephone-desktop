@@ -1,13 +1,12 @@
 import { connect } from 'react-redux';
 
-import { getNotifications } from '#selectors';
-
+import selectors from '#selectors';
 import actions from '#actions';
 
 import Notifications from './Notifications';
 
 const mapStateToProps = state => ({
-  notifications: getNotifications(state),
+  notifications: selectors.getNotifications(state),
 });
 
 const mapDispatchToProps = {

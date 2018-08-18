@@ -1,21 +1,15 @@
 import { connect } from 'react-redux';
 
-import {
-  getMetabinPeers,
-  getIpfsPeers,
-  getIpfsIsOffline,
-  getIPFSRepoStat,
-  getIPFSBandwidthStat,
-} from '#selectors';
+import selectors from '#selectors';
 
 import IndicatorsBar from './IndicatorsBar';
 
 const mapStateToProps = state => ({
-  isOffline: getIpfsIsOffline(state),
-  ipfsPeers: getIpfsPeers(state),
-  metabinPeers: getMetabinPeers(state),
-  ipfsRepoStat: getIPFSRepoStat(state),
-  ipfsBandwidthStat: getIPFSBandwidthStat(state),
+  isOffline: selectors.getIpfsIsOffline(state),
+  ipfsPeers: selectors.getIpfsPeers(state),
+  metabinPeers: selectors.getMetabinPeers(state),
+  ipfsRepoStat: selectors.getIPFSRepoStat(state),
+  ipfsBandwidthStat: selectors.getIPFSBandwidthStat(state),
 });
 
 const mergeProps = ({ ipfsRepoStat, ipfsBandwidthStat, ...restProps }) => ({

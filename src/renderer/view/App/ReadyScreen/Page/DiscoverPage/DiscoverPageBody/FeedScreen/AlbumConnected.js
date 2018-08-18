@@ -1,21 +1,16 @@
 import { connect } from 'react-redux';
 
-import {
-  getDiscoverSelectedIds,
-  getDiscoverFeedAlbums,
-  getIpfsApiEndpoint,
-  getCachedCIDs,
-} from '#selectors';
+import selectors from '#selectors';
 
 import actions from '#actions';
 
 import Album from './Album';
 
 const mapStateToProps = state => ({
-  latestAlbums: getDiscoverFeedAlbums(state),
-  selectedAlbums: getDiscoverSelectedIds(state),
-  ipfsApiEndpoint: getIpfsApiEndpoint(state),
-  localCoversCIDs: getCachedCIDs(state),
+  latestAlbums: selectors.getDiscoverFeedAlbums(state),
+  selectedAlbums: selectors.getDiscoverSelectedIds(state),
+  ipfsApiEndpoint: selectors.getIpfsApiEndpoint(state),
+  localCoversCIDs: selectors.getCachedCIDs(state),
 });
 
 const mapDispatchToProps = {

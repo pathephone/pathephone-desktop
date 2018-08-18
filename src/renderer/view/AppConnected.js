@@ -1,25 +1,20 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import {
-  getAppStartErrorMessage,
-  getAppStartProgress,
-  isAppReady,
-  isAppLocked,
-} from '#selectors';
+import actions from '#actions';
+import selectors from '#selectors';
 
 import App from './App';
-import actions from '#actions';
 
 const mapStateToProps = (state) => {
-  const appIsReady = isAppReady(state);
+  const appIsReady = selectors.isAppReady(state);
   return {
     hasStartScreen: !appIsReady,
     hasReadyScreen: appIsReady,
     hasCloseScreen: false,
-    hasLockScreen: isAppLocked(state),
-    errorMessage: getAppStartErrorMessage(state),
-    progress: getAppStartProgress(state),
+    hasLockScreen: selectors.isAppLocked(state),
+    errorMessage: selectors.getAppStartErrorMessage(state),
+    progress: selectors.getAppStartProgress(state),
   };
 };
 

@@ -1,19 +1,18 @@
 import { connect } from 'react-redux';
 
-import ActivePlayer from './ActivePlayer';
 import actions from '#actions';
-import {
-  getCurrentTrackSource, getVolume, isPaused, getCurrentTrack,
-} from '#selectors';
+import selectors from '#selectors';
+
+import ActivePlayer from './ActivePlayer';
 
 const mapStateToProps = (state) => {
-  const { title, artist } = getCurrentTrack(state);
+  const { title, artist } = selectors.getCurrentTrack(state);
   return {
     title,
     artist,
-    source: getCurrentTrackSource(state),
-    volume: getVolume(state),
-    isPaused: isPaused(state),
+    source: selectors.getCurrentTrackSource(state),
+    volume: selectors.getVolume(state),
+    isPaused: selectors.isPaused(state),
   };
 };
 

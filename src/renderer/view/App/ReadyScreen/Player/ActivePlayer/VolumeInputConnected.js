@@ -1,15 +1,12 @@
 import { connect } from 'react-redux';
 
-import {
-  getVolume,
-} from '#selectors';
-
+import selectors from '#selectors';
 import actions from '#actions';
 
 import VolumeInput from './VolumeInput';
 
 const mapStateToProps = state => ({
-  currentVolume: getVolume(state),
+  currentVolume: selectors.getVolume(state),
 });
 
 const mapDispatchToProps = {

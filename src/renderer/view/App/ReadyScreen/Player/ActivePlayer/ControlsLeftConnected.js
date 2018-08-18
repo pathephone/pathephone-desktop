@@ -1,15 +1,12 @@
 import { connect } from 'react-redux';
 
-import {
-  isPaused,
-} from '#selectors';
-
+import selectors from '#selectors';
 import actions from '#actions';
 
 import ControlsLeft from './ControlsLeft';
 
 const mapStateToProps = state => ({
-  hasPauseIcon: !isPaused(state),
+  hasPauseIcon: !selectors.isPaused(state),
 });
 
 const mapDispatchToProps = {

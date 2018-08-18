@@ -2,14 +2,11 @@ import { connect } from 'react-redux';
 
 import Playlist from './Playlist';
 
-import {
-  isPlaylistEmpty,
-} from '#selectors';
-
+import selectors from '#selectors';
 import actions from '#actions';
 
 const mapStateToProps = state => ({
-  hasTracklist: !isPlaylistEmpty(state),
+  hasTracklist: !selectors.isPlaylistEmpty(state),
 });
 
 const mapDispatchToProps = {

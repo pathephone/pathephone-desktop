@@ -3,16 +3,12 @@ import { connect } from 'react-redux';
 import actions from '#actions';
 import i18n from '~shared/data/i18n';
 
-import {
-  getDiscoverAlbumsIds,
-  getDiscoverSearchValue,
-  isDiscoverAlbumsOutdated,
-} from '#selectors';
+import selectors from '#selectors';
 
 import FeedScreen from './FeedScreen';
 
 const mapStateToProps = (state) => {
-  const searchValue = getDiscoverSearchValue(state);
+  const searchValue = selectors.getDiscoverSearchValue(state);
   let title;
   if (searchValue) {
     title = `${i18n.SEARCH_RESULTS_FOR} "${searchValue}"`;
@@ -20,8 +16,8 @@ const mapStateToProps = (state) => {
     title = i18n.LATEST_ALBUMS;
   }
   return {
-    albumsIds: getDiscoverAlbumsIds(state),
-    hasRefreshButton: !searchValue && isDiscoverAlbumsOutdated(state),
+    albumsIds: selectors.getDiscoverAlbumsIds(state),
+    hasRefreshButton: !searchValue && selectors.isDiscoverAlbumsOutdated(state),
     title,
   };
 };
