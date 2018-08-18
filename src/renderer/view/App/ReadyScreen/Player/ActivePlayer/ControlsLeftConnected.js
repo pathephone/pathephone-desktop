@@ -4,11 +4,7 @@ import {
   isPaused,
 } from '#selectors';
 
-import {
-  uiNextTrackPlayed,
-  uiPreviousTrackPlayed,
-  uiPlaybackToggled,
-} from '~actions/ui';
+import actions from '#actions';
 
 import ControlsLeft from './ControlsLeft';
 
@@ -17,9 +13,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onPlayNextClick: uiNextTrackPlayed,
-  onPlayPreviousClick: uiPreviousTrackPlayed,
-  onPlaybackToggle: uiPlaybackToggled,
+  onPlayNextClick: actions.uiNextTrackPlayed,
+  onPlayPreviousClick: actions.uiPreviousTrackPlayed,
+  onPlaybackToggle: actions.uiPlaybackToggled,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ControlsLeft);

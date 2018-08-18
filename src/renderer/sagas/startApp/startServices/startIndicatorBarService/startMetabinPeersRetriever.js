@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
-import { systemMetabinPeersRecieved } from '~actions/system';
+import actions from '#actions';
 
 function* startMetabinPeersRetriever({ getMetabinPeersCount }) {
   const ticker = yield call(reduxSagaTicker, 10000);
@@ -8,11 +8,11 @@ function* startMetabinPeersRetriever({ getMetabinPeersCount }) {
     while (true) {
       yield take(ticker);
       const peersCount = yield call(getMetabinPeersCount);
-      yield put(systemMetabinPeersRecieved({ metabinPeersCount: peersCount }));
+      yield put(actions.systemMetabinPeersRecieved({ metabinPeersCount: peersCount }));
     }
   } catch (e) {
     console.error(e);
-    yield put(systemMetabinPeersRecieved({ metabinPeersCount: null }));
+    yield put(actions.systemMetabinPeersRecieved({ metabinPeersCount: null }));
     ticker.close();
   }
 }

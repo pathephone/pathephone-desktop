@@ -4,7 +4,7 @@
     "paths": {
       "~shared/*": ["../shared/*"],
       "~components/*": ["./components/*"],
-      "~actions/*": ["./state/actions/*"],
+      "#actions": ["./state/actions.js"],
       "#selectors": ["./state/selectors.js"],
     }
   }

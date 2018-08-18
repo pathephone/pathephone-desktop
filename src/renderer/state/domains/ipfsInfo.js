@@ -1,8 +1,4 @@
-import {
-  systemIpfsInfoRecieved,
-  systemMetabinPeersRecieved,
-  systemIpfsStatsRecieved,
-} from '~actions/system';
+import actions from '#actions';
 
 const DOMAIN = 'ipfsInfo';
 
@@ -27,9 +23,9 @@ export const getIPFSBandwidthStat = state => state[DOMAIN].bandwidthStat;
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case systemIpfsInfoRecieved.toString():
-    case systemIpfsStatsRecieved.toString():
-    case systemMetabinPeersRecieved.toString():
+    case actions.systemIpfsInfoRecieved.toString():
+    case actions.systemIpfsStatsRecieved.toString():
+    case actions.systemMetabinPeersRecieved.toString():
       return {
         ...state,
         ...payload,

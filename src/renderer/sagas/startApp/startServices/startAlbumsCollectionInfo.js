@@ -1,10 +1,10 @@
 import { put, call } from 'redux-saga/effects';
 
-import { systemAlbumsCollectionInfoRecieved } from '~actions/system';
+import actions from '#actions';
 
 function* updateAlbumsCollectionInfo({ getAlbumsCollectionInfo }) {
   const dbInfo = yield call(getAlbumsCollectionInfo);
-  yield put(systemAlbumsCollectionInfoRecieved(dbInfo));
+  yield put(actions.systemAlbumsCollectionInfoRecieved(dbInfo));
 }
 
 function* startAlbumsCollectionInfo(apis) {

@@ -2,10 +2,7 @@ import { put, call, take } from 'redux-saga/effects';
 
 import normalizeCollectionAlbum from '~shared/utils/normalizeCollectionAlbum';
 
-import {
-  systemDiscoverAlbumsFetchSucceed,
-  systemDiscoverAlbumsFetchFailed,
-} from '~actions/system';
+import actions from '#actions';
 
 import { DISCOVER_FEED_LIMIT } from '~shared/data/constants';
 
@@ -20,11 +17,11 @@ function* fetchDiscoverAlbums(apis, { payload }) {
       const { albums, error } = yield take(albumsSource);
       if (error) throw error;
       const normalizedAlbums = albums.map(normalizeCollectionAlbum);
-      yield put(systemDiscoverAlbumsFetchSucceed(normalizedAlbums));
+      yield put(actions.systemDiscoverAlbumsFetchSucceed(normalizedAlbums));
     }
   } catch (e) {
     console.error(e);
-    yield put(systemDiscoverAlbumsFetchFailed({ errorMessage: e.message }));
+    yield put(actions.systemDiscoverAlbumsFetchFailed({ errorMessage: e.message }));
   }
 }
 

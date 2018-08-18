@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 
 import ShareForm from './ShareForm';
-import {
-  uiShareFormSubmited, uiShareFormCanceled, uiShareFormChanged, uiShareFormReseted,
-} from '~actions/ui';
+import actions from '#actions';
 import { getShareFormValue, isShareProcessing, getShareCoverSrc } from '#selectors';
 
 const mapStateToProps = state => ({
@@ -13,10 +11,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onSubmit: uiShareFormSubmited,
-  onCancel: uiShareFormCanceled,
-  onChange: uiShareFormChanged,
-  onReset: uiShareFormReseted,
+  onSubmit: actions.uiShareFormSubmited,
+  onCancel: actions.uiShareFormCanceled,
+  onChange: actions.uiShareFormChanged,
+  onReset: actions.uiShareFormReseted,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShareForm);

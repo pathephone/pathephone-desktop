@@ -1,7 +1,7 @@
 import { take, call, put } from 'redux-saga/effects';
 import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
 import formatBytes from '~shared/utils/formatBytes';
-import { systemIpfsStatsRecieved } from '~actions/system';
+import actions from '#actions';
 
 const normalizeStats = ({ repoStat, bandwidthStat, peersCount } = {}) => ({
   repoStat: repoStat ? {
@@ -21,11 +21,11 @@ function* startIPFSStatsRetriever({ getIPFSStats }) {
     while (true) {
       yield take(ticker);
       const stats = yield call(getIPFSStats);
-      yield put(systemIpfsStatsRecieved(normalizeStats(stats)));
+      yield put(actions.systemIpfsStatsRecieved(normalizeStats(stats)));
     }
   } catch (e) {
     console.error(e);
-    yield put(systemIpfsStatsRecieved());
+    yield put(actions.systemIpfsStatsRecieved());
     ticker.close();
   }
 }

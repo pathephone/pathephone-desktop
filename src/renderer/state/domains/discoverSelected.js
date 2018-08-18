@@ -1,9 +1,4 @@
-import { systemDiscoverSelectedActionSucceed } from '~actions/system';
-import {
-  uiDiscoverAlbumSelected,
-  uiDiscoverAlbumDeselected,
-  uiDiscoverSelectedCanceled,
-} from '~actions/ui';
+import actions from '#actions';
 
 const DOMAIN = 'discoverSelected';
 
@@ -18,12 +13,12 @@ export const getDiscoverSelectedIds = state => state[DOMAIN];
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case uiDiscoverAlbumSelected.toString():
+    case actions.uiDiscoverAlbumSelected.toString():
       return [...state, payload];
-    case uiDiscoverAlbumDeselected.toString():
+    case actions.uiDiscoverAlbumDeselected.toString():
       return state.filter(cid => cid !== payload);
-    case systemDiscoverSelectedActionSucceed.toString():
-    case uiDiscoverSelectedCanceled.toString():
+    case actions.systemDiscoverSelectedActionSucceed.toString():
+    case actions.uiDiscoverSelectedCanceled.toString():
       return [];
     default:
       return state;

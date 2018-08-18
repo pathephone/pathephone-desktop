@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ActivePlayer from './ActivePlayer';
-import { systemAudioEnded, systemAudioPlayed, systemAudioPaused } from '~actions/system';
+import actions from '#actions';
 import {
   getCurrentTrackSource, getVolume, isPaused, getCurrentTrack,
 } from '#selectors';
@@ -18,9 +18,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  onAudioEnded: systemAudioEnded,
-  onAudioPlayed: systemAudioPlayed,
-  onAudioPaused: systemAudioPaused,
+  onAudioEnded: actions.systemAudioEnded,
+  onAudioPlayed: actions.systemAudioPlayed,
+  onAudioPaused: actions.systemAudioPaused,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivePlayer);

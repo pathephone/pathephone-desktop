@@ -6,14 +6,14 @@ import {
   isPlaylistEmpty,
 } from '#selectors';
 
-import { uiPlaylistCleared } from '~actions/ui';
+import actions from '#actions';
 
 const mapStateToProps = state => ({
   hasTracklist: !isPlaylistEmpty(state),
 });
 
 const mapDispatchToProps = {
-  onClearPlaylist: uiPlaylistCleared,
+  onClearPlaylist: actions.uiPlaylistCleared,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist);

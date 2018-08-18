@@ -1,4 +1,4 @@
-import { systemNewRelaseDetected } from '~actions/system';
+import actions from '#actions';
 
 const DOMAIN = 'newRelease';
 
@@ -9,7 +9,7 @@ export const getNewRelease = state => state[DOMAIN];
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case systemNewRelaseDetected.toString():
+    case actions.systemNewRelaseDetected.toString():
       return payload.release;
     default:
       return state;

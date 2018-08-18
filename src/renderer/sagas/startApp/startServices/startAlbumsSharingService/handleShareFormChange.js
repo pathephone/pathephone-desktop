@@ -1,6 +1,6 @@
 import { all, call, put } from 'redux-saga/effects';
 
-import { systemShareFormChanged, systemUiLocked, systemUiUnlocked } from '~actions/system';
+import actions from '#actions';
 
 function* handleMap(api, track) {
   const { getTracksFromFsFiles } = api;
@@ -12,7 +12,7 @@ function* handleMap(api, track) {
 }
 
 function* handleShareFormChange(apis, { payload }) {
-  yield put(systemUiLocked());
+  yield put(actions.systemUiLocked());
   try {
     const tracks = yield all(
       payload.tracks.map(track => handleMap(apis, track)),
@@ -22,11 +22,11 @@ function* handleShareFormChange(apis, { payload }) {
       tracks,
     };
 
-    yield put(systemShareFormChanged(album));
+    yield put(actions.systemShareFormChanged(album));
   } catch (e) {
     console.error(e);
   }
-  yield put(systemUiUnlocked());
+  yield put(actions.systemUiUnlocked());
 }
 
 export default handleShareFormChange;

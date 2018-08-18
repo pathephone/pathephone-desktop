@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import SharePage from './SharePage';
 
 import { isShareCandidatesRecieved, isShareProcessing } from '#selectors';
-import { uiShareItemsSelected } from '~actions/ui';
+import actions from '#actions';
 
 const mapStateToProps = state => ({
   hasProcessingScreen: isShareProcessing(state),
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onFilesSelect: uiShareItemsSelected,
+  onFilesSelect: actions.uiShareItemsSelected,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SharePage);

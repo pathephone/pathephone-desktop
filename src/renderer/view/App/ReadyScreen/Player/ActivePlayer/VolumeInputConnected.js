@@ -4,7 +4,7 @@ import {
   getVolume,
 } from '#selectors';
 
-import { uiVolumeChanged } from '~actions/ui';
+import actions from '#actions';
 
 import VolumeInput from './VolumeInput';
 
@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onVolumeChange: uiVolumeChanged,
+  onVolumeChange: actions.uiVolumeChanged,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(VolumeInput);

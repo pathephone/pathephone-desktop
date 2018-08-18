@@ -1,6 +1,4 @@
-import { systemNotificationRecieved, systemNotificationExpired } from '~actions/system';
-
-import { uiNotificationToastRemoved } from '~actions/ui';
+import actions from '#actions';
 
 const DOMAIN = 'notifications';
 
@@ -11,10 +9,10 @@ export const getNotifications = state => state[DOMAIN];
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case systemNotificationRecieved.toString():
+    case actions.systemNotificationRecieved.toString():
       return [...state, payload];
-    case systemNotificationExpired.toString():
-    case uiNotificationToastRemoved.toString():
+    case actions.systemNotificationExpired.toString():
+    case actions.uiNotificationToastRemoved.toString():
       console.log(payload);
       return state.filter(n => n.id !== payload);
     default:

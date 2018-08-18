@@ -1,9 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 
-import {
-  systemAppStartSucceed,
-  systemAppStartFailed,
-} from '~actions/system';
+import actions from '#actions';
 
 import { IS_TESTING } from '~shared/config';
 
@@ -18,10 +15,10 @@ function* startApp() {
     }
     const apis = yield call(getApis);
     yield call(startServices, apis);
-    yield put(systemAppStartSucceed());
+    yield put(actions.systemAppStartSucceed());
   } catch (e) {
     console.error(e);
-    yield put(systemAppStartFailed(e.message));
+    yield put(actions.systemAppStartFailed(e.message));
   }
 }
 

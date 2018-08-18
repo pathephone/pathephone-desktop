@@ -7,12 +7,7 @@ import {
   getCachedCIDs,
 } from '#selectors';
 
-import {
-  uiDiscoverAlbumSelected,
-  uiDiscoverAlbumDeselected,
-  uiAlbumQueued,
-  uiAlbumPlayed,
-} from '~actions/ui';
+import actions from '#actions';
 
 import Album from './Album';
 
@@ -24,10 +19,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onAlbumSelected: uiDiscoverAlbumSelected,
-  onAlbumDeselected: uiDiscoverAlbumDeselected,
-  onAddAlbumToPlaylist: uiAlbumQueued,
-  onPlayAlbum: uiAlbumPlayed,
+  onAlbumSelected: actions.uiDiscoverAlbumSelected,
+  onAlbumDeselected: actions.uiDiscoverAlbumDeselected,
+  onAddAlbumToPlaylist: actions.uiAlbumQueued,
+  onPlayAlbum: actions.uiAlbumPlayed,
 };
 
 const mergeProps = (

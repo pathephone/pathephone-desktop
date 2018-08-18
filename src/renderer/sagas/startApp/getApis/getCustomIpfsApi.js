@@ -7,11 +7,11 @@ import { IS_OFFLINE } from '~shared/config';
 import ipc from '~shared/data/ipc';
 
 import { rendererCalls } from '~shared/utils/ipcRenderer';
-import { systemIpfsInfoRecieved } from '~actions/system';
+import actions from '#actions';
 
 function* getCustomIpfsApi() {
   const ipfsInfo = yield call(rendererCalls, ipc.IPFS_GET_INFO);
-  yield put(systemIpfsInfoRecieved({
+  yield put(actions.systemIpfsInfoRecieved({
     ...ipfsInfo,
     isOffline: IS_OFFLINE,
   }));

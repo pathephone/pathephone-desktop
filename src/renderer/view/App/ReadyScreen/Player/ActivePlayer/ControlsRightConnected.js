@@ -5,10 +5,7 @@ import {
   isShuffleTurnedOn,
 } from '#selectors';
 
-import {
-  uiShuffleToggled,
-  uiRepeatToggled,
-} from '~actions/ui';
+import actions from '#actions';
 
 import ControlsRight from './ControlsRight';
 
@@ -18,8 +15,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onToggleShuffle: uiShuffleToggled,
-  onToggleRepeat: uiRepeatToggled,
+  onToggleShuffle: actions.uiShuffleToggled,
+  onToggleRepeat: actions.uiRepeatToggled,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ControlsRight);

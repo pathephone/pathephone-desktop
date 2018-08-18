@@ -1,8 +1,5 @@
 import { call, all, put } from 'redux-saga/effects';
-import {
-  systemShareCandidateSaveSucceed,
-  systemShareCandidateSaveFailed,
-} from '~actions/system';
+import actions from '#actions';
 import i18n from '~shared/data/i18n';
 
 function* shareTracksToIpfs(apis, tracks) {
@@ -34,7 +31,7 @@ function* handleShareFormSubmit(apis, { payload }) {
     const albumCid = yield call(shareObjectToIpfs, album);
     const collectionStat = yield call(saveAlbumIfNotExists, { data: album, cid: albumCid });
     yield put(
-      systemShareCandidateSaveSucceed({
+      actions.systemShareCandidateSaveSucceed({
         successMessage: i18n.SHARE_FORM_SUBMIT_SUCCEED,
         ...collectionStat,
       }),
@@ -42,11 +39,11 @@ function* handleShareFormSubmit(apis, { payload }) {
   } catch (e) {
     console.error(e);
     if (e.message === 'Key already exists in the object store.') {
-      yield put(systemShareCandidateSaveFailed({
+      yield put(actions.systemShareCandidateSaveFailed({
         warningMessage: i18n.SHARE_ALBUM_ALREADY_EXISTS,
       }));
     } else {
-      yield put(systemShareCandidateSaveFailed({
+      yield put(actions.systemShareCandidateSaveFailed({
         errorMessage: e.message,
       }));
     }

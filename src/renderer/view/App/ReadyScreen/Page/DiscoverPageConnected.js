@@ -4,12 +4,7 @@ import {
   isDiscoverSelected, getAlbumsCount,
 } from '#selectors';
 
-import {
-  uiDiscoverPageClosed,
-} from '~actions/ui';
-import {
-  systemDiscoverAlbumsFetch,
-} from '~actions/system';
+import actions from '#actions';
 
 import DiscoverPage from './DiscoverPage';
 
@@ -22,8 +17,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  onWillMount: systemDiscoverAlbumsFetch,
-  onWillUnmount: uiDiscoverPageClosed,
+  onWillMount: actions.systemDiscoverAlbumsFetch,
+  onWillUnmount: actions.uiDiscoverPageClosed,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPage);

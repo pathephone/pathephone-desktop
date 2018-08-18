@@ -5,11 +5,7 @@ import {
   getAlbumsCount,
 } from '#selectors';
 
-import {
-  uiDiscoverSearchPerformed,
-  uiDiscoverSearchCleared,
-  uiDiscoverSearchValueChanged,
-} from '~actions/ui';
+import actions from '#actions';
 
 import SearchBar from './SearchBar';
 
@@ -19,9 +15,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onInputChange: uiDiscoverSearchValueChanged,
-  onCancelSearch: uiDiscoverSearchCleared,
-  onFormSubmit: uiDiscoverSearchPerformed,
+  onInputChange: actions.uiDiscoverSearchValueChanged,
+  onCancelSearch: actions.uiDiscoverSearchCleared,
+  onFormSubmit: actions.uiDiscoverSearchPerformed,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

@@ -1,6 +1,6 @@
 import { call, takeEvery, put } from 'redux-saga/effects';
 
-import { systemAlbumsRecievedCacheTransited } from '~actions/system';
+import actions from '#actions';
 import { IS_OFFLINE } from '~shared/config';
 
 import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
@@ -14,7 +14,7 @@ function* transitCachedAlbumsToStore(apis) {
     const albums = yield call(getRecievedAlbumsCache);
     if (albums.length > 0) {
       const collectionStat = yield call(saveOrUpdateAlbums, albums);
-      yield put(systemAlbumsRecievedCacheTransited(collectionStat));
+      yield put(actions.systemAlbumsRecievedCacheTransited(collectionStat));
     }
   } catch (e) {
     console.error(e);

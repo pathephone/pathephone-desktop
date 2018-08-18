@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { systemDiscoverAlbumsFetch } from '~actions/system';
+import actions from '#actions';
 import i18n from '~shared/data/i18n';
 
 import {
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  onRefreshButtonClick: systemDiscoverAlbumsFetch,
+  onRefreshButtonClick: actions.systemDiscoverAlbumsFetch,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeedScreen);

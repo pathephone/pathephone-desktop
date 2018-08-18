@@ -11,7 +11,7 @@ module.exports = {
       '~shared': path.resolve(__dirname, '../src/shared'),
 
       '~components': path.resolve(__dirname, '../src/renderer/components'),
-      '~actions': path.resolve(__dirname, '../src/renderer/state/actions'),
+      '#actions': path.resolve(__dirname, '../src/renderer/state/actions.js'),
       '#selectors': path.resolve(__dirname, '../src/renderer/state/selectors.js'),
     },
   },

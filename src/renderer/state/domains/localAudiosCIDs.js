@@ -1,5 +1,4 @@
-import { systemPlayedTracksRecieved, systemIPFSFileCached, systemQueuedTracksRecieved } from '~actions/system';
-import { uiPlaylistCleared } from '~actions/ui';
+import actions from '#actions';
 
 const DOMAIN = 'localAudiosCIDs';
 
@@ -15,21 +14,21 @@ const handleReduceTracks = (acc, track) => {
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case systemIPFSFileCached.toString():
+    case actions.systemIPFSFileCached.toString():
       if (state[payload] === false) {
         return { ...state, [payload]: true };
       }
       return state;
-    case systemPlayedTracksRecieved.toString():
+    case actions.systemPlayedTracksRecieved.toString():
       return payload.reduce(handleReduceTracks, {});
-    case systemQueuedTracksRecieved.toString(): {
+    case actions.systemQueuedTracksRecieved.toString(): {
       const newCids = payload.reduce(handleReduceTracks, {});
       return {
         ...newCids,
         ...state,
       };
     }
-    case uiPlaylistCleared.toString():
+    case actions.uiPlaylistCleared.toString():
       return {};
     default:
       return state;

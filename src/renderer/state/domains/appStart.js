@@ -1,7 +1,5 @@
 
-import {
-  systemAppStartProceed, systemAppStartFailed, systemUiLocked, systemUiUnlocked,
-} from '~actions/system';
+import actions from '#actions';
 
 const DOMAIN = 'appStart';
 
@@ -18,13 +16,13 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case systemAppStartProceed.toString():
+    case actions.systemAppStartProceed.toString():
       return { ...state, progress: payload };
-    case systemAppStartFailed.toString():
+    case actions.systemAppStartFailed.toString():
       return { ...state, errorMessage: payload };
-    case systemUiLocked.toString():
+    case actions.systemUiLocked.toString():
       return { ...state, isLocked: true };
-    case systemUiUnlocked.toString():
+    case actions.systemUiUnlocked.toString():
       return { ...state, isLocked: false };
     default:
       return state;

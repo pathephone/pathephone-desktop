@@ -9,9 +9,7 @@ import {
 } from '#selectors';
 
 import App from './App';
-import {
-  systemAppRootMounted,
-} from '~actions/system';
+import actions from '#actions';
 
 const mapStateToProps = (state) => {
   const appIsReady = isAppReady(state);
@@ -26,7 +24,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  onDidMount: systemAppRootMounted,
+  onDidMount: actions.systemAppRootMounted,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

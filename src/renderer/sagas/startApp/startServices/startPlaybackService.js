@@ -1,14 +1,14 @@
 import { take, select, put } from 'redux-saga/effects';
 
-import { systemAudioEnded, systemRepeatedPlaylistEnded } from '~actions/system';
+import actions from '#actions';
 import { shouldPlaylistBeRepeated } from '#selectors';
 
 function* startPlaybackService() {
   while (true) {
-    yield take(systemAudioEnded);
+    yield take(actions.systemAudioEnded);
     const isRepeat = yield select(shouldPlaylistBeRepeated);
     if (isRepeat) {
-      yield put(systemRepeatedPlaylistEnded());
+      yield put(actions.systemRepeatedPlaylistEnded());
     }
   }
 }

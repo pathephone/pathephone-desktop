@@ -1,10 +1,6 @@
 import { all, takeEvery } from 'redux-saga/effects';
 
-import {
-  uiShareItemsSelected,
-  uiShareFormSubmited,
-  uiShareFormChanged,
-} from '~actions/ui';
+import actions from '#actions';
 
 import handleShareFormChange from './startAlbumsSharingService/handleShareFormChange';
 import handleShareFormSubmit from './startAlbumsSharingService/handleShareFormSubmit';
@@ -12,9 +8,9 @@ import handleShareItemsSelect from './startAlbumsSharingService/handleShareItems
 
 function* startAlbumsSharingService(apis) {
   yield all([
-    takeEvery(uiShareItemsSelected, handleShareItemsSelect, apis),
-    takeEvery(uiShareFormSubmited, handleShareFormSubmit, apis),
-    takeEvery(uiShareFormChanged, handleShareFormChange, apis),
+    takeEvery(actions.uiShareItemsSelected, handleShareItemsSelect, apis),
+    takeEvery(actions.uiShareFormSubmited, handleShareFormSubmit, apis),
+    takeEvery(actions.uiShareFormChanged, handleShareFormChange, apis),
   ]);
 }
 

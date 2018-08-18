@@ -6,7 +6,7 @@ import {
   getCachedCIDs,
 } from '#selectors';
 
-import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '~actions/ui';
+import actions from '#actions';
 
 import PlaylistTrack from './PlaylistTrack';
 
@@ -17,8 +17,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onPlayTrack: uiPlaylistTrackPlayed,
-  onRemoveTrack: uiPlaylistTrackRemoved,
+  onPlayTrack: actions.uiPlaylistTrackPlayed,
+  onRemoveTrack: actions.uiPlaylistTrackRemoved,
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {

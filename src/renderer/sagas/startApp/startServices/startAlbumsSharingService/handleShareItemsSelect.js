@@ -1,10 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 
-import {
-  systemShareCandidatesRecieved,
-  systemShareFilesProcessingFailed,
-  systemShareCandidatesNotFound,
-} from '~actions/system';
+import actions from '#actions';
 
 import i18n from '~shared/data/i18n';
 
@@ -16,15 +12,15 @@ function* handleShareItemsSelect(apis, { payload }) {
     const candidates = yield call(getAlbumCandidatesFromFs, selectedFsItems);
 
     if (candidates.length > 0) {
-      yield put(systemShareCandidatesRecieved(candidates));
+      yield put(actions.systemShareCandidatesRecieved(candidates));
     } else {
-      yield put(systemShareCandidatesNotFound(
+      yield put(actions.systemShareCandidatesNotFound(
         { warningMessage: i18n.NO_ALBUMS_FOUND },
       ));
     }
   } catch (e) {
     console.error(e);
-    yield put(systemShareFilesProcessingFailed(
+    yield put(actions.systemShareFilesProcessingFailed(
       { errorMessage: i18n.ERROR_PROCESSING_FILES },
     ));
   }

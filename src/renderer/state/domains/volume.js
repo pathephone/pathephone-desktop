@@ -1,4 +1,4 @@
-import { uiVolumeChanged } from '~actions/ui';
+import actions from '#actions';
 
 const DOMAIN = 'volume';
 
@@ -9,7 +9,7 @@ export const getVolume = state => state[DOMAIN];
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case uiVolumeChanged.toString():
+    case actions.uiVolumeChanged.toString():
       return payload;
     default:
       return state;
