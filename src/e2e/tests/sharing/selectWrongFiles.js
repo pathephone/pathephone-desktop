@@ -1,4 +1,4 @@
-import { i18n } from '~data';
+import i18n from '~data/i18n';
 import { txtFile, svgFile } from '~data/assets/files';
 
 import {

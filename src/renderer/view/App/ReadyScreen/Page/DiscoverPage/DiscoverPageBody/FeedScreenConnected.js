@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 
 import { systemDiscoverAlbumsFetch } from '~actions/system';
-import {
-  i18n,
-} from '~data';
+import i18n from '~data/i18n';
 
 import {
   getDiscoverAlbumsIds,

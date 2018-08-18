@@ -1,5 +1,5 @@
 import React from 'react';
-import { i18n } from '~data';
+import i18n from '~data/i18n';
 import e2e from '~data/e2e';
 
 const PendingPlayer = () => (

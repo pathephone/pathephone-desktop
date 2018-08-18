@@ -10,9 +10,7 @@ import {
   ROUTE_ALBUMS,
   ROUTE_DONATE,
 } from '~data/constants';
-import {
-  i18n,
-} from '~data';
+import i18n from '~data/i18n';
 import e2e from '~data/e2e';
 
 import NavigationItem from './Navigation/NavigationItem';

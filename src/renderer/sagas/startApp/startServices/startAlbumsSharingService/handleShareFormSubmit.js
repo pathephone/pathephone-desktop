@@ -3,9 +3,7 @@ import {
   systemShareCandidateSaveSucceed,
   systemShareCandidateSaveFailed,
 } from '~actions/system';
-import {
-  i18n,
-} from '~data';
+import i18n from '~data/i18n';
 
 function* shareTracksToIpfs(apis, tracks) {
   const { shareFsFileToIpfs } = apis;

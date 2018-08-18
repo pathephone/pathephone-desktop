@@ -9,7 +9,7 @@ import getMyAppVersion from '~utils/getMyAppVersion';
 
 import { systemNewRelaseDetected } from '~actions/system';
 import { CHECK_FOR_UPDATE_INTERVAL } from '~data/constants';
-import { i18n } from '~data';
+import i18n from '~data/i18n';
 
 import { getNewRelease } from '#selectors';
 import { IS_PRODUCTION } from '#config';

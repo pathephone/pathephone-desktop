@@ -2,9 +2,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import {
-  i18n,
-} from '~data';
+import i18n from '~data/i18n';
 
 import AssetsButtons from './NewReleaseCard/AssetsButtons';
 import './NewReleaseCard.css';
