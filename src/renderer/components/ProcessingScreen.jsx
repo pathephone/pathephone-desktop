@@ -1,5 +1,5 @@
 import React from 'react';
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 import './ProcessingScreen.css';
 

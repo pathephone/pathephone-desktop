@@ -1,5 +1,5 @@
-import i18n from '~data/i18n';
-import { txtFile, svgFile } from '~data/assets/files';
+import i18n from '~shared/data/i18n';
+import { txtFile, svgFile } from '~shared/data/assets/files';
 
 import {
   getNotificationMessage,

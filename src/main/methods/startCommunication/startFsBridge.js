@@ -1,7 +1,7 @@
-import createThreadController from '~utils/createThreadController';
-import { ipcMainTake } from '~utils/ipcMain';
+import createThreadController from '~shared/utils/createThreadController';
+import { ipcMainTake } from '~shared/utils/ipcMain';
 
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 const callAndClose = async (name, payload) => {
   const thread = createThreadController(name);

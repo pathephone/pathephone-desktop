@@ -1,4 +1,4 @@
-import { newCreatorFactory, newDomainTypeFactory } from '~utils/reduxTools';
+import { newCreatorFactory, newDomainTypeFactory } from '~shared/utils/reduxTools';
 
 const c = newCreatorFactory(newDomainTypeFactory('system'));
 

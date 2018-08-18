@@ -1,4 +1,4 @@
-import createThreadReducer from '~utils/createThreadReducer';
+import createThreadReducer from '~shared/utils/createThreadReducer';
 
 import getTracksFromFsFiles from './getAlbumCandidatesFromFsItems.thread/getAlbumCandidatesFromFsItems/getCandidatesFromFiles/getTracksFromFsFiles';
 

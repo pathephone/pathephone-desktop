@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MdDownload from 'react-icons/lib/md/file-download';
 
-import getCurrentOSIcon from '~utils/getCurrentOSIcon';
+import getCurrentOSIcon from '~shared/utils/getCurrentOSIcon';
 
 import './AssetDownloadButton.css';
 

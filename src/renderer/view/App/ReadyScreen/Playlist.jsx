@@ -5,7 +5,7 @@ import TracklistConnected from './Playlist/TracklistConnected';
 import PlaylistControlsConnected from './Playlist/PlaylistControlsConnected';
 
 import './Playlist.css';
-import i18n from '~data/i18n';
+import i18n from '~shared/data/i18n';
 
 const Playlist = ({ hasTracklist }) => (
   <div className="playlist">

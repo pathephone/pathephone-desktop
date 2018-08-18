@@ -5,7 +5,7 @@ import {
   systemAppStartFailed,
 } from '~actions/system';
 
-import { IS_TESTING } from '#config';
+import { IS_TESTING } from '~shared/config';
 
 import startServices from './startApp/startServices';
 import getApis from './startApp/getApis';

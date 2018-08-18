@@ -1,4 +1,4 @@
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 const dagParams = { format: 'dag-cbor', hashAlg: 'sha3-512' };
 

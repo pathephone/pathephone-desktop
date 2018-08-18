@@ -2,7 +2,7 @@ import {
   call, all, spawn, put,
 } from 'redux-saga/effects';
 
-import asyncTimeout from '~utils/asyncTimeout';
+import asyncTimeout from '~shared/utils/asyncTimeout';
 
 import { systemAppStartProceed } from '~actions/system';
 

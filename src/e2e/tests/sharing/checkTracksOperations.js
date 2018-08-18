@@ -11,7 +11,7 @@ import {
   shareWaitForFormExists,
 } from '~reusable/sharePage';
 
-import { tracks } from '~data/assets';
+import { tracks } from '~shared/data/assets';
 import { lockScreenWaitForNotExists } from '~reusable/lockScreen';
 
 describe('check tracks operations', () => {

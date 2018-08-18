@@ -1,6 +1,6 @@
-import createThreadReducer from '~utils/createThreadReducer';
+import createThreadReducer from '~shared/utils/createThreadReducer';
 
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 import startIpfsDaemon from './ipfs.thread/startIpfsDaemon';
 

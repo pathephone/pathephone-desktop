@@ -1,4 +1,4 @@
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 export function playlistWaitForTracklist() {
   return this.app.client.waitForExist(e2e.PLAYLIST_TRAKLIST_ID);

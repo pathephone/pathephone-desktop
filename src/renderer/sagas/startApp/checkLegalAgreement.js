@@ -1,10 +1,10 @@
 
 import { select, put } from 'redux-saga/effects';
 
-import { IS_TESTING } from '#config';
+import { IS_TESTING } from '~shared/config';
 import { isLegalAgreementGranted } from '#selectors';
 
-import i18n from '~data/i18n';
+import i18n from '~shared/data/i18n';
 import { uiLegalAgreementGranted } from '~actions/ui';
 
 /* eslint-disable global-require, no-alert */

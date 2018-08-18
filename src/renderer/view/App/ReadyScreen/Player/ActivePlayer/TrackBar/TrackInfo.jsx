@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import secondsTohhmmss from '~utils//secondsTohhmmss';
+import secondsTohhmmss from '~shared/utils//secondsTohhmmss';
 
 import './TrackInfo.css';
 

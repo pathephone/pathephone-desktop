@@ -1,9 +1,9 @@
 import { call, takeEvery, put } from 'redux-saga/effects';
 
 import { systemAlbumsRecievedCacheTransited } from '~actions/system';
-import { IS_OFFLINE } from '#config';
+import { IS_OFFLINE } from '~shared/config';
 
-import reduxSagaTicker from '~utils/reduxSagaTicker';
+import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
 
 function* transitCachedAlbumsToStore(apis) {
   const {

@@ -1,4 +1,4 @@
-import getTracksFromFiles from '~utils/getTracksFromFiles';
+import getTracksFromFiles from '~shared/utils/getTracksFromFiles';
 
 import getCoverFromFiles from './getCandidatesFromFiles/getCoverFromFiles';
 import extractAlbumInfoFromTracks from './getCandidatesFromFiles/extractAlbumInfoFromTracks';

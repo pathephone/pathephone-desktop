@@ -4,7 +4,7 @@ import path from 'path';
 
 import {
   ENVIRONMENT, IS_PRODUCTION, IS_TESTING, IS_DEVELOPMENT,
-} from '#config';
+} from '~shared/config';
 
 const withEnvronment = () => {
   const userDataPath = app.getPath('userData');

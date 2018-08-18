@@ -6,8 +6,8 @@ import MdAdd from 'react-icons/lib/md/playlist-add';
 import MdDelete from 'react-icons/lib/md/delete';
 import MdClear from 'react-icons/lib/md/clear';
 
-import i18n from '~data/i18n';
-import e2e from '~data/e2e';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 import CustomButton from '~components/CustomButton';
 

@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import assert from 'assert';
 
-import { tracks } from '~data/assets';
+import { tracks } from '~shared/data/assets';
 
 import getAudioMetadataFromFsFile from './getAudioMetadataFromFsFile';
 

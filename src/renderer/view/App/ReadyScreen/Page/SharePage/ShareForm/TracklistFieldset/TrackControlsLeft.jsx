@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 import MdDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdUp from 'react-icons/lib/md/keyboard-arrow-up';
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 const TrackControls = (props) => {
   const {

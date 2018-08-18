@@ -15,7 +15,7 @@ import {
 } from '~actions/ui';
 
 import { getDiscoverSelectedCids } from '#selectors';
-import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums';
+import getPlaylistTracksFromAlbums from '~shared/utils/getPlaylistTracksFromAlbums';
 
 function* playOrQueueSelectedAlbums(args, { type }) {
   yield put(systemUiLocked());

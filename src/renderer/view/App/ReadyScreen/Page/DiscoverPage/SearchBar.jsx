@@ -2,8 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MdClose from 'react-icons/lib/md/close';
 
-import i18n from '~data/i18n';
-import e2e from '~data/e2e';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 import './SearchBar.css';
 

@@ -6,10 +6,10 @@ import {
   NOTIFICATION_TYPE_ERROR,
   NOTIFICATION_TYPE_WARNING,
   NOTIFICATION_TYPE_SUCCESS,
-} from '~data/constants';
+} from '~shared/data/constants';
 
-import isObject from '~utils/isObject';
-import { IS_TESTING } from '#config';
+import isObject from '~shared/utils/isObject';
+import { IS_TESTING } from '~shared/config';
 
 let counter = 0;
 

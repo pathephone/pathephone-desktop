@@ -1,7 +1,7 @@
 import { app } from 'electron';
 import path from 'path';
 
-import defaultIPFSdaemonConfig from '~data/defaultIPFSDaemonConfig';
+import defaultIPFSdaemonConfig from '~shared/data/defaultIPFSDaemonConfig';
 
 import {
   IS_TESTING,
@@ -9,7 +9,7 @@ import {
   IS_WINDOWS,
   RESOURCES_PATH,
   IS_DEVELOPMENT,
-} from '#config';
+} from '~shared/config';
 
 const getIpfsDaemonParams = () => {
   const type = 'go';

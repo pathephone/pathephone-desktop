@@ -1,4 +1,4 @@
-import { IS_PRODUCTION } from '#config';
+import { IS_PRODUCTION } from '~shared/config';
 
 const getLocaleCode = () => {
   let code = 'en';

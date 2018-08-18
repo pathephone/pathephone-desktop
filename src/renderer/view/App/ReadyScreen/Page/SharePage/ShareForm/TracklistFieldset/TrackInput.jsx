@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import MdDec from 'react-icons/lib/md/blur-on';
 import MdFile from 'react-icons/lib/md/insert-drive-file';
 
-import i18n from '~data/i18n';
+import i18n from '~shared/data/i18n';
 
 import CustomTextInput from '~components/CustomTextInput';
 

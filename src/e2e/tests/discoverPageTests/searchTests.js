@@ -11,8 +11,8 @@ import {
   discoverWaitForSearchExists,
 } from '~reusable/discoverPage';
 
-import album1 from '~data/assets/album1';
-import album2 from '~data/assets/album2';
+import album1 from '~shared/data/assets/album1';
+import album2 from '~shared/data/assets/album2';
 
 describe('search tests', () => {
   // SEARCH

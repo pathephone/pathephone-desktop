@@ -1,4 +1,4 @@
-import album1 from '~data/assets/album1';
+import album1 from '~shared/data/assets/album1';
 import {
   i18n,
 } from '~data';

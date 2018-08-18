@@ -1,5 +1,5 @@
-import createWorkerController from '~utils/createWorkerController';
-import ipc from '~data/ipc';
+import createWorkerController from '~shared/utils/createWorkerController';
+import ipc from '~shared/data/ipc';
 
 import DbApiWorker from './getStorageApi/dbApi.worker';
 import getAlbumsCollectionApi from './getStorageApi/getAlbumsCollectionApi';

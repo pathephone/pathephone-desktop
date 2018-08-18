@@ -1,6 +1,6 @@
-import createThreadController from '~utils/createThreadController';
+import createThreadController from '~shared/utils/createThreadController';
 
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 import beforeIpfsDaemonStart from './startIpfsProcess/beforeIpfsDaemonStart';
 import getIpfsDaemonParams from './startIpfsProcess/getIpfsDaemonParams';
 

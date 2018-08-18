@@ -1,6 +1,6 @@
 
-import getFolderContents from '~utils/getFolderContents';
-import splitFoldersAndFiles from '~utils/splitFoldersAndFiles';
+import getFolderContents from '~shared/utils/getFolderContents';
+import splitFoldersAndFiles from '~shared/utils/splitFoldersAndFiles';
 
 import getCandidateFromFiles from './getAlbumCandidatesFromFsItems/getCandidateFromFiles';
 

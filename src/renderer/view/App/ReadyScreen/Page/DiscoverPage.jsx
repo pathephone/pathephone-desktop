@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 import PageContainer from '~components/PageContainer';
 

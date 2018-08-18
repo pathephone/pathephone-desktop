@@ -8,9 +8,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '~data': path.resolve(__dirname, '../src/shared/data'),
-      '~utils': path.resolve(__dirname, '../src/shared/utils'),
-      '#config': path.resolve(__dirname, '../src/shared/config.js'),
+      '~shared': path.resolve(__dirname, '../src/shared'),
 
       '~components': path.resolve(__dirname, '../src/renderer/components'),
       '~actions': path.resolve(__dirname, '../src/renderer/state/actions'),

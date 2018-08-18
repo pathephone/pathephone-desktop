@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 import MdClear from 'react-icons/lib/md/clear';
 
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 const TrackControls = (props) => {
   const {

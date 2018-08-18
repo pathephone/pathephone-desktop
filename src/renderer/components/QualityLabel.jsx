@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import { QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS, QUALITY_LABEL_LOW } from '~data/constants';
+import { QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS, QUALITY_LABEL_LOW } from '~shared/data/constants';
 
 import './QualityLabel.css';
 

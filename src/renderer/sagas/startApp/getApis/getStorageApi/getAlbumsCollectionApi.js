@@ -1,6 +1,6 @@
 import { eventChannel } from 'redux-saga';
 
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 const getAlbumsCollectionApi = (worker) => {
   const getAlbumsCollectionInfo = () => worker.call({

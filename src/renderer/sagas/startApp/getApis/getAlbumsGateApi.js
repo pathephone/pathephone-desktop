@@ -1,6 +1,6 @@
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
-import { rendererCalls } from '~utils/ipcRenderer';
+import { rendererCalls } from '~shared/utils/ipcRenderer';
 
 const schemaName = 'albumSchema';
 

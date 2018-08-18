@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import Toast from './Notifications/Toast';
 
 import './Notifications.css';
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 const Notifications = ({ notifications, onToastClick }) => (
   <div

@@ -4,7 +4,7 @@ import MdPlay from 'react-icons/lib/md/play-arrow';
 import MdAdd from 'react-icons/lib/md/playlist-add';
 import MdAlbum from 'react-icons/lib/md/album';
 
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 import './Album.css';
 

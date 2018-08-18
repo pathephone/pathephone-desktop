@@ -1,5 +1,5 @@
 import Dexie from 'dexie';
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 // UTILS
 

@@ -1,6 +1,6 @@
-import { ipcMainTake } from '~utils/ipcMain';
+import { ipcMainTake } from '~shared/utils/ipcMain';
 
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 const startMetabinBridge = ({ ipfsProcessPromise }) => {
   const handleSend = async (schemaName, data) => {

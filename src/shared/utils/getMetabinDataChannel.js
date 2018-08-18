@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga';
 import { ipcRenderer } from 'electron';
 import { rendererCalls } from './ipcRenderer';
 
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 async function getMetabinDataChannel(channelName) {
   await rendererCalls(ipc.METABIN_GATE_SUBSCRIBE, channelName);

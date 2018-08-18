@@ -1,4 +1,4 @@
-import normalizeAlbumTrackForPlaylist from '~utils/normalizeAlbumTrackForPlaylist';
+import normalizeAlbumTrackForPlaylist from '~shared/utils/normalizeAlbumTrackForPlaylist';
 
 const getPlaylistTracksFromAlbums = async ({ findAlbumsInCollectionByCids }, cids) => {
   const docs = await findAlbumsInCollectionByCids(cids);

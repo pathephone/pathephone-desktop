@@ -6,7 +6,7 @@ import {
   systemShareCandidatesNotFound,
 } from '~actions/system';
 
-import i18n from '~data/i18n';
+import i18n from '~shared/data/i18n';
 
 function* handleShareItemsSelect(apis, { payload }) {
   const { getAlbumCandidatesFromFs } = apis;

@@ -1,5 +1,5 @@
-import filterFsFilesByMime from '~utils/filterFsFilesByMime';
-import getAudioMetadataFromFsFile from '~utils/getAudioMetadataFromFsFile';
+import filterFsFilesByMime from '~shared/utils/filterFsFilesByMime';
+import getAudioMetadataFromFsFile from '~shared/utils/getAudioMetadataFromFsFile';
 
 const normalizeMetadata = ({
   common: {

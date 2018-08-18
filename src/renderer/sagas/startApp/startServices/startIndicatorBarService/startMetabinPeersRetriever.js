@@ -1,5 +1,5 @@
 import { take, call, put } from 'redux-saga/effects';
-import reduxSagaTicker from '~utils/reduxSagaTicker';
+import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
 import { systemMetabinPeersRecieved } from '~actions/system';
 
 function* startMetabinPeersRetriever({ getMetabinPeersCount }) {

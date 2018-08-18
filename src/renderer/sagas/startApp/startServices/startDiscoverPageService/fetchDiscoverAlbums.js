@@ -1,13 +1,13 @@
 import { put, call, take } from 'redux-saga/effects';
 
-import normalizeCollectionAlbum from '~utils/normalizeCollectionAlbum';
+import normalizeCollectionAlbum from '~shared/utils/normalizeCollectionAlbum';
 
 import {
   systemDiscoverAlbumsFetchSucceed,
   systemDiscoverAlbumsFetchFailed,
 } from '~actions/system';
 
-import { DISCOVER_FEED_LIMIT } from '~data/constants';
+import { DISCOVER_FEED_LIMIT } from '~shared/data/constants';
 
 function* fetchDiscoverAlbums(apis, { payload }) {
   const {

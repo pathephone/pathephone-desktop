@@ -2,8 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MdDrop from 'react-icons/lib/md/arrow-downward';
 
-import i18n from '~data/i18n';
-import e2e from '~data/e2e';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 import DNDarea from '~components/DNDarea';
 

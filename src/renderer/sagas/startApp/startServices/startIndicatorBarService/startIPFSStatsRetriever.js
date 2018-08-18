@@ -1,6 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
-import reduxSagaTicker from '~utils/reduxSagaTicker';
-import formatBytes from '~utils/formatBytes';
+import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
+import formatBytes from '~shared/utils/formatBytes';
 import { systemIpfsStatsRecieved } from '~actions/system';
 
 const normalizeStats = ({ repoStat, bandwidthStat, peersCount } = {}) => ({

@@ -7,8 +7,8 @@ import {
   validateTrackFields,
 } from '~reusable/sharePage';
 
-import { tracks } from '~data/assets';
-import e2e from '~data/e2e';
+import { tracks } from '~shared/data/assets';
+import e2e from '~shared/data/e2e';
 
 describe('check form values', () => {
   tracks.forEach((track, index) => {

@@ -7,8 +7,8 @@ import MdReset from 'react-icons/lib/md/autorenew';
 
 import CustomButton from '~components/CustomButton';
 
-import i18n from '~data/i18n';
-import e2e from '~data/e2e';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
   <React.Fragment>

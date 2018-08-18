@@ -1,6 +1,6 @@
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
-import createWorkerReducer from '~utils/createWorkerReducer';
+import createWorkerReducer from '~shared/utils/createWorkerReducer';
 
 import startDb from './dbApi.worker/startDb';
 

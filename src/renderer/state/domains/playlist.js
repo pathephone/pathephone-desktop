@@ -15,9 +15,9 @@ import {
   uiShuffleToggled,
 } from '~actions/ui';
 
-import calcNextTrackIndex from '~utils/calcNextTrackIndex';
-import calcPreviousTrackIndex from '~utils/calcPreviousTrackIndex';
-import getRandomBoolean from '~utils/getRandomBoolean';
+import calcNextTrackIndex from '~shared/utils/calcNextTrackIndex';
+import calcPreviousTrackIndex from '~shared/utils/calcPreviousTrackIndex';
+import getRandomBoolean from '~shared/utils/getRandomBoolean';
 
 const DOMAIN = 'playlist';
 

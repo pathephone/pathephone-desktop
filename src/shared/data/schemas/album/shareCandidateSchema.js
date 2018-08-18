@@ -1,6 +1,6 @@
 import dotProp from 'dot-prop-immutable';
 
-import albumInstanceSchema from '~data/schemas/album/albumInstanceSchema';
+import albumInstanceSchema from '~shared/data/schemas/album/albumInstanceSchema';
 
 const localFileSchema = { type: 'string', minLength: 1 };
 

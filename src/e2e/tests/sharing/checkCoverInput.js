@@ -6,10 +6,10 @@ import {
   shareWaitForFormExists,
 } from '~reusable/sharePage';
 
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
-import { txtFile } from '~data/assets/files';
-import album1 from '~data/assets/album2';
+import { txtFile } from '~shared/data/assets/files';
+import album1 from '~shared/data/assets/album2';
 
 const testTrack = album1.tracks[0];
 

@@ -1,6 +1,6 @@
 import { BrowserWindow, Menu, app } from 'electron';
 
-import { IS_PRODUCTION } from '#config';
+import { IS_PRODUCTION } from '~shared/config';
 
 const devMenuTemplate = {
   label: 'Development',

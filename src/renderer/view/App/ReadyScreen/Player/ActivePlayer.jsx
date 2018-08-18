@@ -1,14 +1,14 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import getBufferedAudioMap from '~utils/getBufferedAudioMap';
+import getBufferedAudioMap from '~shared/utils/getBufferedAudioMap';
 
 import ProgressBar from './ActivePlayer/ProgressBar';
 import TrackBar from './ActivePlayer/TrackBar';
 import ControlsLeftConnected from './ActivePlayer/ControlsLeftConnected';
 import VolumeInputConnected from './ActivePlayer/VolumeInputConnected';
 import ControlsRightConnected from './ActivePlayer/ControlsRightConnected';
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 const getInitialState = () => ({
   duration: null,

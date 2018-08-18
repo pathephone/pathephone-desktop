@@ -2,11 +2,11 @@ import { call, put } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { ipcRenderer } from 'electron';
 
-import { IS_OFFLINE } from '#config';
+import { IS_OFFLINE } from '~shared/config';
 
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
-import { rendererCalls } from '~utils/ipcRenderer';
+import { rendererCalls } from '~shared/utils/ipcRenderer';
 import { systemIpfsInfoRecieved } from '~actions/system';
 
 function* getCustomIpfsApi() {

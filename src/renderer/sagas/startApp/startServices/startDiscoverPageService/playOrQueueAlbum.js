@@ -12,7 +12,7 @@ import {
   uiAlbumQueued,
 } from '~actions/ui';
 
-import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums';
+import getPlaylistTracksFromAlbums from '~shared/utils/getPlaylistTracksFromAlbums';
 
 function* playOrQueueAlbum(args, { type, payload }) {
   yield put(systemUiLocked());

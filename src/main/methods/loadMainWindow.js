@@ -1,7 +1,7 @@
 import path from 'path';
 import url from 'url';
 
-import { IS_DEVELOPMENT } from '#config';
+import { IS_DEVELOPMENT } from '~shared/config';
 
 const loadMainWindow = (mainWindow) => {
   if (IS_DEVELOPMENT) {

@@ -2,9 +2,9 @@ import { shareAlbum } from '~reusable/sharePage';
 
 import { openSharePage, openDiscoverPage } from '~reusable/navigation';
 
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
-import album1 from '~data/assets/album2';
+import album1 from '~shared/data/assets/album2';
 import { startApp, closeApp } from '~reusable/app';
 
 describe('DISCOVER PAGE TESTS', () => {

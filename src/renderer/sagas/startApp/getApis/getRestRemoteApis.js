@@ -1,8 +1,8 @@
 import { take, call } from 'redux-saga/effects';
 
-import { rendererCalls, rendererCallsSaga } from '~utils/ipcRenderer';
+import { rendererCalls, rendererCallsSaga } from '~shared/utils/ipcRenderer';
 
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 function getRestRemoteApis() {
   function* getAlbumCandidatesFromFs(...args) {

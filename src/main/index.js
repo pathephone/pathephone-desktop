@@ -5,7 +5,7 @@ import startCommunication from './methods/startCommunication';
 import createMainWindow from './methods/createMainWindow';
 import loadMainWindow from './methods/loadMainWindow';
 import withSingleInstanceBehaviour from './methods/withSingleInstanceBehaviour';
-import { HAS_TRAY } from '#config';
+import { HAS_TRAY } from '~shared/config';
 
 const state = {
   mainWindow: null,

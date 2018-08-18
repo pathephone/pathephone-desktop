@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import { shareCandidateSchema } from '~data/schemas/album';
+import { shareCandidateSchema } from '~shared/data/schemas/album';
 
 const normalizeDataPath = (dataPath) => {
   const noDot = dataPath.slice(1, dataPath.length);

@@ -1,4 +1,4 @@
-import ipc from '~data/ipc';
+import ipc from '~shared/data/ipc';
 
 const sendMessage = () => {
   postMessage({

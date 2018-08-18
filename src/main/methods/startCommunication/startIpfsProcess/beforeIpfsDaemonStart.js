@@ -2,7 +2,7 @@ import { app } from 'electron';
 import fs from 'fs';
 import path from 'path';
 
-import defaultIPFSDaemonConfig from '~data/defaultIPFSDaemonConfig';
+import defaultIPFSDaemonConfig from '~shared/data/defaultIPFSDaemonConfig';
 
 const beforeIpfsDaemonStart = () => {
   const lockPath = path.join(app.getPath('userData'), 'ipfsRepo', 'repo.lock');

@@ -3,16 +3,16 @@ import {
 } from 'redux-saga/effects';
 import semver from 'semver';
 
-import reduxSagaTicker from '~utils/reduxSagaTicker';
-import getLatestRelease from '~utils/getLatestRelease';
-import getMyAppVersion from '~utils/getMyAppVersion';
+import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
+import getLatestRelease from '~shared/utils/getLatestRelease';
+import getMyAppVersion from '~shared/utils/getMyAppVersion';
 
 import { systemNewRelaseDetected } from '~actions/system';
-import { CHECK_FOR_UPDATE_INTERVAL } from '~data/constants';
-import i18n from '~data/i18n';
+import { CHECK_FOR_UPDATE_INTERVAL } from '~shared/data/constants';
+import i18n from '~shared/data/i18n';
 
 import { getNewRelease } from '#selectors';
-import { IS_PRODUCTION } from '#config';
+import { IS_PRODUCTION } from '~shared/config';
 
 function* checkForNewRelease() {
   try {

@@ -2,8 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import dotProp from 'dot-prop-immutable';
 
-import e2e from '~data/e2e';
-import validateShareCandidate from '~utils/validateShareCandidate';
+import e2e from '~shared/data/e2e';
+import validateShareCandidate from '~shared/utils/validateShareCandidate';
 import IziForm from '~components/IziForm';
 
 import AboutFieldset from './ShareForm/AboutFieldset';

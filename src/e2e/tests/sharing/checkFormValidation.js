@@ -7,9 +7,9 @@ import {
   shareWaitForFormExists,
 } from '~reusable/sharePage';
 
-import { tracks } from '~data/assets';
+import { tracks } from '~shared/data/assets';
 
-import e2e from '~data/e2e';
+import e2e from '~shared/data/e2e';
 
 const testTrack = tracks[0];
 

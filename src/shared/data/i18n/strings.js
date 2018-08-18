@@ -1,4 +1,4 @@
-import getLocaleCode from '~utils/getLocaleCode';
+import getLocaleCode from '~shared/utils/getLocaleCode';
 
 const c = (map) => {
   const code = getLocaleCode();

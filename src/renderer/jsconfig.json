@@ -2,12 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "~data/*": ["../shared/data/*"],
-      "~utils/*": ["../shared/utils/*"],
+      "~shared/*": ["../shared/*"],
       "~components/*": ["./components/*"],
       "~actions/*": ["./state/actions/*"],
       "#selectors": ["./state/selectors.js"],
-      "#config": ["../shared/config.js"]
     }
   }
 }
