@@ -4,12 +4,12 @@ import propTypes from 'prop-types';
 import Toast from './Notifications/Toast';
 
 import './Notifications.css';
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 const Notifications = ({ notifications, onToastClick }) => (
   <div
     className="notificationsContainer"
-    id={ids.NOTIFICATIONS_CONTAINER_ID}
+    id={e2e.NOTIFICATIONS_CONTAINER_ID}
   >
     {
       notifications.map(data => (

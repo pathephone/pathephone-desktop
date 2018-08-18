@@ -5,8 +5,9 @@ import CoverPreview from '~components/CoverPreview';
 import CustomTextInput from '~components/CustomTextInput';
 
 import {
-  ids, i18n,
+  i18n,
 } from '~data';
+import e2e from '~data/e2e';
 
 import './AboutFieldset.css';
 
@@ -17,22 +18,22 @@ class AboutFieldset extends React.PureComponent {
       <fieldset disabled={isDisabled} className="shareFormAboutFieldset">
         <div className="shareFormAboutFieldsetInline">
           <div className="aboutTextInputs">
-            <label htmlFor={ids.SHARE_FORM_TITLE_INPUT_ID}>
+            <label htmlFor={e2e.SHARE_FORM_TITLE_INPUT_ID}>
               {i18n.TITLE}
               <br />
               <CustomTextInput
-                id={ids.SHARE_FORM_TITLE_INPUT_ID}
+                id={e2e.SHARE_FORM_TITLE_INPUT_ID}
                 type="text"
                 placeholder={i18n.ALBUM_TITLE}
                 name="title"
               />
             </label>
             <br />
-            <label htmlFor={ids.SHARE_FORM_ARTIST_INPUT_ID}>
+            <label htmlFor={e2e.SHARE_FORM_ARTIST_INPUT_ID}>
               {i18n.ARTIST}
               <br />
               <CustomTextInput
-                id={ids.SHARE_FORM_ARTIST_INPUT_ID}
+                id={e2e.SHARE_FORM_ARTIST_INPUT_ID}
                 type="text"
                 placeholder={i18n.ALBUM_ARTIST}
                 name="artist"
@@ -41,15 +42,15 @@ class AboutFieldset extends React.PureComponent {
           </div>
           <div className="coverInputContainer">
             <input
-              id={ids.SHARE_FORM_COVER_INPUT_ID}
+              id={e2e.SHARE_FORM_COVER_INPUT_ID}
               className="coverInput"
               name="cover.image"
               type="file"
               accept="image/*"
             />
             <label
-              id={ids.SHARE_FORM_COVER_LABEL_ID}
-              htmlFor={ids.SHARE_FORM_COVER_INPUT_ID}
+              id={e2e.SHARE_FORM_COVER_LABEL_ID}
+              htmlFor={e2e.SHARE_FORM_COVER_INPUT_ID}
               className="coverLabel"
             >
               <CoverPreview

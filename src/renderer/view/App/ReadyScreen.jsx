@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 import Page from './ReadyScreen/Page';
 import PlaylistConnected from './ReadyScreen/PlaylistConnected';
@@ -12,7 +12,7 @@ import IndicatorsBarConnected from './ReadyScreen/IndicatorsBarConnected';
 import './ReadyScreen.css';
 
 const ReadyScreen = () => (
-  <div id={ids.READY_SCREEN_ID} className="readyScreen">
+  <div id={e2e.READY_SCREEN_ID} className="readyScreen">
     <NavigationConnected />
     <Page />
     <PlaylistConnected />

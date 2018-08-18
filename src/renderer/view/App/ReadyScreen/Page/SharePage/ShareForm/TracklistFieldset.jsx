@@ -2,8 +2,9 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 import {
-  ids, i18n,
+  i18n,
 } from '~data';
+import e2e from '~data/e2e';
 
 import TrackInput from './TracklistFieldset/TrackInput';
 
@@ -46,14 +47,14 @@ class TracklistFieldset extends React.PureComponent {
         <legend>
           {`${i18n.TRACKLIST} (${tracks.length})`}
         </legend>
-        <div id={ids.SHARE_FORM_TRACKLIST_ID}>
+        <div id={e2e.SHARE_FORM_TRACKLIST_ID}>
           {
             tracks.map(this.handleMap)
           }
         </div>
         <div className="addTracksInputContainer">
           <input
-            id={ids.SHARE_FORM_ADD_TRACK_INPUT_ID}
+            id={e2e.SHARE_FORM_ADD_TRACK_INPUT_ID}
             className="addTracksInput"
             name="tracks"
             type="file"
@@ -62,7 +63,7 @@ class TracklistFieldset extends React.PureComponent {
             multiple
           />
           <label
-            htmlFor={ids.SHARE_FORM_ADD_TRACK_INPUT_ID}
+            htmlFor={e2e.SHARE_FORM_ADD_TRACK_INPUT_ID}
             className="addTracksLabel"
           >
             {i18n.ADD_TRACKS}

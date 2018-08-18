@@ -11,8 +11,9 @@ import {
   ROUTE_DONATE,
 } from '~data/constants';
 import {
-  ids, i18n,
+  i18n,
 } from '~data';
+import e2e from '~data/e2e';
 
 import NavigationItem from './Navigation/NavigationItem';
 
@@ -21,13 +22,13 @@ import './Navigation.css';
 const Navigation = ({ hasUpdateIndicator }) => (
   <nav className="navigation">
     <NavigationItem
-      id={ids.NAV_DISCOVER_LINK_ID}
+      id={e2e.NAV_DISCOVER_LINK_ID}
       path={ROUTE_ALBUMS}
       title={i18n.DISCOVER_BUTTON}
       icon={<DiscoverIcon />}
     />
     <NavigationItem
-      id={ids.NAV_SHARE_LINK_ID}
+      id={e2e.NAV_SHARE_LINK_ID}
       path={ROUTE_ADD_ALBUM}
       title={i18n.SHARE_BUTTON}
       icon={<UploadIcon />}

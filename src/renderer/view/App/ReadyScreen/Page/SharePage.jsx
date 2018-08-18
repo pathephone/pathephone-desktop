@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 import PageContainer from '~components/PageContainer';
 import ProcessingScreen from '~components/ProcessingScreen';
@@ -12,7 +12,7 @@ import ShareFormConnected from './SharePage/ShareFormConnected';
 const SharePage = (props) => {
   const { hasProcessingScreen, hasEditForm, ...restProps } = props;
   return (
-    <PageContainer id={ids.SHARE_PAGE_ID}>
+    <PageContainer id={e2e.SHARE_PAGE_ID}>
       {
         hasProcessingScreen ? (
           <ProcessingScreen />

@@ -1,6 +1,6 @@
 import { Application } from 'spectron';
 
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 const { platform } = process;
 
@@ -24,7 +24,7 @@ export const startApp = async function () {
     waitTimeout: 30000,
   });
   await this.app.start();
-  return this.app.client.waitForExist(ids.READY_SCREEN_ID);
+  return this.app.client.waitForExist(e2e.READY_SCREEN_ID);
 };
 
 export const closeApp = function () {

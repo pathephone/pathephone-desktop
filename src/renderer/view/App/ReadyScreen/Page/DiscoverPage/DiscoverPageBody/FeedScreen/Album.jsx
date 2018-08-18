@@ -4,9 +4,7 @@ import MdPlay from 'react-icons/lib/md/play-arrow';
 import MdAdd from 'react-icons/lib/md/playlist-add';
 import MdAlbum from 'react-icons/lib/md/album';
 
-import {
-  ids,
-} from '~data';
+import e2e from '~data/e2e';
 
 import './Album.css';
 
@@ -72,7 +70,7 @@ class Album extends React.Component {
               <div className="album__actions">
                 <button
                   type="button"
-                  data-e2e={ids.DISCOVER_ALBUM_QUEUE_BUTTON}
+                  data-e2e={e2e.DISCOVER_ALBUM_QUEUE_BUTTON}
                   className="album__actions-button round-button"
                   onClick={this.handleQueueAlbumClick}
                 >
@@ -80,7 +78,7 @@ class Album extends React.Component {
                 </button>
                 <button
                   type="button"
-                  data-e2e={ids.DISCOVER_ALBUM_PLAY_BUTTON}
+                  data-e2e={e2e.DISCOVER_ALBUM_PLAY_BUTTON}
                   className="album__actions-button round-button"
                   onClick={this.handlePlayAlbumClick}
                 >
@@ -92,13 +90,13 @@ class Album extends React.Component {
         </div>
         <h4
           className="album__title"
-          data-e2e={ids.DISCOVER_ALBUM_TITLE}
+          data-e2e={e2e.DISCOVER_ALBUM_TITLE}
         >
           {albumTitle}
         </h4>
         <h5
           className="album__artist"
-          data-e2e={ids.DISCOVER_ALBUM_ARTIST}
+          data-e2e={e2e.DISCOVER_ALBUM_ARTIST}
         >
           {albumArtist}
         </h5>

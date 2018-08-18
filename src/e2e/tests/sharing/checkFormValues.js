@@ -8,7 +8,7 @@ import {
 } from '~reusable/sharePage';
 
 import { tracks } from '~data/assets';
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 describe('check form values', () => {
   tracks.forEach((track, index) => {
@@ -23,16 +23,16 @@ describe('check form values', () => {
       it('album artist value matches', async function () {
         const { app } = this;
         await app.client
-          .waitForExist(ids.SHARE_FORM_ARTIST_INPUT_ID);
+          .waitForExist(e2e.SHARE_FORM_ARTIST_INPUT_ID);
         const value = await app.client
-          .$(ids.SHARE_FORM_ARTIST_INPUT_ID)
+          .$(e2e.SHARE_FORM_ARTIST_INPUT_ID)
           .getValue();
         expect(value).equal(track.artist);
       });
       it('album title value matches', async function () {
         const { app } = this;
         const value = await app.client
-          .$(ids.SHARE_FORM_TITLE_INPUT_ID)
+          .$(e2e.SHARE_FORM_TITLE_INPUT_ID)
           .getValue();
         expect(value).equal(track.album);
       });

@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MdRefresh from 'react-icons/lib/md/refresh';
 
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 import AlbumConnected from './FeedScreen/AlbumConnected';
 
@@ -42,7 +42,7 @@ new albums available
             )
           }
         </div>
-        <div id={ids.DISCOVER_FEED_ID} className="albums-page__feed">
+        <div id={e2e.DISCOVER_FEED_ID} className="albums-page__feed">
           {
             albumsIds.map(handleAlbumsCidsMap)
           }

@@ -8,7 +8,7 @@ import TrackBar from './ActivePlayer/TrackBar';
 import ControlsLeftConnected from './ActivePlayer/ControlsLeftConnected';
 import VolumeInputConnected from './ActivePlayer/VolumeInputConnected';
 import ControlsRightConnected from './ActivePlayer/ControlsRightConnected';
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 const getInitialState = () => ({
   duration: null,
@@ -101,7 +101,7 @@ class ActivePlayer extends React.Component {
     const { title, artist } = this.props;
     return (
       <div
-        id={ids.PLAYER_ACTIVE_ID}
+        id={e2e.PLAYER_ACTIVE_ID}
         className="player"
       >
         <ControlsLeftConnected />

@@ -7,8 +7,9 @@ import MdDelete from 'react-icons/lib/md/delete';
 import MdClear from 'react-icons/lib/md/clear';
 
 import {
-  ids, i18n,
+  i18n,
 } from '~data';
+import e2e from '~data/e2e';
 
 import CustomButton from '~components/CustomButton';
 
@@ -25,21 +26,21 @@ class SelectedActions extends React.PureComponent {
     } = this.props;
     return (
       <div
-        id={ids.DISCOVER_PAGE_SELECTED_BAR_ID}
+        id={e2e.DISCOVER_PAGE_SELECTED_BAR_ID}
         className="selectedActions"
       >
         <div
           className="selectedActionsCount"
         >
           <span
-            id={ids.DISCOVER_PAGE_SELECTED_COUNT_ID}
+            id={e2e.DISCOVER_PAGE_SELECTED_COUNT_ID}
           >
             {`${i18n.ALBUMS_SELECTED}: ${selectedAlbumsCount}`}
           </span>
         </div>
         <CustomButton
           onClick={onPlaySelected}
-          id={ids.DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID}
+          id={e2e.DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID}
         >
           <MdPlay />
           {' '}
@@ -48,7 +49,7 @@ class SelectedActions extends React.PureComponent {
           </small>
         </CustomButton>
         <CustomButton
-          id={ids.DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID}
+          id={e2e.DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID}
           onClick={onAddSelected}
         >
           <MdAdd />
@@ -58,7 +59,7 @@ class SelectedActions extends React.PureComponent {
           </small>
         </CustomButton>
         <CustomButton
-          id={ids.DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID}
+          id={e2e.DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID}
           onClick={onDeleteSelected}
         >
           <MdDelete />

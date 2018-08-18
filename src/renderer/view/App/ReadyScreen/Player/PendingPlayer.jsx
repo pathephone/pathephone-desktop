@@ -1,9 +1,10 @@
 import React from 'react';
-import { ids, i18n } from '~data';
+import { i18n } from '~data';
+import e2e from '~data/e2e';
 
 const PendingPlayer = () => (
   <div
-    id={ids.PLAYER_PENDING_ID}
+    id={e2e.PLAYER_PENDING_ID}
     className="player"
   >
     <b className="player__no-playback-message">

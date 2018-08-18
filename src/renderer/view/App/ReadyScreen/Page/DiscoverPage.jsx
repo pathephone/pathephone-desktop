@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 import PageContainer from '~components/PageContainer';
 
@@ -23,7 +23,7 @@ class DiscoverPage extends React.Component {
     } = this.props;
     return (
       <PageContainer
-        id={ids.DISCOVER_PAGE_ID}
+        id={e2e.DISCOVER_PAGE_ID}
         className="albums-page"
       >
         {

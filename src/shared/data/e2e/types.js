@@ -1,4 +1,4 @@
-import { IS_RENDERER } from '../config';
+import { IS_RENDERER } from '../../config';
 
 const id = (idString) => {
   if (IS_RENDERER) {

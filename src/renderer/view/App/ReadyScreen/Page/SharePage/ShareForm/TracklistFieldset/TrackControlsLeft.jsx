@@ -3,9 +3,7 @@ import propTypes from 'prop-types';
 
 import MdDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdUp from 'react-icons/lib/md/keyboard-arrow-up';
-import {
-  ids,
-} from '~data';
+import e2e from '~data/e2e';
 
 const TrackControls = (props) => {
   const {
@@ -16,7 +14,7 @@ const TrackControls = (props) => {
     <React.Fragment>
       <button
         type="button"
-        data-e2e={ids.SHARE_FORM_MOVE_TRACK_UP}
+        data-e2e={e2e.SHARE_FORM_MOVE_TRACK_UP}
         className="trackInputControlButton"
         disabled={isMoveUpDisabled}
         onClick={onMoveUpClick}
@@ -25,7 +23,7 @@ const TrackControls = (props) => {
       </button>
       <button
         type="button"
-        data-e2e={ids.SHARE_FORM_MOVE_TRACK_DOWN}
+        data-e2e={e2e.SHARE_FORM_MOVE_TRACK_DOWN}
         className="trackInputControlButton"
         disabled={isMoveDownDisabled}
         onClick={onMoveDownClick}

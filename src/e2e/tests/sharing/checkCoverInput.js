@@ -6,7 +6,7 @@ import {
   shareWaitForFormExists,
 } from '~reusable/sharePage';
 
-import { ids } from '~data';
+import e2e from '~data/e2e';
 
 import { txtFile } from '~data/assets/files';
 import album1 from '~data/assets/album2';
@@ -22,7 +22,7 @@ describe('check cover input', () => {
   describe('select NOT an image', () => {
     it('throws no error', async function () {
       const { app } = this;
-      return app.client.chooseFile(ids.SHARE_FORM_COVER_INPUT_ID, txtFile);
+      return app.client.chooseFile(e2e.SHARE_FORM_COVER_INPUT_ID, txtFile);
     });
     it('cover preview remains empty', async function () {
       const hasImage = await coverPreviewHasIamge.call(this);
@@ -31,7 +31,7 @@ describe('check cover input', () => {
     it('cover input DOES marked as invalid', function () {
       return expect(
         this.app.client
-          .isExisting(`${ids.SHARE_FORM_COVER_INPUT_ID}:invalid`),
+          .isExisting(`${e2e.SHARE_FORM_COVER_INPUT_ID}:invalid`),
       ).to.eventually.equal(true);
     });
   });
@@ -39,7 +39,7 @@ describe('check cover input', () => {
   describe('select an image', () => {
     it('throws no error', async function () {
       const { app } = this;
-      return app.client.chooseFile(ids.SHARE_FORM_COVER_INPUT_ID, album1.cover);
+      return app.client.chooseFile(e2e.SHARE_FORM_COVER_INPUT_ID, album1.cover);
     });
     it('cover preview contains image', async function () {
       const hasImage = await coverPreviewHasIamge.call(this);
@@ -48,7 +48,7 @@ describe('check cover input', () => {
     it('cover input DOES NOT marked as invalid', function () {
       return expect(
         this.app.client
-          .isExisting(`${ids.SHARE_FORM_COVER_INPUT_ID}:invalid`),
+          .isExisting(`${e2e.SHARE_FORM_COVER_INPUT_ID}:invalid`),
       ).to.eventually.equal(false);
     });
   });
