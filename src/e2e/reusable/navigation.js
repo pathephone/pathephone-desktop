@@ -1,19 +1,14 @@
-import {
-  E2E_NAV_DISCOVER_LINK_ID,
-  E2E_DISCOVER_PAGE_ID,
-  E2E_SHARE_PAGE_ID,
-  E2E_NAV_SHARE_LINK_ID,
-} from '~data/e2eConstants';
+import e2e from '~shared/data/e2e';
 
 export async function openSharePage() {
   const { app } = this;
-  await app.client.waitForExist(E2E_NAV_SHARE_LINK_ID);
-  await app.client.click(E2E_NAV_SHARE_LINK_ID);
-  return app.client.waitForExist(E2E_SHARE_PAGE_ID);
+  await app.client.waitForExist(e2e.NAV_SHARE_LINK_ID);
+  await app.client.click(e2e.NAV_SHARE_LINK_ID);
+  return app.client.waitForExist(e2e.SHARE_PAGE_ID);
 }
 
 export async function openDiscoverPage() {
   const { app } = this;
-  await app.client.click(E2E_NAV_DISCOVER_LINK_ID);
-  await app.client.waitForExist(E2E_DISCOVER_PAGE_ID);
+  await app.client.click(e2e.NAV_DISCOVER_LINK_ID);
+  await app.client.waitForExist(e2e.DISCOVER_PAGE_ID);
 }

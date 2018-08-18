@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import {
   ROUTE_ALBUMS, ROUTE_ADD_ALBUM, ROUTE_DONATE, ROUTE_HOME,
-} from '~data/constants';
+} from '~shared/data/constants';
 
 import DiscoverPageConnected from './Page/DiscoverPageConnected';
 import SharePageConnected from './Page/SharePageConnected';

@@ -1,38 +1,26 @@
 import { call, put, select } from 'redux-saga/effects';
 
-import {
-  systemDiscoverSelectedActionFailed,
-  systemUiLocked,
-  systemUiUnlocked,
-  systemPlayedTracksRecieved,
-  systemQueuedTracksRecieved,
-  systemDiscoverSelectedActionSucceed,
-} from '~actions/system';
+import getPlaylistTracksFromAlbums from '~shared/utils/getPlaylistTracksFromAlbums';
 
-import {
-  uiDiscoverSelectedPlayed,
-  uiDiscoverSelectedQueued,
-} from '~actions/ui';
-
-import { getDiscoverSelectedCids } from '#selectors';
-import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums';
+import actions from '#actions';
+import selectors from '#selectors';
 
 function* playOrQueueSelectedAlbums(args, { type }) {
-  yield put(systemUiLocked());
+  yield put(actions.systemUiLocked());
   try {
-    const selectedAlbums = yield select(getDiscoverSelectedCids);
+    const selectedAlbums = yield select(selectors.getDiscoverSelectedCids);
     const tracks = yield call(getPlaylistTracksFromAlbums, args, selectedAlbums);
-    if (type === uiDiscoverSelectedPlayed.toString()) {
-      yield put(systemPlayedTracksRecieved(tracks));
+    if (type === actions.uiDiscoverSelectedPlayed.toString()) {
+      yield put(actions.systemPlayedTracksRecieved(tracks));
     }
-    if (type === uiDiscoverSelectedQueued.toString()) {
-      yield put(systemQueuedTracksRecieved(tracks));
+    if (type === actions.uiDiscoverSelectedQueued.toString()) {
+      yield put(actions.systemQueuedTracksRecieved(tracks));
     }
-    yield put(systemDiscoverSelectedActionSucceed());
+    yield put(actions.systemDiscoverSelectedActionSucceed());
   } catch (e) {
-    yield put(systemDiscoverSelectedActionFailed(e.message));
+    yield put(actions.systemDiscoverSelectedActionFailed(e.message));
   }
-  yield put(systemUiUnlocked());
+  yield put(actions.systemUiUnlocked());
 }
 
 export default playOrQueueSelectedAlbums;

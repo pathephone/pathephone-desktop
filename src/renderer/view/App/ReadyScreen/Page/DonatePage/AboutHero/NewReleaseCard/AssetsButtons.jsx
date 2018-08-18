@@ -2,7 +2,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import getTargetReleaseAsset from '~utils/getTargetReleaseAsset';
+import getTargetReleaseAsset from '~shared/utils/getTargetReleaseAsset';
 
 import AssetDownloadButton from './AssetsButtons/AssetDownloadButton';
 

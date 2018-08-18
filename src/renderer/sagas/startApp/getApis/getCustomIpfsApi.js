@@ -2,45 +2,36 @@ import { call, put } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import { ipcRenderer } from 'electron';
 
-import { IS_OFFLINE } from '#config';
+import { IS_OFFLINE } from '~shared/config';
 
-import {
-  IPC_IPFS_SHARE_OBJECT,
-  IPC_IPFS_SHARE_FS_FILE,
-  IPC_IPFS_CACHE_CIDS,
-  IPC_IPFS_GET_INFO,
-  IPC_IPFS_CID_CACHE_FAILED,
-  IPC_IPFS_CID_CACHE_SUCCEED,
-  IPC_IPFS_OPEN_CACHED_CIDS_STREAM,
-  IPC_IPFS_GET_STATS,
-} from '~data/ipcTypes';
+import ipc from '~shared/data/ipc';
 
-import { rendererCalls } from '~utils/ipcRenderer';
-import { systemIpfsInfoRecieved } from '~actions/system';
+import { rendererCalls } from '~shared/utils/ipcRenderer';
+import actions from '#actions';
 
 function* getCustomIpfsApi() {
-  const ipfsInfo = yield call(rendererCalls, IPC_IPFS_GET_INFO);
-  yield put(systemIpfsInfoRecieved({
+  const ipfsInfo = yield call(rendererCalls, ipc.IPFS_GET_INFO);
+  yield put(actions.systemIpfsInfoRecieved({
     ...ipfsInfo,
     isOffline: IS_OFFLINE,
   }));
 
-  const shareObjectToIpfs = obj => rendererCalls(IPC_IPFS_SHARE_OBJECT, obj);
-  const shareFsFileToIpfs = filePath => rendererCalls(IPC_IPFS_SHARE_FS_FILE, filePath);
-  const cacheIPFSFilesByCIDs = cids => rendererCalls(IPC_IPFS_CACHE_CIDS, cids);
-  const openCachedIPFSFilesStream = () => rendererCalls(IPC_IPFS_OPEN_CACHED_CIDS_STREAM);
+  const shareObjectToIpfs = obj => rendererCalls(ipc.IPFS_SHARE_OBJECT, obj);
+  const shareFsFileToIpfs = filePath => rendererCalls(ipc.IPFS_SHARE_FS_FILE, filePath);
+  const cacheIPFSFilesByCIDs = cids => rendererCalls(ipc.IPFS_CACHE_CIDS, cids);
+  const openCachedIPFSFilesStream = () => rendererCalls(ipc.IPFS_OPEN_CACHED_CIDS_STREAM);
   const getCachedIPFSFilesChannel = () => eventChannel((emit) => {
     const handleMessage = (e, arg) => {
       emit(arg);
     };
-    ipcRenderer.on(IPC_IPFS_CID_CACHE_SUCCEED, handleMessage);
-    ipcRenderer.on(IPC_IPFS_CID_CACHE_FAILED, handleMessage);
+    ipcRenderer.on(ipc.IPFS_CID_CACHE_SUCCEED, handleMessage);
+    ipcRenderer.on(ipc.IPFS_CID_CACHE_FAILED, handleMessage);
     return () => {
-      ipcRenderer.removeListener(IPC_IPFS_CID_CACHE_SUCCEED, handleMessage);
-      ipcRenderer.removeListener(IPC_IPFS_CID_CACHE_FAILED, handleMessage);
+      ipcRenderer.removeListener(ipc.IPFS_CID_CACHE_SUCCEED, handleMessage);
+      ipcRenderer.removeListener(ipc.IPFS_CID_CACHE_FAILED, handleMessage);
     };
   });
-  const getIPFSStats = () => rendererCalls(IPC_IPFS_GET_STATS);
+  const getIPFSStats = () => rendererCalls(ipc.IPFS_GET_STATS);
 
   return {
     shareFsFileToIpfs,

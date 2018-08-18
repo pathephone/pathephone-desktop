@@ -4,18 +4,8 @@ import propTypes from 'prop-types';
 import CoverPreview from '~components/CoverPreview';
 import CustomTextInput from '~components/CustomTextInput';
 
-import {
-  E2E_SHARE_FORM_COVER_LABEL_ID,
-  E2E_SHARE_FORM_TITLE_INPUT_ID,
-  E2E_SHARE_FORM_ARTIST_INPUT_ID,
-  E2E_SHARE_FORM_COVER_INPUT_ID,
-} from '~data/e2eConstants';
-import {
-  LOCAL_TITLE,
-  LOCAL_ARTIST,
-  LOCAL_ALBUM_ARTIST,
-  LOCAL_ALBUM_TITLE,
-} from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 import './AboutFieldset.css';
 
@@ -26,39 +16,39 @@ class AboutFieldset extends React.PureComponent {
       <fieldset disabled={isDisabled} className="shareFormAboutFieldset">
         <div className="shareFormAboutFieldsetInline">
           <div className="aboutTextInputs">
-            <label htmlFor={E2E_SHARE_FORM_TITLE_INPUT_ID}>
-              {LOCAL_TITLE}
+            <label htmlFor={e2e.SHARE_FORM_TITLE_INPUT_ID}>
+              {i18n.TITLE}
               <br />
               <CustomTextInput
-                id={E2E_SHARE_FORM_TITLE_INPUT_ID}
+                id={e2e.SHARE_FORM_TITLE_INPUT_ID}
                 type="text"
-                placeholder={LOCAL_ALBUM_TITLE}
+                placeholder={i18n.ALBUM_TITLE}
                 name="title"
               />
             </label>
             <br />
-            <label htmlFor={E2E_SHARE_FORM_ARTIST_INPUT_ID}>
-              {LOCAL_ARTIST}
+            <label htmlFor={e2e.SHARE_FORM_ARTIST_INPUT_ID}>
+              {i18n.ARTIST}
               <br />
               <CustomTextInput
-                id={E2E_SHARE_FORM_ARTIST_INPUT_ID}
+                id={e2e.SHARE_FORM_ARTIST_INPUT_ID}
                 type="text"
-                placeholder={LOCAL_ALBUM_ARTIST}
+                placeholder={i18n.ALBUM_ARTIST}
                 name="artist"
               />
             </label>
           </div>
           <div className="coverInputContainer">
             <input
-              id={E2E_SHARE_FORM_COVER_INPUT_ID}
+              id={e2e.SHARE_FORM_COVER_INPUT_ID}
               className="coverInput"
               name="cover.image"
               type="file"
               accept="image/*"
             />
             <label
-              id={E2E_SHARE_FORM_COVER_LABEL_ID}
-              htmlFor={E2E_SHARE_FORM_COVER_INPUT_ID}
+              id={e2e.SHARE_FORM_COVER_LABEL_ID}
+              htmlFor={e2e.SHARE_FORM_COVER_INPUT_ID}
               className="coverLabel"
             >
               <CoverPreview

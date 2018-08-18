@@ -3,9 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "~reusable/*": ["./reusable/*"],
-      "~data/*": ["../shared/data/*"],
-      "~utils/*": ["../shared/utils/*"],
-      "#config": ["../shared/config.js"]
+      "~shared/*": ["../shared/*"],
     }
   }
 }

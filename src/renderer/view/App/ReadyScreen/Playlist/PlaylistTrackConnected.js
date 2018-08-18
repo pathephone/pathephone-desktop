@@ -1,24 +1,19 @@
 import { connect } from 'react-redux';
 
-import {
-  getCurrentTrackIndex,
-  getPlaylistTracksByIndex,
-  getCachedCIDs,
-} from '#selectors';
-
-import { uiPlaylistTrackPlayed, uiPlaylistTrackRemoved } from '~actions/ui';
+import actions from '#actions';
+import selectors from '#selectors';
 
 import PlaylistTrack from './PlaylistTrack';
 
 const mapStateToProps = state => ({
-  currentTrackIndex: getCurrentTrackIndex(state),
-  tracksByIndex: getPlaylistTracksByIndex(state),
-  cachedCIDs: getCachedCIDs(state),
+  currentTrackIndex: selectors.getCurrentTrackIndex(state),
+  tracksByIndex: selectors.getPlaylistTracksByIndex(state),
+  cachedCIDs: selectors.getCachedCIDs(state),
 });
 
 const mapDispatchToProps = {
-  onPlayTrack: uiPlaylistTrackPlayed,
-  onRemoveTrack: uiPlaylistTrackRemoved,
+  onPlayTrack: actions.uiPlaylistTrackPlayed,
+  onRemoveTrack: actions.uiPlaylistTrackRemoved,
 };
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {

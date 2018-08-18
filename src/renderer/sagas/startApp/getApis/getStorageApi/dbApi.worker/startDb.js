@@ -1,6 +1,6 @@
 import Dexie from 'dexie';
-import validateAlbum from '~utils/validateAlbum';
-import { ALBUMS_COLLECTION_LIMIT } from '~data/constants';
+import validateAlbum from '~shared/utils/validateAlbum';
+import { ALBUMS_COLLECTION_LIMIT } from '~shared/data/constants';
 
 const DB_NAME = 'pathephone';
 

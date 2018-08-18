@@ -1,17 +1,16 @@
 import { connect } from 'react-redux';
 
-import { getNotifications } from '#selectors';
-
-import { uiNotificationToastRemoved } from '~actions/ui';
+import selectors from '#selectors';
+import actions from '#actions';
 
 import Notifications from './Notifications';
 
 const mapStateToProps = state => ({
-  notifications: getNotifications(state),
+  notifications: selectors.getNotifications(state),
 });
 
 const mapDispatchToProps = {
-  onToastClick: uiNotificationToastRemoved,
+  onToastClick: actions.uiNotificationToastRemoved,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notifications);

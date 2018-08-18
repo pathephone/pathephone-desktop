@@ -7,15 +7,9 @@ import {
   shareWaitForFormExists,
 } from '~reusable/sharePage';
 
-import { tracks } from '~data/assets';
+import { tracks } from '~shared/data/assets';
 
-import {
-  E2E_SHARE_FORM_COVER_INPUT_ID,
-  E2E_SHARE_FORM_TITLE_INPUT_ID,
-  E2E_SHARE_FORM_ARTIST_INPUT_ID,
-  E2E_SHARE_FORM_ADD_TRACK_INPUT_ID,
-  E2E_SHARE_FORM_COVER_LABEL_ID,
-} from '~data/e2eConstants';
+import e2e from '~shared/data/e2e';
 
 const testTrack = tracks[0];
 
@@ -29,12 +23,12 @@ describe('check form validation', () => {
   describe('submit with a single file selected', () => {
     it('cover input has focus', async function () {
       const { app } = this;
-      const isInFocus = await app.client.hasFocus(E2E_SHARE_FORM_COVER_INPUT_ID);
+      const isInFocus = await app.client.hasFocus(e2e.SHARE_FORM_COVER_INPUT_ID);
       expect(isInFocus).equal(true);
     });
     it('cover label is visible', async function () {
       const { app } = this;
-      const isVisible = await app.client.isVisible(E2E_SHARE_FORM_COVER_LABEL_ID);
+      const isVisible = await app.client.isVisible(e2e.SHARE_FORM_COVER_LABEL_ID);
       expect(isVisible).equal(true);
     });
   });
@@ -46,27 +40,27 @@ describe('check form validation', () => {
     });
     it('album title input has focus', async function () {
       const { app } = this;
-      const isInFocus = await app.client.hasFocus(E2E_SHARE_FORM_TITLE_INPUT_ID);
+      const isInFocus = await app.client.hasFocus(e2e.SHARE_FORM_TITLE_INPUT_ID);
       expect(isInFocus).equal(true);
     });
     it('album artist input is invalid', async function () {
       const { app } = this;
       const isInvalid = await app.client.isExisting(
-        `${E2E_SHARE_FORM_ARTIST_INPUT_ID}:invalid`,
+        `${e2e.SHARE_FORM_ARTIST_INPUT_ID}:invalid`,
       );
       expect(isInvalid).equal(true);
     });
     it('album cover input is invalid', async function () {
       const { app } = this;
       const isInvalid = await app.client.isExisting(
-        `${E2E_SHARE_FORM_COVER_INPUT_ID}:invalid`,
+        `${e2e.SHARE_FORM_COVER_INPUT_ID}:invalid`,
       );
       expect(isInvalid).equal(true);
     });
     it('album tracks input is invalid', async function () {
       const { app } = this;
       const isInvalid = await app.client.isExisting(
-        `${E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}:invalid`,
+        `${e2e.SHARE_FORM_ADD_TRACK_INPUT_ID}:invalid`,
       );
       expect(isInvalid).equal(true);
     });

@@ -3,16 +3,16 @@ import {
 } from 'redux-saga/effects';
 import semver from 'semver';
 
-import reduxSagaTicker from '~utils/reduxSagaTicker';
-import getLatestRelease from '~utils/getLatestRelease';
-import getMyAppVersion from '~utils/getMyAppVersion';
+import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
+import getLatestRelease from '~shared/utils/getLatestRelease';
+import getMyAppVersion from '~shared/utils/getMyAppVersion';
 
-import { systemNewRelaseDetected } from '~actions/system';
-import { CHECK_FOR_UPDATE_INTERVAL } from '~data/constants';
-import { LOCAL_NEW_RELEASE_NOTIFICATION } from '~data/i18nConstants';
+import { CHECK_FOR_UPDATE_INTERVAL } from '~shared/data/constants';
+import i18n from '~shared/data/i18n';
+import { IS_PRODUCTION } from '~shared/config';
 
-import { getNewRelease } from '#selectors';
-import { IS_PRODUCTION } from '#config';
+import actions from '#actions';
+import selectors from '#selectors';
 
 function* checkForNewRelease() {
   try {
@@ -20,7 +20,7 @@ function* checkForNewRelease() {
     if (release.prerelease) return;
     const releaseSemVer = semver.coerce(release.tag_name);
     let isGreater;
-    const previousNewRelease = yield select(getNewRelease);
+    const previousNewRelease = yield select(selectors.getNewRelease);
     if (!previousNewRelease) {
       const appSemVer = semver.coerce(getMyAppVersion());
       isGreater = semver.gt(releaseSemVer, appSemVer);
@@ -30,9 +30,9 @@ function* checkForNewRelease() {
     }
     if (isGreater) {
       yield put(
-        systemNewRelaseDetected({
+        actions.systemNewRelaseDetected({
           release,
-          successMessage: LOCAL_NEW_RELEASE_NOTIFICATION,
+          successMessage: i18n.NEW_RELEASE_NOTIFICATION,
         }),
       );
     }

@@ -1,9 +1,4 @@
-import {
-  systemIPFSFileCached, systemDiscoverAlbumsFetchSucceed,
-} from '~actions/system';
-import {
-  uiDiscoverPageClosed,
-} from '~actions/ui';
+import actions from '#actions';
 
 const DOMAIN = 'localCoversCIDs';
 
@@ -19,14 +14,14 @@ const handleReduce = (acc, album) => {
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case systemIPFSFileCached.toString():
+    case actions.systemIPFSFileCached.toString():
       if (state[payload] === false) {
         return { ...state, [payload]: true };
       }
       return state;
-    case systemDiscoverAlbumsFetchSucceed.toString():
+    case actions.systemDiscoverAlbumsFetchSucceed.toString():
       return payload.reduce(handleReduce, {});
-    case uiDiscoverPageClosed.toString():
+    case actions.uiDiscoverPageClosed.toString():
       return {};
     default:
       return state;

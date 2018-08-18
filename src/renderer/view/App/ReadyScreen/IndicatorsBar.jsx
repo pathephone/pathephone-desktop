@@ -5,12 +5,7 @@ import MdUpload from 'react-icons/lib/md/file-upload';
 import MdDownload from 'react-icons/lib/md/file-download';
 import MdStorage from 'react-icons/lib/md/storage';
 
-import {
-  LOCAL_BANDWIDTH_OUT,
-  LOCAL_BANDWIDTH_IN,
-  LOCAL_IPFS_REPO_STAT,
-  LOCAL_PEERS_INDICATOR,
-} from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
 
 import Indicator from './IndicatorsBar/Indicator';
 
@@ -42,28 +37,28 @@ const IndicatorsBar = ({
       text={
           ` ${resolveIndicatorString(ipfsPeers)} (${resolveIndicatorString(metabinPeers)})`
         }
-      tooltip={LOCAL_PEERS_INDICATOR}
+      tooltip={i18n.PEERS_INDICATOR}
     />
     <Indicator
       Icon={MdStorage}
       text={
           ` ${resolveIndicatorString(ipfsRepoUsage)}`
         }
-      tooltip={LOCAL_IPFS_REPO_STAT}
+      tooltip={i18n.IPFS_REPO_STAT}
     />
     <Indicator
       Icon={MdDownload}
       text={
           ` ${resolveIndicatorString(ipfsBandwidthIn)}`
         }
-      tooltip={LOCAL_BANDWIDTH_IN}
+      tooltip={i18n.BANDWIDTH_IN}
     />
     <Indicator
       Icon={MdUpload}
       text={
           ` ${resolveIndicatorString(ipfsBandwidthOut)}`
         }
-      tooltip={LOCAL_BANDWIDTH_OUT}
+      tooltip={i18n.BANDWIDTH_OUT}
     />
   </div>
 );

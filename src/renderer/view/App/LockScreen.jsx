@@ -1,10 +1,10 @@
 import React from 'react';
 
 import './LockScreen.css';
-import { E2E_LOCK_SCREEN_ID } from '~data/e2eConstants';
+import e2e from '~shared/data/e2e';
 
 const LockScreen = () => (
-  <div id={E2E_LOCK_SCREEN_ID} className="lockScreen">
+  <div id={e2e.LOCK_SCREEN_ID} className="lockScreen">
     processing...
   </div>
 );

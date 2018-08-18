@@ -2,7 +2,7 @@ import { app, Tray, Menu } from 'electron';
 
 import {
   RESOURCES_PATH, IS_MAC, IS_LINUX, IS_WINDOWS,
-} from '#config';
+} from '~shared/config';
 
 export default (mainWindow) => {
   let trayIconPath;

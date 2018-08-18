@@ -1,5 +1,5 @@
 import { basename } from 'path';
-import filterFsFilesByMime from '~utils/filterFsFilesByMime';
+import filterFsFilesByMime from '~shared/utils/filterFsFilesByMime';
 
 const getCoverFromFsFiles = async (files) => {
   const images = await filterFsFilesByMime(files, 'image/');

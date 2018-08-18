@@ -1,15 +1,15 @@
 import { delay } from 'redux-saga';
 import { takeEvery, all, put } from 'redux-saga/effects';
 
-import { systemNotificationRecieved, systemNotificationExpired } from '~actions/system';
+import actions from '#actions';
 import {
   NOTIFICATION_TYPE_ERROR,
   NOTIFICATION_TYPE_WARNING,
   NOTIFICATION_TYPE_SUCCESS,
-} from '~data/constants';
+} from '~shared/data/constants';
 
-import isObject from '~utils/isObject';
-import { IS_TESTING } from '#config';
+import isObject from '~shared/utils/isObject';
+import { IS_TESTING } from '~shared/config';
 
 let counter = 0;
 
@@ -38,10 +38,10 @@ function* handleAction({ payload }) {
     if (nextPayload) {
       counter += 1;
       nextPayload.id = counter;
-      yield put(systemNotificationRecieved(nextPayload));
+      yield put(actions.systemNotificationRecieved(nextPayload));
       if (!IS_TESTING) {
         yield delay(3000);
-        yield put(systemNotificationExpired(counter));
+        yield put(actions.systemNotificationExpired(counter));
       }
     }
   }

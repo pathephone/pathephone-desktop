@@ -1,5 +1,5 @@
 import { call, put, take } from 'redux-saga/effects';
-import { systemIPFSFileCached } from '~actions/system';
+import actions from '#actions';
 
 function* startCachedIPFSFilesReciever(api) {
   const { getCachedIPFSFilesChannel, openCachedIPFSFilesStream } = api;
@@ -8,7 +8,7 @@ function* startCachedIPFSFilesReciever(api) {
   while (true) {
     const { errorMessage, payload } = yield take(channel);
     if (!errorMessage) {
-      yield put(systemIPFSFileCached(payload));
+      yield put(actions.systemIPFSFileCached(payload));
     } else {
       console.error(new Error(errorMessage));
     }

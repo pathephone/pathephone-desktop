@@ -1,16 +1,4 @@
-import {
-  systemDiscoverAlbumsFetch,
-  systemDiscoverAlbumsFetchSucceed,
-  systemDiscoverAlbumsFetchFailed,
-  systemShareCandidateSaveSucceed,
-  systemAlbumsRecievedCacheTransited,
-} from '~actions/system';
-
-import {
-  uiDiscoverSearchPerformed,
-  uiDiscoverSearchCleared,
-  uiDiscoverPageClosed,
-} from '~actions/ui';
+import actions from '#actions';
 
 const DOMAIN = 'discoverPage';
 
@@ -33,26 +21,26 @@ export const isDiscoverAlbumsOutdated = state => state[DOMAIN].isAlbumsOutdated;
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case systemDiscoverAlbumsFetch.toString():
+    case actions.systemDiscoverAlbumsFetch.toString():
       return { ...initialState, isProcessing: true };
-    case uiDiscoverPageClosed.toString():
+    case actions.uiDiscoverPageClosed.toString():
       return { ...initialState };
-    case uiDiscoverSearchPerformed.toString():
+    case actions.uiDiscoverSearchPerformed.toString():
       return {
         ...initialState,
         searchValue: payload,
         isProcessing: true,
       };
-    case uiDiscoverSearchCleared.toString():
+    case actions.uiDiscoverSearchCleared.toString():
       return { ...initialState, isProcessing: true };
-    case systemDiscoverAlbumsFetchSucceed.toString():
+    case actions.systemDiscoverAlbumsFetchSucceed.toString():
       return {
         ...state,
         albums: payload,
         isProcessing: false,
         isAlbumsOutdated: false,
       };
-    case systemShareCandidateSaveSucceed.toString():
+    case actions.systemShareCandidateSaveSucceed.toString():
       if (state.albums) {
         return {
           ...state,
@@ -60,7 +48,7 @@ const reducer = (state = initialState, action) => {
         };
       }
       return state;
-    case systemAlbumsRecievedCacheTransited.toString(): {
+    case actions.systemAlbumsRecievedCacheTransited.toString(): {
       const { latestCid } = payload;
       if (state.albums && state.albums[0].albumCid !== latestCid) {
         return {
@@ -70,7 +58,7 @@ const reducer = (state = initialState, action) => {
       }
       return state;
     }
-    case systemDiscoverAlbumsFetchFailed.toString():
+    case actions.systemDiscoverAlbumsFetchFailed.toString():
       return { ...state, isFailed: true, isProcessing: false };
     default:
       return state;

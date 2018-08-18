@@ -1,9 +1,9 @@
-import createElectronWindow from '~utils/createElectronWindow';
+import createElectronWindow from '~shared/utils/createElectronWindow';
 
 import withTray from './createMainWindow/withTray';
 import withNoNavigation from './createMainWindow/withNoNavigation';
 import withMenu from './createMainWindow/withMenu';
-import { HAS_TRAY } from '#config';
+import { HAS_TRAY } from '~shared/config';
 
 const MAIN_WINDOW_NAME = 'main';
 

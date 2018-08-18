@@ -6,19 +6,8 @@ import MdAdd from 'react-icons/lib/md/playlist-add';
 import MdDelete from 'react-icons/lib/md/delete';
 import MdClear from 'react-icons/lib/md/clear';
 
-import {
-  E2E_DISCOVER_PAGE_SELECTED_BAR_ID,
-  E2E_DISCOVER_PAGE_SELECTED_COUNT_ID,
-  E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID,
-  E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID,
-  E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID,
-} from '~data/e2eConstants';
-import {
-  LOCAL_ALBUMS_SELECTED,
-  LOCAL_PLAY,
-  LOCAL_QUEUE,
-  LOCAL_DELETE,
-} from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 import CustomButton from '~components/CustomButton';
 
@@ -35,46 +24,46 @@ class SelectedActions extends React.PureComponent {
     } = this.props;
     return (
       <div
-        id={E2E_DISCOVER_PAGE_SELECTED_BAR_ID}
+        id={e2e.DISCOVER_PAGE_SELECTED_BAR_ID}
         className="selectedActions"
       >
         <div
           className="selectedActionsCount"
         >
           <span
-            id={E2E_DISCOVER_PAGE_SELECTED_COUNT_ID}
+            id={e2e.DISCOVER_PAGE_SELECTED_COUNT_ID}
           >
-            {`${LOCAL_ALBUMS_SELECTED}: ${selectedAlbumsCount}`}
+            {`${i18n.ALBUMS_SELECTED}: ${selectedAlbumsCount}`}
           </span>
         </div>
         <CustomButton
           onClick={onPlaySelected}
-          id={E2E_DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID}
+          id={e2e.DISCOVER_PAGE_PLAY_SELECTED_BUTTON_ID}
         >
           <MdPlay />
           {' '}
           <small>
-            {LOCAL_PLAY}
+            {i18n.PLAY}
           </small>
         </CustomButton>
         <CustomButton
-          id={E2E_DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID}
+          id={e2e.DISCOVER_PAGE_QUEUE_SELECTED_BUTTON_ID}
           onClick={onAddSelected}
         >
           <MdAdd />
           {' '}
           <small>
-            {LOCAL_QUEUE}
+            {i18n.QUEUE}
           </small>
         </CustomButton>
         <CustomButton
-          id={E2E_DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID}
+          id={e2e.DISCOVER_PAGE_DELETE_SELECTED_BUTTON_ID}
           onClick={onDeleteSelected}
         >
           <MdDelete />
           {' '}
           <small>
-            {LOCAL_DELETE}
+            {i18n.DELETE}
           </small>
         </CustomButton>
         <div className="selectedActionsRight">

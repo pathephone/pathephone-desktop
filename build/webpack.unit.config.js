@@ -29,9 +29,7 @@ module.exports = {
   stats: 'errors-only',
   resolve: {
     alias: {
-      '~data': path.resolve(__dirname, '../src/shared/data'),
-      '~utils': path.resolve(__dirname, '../src/shared/utils'),
-      '~resources': path.resolve(__dirname, '../src/shared/assets'),
+      '~shared': path.resolve(__dirname, '../src/shared'),
     },
   },
   externals: [nodeExternals()],

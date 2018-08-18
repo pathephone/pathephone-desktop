@@ -23,10 +23,7 @@ module.exports = {
   resolve: {
     alias: {
       '~reusable': path.resolve(__dirname, '../src/e2e/reusable'),
-      '~data': path.resolve(__dirname, '../src/shared/data'),
-      '~utils': path.resolve(__dirname, '../src/shared/utils'),
-      '~resources': path.resolve(__dirname, '../src/shared/assets'),
-      '#config': path.resolve(__dirname, '../src/shared/config'),
+      '~shared': path.resolve(__dirname, '../src/shared'),
     },
   },
   externals: [nodeExternals()],

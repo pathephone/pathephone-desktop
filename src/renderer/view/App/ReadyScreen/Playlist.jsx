@@ -5,7 +5,7 @@ import TracklistConnected from './Playlist/TracklistConnected';
 import PlaylistControlsConnected from './Playlist/PlaylistControlsConnected';
 
 import './Playlist.css';
-import { LOCAL_PLAYLIST_IS_EMPTY } from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
 
 const Playlist = ({ hasTracklist }) => (
   <div className="playlist">
@@ -17,7 +17,7 @@ const Playlist = ({ hasTracklist }) => (
           </React.Fragment>
         ) : (
           <div className="playlist__empty-message">
-            {LOCAL_PLAYLIST_IS_EMPTY}
+            {i18n.PLAYLIST_IS_EMPTY}
           </div>
         )
       }

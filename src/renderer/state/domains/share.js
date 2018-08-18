@@ -1,14 +1,4 @@
-import {
-  uiShareItemsSelected, uiShareFormSubmited, uiShareFormCanceled, uiShareFormReseted,
-} from '~actions/ui';
-import {
-  systemShareCandidatesRecieved,
-  systemShareCandidateSaveSucceed,
-  systemShareFormChanged,
-  systemShareFilesProcessingFailed,
-  systemShareCandidatesNotFound,
-  systemShareCandidateSaveFailed,
-} from '~actions/system';
+import actions from '#actions';
 
 const DOMAIN = 'share';
 
@@ -23,22 +13,22 @@ export const isShareProcessing = state => state[DOMAIN].isProcessing;
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case uiShareItemsSelected.toString():
+    case actions.uiShareItemsSelected.toString():
       return { ...state, isProcessing: true };
-    case systemShareCandidatesRecieved.toString():
+    case actions.systemShareCandidatesRecieved.toString():
       return { candidates: payload, isProcessing: false };
-    case uiShareFormSubmited.toString():
+    case actions.uiShareFormSubmited.toString():
       return { ...state, isProcessing: true };
-    case systemShareCandidateSaveSucceed.toString():
-    case uiShareFormCanceled.toString(): {
+    case actions.systemShareCandidateSaveSucceed.toString():
+    case actions.uiShareFormCanceled.toString(): {
       const candidates = state.candidates
         .filter((candidate, index) => index !== 0);
       return { ...state, isProcessing: false, candidates };
     }
-    case systemShareCandidateSaveFailed.toString(): {
+    case actions.systemShareCandidateSaveFailed.toString(): {
       return { ...state, isProcessing: false };
     }
-    case uiShareFormReseted.toString(): {
+    case actions.uiShareFormReseted.toString(): {
       const handleMap = (candidate, index) => {
         if (index === 0) {
           return {
@@ -54,7 +44,7 @@ const reducer = (state = initialState, action) => {
         .map(handleMap);
       return { ...state, candidates };
     }
-    case systemShareFormChanged.toString(): {
+    case actions.systemShareFormChanged.toString(): {
       const candidates = state.candidates
         .map((candidate, index) => {
           if (index === 0) return payload;
@@ -62,8 +52,8 @@ const reducer = (state = initialState, action) => {
         });
       return { ...state, candidates };
     }
-    case systemShareCandidatesNotFound.toString():
-    case systemShareFilesProcessingFailed.toString(): {
+    case actions.systemShareCandidatesNotFound.toString():
+    case actions.systemShareFilesProcessingFailed.toString(): {
       return {
         ...state,
         isProcessing: false,

@@ -1,27 +1,19 @@
 import { call, put, select } from 'redux-saga/effects';
 
-import {
-  systemDiscoverSelectedActionSucceed,
-  systemDiscoverSelectedActionFailed,
-  systemUiLocked,
-  systemUiUnlocked,
-} from '~actions/system';
-
-import {
-  getDiscoverSelectedCids,
-} from '#selectors';
+import actions from '#actions';
+import selectors from '#selectors';
 
 function* handleDiscoverSelectedDelete(apis) {
   const { deleteAlbumsFromCollection } = apis;
-  yield put(systemUiLocked());
+  yield put(actions.systemUiLocked());
   try {
-    const selectedAlbums = yield select(getDiscoverSelectedCids);
+    const selectedAlbums = yield select(selectors.getDiscoverSelectedCids);
     const collectionStat = yield call(deleteAlbumsFromCollection, selectedAlbums);
-    yield put(systemDiscoverSelectedActionSucceed(collectionStat));
+    yield put(actions.systemDiscoverSelectedActionSucceed(collectionStat));
   } catch (e) {
-    yield put(systemDiscoverSelectedActionFailed({ errorMessage: e.message }));
+    yield put(actions.systemDiscoverSelectedActionFailed({ errorMessage: e.message }));
   }
-  yield put(systemUiUnlocked());
+  yield put(actions.systemUiUnlocked());
 }
 
 export default handleDiscoverSelectedDelete;

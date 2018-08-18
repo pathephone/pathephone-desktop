@@ -2,8 +2,8 @@ import React from 'react';
 import propTypes from 'prop-types';
 import dotProp from 'dot-prop-immutable';
 
-import { E2E_SHARE_FORM_ID } from '~data/e2eConstants';
-import validateShareCandidate from '~utils/validateShareCandidate';
+import e2e from '~shared/data/e2e';
+import validateShareCandidate from '~shared/utils/validateShareCandidate';
 import IziForm from '~components/IziForm';
 
 import AboutFieldset from './ShareForm/AboutFieldset';
@@ -112,7 +112,7 @@ class ShareForm extends React.Component {
     const { validationErrors } = this.state;
     return (
       <IziForm
-        id={E2E_SHARE_FORM_ID}
+        id={e2e.SHARE_FORM_ID}
         className="shareForm"
         values={values}
         errors={validationErrors}

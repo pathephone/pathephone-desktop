@@ -1,26 +1,25 @@
 import { connect } from 'react-redux';
 
+import actions from '#actions';
+import selectors from '#selectors';
+
 import ActivePlayer from './ActivePlayer';
-import { systemAudioEnded, systemAudioPlayed, systemAudioPaused } from '~actions/system';
-import {
-  getCurrentTrackSource, getVolume, isPaused, getCurrentTrack,
-} from '#selectors';
 
 const mapStateToProps = (state) => {
-  const { title, artist } = getCurrentTrack(state);
+  const { title, artist } = selectors.getCurrentTrack(state);
   return {
     title,
     artist,
-    source: getCurrentTrackSource(state),
-    volume: getVolume(state),
-    isPaused: isPaused(state),
+    source: selectors.getCurrentTrackSource(state),
+    volume: selectors.getVolume(state),
+    isPaused: selectors.isPaused(state),
   };
 };
 
 const mapDispatchToProps = {
-  onAudioEnded: systemAudioEnded,
-  onAudioPlayed: systemAudioPlayed,
-  onAudioPaused: systemAudioPaused,
+  onAudioEnded: actions.systemAudioEnded,
+  onAudioPlayed: actions.systemAudioPlayed,
+  onAudioPaused: actions.systemAudioPaused,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActivePlayer);

@@ -2,9 +2,9 @@ import {
   call, all, spawn, put,
 } from 'redux-saga/effects';
 
-import asyncTimeout from '~utils/asyncTimeout';
+import asyncTimeout from '~shared/utils/asyncTimeout';
 
-import { systemAppStartProceed } from '~actions/system';
+import actions from '#actions';
 
 import startAlbumsReciever from './startServices/startAblumsReciever';
 import startAlbumsPublisher from './startServices/startAlbumsPublisher';
@@ -17,7 +17,7 @@ import startIPFSCachingService from './startServices/startIPFSCachingService';
 import startIndicatorsBarService from './startServices/startIndicatorsBarService';
 
 function* startServices(apis) {
-  yield put(systemAppStartProceed(66));
+  yield put(actions.systemAppStartProceed(66));
   yield all([
     spawn(startAlbumsReciever, apis),
     spawn(startAlbumsPublisher, apis),
@@ -29,7 +29,7 @@ function* startServices(apis) {
     spawn(startNewReleaseChecker, apis),
     spawn(startIndicatorsBarService, apis),
   ]);
-  yield put(systemAppStartProceed(100));
+  yield put(actions.systemAppStartProceed(100));
   yield call(asyncTimeout, 100);
 }
 

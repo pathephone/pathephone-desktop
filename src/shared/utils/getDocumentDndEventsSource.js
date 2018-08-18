@@ -7,7 +7,7 @@ import {
   DND_EVENT_TYPE_DROP,
   DND_EVENT_TYPE_DRAG_START,
   DND_EVENT_TYPE_DRAG_END,
-} from '~data/constants';
+} from '~shared/data/constants';
 
 function getDocumentDndEventsSource() {
   return eventChannel((emit) => {

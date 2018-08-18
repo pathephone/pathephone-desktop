@@ -1,5 +1,5 @@
-import { LOCAL_NO_ALBUMS_FOUND } from '~data/i18nConstants';
-import { txtFile, svgFile } from '~data/assets/files';
+import i18n from '~shared/data/i18n';
+import { txtFile, svgFile } from '~shared/data/assets/files';
 
 import {
   getNotificationMessage,
@@ -23,7 +23,7 @@ describe('select wrong files', () => {
       it('correct notification message appears', async function () {
         const message = await getNotificationMessage.call(this);
         await hideNotificationMessage.call(this);
-        expect(message).equal(LOCAL_NO_ALBUMS_FOUND);
+        expect(message).equal(i18n.NO_ALBUMS_FOUND);
       });
     });
   });

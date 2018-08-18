@@ -1,14 +1,14 @@
 import React from 'react';
-import { E2E_PLAYER_PENDING_ID } from '~data/e2eConstants';
-import { LOCAL_NO_PLAYBACK } from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 const PendingPlayer = () => (
   <div
-    id={E2E_PLAYER_PENDING_ID}
+    id={e2e.PLAYER_PENDING_ID}
     className="player"
   >
     <b className="player__no-playback-message">
-      {LOCAL_NO_PLAYBACK}
+      {i18n.NO_PLAYBACK}
     </b>
   </div>
 );

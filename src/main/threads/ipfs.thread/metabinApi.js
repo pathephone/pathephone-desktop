@@ -1,8 +1,8 @@
 import { openGate } from '@metabin/gate';
 
-import validateAlbum from '~utils/validateAlbum';
+import validateAlbum from '~shared/utils/validateAlbum';
 
-import * as schemas from '~data/schemas';
+import * as schemas from '~shared/data/schemas';
 
 const gatesByName = new Map();
 const gatesUnlistenersByName = new Map();

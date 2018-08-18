@@ -2,10 +2,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import {
-  LOCAL_NEW_VERSION_AVAILABLE,
-  LOCAL_AVAILABLE_FOR_OS,
-} from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
 
 import AssetsButtons from './NewReleaseCard/AssetsButtons';
 import './NewReleaseCard.css';
@@ -15,7 +12,7 @@ const NewReleaseCard = (props) => {
   return (
     <div className="newReleaseCardContainer">
       <h4 className="newReleaseCardTitle">
-        {LOCAL_NEW_VERSION_AVAILABLE}
+        {i18n.NEW_VERSION_AVAILABLE}
       </h4>
       <h5>
         {newReleaseName}
@@ -25,7 +22,7 @@ const NewReleaseCard = (props) => {
       <br />
       <a className="githubReleaseLink" href="https://github.com/pathephone/pathephone-desktop/releases/latest">
         <small>
-          {LOCAL_AVAILABLE_FOR_OS}
+          {i18n.AVAILABLE_FOR_OS}
         </small>
       </a>
     </div>

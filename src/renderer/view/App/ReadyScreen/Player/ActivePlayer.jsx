@@ -1,14 +1,14 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import getBufferedAudioMap from '~utils/getBufferedAudioMap';
+import getBufferedAudioMap from '~shared/utils/getBufferedAudioMap';
 
 import ProgressBar from './ActivePlayer/ProgressBar';
 import TrackBar from './ActivePlayer/TrackBar';
 import ControlsLeftConnected from './ActivePlayer/ControlsLeftConnected';
 import VolumeInputConnected from './ActivePlayer/VolumeInputConnected';
 import ControlsRightConnected from './ActivePlayer/ControlsRightConnected';
-import { E2E_PLAYER_ACTIVE_ID } from '~data/e2eConstants';
+import e2e from '~shared/data/e2e';
 
 const getInitialState = () => ({
   duration: null,
@@ -101,7 +101,7 @@ class ActivePlayer extends React.Component {
     const { title, artist } = this.props;
     return (
       <div
-        id={E2E_PLAYER_ACTIVE_ID}
+        id={e2e.PLAYER_ACTIVE_ID}
         className="player"
       >
         <ControlsLeftConnected />

@@ -1,14 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import {
-  E2E_SHARE_FORM_TRACKLIST_ID,
-  E2E_SHARE_FORM_ADD_TRACK_INPUT_ID,
-} from '~data/e2eConstants';
-import {
-  LOCAL_TRACKLIST,
-  LOCAL_ADD_TRACKS,
-} from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 import TrackInput from './TracklistFieldset/TrackInput';
 
@@ -49,16 +43,16 @@ class TracklistFieldset extends React.PureComponent {
         className="tracklistFieldset"
       >
         <legend>
-          {`${LOCAL_TRACKLIST} (${tracks.length})`}
+          {`${i18n.TRACKLIST} (${tracks.length})`}
         </legend>
-        <div id={E2E_SHARE_FORM_TRACKLIST_ID}>
+        <div id={e2e.SHARE_FORM_TRACKLIST_ID}>
           {
             tracks.map(this.handleMap)
           }
         </div>
         <div className="addTracksInputContainer">
           <input
-            id={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
+            id={e2e.SHARE_FORM_ADD_TRACK_INPUT_ID}
             className="addTracksInput"
             name="tracks"
             type="file"
@@ -67,10 +61,10 @@ class TracklistFieldset extends React.PureComponent {
             multiple
           />
           <label
-            htmlFor={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
+            htmlFor={e2e.SHARE_FORM_ADD_TRACK_INPUT_ID}
             className="addTracksLabel"
           >
-            {LOCAL_ADD_TRACKS}
+            {i18n.ADD_TRACKS}
             {' '}
             <br />
             <span className="noTracksMessage">

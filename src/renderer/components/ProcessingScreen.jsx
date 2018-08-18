@@ -1,11 +1,11 @@
 import React from 'react';
-import { E2E_PROCESSING_SCREEN_ID } from '~data/e2eConstants';
+import e2e from '~shared/data/e2e';
 
 import './ProcessingScreen.css';
 
 const ProcessingScreen = () => (
   <div
-    id={E2E_PROCESSING_SCREEN_ID}
+    id={e2e.PROCESSING_SCREEN_ID}
     className="processingScreen"
   >
     <span className="processingScreenText">

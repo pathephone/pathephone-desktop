@@ -9,16 +9,9 @@ import {
   ROUTE_ADD_ALBUM,
   ROUTE_ALBUMS,
   ROUTE_DONATE,
-} from '~data/constants';
-import {
-  E2E_NAV_SHARE_LINK_ID,
-  E2E_NAV_DISCOVER_LINK_ID,
-} from '~data/e2eConstants';
-import {
-  LOCAL_DISCOVER_BUTTON,
-  LOCAL_SHARE_BUTTON,
-  LOCAL_ABOUT_BUTTON,
-} from '~data/i18nConstants';
+} from '~shared/data/constants';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 import NavigationItem from './Navigation/NavigationItem';
 
@@ -27,20 +20,20 @@ import './Navigation.css';
 const Navigation = ({ hasUpdateIndicator }) => (
   <nav className="navigation">
     <NavigationItem
-      id={E2E_NAV_DISCOVER_LINK_ID}
+      id={e2e.NAV_DISCOVER_LINK_ID}
       path={ROUTE_ALBUMS}
-      title={LOCAL_DISCOVER_BUTTON}
+      title={i18n.DISCOVER_BUTTON}
       icon={<DiscoverIcon />}
     />
     <NavigationItem
-      id={E2E_NAV_SHARE_LINK_ID}
+      id={e2e.NAV_SHARE_LINK_ID}
       path={ROUTE_ADD_ALBUM}
-      title={LOCAL_SHARE_BUTTON}
+      title={i18n.SHARE_BUTTON}
       icon={<UploadIcon />}
     />
     <NavigationItem
       path={ROUTE_DONATE}
-      title={LOCAL_ABOUT_BUTTON}
+      title={i18n.ABOUT_BUTTON}
       icon={<InfoIcon />}
       hasIndicator={hasUpdateIndicator}
     />

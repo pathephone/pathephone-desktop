@@ -2,7 +2,7 @@ import {
   QUALITY_LABEL_LOW,
   QUALITY_LABEL_HIGH,
   QUALITY_LABEL_LOSSLESS,
-} from '~data/constants';
+} from '~shared/data/constants';
 
 const getQualityCode = (bitrate) => {
   if (bitrate < 256) {

@@ -5,7 +5,7 @@ import {
   shareWaitForFormExists,
 } from '~reusable/sharePage';
 
-import { tracks } from '~data/assets';
+import { tracks } from '~shared/data/assets';
 
 describe('select track files', () => {
   tracks.forEach((track, index) => {

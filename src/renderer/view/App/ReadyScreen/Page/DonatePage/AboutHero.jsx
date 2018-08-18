@@ -5,7 +5,7 @@ import GithubIcon from 'react-icons/lib/go/mark-github';
 import TwitterIcon from 'react-icons/lib/io/social-twitter';
 import GlobeIcon from 'react-icons/lib/io/earth';
 
-import getMyAppVersion from '~utils/getMyAppVersion';
+import getMyAppVersion from '~shared/utils/getMyAppVersion';
 
 import SocialLink from './AboutHero/SocialLink';
 import NewReleaseCardConnected from './AboutHero/NewReleaseCardConnected';

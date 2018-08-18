@@ -7,35 +7,27 @@ import MdReset from 'react-icons/lib/md/autorenew';
 
 import CustomButton from '~components/CustomButton';
 
-import {
-  E2E_SHARE_FORM_CANCEL_BUTTON_ID,
-  E2E_SHARE_FORM_SAVE_BUTTON_ID,
-  E2E_SHARE_FORM_RESET_BUTTON_ID,
-} from '~data/e2eConstants';
-import {
-  LOCAL_SAVE,
-  LOCAL_CANCEL,
-  LOCAL_RESET,
-} from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
   <React.Fragment>
     <CustomButton
       className="shareFormSubmit"
-      id={E2E_SHARE_FORM_SAVE_BUTTON_ID}
+      id={e2e.SHARE_FORM_SAVE_BUTTON_ID}
       disabled={isDisabled}
     >
       <span>
         <MdSave />
         {' '}
         <small>
-          {LOCAL_SAVE}
+          {i18n.SAVE}
         </small>
       </span>
     </CustomButton>
     <CustomButton
       type="button"
-      id={E2E_SHARE_FORM_CANCEL_BUTTON_ID}
+      id={e2e.SHARE_FORM_CANCEL_BUTTON_ID}
       className="shareFormCancel"
       disabled={isDisabled}
       onClick={onCancelClick}
@@ -43,12 +35,12 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       <MdCancel />
       {' '}
       <small>
-        {LOCAL_CANCEL}
+        {i18n.CANCEL}
       </small>
     </CustomButton>
     <CustomButton
       type="button"
-      id={E2E_SHARE_FORM_RESET_BUTTON_ID}
+      id={e2e.SHARE_FORM_RESET_BUTTON_ID}
       className="shareFormReset"
       disabled={isDisabled}
       onClick={onResetClick}
@@ -56,7 +48,7 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       <MdReset />
       {' '}
       <small>
-        {LOCAL_RESET}
+        {i18n.RESET}
       </small>
     </CustomButton>
   </React.Fragment>

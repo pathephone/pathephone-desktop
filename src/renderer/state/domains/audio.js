@@ -1,9 +1,4 @@
-import {
-  uiPlaylistTrackPlayed,
-  uiDiscoverSelectedPlayed,
-  uiAlbumPlayed,
-  uiPlaybackToggled,
-} from '~actions/ui';
+import actions from '#actions';
 
 const DOMAIN = 'audio';
 
@@ -16,11 +11,11 @@ export const isPaused = state => state[DOMAIN].isPaused;
 const reducer = (state = initialState, action) => {
   const { type } = action;
   switch (type) {
-    case uiPlaybackToggled.toString():
+    case actions.uiPlaybackToggled.toString():
       return { ...state, isPaused: !state.isPaused };
-    case uiDiscoverSelectedPlayed.toString():
-    case uiAlbumPlayed.toString():
-    case uiPlaylistTrackPlayed.toString():
+    case actions.uiDiscoverSelectedPlayed.toString():
+    case actions.uiAlbumPlayed.toString():
+    case actions.uiPlaylistTrackPlayed.toString():
       return { ...state, isPaused: false };
     default:
       return state;

@@ -2,14 +2,12 @@ import { shareAlbum } from '~reusable/sharePage';
 
 import { openSharePage, openDiscoverPage } from '~reusable/navigation';
 
-import {
-  E2E_DISCOVER_FEED_ID,
-} from '~data/e2eConstants';
+import e2e from '~shared/data/e2e';
 import {
   DISCOVER_FEED_LIMIT,
-} from '~data/constants';
+} from '~shared/data/constants';
 
-import album1 from '~data/assets/album2';
+import album1 from '~shared/data/assets/album2';
 import {
   discoverFeedLengthEquals,
   discoverAlbumTitleEquals,
@@ -32,7 +30,7 @@ describe('pagination tests', () => {
     };
     await publishNextAlbum();
     await openDiscoverPage.call(this);
-    await this.app.client.waitForExist(E2E_DISCOVER_FEED_ID);
+    await this.app.client.waitForExist(e2e.DISCOVER_FEED_ID);
   });
 
   it(`feed length must be ${DISCOVER_FEED_LIMIT}`, async function () {

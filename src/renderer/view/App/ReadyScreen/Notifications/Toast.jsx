@@ -5,7 +5,7 @@ import {
   NOTIFICATION_TYPE_SUCCESS,
   NOTIFICATION_TYPE_WARNING,
   NOTIFICATION_TYPE_ERROR,
-} from '~data/constants';
+} from '~shared/data/constants';
 
 class Toast extends React.Component {
   handleToastClick = () => {

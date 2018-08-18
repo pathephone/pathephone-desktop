@@ -1,9 +1,9 @@
 import { call, takeEvery } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 
-import { IS_OFFLINE } from '#config';
+import { IS_OFFLINE } from '~shared/config';
 
-import { ALBUMS_PUBLISH_INTERVAL, ALBUMS_APPEARENCE_INTERVAL } from '~data/constants';
+import { ALBUMS_PUBLISH_INTERVAL, ALBUMS_APPEARENCE_INTERVAL } from '~shared/data/constants';
 
 function getOutdatedAlbumsChannel(apis) {
   const { findOutdatedAlbumsInCollection } = apis;

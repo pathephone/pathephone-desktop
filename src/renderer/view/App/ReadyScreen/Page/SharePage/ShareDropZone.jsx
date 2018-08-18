@@ -2,20 +2,20 @@ import React from 'react';
 import propTypes from 'prop-types';
 import MdDrop from 'react-icons/lib/md/arrow-downward';
 
-import { E2E_SHARE_DROP_ZONE_ID } from '~data/e2eConstants';
-import { LOCAL_SELECT_OR_DND } from '~data/i18nConstants';
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
 import DNDarea from '~components/DNDarea';
 
 import './ShareDropZone.css';
 
 const ShareDropZone = ({ onFilesSelect }) => (
-  <DNDarea id={E2E_SHARE_DROP_ZONE_ID} multiple onChange={onFilesSelect}>
+  <DNDarea id={e2e.SHARE_DROP_ZONE_ID} multiple onChange={onFilesSelect}>
     <div className="shareDropZoneContainer">
       <MdDrop className="shareDropZoneIcon animated infinite bounce" />
       <br />
       <div className="shareDropZoneText">
-        {LOCAL_SELECT_OR_DND}
+        {i18n.SELECT_OR_DND}
       </div>
     </div>
   </DNDarea>

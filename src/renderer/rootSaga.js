@@ -1,11 +1,11 @@
 import { take, call } from 'redux-saga/effects';
 
-import { systemAppRootMounted } from '~actions/system';
+import actions from '#actions';
 
 import startApp from './sagas/startApp';
 
 function* rootSaga() {
-  yield take(systemAppRootMounted);
+  yield take(actions.systemAppRootMounted);
   yield call(startApp);
 }
 

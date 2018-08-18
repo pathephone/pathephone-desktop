@@ -1,11 +1,11 @@
-import { E2E_NOTIFICATIONS_CONTAINER_ID } from '~data/e2eConstants';
+import e2e from '~shared/data/e2e';
 
 export function getNotificationMessage(number) {
   let selector;
   if (number) {
-    selector = `${E2E_NOTIFICATIONS_CONTAINER_ID} > *:nth-child(${number})`;
+    selector = `${e2e.NOTIFICATIONS_CONTAINER_ID} > *:nth-child(${number})`;
   } else {
-    selector = `${E2E_NOTIFICATIONS_CONTAINER_ID} > *:first-child`;
+    selector = `${e2e.NOTIFICATIONS_CONTAINER_ID} > *:first-child`;
   }
   return this.app.client.getText(selector);
 }
@@ -13,9 +13,9 @@ export function getNotificationMessage(number) {
 export async function hideNotificationMessage(number) {
   let selector;
   if (number) {
-    selector = `${E2E_NOTIFICATIONS_CONTAINER_ID} > *:nth-child(${number})`;
+    selector = `${e2e.NOTIFICATIONS_CONTAINER_ID} > *:nth-child(${number})`;
   } else {
-    selector = `${E2E_NOTIFICATIONS_CONTAINER_ID} > *:first-child`;
+    selector = `${e2e.NOTIFICATIONS_CONTAINER_ID} > *:first-child`;
   }
   const isExisting = await this.app.client.isExisting(selector);
   if (isExisting) {
@@ -27,9 +27,9 @@ export async function hideNotificationMessage(number) {
 export function waitForNotification(number) {
   let selector;
   if (number) {
-    selector = `${E2E_NOTIFICATIONS_CONTAINER_ID} > *:nth-child(${number})`;
+    selector = `${e2e.NOTIFICATIONS_CONTAINER_ID} > *:nth-child(${number})`;
   } else {
-    selector = `${E2E_NOTIFICATIONS_CONTAINER_ID} > *:first-child`;
+    selector = `${e2e.NOTIFICATIONS_CONTAINER_ID} > *:first-child`;
   }
   return this.app.client.waitForExist(selector);
 }

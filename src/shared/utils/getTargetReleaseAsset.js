@@ -1,4 +1,4 @@
-import { IS_WINDOWS, IS_MAC, IS_LINUX } from '#config';
+import { IS_WINDOWS, IS_MAC, IS_LINUX } from '~shared/config';
 
 const getTargetReleaseAsset = (assets) => {
   const handleFind = (asset) => {

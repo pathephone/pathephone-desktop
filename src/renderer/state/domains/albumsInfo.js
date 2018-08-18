@@ -1,9 +1,4 @@
-import {
-  systemAlbumsCollectionInfoRecieved,
-  systemShareCandidateSaveSucceed,
-  systemAlbumsRecievedCacheTransited,
-  systemDiscoverSelectedActionSucceed,
-} from '~actions/system';
+import actions from '#actions';
 
 const DOMAIN = 'albumsInfo';
 
@@ -16,11 +11,11 @@ export const getAlbumsCount = state => state[DOMAIN].albumsCount;
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case systemAlbumsCollectionInfoRecieved.toString():
-    case systemShareCandidateSaveSucceed.toString():
-    case systemAlbumsRecievedCacheTransited.toString():
+    case actions.systemAlbumsCollectionInfoRecieved.toString():
+    case actions.systemShareCandidateSaveSucceed.toString():
+    case actions.systemAlbumsRecievedCacheTransited.toString():
       return { albumsCount: payload.albumsCount };
-    case systemDiscoverSelectedActionSucceed.toString():
+    case actions.systemDiscoverSelectedActionSucceed.toString():
       if (payload) {
         return { albumsCount: payload.albumsCount };
       }

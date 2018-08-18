@@ -1,18 +1,6 @@
-import createThreadReducer from '~utils/createThreadReducer';
+import createThreadReducer from '~shared/utils/createThreadReducer';
 
-import {
-  IPC_IPFS_START,
-  IPC_IPFS_CACHE_CIDS,
-  IPC_IPFS_SHARE_FS_FILE,
-  IPC_IPFS_SHARE_OBJECT,
-  IPC_METABIN_GATE_SUBSCRIBE,
-  IPC_METABIN_GATE_SEND_EACH,
-  IPC_METABIN_GATE_UNSUBSCRIBE,
-  IPC_IPFS_GET_INFO,
-  IPC_METABIN_GET_RECIEVED_DATA_CACHE,
-  IPC_METABIN_GET_PEERS_COUNT,
-  IPC_IPFS_GET_STATS,
-} from '~data/ipcTypes';
+import ipc from '~shared/data/ipc';
 
 import startIpfsDaemon from './ipfs.thread/startIpfsDaemon';
 
@@ -37,28 +25,28 @@ let ipfsDaemonPromise;
 const reducer = ({ type, payload }) => {
   const args = { ipfsDaemonPromise, payload };
   switch (type) {
-    case IPC_IPFS_START:
+    case ipc.IPFS_START:
       ipfsDaemonPromise = startIpfsDaemon(payload);
       return undefined;
-    case IPC_IPFS_GET_INFO:
+    case ipc.IPFS_GET_INFO:
       return getIpfsInfo(args);
-    case IPC_IPFS_CACHE_CIDS:
+    case ipc.IPFS_CACHE_CIDS:
       return ipfsCacheFilesByCIDs(args);
-    case IPC_IPFS_SHARE_FS_FILE:
+    case ipc.IPFS_SHARE_FS_FILE:
       return ipfsShareFsFile(args);
-    case IPC_IPFS_SHARE_OBJECT:
+    case ipc.IPFS_SHARE_OBJECT:
       return ipfsShareObject(args);
-    case IPC_IPFS_GET_STATS:
+    case ipc.IPFS_GET_STATS:
       return getIPFSStats(args);
-    case IPC_METABIN_GATE_SUBSCRIBE:
+    case ipc.METABIN_GATE_SUBSCRIBE:
       return metabinSubscribe(args);
-    case IPC_METABIN_GATE_SEND_EACH:
+    case ipc.METABIN_GATE_SEND_EACH:
       return metabinSendEach(args);
-    case IPC_METABIN_GATE_UNSUBSCRIBE:
+    case ipc.METABIN_GATE_UNSUBSCRIBE:
       return metabinUnsubscribe(args);
-    case IPC_METABIN_GET_RECIEVED_DATA_CACHE:
+    case ipc.METABIN_GET_RECIEVED_DATA_CACHE:
       return metabinGetRecievedDataCache(args);
-    case IPC_METABIN_GET_PEERS_COUNT:
+    case ipc.METABIN_GET_PEERS_COUNT:
       return getMetabinPeersCount(args);
     default:
       throw new Error('ipfs.thread: Unknown message type.');

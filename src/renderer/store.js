@@ -7,7 +7,7 @@ import storage from 'redux-persist/lib/storage';
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
-import { IS_DEVELOPMENT } from '#config';
+import { IS_DEVELOPMENT } from '~shared/config';
 
 const persistConfig = {
   key: 'root',
