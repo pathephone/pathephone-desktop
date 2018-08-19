@@ -1,25 +1,18 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import {
-  isPaused
-} from '#selectors'
+import selectors from '#selectors';
+import actions from '#actions';
 
-import {
-  uiNextTrackPlayed,
-  uiPreviousTrackPlayed,
-  uiPlaybackToggled
-} from '~actions/ui'
+import ControlsLeft from './ControlsLeft';
 
-import ControlsLeft from './ControlsLeft.jsx'
-
-const mapStateToProps = (state) => ({
-  hasPauseIcon: !isPaused(state)
-})
+const mapStateToProps = state => ({
+  hasPauseIcon: !selectors.isPaused(state),
+});
 
 const mapDispatchToProps = {
-  onPlayNextClick: uiNextTrackPlayed,
-  onPlayPreviousClick: uiPreviousTrackPlayed,
-  onPlaybackToggle: uiPlaybackToggled
-}
+  onPlayNextClick: actions.uiNextTrackPlayed,
+  onPlayPreviousClick: actions.uiPreviousTrackPlayed,
+  onPlaybackToggle: actions.uiPlaybackToggled,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ControlsLeft)
+export default connect(mapStateToProps, mapDispatchToProps)(ControlsLeft);

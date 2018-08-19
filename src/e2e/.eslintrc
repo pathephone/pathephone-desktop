@@ -1,13 +1,17 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "standard"
-  ],
+  "extends": "airbnb",
   "env": {
     "node": true,
     "mocha": true
   },
   "globals": {
     "expect": true
+  },
+  "rules": {
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": "off",
+    "func-names": "off",
+    "global-require": "off"
   }
 }

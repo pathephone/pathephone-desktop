@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": "off"
+  }
+}

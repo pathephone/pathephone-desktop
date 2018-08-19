@@ -1,15 +1,15 @@
-import { channel } from 'redux-saga'
+import { channel } from 'redux-saga';
 
 const getSagaChannelsMap = async (names) => {
-  const handleMap = () => channel()
+  const handleMap = () => channel();
   const channelsSet = await Promise.all(
-    names.map(handleMap)
-  )
+    names.map(handleMap),
+  );
   const handleReduce = (aggr, name, index) => {
-    aggr[name] = channelsSet[index]
-    return aggr
-  }
-  return names.reduce(handleReduce, {})
-}
+    aggr[name] = channelsSet[index]; // eslint-disable-line no-param-reassign
+    return aggr;
+  };
+  return names.reduce(handleReduce, {});
+};
 
-export default getSagaChannelsMap
+export default getSagaChannelsMap;

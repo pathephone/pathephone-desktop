@@ -1,21 +1,16 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import Playlist from './Playlist.jsx'
+import Playlist from './Playlist';
 
-import {
-  isPlaylistEmpty
-} from '#selectors'
+import selectors from '#selectors';
+import actions from '#actions';
 
-import { uiPlaylistCleared } from '~actions/ui'
-
-const mapStateToProps = (state) => {
-  return {
-    hasTracklist: !isPlaylistEmpty(state)
-  }
-}
+const mapStateToProps = state => ({
+  hasTracklist: !selectors.isPlaylistEmpty(state),
+});
 
 const mapDispatchToProps = {
-  onClearPlaylist: uiPlaylistCleared
-}
+  onClearPlaylist: actions.uiPlaylistCleared,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Playlist)
+export default connect(mapStateToProps, mapDispatchToProps)(Playlist);

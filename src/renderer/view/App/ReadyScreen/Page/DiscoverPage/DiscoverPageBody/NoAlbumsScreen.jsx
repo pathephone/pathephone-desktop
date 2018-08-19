@@ -1,20 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-import {
-  E2E_DISCOVER_NO_ALBUMS_MESSAGE_ID
-} from '~data/e2eConstants'
-import {
-  LOCAL_NO_ALBUMS_SHORT,
-  LOCAL_NO_ALBUMS_LONG
-} from '~data/i18nConstants'
-import ParagraphScreen from '~components/ParagraphScreen.jsx'
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
+
+import ParagraphScreen from '~components/ParagraphScreen';
 
 const NoAlbumsScreen = () => (
   <ParagraphScreen
-    title={LOCAL_NO_ALBUMS_SHORT}
-    paragraph={LOCAL_NO_ALBUMS_LONG}
-    id={E2E_DISCOVER_NO_ALBUMS_MESSAGE_ID}
+    title={i18n.NO_ALBUMS_SHORT}
+    paragraph={i18n.NO_ALBUMS_LONG}
+    id={e2e.DISCOVER_NO_ALBUMS_MESSAGE_ID}
   />
-)
+);
 
-export default NoAlbumsScreen
+export default NoAlbumsScreen;

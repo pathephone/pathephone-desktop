@@ -1,22 +1,22 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import ActivePlayerConnected from './Player/ActivePlayerConnected'
-import PendingPlayer from './Player/PendingPlayer.jsx'
+import ActivePlayerConnected from './Player/ActivePlayerConnected';
+import PendingPlayer from './Player/PendingPlayer';
 
-import './Player.css'
+import './Player.css';
 
 const Player = ({ isActive }) => {
   if (isActive) {
     return (
       <ActivePlayerConnected />
-    )
+    );
   }
-  return <PendingPlayer />
-}
+  return <PendingPlayer />;
+};
 
 Player.propTypes = {
-  isActive: propTypes.bool.isRequired
-}
+  isActive: propTypes.bool.isRequired,
+};
 
-export default Player
+export default Player;

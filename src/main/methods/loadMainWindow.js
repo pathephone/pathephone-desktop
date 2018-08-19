@@ -1,20 +1,20 @@
-import path from 'path'
-import url from 'url'
+import path from 'path';
+import url from 'url';
 
-import { IS_DEVELOPMENT } from '#config'
+import { IS_DEVELOPMENT } from '~shared/config';
 
-const loadMainWindow = mainWindow => {
+const loadMainWindow = (mainWindow) => {
   if (IS_DEVELOPMENT) {
-    mainWindow.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`)
+    mainWindow.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
   } else {
     mainWindow.loadURL(
       url.format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file',
-        slashes: true
-      })
-    )
+        slashes: true,
+      }),
+    );
   }
-}
+};
 
-export default loadMainWindow
+export default loadMainWindow;

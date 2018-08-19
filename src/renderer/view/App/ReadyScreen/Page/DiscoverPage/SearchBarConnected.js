@@ -1,27 +1,19 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import {
-  getDiscoverSearchValue,
-  getAlbumsCount
-} from '#selectors'
+import selectors from '#selectors';
+import actions from '#actions';
 
-import {
-  uiDiscoverSearchPerformed,
-  uiDiscoverSearchCleared,
-  uiDiscoverSearchValueChanged
-} from '~actions/ui'
-
-import SearchBar from './SearchBar.jsx'
+import SearchBar from './SearchBar';
 
 const mapStateToProps = state => ({
-  searchValue: getDiscoverSearchValue(state),
-  albumsCount: getAlbumsCount(state)
-})
+  searchValue: selectors.getDiscoverSearchValue(state),
+  albumsCount: selectors.getAlbumsCount(state),
+});
 
 const mapDispatchToProps = {
-  onInputChange: uiDiscoverSearchValueChanged,
-  onCancelSearch: uiDiscoverSearchCleared,
-  onFormSubmit: uiDiscoverSearchPerformed
-}
+  onInputChange: actions.uiDiscoverSearchValueChanged,
+  onCancelSearch: actions.uiDiscoverSearchCleared,
+  onFormSubmit: actions.uiDiscoverSearchPerformed,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

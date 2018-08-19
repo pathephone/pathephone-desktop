@@ -1,31 +1,32 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import ProcessingScreen from '~components/ProcessingScreen.jsx'
+import ProcessingScreen from '~components/ProcessingScreen';
 
-import NoAlbumsScreen from './DiscoverPageBody/NoAlbumsScreen.jsx'
-import NoSearchResultsScreen from './DiscoverPageBody/NoSearchResultsScreen.jsx'
-import FeedScreenConnected from './DiscoverPageBody/FeedScreenConnected'
+import NoAlbumsScreen from './DiscoverPageBody/NoAlbumsScreen';
+import NoSearchResultsScreen from './DiscoverPageBody/NoSearchResultsScreen';
+import FeedScreenConnected from './DiscoverPageBody/FeedScreenConnected';
 
-import './DiscoverPageBody.css'
+import './DiscoverPageBody.css';
 
 class DiscoverPageBody extends React.Component {
-  componentDidUpdate () {
-    const { isAlbumsUpdateNeeded, onAlbumsUpdateRequest } = this.props
+  componentDidUpdate() {
+    const { isAlbumsUpdateNeeded, onAlbumsUpdateRequest } = this.props;
     if (isAlbumsUpdateNeeded) {
-      onAlbumsUpdateRequest()
+      onAlbumsUpdateRequest();
     }
   }
-  render () {
+
+  render() {
     const {
       hasNoAlbumsScreen,
       hasNoSearchResultsScreen,
       hasFeedScreen,
-      hasProcessingScreen
-    } = this.props
+      hasProcessingScreen,
+    } = this.props;
     return (
       <div
-        className='albums-page__body'
+        className="albums-page__body"
       >
         {
           hasNoAlbumsScreen && (
@@ -48,7 +49,7 @@ class DiscoverPageBody extends React.Component {
           )
         }
       </div>
-    )
+    );
   }
 }
 
@@ -58,7 +59,7 @@ DiscoverPageBody.propTypes = {
   hasFeedScreen: propTypes.bool.isRequired,
   hasProcessingScreen: propTypes.bool.isRequired,
   isAlbumsUpdateNeeded: propTypes.bool.isRequired,
-  onAlbumsUpdateRequest: propTypes.func.isRequired
-}
+  onAlbumsUpdateRequest: propTypes.func.isRequired,
+};
 
-export default DiscoverPageBody
+export default DiscoverPageBody;

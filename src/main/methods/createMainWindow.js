@@ -1,25 +1,25 @@
-import createElectronWindow from '~utils/createElectronWindow'
+import createElectronWindow from '~shared/utils/createElectronWindow';
 
-import withTray from './createMainWindow/withTray'
-import withNoNavigation from './createMainWindow/withNoNavigation'
-import withMenu from './createMainWindow/withMenu'
-import { HAS_TRAY } from '#config'
+import withTray from './createMainWindow/withTray';
+import withNoNavigation from './createMainWindow/withNoNavigation';
+import withMenu from './createMainWindow/withMenu';
+import { HAS_TRAY } from '~shared/config';
 
-const MAIN_WINDOW_NAME = 'main'
+const MAIN_WINDOW_NAME = 'main';
 
 const createMainWindow = () => {
-  const window = createElectronWindow(MAIN_WINDOW_NAME)
+  const window = createElectronWindow(MAIN_WINDOW_NAME);
 
   if (HAS_TRAY) {
-    console.log('-- tray support enabled')
-    withTray(window)
+    console.log('-- tray support enabled');
+    withTray(window);
   }
 
-  withNoNavigation(window)
+  withNoNavigation(window);
 
-  withMenu(window)
+  withMenu(window);
 
-  return window
-}
+  return window;
+};
 
-export default createMainWindow
+export default createMainWindow;

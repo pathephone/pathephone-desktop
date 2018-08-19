@@ -1,4 +1,17 @@
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+:before,
+:after {
+  box-sizing: inherit;
+}
+
 body {
+  padding: 0;
+  margin: 0;
   color: var(--primary-color);
   fill: var(--primary-color);
   font-size: 0.75em;
@@ -11,6 +24,10 @@ body {
   Sans, Droid Sans,
   Helvetica Neue,
   sans-serif;
+}
+
+svg {
+  height: 1em;
 }
 
 .button {
@@ -30,10 +47,6 @@ body {
 
 .input, .button {
   font-size: 1em;
-}
-
-.fieldset {
-  border: none;
 }
 
 .input[type='text'] {
@@ -70,11 +83,6 @@ svg {
   border-radius: 50%;
 }
 
-.sync-icon,
-.dnd-icon {
-  font-size: 2.5em;
-}
-
 @keyframes rotating {
   from {
     transform: rotate(0deg);
@@ -92,16 +100,8 @@ svg {
   font-size: 2.5em;
 }
 
-.no-cover-icon {
-  font-size: 5em;
-}
-
 #root {
   height: 100vh;
-}
-
-.izi-rounded {
-  border-radius: 0.15em;
 }
 
 main {

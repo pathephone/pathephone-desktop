@@ -1,13 +1,11 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import Player from './Player.jsx'
+import selectors from '#selectors';
 
-import {
-  isPlayerActive
-} from '#selectors'
+import Player from './Player';
 
 const mapStateToProps = state => ({
-  isActive: isPlayerActive(state)
-})
+  isActive: selectors.isPlayerActive(state),
+});
 
-export default connect(mapStateToProps)(Player)
+export default connect(mapStateToProps)(Player);

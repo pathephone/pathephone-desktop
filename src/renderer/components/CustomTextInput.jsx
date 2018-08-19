@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import './CustomTextInput.css'
+import './CustomTextInput.css';
 
-const CustomTextInput = (props) => (
-  <input className='customTextInput' {...props} type='text' />
-)
+const CustomTextInput = props => (
+  <input className="customTextInput" {...props} type="text" />
+);
 
-export default CustomTextInput
+export default CustomTextInput;

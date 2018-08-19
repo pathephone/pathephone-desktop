@@ -1,15 +1,17 @@
-import React from 'react'
-import { E2E_PROCESSING_SCREEN_ID } from '~data/e2eConstants'
+import React from 'react';
+import e2e from '~shared/data/e2e';
 
-const ProcessingScreen = () => {
-  return (
-    <div
-      id={E2E_PROCESSING_SCREEN_ID}
-      className='izi-fill izi-y izi-middle processing-screen'
-    >
-      <label className='izi-uppercase'>processing...</label>
-    </div>
-  )
-}
+import './ProcessingScreen.css';
 
-export default ProcessingScreen
+const ProcessingScreen = () => (
+  <div
+    id={e2e.PROCESSING_SCREEN_ID}
+    className="processingScreen"
+  >
+    <span className="processingScreenText">
+processing...
+    </span>
+  </div>
+);
+
+export default ProcessingScreen;

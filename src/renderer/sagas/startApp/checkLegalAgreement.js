@@ -1,20 +1,23 @@
-import { select, put } from 'redux-saga/effects'
 
-import { IS_TESTING } from '#config'
-import { isLegalAgreementGranted } from '#selectors'
+import { select, put } from 'redux-saga/effects';
 
-import { LOCAL_LEGAL_NOTICE } from '~data/i18nConstants'
-import { uiLegalAgreementGranted } from '~actions/ui'
+import { IS_TESTING } from '~shared/config';
+import i18n from '~shared/data/i18n';
 
-function * checkLegalAgreement () {
-  const isGranted = yield select(isLegalAgreementGranted)
+import actions from '#actions';
+import selectors from '#selectors';
+
+/* eslint-disable global-require, no-alert */
+
+function* checkLegalAgreement() {
+  const isGranted = yield select(selectors.isLegalAgreementGranted);
   if (!IS_TESTING && !isGranted) {
-    if (confirm(LOCAL_LEGAL_NOTICE)) {
-      yield put(uiLegalAgreementGranted())
+    if (window.confirm(i18n.LEGAL_NOTICE)) {
+      yield put(actions.uiLegalAgreementGranted());
     } else {
-      require('electron').remote.app.quit()
+      require('electron').remote.app.quit();
     }
   }
 }
 
-export default checkLegalAgreement
+export default checkLegalAgreement;

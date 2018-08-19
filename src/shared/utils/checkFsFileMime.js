@@ -1,11 +1,11 @@
-import mime from 'mime'
+import mime from 'mime';
 
 const checkFsFileMime = (filePath, mimePrefix) => {
-  const type = mime.getType(filePath)
+  const type = mime.getType(filePath);
   if (type) {
-    return type.startsWith(mimePrefix)
+    return type.startsWith(mimePrefix);
   }
-  return false
-}
+  return false;
+};
 
-export default checkFsFileMime
+export default checkFsFileMime;

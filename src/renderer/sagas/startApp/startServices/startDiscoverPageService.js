@@ -1,40 +1,29 @@
-import { takeLatest, takeEvery, all } from 'redux-saga/effects'
+import { takeLatest, takeEvery, all } from 'redux-saga/effects';
 
-import {
-  uiDiscoverSelectedDeleted,
-  uiDiscoverSelectedPlayed,
-  uiDiscoverSelectedQueued,
-  uiDiscoverSearchPerformed,
-  uiAlbumPlayed,
-  uiAlbumQueued,
-  uiDiscoverSearchCleared
-} from '~actions/ui'
-import {
-  systemDiscoverAlbumsFetch
-} from '~actions/system'
+import actions from '#actions';
 
-import deleteSelectedAlbums from './startDiscoverPageService/deleteSelectedAlbums'
-import playOrQueueSelectedAlbums from './startDiscoverPageService/playOrQueueSelectedAlbums'
-import playOrQueueAlbum from './startDiscoverPageService/playOrQueueAlbum'
-import fetchDiscoverAlbums from './startDiscoverPageService/fetchDiscoverAlbums'
+import deleteSelectedAlbums from './startDiscoverPageService/deleteSelectedAlbums';
+import playOrQueueSelectedAlbums from './startDiscoverPageService/playOrQueueSelectedAlbums';
+import playOrQueueAlbum from './startDiscoverPageService/playOrQueueAlbum';
+import fetchDiscoverAlbums from './startDiscoverPageService/fetchDiscoverAlbums';
 
-function * startDiscoverPageService (apis) {
+function* startDiscoverPageService(apis) {
   yield all([
     takeLatest([
-      uiDiscoverSearchPerformed,
-      uiDiscoverSearchCleared,
-      systemDiscoverAlbumsFetch
+      actions.uiDiscoverSearchPerformed,
+      actions.uiDiscoverSearchCleared,
+      actions.systemDiscoverAlbumsFetch,
     ], fetchDiscoverAlbums, apis),
-    takeEvery(uiDiscoverSelectedDeleted, deleteSelectedAlbums, apis),
+    takeEvery(actions.uiDiscoverSelectedDeleted, deleteSelectedAlbums, apis),
     takeEvery([
-      uiDiscoverSelectedPlayed,
-      uiDiscoverSelectedQueued
+      actions.uiDiscoverSelectedPlayed,
+      actions.uiDiscoverSelectedQueued,
     ], playOrQueueSelectedAlbums, apis),
     takeEvery([
-      uiAlbumPlayed,
-      uiAlbumQueued
-    ], playOrQueueAlbum, apis)
-  ])
+      actions.uiAlbumPlayed,
+      actions.uiAlbumQueued,
+    ], playOrQueueAlbum, apis),
+  ]);
 }
 
-export default startDiscoverPageService
+export default startDiscoverPageService;

@@ -9,3 +9,8 @@
 .coverPreviewImage {
   width: 100%;
 }
+
+.coverPreviewNoCoverIcon {
+  font-size: 5em;
+  color: lightgray;
+}

@@ -1,38 +1,48 @@
-import { app, Tray, Menu } from 'electron'
+import { app, Tray, Menu } from 'electron';
 
-import { RESOURCES_PATH, IS_MAC, IS_LINUX, IS_WINDOWS } from '#config'
+import {
+  RESOURCES_PATH, IS_MAC, IS_LINUX, IS_WINDOWS,
+} from '~shared/config';
 
 export default (mainWindow) => {
-  let trayIconPath
+  let trayIconPath;
   if (IS_MAC || IS_LINUX) {
-    trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16.png`
+    trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16.png`;
   }
   if (IS_WINDOWS) {
-    trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16@2x.png`
+    trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16@2x.png`;
   }
-  const tray = new Tray(trayIconPath)
+  const tray = new Tray(trayIconPath);
 
   tray.on('click', () => {
-    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
-  })
+    if (mainWindow.isVisible()) {
+      mainWindow.hide();
+    } else {
+      mainWindow.show();
+    }
+  });
   mainWindow.on('show', () => {
-    tray.setHighlightMode('always')
-  })
+    tray.setHighlightMode('always');
+  });
   mainWindow.on('hide', () => {
-    tray.setHighlightMode('never')
-  })
+    tray.setHighlightMode('never');
+  });
 
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Show',
+    {
+      label: 'Show',
       click: () => {
-        mainWindow.show()
-      }},
-    { label: 'Quit',
+        mainWindow.show();
+      },
+    },
+    {
+      label: 'Quit',
       click: () => {
-        app.quit()
-      }}
-  ])
+        app.quit();
+      },
+    },
+  ]);
 
-  tray.setContextMenu(contextMenu)
-  tray.setToolTip('Pathephone')
-}
+  tray.setContextMenu(contextMenu);
+  tray.setToolTip('Pathephone');
+};

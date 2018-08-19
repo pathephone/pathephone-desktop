@@ -1,12 +1,16 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-const ErrorView = ({ message }) => {
-  return <h4 className='izi-red izi-uppercase izi-text-center'>{message}</h4>
-}
+import './ErrorMessage.css';
 
-ErrorView.propTypes = {
-  message: propTypes.string.isRequired
-}
+const ErrorMessage = ({ message }) => (
+  <h4 className="errorMessage">
+    {message}
+  </h4>
+);
 
-export default ErrorView
+ErrorMessage.propTypes = {
+  message: propTypes.string.isRequired,
+};
+
+export default ErrorMessage;

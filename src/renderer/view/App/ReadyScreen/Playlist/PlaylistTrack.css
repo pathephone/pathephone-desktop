@@ -1,8 +1,16 @@
+.playlist-track,
+.playlist-track--downloading {
+  display: flex;
+  align-items: center;
+}
+
 .playlist-track:nth-child(even) {
   background-color: rgba(20, 20, 20, 0.025); 
 }
 
 .playlist-track__button {
+  width: 100%;
+  padding: 1em;
   background: none;
   border: none;
   outline: none;
@@ -21,6 +29,9 @@
   margin-top: 0.5em;
 }
 
+.playlist-track__info {
+
+}
 .playlist-track__info:not(:first-child) {
   margin-left: 1em;
 }
@@ -31,6 +42,7 @@
 
 .playlist-track__artist-name,
 .playlist-track__title {
+  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -50,7 +62,6 @@
   background: var(--accent-color);
   color: white;
 }
-
 
 .playlist-track__download-icon {
   margin-right: 1em;

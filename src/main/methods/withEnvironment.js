@@ -1,24 +1,26 @@
-import { app } from 'electron'
-import jetpack from 'fs-jetpack'
-import path from 'path'
+import { app } from 'electron';
+import jetpack from 'fs-jetpack';
+import path from 'path';
 
-import { ENVIRONMENT, IS_PRODUCTION, IS_TESTING, IS_DEVELOPMENT } from '#config'
+import {
+  ENVIRONMENT, IS_PRODUCTION, IS_TESTING, IS_DEVELOPMENT,
+} from '~shared/config';
 
 const withEnvronment = () => {
-  const userDataPath = app.getPath('userData')
+  const userDataPath = app.getPath('userData');
   const nextDataPath = path.resolve(
-    userDataPath, `../Pathephone${!IS_PRODUCTION ? ` (${ENVIRONMENT})` : ''}`
-  )
+    userDataPath, `../Pathephone${!IS_PRODUCTION ? ` (${ENVIRONMENT})` : ''}`,
+  );
   if (IS_TESTING) {
-    jetpack.remove(nextDataPath)
+    jetpack.remove(nextDataPath);
   }
-  app.setPath('userData', nextDataPath)
+  app.setPath('userData', nextDataPath);
 
   if (IS_DEVELOPMENT) {
-    app.commandLine.appendSwitch('remote-debugging-port', '9223')
+    app.commandLine.appendSwitch('remote-debugging-port', '9223');
     // require('electron-debug')({showDevTools: true})
-    require('electron-context-menu')({})
+    require('electron-context-menu')({}); // eslint-disable-line global-require
   }
-}
+};
 
-export default withEnvronment
+export default withEnvronment;

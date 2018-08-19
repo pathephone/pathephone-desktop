@@ -1,33 +1,27 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import {
-  isDiscoverSearchPerformed,
-  isDiscoverHasAlbums,
-  isDiscoverPageProcessing,
-  isDiscoverHasFailed,
-  isDiscoverAlbumsOutdated
-} from '#selectors'
+import selectors from '#selectors';
+import actions from '#actions';
 
-import DiscoverPageBody from './DiscoverPageBody.jsx'
-import { systemDiscoverAlbumsFetch } from '~actions/system'
+import DiscoverPageBody from './DiscoverPageBody';
 
-const mapStateToProps = state => {
-  const hasAlbums = isDiscoverHasAlbums(state)
-  const hasError = isDiscoverHasFailed(state)
-  const isSearchPerformed = isDiscoverSearchPerformed(state)
-  const isProcessing = isDiscoverPageProcessing(state)
-  const isAlbumsOutdated = isDiscoverAlbumsOutdated(state)
+const mapStateToProps = (state) => {
+  const hasAlbums = selectors.isDiscoverHasAlbums(state);
+  const hasError = selectors.isDiscoverHasFailed(state);
+  const isSearchPerformed = selectors.isDiscoverSearchPerformed(state);
+  const isProcessing = selectors.isDiscoverPageProcessing(state);
+  const isAlbumsOutdated = selectors.isDiscoverAlbumsOutdated(state);
   return {
     hasNoAlbumsScreen: !hasAlbums && !hasError && !isSearchPerformed && !isProcessing,
     hasNoSearchResultsScreen: isSearchPerformed && !isProcessing && !hasError && !hasAlbums,
     hasFeedScreen: hasAlbums,
     hasProcessingScreen: isProcessing,
-    isAlbumsUpdateNeeded: isAlbumsOutdated && !hasAlbums
-  }
-}
+    isAlbumsUpdateNeeded: isAlbumsOutdated && !hasAlbums,
+  };
+};
 
 const mapDispatchToProps = {
-  onAlbumsUpdateRequest: systemDiscoverAlbumsFetch
-}
+  onAlbumsUpdateRequest: actions.systemDiscoverAlbumsFetch,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPageBody)
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverPageBody);

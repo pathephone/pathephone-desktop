@@ -1,49 +1,49 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import { QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS, QUALITY_LABEL_LOW } from '~data/constants'
+import { QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS, QUALITY_LABEL_LOW } from '~shared/data/constants';
 
-import './QualityLabel.css'
+import './QualityLabel.css';
 
 const getQualityNameLong = (code) => {
   switch (code) {
     case QUALITY_LABEL_LOSSLESS:
-      return 'Lossless quality'
+      return 'Lossless quality';
     case QUALITY_LABEL_HIGH:
-      return 'High quality'
+      return 'High quality';
     case QUALITY_LABEL_LOW:
-      return 'Low quality'
+      return 'Low quality';
     default:
-      throw new Error('No valid quality code was provided.')
+      throw new Error('No valid quality code was provided.');
   }
-}
+};
 
 const getQualityNameShort = (code) => {
   switch (code) {
     case QUALITY_LABEL_LOSSLESS:
-      return 'LS'
+      return 'LS';
     case QUALITY_LABEL_HIGH:
-      return 'HQ'
+      return 'HQ';
     case QUALITY_LABEL_LOW:
-      return 'LQ'
+      return 'LQ';
     default:
-      throw new Error('No valid quality code was provided.')
+      throw new Error('No valid quality code was provided.');
   }
-}
+};
 
 const QualityLabel = ({
-  qualityCode
+  qualityCode,
 }) => {
-  const qualityLabelTitle = getQualityNameLong(qualityCode)
-  const qualityLabelContent = getQualityNameShort(qualityCode)
+  const qualityLabelTitle = getQualityNameLong(qualityCode);
+  const qualityLabelContent = getQualityNameShort(qualityCode);
   const className = `quality-label${
     qualityCode === QUALITY_LABEL_LOW
       ? '--low'
       : qualityCode === QUALITY_LABEL_HIGH
         ? '--high'
-        : qualityCode === QUALITY_LABEL_LOSSLESS &&
-          '--lossless'
-  }`
+        : qualityCode === QUALITY_LABEL_LOSSLESS
+          && '--lossless'
+  }`;
   return (
     <div
       className={className}
@@ -51,11 +51,13 @@ const QualityLabel = ({
     >
       {qualityLabelContent}
     </div>
-  )
-}
+  );
+};
 
 QualityLabel.propTypes = {
-  qualityCode: propTypes.oneOf([ QUALITY_LABEL_LOW, QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS ])
-}
+  qualityCode: propTypes.oneOf(
+    [QUALITY_LABEL_LOW, QUALITY_LABEL_HIGH, QUALITY_LABEL_LOSSLESS],
+  ).isRequired,
+};
 
-export default QualityLabel
+export default QualityLabel;

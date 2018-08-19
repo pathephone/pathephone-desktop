@@ -1,17 +1,17 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import SharePage from './SharePage.jsx'
+import selectors from '#selectors';
+import actions from '#actions';
 
-import { isShareCandidatesRecieved, isShareProcessing } from '#selectors'
-import { uiShareItemsSelected } from '~actions/ui'
+import SharePage from './SharePage';
 
 const mapStateToProps = state => ({
-  hasProcessingScreen: isShareProcessing(state),
-  hasEditForm: isShareCandidatesRecieved(state)
-})
+  hasProcessingScreen: selectors.isShareProcessing(state),
+  hasEditForm: selectors.isShareCandidatesRecieved(state),
+});
 
 const mapDispatchToProps = {
-  onFilesSelect: uiShareItemsSelected
-}
+  onFilesSelect: actions.uiShareItemsSelected,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SharePage)
+export default connect(mapStateToProps, mapDispatchToProps)(SharePage);

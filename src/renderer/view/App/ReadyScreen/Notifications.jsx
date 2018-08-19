@@ -1,15 +1,15 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import Toast from './Notifications/Toast.jsx'
+import Toast from './Notifications/Toast';
 
-import './Notifications.css'
-import { E2E_NOTIFICATIONS_CONTAINER_ID } from '~data/e2eConstants'
+import './Notifications.css';
+import e2e from '~shared/data/e2e';
 
 const Notifications = ({ notifications, onToastClick }) => (
   <div
-    className='notificationsContainer'
-    id={E2E_NOTIFICATIONS_CONTAINER_ID}
+    className="notificationsContainer"
+    id={e2e.NOTIFICATIONS_CONTAINER_ID}
   >
     {
       notifications.map(data => (
@@ -17,11 +17,11 @@ const Notifications = ({ notifications, onToastClick }) => (
       ))
     }
   </div>
-)
+);
 
 Notifications.propTypes = {
-  notifications: propTypes.array.isRequired,
-  onToastClick: propTypes.func.isRequired
-}
+  notifications: propTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  onToastClick: propTypes.func.isRequired,
+};
 
-export default Notifications
+export default Notifications;

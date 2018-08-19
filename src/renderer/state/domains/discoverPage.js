@@ -1,79 +1,68 @@
-import {
-  systemDiscoverAlbumsFetch,
-  systemDiscoverAlbumsFetchSucceed,
-  systemDiscoverAlbumsFetchFailed,
-  systemShareCandidateSaveSucceed,
-  systemAlbumsRecievedCacheTransited
-} from '~actions/system'
+import actions from '#actions';
 
-import {
-  uiDiscoverSearchPerformed,
-  uiDiscoverSearchCleared,
-  uiDiscoverPageClosed
-} from '~actions/ui'
-
-const DOMAIN = 'discoverPage'
+const DOMAIN = 'discoverPage';
 
 const initialState = {
   albums: null,
   searchValue: '',
   isFailed: false,
   isProcessing: false,
-  isAlbumsOutdated: false
-}
+  isAlbumsOutdated: false,
+};
 
 // SELECTORS
 
-export const getDiscoverFeedAlbums = state => state[DOMAIN].albums
-export const getDiscoverSearchValue = state => state[DOMAIN].searchValue
-export const isDiscoverHasFailed = state => state[DOMAIN].isFailed
-export const isDiscoverPageProcessing = state => state[DOMAIN].isProcessing
-export const isDiscoverAlbumsOutdated = state => state[DOMAIN].isAlbumsOutdated
+export const getDiscoverFeedAlbums = state => state[DOMAIN].albums;
+export const getDiscoverSearchValue = state => state[DOMAIN].searchValue;
+export const isDiscoverHasFailed = state => state[DOMAIN].isFailed;
+export const isDiscoverPageProcessing = state => state[DOMAIN].isProcessing;
+export const isDiscoverAlbumsOutdated = state => state[DOMAIN].isAlbumsOutdated;
 
 const reducer = (state = initialState, action) => {
-  const { type, payload } = action
+  const { type, payload } = action;
   switch (type) {
-    case systemDiscoverAlbumsFetch.toString():
-      return { ...initialState, isProcessing: true }
-    case uiDiscoverPageClosed.toString():
-      return { ...initialState }
-    case uiDiscoverSearchPerformed.toString():
+    case actions.systemDiscoverAlbumsFetch.toString():
+      return { ...initialState, isProcessing: true };
+    case actions.uiDiscoverPageClosed.toString():
+      return { ...initialState };
+    case actions.uiDiscoverSearchPerformed.toString():
       return {
         ...initialState,
         searchValue: payload,
-        isProcessing: true
-      }
-    case uiDiscoverSearchCleared.toString():
-      return { ...initialState, isProcessing: true }
-    case systemDiscoverAlbumsFetchSucceed.toString():
+        isProcessing: true,
+      };
+    case actions.uiDiscoverSearchCleared.toString():
+      return { ...initialState, isProcessing: true };
+    case actions.systemDiscoverAlbumsFetchSucceed.toString():
       return {
         ...state,
         albums: payload,
         isProcessing: false,
-        isAlbumsOutdated: false
-      }
-    case systemShareCandidateSaveSucceed.toString():
+        isAlbumsOutdated: false,
+      };
+    case actions.systemShareCandidateSaveSucceed.toString():
       if (state.albums) {
         return {
           ...state,
-          isAlbumsOutdated: true
-        }
+          isAlbumsOutdated: true,
+        };
       }
-      return state
-    case systemAlbumsRecievedCacheTransited.toString():
-      const { latestCid } = payload
+      return state;
+    case actions.systemAlbumsRecievedCacheTransited.toString(): {
+      const { latestCid } = payload;
       if (state.albums && state.albums[0].albumCid !== latestCid) {
         return {
           ...state,
-          isAlbumsOutdated: true
-        }
+          isAlbumsOutdated: true,
+        };
       }
-      return state
-    case systemDiscoverAlbumsFetchFailed.toString():
-      return { ...state, isFailed: true, isProcessing: false }
+      return state;
+    }
+    case actions.systemDiscoverAlbumsFetchFailed.toString():
+      return { ...state, isFailed: true, isProcessing: false };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

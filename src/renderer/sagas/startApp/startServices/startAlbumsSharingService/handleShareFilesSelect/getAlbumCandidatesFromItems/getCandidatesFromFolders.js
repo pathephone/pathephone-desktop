@@ -1,29 +1,29 @@
-import getCandidateFromFiles from './getCandidateFromFiles'
+import getCandidateFromFiles from './getCandidateFromFiles';
 
-async function getCandidatesFromFolders (apis, folders) {
-  if (folders.length === 0) return
-  const { getFolderContents } = apis
-  const candidates = []
-  const handleMapFolders = async folder => {
-    const { files, folders } = await getFolderContents(folder)
+async function getCandidatesFromFolders(apis, foldersCandidates) {
+  if (foldersCandidates.length === 0) return undefined;
+  const { getFolderContents } = apis;
+  const candidates = [];
+  const handleMapFolders = async (folder) => {
+    const { files, folders } = await getFolderContents(folder);
     const [
       candidateFromFiles,
-      candidatesFromFolders
+      candidatesFromFolders,
     ] = await Promise.all([
       getCandidateFromFiles(apis, files),
-      getCandidatesFromFolders(apis, folders)
-    ])
+      getCandidatesFromFolders(apis, folders),
+    ]);
     if (candidateFromFiles) {
-      candidates.push(candidateFromFiles)
+      candidates.push(candidateFromFiles);
     }
     if (candidatesFromFolders) {
-      candidates.push(...candidatesFromFolders)
+      candidates.push(...candidatesFromFolders);
     }
-  }
+  };
   await Promise.all(
-    folders.map(handleMapFolders)
-  )
-  return candidates
+    foldersCandidates.map(handleMapFolders),
+  );
+  return candidates;
 }
 
-export default getCandidatesFromFolders
+export default getCandidatesFromFolders;

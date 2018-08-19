@@ -1,47 +1,48 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import MdDec from 'react-icons/lib/md/blur-on'
-import MdFile from 'react-icons/lib/md/insert-drive-file'
+import MdDec from 'react-icons/lib/md/blur-on';
+import MdFile from 'react-icons/lib/md/insert-drive-file';
 
-import {
-  LOCAL_ARTIST,
-  LOCAL_TITLE,
-  LOCAL_TRACK_TITLE,
-  LOCAL_TRACK_ARTIST
-} from '~data/i18nConstants'
+import i18n from '~shared/data/i18n';
 
-import CustomTextInput from '~components/CustomTextInput.jsx'
+import CustomTextInput from '~components/CustomTextInput';
 
-import TrackControlsLeft from './TrackControlsLeft.jsx'
-import TrackControlsRight from './TrackControlsRight.jsx'
+import TrackControlsLeft from './TrackControlsLeft';
+import TrackControlsRight from './TrackControlsRight';
 
-import './TrackInput.css'
+import './TrackInput.css';
+
+const TRACK_ARTIST_ID = 'track-artist-input';
+const TRACK_TITLE_ID = 'track-title-id';
 
 class TrackInput extends React.PureComponent {
   handleRemove = () => {
-    const { index, onRemoveTrack } = this.props
-    onRemoveTrack(index)
+    const { index, onRemoveTrack } = this.props;
+    onRemoveTrack(index);
   }
+
   handleMoveDown = () => {
-    const { index, onMoveTrackDown } = this.props
-    onMoveTrackDown(index)
+    const { index, onMoveTrackDown } = this.props;
+    onMoveTrackDown(index);
   }
+
   handleMoveUp = () => {
-    const { index, onMoveTrackUp } = this.props
-    onMoveTrackUp(index)
+    const { index, onMoveTrackUp } = this.props;
+    onMoveTrackUp(index);
   }
-  render () {
+
+  render() {
     const {
       index,
       fileName,
       cid,
       isMoveUpDisabled,
-      isMoveDownDisabled
-    } = this.props
+      isMoveDownDisabled,
+    } = this.props;
     return (
-      <div className='trackInput izi-xs'>
-        <div className='trackInputControlsLeft'>
+      <div className="trackInput">
+        <div className="trackInputControlsLeft">
           <TrackControlsLeft
             onMoveUpClick={this.handleMoveUp}
             onMoveDownClick={this.handleMoveDown}
@@ -49,20 +50,24 @@ class TrackInput extends React.PureComponent {
             isMoveUpDisabled={isMoveUpDisabled}
           />
         </div>
-        <div className='trackInputBody'>
-          <div className='trackInputSplit'>
-            <label>
-              {LOCAL_ARTIST}<br />
+        <div className="trackInputBody">
+          <div className="trackInputSplit">
+            <label htmlFor={TRACK_ARTIST_ID}>
+              {i18n.ARTIST}
+              <br />
               <CustomTextInput
+                id={TRACK_ARTIST_ID}
                 name={`tracks.${index}.artist`}
-                placeholder={LOCAL_TRACK_ARTIST}
+                placeholder={i18n.TRACK_ARTIST}
               />
             </label>
-            <label>
-              {LOCAL_TITLE}<br />
+            <label htmlFor={TRACK_TITLE_ID}>
+              {i18n.TITLE}
+              <br />
               <CustomTextInput
+                id={TRACK_TITLE_ID}
                 name={`tracks.${index}.title`}
-                placeholder={LOCAL_TRACK_TITLE}
+                placeholder={i18n.TRACK_TITLE}
               />
             </label>
           </div>
@@ -70,24 +75,35 @@ class TrackInput extends React.PureComponent {
           {
             fileName ? (
               <span>
-                <MdFile /> <span>{fileName}</span>
+                <MdFile />
+                {' '}
+                <span>
+                  {fileName}
+                </span>
               </span>
             ) : (
               <span>
-                <MdDec /> {cid}
+                <MdDec />
+                {' '}
+                {cid}
               </span>
             )
           }
         </div>
-        <div className='trackInputControlsRight'>
+        <div className="trackInputControlsRight">
           <TrackControlsRight
             onRemoveClick={this.handleRemove}
           />
         </div>
       </div>
-    )
+    );
   }
 }
+
+TrackInput.defaultProps = {
+  cid: null,
+  fileName: null,
+};
 
 TrackInput.propTypes = {
   index: propTypes.number.isRequired,
@@ -97,7 +113,7 @@ TrackInput.propTypes = {
   onMoveTrackUp: propTypes.func.isRequired,
   onMoveTrackDown: propTypes.func.isRequired,
   isMoveDownDisabled: propTypes.bool.isRequired,
-  isMoveUpDisabled: propTypes.bool.isRequired
-}
+  isMoveUpDisabled: propTypes.bool.isRequired,
+};
 
-export default TrackInput
+export default TrackInput;

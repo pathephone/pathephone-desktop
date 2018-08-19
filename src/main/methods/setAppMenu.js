@@ -1,14 +1,14 @@
-import { Menu } from 'electron'
+import { Menu } from 'electron';
 
-import { devMenuTemplate } from '../modules/menu/dev_menu_template'
-import { editMenuTemplate } from '../modules/menu/edit_menu_template'
+import { devMenuTemplate } from '../modules/menu/dev_menu_template';
+import { editMenuTemplate } from '../modules/menu/edit_menu_template';
 
 const setAppMenu = (env) => {
-  const menus = [editMenuTemplate]
+  const menus = [editMenuTemplate];
   if (env.name !== 'production') {
-    menus.push(devMenuTemplate)
+    menus.push(devMenuTemplate);
   }
-  Menu.setApplicationMenu(Menu.buildFromTemplate(menus))
-}
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
+};
 
-export default setAppMenu
+export default setAppMenu;

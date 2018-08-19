@@ -1,26 +1,20 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import {
-  E2E_SHARE_FORM_TRACKLIST_ID,
-  E2E_SHARE_FORM_ADD_TRACK_INPUT_ID
-} from '~data/e2eConstants'
-import {
-  LOCAL_TRACKLIST,
-  LOCAL_ADD_TRACKS
-} from '~data/i18nConstants'
+import i18n from '~shared/data/i18n';
+import e2e from '~shared/data/e2e';
 
-import TrackInput from './TracklistFieldset/TrackInput.jsx'
+import TrackInput from './TracklistFieldset/TrackInput';
 
-import './TracklistFieldset.css'
+import './TracklistFieldset.css';
 
 class TracklistFieldset extends React.PureComponent {
   handleMap = (track, index, tracks) => {
     const {
       onRemoveTrack,
       onMoveTrackDown,
-      onMoveTrackUp
-    } = this.props
+      onMoveTrackUp,
+    } = this.props;
 
     return (
       <TrackInput
@@ -33,59 +27,64 @@ class TracklistFieldset extends React.PureComponent {
         isMoveDownDisabled={index === tracks.length - 1}
         key={index}
       />
-    )
+    );
   }
-  render () {
+
+  render() {
     const {
       tracks,
       isDisabled,
       onFilesSelect,
-      errorMessage
-    } = this.props
+      errorMessage,
+    } = this.props;
     return (
       <fieldset
         disabled={isDisabled}
-        className='fieldset tracklistFieldset'
+        className="tracklistFieldset"
       >
-        <legend>{`${LOCAL_TRACKLIST} (${tracks.length})`}</legend>
-        <div id={E2E_SHARE_FORM_TRACKLIST_ID}>
+        <legend>
+          {`${i18n.TRACKLIST} (${tracks.length})`}
+        </legend>
+        <div id={e2e.SHARE_FORM_TRACKLIST_ID}>
           {
             tracks.map(this.handleMap)
           }
         </div>
-        <div className='addTracksInputContainer'>
+        <div className="addTracksInputContainer">
           <input
-            id={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
-            className='addTracksInput'
-            name='tracks'
-            type='file'
-            accept='audio/*'
+            id={e2e.SHARE_FORM_ADD_TRACK_INPUT_ID}
+            className="addTracksInput"
+            name="tracks"
+            type="file"
+            accept="audio/*"
             onChange={onFilesSelect}
             multiple
           />
           <label
-            htmlFor={E2E_SHARE_FORM_ADD_TRACK_INPUT_ID}
-            className='addTracksLabel'
+            htmlFor={e2e.SHARE_FORM_ADD_TRACK_INPUT_ID}
+            className="addTracksLabel"
           >
-            {LOCAL_ADD_TRACKS} <br />
-            <span className='noTracksMessage'>
+            {i18n.ADD_TRACKS}
+            {' '}
+            <br />
+            <span className="noTracksMessage">
               {errorMessage}
             </span>
           </label>
         </div>
       </fieldset>
-    )
+    );
   }
 }
 
 TracklistFieldset.propTypes = {
   isDisabled: propTypes.bool.isRequired,
   errorMessage: propTypes.string.isRequired,
-  tracks: propTypes.array.isRequired,
+  tracks: propTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   onFilesSelect: propTypes.func.isRequired,
   onMoveTrackDown: propTypes.func.isRequired,
   onMoveTrackUp: propTypes.func.isRequired,
-  onRemoveTrack: propTypes.func.isRequired
-}
+  onRemoveTrack: propTypes.func.isRequired,
+};
 
-export default TracklistFieldset
+export default TracklistFieldset;

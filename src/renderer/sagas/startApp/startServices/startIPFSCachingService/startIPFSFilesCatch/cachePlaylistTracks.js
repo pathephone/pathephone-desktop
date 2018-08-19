@@ -1,14 +1,15 @@
-import { call, select } from 'redux-saga/effects'
-import { getPlaylistUncachedTracksCIDs } from '#selectors'
+import { call, select } from 'redux-saga/effects';
 
-function * cachePlaylistTracks (api) {
-  const { cacheIPFSFilesByCIDs } = api
-  const uncachedCIDs = yield select(getPlaylistUncachedTracksCIDs)
+import selectors from '#selectors';
+
+function* cachePlaylistTracks(api) {
+  const { cacheIPFSFilesByCIDs } = api;
+  const uncachedCIDs = yield select(selectors.getPlaylistUncachedTracksCIDs);
   try {
-    yield call(cacheIPFSFilesByCIDs, uncachedCIDs)
+    yield call(cacheIPFSFilesByCIDs, uncachedCIDs);
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
 }
 
-export default cachePlaylistTracks
+export default cachePlaylistTracks;

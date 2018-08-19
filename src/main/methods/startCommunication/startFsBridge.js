@@ -1,32 +1,29 @@
-import createThreadController from '~utils/createThreadController'
-import { ipcMainTake } from '~utils/ipcMain'
+import createThreadController from '~shared/utils/createThreadController';
+import { ipcMainTake } from '~shared/utils/ipcMain';
 
-import {
-  IPC_GET_ALBUM_CANDIDATES_FROM_FS_ITEMS,
-  IPC_GET_TRACKS_FROM_FS_FILES
-} from '~data/ipcTypes'
+import ipc from '~shared/data/ipc';
 
 const callAndClose = async (name, payload) => {
-  const thread = createThreadController(name)
-  const data = await thread.call({ payload })
-  thread.disconnect()
-  return data
-}
+  const thread = createThreadController(name);
+  const data = await thread.call({ payload });
+  thread.disconnect();
+  return data;
+};
 
 const startFsBridge = () => {
   const apiUnlisteners = [
     ipcMainTake(
-      IPC_GET_ALBUM_CANDIDATES_FROM_FS_ITEMS,
-      fsItems => callAndClose('getAlbumCandidatesFromFsItems', fsItems)
+      ipc.GET_ALBUM_CANDIDATES_FROM_FS_ITEMS,
+      fsItems => callAndClose('getAlbumCandidatesFromFsItems', fsItems),
     ),
     ipcMainTake(
-      IPC_GET_TRACKS_FROM_FS_FILES,
-      files => callAndClose('getTracksFromFsFiles', files)
-    )
-  ]
+      ipc.GET_TRACKS_FROM_FS_FILES,
+      files => callAndClose('getTracksFromFsFiles', files),
+    ),
+  ];
   return () => {
-    apiUnlisteners.forEach(unlisten => { unlisten() })
-  }
-}
+    apiUnlisteners.forEach((unlisten) => { unlisten(); });
+  };
+};
 
-export default startFsBridge
+export default startFsBridge;

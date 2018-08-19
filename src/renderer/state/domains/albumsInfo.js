@@ -1,33 +1,28 @@
-import {
-  systemAlbumsCollectionInfoRecieved,
-  systemShareCandidateSaveSucceed,
-  systemAlbumsRecievedCacheTransited,
-  systemDiscoverSelectedActionSucceed
-} from '~actions/system'
+import actions from '#actions';
 
-const DOMAIN = 'albumsInfo'
+const DOMAIN = 'albumsInfo';
 
 const initialState = {
-  albumsCount: null
-}
+  albumsCount: null,
+};
 
-export const getAlbumsCount = state => state[DOMAIN].albumsCount
+export const getAlbumsCount = state => state[DOMAIN].albumsCount;
 
 const reducer = (state = initialState, action) => {
-  const { type, payload } = action
+  const { type, payload } = action;
   switch (type) {
-    case systemAlbumsCollectionInfoRecieved.toString():
-    case systemShareCandidateSaveSucceed.toString():
-    case systemAlbumsRecievedCacheTransited.toString():
-      return { albumsCount: payload.albumsCount }
-    case systemDiscoverSelectedActionSucceed.toString():
+    case actions.systemAlbumsCollectionInfoRecieved.toString():
+    case actions.systemShareCandidateSaveSucceed.toString():
+    case actions.systemAlbumsRecievedCacheTransited.toString():
+      return { albumsCount: payload.albumsCount };
+    case actions.systemDiscoverSelectedActionSucceed.toString():
       if (payload) {
-        return { albumsCount: payload.albumsCount }
+        return { albumsCount: payload.albumsCount };
       }
-      return state
+      return state;
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

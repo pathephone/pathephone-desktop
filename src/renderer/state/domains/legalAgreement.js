@@ -1,19 +1,19 @@
-import { uiLegalAgreementGranted } from '~actions/ui'
+import actions from '#actions';
 
-const DOMAIN = 'legalAgreement'
+const DOMAIN = 'legalAgreement';
 
-const initialState = false
+const initialState = false;
 
-export const isLegalAgreementGranted = state => state[DOMAIN]
+export const isLegalAgreementGranted = state => state[DOMAIN];
 
 const reducer = (state = initialState, action) => {
-  const { type } = action
+  const { type } = action;
   switch (type) {
-    case uiLegalAgreementGranted.toString():
-      return true
+    case actions.uiLegalAgreementGranted.toString():
+      return true;
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

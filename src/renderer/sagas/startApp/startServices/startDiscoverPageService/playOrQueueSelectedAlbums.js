@@ -1,38 +1,26 @@
-import { call, put, select } from 'redux-saga/effects'
+import { call, put, select } from 'redux-saga/effects';
 
-import {
-  systemDiscoverSelectedActionFailed,
-  systemUiLocked,
-  systemUiUnlocked,
-  systemPlayedTracksRecieved,
-  systemQueuedTracksRecieved,
-  systemDiscoverSelectedActionSucceed
-} from '~actions/system'
+import getPlaylistTracksFromAlbums from '~shared/utils/getPlaylistTracksFromAlbums';
 
-import {
-  uiDiscoverSelectedPlayed,
-  uiDiscoverSelectedQueued
-} from '~actions/ui'
+import actions from '#actions';
+import selectors from '#selectors';
 
-import { getDiscoverSelectedCids } from '#selectors'
-import getPlaylistTracksFromAlbums from '~utils/getPlaylistTracksFromAlbums'
-
-function * playOrQueueSelectedAlbums (args, { type }) {
-  yield put(systemUiLocked())
+function* playOrQueueSelectedAlbums(args, { type }) {
+  yield put(actions.systemUiLocked());
   try {
-    const selectedAlbums = yield select(getDiscoverSelectedCids)
-    const tracks = yield call(getPlaylistTracksFromAlbums, args, selectedAlbums)
-    if (type === uiDiscoverSelectedPlayed.toString()) {
-      yield put(systemPlayedTracksRecieved(tracks))
+    const selectedAlbums = yield select(selectors.getDiscoverSelectedCids);
+    const tracks = yield call(getPlaylistTracksFromAlbums, args, selectedAlbums);
+    if (type === actions.uiDiscoverSelectedPlayed.toString()) {
+      yield put(actions.systemPlayedTracksRecieved(tracks));
     }
-    if (type === uiDiscoverSelectedQueued.toString()) {
-      yield put(systemQueuedTracksRecieved(tracks))
+    if (type === actions.uiDiscoverSelectedQueued.toString()) {
+      yield put(actions.systemQueuedTracksRecieved(tracks));
     }
-    yield put(systemDiscoverSelectedActionSucceed())
+    yield put(actions.systemDiscoverSelectedActionSucceed());
   } catch (e) {
-    yield put(systemDiscoverSelectedActionFailed(e.message))
+    yield put(actions.systemDiscoverSelectedActionFailed(e.message));
   }
-  yield put(systemUiUnlocked())
+  yield put(actions.systemUiUnlocked());
 }
 
-export default playOrQueueSelectedAlbums
+export default playOrQueueSelectedAlbums;

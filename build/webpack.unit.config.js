@@ -1,14 +1,14 @@
-const nodeExternals = require('webpack-node-externals')
-const path = require('path')
-const glob = require('glob')
+const nodeExternals = require('webpack-node-externals');
+const path = require('path');
+const glob = require('glob');
 
 const entryFiles = glob.sync('src/**/*.spec.js')
-  .map(filePath => path.resolve(process.cwd(), filePath))
-const outputDir = path.resolve(process.cwd(), '.temp/unit')
+  .map(filePath => path.resolve(process.cwd(), filePath));
+const outputDir = path.resolve(process.cwd(), '.temp/unit');
 
 if (entryFiles.length === 0) {
-  console.log('No unit tests found.')
-  return
+  console.log('No unit tests found.');
+  return;
 }
 
 module.exports = {
@@ -16,23 +16,21 @@ module.exports = {
   mode: 'development',
   node: {
     __dirname: false,
-    __filename: false
+    __filename: false,
   },
   entry: entryFiles,
   output: {
     path: outputDir,
-    filename: 'test.js'
+    filename: 'test.js',
   },
   resolveLoader: {
-    modules: [ path.join(__dirname, '../node_modules') ]
+    modules: [path.join(__dirname, '../node_modules')],
   },
   stats: 'errors-only',
   resolve: {
     alias: {
-      '~data': path.resolve(__dirname, '../src/shared/data'),
-      '~utils': path.resolve(__dirname, '../src/shared/utils'),
-      '~resources': path.resolve(__dirname, '../src/shared/assets')
-    }
+      '~shared': path.resolve(__dirname, '../src/shared'),
+    },
   },
   externals: [nodeExternals()],
   module: {
@@ -40,12 +38,12 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac|txt|svg)$/,
-        use: 'file-loader'
-      }
-    ]
-  }
-}
+        use: 'file-loader',
+      },
+    ],
+  },
+};

@@ -1,16 +1,21 @@
-import { call, takeEvery } from 'redux-saga/effects'
-import { systemPlayedTracksRecieved, systemQueuedTracksRecieved, systemDiscoverAlbumsFetchSucceed } from '~actions/system'
-import cachePlaylistTracks from './startIPFSFilesCatch/cachePlaylistTracks'
-import cacheDiscoverAlbumsCovers from './startIPFSFilesCatch/cacheDiscoverAlbumsCovers'
+import { call, takeEvery } from 'redux-saga/effects';
 
-function * startIPFSFilesCatch (api) {
-  yield call(cachePlaylistTracks, api)
+import actions from '#actions';
+
+import cachePlaylistTracks from './startIPFSFilesCatch/cachePlaylistTracks';
+import cacheDiscoverAlbumsCovers from './startIPFSFilesCatch/cacheDiscoverAlbumsCovers';
+
+function* startIPFSFilesCatch(api) {
+  yield call(cachePlaylistTracks, api);
   yield takeEvery(
-    [ systemPlayedTracksRecieved, systemQueuedTracksRecieved ], cachePlaylistTracks, api
-  )
+    [
+      actions.systemPlayedTracksRecieved,
+      actions.systemQueuedTracksRecieved,
+    ], cachePlaylistTracks, api,
+  );
   yield takeEvery(
-    systemDiscoverAlbumsFetchSucceed, cacheDiscoverAlbumsCovers, api
-  )
+    actions.systemDiscoverAlbumsFetchSucceed, cacheDiscoverAlbumsCovers, api,
+  );
 }
 
-export default startIPFSFilesCatch
+export default startIPFSFilesCatch;

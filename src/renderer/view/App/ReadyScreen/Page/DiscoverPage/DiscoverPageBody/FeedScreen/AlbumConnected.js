@@ -1,69 +1,59 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import {
-  getDiscoverSelectedIds,
-  getDiscoverFeedAlbums,
-  getIpfsApiEndpoint,
-  getCachedCIDs
-} from '#selectors'
+import selectors from '#selectors';
 
-import {
-  uiDiscoverAlbumSelected,
-  uiDiscoverAlbumDeselected,
-  uiAlbumQueued,
-  uiAlbumPlayed
-} from '~actions/ui'
+import actions from '#actions';
 
-import Album from './Album.jsx'
+import Album from './Album';
 
-const mapStateToProps = (state) => ({
-  latestAlbums: getDiscoverFeedAlbums(state),
-  selectedAlbums: getDiscoverSelectedIds(state),
-  ipfsApiEndpoint: getIpfsApiEndpoint(state),
-  localCoversCIDs: getCachedCIDs(state)
-})
+const mapStateToProps = state => ({
+  latestAlbums: selectors.getDiscoverFeedAlbums(state),
+  selectedAlbums: selectors.getDiscoverSelectedIds(state),
+  ipfsApiEndpoint: selectors.getIpfsApiEndpoint(state),
+  localCoversCIDs: selectors.getCachedCIDs(state),
+});
 
 const mapDispatchToProps = {
-  uiDiscoverAlbumSelected,
-  uiDiscoverAlbumDeselected,
-  onAddAlbumToPlaylist: uiAlbumQueued,
-  onPlayAlbum: uiAlbumPlayed
-}
+  onAlbumSelected: actions.uiDiscoverAlbumSelected,
+  onAlbumDeselected: actions.uiDiscoverAlbumDeselected,
+  onAddAlbumToPlaylist: actions.uiAlbumQueued,
+  onPlayAlbum: actions.uiAlbumPlayed,
+};
 
 const mergeProps = (
   stateProps,
   dispatchProps,
-  ownProps
+  ownProps,
 ) => {
   const {
     latestAlbums,
     selectedAlbums,
     ipfsApiEndpoint,
-    localCoversCIDs
-  } = stateProps
+    localCoversCIDs,
+  } = stateProps;
 
   const {
-    uiDiscoverAlbumSelected,
-    uiDiscoverAlbumDeselected,
+    onAlbumSelected,
+    onAlbumDeselected,
     ...restDispatch
-  } = dispatchProps
+  } = dispatchProps;
 
   const {
-    albumId
-  } = ownProps
+    albumId,
+  } = ownProps;
 
   const {
     albumTitle,
     albumCid,
     albumArtist,
-    albumCoverCid
-  } = latestAlbums[albumId]
+    albumCoverCid,
+  } = latestAlbums[albumId];
 
-  const handleSome = id => id === albumId
-  const hasSelectedView = selectedAlbums.some(handleSome)
-  const onToggleSelect = hasSelectedView ? uiDiscoverAlbumDeselected : uiDiscoverAlbumSelected
-  const albumCoverURL = `${ipfsApiEndpoint}/cat?arg=${albumCoverCid}`
-  const isCoverCached = localCoversCIDs[albumCoverCid] === true
+  const handleSome = id => id === albumId;
+  const hasSelectedView = selectedAlbums.some(handleSome);
+  const onToggleSelect = hasSelectedView ? onAlbumDeselected : onAlbumSelected;
+  const albumCoverURL = `${ipfsApiEndpoint}/cat?arg=${albumCoverCid}`;
+  const isCoverCached = localCoversCIDs[albumCoverCid] === true;
   return {
     ...restDispatch,
     albumCid,
@@ -73,8 +63,8 @@ const mergeProps = (
     albumCoverURL,
     onToggleSelect,
     hasSelectedView,
-    isCoverCached
-  }
-}
+    isCoverCached,
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Album)
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Album);

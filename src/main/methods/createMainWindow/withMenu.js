@@ -1,6 +1,6 @@
-import { BrowserWindow, Menu, app } from 'electron'
+import { BrowserWindow, Menu, app } from 'electron';
 
-import { IS_PRODUCTION } from '#config'
+import { IS_PRODUCTION } from '~shared/config';
 
 const devMenuTemplate = {
   label: 'Development',
@@ -9,30 +9,30 @@ const devMenuTemplate = {
       label: 'Reload',
       accelerator: 'CmdOrCtrl+R',
       click: () => {
-        BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache()
-      }
+        BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
+      },
     },
     {
       label: 'Toggle DevTools',
       accelerator: 'Alt+CmdOrCtrl+I',
       click: () => {
-        BrowserWindow.getFocusedWindow().toggleDevTools()
-      }
+        BrowserWindow.getFocusedWindow().toggleDevTools();
+      },
     },
     {
       label: 'Quit',
       accelerator: 'CmdOrCtrl+Q',
       click: () => {
-        app.quit()
-      }
-    }
-  ]
-}
+        app.quit();
+      },
+    },
+  ],
+};
 
-const withMenu = window => {
+const withMenu = (window) => {
   if (!IS_PRODUCTION) {
-    window.setMenu(Menu.buildFromTemplate([devMenuTemplate]))
+    window.setMenu(Menu.buildFromTemplate([devMenuTemplate]));
   }
-}
+};
 
-export default withMenu
+export default withMenu;

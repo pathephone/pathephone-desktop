@@ -1,17 +1,21 @@
-import React from 'react'
-import propTypes from 'prop-types'
+import React from 'react';
+import propTypes from 'prop-types';
 
-import './PageContainer.css'
+import './PageContainer.css';
 
 const PageContainer = ({ children, className, ...restProps }) => (
-  <div className={`page-container ${className || ''}`} {...restProps} >
+  <div className={`page-container ${className}`} {...restProps}>
     {children}
   </div>
-)
+);
+
+PageContainer.defaultProps = {
+  className: '',
+};
 
 PageContainer.propTypes = {
   children: propTypes.node.isRequired,
-  className: propTypes.string
-}
+  className: propTypes.string,
+};
 
-export default PageContainer
+export default PageContainer;

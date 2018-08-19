@@ -1,15 +1,12 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import Tracklist from './Tracklist.jsx'
+import selectors from '#selectors';
 
-import {
-  getPlaylistTracksIndexes
-} from '#selectors'
+import Tracklist from './Tracklist';
 
-const mapStateToProps = (state) => {
-  return {
-    tracksIndexes: getPlaylistTracksIndexes(state)
-  }
-}
 
-export default connect(mapStateToProps)(Tracklist)
+const mapStateToProps = state => ({
+  tracksIndexes: selectors.getPlaylistTracksIndexes(state),
+});
+
+export default connect(mapStateToProps)(Tracklist);
