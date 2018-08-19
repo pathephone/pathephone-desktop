@@ -1,3 +1,16 @@
+# [2.2.0](https://github.com/pathephone/pathephone-desktop/compare/v2.1.0...v2.2.0) (2018-08-19)
+
+
+### Bug Fixes
+
+* pick random swarm ports ([#215](https://github.com/pathephone/pathephone-desktop/issues/215)) ([a0aab19](https://github.com/pathephone/pathephone-desktop/commit/a0aab19)), closes [#174](https://github.com/pathephone/pathephone-desktop/issues/174)
+* replace broken donate form with a donate link ([#214](https://github.com/pathephone/pathephone-desktop/issues/214)) ([bb96b88](https://github.com/pathephone/pathephone-desktop/commit/bb96b88)), closes [#183](https://github.com/pathephone/pathephone-desktop/issues/183)
+
+
+### Features
+
+* extract covers from audio tags ([#216](https://github.com/pathephone/pathephone-desktop/issues/216)) ([7f89d7e](https://github.com/pathephone/pathephone-desktop/commit/7f89d7e)), closes [#179](https://github.com/pathephone/pathephone-desktop/issues/179)
+
 # [2.1.0](https://github.com/pathephone/pathephone-desktop/compare/v2.0.2...v2.1.0) (2018-08-04)
 
 
