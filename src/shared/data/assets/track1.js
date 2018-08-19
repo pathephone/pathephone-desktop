@@ -6,6 +6,7 @@ const track1 = {
   artist: 'DEgITx',
   file: flacFile,
   bitrate: 1052,
+  hasCover: false,
 };
 
 export default track1;
