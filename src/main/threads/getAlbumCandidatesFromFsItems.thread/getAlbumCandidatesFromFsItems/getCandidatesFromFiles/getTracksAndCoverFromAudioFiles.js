@@ -20,7 +20,7 @@ const getTracksAndCoverFromAudioFiles = async (audioFiles) => {
     const metadata = await getAudioMetadataFromFsFile(
       file, { skipCovers: !!output.cover },
     );
-    const { cover, normalizedMetadata } = normalizeMetadata(metadata);
+    const { cover, ...normalizedMetadata } = normalizeMetadata(metadata);
     if (Array.isArray(cover)) {
       const frontCover = cover.find(({ type }) => type.includes('front'));
       output.cover = frontCover || cover[0];
