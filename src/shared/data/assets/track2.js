@@ -6,6 +6,7 @@ const track2 = {
   album: 'Memories',
   file: mp3File,
   bitrate: 352,
+  hasCover: false,
 };
 
 export default track2;

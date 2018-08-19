@@ -27,7 +27,7 @@ describe('check tracks operations', () => {
   });
 
   describe('add tracks', () => {
-    tracks.forEach((track, index) => {
+    tracks.slice(0, 2).forEach((track, index) => {
       const expectedLength = index + 1;
       describe(`add track #${expectedLength}`, () => {
         before(async function () {
