@@ -1,0 +1,14 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.name_mapper='^~shared' ->'<PROJECT_ROOT>/src/shared'
+module.name_mapper='^#actions' ->'<PROJECT_ROOT>/src/renderer/state/actions.js'
+module.name_mapper='^#selectors' ->'<PROJECT_ROOT>/src/renderer/state/selectors.js'
+
+[strict]
