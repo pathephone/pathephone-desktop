@@ -1,5 +1,5 @@
-import React from 'react'
-import MdCreditCard from 'react-icons/lib/md/credit-card'
+import React from 'react';
+import MdCreditCard from 'react-icons/lib/md/credit-card';
 
 import suatmm from './DonateCard/suatmm.gif';
 
@@ -9,9 +9,13 @@ const DonateCard = () => (
   <div className="donateCard">
     <img className="donateGif" alt="Shut up and take my money!" src={suatmm} />
     <br />
-    <div className='donateButtons'>
-      <a className='donateCreditCardLink' href='https://money.yandex.ru/to/410015891281482'>
-        <MdCreditCard /> <span>Donate with a credit card</span>
+    <div className="donateButtons">
+      <a className="donateCreditCardLink" href="https://money.yandex.ru/to/410015891281482">
+        <MdCreditCard />
+        {' '}
+        <span>
+Donate with a credit card
+        </span>
       </a>
     </div>
     <table className="cryptoTable">
