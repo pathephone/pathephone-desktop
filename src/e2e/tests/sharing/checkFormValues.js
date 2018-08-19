@@ -5,6 +5,7 @@ import {
   coverPreviewHasIamge,
   shareFormTracklistLengthEquals,
   validateTrackFields,
+  shareWaitForFormExists,
 } from '~reusable/sharePage';
 
 import { tracks } from '~shared/data/assets';
@@ -13,17 +14,16 @@ import e2e from '~shared/data/e2e';
 describe('check form values', () => {
   tracks.forEach((track, index) => {
     describe(`track #${index + 1} selected`, () => {
-      before(function () {
-        return shareDropZoneSelect.call(this, track.file);
+      before(async function () {
+        await shareDropZoneSelect.call(this, track.file);
+        await shareWaitForFormExists.call(this);
       });
-      it('has no album cover preview', async function () {
+      it('album cover value matches', async function () {
         const hasImage = await coverPreviewHasIamge.call(this);
-        expect(hasImage).equal(false);
+        expect(hasImage).equal(track.hasCover);
       });
       it('album artist value matches', async function () {
         const { app } = this;
-        await app.client
-          .waitForExist(e2e.SHARE_FORM_ARTIST_INPUT_ID);
         const value = await app.client
           .$(e2e.SHARE_FORM_ARTIST_INPUT_ID)
           .getValue();
