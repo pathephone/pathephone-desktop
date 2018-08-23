@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
     hasCloseScreen: false,
     hasLockScreen: selectors.isAppLocked(state),
     errorMessage: selectors.getAppStartErrorMessage(state),
-    progress: selectors.getAppStartProgress(state)
+    progress: selectors.getAppStartProgress(state),
   };
 };
 
