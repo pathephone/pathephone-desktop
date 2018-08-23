@@ -1,0 +1,9 @@
+{
+  "tslint.autoFixOnSave": true,
+  "editor.tabSize": 2,
+  "search.exclude": {
+    "**/node_modules": true,
+    "./dist": true,
+    "./.temp": true
+  },
+}

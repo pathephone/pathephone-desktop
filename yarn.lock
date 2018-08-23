@@ -179,6 +179,10 @@
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.55.tgz#31f40777efd6b961da8496a923c22d2b062b3f73"
 
+"@babel/helper-plugin-utils@7.0.0-rc.2":
+  version "7.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-rc.2.tgz#95bc3225bf6aeda5a5ebc90af2546b5b9317c0b4"
+
 "@babel/helper-regex@7.0.0-beta.55":
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/helper-regex/-/helper-regex-7.0.0-beta.55.tgz#74e6c063d1ef9f7e58b7a84c06e6ee4a5bb5a5da"
@@ -514,6 +518,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.55"
 
+"@babel/plugin-syntax-typescript@7.0.0-rc.2":
+  version "7.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.0.0-rc.2.tgz#887e16d19dab3ab579bf63464dc2ef5ffb65b37c"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-rc.2"
+
 "@babel/plugin-transform-arrow-functions@7.0.0-beta.55":
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-arrow-functions/-/plugin-transform-arrow-functions-7.0.0-beta.55.tgz#eacb446ffc67e5135a4a29ac72bffac1ada181f6"
@@ -722,6 +732,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.55"
 
+"@babel/plugin-transform-typescript@7.0.0-rc.2":
+  version "7.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.0.0-rc.2.tgz#dcaec299ab601909c4942dff419a6c5206d54443"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-rc.2"
+    "@babel/plugin-syntax-typescript" "7.0.0-rc.2"
+
 "@babel/plugin-transform-unicode-regex@7.0.0-beta.55":
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-unicode-regex/-/plugin-transform-unicode-regex-7.0.0-beta.55.tgz#87e7bedbba103f784a7999f82064f47c0b35c796"
@@ -791,6 +808,13 @@
     "@babel/plugin-transform-react-jsx" "7.0.0-beta.55"
     "@babel/plugin-transform-react-jsx-self" "7.0.0-beta.55"
     "@babel/plugin-transform-react-jsx-source" "7.0.0-beta.55"
+
+"@babel/preset-typescript@^7.0.0-rc.2":
+  version "7.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.0.0-rc.2.tgz#570594e784c864993ad5e479ad27f16c30af5870"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-rc.2"
+    "@babel/plugin-transform-typescript" "7.0.0-rc.2"
 
 "@babel/register@^7.0.0-beta.49":
   version "7.0.0-beta.55"
@@ -9711,6 +9735,13 @@ source-list-map@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.0.tgz#aaa47403f7b245a92fbc97ea08f250d6087ed085"
 
+source-map-loader@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/source-map-loader/-/source-map-loader-0.2.4.tgz#c18b0dc6e23bf66f6792437557c569a11e072271"
+  dependencies:
+    async "^2.5.0"
+    loader-utils "^1.1.0"
+
 source-map-resolve@^0.5.0, source-map-resolve@^0.5.1:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.2.tgz#72e2cc34095543e43b2c62b2c4c10d4a9054f259"
@@ -10433,6 +10464,10 @@ type-is@~1.6.15, type-is@~1.6.16:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+typescript@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.1.tgz#43738f29585d3a87575520a4b93ab6026ef11fdb"
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

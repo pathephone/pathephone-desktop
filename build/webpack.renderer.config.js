@@ -9,7 +9,6 @@ module.exports = {
   resolve: {
     alias: {
       '~shared': path.resolve(__dirname, '../src/shared'),
-
       '~components': path.resolve(__dirname, '../src/renderer/components'),
       '#actions': path.resolve(__dirname, '../src/renderer/state/actions.js'),
       '#selectors': path.resolve(__dirname, '../src/renderer/state/selectors.js'),
@@ -18,14 +17,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        resolve: { extensions: ['.js', '.jsx'] },
+        test: /\.(ts|js)x?$/,
+        resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx'] },
         exclude: /node_modules/,
         use: 'babel-loader',
       },
       {
         test: /\.worker\.js$/,
         use: { loader: 'worker-loader' },
+      },
+      {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
       },
       // {
       //   test: /\.css$/,

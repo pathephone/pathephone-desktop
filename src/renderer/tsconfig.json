@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "~shared/*": ["./shared/*"],
+      "~components/*": ["./renderer/components/*"],
+      "#actions": ["./renderer/state/actions.js"],
+      "#selectors": ["./renderer/state/selectors.js"],
+    },
+    "jsx": "react"
+  },
+  "include": [
+    "../renderer/**/*",
+    "../shared/**/*",
+  ]
+}

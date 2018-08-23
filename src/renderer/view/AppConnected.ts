@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import actions from '#actions';
 import selectors from '#selectors';
+import actions from '#actions';
 
 import App from './App';
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
     hasCloseScreen: false,
     hasLockScreen: selectors.isAppLocked(state),
     errorMessage: selectors.getAppStartErrorMessage(state),
-    progress: selectors.getAppStartProgress(state),
+    progress: selectors.getAppStartProgress(state)
   };
 };
 
