@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": "..",
     "paths": {
       "~shared/*": ["./shared/*"],
       "~components/*": ["./renderer/components/*"],
