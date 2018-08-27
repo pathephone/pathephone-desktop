@@ -101,7 +101,7 @@
     "test:e2e": "cd .temp/e2e && mocha",
     "test:types": "tsc -p './src/tsconfig.renderer.json' --noEmit",
     "test:lint:js": "eslint --ext .js --ext .jsx ./src ./build",
-    "test:lint:ts": "tslint -p 'src/tsconfig.base.json' 'src/**/*.{ts,tsx}'",
+    "test:lint:ts": "tslint -p \"src/tsconfig.base.json\" \"src/**/*.{ts,tsx}\"",
     "test": "yarn test:lint:js && yarn test:lint:ts && yarn test:unit && yarn test:e2e",
     "lint": "yarn test:lint:js -- --fix && yarn test:lint:ts -- --fix",
     "start": "cross-env NODE_ENV=development yarn compile:app:dev",
