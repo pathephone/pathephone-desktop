@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "~shared/*": ["./shared/*"],
+      "~e2e/*": ["./e2e/*"],
+      "~reusable/*": ["./e2e/reusable/*"],
+    }
+  },
+  "include": [
+    "../e2e/**/*",
+    "../shared/**/*"
+  ]
+}
