@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import ErrorMessage from '~components/ErrorMessage';
-import StartScreenContainer from '../dumb/StartScreenContainer';
-import StartScreenProgress from '../dumb/StartScreenProgress';
+import StartScreenContainer from './dumb/StartScreenContainer';
+import StartScreenProgress from './dumb/StartScreenProgress';
 
 interface IProps {
   errorMessage?: string;
@@ -10,7 +10,9 @@ interface IProps {
   progress: number;
 }
 
-const StartScreen: React.StatelessComponent<IProps> = ({ errorMessage, infoMessage, progress }) => (
+const StartScreenView: React.StatelessComponent<IProps> = ({
+  errorMessage, infoMessage, progress,
+}) => (
   <StartScreenContainer>
     <StartScreenProgress progress={progress} />
     {
@@ -24,4 +26,4 @@ const StartScreen: React.StatelessComponent<IProps> = ({ errorMessage, infoMessa
   </StartScreenContainer>
 );
 
-export default StartScreen;
+export default StartScreenView;

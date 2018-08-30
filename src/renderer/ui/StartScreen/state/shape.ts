@@ -1,8 +1,7 @@
-export interface IStartScreenState {
-  progress: number;
-  errorMessage?: string;
-}
+import { IStartScreenState } from './types';
 
-export const intialState: IStartScreenState = {
+const initialState: IStartScreenState = {
   progress: 0,
 };
+
+export default initialState;

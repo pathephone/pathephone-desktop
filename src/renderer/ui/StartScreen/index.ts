@@ -1,12 +1,14 @@
 import * as startScreenActions from './actions';
 import * as startScreenEvents from './events';
-import StartScreen from './smart/StartScreen';
-import { startScreenReducer } from './state';
+import * as startScreenSelectors from './selectors';
 
 export {
-  startScreenReducer,
   startScreenEvents,
   startScreenActions,
+  startScreenSelectors,
 };
 
-export default StartScreen;
+export * from './state/types';
+
+export { default as startScreenReducer } from './state/reducer';
+export { default as default } from './connected';
