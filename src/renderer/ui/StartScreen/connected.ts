@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import { select } from './state';
+import { startScreenSelectors } from '.';
 import view from './view';
 
-const mapStateToProps = (state) => ({
-  progress: select.selectProgress(state),
+const mapStateToProps = (state: any) => ({
+  progress: startScreenSelectors.selectProgress(state),
 });
 
 const StartScreenConnected = connect(mapStateToProps)(view);
