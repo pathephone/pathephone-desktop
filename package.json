@@ -103,7 +103,7 @@
     "test:types": "npm run test:types:renderer",
     "test:lint:js": "eslint --ext .js --ext .jsx ./src ./build",
     "test:lint:ts": "tslint -p \"src/tsconfig.base.json\" \"src/**/*.{ts,tsx}\"",
-    "test": "npm run test:lint:js && npm run test:lint:ts && npm run test:types && npm run test:unit && npm run test:e2e",
+    "test": "npm run test:lint:js && npm run test:lint:ts && npm run test:unit && npm run test:e2e",
     "lint": "npm run test:lint:js -- --fix && npm run test:lint:ts -- --fix",
     "start": "cross-env NODE_ENV=development npm run compile:app:dev",
     "start:offline": "cross-env OFFLINE=true npm run start"
