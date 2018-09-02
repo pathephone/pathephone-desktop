@@ -1,4 +1,2 @@
-
-export * from './state';
-
-export { default as default } from './connected';
+export { startScreenReducer } from './state';
+export { startScreen };

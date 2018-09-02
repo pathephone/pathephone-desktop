@@ -1,4 +1,4 @@
-import { IStartScreenState } from './types';
+import { IStartScreenState } from '../types';
 
 const initialState: IStartScreenState = {
   progress: 0,

@@ -10,7 +10,7 @@ interface IProps {
   progress: number;
 }
 
-const StartScreenView: React.StatelessComponent<IProps> = ({
+export const StartScreenComponent: React.StatelessComponent<IProps> = ({
   errorMessage, infoMessage, progress,
 }) => (
   <StartScreenContainer>
@@ -25,5 +25,3 @@ const StartScreenView: React.StatelessComponent<IProps> = ({
     }
   </StartScreenContainer>
 );
-
-export default StartScreenView;
