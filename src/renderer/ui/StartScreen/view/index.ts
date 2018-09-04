@@ -1,7 +1,5 @@
 import { connect } from 'react-redux';
 
-// import actions from '../actions';
-// import events from '../events';
 import selectors from '../selectors';
 import container from './container';
 

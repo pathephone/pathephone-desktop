@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import ErrorMessage from '~components/ErrorMessage';
-import StartScreenProgress from './components/StartScreenProgress';
-import StartScreenWrapper from './components/StartScreenWrapper';
+import StartScreenProgress from '../components/StartScreenProgress';
+import StartScreenWrapper from '../components/StartScreenWrapper';
 
 interface IProps {
   errorMessage?: string;

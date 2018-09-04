@@ -1,19 +1,17 @@
-import actions from '#actions';
+import { Action } from 'redux';
 
-const DOMAIN = 'notifications';
+import { default as actions } from '#actions';
 
-const initialState = [];
+import { INotificationsState } from '../types';
+import initialState from './initialState';
 
-export const getNotifications = state => state[DOMAIN];
-
-const reducer = (state = initialState, action) => {
+const reducer = (state: INotificationsState = initialState, action: Action) => {
   const { type, payload } = action;
   switch (type) {
     case actions.systemNotificationRecieved.toString():
       return [...state, payload];
     case actions.systemNotificationExpired.toString():
     case actions.uiNotificationToastRemoved.toString():
-      console.log(payload);
       return state.filter(n => n.id !== payload);
     default:
       return state;
