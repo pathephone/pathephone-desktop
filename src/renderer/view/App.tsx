@@ -1,10 +1,10 @@
 import * as React from 'react';
 
+import StartScreen from '../ui/StartScreen';
 import CloseScreen from './App/CloseScreen';
 import LockScreen from './App/LockScreen';
 import ReadyScreen from './App/ReadyScreen';
 import Root from './App/Root';
-import StartScreen from './App/StartScreen';
 
 interface IProps {
   onDidMount: () => void;
@@ -35,7 +35,7 @@ class App extends React.Component<IProps> {
         }
         {
           hasCloseScreen && (
-            <CloseScreen {...restProps} />
+            <CloseScreen />
           )
         }
         {

@@ -1,9 +1,9 @@
 import { Action } from 'redux';
 
 import { IStartScreenState } from '../types';
-import shape from './shape';
+import initialState from './initialState';
 
-const startScreenReducer = (state: IStartScreenState = shape, action: Action) => {
+const startScreenReducer = (state: IStartScreenState = initialState, action: Action) => {
   switch (action.type) {
     default:
       return state;
