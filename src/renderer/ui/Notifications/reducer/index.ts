@@ -1,11 +1,13 @@
 import { Action } from 'redux';
 
-import { default as actions } from '#actions';
+import actions from '~renderer/state/actions';
+import { initialNotificationsState } from '~renderer/ui/Notifications/reducer/initial';
+import { INotificationsState } from '~renderer/ui/Notifications/types';
 
-import { INotificationsState } from '../types';
-import initialState from './initialState';
-
-const reducer = (state: INotificationsState = initialState, action: Action) => {
+export const notificationsReducer = (
+  state: INotificationsState = initialNotificationsState,
+  action: Action,
+) => {
   const { type, payload } = action;
   switch (type) {
     case actions.systemNotificationRecieved.toString():
@@ -17,5 +19,3 @@ const reducer = (state: INotificationsState = initialState, action: Action) => {
       return state;
   }
 };
-
-export default reducer;

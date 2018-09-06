@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { INotificationType } from '../types';
-import styles from './styles';
+import { INotificationType } from '~renderer/ui/Notifications/types';
+import { notificationsStyles } from '~renderer/ui/Notifications/view/styles';
 
 interface IProps {
   text: string;
@@ -10,7 +10,7 @@ interface IProps {
   id: number;
 }
 
-class Toast extends React.Component<IProps> {
+class NotificationsToast extends React.Component<IProps> {
   public handleToastClick = () => {
     const { onToastClick, id } = this.props;
     onToastClick(id);
@@ -31,12 +31,12 @@ class Toast extends React.Component<IProps> {
 
   private getToastClassname = (type: INotificationType) => (
     type === 'OK'
-      ? styles.toastSuccess
+      ? notificationsStyles.toastSuccess
       : type === 'WARNING'
-        ? styles.toastWarning
+        ? notificationsStyles.toastWarning
         : type === 'ERROR'
-          && styles.toastError
+          && notificationsStyles.toastError
   )
 }
 
-export default Toast;
+export { NotificationsToast };

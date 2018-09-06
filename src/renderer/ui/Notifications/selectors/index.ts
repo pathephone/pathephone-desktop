@@ -1,3 +1,3 @@
-import * as selectors from './selectors';
+import * as notificationsSelectors from './selectors';
 
-export default selectors;
+export { notificationsSelectors };

@@ -6,8 +6,8 @@ import Page from './ReadyScreen/Page';
 import PlaylistConnected from './ReadyScreen/PlaylistConnected';
 import PlayerConnected from './ReadyScreen/PlayerConnected';
 import NavigationConnected from './ReadyScreen/NavigationConnected';
-import NotificationsConnected from './ReadyScreen/NotificationsConnected';
 import IndicatorsBarConnected from './ReadyScreen/IndicatorsBarConnected';
+import Notifications from '~renderer/ui/Notifications';
 
 import './ReadyScreen.css';
 
@@ -18,7 +18,7 @@ const ReadyScreen = () => (
     <PlaylistConnected />
     <PlayerConnected />
     <IndicatorsBarConnected />
-    <NotificationsConnected />
+    <Notifications />
   </div>
 );
 

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 
+import { notificationsReducer } from '~renderer/ui/Notifications';
+import { startScreenReducer } from '~renderer/ui/StartScreen';
 import * as reducers from './state/reducers';
-import { startScreenReducer } from './ui/StartScreen';
 
 const rootReducer = combineReducers({
   ...reducers,
+  notifications: notificationsReducer,
   startScreen: startScreenReducer,
 });
 

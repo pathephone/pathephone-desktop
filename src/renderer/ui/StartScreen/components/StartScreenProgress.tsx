@@ -1,15 +1,17 @@
 import * as React from 'react';
 
-import styles from './styles';
+import { startScreenStyles } from '~renderer/ui/StartScreen/styles';
 
 interface IProps {
   progress: number;
 }
 
-const StartScreenProgress: React.StatelessComponent<IProps> = ({ progress }) => (
-  <div className={styles.progressTotal}>
-    <div className={styles.progressReady} style={{ width: `${progress}%` }} />
+const StartScreenProgress: React.StatelessComponent<IProps> = (
+  { progress }: IProps
+): React.ReactElement<IProps> => (
+  <div className={startScreenStyles.progressTotal}>
+    <div className={startScreenStyles.progressReady} style={{ width: `${progress}%` }} />
   </div>
 );
 
-export default StartScreenProgress;
+export { StartScreenProgress };

@@ -59,12 +59,6 @@ export const getShareCoverSrc = createSelector(
   },
 );
 
-export const getNotificationsIds = createSelector(
-  simple.getNotifications,
-  Object.keys,
-);
-export const getNotificationsLength = state => getNotificationsIds(state).length;
-
 // DISCOVER PAGE
 
 export const isDiscoverHasAlbums = state => (

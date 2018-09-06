@@ -1,24 +1,22 @@
 import * as React from 'react';
 
-import Toast from '../components/Toast';
-import Wrapper from '../components/Wrapper';
-import { INotification } from '../types';
+import { INotification } from '~renderer/ui/Notifications/types';
+import { NotificationsWrapper } from '~renderer/ui/Notifications/view/components/NotificationsWrapper';
+import { NotificationsToast } from '~renderer/ui/Notifications/view/components/NotificationsToast';
 
 interface IProps {
   notifications: INotification[];
-  onToastClick: () => void;
+  onToastClick(): void;
 }
 
-const NotificationsContainer: React.StatelessComponent<IProps> = (
-  { notifications, onToastClick },
+export const NotificationsContainer: React.StatelessComponent<IProps> = (
+  { notifications, onToastClick }
 ) => (
-  <Wrapper>
+  <NotificationsWrapper>
     {
       notifications.map((data: INotification) => (
-        <Toast {...data} onToastClick={onToastClick} key={data.id} />
+        <NotificationsToast {...data} onToastClick={onToastClick} key={data.id} />
       ))
     }
-  </Wrapper>
+  </NotificationsWrapper>
 );
-
-export default NotificationsContainer;

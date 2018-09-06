@@ -6,7 +6,6 @@ export { default as discoverPage } from './domains/discoverPage';
 export { default as discoverSelected } from './domains/discoverSelected';
 export { default as share } from './domains/share';
 export { default as cachedCIDs } from './domains/cachedCIDs';
-export { default as notifications } from './domains/notifications';
 export { default as ipfsInfo } from './domains/ipfsInfo';
 export { default as legalAgreement } from './domains/legalAgreement';
 export { default as albumsInfo } from './domains/albumsInfo';

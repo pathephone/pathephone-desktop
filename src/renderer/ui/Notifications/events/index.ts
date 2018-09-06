@@ -1,3 +1,3 @@
-import * as events from './events';
+import * as notificationsEvents from './events';
 
-export default events;
+export { notificationsEvents };

@@ -1,13 +1,16 @@
-import { Action } from 'redux';
+import { Action, Reducer } from 'redux';
 
-import { IStartScreenState } from '../types';
-import initialState from './initialState';
+import { initialStartScreenState } from '~renderer/ui/StartScreen/reducer/initial';
+import { IStartScreenState } from '~renderer/ui/StartScreen/types';
 
-const startScreenReducer = (state: IStartScreenState = initialState, action: Action) => {
+const startScreenReducer: Reducer<> = (
+  state: IStartScreenState = initialStartScreenState,
+  action: Action
+) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export default startScreenReducer;
+export { startScreenReducer };

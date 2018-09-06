@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import styles from './styles';
+import { startScreenStyles } from '~renderer/ui/StartScreen/styles';
 
 interface IProps {
   children: React.ReactNode;
 }
 
 const StartScreenWrapper: React.StatelessComponent<IProps> = ({ children }) => (
-  <div className={styles.wrapper} >
+  <div className={startScreenStyles.wrapper} >
     {children}
   </div>
 );

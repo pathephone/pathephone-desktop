@@ -6,7 +6,6 @@ export * from '../domains/discoverPage';
 export * from '../domains/discoverSelected';
 export * from '../domains/share';
 export * from '../domains/cachedCIDs';
-export * from '../domains/notifications';
 export * from '../domains/ipfsInfo';
 export * from '../domains/legalAgreement';
 export * from '../domains/albumsInfo';

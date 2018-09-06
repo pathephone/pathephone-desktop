@@ -1,5 +1,6 @@
 export * from './types';
+export * from './events';
+export * from './reducer';
+export * from './selectors';
 
-// export { default as startScreenEvents } from './events';
-export { default as startScreenReducer } from './reducer';
-export { default as default } from './view';
+export { Notifications as default } from './view';

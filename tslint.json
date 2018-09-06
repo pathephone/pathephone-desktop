@@ -1,7 +1,11 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-airbnb"],
+  "extends": ["tslint-microsoft-contrib"],
   "rules": {
+    "missing-jsdoc": false,
     "variable-name": false,
-    "jsx-no-multiline-js": false
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": false,
+    "export-name": false,
+    "match-default-export-name": true
   }
 }

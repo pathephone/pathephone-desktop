@@ -1,4 +1,4 @@
-import * as BEM from 'react-bem-helper';
+import { default as BEM } from 'react-bem-helper';
 
 const classes = new BEM('notifications');
 

@@ -1,4 +1,4 @@
-import { systemAction, uiAction } from '../../../utils/actions';
+import { systemAction, uiAction } from '~renderer/utils/actions';
 
 export const notificationCanceled = uiAction('NOTIFICATION_CANCELED');
 

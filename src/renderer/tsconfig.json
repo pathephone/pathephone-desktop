@@ -4,6 +4,7 @@
     "baseUrl": "..",
     "paths": {
       "~shared/*": ["./shared/*"],
+      "~renderer/*": ["./renderer/*"],
       "~components/*": ["./renderer/components/*"],
       "#actions": ["./renderer/state/actions.js"],
       "#selectors": ["./renderer/state/selectors.js"],

@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 
-import events from '../events';
-import selectors from '../selectors';
-import container from './container';
+import { notificationsEvents } from '~renderer/ui/Notifications/events';
+import { notificationsSelectors } from '~renderer/ui/Notifications/selectors';
+import { NotificationsContainer } from '~renderer/ui/Notifications/view/container';
 
 const mapStateToProps = state => ({
-  notifications: selectors.getNotifications(state),
+  notifications: notificationsSelectors.getNotifications(state),
 });
 
 const mapDispatchToProps = {
-  onToastClick: events.notificationCanceled,
-  onNotificationExpired: events.notificationExpired,
+  onNotificationExpired: notificationsEvents.notificationExpired,
+  onToastClick: notificationsEvents.notificationCanceled,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(container);
+export const Notifications = connect(mapStateToProps, mapDispatchToProps)(NotificationsContainer);
