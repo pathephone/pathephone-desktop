@@ -8,7 +8,6 @@ import TrackBar from './ActivePlayer/TrackBar';
 import ControlsLeftConnected from './ActivePlayer/ControlsLeftConnected';
 import VolumeInputConnected from './ActivePlayer/VolumeInputConnected';
 import ControlsRightConnected from './ActivePlayer/ControlsRightConnected';
-import e2e from '~shared/data/e2e';
 
 const getInitialState = () => ({
   duration: null,
@@ -100,10 +99,7 @@ class ActivePlayer extends React.Component {
     } = this.state;
     const { title, artist } = this.props;
     return (
-      <div
-        id={e2e.PLAYER_ACTIVE_ID}
-        className="player"
-      >
+      <>
         <ControlsLeftConnected />
         {
           isReadyToPlay ? (
@@ -121,7 +117,7 @@ class ActivePlayer extends React.Component {
         }
         <VolumeInputConnected />
         <ControlsRightConnected />
-      </div>
+      </>
     );
   }
 }
