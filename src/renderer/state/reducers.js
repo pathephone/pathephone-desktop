@@ -1,4 +1,3 @@
-export { default as appStart } from './domains/appStart';
 export { default as audio } from './domains/audio';
 export { default as playlist } from './domains/playlist';
 export { default as volume } from './domains/volume';

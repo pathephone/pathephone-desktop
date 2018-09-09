@@ -6,6 +6,7 @@
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
     "export-name": false,
-    "match-default-export-name": true
+    "match-default-export-name": true,
+    "no-import-side-effect": [true, {"ignore-module": "(\\.html|\\.css|\\.scss)$"}]
   }
 }

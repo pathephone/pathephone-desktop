@@ -1,0 +1,22 @@
+.startScreen__page {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.startScreen__progressTotal {
+  border-radius: 2px;
+  overflow: hidden;
+  width: 30em;
+  background-color: #dedede;
+}
+.startScreen__progressReady {
+  height: 0.25em;
+  background-color: orange;
+}
+.startScreen__errorMessage {
+  color: red;
+}

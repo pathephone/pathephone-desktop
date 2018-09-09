@@ -1,13 +1,12 @@
-import { combineReducers } from 'redux';
+import { combineReducers, Reducer } from 'redux';
 
-import { notificationsReducer } from '~renderer/ui/Notifications';
-import { startScreenReducer } from '~renderer/ui/StartScreen';
-import * as reducers from './state/reducers';
+import * as reducers from '~renderer/state/reducers';
+import { IRootState } from '~renderer/state/rootState';
+import { appReducer } from '~renderer/ui/App/reducer';
+import { notificationsReducer } from '~renderer/ui/Notifications/reducer';
 
-const rootReducer = combineReducers({
+export const rootReducer: Reducer<IRootState> = combineReducers<IRootState>({
   ...reducers,
-  notifications: notificationsReducer,
-  startScreen: startScreenReducer,
+  app: appReducer,
+  notifications: notificationsReducer
 });
-
-export default rootReducer;

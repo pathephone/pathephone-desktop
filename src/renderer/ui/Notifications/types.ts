@@ -2,8 +2,8 @@
 export type INotificationType = 'OK' | 'WARNING' | 'ERROR';
 
 export interface INotification {
+  notificationType: INotificationType;
   text: string;
-  type: INotificationType;
   id: number;
 }
 

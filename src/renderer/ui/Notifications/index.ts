@@ -1,6 +1,16 @@
-export * from './types';
-export * from './events';
-export * from './reducer';
-export * from './selectors';
+// tslint:disable no-relative-imports
 
-export { Notifications as default } from './view';
+import * as notificationsEvents from './actions/events';
+import * as notificationsSelectors from './state/selectors';
+import * as notificationsSetters from './state/setters';
+import * as notificationsStyles from './styles/styles';
+import './styles/styles.scss';
+
+export {
+  notificationsEvents,
+  notificationsSelectors,
+  notificationsStyles,
+  notificationsSetters
+};
+
+export { NotificationsWidget as default }  from './view/widget';

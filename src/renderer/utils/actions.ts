@@ -1,9 +1,27 @@
-import { newCreatorFactory, newDomainTypeFactory } from '~shared/utils/reduxTools';
+interface IGenericAction<TPayload> {
+  payload: TPayload;
+  // tslint:disable-next-line no-reserved-keywords
+  type: string;
+}
 
-const uiDomain = newDomainTypeFactory('ui');
+export type IActionCreator<TPayload> = (payload: TPayload) => IGenericAction<TPayload>;
 
-const systemDomain = newDomainTypeFactory('system');
+type IActionCreatorCreator = <TPayload>(postfix: string) => IActionCreator<TPayload>;
 
-export const uiAction = newCreatorFactory(uiDomain);
+type IActionCreatorCreatorFactory = (prefix: string) => IActionCreatorCreator;
 
-export const systemAction = newCreatorFactory(systemDomain);
+const actionCreatorCreatorFactory: IActionCreatorCreatorFactory = (
+  prefix: string
+): IActionCreatorCreator => (
+  <TPayload> (postfix: string) : IActionCreator<TPayload> => {
+    const actionType: string = `@${prefix}/${postfix}`;
+
+    return (payload: TPayload) : IGenericAction<TPayload> => ({
+      payload,
+      type: actionType
+    });
+  }
+);
+
+export const uiAction: IActionCreatorCreator = actionCreatorCreatorFactory('ui');
+export const systemAction: IActionCreatorCreator = actionCreatorCreatorFactory('system');

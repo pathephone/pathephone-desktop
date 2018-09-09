@@ -1,4 +1,3 @@
-export * from '../domains/appStart';
 export * from '../domains/audio';
 export * from '../domains/playlist';
 export * from '../domains/volume';
