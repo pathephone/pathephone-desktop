@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": false,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "paths": {
+      "~renderer/*": ["./src/renderer/*"],
+      "~main/*": ["./src/main/*"],
+      "~shared/*": ["./src/shared/*"],
+      "~e2e/*": ["./src/e2e/*"],
+      "~components/*": ["./src/renderer/components/*"],
+      "#actions": ["./src/renderer/state/actions.js"],
+      "#selectors": ["./src/renderer/state/selectors.js"],
+    },
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -30,14 +30,18 @@ class NotificationsToast extends React.Component<IProps> {
     );
   }
 
-  private getToastClassname = (actionType: INotificationType) : string => (
-    actionType === 'OK'
-      ? notificationsStyles.toastSuccess
-      : actionType === 'WARNING'
-        ? notificationsStyles.toastWarning
-        : actionType === 'ERROR'
-          && notificationsStyles.toastError
-  )
+  private getToastClassname = (actionType: INotificationType) : string => {
+    switch (actionType) {
+      case 'OK':
+        return notificationsStyles.toastSuccess;
+      case 'WARNING':
+        return notificationsStyles.toastWarning;
+      case 'ERROR':
+        return notificationsStyles.toastError;
+      default:
+        throw new Error('Unknown action type.');
+    }
+  }
 }
 
 export { NotificationsToast };
