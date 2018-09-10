@@ -6,11 +6,14 @@ import {
 
 export default (mainWindow) => {
   let trayIconPath;
-  if (IS_MAC || IS_LINUX) {
+  if (IS_LINUX) {
     trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16.png`;
   }
   if (IS_WINDOWS) {
     trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16@2x.png`;
+  }
+  if (IS_MAC) {
+    trayIconPath = `${RESOURCES_PATH}/indicator_icons/icon16x16Template.png`;
   }
   const tray = new Tray(trayIconPath);
 
