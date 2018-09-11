@@ -24,12 +24,6 @@ export default (mainWindow) => {
       mainWindow.show();
     }
   });
-  mainWindow.on('show', () => {
-    tray.setHighlightMode('always');
-  });
-  mainWindow.on('hide', () => {
-    tray.setHighlightMode('never');
-  });
 
   const contextMenu = Menu.buildFromTemplate([
     {
