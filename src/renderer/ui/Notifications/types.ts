@@ -1,5 +1,5 @@
 
-export type INotificationType = 'OK' | 'WARNING' | 'ERROR';
+export type INotificationType = 'SUCCESS' | 'WARNING' | 'ERROR';
 
 export interface INotification {
   notificationType: INotificationType;

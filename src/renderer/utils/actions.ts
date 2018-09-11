@@ -15,11 +15,13 @@ const actionCreatorCreatorFactory: IActionCreatorCreatorFactory = (
 ): IActionCreatorCreator => (
   <TPayload> (postfix: string) : IActionCreator<TPayload> => {
     const actionType: string = `@${prefix}/${postfix}`;
-
-    return (payload: TPayload) : IGenericAction<TPayload> => ({
+    const creator: IActionCreator<TPayload> = (payload: TPayload) : IGenericAction<TPayload> => ({
       payload,
       type: actionType
     });
+    creator.toString = () : string => actionType;
+
+    return creator;
   }
 );
 

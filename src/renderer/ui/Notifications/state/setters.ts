@@ -15,5 +15,7 @@ export const removeNotification: IRemoveNotification = (
   state: INotificationsState,
   payload: number
 ) : INotificationsState => (
-  state.filter((n: INotification) => n.id !== payload)
+  state.filter((n: INotification) => {
+    return n.id !== payload;
+  })
 );

@@ -6,16 +6,20 @@ import { INotification } from '~renderer/ui/Notifications/types';
 
 interface IProps {
   notifications: INotification[];
-  onToastClick(params: number): void;
+  onToastRemove(params: number): void;
 }
 
 export const NotificationsContainer: React.StatelessComponent<IProps> = (
-  { notifications, onToastClick } : IProps
+  { notifications, onToastRemove } : IProps
 ) : React.ReactElement<IProps> => (
   <NotificationsWrapper>
     {
       notifications.map((data: INotification) => (
-        <NotificationsToast {...data} onToastClick={onToastClick} key={data.id} />
+        <NotificationsToast
+          {...data}
+          onToastRemove={onToastRemove}
+          key={data.id}
+        />
       ))
     }
   </NotificationsWrapper>

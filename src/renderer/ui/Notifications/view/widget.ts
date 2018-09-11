@@ -21,11 +21,11 @@ const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
 
 interface IDispatchProps {
   onNotificationExpired: IActionCreator<number>;
-  onToastClick: IActionCreator<number>;
+  onToastRemove: IActionCreator<number>;
 }
 const mapDispatchToProps: IDispatchProps = {
   onNotificationExpired: notificationsEvents.notificationExpired,
-  onToastClick: notificationsEvents.notificationCanceled
+  onToastRemove: notificationsEvents.notificationCanceled
 };
 
 export const NotificationsWidget: React.ComponentClass = connect<IStateProps, IDispatchProps>(

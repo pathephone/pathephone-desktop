@@ -7,13 +7,18 @@ interface IProps {
   text: string;
   notificationType: INotificationType;
   id: number;
-  onToastClick(params: number): void;
+  onToastRemove(params: number): void;
 }
 
 class NotificationsToast extends React.Component<IProps> {
+
+  private timeoutId: number | null = null;
+
   public handleToastClick = () : void => {
-    const { onToastClick, id } = this.props;
-    onToastClick(id);
+    window.clearTimeout(this.timeoutId);
+    this.timeoutId = null;
+    const { onToastRemove, id } = this.props;
+    onToastRemove(id);
   }
 
   public render() : React.ReactNode {
@@ -30,16 +35,26 @@ class NotificationsToast extends React.Component<IProps> {
     );
   }
 
-  private getToastClassname = (actionType: INotificationType) : string => {
-    switch (actionType) {
-      case 'OK':
+  public componentDidMount () : void {
+    this.timeoutId = window.setTimeout(
+      () => {
+        const { onToastRemove, id } = this.props;
+        onToastRemove(id);
+      },
+      5000
+    );
+  }
+
+  private getToastClassname = (notificationType: INotificationType) : string => {
+    switch (notificationType) {
+      case 'SUCCESS':
         return notificationsStyles.toastSuccess;
       case 'WARNING':
         return notificationsStyles.toastWarning;
       case 'ERROR':
         return notificationsStyles.toastError;
       default:
-        throw new Error('Unknown action type.');
+        throw new Error(`Unknown notification type: ${notificationType}.`);
     }
   }
 }

@@ -20,29 +20,25 @@ function* handleAction({ payload }) {
     if (errorMessage) {
       nextPayload = {
         text: errorMessage,
-        type: NOTIFICATION_TYPE_ERROR,
+        notificationType: NOTIFICATION_TYPE_ERROR,
       };
     }
     if (warningMessage) {
       nextPayload = {
         text: warningMessage,
-        type: NOTIFICATION_TYPE_WARNING,
+        notificationType: NOTIFICATION_TYPE_WARNING,
       };
     }
     if (successMessage) {
       nextPayload = {
         text: successMessage,
-        type: NOTIFICATION_TYPE_SUCCESS,
+        notificationType: NOTIFICATION_TYPE_SUCCESS,
       };
     }
     if (nextPayload) {
       counter += 1;
       nextPayload.id = counter;
       yield put(actions.systemNotificationRecieved(nextPayload));
-      if (!IS_TESTING) {
-        yield delay(3000);
-        yield put(actions.systemNotificationExpired(counter));
-      }
     }
   }
 }
