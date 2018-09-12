@@ -37,7 +37,7 @@ export const IS_MAC = process.platform === 'darwin';
 export const IS_LINUX = process.platform === 'linux';
 
 let HAS_TRAY;
-if (!IS_LINUX || process.env.XDG_CURRENT_DESKTOP === 'Unity') {
+if (!IS_TESTING && (!IS_LINUX || process.env.XDG_CURRENT_DESKTOP === 'Unity')) {
   HAS_TRAY = true;
 } else {
   HAS_TRAY = false;
