@@ -1,4 +1,3 @@
-import { delay } from 'redux-saga';
 import { takeEvery, all, put } from 'redux-saga/effects';
 
 import actions from '#actions';
@@ -9,7 +8,6 @@ import {
 } from '~shared/data/constants';
 
 import isObject from '~shared/utils/isObject';
-import { IS_TESTING } from '~shared/config';
 
 let counter = 0;
 
