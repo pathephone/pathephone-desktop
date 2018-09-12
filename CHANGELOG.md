@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/pathephone/pathephone-desktop/compare/v2.2.0...v2.2.1) (2018-09-12)
+
+
+### Bug Fixes
+
+* improve macos indicator behavior ([eef6251](https://github.com/pathephone/pathephone-desktop/commit/eef6251)), closes [#164](https://github.com/pathephone/pathephone-desktop/issues/164)
+
 # [2.2.0](https://github.com/pathephone/pathephone-desktop/compare/v2.1.0...v2.2.0) (2018-08-19)
 
 
