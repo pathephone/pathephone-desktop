@@ -8,4 +8,4 @@ export {
   playerEvents
 };
 
-export { Player as default }  from './view/Player';
+export * from './view/PlayerConnected';

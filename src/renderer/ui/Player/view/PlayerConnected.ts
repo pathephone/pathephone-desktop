@@ -2,7 +2,7 @@ import { connect, MapStateToProps } from 'react-redux';
 
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
-import { PlayerContainer } from '~renderer/ui/Player/view/PlayerContainer';
+import { Player } from '~renderer/ui/Player/view/Player';
 
 interface IStateProps {
   isActive: boolean;
@@ -14,4 +14,4 @@ const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
   isActive: selectors.isPlayerActive(state)
 });
 
-export const Player: React.ComponentClass = connect<IStateProps>(mapStateToProps)(PlayerContainer);
+export const PlayerConnected: React.ComponentClass = connect<IStateProps>(mapStateToProps)(Player);

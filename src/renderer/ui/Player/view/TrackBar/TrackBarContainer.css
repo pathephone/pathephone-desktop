@@ -1,4 +1,4 @@
-.playerTrackBar {
+.trackBar__container {
   position: relative;
   display: flex;
   position: relative;
@@ -7,7 +7,7 @@
   height: 100%;
 }
 
-.playerTrackBar > * {
+.trackBar__container > * {
   position: absolute;
   top: 0;
   left: 0;
