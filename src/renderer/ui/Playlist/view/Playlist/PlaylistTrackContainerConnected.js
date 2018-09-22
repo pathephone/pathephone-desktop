@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 
-import selectors from '#selectors';
-
 import PlaylistTrackContainer from './PlaylistTrackContainer';
+import { playlistSelectors } from '~renderer/ui/Playlist';
 
 const mapStateToProps = (_, ownProps) => state => ({
-  isRemoved: !!selectors.getPlaylistRemovedByIndex(state)[ownProps.index],
+  isRemoved: !!playlistSelectors.getPlaylistRemovedByIndex(state)[ownProps.index],
 });
 
 export default connect(mapStateToProps)(PlaylistTrackContainer);

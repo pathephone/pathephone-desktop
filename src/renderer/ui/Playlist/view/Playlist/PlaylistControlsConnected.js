@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 
-import actions from '#actions';
-
 import PlaylistControls from './PlaylistControls';
+import { playlistEvents } from '~renderer/ui/Playlist';
 
 const mapDispatchToProps = {
-  onClearPlaylist: actions.uiPlaylistCleared,
+  onClearPlaylist: playlistEvents.uiPlaylistCleared,
 };
 
 export default connect(null, mapDispatchToProps)(PlaylistControls);

@@ -4,10 +4,10 @@ import e2e from '~shared/data/e2e';
 
 import Notifications from '~renderer/ui/Notifications';
 import { PlayerConnected } from '~renderer/ui/Player';
+import PlaylistConnected from '~renderer/ui/Playlist/view/PlaylistConnected';
 import IndicatorsBarConnected from '~renderer/view/App/ReadyScreen/IndicatorsBarConnected';
 import NavigationConnected from '~renderer/view/App/ReadyScreen/NavigationConnected';
 import Page from '~renderer/view/App/ReadyScreen/Page';
-import PlaylistConnected from '~renderer/view/App/ReadyScreen/PlaylistConnected';
 
 // tslint:disable-next-line
 import './ReadyScreen.css';

@@ -2,13 +2,14 @@ import path from 'path';
 import { createSelector } from 'reselect';
 
 import * as simple from './simple';
+import { playlistSelectors } from '~renderer/ui/Playlist';
 
 export const isAppReady = state => simple.getAppStartProgress(state) === 100;
 
 export const getCurrentTrack = (state) => {
-  const index = simple.getCurrentTrackIndex(state);
+  const index = playlistSelectors.getCurrentTrackIndex(state);
   if (index !== null) {
-    return simple.getPlaylistTracksByIndex(state)[index];
+    return playlistSelectors.getPlaylistTracksByIndex(state)[index];
   }
   return undefined;
 };
@@ -19,19 +20,19 @@ export const getCurrentTrackSource = (state) => {
   return `${gateway}/ipfs/${track.audio}`;
 };
 
-export const isPlayerActive = state => simple.getCurrentTrackIndex(state) !== null;
+export const isPlayerActive = state => playlistSelectors.getCurrentTrackIndex(state) !== null;
 
 export const isShareCandidatesRecieved = state => simple.getShareCandidates(state).length > 0;
 
 export const getPlaylistTracksIndexes = createSelector(
-  simple.getPlaylistTracksByIndex,
+  playlistSelectors.getPlaylistTracksByIndex,
   tracks => Object.keys(tracks),
 );
 
 export const getPlaylistTracksCount = state => getPlaylistTracksIndexes(state).length;
 
 export const getPlaylistTracksCIDs = createSelector(
-  simple.getPlaylistTracksByIndex,
+  playlistSelectors.getPlaylistTracksByIndex,
   tracks => Object.values(tracks).map(({ audio }) => audio),
 );
 

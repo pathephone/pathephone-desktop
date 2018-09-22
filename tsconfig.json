@@ -8,6 +8,7 @@
     "module": "commonjs",
     "target": "es5",
     "esModuleInterop": true,
+    "strictNullChecks": true,
     "jsx": "react",
     "paths": {
       "~renderer/*": ["./src/renderer/*"],

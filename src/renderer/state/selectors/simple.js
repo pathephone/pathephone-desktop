@@ -1,5 +1,4 @@
 export * from '../domains/audio';
-export * from '../domains/playlist';
 export * from '../domains/volume';
 export * from '../domains/discoverPage';
 export * from '../domains/discoverSelected';

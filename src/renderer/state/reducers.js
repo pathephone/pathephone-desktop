@@ -1,5 +1,4 @@
 export { default as audio } from './domains/audio';
-export { default as playlist } from './domains/playlist';
 export { default as volume } from './domains/volume';
 export { default as discoverPage } from './domains/discoverPage';
 export { default as discoverSelected } from './domains/discoverSelected';

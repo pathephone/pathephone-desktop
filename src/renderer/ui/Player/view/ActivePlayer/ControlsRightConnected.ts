@@ -2,8 +2,8 @@ import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
 import actions from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
-import selectors from '~renderer/state/selectors';
 import { ControlsRight } from '~renderer/ui/Player/view/ActivePlayer/ControlsRight';
+import { playlistSelectors } from '~renderer/ui/Playlist';
 
 interface IStateProps {
   isShuffleTurnedOn: boolean;
@@ -13,8 +13,8 @@ interface IStateProps {
 const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
   state: IRootState
 ) : IStateProps => ({
-  isShuffleTurnedOn: selectors.isShuffleTurnedOn(state),
-  isRepeatTurnedOn: selectors.isRepeatTurnedOn(state)
+  isShuffleTurnedOn: playlistSelectors.isShuffleTurnedOn(state),
+  isRepeatTurnedOn: playlistSelectors.isRepeatTurnedOn(state)
 });
 
 interface IDispatchProps {
