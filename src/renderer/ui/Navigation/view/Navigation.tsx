@@ -1,24 +1,28 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
-import UploadIcon from 'react-icons/lib/md/share';
-import DiscoverIcon from 'react-icons/lib/md/search';
 import InfoIcon from 'react-icons/lib/md/info';
+import DiscoverIcon from 'react-icons/lib/md/search';
+import UploadIcon from 'react-icons/lib/md/share';
 
+import { NavigationItem } from '~renderer/ui/Navigation/view/Navigation/NavigationItem';
 import {
   ROUTE_ADD_ALBUM,
   ROUTE_ALBUMS,
-  ROUTE_DONATE,
+  ROUTE_DONATE
 } from '~shared/data/constants';
-import i18n from '~shared/data/i18n';
 import e2e from '~shared/data/e2e';
-
-import NavigationItem from './Navigation/NavigationItem';
+import i18n from '~shared/data/i18n';
 
 import './Navigation.css';
 
-const Navigation = ({ hasUpdateIndicator }) => (
-  <nav className="navigation">
+interface IProps {
+  hasUpdateIndicator: boolean;
+}
+
+export const Navigation: React.SFC<IProps> = (
+  props: IProps
+): React.ReactElement<IProps> => (
+  <nav className='navigation'>
     <NavigationItem
       id={e2e.NAV_DISCOVER_LINK_ID}
       path={ROUTE_ALBUMS}
@@ -35,13 +39,7 @@ const Navigation = ({ hasUpdateIndicator }) => (
       path={ROUTE_DONATE}
       title={i18n.ABOUT_BUTTON}
       icon={<InfoIcon />}
-      hasIndicator={hasUpdateIndicator}
+      hasIndicator={props.hasUpdateIndicator}
     />
   </nav>
 );
-
-Navigation.propTypes = {
-  hasUpdateIndicator: propTypes.bool.isRequired,
-};
-
-export default Navigation;
