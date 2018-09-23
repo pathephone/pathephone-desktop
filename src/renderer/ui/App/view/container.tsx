@@ -11,7 +11,7 @@ interface IProps {
   hasLockScreen: boolean;
   hasReadyScreen: boolean;
   hasCloseScreen: boolean;
-  errorMessage: string;
+  errorMessage?: string;
   progress: number;
   onDidMount(): void;
 }

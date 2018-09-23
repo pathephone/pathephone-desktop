@@ -3,7 +3,7 @@ import { connect, MapStateToProps } from 'react-redux';
 import { IRootState } from '~renderer/state/rootState';
 import { notificationsEvents, notificationsSelectors } from '~renderer/ui/Notifications';
 import { INotification } from '~renderer/ui/Notifications/types';
-import { NotificationsContainer } from '~renderer/ui/Notifications/view/container';
+import { Notifications } from '~renderer/ui/Notifications/view/Notifications';
 import { IActionCreator } from '~renderer/utils/actions';
 
 // state
@@ -28,6 +28,6 @@ const mapDispatchToProps: IDispatchProps = {
   onToastRemove: notificationsEvents.notificationCanceled
 };
 
-export const NotificationsWidget: React.ComponentClass = connect<IStateProps, IDispatchProps>(
+export const NotificationsConnected: React.ComponentClass = connect<IStateProps, IDispatchProps>(
   mapStateToProps, mapDispatchToProps
-)(NotificationsContainer);
+)(Notifications);

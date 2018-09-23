@@ -14,8 +14,10 @@ class NotificationsToast extends React.Component<IProps> {
 
   private timeoutId: number | null = null;
 
-  public handleToastClick = () : void => {
-    window.clearTimeout(this.timeoutId);
+  public handleToastClick = (): void => {
+    if (this.timeoutId) {
+      window.clearTimeout(this.timeoutId);
+    }
     this.timeoutId = null;
     const { onToastRemove, id } = this.props;
     onToastRemove(id);

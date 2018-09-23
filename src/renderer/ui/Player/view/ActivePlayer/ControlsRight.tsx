@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { default as MdRepeat } from 'react-icons/lib/md/repeat';
-import { default as MdShuffle } from 'react-icons/lib/md/shuffle';
+import MdRepeat from 'react-icons/lib/md/repeat';
+import MdShuffle from 'react-icons/lib/md/shuffle';
 
 interface IProps {
   isShuffleTurnedOn: boolean;

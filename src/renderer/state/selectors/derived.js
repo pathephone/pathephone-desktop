@@ -14,6 +14,14 @@ export const getCurrentTrack = (state) => {
   return undefined;
 };
 
+export const getCurrentTrackStrict = (state) => {
+  const index = playlistSelectors.getCurrentTrackIndex(state);
+  if (index !== null) {
+    return playlistSelectors.getPlaylistTracksByIndex(state)[index];
+  }
+  throw new Error('Selector used in a wrong place.');
+};
+
 export const getCurrentTrackSource = (state) => {
   const track = getCurrentTrack(state);
   const gateway = simple.getIpfsGateway(state);

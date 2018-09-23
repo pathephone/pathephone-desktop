@@ -8,6 +8,7 @@
     "export-name": false,
     "match-default-export-name": true,
     "no-import-side-effect": [true, {"ignore-module": "(\\.html|\\.css|\\.scss)$"}],
-    "no-relative-imports": false
+    "no-relative-imports": false,
+    "import-name": false
   }
 }

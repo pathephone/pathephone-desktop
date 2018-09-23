@@ -36,7 +36,7 @@ export class TrackTimeline extends React.PureComponent<IProps, IState> {
     const { onStopSeeking } = this.props;
     const { seekValue } = this.state;
     if (seekValue) {
-      onStopSeeking(this.state.seekValue);
+      onStopSeeking(seekValue);
     }
   }
 
@@ -45,7 +45,7 @@ export class TrackTimeline extends React.PureComponent<IProps, IState> {
       const { onStopSeeking } = this.props;
       const { seekValue } = this.state;
       if (seekValue) {
-        onStopSeeking(this.state.seekValue);
+        onStopSeeking(seekValue);
       }
     }
   }

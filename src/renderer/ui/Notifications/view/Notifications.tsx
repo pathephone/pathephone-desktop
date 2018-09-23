@@ -9,7 +9,7 @@ interface IProps {
   onToastRemove(params: number): void;
 }
 
-export const NotificationsContainer: React.StatelessComponent<IProps> = (
+export const Notifications: React.StatelessComponent<IProps> = (
   { notifications, onToastRemove } : IProps
 ) : React.ReactElement<IProps> => (
   <NotificationsWrapper>

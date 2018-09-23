@@ -8,6 +8,6 @@ export const uiPlaylistTrackPlayed: IActionCreator<string> = uiAction<string>(
 export const uiPlaylistTrackRemoved: IActionCreator<string> = uiAction<string>(
   playlistDomain('PLAYLIST_TRACK_REMOVED')
 );
-export const uiPlaylistCleared: IActionCreator<void> = uiAction(
+export const uiPlaylistCleared: IActionCreator = uiAction(
   playlistDomain('PLAYLIST_CLEARED')
 );

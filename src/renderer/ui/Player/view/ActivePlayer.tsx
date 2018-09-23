@@ -122,20 +122,32 @@ export class ActivePlayer extends React.Component<IProps, IState> {
         {
           isReadyToPlay ? (
             <TrackBarContainer>
-              <TrackBuffer
-                bufferedMap={bufferedMap}
-              />
-              <TrackInfo
-                title={title}
-                artist={artist}
-                currentTime={currentTime}
-                duration={duration}
-              />
-              <TrackTimeline
-                currentTime={currentTime}
-                duration={duration}
-                onStopSeeking={this.handleStopSeeking}
-              />
+              {
+                bufferedMap && (
+                  <TrackBuffer
+                    bufferedMap={bufferedMap}
+                  />
+                )
+              }
+              {
+                duration && (
+                  <TrackInfo
+                    title={title}
+                    artist={artist}
+                    currentTime={currentTime}
+                    duration={duration}
+                  />
+                )
+              }
+              {
+                duration && (
+                  <TrackTimeline
+                    currentTime={currentTime}
+                    duration={duration}
+                    onStopSeeking={this.handleStopSeeking}
+                  />
+                )
+              }
             </TrackBarContainer>
           ) : (
             <ProgressBar />

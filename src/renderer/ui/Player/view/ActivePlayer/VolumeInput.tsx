@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { default as MdVolumeDown } from 'react-icons/lib/md/volume-down';
-import { default as MdVolumeMute } from 'react-icons/lib/md/volume-mute';
-import { default as MdVolumeOff } from 'react-icons/lib/md/volume-off';
-import { default as MdVolumeUp } from 'react-icons/lib/md/volume-up';
+import MdVolumeDown from 'react-icons/lib/md/volume-down';
+import MdVolumeMute from 'react-icons/lib/md/volume-mute';
+import MdVolumeOff from 'react-icons/lib/md/volume-off';
+import MdVolumeUp from 'react-icons/lib/md/volume-up';
 
 import './VolumeInput.css';
 

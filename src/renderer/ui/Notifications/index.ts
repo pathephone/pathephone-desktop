@@ -13,4 +13,4 @@ export {
   notificationsSetters
 };
 
-export { NotificationsWidget as default }  from './view/widget';
+export * from './view/NotificationsConnected';

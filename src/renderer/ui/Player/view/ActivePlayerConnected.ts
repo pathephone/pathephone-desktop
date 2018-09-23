@@ -16,7 +16,7 @@ interface IStateProps {
 const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
   state: IRootState
 ) : IStateProps => {
-  const { title, artist } = selectors.getCurrentTrack(state);
+  const { title, artist } = selectors.getCurrentTrackStrict(state);
 
   return {
     title,

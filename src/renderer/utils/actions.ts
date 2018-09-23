@@ -1,29 +1,31 @@
-interface IGenericAction<TPayload> {
+interface IGenericAction<TPayload = void> {
   payload: TPayload;
   // tslint:disable-next-line no-reserved-keywords
   type: string;
 }
 
-export type IActionCreator<TPayload> = (payload: TPayload) => IGenericAction<TPayload>;
+export type IActionCreator<TPayload = void> = (payload: TPayload) => IGenericAction<TPayload>;
 
-type IActionCreatorCreator = <TPayload>(postfix: string) => IActionCreator<TPayload>;
+type IActionCreatorFactory = <TPayload>(postfix: string) => IActionCreator<TPayload>;
 
-type IActionCreatorCreatorFactory = (prefix: string) => IActionCreatorCreator;
+type IGetActionCreatorFactory = (prefix: string) => IActionCreatorFactory;
 
-const actionCreatorCreatorFactory: IActionCreatorCreatorFactory = (
-  prefix: string
-): IActionCreatorCreator => (
-  <TPayload> (postfix: string) : IActionCreator<TPayload> => {
-    const actionType: string = `@${prefix}/${postfix}`;
-    const creator: IActionCreator<TPayload> = (payload: TPayload) : IGenericAction<TPayload> => ({
-      payload,
-      type: actionType
-    });
-    creator.toString = () : string => actionType;
+const getActionCreatorFactory: IGetActionCreatorFactory = (
+  (prefix: string): IActionCreatorFactory => (
+    <TPayload> (postfix: string): IActionCreator<TPayload> => {
+      const actionType: string = `@${prefix}/${postfix}`;
+      const creator: IActionCreator<TPayload> = (
+        payload: TPayload
+      ): IGenericAction<TPayload> => ({
+        payload,
+        type: actionType
+      });
+      creator.toString = (): string => actionType;
 
-    return creator;
-  }
+      return creator;
+    }
+  )
 );
 
-export const uiAction: IActionCreatorCreator = actionCreatorCreatorFactory('ui');
-export const systemAction: IActionCreatorCreator = actionCreatorCreatorFactory('system');
+export const uiAction: IActionCreatorFactory = getActionCreatorFactory('ui');
+export const systemAction: IActionCreatorFactory = getActionCreatorFactory('system');

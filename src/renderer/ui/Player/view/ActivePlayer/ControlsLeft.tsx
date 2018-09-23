@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { default as MdPause } from 'react-icons/lib/md/pause';
-import { default as MdPlay } from 'react-icons/lib/md/play-arrow';
-import { default as MdSkipNext } from 'react-icons/lib/md/skip-next';
-import { default as MdSkipPrev } from 'react-icons/lib/md/skip-previous';
+import MdPause from 'react-icons/lib/md/pause';
+import MdPlay from 'react-icons/lib/md/play-arrow';
+import MdSkipNext from 'react-icons/lib/md/skip-next';
+import MdSkipPrev from 'react-icons/lib/md/skip-previous';
 
 interface IProps {
   hasPauseIcon: boolean;
