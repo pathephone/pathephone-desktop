@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import e2e from '~shared/data/e2e';
 
+import { IndicatorsBarsConnected } from '~renderer/ui/IndicatorsBar';
 import { NotificationsConnected } from '~renderer/ui/Notifications';
 import { PlayerConnected } from '~renderer/ui/Player';
 import { PlaylistConnected } from '~renderer/ui/Playlist';
-import IndicatorsBarConnected from '~renderer/view/App/ReadyScreen/IndicatorsBarConnected';
 import NavigationConnected from '~renderer/view/App/ReadyScreen/NavigationConnected';
 import Page from '~renderer/view/App/ReadyScreen/Page';
 
@@ -17,7 +17,7 @@ export const ReadyScreen: React.SFC = () : React.ReactElement<void> => (
     <Page />
     <PlaylistConnected />
     <PlayerConnected />
-    <IndicatorsBarConnected />
+    <IndicatorsBarsConnected />
     <NotificationsConnected />
   </div>
 );
