@@ -9,36 +9,8 @@ import IziForm from '~components/IziForm';
 import AboutFieldset from './ShareForm/AboutFieldset';
 import TracklistFieldset from './ShareForm/TracklistFieldset';
 import FormControls from './ShareForm/FormControls';
-
 import './ShareForm.css';
-
-const toNextValues = (values, e) => {
-  const { name, value, files } = e.target;
-  let nextValue;
-  switch (name) {
-    case 'cover.image': {
-      if (files[0] && files[0].type.startsWith('image/')) {
-        nextValue = files[0].path;
-      }
-      break;
-    }
-    case 'tracks': {
-      if (files.length > 0) {
-        const newTracks = Array.from(files)
-          .map(file => ({ audio: file.path }));
-        nextValue = [...values.tracks, ...newTracks];
-        e.target.value = '';
-      }
-      break;
-    }
-    default:
-      nextValue = value;
-  }
-  if (typeof nextValue !== 'undefined') {
-    return dotProp.set(values, name, nextValue);
-  }
-  return undefined;
-};
+import { toNextValues } from '~renderer/ui/SharePage/utils/toNextValues';
 
 class ShareForm extends React.Component {
   state = {

@@ -1,19 +1,20 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
 import GithubIcon from 'react-icons/lib/go/mark-github';
-import TwitterIcon from 'react-icons/lib/io/social-twitter';
 import GlobeIcon from 'react-icons/lib/io/earth';
+import TwitterIcon from 'react-icons/lib/io/social-twitter';
 
+import { NewReleaseCardConnected } from '~renderer/ui/DonatePage/view/AboutHero/NewReleaseCardConnected';
+import { SocialLink } from '~renderer/ui/DonatePage/view/AboutHero/SocialLink';
 import getMyAppVersion from '~shared/utils/getMyAppVersion';
-
-import SocialLink from './AboutHero/SocialLink';
-import NewReleaseCardConnected from './AboutHero/NewReleaseCardConnected';
-
 import './AboutHero.css';
 
-const Hero = ({ hasNewReleaseCard }) => (
-  <div className="aboutHero">
+interface IProps {
+  hasNewReleaseCard: boolean;
+}
+
+export const AboutHero: React.SFC<IProps> = (props: IProps): React.ReactElement<IProps> => (
+  <div className='aboutHero'>
     <h1>
 Pathephone
     </h1>
@@ -22,29 +23,29 @@ v
       {getMyAppVersion()}
     </div>
     {
-      hasNewReleaseCard && (
+      props.hasNewReleaseCard && (
         <React.Fragment>
           <br />
           <NewReleaseCardConnected />
         </React.Fragment>
       )
     }
-    <small className="aboutHeroSocial">
-      <SocialLink link="https://pathephone.github.io">
+    <small className='aboutHeroSocial'>
+      <SocialLink link='https://pathephone.github.io'>
         <GlobeIcon />
         {' '}
         <span>
 Site
         </span>
       </SocialLink>
-      <SocialLink link="https://twitter.com/patheplayer">
+      <SocialLink link='https://twitter.com/patheplayer'>
         <TwitterIcon />
         {' '}
         <span>
 Twitter
         </span>
       </SocialLink>
-      <SocialLink link="https://github.com/pathephone">
+      <SocialLink link='https://github.com/pathephone'>
         <GithubIcon />
         {' '}
         <span>
@@ -54,9 +55,3 @@ GitHub
     </small>
   </div>
 );
-
-Hero.propTypes = {
-  hasNewReleaseCard: propTypes.bool.isRequired,
-};
-
-export default Hero;

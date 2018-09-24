@@ -6,7 +6,6 @@ import MdCancel from 'react-icons/lib/md/cancel';
 import MdReset from 'react-icons/lib/md/autorenew';
 
 import CustomButton from '~components/CustomButton';
-
 import i18n from '~shared/data/i18n';
 import e2e from '~shared/data/e2e';
 

@@ -10,6 +10,9 @@
     "esModuleInterop": true,
     "strictNullChecks": true,
     "jsx": "react",
+    "lib": [
+      "es6"
+    ],
     "paths": {
       "~renderer/*": ["./src/renderer/*"],
       "~main/*": ["./src/main/*"],

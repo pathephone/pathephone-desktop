@@ -5,10 +5,9 @@ import e2e from '~shared/data/e2e';
 import { IndicatorsBarsConnected } from '~renderer/ui/IndicatorsBar';
 import { NavigationConnected } from '~renderer/ui/Navigation';
 import { NotificationsConnected } from '~renderer/ui/Notifications';
+import { Page } from '~renderer/ui/Page';
 import { PlayerConnected } from '~renderer/ui/Player';
 import { PlaylistConnected } from '~renderer/ui/Playlist';
-import Page from '~renderer/view/App/ReadyScreen/Page';
-
 import './ReadyScreen.css';
 
 export const ReadyScreen: React.SFC = () : React.ReactElement<void> => (
