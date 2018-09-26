@@ -1,29 +1,34 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
 import CoverPreview from '~components/CoverPreview';
 import CustomTextInput from '~components/CustomTextInput';
 
-import i18n from '~shared/data/i18n';
 import e2e from '~shared/data/e2e';
+import i18n from '~shared/data/i18n';
 
 import './AboutFieldset.css';
 
-class AboutFieldset extends React.PureComponent {
-  render() {
+interface IProps {
+  isDisabled: boolean;
+  coverSrc: string | null;
+}
+
+export class AboutFieldset extends React.Component<IProps> {
+  public render(): React.ReactElement<IProps> {
     const { isDisabled, coverSrc } = this.props;
+
     return (
-      <fieldset disabled={isDisabled} className="shareFormAboutFieldset">
-        <div className="shareFormAboutFieldsetInline">
-          <div className="aboutTextInputs">
+      <fieldset disabled={isDisabled} className='shareFormAboutFieldset'>
+        <div className='shareFormAboutFieldsetInline'>
+          <div className='aboutTextInputs'>
             <label htmlFor={e2e.SHARE_FORM_TITLE_INPUT_ID}>
               {i18n.TITLE}
               <br />
               <CustomTextInput
                 id={e2e.SHARE_FORM_TITLE_INPUT_ID}
-                type="text"
+                type='text'
                 placeholder={i18n.ALBUM_TITLE}
-                name="title"
+                name='title'
               />
             </label>
             <br />
@@ -32,24 +37,24 @@ class AboutFieldset extends React.PureComponent {
               <br />
               <CustomTextInput
                 id={e2e.SHARE_FORM_ARTIST_INPUT_ID}
-                type="text"
+                type='text'
                 placeholder={i18n.ALBUM_ARTIST}
-                name="artist"
+                name='artist'
               />
             </label>
           </div>
-          <div className="coverInputContainer">
+          <div className='coverInputContainer'>
             <input
               id={e2e.SHARE_FORM_COVER_INPUT_ID}
-              className="coverInput"
-              name="cover.image"
-              type="file"
-              accept="image/*"
+              className='coverInput'
+              name='cover.image'
+              type='file'
+              accept='image/*'
             />
             <label
               id={e2e.SHARE_FORM_COVER_LABEL_ID}
               htmlFor={e2e.SHARE_FORM_COVER_INPUT_ID}
-              className="coverLabel"
+              className='coverLabel'
             >
               <CoverPreview
                 coverSrc={coverSrc}
@@ -61,14 +66,3 @@ class AboutFieldset extends React.PureComponent {
     );
   }
 }
-
-AboutFieldset.defaultProps = {
-  coverSrc: null,
-};
-
-AboutFieldset.propTypes = {
-  isDisabled: propTypes.bool.isRequired,
-  coverSrc: propTypes.string,
-};
-
-export default AboutFieldset;

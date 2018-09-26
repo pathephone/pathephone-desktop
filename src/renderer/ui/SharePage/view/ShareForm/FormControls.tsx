@@ -1,20 +1,27 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
-import MdSave from 'react-icons/lib/md/save';
-import MdCancel from 'react-icons/lib/md/cancel';
 import MdReset from 'react-icons/lib/md/autorenew';
+import MdCancel from 'react-icons/lib/md/cancel';
+import MdSave from 'react-icons/lib/md/save';
 
 import CustomButton from '~components/CustomButton';
-import i18n from '~shared/data/i18n';
 import e2e from '~shared/data/e2e';
+import i18n from '~shared/data/i18n';
 
-const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
+interface IProps {
+  isDisabled: boolean;
+  onCancelClick(): void;
+  onResetClick(): void;
+}
+
+export const FormControls: React.SFC<IProps> = (
+  props: IProps
+): React.ReactElement<IProps> => (
   <React.Fragment>
     <CustomButton
-      className="shareFormSubmit"
+      className='shareFormSubmit'
       id={e2e.SHARE_FORM_SAVE_BUTTON_ID}
-      disabled={isDisabled}
+      disabled={props.isDisabled}
     >
       <span>
         <MdSave />
@@ -25,11 +32,11 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       </span>
     </CustomButton>
     <CustomButton
-      type="button"
+      type='button'
       id={e2e.SHARE_FORM_CANCEL_BUTTON_ID}
-      className="shareFormCancel"
-      disabled={isDisabled}
-      onClick={onCancelClick}
+      className='shareFormCancel'
+      disabled={props.isDisabled}
+      onClick={props.onCancelClick}
     >
       <MdCancel />
       {' '}
@@ -38,11 +45,11 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
       </small>
     </CustomButton>
     <CustomButton
-      type="button"
+      type='button'
       id={e2e.SHARE_FORM_RESET_BUTTON_ID}
-      className="shareFormReset"
-      disabled={isDisabled}
-      onClick={onResetClick}
+      className='shareFormReset'
+      disabled={props.isDisabled}
+      onClick={props.onResetClick}
     >
       <MdReset />
       {' '}
@@ -52,11 +59,3 @@ const FormControls = ({ isDisabled, onCancelClick, onResetClick }) => (
     </CustomButton>
   </React.Fragment>
 );
-
-FormControls.propTypes = {
-  isDisabled: propTypes.bool.isRequired,
-  onCancelClick: propTypes.func.isRequired,
-  onResetClick: propTypes.func.isRequired,
-};
-
-export default FormControls;

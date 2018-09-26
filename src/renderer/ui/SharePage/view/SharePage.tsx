@@ -2,8 +2,8 @@ import React from 'react';
 
 import ProcessingScreen from '~components/ProcessingScreen';
 import { PageContainer } from '~renderer/components/PageContainer';
+import { ShareFormConnected } from '~renderer/ui/SharePage/view/ShareFormConnected';
 import { ShareDropZone } from '~renderer/ui/SharePage/view/SharePage/ShareDropZone';
-import { ShareFormConnected } from '~renderer/ui/SharePage/view/SharePage/ShareFormConnected';
 import e2e from '~shared/data/e2e';
 
 interface IProps {

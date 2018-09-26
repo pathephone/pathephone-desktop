@@ -1042,6 +1042,12 @@
   dependencies:
     redux "*"
 
+"@types/webdriverio@^4.10.4":
+  version "4.10.4"
+  resolved "https://registry.yarnpkg.com/@types/webdriverio/-/webdriverio-4.10.4.tgz#3253ce99735c8e55be25cafe44dae0b3cd457db9"
+  dependencies:
+    "@types/node" "*"
+
 "@types/webpack-env@^1.13.6":
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"

@@ -11,7 +11,8 @@
     "strictNullChecks": true,
     "jsx": "react",
     "lib": [
-      "es6"
+      "es6",
+      "dom"
     ],
     "paths": {
       "~renderer/*": ["./src/renderer/*"],

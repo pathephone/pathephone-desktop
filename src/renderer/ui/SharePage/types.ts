@@ -1,7 +1,8 @@
 
 export interface IShareFormTrack {
-  title: string;
-  artist: string;
+  audio: string;
+  title?: string;
+  artist?: string;
 }
 
 export interface IShareFormCover {
@@ -13,4 +14,8 @@ export interface IShareFormValues {
   artist: string;
   cover: IShareFormCover;
   tracks: IShareFormTrack[];
+}
+
+export interface IShareFormValidation {
+  [x: string]: string;
 }

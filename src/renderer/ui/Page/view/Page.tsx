@@ -6,8 +6,8 @@ import {
 } from '~shared/data/constants';
 
 import { DonatePage } from '~renderer/ui/DonatePage';
+import { SharePageConnected } from '~renderer/ui/SharePage';
 import DiscoverPageConnected from '~renderer/view/App/ReadyScreen/Page/DiscoverPageConnected';
-import SharePageConnected from '~renderer/view/App/ReadyScreen/Page/SharePageConnected';
 
 const RedirectHome: React.SFC<RouteComponentProps<{}>> = (
 ): React.ReactElement<RouteComponentProps<{}>> => <Redirect to={ROUTE_HOME} />;

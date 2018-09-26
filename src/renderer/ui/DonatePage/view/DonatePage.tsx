@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PageContainer from '~components/PageContainer';
+import { PageContainer } from '~renderer/components/PageContainer';
 import { AboutHeroConnected } from '~renderer/ui/DonatePage/view/AboutHeroConnected';
 import { DonateCard } from '~renderer/ui/DonatePage/view/DonateCard';
 import './DonatePage.css';

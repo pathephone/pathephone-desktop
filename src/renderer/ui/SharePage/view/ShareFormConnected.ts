@@ -4,7 +4,7 @@ import actions from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { IShareFormValues } from '~renderer/ui/SharePage/types';
-import ShareForm from './ShareForm';
+import { ShareForm } from '~renderer/ui/SharePage/view/ShareForm';
 
 interface IStateProps {
   values: IShareFormValues;
