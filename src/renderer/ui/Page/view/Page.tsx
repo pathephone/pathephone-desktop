@@ -5,9 +5,9 @@ import {
   ROUTE_ADD_ALBUM, ROUTE_ALBUMS, ROUTE_DONATE, ROUTE_HOME
 } from '~shared/data/constants';
 
+import { DiscoverPageConnected } from '~renderer/ui/DiscoverPage';
 import { DonatePage } from '~renderer/ui/DonatePage';
 import { SharePageConnected } from '~renderer/ui/SharePage';
-import DiscoverPageConnected from '~renderer/view/App/ReadyScreen/Page/DiscoverPageConnected';
 
 const RedirectHome: React.SFC<RouteComponentProps<{}>> = (
 ): React.ReactElement<RouteComponentProps<{}>> => <Redirect to={ROUTE_HOME} />;

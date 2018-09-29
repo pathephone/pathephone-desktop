@@ -1,32 +1,42 @@
 import React from 'react';
-import propTypes from 'prop-types';
 
 import ProcessingScreen from '~components/ProcessingScreen';
-
-import NoAlbumsScreen from './DiscoverPageBody/NoAlbumsScreen';
-import NoSearchResultsScreen from './DiscoverPageBody/NoSearchResultsScreen';
-import FeedScreenConnected from './DiscoverPageBody/FeedScreenConnected';
-
+import { NoAlbumsScreen } from '~renderer/ui/DiscoverPage/view/DiscoverPageBody/NoAlbumsScreen';
+import { NoSearchResultsScreen } from '~renderer/ui/DiscoverPage/view/DiscoverPageBody/NoSearchResultsScreen';
+import { FeedScreenConnected } from '~renderer/ui/DiscoverPage/view/FeedScreenConnected';
 import './DiscoverPageBody.css';
 
-class DiscoverPageBody extends React.Component {
-  componentDidUpdate() {
+interface IProps {
+  hasNoAlbumsScreen: boolean;
+  hasNoSearchResultsScreen: boolean;
+  hasFeedScreen: boolean;
+  hasProcessingScreen: boolean;
+  isAlbumsUpdateNeeded: boolean;
+  onAlbumsUpdateRequest(): void;
+}
+
+export type IDiscoverPageBodyProps = IProps;
+
+export class DiscoverPageBody extends React.Component<IProps> {
+
+  public componentDidUpdate(): void {
     const { isAlbumsUpdateNeeded, onAlbumsUpdateRequest } = this.props;
     if (isAlbumsUpdateNeeded) {
       onAlbumsUpdateRequest();
     }
   }
 
-  render() {
+  public render(): React.ReactElement<IProps> {
     const {
       hasNoAlbumsScreen,
       hasNoSearchResultsScreen,
       hasFeedScreen,
-      hasProcessingScreen,
+      hasProcessingScreen
     } = this.props;
+
     return (
       <div
-        className="albums-page__body"
+        className='albums-page__body'
       >
         {
           hasNoAlbumsScreen && (
@@ -52,14 +62,3 @@ class DiscoverPageBody extends React.Component {
     );
   }
 }
-
-DiscoverPageBody.propTypes = {
-  hasNoAlbumsScreen: propTypes.bool.isRequired,
-  hasNoSearchResultsScreen: propTypes.bool.isRequired,
-  hasFeedScreen: propTypes.bool.isRequired,
-  hasProcessingScreen: propTypes.bool.isRequired,
-  isAlbumsUpdateNeeded: propTypes.bool.isRequired,
-  onAlbumsUpdateRequest: propTypes.func.isRequired,
-};
-
-export default DiscoverPageBody;

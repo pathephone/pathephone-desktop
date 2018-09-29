@@ -1,34 +1,41 @@
-import React from 'react';
 import propTypes from 'prop-types';
+import React from 'react';
 
+import MdClear from 'react-icons/lib/md/clear';
+import MdDelete from 'react-icons/lib/md/delete';
 import MdPlay from 'react-icons/lib/md/play-arrow';
 import MdAdd from 'react-icons/lib/md/playlist-add';
-import MdDelete from 'react-icons/lib/md/delete';
-import MdClear from 'react-icons/lib/md/clear';
-
-import i18n from '~shared/data/i18n';
-import e2e from '~shared/data/e2e';
 
 import CustomButton from '~components/CustomButton';
-
+import e2e from '~shared/data/e2e';
+import i18n from '~shared/data/i18n';
 import './SelectedActions.css';
 
-class SelectedActions extends React.PureComponent {
-  render() {
+interface IProps {
+  selectedAlbumsCount: number;
+  onPlaySelected(): void;
+  onAddSelected(): void;
+  onDeleteSelected(): void;
+  onCancelSelection(): void;
+}
+
+export class SelectedActions extends React.Component<IProps> {
+  public render(): React.ReactElement<IProps> {
     const {
       selectedAlbumsCount,
       onPlaySelected,
       onAddSelected,
       onDeleteSelected,
-      onCancelSelection,
+      onCancelSelection
     } = this.props;
+
     return (
       <div
         id={e2e.DISCOVER_PAGE_SELECTED_BAR_ID}
-        className="selectedActions"
+        className='selectedActions'
       >
         <div
-          className="selectedActionsCount"
+          className='selectedActionsCount'
         >
           <span
             id={e2e.DISCOVER_PAGE_SELECTED_COUNT_ID}
@@ -66,7 +73,7 @@ class SelectedActions extends React.PureComponent {
             {i18n.DELETE}
           </small>
         </CustomButton>
-        <div className="selectedActionsRight">
+        <div className='selectedActionsRight'>
           <CustomButton
             onClick={onCancelSelection}
           >
@@ -77,13 +84,3 @@ class SelectedActions extends React.PureComponent {
     );
   }
 }
-
-SelectedActions.propTypes = {
-  selectedAlbumsCount: propTypes.number.isRequired,
-  onPlaySelected: propTypes.func.isRequired,
-  onAddSelected: propTypes.func.isRequired,
-  onDeleteSelected: propTypes.func.isRequired,
-  onCancelSelection: propTypes.func.isRequired,
-};
-
-export default SelectedActions;

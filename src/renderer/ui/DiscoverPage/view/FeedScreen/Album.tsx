@@ -1,85 +1,98 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import MdAlbum from 'react-icons/lib/md/album';
 import MdPlay from 'react-icons/lib/md/play-arrow';
 import MdAdd from 'react-icons/lib/md/playlist-add';
-import MdAlbum from 'react-icons/lib/md/album';
 
 import e2e from '~shared/data/e2e';
 
 import './Album.css';
 
-class Album extends React.Component {
-  handleAlbumClick = () => {
+interface IProps {
+  hasSelectedView: boolean;
+  albumId: number;
+  albumCid: string;
+  albumArtist: string;
+  albumTitle: string;
+  albumCoverURL: string;
+  isCoverCached: boolean;
+  onToggleSelect(id: number): void;
+  onAddAlbumToPlaylist(cid: string): void;
+  onPlayAlbum(cid: string): void;
+}
+
+export type IAlbumProps = IProps;
+
+export class Album extends React.Component<IProps> {
+  public handleAlbumClick = (): void => {
     const {
       onToggleSelect,
-      albumId,
+      albumId
     } = this.props;
     onToggleSelect(albumId);
   }
 
-  handleQueueAlbumClick = () => {
+  public handleQueueAlbumClick = (): void => {
     const {
       onAddAlbumToPlaylist,
-      albumCid,
+      albumCid
     } = this.props;
     onAddAlbumToPlaylist(albumCid);
   }
 
-  handlePlayAlbumClick = () => {
+  public handlePlayAlbumClick = (): void => {
     const {
       onPlayAlbum,
-      albumCid,
+      albumCid
     } = this.props;
     onPlayAlbum(albumCid);
   }
 
-  render() {
+  public render(): React.ReactElement<IProps> {
     const {
       hasSelectedView,
       albumTitle,
       albumArtist,
       albumCoverURL,
-      isCoverCached,
+      isCoverCached
     } = this.props;
 
     return (
       <div className={`album${hasSelectedView ? '--selected' : ''}`}>
-        <div className="album__cover-actions">
+        <div className='album__cover-actions'>
           <button
-            type="button"
+            type='button'
             onClick={this.handleAlbumClick}
-            className="album__cover"
+            className='album__cover'
           >
             {
               isCoverCached ? (
                 <img
-                  className="album__cover-image"
+                  className='album__cover-image'
                   src={albumCoverURL}
-                  alt="album cover"
-                  onLoad={this.handleImageLoad}
+                  alt='album cover'
                 />
               ) : (
                 <MdAlbum
-                  className="album__no-cover-icon"
+                  className='album__no-cover-icon'
                 />
               )
             }
           </button>
           {
             !hasSelectedView && (
-              <div className="album__actions">
+              <div className='album__actions'>
                 <button
-                  type="button"
+                  type='button'
                   data-e2e={e2e.DISCOVER_ALBUM_QUEUE_BUTTON}
-                  className="album__actions-button round-button"
+                  className='album__actions-button round-button'
                   onClick={this.handleQueueAlbumClick}
                 >
                   <MdAdd />
                 </button>
                 <button
-                  type="button"
+                  type='button'
                   data-e2e={e2e.DISCOVER_ALBUM_PLAY_BUTTON}
-                  className="album__actions-button round-button"
+                  className='album__actions-button round-button'
                   onClick={this.handlePlayAlbumClick}
                 >
                   <MdPlay />
@@ -89,13 +102,13 @@ class Album extends React.Component {
           }
         </div>
         <h4
-          className="album__title"
+          className='album__title'
           data-e2e={e2e.DISCOVER_ALBUM_TITLE}
         >
           {albumTitle}
         </h4>
         <h5
-          className="album__artist"
+          className='album__artist'
           data-e2e={e2e.DISCOVER_ALBUM_ARTIST}
         >
           {albumArtist}
@@ -104,18 +117,3 @@ class Album extends React.Component {
     );
   }
 }
-
-Album.propTypes = {
-  onToggleSelect: propTypes.func.isRequired,
-  onAddAlbumToPlaylist: propTypes.func.isRequired,
-  onPlayAlbum: propTypes.func.isRequired,
-  hasSelectedView: propTypes.bool.isRequired,
-  albumId: propTypes.number.isRequired,
-  albumCid: propTypes.string.isRequired,
-  albumArtist: propTypes.string.isRequired,
-  albumTitle: propTypes.string.isRequired,
-  albumCoverURL: propTypes.string.isRequired,
-  isCoverCached: propTypes.bool.isRequired,
-};
-
-export default Album;
