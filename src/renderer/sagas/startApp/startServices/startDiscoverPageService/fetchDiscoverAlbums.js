@@ -5,6 +5,7 @@ import normalizeCollectionAlbum from '~shared/utils/normalizeCollectionAlbum';
 import actions from '#actions';
 
 import { DISCOVER_FEED_LIMIT } from '~shared/data/constants';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* fetchDiscoverAlbums(apis, { payload }) {
   const {
@@ -20,7 +21,7 @@ function* fetchDiscoverAlbums(apis, { payload }) {
       yield put(actions.systemDiscoverAlbumsFetchSucceed(normalizedAlbums));
     }
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
     yield put(actions.systemDiscoverAlbumsFetchFailed({ errorMessage: e.message }));
   }
 }

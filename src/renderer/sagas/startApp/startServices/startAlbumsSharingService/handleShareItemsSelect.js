@@ -3,6 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import actions from '#actions';
 
 import i18n from '~shared/data/i18n';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* handleShareItemsSelect(apis, { payload }) {
   const { getAlbumCandidatesFromFs } = apis;
@@ -19,7 +20,7 @@ function* handleShareItemsSelect(apis, { payload }) {
       ));
     }
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
     yield put(actions.systemShareFilesProcessingFailed(
       { errorMessage: i18n.ERROR_PROCESSING_FILES },
     ));

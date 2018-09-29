@@ -3,6 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import actions from '#actions';
 
 import getPlaylistTracksFromAlbums from '~shared/utils/getPlaylistTracksFromAlbums';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* playOrQueueAlbum(args, { type, payload }) {
   yield put(actions.systemUiLocked());
@@ -15,7 +16,7 @@ function* playOrQueueAlbum(args, { type, payload }) {
       yield put(actions.systemQueuedTracksRecieved(tracks));
     }
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
   }
   yield put(actions.systemUiUnlocked());
 }

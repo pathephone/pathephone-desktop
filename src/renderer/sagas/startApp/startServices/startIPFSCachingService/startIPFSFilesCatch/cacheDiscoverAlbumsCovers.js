@@ -1,4 +1,5 @@
 import { call } from 'redux-saga/effects';
+import printRenderer from '~shared/utils/printRenderer';
 
 const handleMap = ({ albumCoverCid }) => albumCoverCid;
 
@@ -10,7 +11,7 @@ function* cacheDiscoverAlbumsCovers(api, { payload }) {
   try {
     yield call(cacheIPFSFilesByCIDs, uncachedCIDs);
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
   }
 }
 

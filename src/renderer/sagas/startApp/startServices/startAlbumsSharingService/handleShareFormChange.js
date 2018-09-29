@@ -1,6 +1,7 @@
 import { all, call, put } from 'redux-saga/effects';
 
 import actions from '#actions';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* handleMap(api, track) {
   const { getTracksFromFsFiles } = api;
@@ -24,7 +25,7 @@ function* handleShareFormChange(apis, { payload }) {
 
     yield put(actions.systemShareFormChanged(album));
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
   }
   yield put(actions.systemUiUnlocked());
 }

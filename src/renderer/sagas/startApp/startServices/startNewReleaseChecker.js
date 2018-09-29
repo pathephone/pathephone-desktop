@@ -13,6 +13,7 @@ import { IS_PRODUCTION } from '~shared/config';
 
 import actions from '#actions';
 import selectors from '#selectors';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* checkForNewRelease() {
   try {
@@ -37,7 +38,7 @@ function* checkForNewRelease() {
       );
     }
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
   }
 }
 

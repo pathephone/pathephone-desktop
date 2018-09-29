@@ -7,6 +7,7 @@ import { IS_TESTING } from '~shared/config';
 import startServices from './startApp/startServices';
 import getApis from './startApp/getApis';
 import checkLegalAgreement from './startApp/checkLegalAgreement';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* startApp() {
   try {
@@ -17,7 +18,7 @@ function* startApp() {
     yield call(startServices, apis);
     yield put(actions.systemAppStartSucceed());
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
     yield put(actions.systemAppStartFailed(e.message));
   }
 }

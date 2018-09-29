@@ -1,4 +1,5 @@
 import actions from '#actions';
+import printRenderer from '~shared/utils/printRenderer';
 
 const DOMAIN = 'notifications';
 
@@ -13,7 +14,7 @@ const reducer = (state = initialState, action) => {
       return [...state, payload];
     case actions.systemNotificationExpired.toString():
     case actions.uiNotificationToastRemoved.toString():
-      console.log(payload);
+      printRenderer.log(payload);
       return state.filter(n => n.id !== payload);
     default:
       return state;

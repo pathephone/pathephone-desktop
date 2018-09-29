@@ -1,6 +1,7 @@
 import { call, select } from 'redux-saga/effects';
 
 import selectors from '#selectors';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* cachePlaylistTracks(api) {
   const { cacheIPFSFilesByCIDs } = api;
@@ -8,7 +9,7 @@ function* cachePlaylistTracks(api) {
   try {
     yield call(cacheIPFSFilesByCIDs, uncachedCIDs);
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
   }
 }
 

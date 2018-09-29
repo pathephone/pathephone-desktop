@@ -1,6 +1,7 @@
 import { call, all, put } from 'redux-saga/effects';
 import actions from '#actions';
 import i18n from '~shared/data/i18n';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* shareTracksToIpfs(apis, tracks) {
   const { shareFsFileToIpfs } = apis;
@@ -37,7 +38,7 @@ function* handleShareFormSubmit(apis, { payload }) {
       }),
     );
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
     if (e.message === 'Key already exists in the object store.') {
       yield put(actions.systemShareCandidateSaveFailed({
         warningMessage: i18n.SHARE_ALBUM_ALREADY_EXISTS,

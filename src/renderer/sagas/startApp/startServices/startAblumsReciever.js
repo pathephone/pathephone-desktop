@@ -4,6 +4,7 @@ import actions from '#actions';
 import { IS_OFFLINE } from '~shared/config';
 
 import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
+import printRenderer from '~shared/utils/printRenderer';
 
 function* transitCachedAlbumsToStore(apis) {
   const {
@@ -17,7 +18,7 @@ function* transitCachedAlbumsToStore(apis) {
       yield put(actions.systemAlbumsRecievedCacheTransited(collectionStat));
     }
   } catch (e) {
-    console.error(e);
+    printRenderer.error(e);
   }
 }
 

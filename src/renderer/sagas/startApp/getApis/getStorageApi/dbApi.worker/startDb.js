@@ -1,6 +1,7 @@
 import Dexie from 'dexie';
 import validateAlbum from '~shared/utils/validateAlbum';
 import { ALBUMS_COLLECTION_LIMIT } from '~shared/data/constants';
+import printRenderer from '~shared/utils/printRenderer';
 
 const DB_NAME = 'pathephone';
 
@@ -37,8 +38,8 @@ const startDb = async () => {
       patchObjectWithDerivedData(obj);
       await cutOutdatedAlbums(db);
     } else {
-      console.log(obj);
-      console.error(errors);
+      printRenderer.log(obj);
+      printRenderer.error(errors);
       throw new Error('Album instance is invalid.');
     }
   });
