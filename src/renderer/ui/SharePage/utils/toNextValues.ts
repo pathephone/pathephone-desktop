@@ -8,7 +8,7 @@ type IMutation = (v: IShareFormValues, e: ChangeEvent<HTMLInputElement>) => ISha
 const applyCoverMutation: IMutation = (
   values: IShareFormValues, e: ChangeEvent<HTMLInputElement>
 ): IShareFormValues => {
-  const { files } = e.currentTarget;
+  const { files, name } = e.currentTarget;
   if (files && files[0] && files[0].type.startsWith('image/')) {
     return dotProp.set(values, name, files[0].path);
   }
@@ -19,7 +19,7 @@ const applyCoverMutation: IMutation = (
 const applyTracksMutation: IMutation = (
   values: IShareFormValues, e: ChangeEvent<HTMLInputElement>
 ): IShareFormValues => {
-  const { files } = e.currentTarget;
+  const { files, name } = e.currentTarget;
   if (files && files.length > 0) {
     const newTracks: IShareFormTrack[] = Array.from(files)
       .map((file: File) => ({ audio: file.path }));
@@ -45,6 +45,7 @@ const applyDefaultMutation: IMutation = (
 export const toNextValues: IMutation = (
   values: IShareFormValues, e: ChangeEvent<HTMLInputElement>
 ): IShareFormValues => {
+  const { name } = e.currentTarget;
   switch (name) {
     case 'cover.image':
       return applyCoverMutation(values, e);
