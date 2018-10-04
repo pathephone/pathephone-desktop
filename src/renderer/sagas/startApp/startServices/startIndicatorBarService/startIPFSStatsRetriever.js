@@ -15,12 +15,12 @@ const normalizeStats = ({ repoStat, bandwidthStat, peersCount } = {}) => ({
   peersCount: peersCount || null,
 });
 
-function* startIPFSStatsRetriever({ getIPFSStats }) {
+function* startIPFSStatsRetriever({ getIpfsStats }) {
   const ticker = yield call(reduxSagaTicker, 10000);
   try {
     while (true) {
       yield take(ticker);
-      const stats = yield call(getIPFSStats);
+      const stats = yield call(getIpfsStats);
       yield put(actions.systemIpfsStatsRecieved(normalizeStats(stats)));
     }
   } catch (e) {

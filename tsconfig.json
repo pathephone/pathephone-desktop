@@ -12,7 +12,8 @@
     "jsx": "react",
     "lib": [
       "es6",
-      "dom"
+      "dom",
+      "webworker"
     ],
     "paths": {
       "~renderer/*": ["./src/renderer/*"],
