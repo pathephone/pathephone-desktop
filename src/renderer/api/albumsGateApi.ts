@@ -1,12 +1,13 @@
 import ipc from '~shared/data/ipc';
 
+import { IMetabinAlbum } from '~shared/types/domains/album';
 import { rendererCalls } from '~shared/utils/ipcRenderer';
 
 const schemaName: string = 'albumSchema';
 
-export const publishAlbumsByCIDs: (p: string[]) => Promise<{}> = (
-  cids: string[]
-): Promise<{}> => rendererCalls(ipc.METABIN_GATE_SEND_EACH, schemaName, cids);
+export const publishAlbumsByCIDs: (p: IMetabinAlbum[]) => Promise<{}> = (
+  albums: IMetabinAlbum[]
+): Promise<{}> => rendererCalls(ipc.METABIN_GATE_SEND_EACH, schemaName, albums);
 
 export const subscribeToAlbumsGate: () => Promise<void> = (
 ): Promise<void> => rendererCalls(ipc.METABIN_GATE_SUBSCRIBE, schemaName);

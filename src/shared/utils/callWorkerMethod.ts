@@ -1,6 +1,7 @@
 let inc: number = 0;
 
 interface IMessage<TPayload> {
+  // tslint:disable no-reserved-keywords
   type: string;
   payload: TPayload;
 }

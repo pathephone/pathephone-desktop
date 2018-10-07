@@ -1,5 +1,5 @@
-import { IMetabinAlbum, IMetabinAlbumTrack } from '~renderer/types/domains/album';
 import ipc from '~shared/data/ipc';
+import { IMetabinAlbum, IMetabinAlbumTrack } from '~shared/types/domains/album';
 import { rendererCalls } from '~shared/utils/ipcRenderer';
 
 export const getAlbumCandidatesFromFs: (i: string[]) => Promise<IMetabinAlbum[]> = async (

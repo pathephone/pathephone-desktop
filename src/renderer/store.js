@@ -4,10 +4,9 @@ import reduxLogger from 'redux-logger';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import rootSaga from './rootSaga';
-
 import { IS_DEVELOPMENT } from '~shared/config';
 import { rootReducer } from '~renderer/rootReducer';
+import { rootSaga } from '~renderer/rootSaga';
 
 const persistConfig = {
   key: 'root',

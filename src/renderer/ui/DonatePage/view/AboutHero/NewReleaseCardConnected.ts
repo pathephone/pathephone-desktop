@@ -3,12 +3,12 @@ import { connect, MapStateToProps } from 'react-redux';
 import selectors from '#selectors';
 
 import { IRootState } from '~renderer/state/rootState';
-import { IReleaseAsset } from '~renderer/ui/DonatePage/types';
+import { IGithubReleaseAsset } from '~renderer/types/api';
 import { NewReleaseCard } from '~renderer/ui/DonatePage/view/NewReleaseCard';
 
 interface IStateProps {
   newReleaseName: string;
-  newReleaseAssets: IReleaseAsset[];
+  newReleaseAssets: IGithubReleaseAsset[];
 }
 
 const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (

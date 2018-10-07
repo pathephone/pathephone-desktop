@@ -22,3 +22,5 @@ export const ALBUMS_COLLECTION_LIMIT = 50000;
 export const NOTIFICATION_TYPE_ERROR = 'ERROR';
 export const NOTIFICATION_TYPE_WARNING = 'WARNING';
 export const NOTIFICATION_TYPE_SUCCESS = 'SUCCESS';
+
+export const GITHUB_PATHEPHONE_LATEST_RELEASE_URL = 'https://api.github.com/repos/pathephone/pathephone-desktop/releases/latest';

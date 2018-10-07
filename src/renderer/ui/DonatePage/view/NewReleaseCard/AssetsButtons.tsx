@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IReleaseAsset } from '~renderer/ui/DonatePage/types';
+import { IGithubReleaseAsset } from '~renderer/types/api';
 import { AssetDownloadButton } from '~renderer/ui/DonatePage/view/AssetsButtons/AssetDownloadButton';
 import getTargetReleaseAsset from '~shared/utils/getTargetReleaseAsset';
 import './AssetsButtons.css';
@@ -14,13 +14,13 @@ const getAssetExtension: (n: string) => string = (
 };
 
 interface IProps {
-  newReleaseAssets: IReleaseAsset[];
+  newReleaseAssets: IGithubReleaseAsset[];
 }
 
 export const AssetsButtons: React.SFC<IProps> = (
   props: IProps
 ): React.ReactElement<IProps> => {
-  const targetAssets: IReleaseAsset[] = getTargetReleaseAsset(props.newReleaseAssets);
+  const targetAssets: IGithubReleaseAsset[] = getTargetReleaseAsset(props.newReleaseAssets);
 
   return (
     <div className='releaseButtonsRow'>
@@ -30,7 +30,7 @@ export const AssetsButtons: React.SFC<IProps> = (
             downloadURL='https://github.com/pathephone/pathephone-desktop/releases/latest'
             assetName='get latest release'
           />
-        ) : targetAssets.map((asset: IReleaseAsset) => (
+        ) : targetAssets.map((asset: IGithubReleaseAsset) => (
           <AssetDownloadButton
             key={asset.browser_download_url}
             assetName={getAssetExtension(asset.name)}

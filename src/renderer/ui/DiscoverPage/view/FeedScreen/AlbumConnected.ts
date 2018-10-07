@@ -3,7 +3,7 @@ import { connect, MapDispatchToProps, MapStateToProps, MergeProps } from 'react-
 import actions from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
-import { IAlbum } from '~renderer/ui/DiscoverPage/types';
+import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
 import { Album, IAlbumProps } from './Album';
 
 interface IOwnProps {
@@ -11,7 +11,7 @@ interface IOwnProps {
 }
 
 interface IStateProps {
-  latestAlbums: IAlbum[];
+  latestAlbums: IDiscoverPageAlbum[];
   selectedAlbums: number[];
   ipfsApiEndpoint: string;
   localCoversCIDs: { [x: string]: boolean };

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { IReleaseAsset } from '~renderer/ui/DonatePage/types';
+import { IGithubReleaseAsset } from '~renderer/types/api';
 import { AssetsButtons } from '~renderer/ui/DonatePage/view/NewReleaseCard/AssetsButtons';
 import i18n from '~shared/data/i18n';
 import './NewReleaseCard.css';
 
 interface IProps {
   newReleaseName: string;
-  newReleaseAssets: IReleaseAsset[];
+  newReleaseAssets: IGithubReleaseAsset[];
 }
 
 export const NewReleaseCard: React.SFC<IProps> = (

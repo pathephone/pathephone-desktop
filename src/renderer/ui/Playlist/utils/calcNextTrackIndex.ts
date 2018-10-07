@@ -52,7 +52,7 @@ const calcForDefault: (state: IPlaylistState) => string | null = ({
     }
   } while (nextIndex !== null && removedByIndex[nextIndex] === true);
   if (nextIndex === null) {
-    return `${nextIndex}`;
+    return nextIndex;
   }
 
   return `${nextIndex}`;

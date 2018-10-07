@@ -1,17 +1,9 @@
 import { ipcRenderer } from 'electron';
 import { Channel, eventChannel } from 'redux-saga';
+
+import { IIpfsInfo, IIpfsStat } from '~renderer/types/api';
 import ipc from '~shared/data/ipc';
 import { rendererCalls } from '~shared/utils/ipcRenderer';
-
-// yield put(actions.systemIpfsInfoRecieved({
-//   ...ipfsInfo,
-//   isOffline: IS_OFFLINE,
-// }));
-
-interface IIpfsInfo {
-  gateway: string;
-  apiEndpoint: string;
-}
 
 export const getIpfsInfo: () => Promise<IIpfsInfo> = (
 ): Promise<IIpfsInfo> => rendererCalls(ipc.IPFS_GET_INFO);
@@ -49,11 +41,5 @@ export const getCachedIpfsFilesChannel: () => Channel<string> = (
   };
 });
 
-interface IIPFSStat {
-  peersCount: number;
-  repoStat: {};
-  bandwidthStat: {};
-}
-
-export const getIpfsStats: () => Promise<IIPFSStat> = (
-): Promise<IIPFSStat> => rendererCalls(ipc.IPFS_GET_STATS);
+export const getIpfsStats: () => Promise<IIpfsStat> = (
+): Promise<IIpfsStat> => rendererCalls(ipc.IPFS_GET_STATS);

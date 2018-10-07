@@ -1,7 +1,8 @@
 import { Channel, eventChannel } from 'redux-saga';
 
-import { IMetabinAlbum } from '~renderer/types/domains/album';
+import { ICollectionAlbum, ICollectionStat } from '~renderer/types/api';
 import ipc from '~shared/data/ipc';
+import { IMetabinAlbum } from '~shared/types/domains/album';
 import { callWorkerMethod } from '~shared/utils/callWorkerMethod';
 import DBWorkerConstructor from './getStorageApi/dbApi.worker';
 
@@ -13,8 +14,8 @@ export const startDb: () => Promise<void> = (
   payload: undefined
 });
 
-export const getAlbumsCollectionInfo: () => Promise<void> = (
-): Promise<void> => callWorkerMethod(dbWorker, {
+export const getAlbumsCollectionInfo: () => Promise<ICollectionStat> = (
+): Promise<ICollectionStat> => callWorkerMethod(dbWorker, {
   type: ipc.GET_ALBUMS_COLLECTION_INFO,
   payload: undefined
 });
@@ -28,9 +29,9 @@ export const findAlbumInCollectionByCid: (cid: string) => Promise<IMetabinAlbum>
   });
 };
 
-export const findAlbumsInCollectionByCids: (cids: string[]) => Promise<IMetabinAlbum[]> = (
+export const findAlbumsInCollectionByCids: (cids: string[]) => Promise<ICollectionAlbum[]> = (
   cids: string[]
-): Promise<IMetabinAlbum[]> => {
+): Promise<ICollectionAlbum[]> => {
   return callWorkerMethod(dbWorker, {
     type: ipc.FIND_ALBUMS_IN_COLLECTION_BY_CIDS,
     payload: cids
@@ -53,8 +54,15 @@ interface IChannelPayload {
 
 type IChannelMessage = IChannelError | IChannelPayload;
 
-export const findAlbumsInCollection: (p: string) => Promise<Channel<IChannelMessage>> = (
-  async (payload: string): Promise<Channel<IChannelMessage>> => {
+export interface IAlbumsTextSearchParams {
+  text: string;
+  limit: number;
+}
+
+export const findAlbumsInCollection: (p: IAlbumsTextSearchParams) => (
+  Promise<Channel<IChannelMessage>>
+) = (
+  async (payload: IAlbumsTextSearchParams): Promise<Channel<IChannelMessage>> => {
     await callWorkerMethod(dbWorker, {
       type: ipc.OPEN_ALBUMS_STREAM,
       payload
@@ -88,8 +96,13 @@ export const findAlbumsInCollection: (p: string) => Promise<Channel<IChannelMess
   }
 );
 
-export const saveAlbumIfNotExists: (p: IMetabinAlbum) => Promise<void> = (
-  payload: IMetabinAlbum
+interface IAlbumsCollectionRecord {
+  data: IMetabinAlbum;
+  cid: string;
+}
+
+export const saveAlbumIfNotExists: (p: IAlbumsCollectionRecord) => Promise<void> = (
+  payload: IAlbumsCollectionRecord
 ): Promise<void> => callWorkerMethod(dbWorker, {
   type: ipc.SAVE_ALBUM_IF_NOT_EXISTS,
   payload
@@ -102,9 +115,9 @@ export const saveOrUpdateAlbum: (p: IMetabinAlbum) => Promise<void> = (
   payload
 });
 
-export const saveOrUpdateAlbums: (p: IMetabinAlbum[]) => Promise<void> = (
+export const saveOrUpdateAlbums: (p: IMetabinAlbum[]) => Promise<ICollectionStat> = (
   payload: IMetabinAlbum[]
-): Promise<void> => callWorkerMethod(dbWorker, {
+): Promise<ICollectionStat> => callWorkerMethod(dbWorker, {
   type: ipc.SAVE_OR_UPDATE_ALBUMS,
   payload
 });

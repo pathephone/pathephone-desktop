@@ -13,7 +13,6 @@
     "lib": [
       "es6",
       "dom",
-      "webworker"
     ],
     "paths": {
       "~renderer/*": ["./src/renderer/*"],
@@ -24,8 +23,5 @@
       "#actions": ["./src/renderer/state/actions.js"],
       "#selectors": ["./src/renderer/state/selectors.js"],
     },
-  },
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }

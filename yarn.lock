@@ -1190,6 +1190,11 @@
   dependencies:
     redux "*"
 
+"@types/semver@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-5.5.0.tgz#146c2a29ee7d3bae4bf2fcb274636e264c813c45"
+  integrity sha512-41qEJgBH/TWgo5NFSvBCJ1qkoi3Q6ONSF2avrHq1LVEZfYpdHmj0y9SuTK+u9ZhG1sYQKBL1AWXKyLWP4RaUoQ==
+
 "@types/webdriverio@^4.10.4":
   version "4.10.4"
   resolved "https://registry.yarnpkg.com/@types/webdriverio/-/webdriverio-4.10.4.tgz#3253ce99735c8e55be25cafe44dae0b3cd457db9"

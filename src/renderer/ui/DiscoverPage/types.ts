@@ -1,4 +1,4 @@
-export interface IAlbum {
+export interface IDiscoverPageAlbum {
   albumTitle: string;
   albumCid: string;
   albumArtist: string;
