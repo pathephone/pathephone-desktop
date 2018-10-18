@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { all, put, takeEvery } from 'redux-saga/effects';
 
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import {
   NOTIFICATION_TYPE_ERROR,
   NOTIFICATION_TYPE_SUCCESS,

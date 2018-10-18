@@ -5,7 +5,7 @@ import {
 import semver, { SemVer } from 'semver';
 
 import { getLatestRelease } from '~renderer/api/githubApi';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import selectors from '~renderer/state/selectors';
 import { IGithubRelease } from '~renderer/types/api';
 import { IS_PRODUCTION } from '~shared/config';

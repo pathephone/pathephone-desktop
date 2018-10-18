@@ -1,7 +1,7 @@
 
 import { put, select } from 'redux-saga/effects';
 
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import selectors from '~renderer/state/selectors';
 import { IS_TESTING } from '~shared/config';
 import i18n from '~shared/data/i18n';

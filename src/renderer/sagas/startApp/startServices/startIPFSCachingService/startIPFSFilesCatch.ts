@@ -1,6 +1,6 @@
 import { call, takeEvery } from 'redux-saga/effects';
 
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { cacheDiscoverAlbumsCovers } from './startIPFSFilesCatch/cacheDiscoverAlbumsCovers';
 import { cachePlaylistTracks } from './startIPFSFilesCatch/cachePlaylistTracks';
 

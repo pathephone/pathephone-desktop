@@ -4,7 +4,7 @@ import { deleteSelectedAlbums } from '~renderer/sagas/startApp/startServices/sta
 import { fetchDiscoverAlbums } from '~renderer/sagas/startApp/startServices/startDiscoverPageService/fetchDiscoverAlbums';
 import { playOrQueueAlbum } from '~renderer/sagas/startApp/startServices/startDiscoverPageService/playOrQueueAlbum';
 import { playOrQueueSelectedAlbums } from '~renderer/sagas/startApp/startServices/startDiscoverPageService/playOrQueueSelectedAlbums';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 
 export function* startDiscoverPageService(): Generator {
   yield all([

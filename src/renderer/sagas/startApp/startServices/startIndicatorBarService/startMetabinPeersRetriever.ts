@@ -2,7 +2,7 @@ import { call, put, take } from 'redux-saga/effects';
 
 import { Channel } from 'redux-saga';
 import { albumsGateApi } from '~renderer/api/intex';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import reduxSagaTicker from '~shared/utils/reduxSagaTicker';
 
 export function* startMetabinPeersRetriever(): Generator  {

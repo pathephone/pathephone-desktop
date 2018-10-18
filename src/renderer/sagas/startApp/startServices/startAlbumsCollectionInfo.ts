@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 
-import actions from '#actions';
 import { albumsCollectionApi } from '~renderer/api/intex';
+import { actions } from '~renderer/state/actions';
 import { ICollectionStat } from '~renderer/types/api';
 
 export function* startAlbumsCollectionInfo(): Generator {

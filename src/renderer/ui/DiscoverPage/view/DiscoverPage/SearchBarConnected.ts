@@ -1,6 +1,6 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { SearchBar } from '~renderer/ui/DiscoverPage/view/DiscoverPage/SearchBar';

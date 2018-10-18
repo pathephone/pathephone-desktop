@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects';
 
 import { albumsCollectionApi } from '~renderer/api/intex';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import selectors from '~renderer/state/selectors';
 import { ICollectionStat } from '~renderer/types/api';
 

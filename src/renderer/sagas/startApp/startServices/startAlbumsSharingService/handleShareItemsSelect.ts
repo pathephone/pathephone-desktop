@@ -2,7 +2,7 @@ import { AnyAction } from 'redux';
 import { call, put } from 'redux-saga/effects';
 
 import { mainProcessApi } from '~renderer/api/intex';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import i18n from '~shared/data/i18n';
 import { IMetabinAlbum } from '~shared/types/domains/album';
 

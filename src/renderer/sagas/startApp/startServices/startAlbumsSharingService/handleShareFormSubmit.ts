@@ -1,10 +1,11 @@
-import actions from '#actions';
 import { AnyAction } from 'redux';
 import { all, call, put } from 'redux-saga/effects';
+
 import { albumsCollectionApi, customIpfsApi } from '~renderer/api/intex';
 import { ICollectionStat } from '~renderer/types/api';
 import i18n from '~shared/data/i18n';
 import { IMetabinAlbum, IMetabinAlbumTrack } from '~shared/types/domains/album';
+import { actions } from '~renderer/state/actions';
 
 function* shareTracksToIpfs(tracks: IMetabinAlbumTrack[]): Generator {
   function* shareSingleTrack({ audio, ...rest }: IMetabinAlbumTrack): Generator {

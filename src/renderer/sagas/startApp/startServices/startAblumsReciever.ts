@@ -4,7 +4,7 @@ import { IS_OFFLINE } from '~shared/config';
 
 import { Channel } from 'redux-saga';
 import { albumsCollectionApi, albumsGateApi } from '~renderer/api/intex';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { ICollectionStat } from '~renderer/types/api';
 import { IMetabinAlbum } from '~shared/types/domains/album';
 import reduxSagaTicker from '~shared/utils/reduxSagaTicker';

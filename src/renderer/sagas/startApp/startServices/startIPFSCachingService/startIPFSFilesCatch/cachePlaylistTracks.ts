@@ -1,7 +1,7 @@
 import { call, select } from 'redux-saga/effects';
 
-import selectors from '#selectors';
 import { customIpfsApi } from '~renderer/api/intex';
+import selectors from '~renderer/state/selectors';
 
 export function* cachePlaylistTracks(): Generator {
   const uncachedCIDs: string[] = yield select(selectors.getPlaylistUncachedTracksCIDs);

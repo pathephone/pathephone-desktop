@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
 
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { notificationsEvents, notificationsSetters } from '~renderer/ui/Notifications';
 import { initialNotificationsState } from '~renderer/ui/Notifications/state/initial';
 import { INotificationsState } from '~renderer/ui/Notifications/types';

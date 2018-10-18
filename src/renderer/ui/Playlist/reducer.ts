@@ -1,7 +1,7 @@
 
 import { AnyAction, Reducer } from 'redux';
 
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { playlistEvents, playlistSetters } from '~renderer/ui/Playlist';
 import { initialPlaylistState } from '~renderer/ui/Playlist/state/initial';
 import { IPlaylistState } from '~renderer/ui/Playlist/types';

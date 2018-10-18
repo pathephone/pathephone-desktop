@@ -11,7 +11,7 @@
     "strictNullChecks": true,
     "jsx": "react",
     "lib": [
-      "es6",
+      "es2017",
       "dom",
     ],
     "paths": {

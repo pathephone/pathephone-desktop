@@ -11,7 +11,7 @@ import { startIndicatorsBarService } from '~renderer/sagas/startApp/startService
 import { startIPFSCachingService } from '~renderer/sagas/startApp/startServices/startIPFSCachingService';
 import { startNewReleaseChecker } from '~renderer/sagas/startApp/startServices/startNewReleaseChecker';
 import { startNotificationsService } from '~renderer/sagas/startApp/startServices/startNotificationsService';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import asyncTimeout from '~shared/utils/asyncTimeout';
 
 export function* startServices(): Generator {

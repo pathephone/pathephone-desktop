@@ -1,7 +1,7 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
-import { systemActions } from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import { appSelectors } from '~renderer/ui/App';
 import { IAppState } from '~renderer/ui/App/types';
@@ -39,7 +39,7 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, IOwnProps> = {
-  onDidMount: systemActions.systemAppRootMounted
+  onDidMount: actions.systemAppRootMounted
 };
 
 export const App: React.ComponentClass = withRouter(

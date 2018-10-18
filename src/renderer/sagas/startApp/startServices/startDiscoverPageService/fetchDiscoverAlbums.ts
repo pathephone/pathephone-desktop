@@ -4,7 +4,7 @@ import { call, put, take } from 'redux-saga/effects';
 
 import { IAlbumsTextSearchParams } from '~renderer/api/albumsCollectionApi';
 import { albumsCollectionApi } from '~renderer/api/intex';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
 import { DISCOVER_FEED_LIMIT } from '~shared/data/constants';
 import { IMetabinAlbum } from '~shared/types/domains/album';

@@ -2,7 +2,7 @@ import { Channel } from 'redux-saga';
 
 import { call, put, take } from 'redux-saga/effects';
 import { customIpfsApi } from '~renderer/api/intex';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { IIpfsStat } from '~renderer/types/api';
 import formatBytes from '~shared/utils/formatBytes';
 import reduxSagaTicker from '~shared/utils/reduxSagaTicker';

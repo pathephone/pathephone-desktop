@@ -1,6 +1,6 @@
 import { connect, MapDispatchToProps, MapStateToProps, MergeProps } from 'react-redux';
 
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';

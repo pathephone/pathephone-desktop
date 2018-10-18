@@ -5,7 +5,7 @@ import {
 } from '~renderer/api/intex';
 import { checkLegalAgreement } from '~renderer/sagas/startApp/checkLegalAgreement';
 import { startServices } from '~renderer/sagas/startApp/startServices';
-import actions from '~renderer/state/actions';
+import { actions } from '~renderer/state/actions';
 import { IIpfsInfo } from '~renderer/types/api';
 import { IS_OFFLINE, IS_TESTING } from '~shared/config';
 

@@ -1,8 +1,7 @@
 import { connect, MapStateToProps } from 'react-redux';
 
-import selectors from '#selectors';
-
 import { IRootState } from '~renderer/state/rootState';
+import selectors from '~renderer/state/selectors';
 import { IGithubReleaseAsset } from '~renderer/types/api';
 import { NewReleaseCard } from '~renderer/ui/DonatePage/view/NewReleaseCard';
 

@@ -19,16 +19,20 @@ export interface IIpfsInfo {
   apiEndpoint: string;
 }
 
+export interface IIpfsRepoStat {
+  repoSize: number;
+  storageMax: number;
+}
+
+export interface IIpfsBandwidthStat {
+  totalIn: number;
+  totalOut: number;
+}
+
 export interface IIpfsStat {
   peersCount: number;
-  repoStat: {
-    repoSize: number;
-    storageMax: number;
-  };
-  bandwidthStat: {
-    totalIn: number;
-    totalOut: number;
-  };
+  repoStat: IIpfsRepoStat;
+  bandwidthStat: IIpfsBandwidthStat;
 }
 
 // GitHub

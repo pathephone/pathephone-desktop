@@ -1,8 +1,8 @@
+import { AnyAction } from 'redux';
 import { call, put, select } from 'redux-saga/effects';
 
-import actions from '#actions';
-import selectors from '#selectors';
-import { AnyAction } from 'redux';
+import { actions } from '~renderer/state/actions';
+import selectors from '~renderer/state/selectors';
 import { IPlaylistTrack } from '~renderer/ui/Playlist/types';
 import { getPlaylistTracksFromAlbums } from '~shared/utils/getPlaylistTracksFromAlbums';
 
