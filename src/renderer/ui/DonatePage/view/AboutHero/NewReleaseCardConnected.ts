@@ -13,7 +13,7 @@ interface IStateProps {
 const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
   state: IRootState
 ): IStateProps => {
-  const { name, assets } = selectors.getNewRelease(state);
+  const { name, assets } = selectors.getNewReleaseStrict(state);
 
   return {
     newReleaseName: name,

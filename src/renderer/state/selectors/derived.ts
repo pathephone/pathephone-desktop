@@ -1,16 +1,13 @@
 import path from 'path';
-import { createSelector } from 'reselect';
+import { createSelector, Selector } from 'reselect';
 
+import { ICachedCIDsState } from '~renderer/state/domains/cachedCIDs';
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
 import { playlistSelectors } from '~renderer/ui/Playlist';
 import { IPlaylistTrack, IPlaylistTracksByIndex } from '~renderer/ui/Playlist/types';
 import { IMetabinAlbum } from '~shared/types/domains/album';
 import { IRootState } from '../rootState';
 import * as simple from './simple';
-
-export const isAppReady: (s: IRootState) => boolean = (
-  state: IRootState
-): boolean => simple.getAppStartProgress(state) === 100;
 
 export const getCurrentTrack: (s: IRootState) => IPlaylistTrack | void = (
   state: IRootState
@@ -38,9 +35,11 @@ export const getCurrentTrackSource: (state: IRootState) => string = (
   state: IRootState
 ): string => {
   const track: IPlaylistTrack = getCurrentTrackStrict(state);
-  const gateway: string = simple.getIpfsGateway(state);
-
-  return `${gateway}/ipfs/${track.audio}`;
+  const gateway: string | null = simple.getIpfsGateway(state);
+  if (gateway) {
+    return `${gateway}/ipfs/${track.audio}`;
+  }
+  throw new Error('Selector used too early.');
 };
 
 export const isPlayerActive: (s: IRootState) => boolean = (
@@ -70,9 +69,9 @@ export const getPlaylistTracksCIDs: (s: IRootState) => string[] = (
 );
 
 export const getPlaylistUncachedTracksCIDs: (s: IRootState) => string[] = (
-  createSelector<IRootState, string[], string[], string[]>(
+  createSelector<IRootState, string[], ICachedCIDsState, string[]>(
     [getPlaylistTracksCIDs, simple.getCachedCIDs],
-    (tracksCIDs: string[], cachedCIDs: string[]) => (
+    (tracksCIDs: string[], cachedCIDs: ICachedCIDsState) => (
       tracksCIDs.filter((cid: string) => cachedCIDs[cid])
     )
   )
@@ -87,7 +86,7 @@ export const getShareFormValue: (s: IRootState) => IMetabinAlbum = (
 ): IMetabinAlbum => simple.getShareCandidates(state)[0];
 
 export const getShareCoverSrc: (s: IRootState) => string | null = (
-  createSelector<IRootState, IMetabinAlbum[], string, string | null>(
+  createSelector<IRootState, IMetabinAlbum[], string | null, string | null>(
     [simple.getShareCandidates, simple.getIpfsApiEndpoint],
     (candidates: IMetabinAlbum[], apiEndpoint: string): string | null => {
       const candidate: IMetabinAlbum = candidates[0];
@@ -107,12 +106,13 @@ export const getShareCoverSrc: (s: IRootState) => string | null = (
 
 // DISCOVER PAGE
 
-export const isDiscoverHasAlbums: (s: IRootState) => boolean = (
+export const isDiscoverHasAlbums: Selector<IRootState, boolean> = (
   state: IRootState
-): boolean => (
-  simple.getDiscoverFeedAlbums(state) !== null
-  && simple.getDiscoverFeedAlbums(state).length > 0
-);
+): boolean => {
+  const albums: IDiscoverPageAlbum[] | null = simple.getDiscoverFeedAlbums(state);
+
+  return albums !== null && albums.length > 0;
+};
 
 export const isDiscoverSearchPerformed: (s: IRootState) => boolean = (
   state: IRootState
@@ -126,15 +126,35 @@ export const isDiscoverSelected: (s: IRootState) => boolean = (
   state: IRootState
 ): boolean => getDiscoverSelectedCount(state) !== 0;
 
-export const getDiscoverAlbumsIds: (s: IRootState) => string[] = (
-  state: IRootState
-): string[] => Array.from(simple.getDiscoverFeedAlbums(state).keys());
+export const getDiscoverAlbumsIds: Selector<IRootState, number[] | null> = (
+  createSelector<IRootState, IDiscoverPageAlbum[] | null, number[] | null>(
+    [simple.getDiscoverFeedAlbums],
+    (albums: IDiscoverPageAlbum[] | null) => {
+      if (albums) {
+        return albums.map((a: IDiscoverPageAlbum, i: number) => i);
+      }
+
+      return null;
+    }
+  )
+);
+export const getDiscoverAlbumsIdsStrict: Selector<IRootState, number[]> = (
+  createSelector<IRootState, number[] | null, number[]>(
+    [getDiscoverAlbumsIds],
+    (ids: number[] | null) => {
+      if (ids) {
+        return ids;
+      }
+      throw new Error('Selector used too early.');
+    }
+  )
+);
 
 export const getDiscoverSelectedCids: (s: IRootState) => string[] = (
-  createSelector<IRootState, string[], { [key: string]: IDiscoverPageAlbum }, string[]>(
+  createSelector<IRootState, number[], IDiscoverPageAlbum[] | null, string[]>(
     [simple.getDiscoverSelectedIds, simple.getDiscoverFeedAlbums],
-    (selectedIds: string[], albums: { [key: string]: IDiscoverPageAlbum }) => selectedIds.map(
-      (id: string) => albums[id].albumCid
+    (selectedIds: number[], albums: IDiscoverPageAlbum[]) => selectedIds.map(
+      (id: number) => albums[id].albumCid
     )
   )
 );

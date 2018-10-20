@@ -1,30 +1,19 @@
 import { AnyAction, Reducer } from 'redux';
-import { Selector } from 'reselect';
 
 import { actions } from '~renderer/state/actions';
-import { IRootState } from '~renderer/state/rootState';
 import { IMetabinAlbum } from '~shared/types/domains/album';
 
-interface IShareState {
+export interface IShareState {
   candidates: IMetabinAlbum[];
   isProcessing: boolean;
 }
-
-const DOMAIN: string = 'share';
 
 const initialState: IShareState = {
   candidates: [],
   isProcessing: false
 };
 
-export const getShareCandidates: Selector<IRootState, IMetabinAlbum[]> = (
-  state: IRootState
-): IMetabinAlbum[] => state[DOMAIN].candidates;
-export const isShareProcessing: Selector<IRootState, boolean> = (
-  state: IRootState
-): boolean => state[DOMAIN].isProcessing;
-
-const shareReducer: Reducer<IShareState> = (
+export const shareReducer: Reducer<IShareState> = (
   state: IShareState = initialState, action: AnyAction
 ): IShareState => {
   const { type, payload } = action;
@@ -87,5 +76,3 @@ const shareReducer: Reducer<IShareState> = (
       return state;
   }
 };
-
-export default shareReducer;

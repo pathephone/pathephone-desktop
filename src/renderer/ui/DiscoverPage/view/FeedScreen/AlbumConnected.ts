@@ -20,9 +20,9 @@ interface IStateProps {
 const mapStateToProps: MapStateToProps<IStateProps, IOwnProps, IRootState> = (
   state: IRootState
 ): IStateProps => ({
-  latestAlbums: selectors.getDiscoverFeedAlbums(state),
+  latestAlbums: selectors.getDiscoverFeedAlbumsStrict(state),
   selectedAlbums: selectors.getDiscoverSelectedIds(state),
-  ipfsApiEndpoint: selectors.getIpfsApiEndpoint(state),
+  ipfsApiEndpoint: selectors.getIpfsApiEndpointStrict(state),
   localCoversCIDs: selectors.getCachedCIDs(state)
 });
 

@@ -7,6 +7,6 @@ export const getAppState: Selector<IRootState, IAppState> = (
   (state: IRootState) : IAppState => state.app
 );
 
-export const isAppReady: Selector<IRootState, IAppState> = (
-  (state: IRootState) : IAppState => state.app
+export const isAppReady: Selector<IRootState, boolean> = (
+  (state: IRootState) : boolean => state.app.progress === 100
 );

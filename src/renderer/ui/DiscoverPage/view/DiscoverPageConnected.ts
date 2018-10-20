@@ -14,10 +14,11 @@ const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
   state: IRootState
 ): IStateProps  => {
   const isSelected: boolean = selectors.isDiscoverSelected(state);
+  const count: number | null = selectors.getAlbumsCount(state);
 
   return {
     hasSelectedActions: isSelected,
-    hasSearchBar: selectors.getAlbumsCount(state) > 0
+    hasSearchBar: count !== null && count > 0
   };
 };
 

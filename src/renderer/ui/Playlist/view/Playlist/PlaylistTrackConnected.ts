@@ -1,5 +1,6 @@
 import { connect, MapDispatchToProps, MapStateToProps, MergeProps } from 'react-redux';
 
+import { ICachedCIDsState } from '~renderer/state/domains/cachedCIDs';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { playlistEvents, playlistSelectors } from '~renderer/ui/Playlist';
@@ -13,7 +14,7 @@ interface IOwnProps {
 interface IStateProps {
   currentTrackIndex: string | null;
   tracksByIndex: IPlaylistTracksByIndex;
-  cachedCIDs: string[];
+  cachedCIDs: ICachedCIDsState;
 }
 
 const mapStateToProps: MapStateToProps<IStateProps, IOwnProps, IRootState> = (

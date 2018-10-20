@@ -2,21 +2,15 @@ import { connect, MapStateToProps, MergeProps } from 'react-redux';
 
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
+import { IIpfsBandwidthStat, IIpfsRepoStat } from '~renderer/types/api';
 import { IIndicatorsBarProps, IndicatorsBar } from './IndicatorsBar';
 
 interface IStateProps {
   isOffline: boolean;
-  ipfsPeers: string | null;
-  metabinPeers: string | null;
-  ipfsRepoStat: {
-    used: string;
-    limit: string;
-  } | null;
-  ipfsBandwidthStat: {
-    // tslint:disable no-reserved-keywords
-    in: string;
-    out: string;
-  } | null;
+  ipfsPeers: number | null;
+  metabinPeers: number | null;
+  ipfsRepoStat: IIpfsRepoStat | null;
+  ipfsBandwidthStat: IIpfsBandwidthStat | null;
 }
 
 const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
@@ -36,13 +30,13 @@ const mergeProps: MergeProps<IStateProps, void, {}, IMergedProps> = (
 ): IMergedProps => ({
   ...restProps,
   ipfsRepoUsage: (
-    ipfsRepoStat !== null ? `${ipfsRepoStat.used} / ${ipfsRepoStat.limit}` : null
+    ipfsRepoStat !== null ? `${ipfsRepoStat.repoSize} / ${ipfsRepoStat.storageMax}` : null
   ),
   ipfsBandwidthIn: (
-    ipfsBandwidthStat ? ipfsBandwidthStat.in : null
+    ipfsBandwidthStat ? `${ipfsBandwidthStat.totalIn}` : null
   ),
   ipfsBandwidthOut: (
-    ipfsBandwidthStat ? ipfsBandwidthStat.out : null
+    ipfsBandwidthStat ? `${ipfsBandwidthStat.totalOut}` : null
   )
 });
 

@@ -14,7 +14,7 @@ const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
   state: IRootState
 ): IStateProps => ({
   searchValue: selectors.getDiscoverSearchValue(state),
-  albumsCount: selectors.getAlbumsCount(state)
+  albumsCount: selectors.getAlbumsCountStrict(state)
 });
 
 interface IDispatchProps {

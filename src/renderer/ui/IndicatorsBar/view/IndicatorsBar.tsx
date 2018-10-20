@@ -10,7 +10,7 @@ import i18n from '~shared/data/i18n';
 import { Indicator } from '~renderer/ui/IndicatorsBar/view/IndicatorsBar/Indicator';
 import './IndicatorsBar.css';
 
-const resolveIndicatorString: (d: string | null) => string = (
+const resolveIndicatorString: (d: string | number | null) => string = (
   data: string | null
 ): string => (
   data === null ? '--' : data
@@ -18,8 +18,8 @@ const resolveIndicatorString: (d: string | null) => string = (
 
 interface IProps {
   isOffline: boolean;
-  ipfsPeers: string | null;
-  metabinPeers: string | null;
+  ipfsPeers: number | null;
+  metabinPeers: number | null;
   ipfsRepoUsage: string | null;
   ipfsBandwidthIn: string | null;
   ipfsBandwidthOut: string | null;

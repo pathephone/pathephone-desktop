@@ -1,23 +1,16 @@
 import { AnyAction, Reducer } from 'redux';
 
 import { actions } from '~renderer/state/actions';
-import { IRootState } from '~renderer/state/rootState';
 
-interface IAudioState {
+export interface IAudioState {
   isPaused: boolean;
 }
-
-const DOMAIN: string = 'audio';
 
 const initialState: IAudioState = {
   isPaused: true
 };
 
-export const isPaused: (s: IRootState) => boolean = (
-  state: IRootState
-): boolean => state[DOMAIN].isPaused;
-
-const reducer: Reducer<IAudioState> = (
+export const audioReducer: Reducer<IAudioState> = (
   state: IAudioState = initialState, action: AnyAction
 ): IAudioState => {
   const { type } = action;
@@ -32,5 +25,3 @@ const reducer: Reducer<IAudioState> = (
       return state;
   }
 };
-
-export default reducer;

@@ -24,7 +24,7 @@ const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
   }
 
   return {
-    albumsIds: selectors.getDiscoverAlbumsIds(state),
+    albumsIds: selectors.getDiscoverAlbumsIdsStrict(state),
     hasRefreshButton: !searchValue && selectors.isDiscoverAlbumsOutdated(state),
     title
   };

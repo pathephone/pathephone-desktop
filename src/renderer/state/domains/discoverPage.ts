@@ -1,19 +1,15 @@
 import { AnyAction, Reducer } from 'redux';
-import { Selector } from 'reselect';
 
 import { actions } from '~renderer/state/actions';
-import { IRootState } from '~renderer/state/rootState';
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
 
-interface IDiscoverPageState {
+export interface IDiscoverPageState {
   albums: null | IDiscoverPageAlbum[];
   searchValue: string;
   isFailed: boolean;
   isProcessing: boolean;
   isAlbumsOutdated: boolean;
 }
-
-const DOMAIN: string = 'discoverPage';
 
 const initialState: IDiscoverPageState = {
   albums: null,
@@ -23,25 +19,7 @@ const initialState: IDiscoverPageState = {
   isAlbumsOutdated: false
 };
 
-// SELECTORS
-
-export const getDiscoverFeedAlbums: Selector<IRootState, IDiscoverPageAlbum> = (
-  state: IRootState
-): IDiscoverPageAlbum => state[DOMAIN].albums;
-export const getDiscoverSearchValue: Selector<IRootState, string> = (
-  state: IRootState
-): string => state[DOMAIN].searchValue;
-export const isDiscoverHasFailed: Selector<IRootState, boolean> = (
-  state: IRootState
-): boolean => state[DOMAIN].isFailed;
-export const isDiscoverPageProcessing: Selector<IRootState, boolean> = (
-  state: IRootState
-): boolean => state[DOMAIN].isProcessing;
-export const isDiscoverAlbumsOutdated: Selector<IRootState, boolean> = (
-  state: IRootState
-): boolean => state[DOMAIN].isAlbumsOutdated;
-
-const discoverPageReducer: Reducer<IDiscoverPageState> = (
+export const discoverPageReducer: Reducer<IDiscoverPageState> = (
   state: IDiscoverPageState = initialState, action: AnyAction
 ): IDiscoverPageState => {
   const { type, payload } = action;
@@ -91,5 +69,3 @@ const discoverPageReducer: Reducer<IDiscoverPageState> = (
       return state;
   }
 };
-
-export default discoverPageReducer;

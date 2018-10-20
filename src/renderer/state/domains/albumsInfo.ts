@@ -1,22 +1,16 @@
 import { AnyAction, Reducer } from 'redux';
-import { actions } from '~renderer/state/actions';
-import { IRootState } from '~renderer/state/rootState';
 
-interface IAlbumsInfoState {
+import { actions } from '~renderer/state/actions';
+
+export interface IAlbumsInfoState {
   albumsCount: number | null;
 }
-
-const DOMAIN: string = 'albumsInfo';
 
 const initialState: IAlbumsInfoState = {
   albumsCount: null
 };
 
-export const getAlbumsCount: (s: IRootState) => number | null = (
-  state: IRootState
- ): number | null => state[DOMAIN].albumsCount;
-
-const reducer: Reducer<IAlbumsInfoState, AnyAction> = (
+export const albumsInfoReducer: Reducer<IAlbumsInfoState, AnyAction> = (
   state: IAlbumsInfoState = initialState, action: AnyAction
 ): IAlbumsInfoState => {
   const { type, payload } = action;
@@ -35,5 +29,3 @@ const reducer: Reducer<IAlbumsInfoState, AnyAction> = (
       return state;
   }
 };
-
-export default reducer;

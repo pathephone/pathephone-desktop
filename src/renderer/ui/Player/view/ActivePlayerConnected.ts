@@ -33,7 +33,7 @@ interface IDispatchProps {
   onAudioPaused(): void;
 }
 
-const mapDispatchToProps: MapDispatchToProps<IDispatchProps, void> = {
+const mapDispatchToProps: MapDispatchToProps<IDispatchProps, {}> = {
   onAudioEnded: actions.systemAudioEnded,
   onAudioPlayed: actions.systemAudioPlayed,
   onAudioPaused: actions.systemAudioPaused

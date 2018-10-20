@@ -1,19 +1,12 @@
 import { AnyAction, Reducer } from 'redux';
-import { Selector } from 'reselect';
 
 import { actions } from '~renderer/state/actions';
 
-type IVolumeState = number;
-
-const DOMAIN: string = 'volume';
+export type IVolumeState = number;
 
 const initialState: IVolumeState = 0.7;
 
-export const getVolume: Selector<IVolumeState, number> = (
-  state: IVolumeState
-): number => state[DOMAIN];
-
-const volumeReducer: Reducer<IVolumeState> = (
+export const volumeReducer: Reducer<IVolumeState> = (
   state: IVolumeState = initialState, action: AnyAction
 ): IVolumeState => {
   const { type, payload } = action;
@@ -24,5 +17,3 @@ const volumeReducer: Reducer<IVolumeState> = (
       return state;
   }
 };
-
-export default volumeReducer;
