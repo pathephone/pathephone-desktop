@@ -4,6 +4,7 @@ import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { SharePage } from '~renderer/ui/SharePage/view/SharePage';
+import { sharePageEvents } from '~renderer/ui/SharePage';
 
 interface IStateProps {
   hasProcessingScreen: boolean;
@@ -22,7 +23,7 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, {}> = {
-  onFilesSelect: actions.uiShareItemsSelected
+  onFilesSelect: sharePageEvents.uiShareItemsSelected
 };
 
 export const SharePageConnected: React.ComponentClass = (

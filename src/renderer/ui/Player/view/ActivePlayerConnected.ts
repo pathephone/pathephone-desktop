@@ -1,9 +1,9 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { ActivePlayer } from '~renderer/ui/Player/view/ActivePlayer';
+import { playerEvents } from '~renderer/ui/Player';
 
 interface IStateProps {
   title: string;
@@ -29,14 +29,10 @@ const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
 
 interface IDispatchProps {
   onAudioEnded(): void;
-  onAudioPlayed(): void;
-  onAudioPaused(): void;
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, {}> = {
-  onAudioEnded: actions.systemAudioEnded,
-  onAudioPlayed: actions.systemAudioPlayed,
-  onAudioPaused: actions.systemAudioPaused
+  onAudioEnded: playerEvents.systemAudioEnded,
 };
 
 export const ActivePlayerConnected: React.ComponentClass = connect<IStateProps, IDispatchProps>(

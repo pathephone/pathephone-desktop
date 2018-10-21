@@ -1,9 +1,9 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { SelectedActions } from '~renderer/ui/DiscoverPage/view/DiscoverPage/SelectedActions';
+import { discoverPageEvents } from '~renderer/ui/DiscoverPage';
 
 interface IStateProps {
   selectedAlbumsCount: number;
@@ -23,10 +23,10 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, {}> = {
-  onCancelSelection: actions.uiDiscoverSelectedCanceled,
-  onPlaySelected: actions.uiDiscoverSelectedPlayed,
-  onAddSelected: actions.uiDiscoverSelectedQueued,
-  onDeleteSelected: actions.uiDiscoverSelectedDeleted
+  onCancelSelection: discoverPageEvents.uiDiscoverSelectedCanceled,
+  onPlaySelected: discoverPageEvents.uiDiscoverSelectedPlayed,
+  onAddSelected: discoverPageEvents.uiDiscoverSelectedQueued,
+  onDeleteSelected: discoverPageEvents.uiDiscoverSelectedDeleted
 };
 
 export const SelectedActionsConnected: React.ComponentClass = (

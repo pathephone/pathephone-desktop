@@ -1,9 +1,9 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { VolumeInput } from '~renderer/ui/Player/view/ActivePlayer/VolumeInput';
+import { playerEvents } from '~renderer/ui/Player';
 
 interface IStateProps {
   currentVolume: number;
@@ -20,7 +20,7 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps : MapDispatchToProps<IDispatchProps, IRootState> = {
-  onVolumeChange: actions.uiVolumeChanged
+  onVolumeChange: playerEvents.uiVolumeChanged
 };
 
 export const VolumeInputConnected: React.ComponentClass = connect<IStateProps, IDispatchProps>(

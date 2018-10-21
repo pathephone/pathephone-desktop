@@ -1,9 +1,9 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { DiscoverPage } from '~renderer/ui/DiscoverPage/view/DiscoverPage';
+import { discoverPageEvents } from '~renderer/ui/DiscoverPage';
 
 interface IStateProps {
   hasSelectedActions: boolean;
@@ -28,8 +28,8 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, {}> = {
-  onWillMount: actions.systemDiscoverAlbumsFetch,
-  onWillUnmount: actions.uiDiscoverPageClosed
+  onWillMount: discoverPageEvents.systemDiscoverAlbumsFetch,
+  onWillUnmount: discoverPageEvents.uiDiscoverPageClosed
 };
 
 export const DiscoverPageConnected: React.ComponentClass<{}> = (

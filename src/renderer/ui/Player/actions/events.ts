@@ -1,35 +1,45 @@
-import { IActionCreator, systemAction, uiAction } from '~renderer/utils/actions';
+import { uiAction, systemAction } from '~renderer/utils/actions';
 
-const playerDomain: (s: string) => string = (action: string): string => `@player/${action}`;
+const playerDomain = (action: string): string => `@player/${action}`;
 
-export const playbackToggled: IActionCreator<void> = uiAction(
-  playerDomain('PLAYBACK_TOGGLED')
+export const uiPlaylistTrackPlayed = uiAction(
+  playerDomain('PLAYLIST_TRACK_PLAYED')
+);
+export const uiPlaylistTrackRemoved = uiAction(
+  playerDomain('PLAYLIST_TRACK_REMOVED')
+);
+export const uiPlaylistCleared = uiAction(
+  playerDomain('PLAYLIST_CLEARED')
 );
 
-export const resumed: IActionCreator<void> = systemAction(
-  playerDomain('RESUMED')
+export const uiRepeatToggled = uiAction(
+  playerDomain('REPEAT_TOGGLED')
 );
-
-export const shuffleToggled: IActionCreator<void> = systemAction(
+export const uiShuffleToggled = uiAction(
   playerDomain('SHUFFLE_TOGGLED')
 );
 
-export const repeatToggled: IActionCreator<void> = systemAction(
-  playerDomain('REPEAT_TOGGLED')
+export const uiPlaybackPaused = uiAction(
+  playerDomain('PLAYBACK_PAUSED')
+);
+export const uiPlaybackResumed = uiAction(
+  playerDomain('PLAYBACK_RESUMED')
+);
+export const uiPlaybackToggled = uiAction(
+  playerDomain('PLAYBACK_TOGGLED')
 );
 
-export const volumeChanged: IActionCreator<number> = systemAction(
+export const uiNextTrackPlayed = uiAction(
+  playerDomain('NEXT_TRACK_PLAYED')
+);
+export const uiPreviousTrackPlayed = uiAction(
+  playerDomain('PREVIOUS_TRACK_PLAYED')
+);
+
+export const uiVolumeChanged = uiAction(
   playerDomain('VOLUME_CHANGED')
 );
 
-export const trackEnded: IActionCreator<void> = systemAction(
-  playerDomain('TRACK_ENDED')
-);
-
-export const nextTrackPlayed: IActionCreator<void> = systemAction(
-  playerDomain('NEXT_TRACK_PLAYED')
-);
-
-export const previousTrackPlayed: IActionCreator<void> = systemAction(
-  playerDomain('PREVIOUS_TRACK_PLAYED')
+export const systemAudioEnded = systemAction(
+  playerDomain('AUDIO_PLAYBACK_ENDED')
 );

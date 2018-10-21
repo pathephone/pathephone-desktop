@@ -1,9 +1,9 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import { ControlsRight } from '~renderer/ui/Player/view/ActivePlayer/ControlsRight';
 import { playlistSelectors } from '~renderer/ui/Playlist';
+import { playerEvents } from '~renderer/ui/Player';
 
 interface IStateProps {
   isShuffleTurnedOn: boolean;
@@ -23,8 +23,8 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps : MapDispatchToProps<IDispatchProps, IRootState> = {
-  onToggleShuffle: actions.uiShuffleToggled,
-  onToggleRepeat: actions.uiRepeatToggled
+  onToggleShuffle: playerEvents.uiShuffleToggled,
+  onToggleRepeat: playerEvents.uiRepeatToggled
 };
 
 export const ControlsRightConnected: React.ComponentClass = connect<IStateProps, IDispatchProps>(

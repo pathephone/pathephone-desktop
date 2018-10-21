@@ -1,10 +1,10 @@
 import { connect, MapDispatchToProps, MapStateToProps, MergeProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
 import { Album, IAlbumProps } from './Album';
+import { discoverPageEvents } from '~renderer/ui/DiscoverPage';
 
 interface IOwnProps {
   albumId: number;
@@ -34,10 +34,10 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, IOwnProps> = {
-  onAlbumSelected: actions.uiDiscoverAlbumSelected,
-  onAlbumDeselected: actions.uiDiscoverAlbumDeselected,
-  onAddAlbumToPlaylist: actions.uiAlbumQueued,
-  onPlayAlbum: actions.uiAlbumPlayed
+  onAlbumSelected: discoverPageEvents.uiDiscoverAlbumSelected,
+  onAlbumDeselected: discoverPageEvents.uiDiscoverAlbumDeselected,
+  onAddAlbumToPlaylist: discoverPageEvents.uiAlbumQueued,
+  onPlayAlbum: discoverPageEvents.uiAlbumPlayed
 };
 
 type IMergedProps = IAlbumProps;

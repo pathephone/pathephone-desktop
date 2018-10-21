@@ -1,9 +1,9 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { ControlsLeft } from '~renderer/ui/Player/view/ActivePlayer/ControlsLeft';
+import { playerEvents } from '~renderer/ui/Player';
 
 interface IStateProps {
   hasPauseIcon: boolean;
@@ -22,9 +22,9 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, void> = {
-  onPlayNextClick: actions.uiNextTrackPlayed,
-  onPlayPreviousClick: actions.uiPreviousTrackPlayed,
-  onPlaybackToggle: actions.uiPlaybackToggled
+  onPlayNextClick: playerEvents.uiNextTrackPlayed,
+  onPlayPreviousClick: playerEvents.uiPreviousTrackPlayed,
+  onPlaybackToggle: playerEvents.uiPlaybackToggled
 };
 
 export const ControlsLeftConnected: React.ComponentClass = connect(mapStateToProps, mapDispatchToProps)(ControlsLeft);

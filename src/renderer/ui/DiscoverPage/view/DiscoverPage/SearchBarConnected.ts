@@ -1,9 +1,9 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { SearchBar } from '~renderer/ui/DiscoverPage/view/DiscoverPage/SearchBar';
+import { discoverPageEvents } from '~renderer/ui/DiscoverPage';
 
 interface IStateProps {
   searchValue: string;
@@ -23,8 +23,8 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, {}> = {
-  onCancelSearch: actions.uiDiscoverSearchCleared,
-  onFormSubmit: actions.uiDiscoverSearchPerformed
+  onCancelSearch: discoverPageEvents.uiDiscoverSearchCleared,
+  onFormSubmit: discoverPageEvents.uiDiscoverSearchPerformed
 };
 
 export const SearchBarConnected: React.ComponentClass = (

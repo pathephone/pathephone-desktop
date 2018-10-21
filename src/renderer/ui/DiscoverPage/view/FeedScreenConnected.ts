@@ -1,10 +1,10 @@
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 
-import { actions } from '~renderer/state/actions';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { FeedScreen } from '~renderer/ui/DiscoverPage/view/FeedScreen';
 import i18n from '~shared/data/i18n';
+import { discoverPageEvents } from '~renderer/ui/DiscoverPage';
 
 interface IStateProps {
   albumsIds: number[];
@@ -35,7 +35,7 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, {}> = {
-  onRefreshButtonClick: actions.systemDiscoverAlbumsFetch
+  onRefreshButtonClick: discoverPageEvents.systemDiscoverAlbumsFetch
 };
 
 export const FeedScreenConnected: React.ComponentClass<{}> = (

@@ -5,6 +5,7 @@ import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
 import { IShareFormValues } from '~renderer/ui/SharePage/types';
 import { ShareForm } from '~renderer/ui/SharePage/view/ShareForm';
+import { sharePageEvents } from '~renderer/ui/SharePage';
 
 interface IStateProps {
   values: IShareFormValues;
@@ -28,10 +29,10 @@ interface IDispatchProps {
 }
 
 const mapDispatchToProps: MapDispatchToProps<IDispatchProps, {}> = {
-  onSubmit: actions.uiShareFormSubmited,
-  onCancel: actions.uiShareFormCanceled,
-  onChange: actions.uiShareFormChanged,
-  onReset: actions.uiShareFormReseted
+  onSubmit: sharePageEvents.uiShareFormSubmited,
+  onCancel: sharePageEvents.uiShareFormCanceled,
+  onChange: sharePageEvents.uiShareFormChanged,
+  onReset: sharePageEvents.uiShareFormReseted
 };
 
 export const ShareFormConnected: React.ComponentClass = (
