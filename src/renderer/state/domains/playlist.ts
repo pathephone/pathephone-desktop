@@ -2,9 +2,10 @@
 import { AnyAction, Reducer } from 'redux';
 
 import { actions } from '~renderer/state/actions';
-import { playlistEvents, playlistSetters } from '~renderer/ui/Playlist';
-import { initialPlaylistState } from '~renderer/ui/Playlist/state/initial';
-import { IPlaylistState } from '~renderer/ui/Playlist/types';
+import { playlistEvents } from '~renderer/ui/Playlist';
+import * as playlistSetters from './playlist/setters'
+import { initialPlaylistState } from '~renderer/state/domains/playlist/initial';
+import { IPlaylistState } from '~renderer/state/domains/playlist/types';
 
 export const playlistReducer: Reducer<IPlaylistState> = (
   (state: IPlaylistState = initialPlaylistState, action: AnyAction): IPlaylistState => {

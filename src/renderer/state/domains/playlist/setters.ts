@@ -1,9 +1,9 @@
-import { initialPlaylistState } from '~renderer/ui/Playlist/state/initial';
-import { IPlaylistState, IPlaylistTrack } from '~renderer/ui/Playlist/types';
-import { calcNextTrackIndex } from '~renderer/ui/Playlist/utils/calcNextTrackIndex';
-import { calcPreviousTrackIndex } from '~renderer/ui/Playlist/utils/calcPreviousTrackIndex';
-import { toTracksByIndex } from '~renderer/ui/Playlist/utils/toShuffleOrder';
-import { toShuffleOrder } from '~renderer/ui/Playlist/utils/toTracksByIndex';
+import { IPlaylistState, IPlaylistTrack } from '~renderer/state/domains/playlist/types';
+import { initialPlaylistState } from '~renderer/state/domains/playlist/initial';
+import { toTracksByIndex } from '~renderer/state/domains/playlist/utils/toShuffleOrder';
+import { toShuffleOrder } from '~renderer/state/domains/playlist/utils/toTracksByIndex';
+import { calcNextTrackIndex } from '~renderer/state/domains/playlist/utils/calcNextTrackIndex';
+import { calcPreviousTrackIndex } from '~renderer/state/domains/playlist/utils/calcPreviousTrackIndex';
 
 type ISetter<TPayload = void> = (s: IPlaylistState, p?: TPayload) => IPlaylistState;
 

@@ -1,4 +1,5 @@
 export { audioReducer as audio } from './domains/audio';
+export { playlistReducer as playlist } from './domains/playlist';
 export { volumeReducer as volume } from './domains/volume';
 export { discoverPageReducer as discoverPage } from './domains/discoverPage';
 export { discoverSelectedReducer as discoverSelected } from './domains/discoverSelected';

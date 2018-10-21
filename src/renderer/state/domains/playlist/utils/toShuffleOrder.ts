@@ -1,4 +1,4 @@
-import { IPlaylistTrack, IPlaylistTracksByIndex } from '~renderer/ui/Playlist/types';
+import { IPlaylistTrack, IPlaylistTracksByIndex } from "~renderer/state/domains/playlist/types";
 
 export const toTracksByIndex: (t: IPlaylistTrack[], i?: string | null) => IPlaylistTracksByIndex = (
   (tracks: IPlaylistTrack[], startIndex: string | null) : IPlaylistTracksByIndex => {

@@ -3,9 +3,9 @@ import { connect, MapDispatchToProps, MapStateToProps, MergeProps } from 'react-
 import { ICachedCIDsState } from '~renderer/state/domains/cachedCIDs';
 import { IRootState } from '~renderer/state/rootState';
 import selectors from '~renderer/state/selectors';
-import { playlistEvents, playlistSelectors } from '~renderer/ui/Playlist';
-import { IPlaylistTracksByIndex } from '~renderer/ui/Playlist/types';
+import { playlistEvents } from '~renderer/ui/Playlist';
 import { IPlaylistTrackProps, PlaylistTrack } from '~renderer/ui/Playlist/view/Playlist/PlaylistTrack';
+import { IPlaylistTracksByIndex } from '~renderer/state/domains/playlist/types';
 
 interface IOwnProps {
   index: string;
@@ -20,8 +20,8 @@ interface IStateProps {
 const mapStateToProps: MapStateToProps<IStateProps, IOwnProps, IRootState> = (
   state: IRootState
 ): IStateProps => ({
-  currentTrackIndex: playlistSelectors.getCurrentTrackIndex(state),
-  tracksByIndex: playlistSelectors.getPlaylistTracksByIndex(state),
+  currentTrackIndex: selectors.getCurrentTrackIndex(state),
+  tracksByIndex: selectors.getPlaylistTracksByIndex(state),
   cachedCIDs: selectors.getCachedCIDs(state)
 });
 

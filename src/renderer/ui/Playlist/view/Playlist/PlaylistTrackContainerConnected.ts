@@ -1,9 +1,9 @@
 import { connect, MapStateToProps, MergeProps } from 'react-redux';
 
 import { IRootState } from '~renderer/state/rootState';
-import { playlistSelectors } from '~renderer/ui/Playlist';
-import { IPlaylistRemovedByIndex } from '~renderer/ui/Playlist/types';
 import { IPlaylistTrackContainerProps, PlaylistTrackContainer } from './PlaylistTrackContainer';
+import { IPlaylistRemovedByIndex } from '~renderer/state/domains/playlist/types';
+import selectors from '~renderer/state/selectors';
 
 interface IOwnProps {
   index: string;
@@ -15,7 +15,7 @@ interface IStateProps {
 
 const mapStateToProps: MapStateToProps<IStateProps, IOwnProps, IRootState> = (
   (state: IRootState): IStateProps => ({
-    removedByIndex: playlistSelectors.getPlaylistRemovedByIndex(state)
+    removedByIndex: selectors.getPlaylistRemovedByIndex(state)
   })
 );
 

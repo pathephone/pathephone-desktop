@@ -3,18 +3,17 @@ import { createSelector, Selector } from 'reselect';
 
 import { ICachedCIDsState } from '~renderer/state/domains/cachedCIDs';
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
-import { playlistSelectors } from '~renderer/ui/Playlist';
-import { IPlaylistTrack, IPlaylistTracksByIndex } from '~renderer/ui/Playlist/types';
 import { IMetabinAlbum } from '~shared/types/domains/album';
 import { IRootState } from '../rootState';
 import * as simple from './simple';
+import { IPlaylistTrack, IPlaylistTracksByIndex } from '~renderer/state/domains/playlist/types';
 
 export const getCurrentTrack: (s: IRootState) => IPlaylistTrack | void = (
   state: IRootState
 ): IPlaylistTrack | void => {
-  const index: string | null = playlistSelectors.getCurrentTrackIndex(state);
+  const index: string | null = simple.getCurrentTrackIndex(state);
   if (index !== null) {
-    return playlistSelectors.getPlaylistTracksByIndex(state)[index];
+    return simple.getPlaylistTracksByIndex(state)[index];
   }
 
   return undefined;
@@ -44,7 +43,7 @@ export const getCurrentTrackSource: (state: IRootState) => string = (
 
 export const isPlayerActive: (s: IRootState) => boolean = (
   state: IRootState
-): boolean => playlistSelectors.getCurrentTrackIndex(state) !== null;
+): boolean => simple.getCurrentTrackIndex(state) !== null;
 
 export const isShareCandidatesRecieved: (s: IRootState) => boolean = (
   state: IRootState
@@ -52,7 +51,7 @@ export const isShareCandidatesRecieved: (s: IRootState) => boolean = (
 
 export const getPlaylistTracksIndexes: (s: IRootState) => string[] = (
   createSelector<IRootState, IPlaylistTracksByIndex, string[]>(
-    playlistSelectors.getPlaylistTracksByIndex,
+    simple.getPlaylistTracksByIndex,
     (tracks: { [key: string]: IPlaylistTrack }) => Object.keys(tracks)
   )
 );
@@ -63,7 +62,7 @@ export const getPlaylistTracksCount: (s: IRootState) => number = (
 
 export const getPlaylistTracksCIDs: (s: IRootState) => string[] = (
   createSelector<IRootState, IPlaylistTracksByIndex, string[]>(
-    playlistSelectors.getPlaylistTracksByIndex,
+    simple.getPlaylistTracksByIndex,
     (tracks: IPlaylistTracksByIndex) => Object.values(tracks).map(({ audio }: IPlaylistTrack) => audio)
   )
 );

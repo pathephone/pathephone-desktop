@@ -1,8 +1,8 @@
 import { albumsCollectionApi } from '~renderer/api/intex';
 import { ICollectionAlbum } from '~renderer/types/api';
-import { IPlaylistTrack } from '~renderer/ui/Playlist/types';
 import { IMetabinAlbumTrack } from '~shared/types/domains/album';
 import { normalizeAlbumTrackForPlaylist } from '~shared/utils/normalizeAlbumTrackForPlaylist';
+import { IPlaylistTrack } from '~renderer/state/domains/playlist/types';
 
 export const getPlaylistTracksFromAlbums: (cids: string[]) => Promise<IPlaylistTrack[]> = async (
   cids: string[]

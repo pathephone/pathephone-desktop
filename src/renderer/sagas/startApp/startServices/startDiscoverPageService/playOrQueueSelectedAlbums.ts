@@ -3,8 +3,8 @@ import { call, put, select } from 'redux-saga/effects';
 
 import { actions } from '~renderer/state/actions';
 import selectors from '~renderer/state/selectors';
-import { IPlaylistTrack } from '~renderer/ui/Playlist/types';
 import { getPlaylistTracksFromAlbums } from '~shared/utils/getPlaylistTracksFromAlbums';
+import { IPlaylistTrack } from '~renderer/state/domains/playlist/types';
 
 export function* playOrQueueSelectedAlbums({ type }: AnyAction): Generator {
   yield put(actions.systemUiLocked());

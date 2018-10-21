@@ -1,5 +1,5 @@
 import { IRootState } from '~renderer/state/rootState';
-import { IPlaylistRemovedByIndex, IPlaylistTracksByIndex } from '~renderer/ui/Playlist/types';
+import { IPlaylistTracksByIndex, IPlaylistRemovedByIndex } from '~renderer/state/domains/playlist/types';
 
 export const getPlaylistTracksByIndex: (s: IRootState) => IPlaylistTracksByIndex = (
   (state: IRootState): IPlaylistTracksByIndex => state.playlist.tracksByIndex

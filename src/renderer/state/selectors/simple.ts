@@ -7,6 +7,8 @@ import { IGithubRelease, IIpfsBandwidthStat, IIpfsRepoStat } from '~renderer/typ
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
 import { IMetabinAlbum } from '~shared/types/domains/album';
 
+export * from '~renderer/state/domains/playlist/selectors';
+
 // albums info
 
 export const getAlbumsCount: (s: IRootState) => number | null = (

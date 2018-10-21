@@ -1,4 +1,4 @@
-import { IPlaylistState } from '~renderer/ui/Playlist/types';
+import { IPlaylistState } from "~renderer/state/domains/playlist/types";
 
 export const initialPlaylistState : IPlaylistState = {
   tracksByIndex: {},
