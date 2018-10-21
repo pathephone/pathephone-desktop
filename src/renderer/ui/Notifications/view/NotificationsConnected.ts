@@ -4,7 +4,7 @@ import { IRootState } from '~renderer/state/rootState';
 import { notificationsEvents, notificationsSelectors } from '~renderer/ui/Notifications';
 import { INotification } from '~renderer/ui/Notifications/types';
 import { Notifications } from '~renderer/ui/Notifications/view/Notifications';
-import { IActionCreator } from '~renderer/utils/actions';
+import { PayloadCreator } from 'typesafe-actions/dist/types';
 
 // state
 
@@ -20,8 +20,8 @@ const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
 // dispatch
 
 interface IDispatchProps {
-  onNotificationExpired: IActionCreator<number>;
-  onToastRemove: IActionCreator<number>;
+  onNotificationExpired: PayloadCreator<string, number>;
+  onToastRemove: PayloadCreator<string, number>;
 }
 const mapDispatchToProps: IDispatchProps = {
   onNotificationExpired: notificationsEvents.notificationExpired,

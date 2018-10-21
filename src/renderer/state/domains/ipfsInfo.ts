@@ -29,12 +29,21 @@ export const ipfsInfoReducer: Reducer<IIpfsInfoState> = (
   const { type, payload } = action;
   switch (type) {
     case actions.systemIpfsInfoRecieved.toString():
+      return {
+        ...state,
+        ...payload.ipfsInfo,
+        isOffline: payload.isOffline
+      }
     case actions.systemIpfsStatsRecieved.toString():
-    case actions.systemMetabinPeersRecieved.toString():
       return {
         ...state,
         ...payload
       };
+    case actions.systemMetabinPeersRecieved.toString():
+    return {
+      ...state,
+      metabinPeersCount: payload
+    }
     default:
       return state;
   }

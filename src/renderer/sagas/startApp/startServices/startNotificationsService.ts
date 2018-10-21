@@ -8,19 +8,14 @@ import {
   NOTIFICATION_TYPE_WARNING
 } from '~shared/data/constants';
 import isObject from '~shared/utils/isObject';
-
-interface INotificationPayload {
-  text: string;
-  notificationType: 'ERROR' | 'WARNING' | 'SUCCESS';
-  id: number;
-}
+import { INotification } from '~renderer/ui/Notifications/types';
 
 let counter: number = 0;
 
 function* handleAction({ payload }: AnyAction): Generator {
   if (payload && isObject(payload)) {
     const { errorMessage, warningMessage, successMessage } = payload;
-    let nextPayload: INotificationPayload | void;
+    let nextPayload: INotification | void;
     if (errorMessage) {
       nextPayload = {
         text: errorMessage,

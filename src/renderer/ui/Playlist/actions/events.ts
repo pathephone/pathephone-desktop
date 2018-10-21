@@ -1,13 +1,13 @@
-import { uiAction } from '~renderer/utils/actions';
+import { createStandardAction } from 'typesafe-actions';
 
 const playlistDomain = (action: string): string => `@playlist/${action}`;
 
-export const uiPlaylistTrackPlayed = uiAction<string>(
+export const uiPlaylistTrackPlayed = createStandardAction(
   playlistDomain('PLAYLIST_TRACK_PLAYED')
-);
-export const uiPlaylistTrackRemoved = uiAction<string>(
+)<string>();
+export const uiPlaylistTrackRemoved = createStandardAction(
   playlistDomain('PLAYLIST_TRACK_REMOVED')
-);
-export const uiPlaylistCleared = uiAction(
+)<string>();
+export const uiPlaylistCleared = createStandardAction(
   playlistDomain('PLAYLIST_CLEARED')
-);
+)();

@@ -1,9 +1,9 @@
-import { IActionCreator, systemAction, uiAction } from '~renderer/utils/actions';
+import { createStandardAction } from 'typesafe-actions';
 
-export const notificationCanceled: IActionCreator<number> = uiAction(
+export const notificationCanceled = createStandardAction(
   'NOTIFICATION_CANCELED'
-);
+)<number>();
 
-export const notificationExpired: IActionCreator<number> = systemAction(
+export const notificationExpired = createStandardAction(
   'NOTIFICATION_EXPIRED'
-);
+)<number>();

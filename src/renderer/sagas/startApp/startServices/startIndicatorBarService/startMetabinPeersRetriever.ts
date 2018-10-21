@@ -12,11 +12,11 @@ export function* startMetabinPeersRetriever(): Generator  {
     while (true) {
       yield take(ticker);
       const peersCount: number = yield call(albumsGateApi.getMetabinPeersCount);
-      yield put(actions.systemMetabinPeersRecieved({ metabinPeersCount: peersCount }));
+      yield put(actions.systemMetabinPeersRecieved(peersCount));
     }
   } catch (e) {
     console.error(e);
-    yield put(actions.systemMetabinPeersRecieved({ metabinPeersCount: null }));
+    yield put(actions.systemMetabinPeersRecieved(null));
     ticker.close();
   }
 }

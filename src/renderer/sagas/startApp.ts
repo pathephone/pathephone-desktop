@@ -17,7 +17,7 @@ export function* startApp(): Generator {
     }
     const ipfsInfo: IIpfsInfo = yield call(customIpfsApi.getIpfsInfo);
     yield put(actions.systemIpfsInfoRecieved({
-      ...ipfsInfo,
+      ipfsInfo,
       isOffline: IS_OFFLINE
     }));
     yield call(albumsCollectionApi.startDb);
