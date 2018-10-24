@@ -40,11 +40,10 @@ export function* startIPFSStatsRetriever(): Generator {
     while (true) {
       yield take(ticker);
       const stats: IIpfsStat = yield call(customIpfsApi.getIpfsStats);
-      yield put(actions.systemIpfsStatsRecieved(normalizeStats(stats)));
+      yield put(actions.systemIpfsStatsRecieved(stats));
     }
   } catch (e) {
     console.error(e);
-    yield put(actions.systemIpfsStatsRecieved());
     ticker.close();
   }
 }

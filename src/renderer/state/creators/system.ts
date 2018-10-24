@@ -1,4 +1,4 @@
-import { IGithubRelease, ICollectionStat, IIpfsInfo } from '~renderer/types/api';
+import { IGithubRelease, ICollectionStat, IIpfsInfo, IIpfsRepoStat, IIpfsStat } from '~renderer/types/api';
 import { createStandardAction } from 'typesafe-actions';
 import { INotification } from '~renderer/ui/Notifications/types';
 import { IPlaylistTrack } from '~renderer/state/domains/playlist/types';
@@ -32,20 +32,22 @@ export const systemQueuedTracksRecieved = createStandardAction(
   'QUEUED_TRACKS_RECIEVED'
 )<IPlaylistTrack[]>();
 
-export const systemIPFSFileCached = createStandardAction('IPFS_FILE_CACHED')();
+export const systemIPFSFileCached = createStandardAction('IPFS_FILE_CACHED')<string>();
 
 export const systemNotificationRecieved = createStandardAction('NOTIFICATION_RECIEVED')<INotification>();
 
 export const systemIpfsInfoRecieved = createStandardAction(
   'IPFS_INFO_RECIEVED'
 )<{ ipfsInfo: IIpfsInfo; isOffline: boolean }>();
-export const systemIpfsStatsRecieved = createStandardAction('IPFS_REPO_STATS_RECIEVED')();
+export const systemIpfsStatsRecieved = createStandardAction('IPFS_REPO_STATS_RECIEVED')<IIpfsStat>();
 
 export const systemMetabinPeersRecieved = createStandardAction('METABIN_PEERS_RECIEVED')<number | null>();
 
 export const systemAlbumsCollectionInfoRecieved = createStandardAction(
   'ALBUMS_COUNT_RECIEVED'
 )<ICollectionStat>();
-export const systemAlbumsRecievedCacheTransited = createStandardAction('RECIEVED_CACHE_TRANSITED')();
+export const systemAlbumsRecievedCacheTransited = createStandardAction(
+  'RECIEVED_CACHE_TRANSITED'
+)<ICollectionStat>();
 
 export const systemNewRelaseDetected = createStandardAction('NEW_RELEASE_DETECTED')<IGithubRelease>();

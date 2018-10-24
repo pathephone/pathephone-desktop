@@ -48,14 +48,14 @@ export const uiDiscoverSelectedCanceled = createStandardAction(
 )();
 
 export const systemDiscoverAlbumsFetch = createStandardAction(
-  discoverPageDomain('DISCOVER_FETCH_SUCCEED')
-)<IDiscoverPageAlbum[]>();
+  discoverPageDomain('DISCOVER_ALBUMS_FETCH')
+)();
 export const systemDiscoverAlbumsFetchSucceed = createStandardAction(
-  discoverPageDomain('DISCOVER_LATEST_FETCH_SUCCEED')
+  discoverPageDomain('DISCOVER_ALBUMS_FETCH_SUCCEED')
 )<IDiscoverPageAlbum[]>();
 export const systemDiscoverAlbumsFetchFailed = createStandardAction(
-  discoverPageDomain('DISCOVER_LATEST_FETCH_FAILED')
-)();
+  discoverPageDomain('DISCOVER_ALBUMS_FETCH_FAILED')
+)<string>();
 
 export const systemDiscoverSelectedActionSucceed = createStandardAction(
   discoverPageDomain('DISCOVER_SELECTED_ACTION_SUCCEED')
