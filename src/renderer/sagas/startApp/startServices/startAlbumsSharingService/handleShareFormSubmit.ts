@@ -36,21 +36,14 @@ export function* handleShareFormSubmit({ payload }: AnyAction): Generator {
     const collectionStat: ICollectionStat = yield call(
       albumsCollectionApi.saveAlbumIfNotExists, { data: album, cid: albumCid });
     yield put(
-      actions.systemShareCandidateSaveSucceed({
-        successMessage: i18n.SHARE_FORM_SUBMIT_SUCCEED,
-        ...collectionStat
-      })
+      actions.systemShareCandidateSaveSucceed(collectionStat)
     );
   } catch (e) {
     console.error(e);
     if (e.message === 'Key already exists in the object store.') {
-      yield put(actions.systemShareCandidateSaveFailed({
-        warningMessage: i18n.SHARE_ALBUM_ALREADY_EXISTS
-      }));
+      yield put(actions.systemShareCandidateSaveFailed(i18n.SHARE_ALBUM_ALREADY_EXISTS));
     } else {
-      yield put(actions.systemShareCandidateSaveFailed({
-        errorMessage: e.message
-      }));
+      yield put(actions.systemShareCandidateSaveFailed(e.message));
     }
   }
 }

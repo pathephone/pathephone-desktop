@@ -1,8 +1,8 @@
 import { IGithubRelease, ICollectionStat, IIpfsInfo, IIpfsRepoStat, IIpfsStat } from '~renderer/types/api';
 import { createStandardAction } from 'typesafe-actions';
-import { INotification } from '~renderer/ui/Notifications/types';
 import { IPlaylistTrack } from '~renderer/state/domains/playlist/types';
 import { IMetabinAlbum } from '~shared/types/domains/album';
+import { INotification } from '~renderer/state/domains/notifications/types';
 
 export const systemAppRootMounted = createStandardAction('APP_ROOT_MOUNTED')();
 export const systemAppStartProceed = createStandardAction('APP_START_PROCEED')<number>();
@@ -11,16 +11,24 @@ export const systemAppStartFailed = createStandardAction(
   'APP_START_FAILED'
 )<string>();
 
-export const systemShareFilesProcessingFailed = createStandardAction('SHARE_FILES_PROCESSING_FAILED')();
+export const systemShareFilesProcessingFailed = createStandardAction(
+  'SHARE_FILES_PROCESSING_FAILED'
+)<string>();
 export const systemShareFormChanged = createStandardAction(
   'SHARE_FORM_CHANGED'
 )<IMetabinAlbum>();
 export const systemShareCandidatesRecieved = createStandardAction(
   'SHARE_CANDIDATES_RECIEVED'
 )<IMetabinAlbum[]>();
-export const systemShareCandidateSaveSucceed = createStandardAction('SHARE_CANDIDATE_SAVE_SUCCEED')();
-export const systemShareCandidateSaveFailed = createStandardAction('SHARE_CANDIDATE_SAVE_FAILED')();
-export const systemShareCandidatesNotFound = createStandardAction('SHARE_CANDIDATES_NOT_FOUND')();
+export const systemShareCandidateSaveSucceed = createStandardAction(
+  'SHARE_CANDIDATE_SAVE_SUCCEED'
+)<ICollectionStat>();
+export const systemShareCandidateSaveFailed = createStandardAction(
+  'SHARE_CANDIDATE_SAVE_FAILED'
+)<string>();
+export const systemShareCandidatesNotFound = createStandardAction(
+  'SHARE_CANDIDATES_NOT_FOUND'
+)();
 
 export const systemUiLocked = createStandardAction('UI_LOCKED')();
 export const systemUiUnlocked = createStandardAction('UI_UNLOCKED')();
@@ -34,7 +42,9 @@ export const systemQueuedTracksRecieved = createStandardAction(
 
 export const systemIPFSFileCached = createStandardAction('IPFS_FILE_CACHED')<string>();
 
-export const systemNotificationRecieved = createStandardAction('NOTIFICATION_RECIEVED')<INotification>();
+export const systemNotificationRecieved = createStandardAction(
+  'NOTIFICATION_RECIEVED'
+)<INotification>();
 
 export const systemIpfsInfoRecieved = createStandardAction(
   'IPFS_INFO_RECIEVED'

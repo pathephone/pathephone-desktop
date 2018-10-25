@@ -30,6 +30,6 @@ export function* fetchDiscoverAlbums({ payload }: AnyAction): Generator {
     }
   } catch (e) {
     console.error(e);
-    yield put(actions.systemDiscoverAlbumsFetchFailed({ errorMessage: e.message }));
+    yield put(actions.systemDiscoverAlbumsFetchFailed(e.message));
   }
 }

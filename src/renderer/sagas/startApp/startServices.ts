@@ -10,7 +10,6 @@ import { startDiscoverPageService } from '~renderer/sagas/startApp/startServices
 import { startIndicatorsBarService } from '~renderer/sagas/startApp/startServices/startIndicatorsBarService';
 import { startIPFSCachingService } from '~renderer/sagas/startApp/startServices/startIPFSCachingService';
 import { startNewReleaseChecker } from '~renderer/sagas/startApp/startServices/startNewReleaseChecker';
-import { startNotificationsService } from '~renderer/sagas/startApp/startServices/startNotificationsService';
 import { actions } from '~renderer/state/actions';
 import asyncTimeout from '~shared/utils/asyncTimeout';
 
@@ -23,7 +22,6 @@ export function* startServices(): Generator {
     spawn(startDiscoverPageService),
     spawn(startIPFSCachingService),
     spawn(startAlbumsCollectionInfo),
-    spawn(startNotificationsService),
     spawn(startNewReleaseChecker),
     spawn(startIndicatorsBarService)
   ]);

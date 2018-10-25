@@ -1,10 +1,11 @@
 import { connect, MapStateToProps } from 'react-redux';
 
 import { IRootState } from '~renderer/state/rootState';
-import { notificationsEvents, notificationsSelectors } from '~renderer/ui/Notifications';
-import { INotification } from '~renderer/ui/Notifications/types';
 import { Notifications } from '~renderer/ui/Notifications/view/Notifications';
 import { PayloadCreator } from 'typesafe-actions/dist/types';
+import { INotification } from '~renderer/state/domains/notifications/types';
+import selectors from '~renderer/state/selectors';
+import { notificationsEvents } from '~renderer/ui/Notifications';
 
 // state
 
@@ -14,7 +15,7 @@ interface IStateProps {
 const mapStateToProps: MapStateToProps<IStateProps, {}, IRootState> = (
   state: IRootState
 ) : IStateProps => ({
-  notifications: notificationsSelectors.getNotifications(state)
+  notifications: selectors.getNotifications(state)
 });
 
 // dispatch

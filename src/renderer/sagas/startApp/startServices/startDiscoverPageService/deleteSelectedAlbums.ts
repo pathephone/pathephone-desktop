@@ -12,7 +12,7 @@ export function* deleteSelectedAlbums(): Generator {
     const collectionStat: ICollectionStat = yield call(albumsCollectionApi.deleteAlbumsFromCollection, selectedAlbums);
     yield put(actions.systemDiscoverSelectedActionSucceed(collectionStat));
   } catch (e) {
-    yield put(actions.systemDiscoverSelectedActionFailed({ errorMessage: e.message }));
+    yield put(actions.systemDiscoverSelectedActionFailed(e.message));
   }
   yield put(actions.systemUiUnlocked());
 }

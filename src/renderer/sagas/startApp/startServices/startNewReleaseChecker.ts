@@ -35,10 +35,7 @@ function* checkForNewRelease(): Generator {
     }
     if (isGreater) {
       yield put(
-        actions.systemNewRelaseDetected({
-          release,
-          successMessage: i18n.NEW_RELEASE_NOTIFICATION
-        })
+        actions.systemNewRelaseDetected(release)
       );
     }
   } catch (e) {

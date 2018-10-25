@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { NotificationsToast } from '~renderer/ui/Notifications/components/NotificationsToast';
 import { NotificationsWrapper } from '~renderer/ui/Notifications/components/NotificationsWrapper';
-import { INotification } from '~renderer/ui/Notifications/types';
+import { INotification } from '~renderer/state/domains/notifications/types';
 
 interface IProps {
   notifications: INotification[];

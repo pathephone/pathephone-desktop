@@ -13,7 +13,7 @@ export const newReleaseReducer: Reducer<INewReleaseState> = (
   const { type, payload } = action;
   switch (type) {
     case actions.systemNewRelaseDetected.toString():
-      return payload.release;
+      return payload;
     default:
       return state;
   }

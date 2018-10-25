@@ -9,8 +9,8 @@ import { INewReleaseState } from '~renderer/state/domains/newRelease';
 import { IShareState } from '~renderer/state/domains/share';
 import { IVolumeState } from '~renderer/state/domains/volume';
 import { IAppState } from '~renderer/ui/App/types';
-import { INotificationsState } from '~renderer/ui/Notifications/types';
 import { IPlaylistState } from '~renderer/state/domains/playlist/types';
+import { INotificationsState } from '~renderer/state/domains/notifications/types';
 
 export interface IRootState {
   notifications: INotificationsState;

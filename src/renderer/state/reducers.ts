@@ -9,3 +9,4 @@ export { ipfsInfoReducer as ipfsInfo } from './domains/ipfsInfo';
 export { legalAgreementReducer as legalAgreement } from './domains/legalAgreement';
 export { albumsInfoReducer as albumsInfo } from './domains/albumsInfo';
 export { newReleaseReducer as newRelease } from './domains/newRelease';
+export { notificationsReducer as notifications } from './domains/notifications';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { notificationsStyles } from '~renderer/ui/Notifications';
-import { INotificationType } from '~renderer/ui/Notifications/types';
+import { INotificationType } from '~renderer/state/domains/notifications/types';
 
 interface IProps {
   text: string;

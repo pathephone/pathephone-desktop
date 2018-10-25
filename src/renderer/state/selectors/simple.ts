@@ -6,6 +6,7 @@ import { IRootState } from '~renderer/state/rootState';
 import { IGithubRelease, IIpfsBandwidthStat, IIpfsRepoStat } from '~renderer/types/api';
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
 import { IMetabinAlbum } from '~shared/types/domains/album';
+import { INotificationsState } from '~renderer/state/domains/notifications/types';
 
 export * from '~renderer/state/domains/playlist/selectors';
 
@@ -142,3 +143,9 @@ export const isShareProcessing: Selector<IRootState, boolean> = (
 export const getVolume: Selector<IRootState, number> = (
   state: IRootState
 ): number => state.volume;
+
+// notifications
+
+export const getNotifications: Selector<IRootState, INotificationsState> = (
+  state: IRootState
+): INotificationsState => state.notifications;

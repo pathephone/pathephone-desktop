@@ -17,7 +17,7 @@ export function* playOrQueueSelectedAlbums({ type }: AnyAction): Generator {
     if (type === actions.uiDiscoverSelectedQueued.toString()) {
       yield put(actions.systemQueuedTracksRecieved(tracks));
     }
-    yield put(actions.systemDiscoverSelectedActionSucceed());
+    yield put(actions.systemDiscoverSelectedActionSucceed(undefined));
   } catch (e) {
     yield put(actions.systemDiscoverSelectedActionFailed(e.message));
   }

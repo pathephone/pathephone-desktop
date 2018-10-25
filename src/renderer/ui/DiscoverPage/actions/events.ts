@@ -59,7 +59,7 @@ export const systemDiscoverAlbumsFetchFailed = createStandardAction(
 
 export const systemDiscoverSelectedActionSucceed = createStandardAction(
   discoverPageDomain('DISCOVER_SELECTED_ACTION_SUCCEED')
-)<ICollectionStat>();
+)<ICollectionStat | void>();
 export const systemDiscoverSelectedActionFailed = createStandardAction(
   discoverPageDomain('DISCOVER_SELECTED_ACTION_FAILED')
 )<string>();

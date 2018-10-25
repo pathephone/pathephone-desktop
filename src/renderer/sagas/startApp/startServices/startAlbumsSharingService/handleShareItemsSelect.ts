@@ -15,14 +15,10 @@ export function* handleShareItemsSelect({ payload }: AnyAction): Generator {
     if (candidates.length > 0) {
       yield put(actions.systemShareCandidatesRecieved(candidates));
     } else {
-      yield put(actions.systemShareCandidatesNotFound(
-        { warningMessage: i18n.NO_ALBUMS_FOUND }
-      ));
+      yield put(actions.systemShareCandidatesNotFound());
     }
   } catch (e) {
     console.error(e);
-    yield put(actions.systemShareFilesProcessingFailed(
-      { errorMessage: i18n.ERROR_PROCESSING_FILES }
-    ));
+    yield put(actions.systemShareFilesProcessingFailed(e.message));
   }
 }
