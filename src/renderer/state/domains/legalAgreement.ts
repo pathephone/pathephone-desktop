@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 
@@ -11,7 +12,7 @@ export const legalAgreementReducer: Reducer<ILegalAgreementState> = (
 ): ILegalAgreementState => {
   const { type } = action;
   switch (type) {
-    case actions.uiLegalAgreementGranted.toString():
+    case getType(actions.uiLegalAgreementGranted):
       return true;
     default:
       return state;

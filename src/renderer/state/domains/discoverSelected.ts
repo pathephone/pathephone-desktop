@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 
@@ -11,12 +12,12 @@ export const discoverSelectedReducer: Reducer<IDiscoverSelectedState> = (
 ): IDiscoverSelectedState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.uiDiscoverAlbumSelected.toString():
+    case getType(actions.uiDiscoverAlbumSelected):
       return [...state, payload];
-    case actions.uiDiscoverAlbumDeselected.toString():
+    case getType(actions.uiDiscoverAlbumDeselected):
       return state.filter((index: number) => index !== payload);
-    case actions.systemDiscoverSelectedActionSucceed.toString():
-    case actions.uiDiscoverSelectedCanceled.toString():
+    case getType(actions.systemDiscoverSelectedActionSucceed):
+    case getType(actions.uiDiscoverSelectedCanceled):
       return [];
     default:
       return state;

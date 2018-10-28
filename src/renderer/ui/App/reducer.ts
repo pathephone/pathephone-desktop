@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 import { initialAppState } from '~renderer/ui/App/state/initial';
@@ -10,13 +11,13 @@ export const appReducer: Reducer<IAppState> = (
 ) : IAppState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.systemAppStartProceed.toString():
+    case getType(actions.systemAppStartProceed):
       return { ...state, progress: payload };
-    case actions.systemAppStartFailed.toString():
+    case getType(actions.systemAppStartFailed):
       return { ...state, errorMessage: payload };
-    case actions.systemUiLocked.toString():
+    case getType(actions.systemUiLocked):
       return { ...state, isLocked: true };
-    case actions.systemUiUnlocked.toString():
+    case getType(actions.systemUiUnlocked):
       return { ...state, isLocked: false };
     default:
       return state;

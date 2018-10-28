@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 import { IIpfsBandwidthStat, IIpfsRepoStat } from '~renderer/types/api';
@@ -28,18 +29,18 @@ export const ipfsInfoReducer: Reducer<IIpfsInfoState> = (
 ): IIpfsInfoState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.systemIpfsInfoRecieved.toString():
+    case getType(actions.systemIpfsInfoRecieved):
       return {
         ...state,
         ...payload.ipfsInfo,
         isOffline: payload.isOffline
       }
-    case actions.systemIpfsStatsRecieved.toString():
+    case getType(actions.systemIpfsStatsRecieved):
       return {
         ...state,
         ...payload
       };
-    case actions.systemMetabinPeersRecieved.toString():
+    case getType(actions.systemMetabinPeersRecieved):
     return {
       ...state,
       metabinPeersCount: payload

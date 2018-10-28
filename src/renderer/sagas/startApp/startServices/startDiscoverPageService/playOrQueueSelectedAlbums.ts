@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import { call, put, select } from 'redux-saga/effects';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 import selectors from '~renderer/state/selectors';
@@ -11,10 +12,10 @@ export function* playOrQueueSelectedAlbums({ type }: AnyAction): Generator {
   try {
     const selectedAlbums: string[] = yield select(selectors.getDiscoverSelectedCids);
     const tracks: IPlaylistTrack[] = yield call(getPlaylistTracksFromAlbums, selectedAlbums);
-    if (type === actions.uiDiscoverSelectedPlayed.toString()) {
+    if (type === getType(actions.uiDiscoverSelectedPlayed)) {
       yield put(actions.systemPlayedTracksRecieved(tracks));
     }
-    if (type === actions.uiDiscoverSelectedQueued.toString()) {
+    if (type === getType(actions.uiDiscoverSelectedQueued)) {
       yield put(actions.systemQueuedTracksRecieved(tracks));
     }
     yield put(actions.systemDiscoverSelectedActionSucceed(undefined));

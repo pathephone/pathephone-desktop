@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 
@@ -11,7 +12,7 @@ export const volumeReducer: Reducer<IVolumeState> = (
 ): IVolumeState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.uiVolumeChanged.toString():
+    case getType(actions.uiVolumeChanged):
       return payload;
     default:
       return state;

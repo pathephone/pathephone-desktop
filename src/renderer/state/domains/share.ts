@@ -1,3 +1,4 @@
+import { getType } from 'typesafe-actions';
 import { AnyAction, Reducer } from 'redux';
 
 import { actions } from '~renderer/state/actions';
@@ -18,23 +19,23 @@ export const shareReducer: Reducer<IShareState> = (
 ): IShareState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.uiShareItemsSelected.toString():
+    case getType(actions.uiShareItemsSelected):
       return { ...state, isProcessing: true };
-    case actions.systemShareCandidatesRecieved.toString():
+    case getType(actions.systemShareCandidatesRecieved):
       return { candidates: payload, isProcessing: false };
-    case actions.uiShareFormSubmited.toString():
+    case getType(actions.uiShareFormSubmited):
       return { ...state, isProcessing: true };
-    case actions.systemShareCandidateSaveSucceed.toString():
-    case actions.uiShareFormCanceled.toString(): {
+    case getType(actions.systemShareCandidateSaveSucceed):
+    case getType(actions.uiShareFormCanceled): {
       const candidates: IMetabinAlbum[] = state.candidates
         .filter((_: IMetabinAlbum, index: number) => index !== 0);
 
       return { ...state, isProcessing: false, candidates };
     }
-    case actions.systemShareCandidateSaveFailed.toString(): {
+    case getType(actions.systemShareCandidateSaveFailed): {
       return { ...state, isProcessing: false };
     }
-    case actions.uiShareFormReseted.toString(): {
+    case getType(actions.uiShareFormReseted): {
       const handleMap: (c: IMetabinAlbum, i: number) => IMetabinAlbum = (
         candidate: IMetabinAlbum, index: number
       ): IMetabinAlbum => {
@@ -54,7 +55,7 @@ export const shareReducer: Reducer<IShareState> = (
 
       return { ...state, candidates };
     }
-    case actions.systemShareFormChanged.toString(): {
+    case getType(actions.systemShareFormChanged): {
       const candidates: IMetabinAlbum[] = state
         .candidates
         .map((candidate: IMetabinAlbum, index: number) => {
@@ -65,8 +66,8 @@ export const shareReducer: Reducer<IShareState> = (
 
       return { ...state, candidates };
     }
-    case actions.systemShareCandidatesNotFound.toString():
-    case actions.systemShareFilesProcessingFailed.toString(): {
+    case getType(actions.systemShareCandidatesNotFound):
+    case getType(actions.systemShareFilesProcessingFailed): {
       return {
         ...state,
         isProcessing: false

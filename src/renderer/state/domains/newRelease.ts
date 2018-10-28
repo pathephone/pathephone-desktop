@@ -1,3 +1,4 @@
+import { getType } from 'typesafe-actions';
 import { AnyAction, Reducer } from 'redux';
 
 import { actions } from '~renderer/state/actions';
@@ -12,7 +13,7 @@ export const newReleaseReducer: Reducer<INewReleaseState> = (
 ): INewReleaseState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.systemNewRelaseDetected.toString():
+    case getType(actions.systemNewRelaseDetected):
       return payload;
     default:
       return state;

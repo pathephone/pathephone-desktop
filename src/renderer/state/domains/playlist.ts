@@ -1,4 +1,4 @@
-
+import { getType } from 'typesafe-actions';
 import { AnyAction, Reducer } from 'redux';
 
 import { actions } from '~renderer/state/actions';
@@ -12,32 +12,32 @@ export const playlistReducer: Reducer<IPlaylistState> = (
     const { type, payload } = action;
     switch (type) {
 
-      case actions.systemPlayedTracksRecieved.toString():
+      case getType(actions.systemPlayedTracksRecieved):
         return playlistSetters.replaceTracks(state, payload);
 
-      case actions.systemQueuedTracksRecieved.toString():
+      case getType(actions.systemQueuedTracksRecieved):
         return playlistSetters.addTracks(state, payload);
 
-      case actions.uiNextTrackPlayed.toString():
-      case actions.systemAudioEnded.toString():
+      case getType(actions.uiNextTrackPlayed):
+      case getType(actions.systemAudioEnded):
         return playlistSetters.playNextTrack(state);
 
-      case actions.uiPreviousTrackPlayed.toString():
+      case getType(actions.uiPreviousTrackPlayed):
         return playlistSetters.playPreviousTrack(state);
 
-      case playlistEvents.uiPlaylistTrackRemoved.toString():
+      case getType(playlistEvents.uiPlaylistTrackRemoved):
         return playlistSetters.removeTrack(state, payload);
 
-      case playlistEvents.uiPlaylistTrackPlayed.toString():
+      case getType(playlistEvents.uiPlaylistTrackPlayed):
         return playlistSetters.playTrack(state, payload);
 
-      case actions.uiRepeatToggled.toString():
+      case getType(actions.uiRepeatToggled):
         return playlistSetters.toggleRepeat(state);
 
-      case actions.uiShuffleToggled.toString():
+      case getType(actions.uiShuffleToggled):
         return playlistSetters.toggleShuffle(state);
 
-      case playlistEvents.uiPlaylistCleared.toString():
+      case getType(playlistEvents.uiPlaylistCleared):
         return playlistSetters.clearPlaylist(state);
 
       default:

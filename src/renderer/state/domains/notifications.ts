@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 import { INotificationsState } from '~renderer/state/domains/notifications/types';
@@ -14,35 +15,35 @@ export const notificationsReducer: Reducer<INotificationsState> = (
   const { type, payload } = action;
   switch (type) {
 
-    case actions.systemNewRelaseDetected.toString():
+    case getType(actions.systemNewRelaseDetected):
       return notificationsSetters.addSuccessNotification(
         state, i18n.NEW_RELEASE_NOTIFICATION
       );
     
-    case actions.systemShareCandidateSaveSucceed.toString():
+    case getType(actions.systemShareCandidateSaveSucceed):
       return notificationsSetters.addSuccessNotification(
         state, i18n.SHARE_FORM_SUBMIT_SUCCEED
       )
     
-    case actions.systemShareCandidateSaveFailed.toString():
+    case getType(actions.systemShareCandidateSaveFailed):
       return notificationsSetters.addErrorNotification(state, payload)
   
-    case actions.systemShareCandidatesNotFound.toString():
+    case getType(actions.systemShareCandidatesNotFound):
       return notificationsSetters.addWarningNotification(
         state, i18n.NO_ALBUMS_FOUND
       )
 
-    case actions.systemShareFilesProcessingFailed.toString():
+    case getType(actions.systemShareFilesProcessingFailed):
         return notificationsSetters.addErrorNotification(state, payload)
 
-    case actions.systemDiscoverSelectedActionFailed.toString():
+    case getType(actions.systemDiscoverSelectedActionFailed):
         return notificationsSetters.addErrorNotification(state, payload)
 
-    case actions.systemDiscoverAlbumsFetchFailed.toString():
+    case getType(actions.systemDiscoverAlbumsFetchFailed):
         return notificationsSetters.addErrorNotification(state, payload)
 
-    case actions.notificationExpired.toString():
-    case actions.notificationCanceled.toString():
+    case getType(actions.notificationExpired):
+    case getType(actions.notificationCanceled):
       return notificationsSetters.removeNotification(state, payload);
     default:
       return state;

@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 
@@ -15,11 +16,11 @@ export const albumsInfoReducer: Reducer<IAlbumsInfoState, AnyAction> = (
 ): IAlbumsInfoState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.systemAlbumsCollectionInfoRecieved.toString():
-    case actions.systemShareCandidateSaveSucceed.toString():
-    case actions.systemAlbumsRecievedCacheTransited.toString():
+    case getType(actions.systemAlbumsCollectionInfoRecieved):
+    case getType(actions.systemShareCandidateSaveSucceed):
+    case getType(actions.systemAlbumsRecievedCacheTransited):
       return { albumsCount: payload.albumsCount };
-    case actions.systemDiscoverSelectedActionSucceed.toString():
+    case getType(actions.systemDiscoverSelectedActionSucceed):
       if (payload) {
         return { albumsCount: payload.albumsCount };
       }

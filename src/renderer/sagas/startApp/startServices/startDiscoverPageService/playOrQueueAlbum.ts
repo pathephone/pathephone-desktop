@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux';
+import { getType } from 'typesafe-actions';
 import { call, put } from 'redux-saga/effects';
 
 import { actions } from '~renderer/state/actions';
@@ -9,10 +10,10 @@ export function* playOrQueueAlbum({ type, payload }: AnyAction): Generator {
   yield put(actions.systemUiLocked());
   try {
     const tracks: IPlaylistTrack[] = yield call(getPlaylistTracksFromAlbums, [payload]);
-    if (type === actions.uiAlbumPlayed.toString()) {
+    if (type === getType(actions.uiAlbumPlayed)) {
       yield put(actions.systemPlayedTracksRecieved(tracks));
     }
-    if (type === actions.uiAlbumQueued.toString()) {
+    if (type === getType(actions.uiAlbumQueued)) {
       yield put(actions.systemQueuedTracksRecieved(tracks));
     }
   } catch (e) {

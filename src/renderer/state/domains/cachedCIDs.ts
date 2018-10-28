@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 
@@ -13,7 +14,7 @@ export const cachedCidsReducer: Reducer<ICachedCIDsState, AnyAction> = (
 ): ICachedCIDsState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.systemIPFSFileCached.toString():
+    case getType(actions.systemIPFSFileCached):
       return {
         ...state,
         [payload]: true

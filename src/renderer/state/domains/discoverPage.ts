@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 import { IDiscoverPageAlbum } from '~renderer/ui/DiscoverPage/types';
@@ -24,26 +25,26 @@ export const discoverPageReducer: Reducer<IDiscoverPageState> = (
 ): IDiscoverPageState => {
   const { type, payload } = action;
   switch (type) {
-    case actions.systemDiscoverAlbumsFetch.toString():
+    case getType(actions.systemDiscoverAlbumsFetch):
       return { ...initialState, isProcessing: true };
-    case actions.uiDiscoverPageClosed.toString():
+    case getType(actions.uiDiscoverPageClosed):
       return { ...initialState };
-    case actions.uiDiscoverSearchPerformed.toString():
+    case getType(actions.uiDiscoverSearchPerformed):
       return {
         ...initialState,
         searchValue: payload,
         isProcessing: true
       };
-    case actions.uiDiscoverSearchCleared.toString():
+    case getType(actions.uiDiscoverSearchCleared):
       return { ...initialState, isProcessing: true };
-    case actions.systemDiscoverAlbumsFetchSucceed.toString():
+    case getType(actions.systemDiscoverAlbumsFetchSucceed):
       return {
         ...state,
         albums: payload,
         isProcessing: false,
         isAlbumsOutdated: false
       };
-    case actions.systemShareCandidateSaveSucceed.toString():
+    case getType(actions.systemShareCandidateSaveSucceed):
       if (state.albums) {
         return {
           ...state,
@@ -52,7 +53,7 @@ export const discoverPageReducer: Reducer<IDiscoverPageState> = (
       }
 
       return state;
-    case actions.systemAlbumsRecievedCacheTransited.toString(): {
+    case getType(actions.systemAlbumsRecievedCacheTransited): {
       const { latestCid } = payload;
       if (state.albums && state.albums[0].albumCid !== latestCid) {
         return {
@@ -63,7 +64,7 @@ export const discoverPageReducer: Reducer<IDiscoverPageState> = (
 
       return state;
     }
-    case actions.systemDiscoverAlbumsFetchFailed.toString():
+    case getType(actions.systemDiscoverAlbumsFetchFailed):
       return { ...state, isFailed: true, isProcessing: false };
     default:
       return state;

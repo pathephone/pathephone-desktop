@@ -1,5 +1,3 @@
-import { newCreatorFactory, newDomainTypeFactory } from '~shared/utils/reduxTools';
+import { createStandardAction } from 'typesafe-actions';
 
-const c = newCreatorFactory(newDomainTypeFactory('ui'));
-
-export const uiLegalAgreementGranted = c('LEGAL_AGREEMENT_GRANTED');
+export const uiLegalAgreementGranted = createStandardAction('LEGAL_AGREEMENT_GRANTED')();

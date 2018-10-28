@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { getType } from 'typesafe-actions';
 
 import { actions } from '~renderer/state/actions';
 
@@ -15,11 +16,11 @@ export const audioReducer: Reducer<IAudioState> = (
 ): IAudioState => {
   const { type } = action;
   switch (type) {
-    case actions.uiPlaybackToggled.toString():
+    case getType(actions.uiPlaybackToggled):
       return { ...state, isPaused: !state.isPaused };
-    case actions.uiDiscoverSelectedPlayed.toString():
-    case actions.uiAlbumPlayed.toString():
-    case actions.uiPlaylistTrackPlayed.toString():
+    case getType(actions.uiDiscoverSelectedPlayed):
+    case getType(actions.uiAlbumPlayed):
+    case getType(actions.uiPlaylistTrackPlayed):
       return { ...state, isPaused: false };
     default:
       return state;
