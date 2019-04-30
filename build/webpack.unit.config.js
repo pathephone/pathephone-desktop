@@ -36,9 +36,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(ts|js)$/,
         exclude: /node_modules/,
         use: 'babel-loader',
+      },
+      {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp|mp3|flac|txt|svg)$/,
